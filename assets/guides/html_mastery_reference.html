@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML5 — Complete Tag &amp; Concept Reference | Kian's Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--bgcode:#060D18;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--purple:#8B5CF6;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(59,130,246,.15);--sw:285px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvs{padding:9px 17px 3px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t3)}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover,.nvi a.act{color:var(--t1);background:rgba(59,130,246,.08);border-left-color:var(--blue)}
+.nvi a.act{color:var(--blue);font-weight:500}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:20px}
+
+.main{margin-left:var(--sw)}
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:52px 52px 42px;position:relative;overflow:hidden}
+.hero::before{content:'01001000';position:absolute;top:-10px;right:15px;font-family:'JetBrains Mono',monospace;font-size:115px;font-weight:900;color:rgba(59,130,246,.04);letter-spacing:-5px;user-select:none;line-height:1}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--blue)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:48px;font-weight:700;line-height:1.05;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#3B82F6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:18px;color:var(--t2);margin-bottom:19px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+
+.chapter{padding:44px 52px;border-bottom:1px solid var(--bdr);max-width:970px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:19.5px;font-weight:600;margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--blue);border-radius:2px;flex-shrink:0}
+h3{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--blue);margin:22px 0 9px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+
+.box{border-radius:8px;padding:13px 17px;margin:15px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}.red .btt{color:var(--red)}
+
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--blue);font-size:12px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(59,130,246,.04)}
+tbody td{padding:9px 13px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}
+.nt td:not(:first-child){color:var(--amber);font-family:'JetBrains Mono',monospace}
+
+.codeblock{background:var(--bgcode);border:1px solid var(--bdr);border-radius:8px;margin:15px 0;overflow:hidden}
+.cbhd{display:flex;align-items:center;justify-content:space-between;padding:8px 13px;background:var(--bgr);border-bottom:1px solid var(--bdr)}
+.cbhl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:1px}
+.dots{display:flex;gap:4px}.dot{width:9px;height:9px;border-radius:50%}.dr{background:#EF4444}.dy{background:#F59E0B}.dg{background:#10B981}
+pre{padding:16px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.75;color:#C4D4E8}
+
+.demo{background:var(--bgc);border:1px dashed var(--bdr);border-radius:8px;padding:17px;margin:15px 0}
+.demolbl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:11px;display:flex;align-items:center;gap:6px}
+.demolbl::before{content:'●';font-size:8px}
+.demo a{color:var(--blue)}
+.demo table{background:var(--bgd)}
+.demo button{font-family:'Inter',sans-serif}
+
+.steps{margin:15px 0}
+.step{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.snum{background:var(--blue);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace}
+.sc{flex:1}
+.sl{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:2px}
+.sd{color:var(--t2);font-size:13px;line-height:1.7}
+.sd code{font-family:'JetBrains Mono',monospace;background:var(--bgr);padding:1px 5px;border-radius:3px;font-size:11.5px;color:var(--amber)}
+
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.gc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;position:relative;overflow:hidden}
+.gc::before{content:attr(data-g);position:absolute;top:-10px;right:7px;font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:900;color:rgba(59,130,246,.05);line-height:1}
+.gera{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.gtit{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:7px}
+.gsp{font-size:12.5px;color:var(--t2);margin:0;line-height:1.7}
+.gsp strong{color:var(--blue)}
+
+.isg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.isc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;border-top:3px solid var(--blue)}
+.isc.a{border-top-color:var(--amber)}.isc.g{border-top-color:var(--green)}.isc.p{border-top-color:var(--purple)}
+.ico{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-bottom:3px}
+.inm{font-weight:700;font-size:14px;color:var(--t1);margin-bottom:6px}
+.idc{font-size:12.5px;color:var(--t2);line-height:1.7}
+.ieg{font-size:11.5px;color:var(--green);margin-top:6px}
+
+.mlst{margin:11px 0}
+.mitem{display:flex;gap:11px;padding:10px 0;border-bottom:1px solid var(--bdr);align-items:flex-start}
+.mitem:last-child{border-bottom:none}
+.mnm{font-weight:700;color:var(--red);min-width:110px;font-size:13px}
+.mdc{font-size:13px;color:var(--t2);line-height:1.65}
+
+.tree{font-family:'JetBrains Mono',monospace;font-size:12.5px;background:var(--bgcode);border:1px solid var(--bdr);border-radius:8px;padding:15px 19px;color:var(--t2);line-height:2;margin:12px 0;overflow-x:auto;white-space:pre}
+
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:4px;font-size:13px;line-height:1.75}
+li strong{color:var(--t1)}
+
+.footer{padding:34px 52px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--blue)}
+
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.gg,.pg,.isg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+<div class="sbh"><div class="sbb">HTML5 · QCU BSIT</div><div class="sbt">Complete Tag &amp; Concept Reference</div><div class="sbs">Built from your BroCode practice + mastery gaps · 2026</div></div>
+<ul class="nvl">
+<li class="nvs">Introduction</li>
+<li class="nvi"><a href="#overview"><span class="nn">00</span>Overview &amp; Tag Legend</a></li>
+<li class="nvs">Chapters</li>
+<li class="nvi"><a href="#ch1"><span class="nn">01</span>Document Anatomy</a></li>
+<li class="nvi"><a href="#ch2"><span class="nn">02</span>Text Content</a></li>
+<li class="nvi"><a href="#ch3"><span class="nn">03</span>Links &amp; Navigation</a></li>
+<li class="nvi"><a href="#ch4"><span class="nn">04</span>Images, Audio, Video, iframe</a></li>
+<li class="nvi"><a href="#ch5"><span class="nn">05</span>Lists &amp; Tables</a></li>
+<li class="nvi"><a href="#ch6"><span class="nn">06</span>Grouping &amp; Semantic Layout</a></li>
+<li class="nvi"><a href="#ch7"><span class="nn">07</span>Forms, End to End</a></li>
+<li class="nvi"><a href="#ch8"><span class="nn">08</span>Global Attributes &amp; Entities</a></li>
+<li class="nvi"><a href="#ch9"><span class="nn">09</span>Accessibility, SEO &amp; What's Next</a></li>
+</ul></nav>
+
+<main class="main">
+<div class="hero">
+<div class="he">QCU Academic OS · Pre-CSS/JS Checkpoint · 2026</div>
+<div class="ht">HTML5</div>
+<div class="hs">Complete Tag &amp; Concept Reference — everything you've practiced, plus everything you haven't yet</div>
+<div class="hm">
+<div class="mp">Builds on: <span>WS101 Wk 2-3</span></div>
+<div class="mp">Leads to: <span>CSS (Wk 4) + JS (Wk 5-6)</span></div>
+<div class="mp">Format: <span>Single-file, offline-readable</span></div>
+<div class="mp">Live demos: <span>Real, working examples</span></div>
+</div></div>
+
+<!-- ============================================================
+     CHAPTER 00: OVERVIEW + TAG LEGEND
+============================================================= -->
+<section class="chapter" id="overview">
+<div class="cn">CHAPTER 00</div><div class="ct">Overview &amp; the One Rule That Matters Most</div>
+<p class="ci">This guide covers every HTML tag and concept from your BroCode practice file (<code>firstproj.html</code>), plus the tags and rules that weren't in that video but that you'll run into constantly once you start writing real pages — <code>fieldset</code>, <code>figure</code>, <code>details</code>, <code>section</code> vs <code>article</code>, global attributes, entities, and more. Wherever an example needs an actual image, audio, or video file, this guide uses real public URLs instead of a fake local path — so every demo below actually loads and plays when you open this file, instead of showing a broken-image icon.</p>
+
+<div class="box blue"><div class="bico">🔗</div><div class="bbd"><div class="btt">Why This Comes Before CSS and JavaScript</div>
+<p class="btx">HTML is the <strong>structure</strong> layer — what content exists and how it's organized. CSS (your next lesson) controls how that structure <em>looks</em>. JavaScript controls how it <em>behaves</em>. Both of those technologies constantly reference HTML elements by tag, id, or class — so gaps in your HTML foundation become confusing bugs later ("why won't my CSS selector work?" is almost always an HTML structure problem in disguise). Finish this reference, and CSS/JS will click faster.</p></div></div>
+
+<h2>The One Rule: Void vs. Paired Tags</h2>
+<p>Every single tag in HTML falls into exactly one of these two buckets. Get this straight now and half of your future "why isn't this working" moments disappear.</p>
+
+<div class="isg">
+<div class="isc"><div class="ico">BUCKET 1</div><div class="inm">Void / Self-Closing Tags</div><div class="idc">Never have a closing tag. Never wrap content — they ARE the content. Writing <code>&lt;/br&gt;</code> or <code>&lt;/hr&gt;</code> is a beginner mistake.</div><div class="ieg">&lt;br&gt; &lt;hr&gt; &lt;img&gt; &lt;input&gt; &lt;meta&gt; &lt;link&gt; &lt;source&gt; &lt;area&gt; &lt;base&gt; &lt;col&gt; &lt;embed&gt; &lt;track&gt; &lt;wbr&gt;</div></div>
+<div class="isc g"><div class="ico">BUCKET 2</div><div class="inm">Paired / Container Tags</div><div class="idc">Always need a matching closing tag. They hold content or other tags between the open and close.</div><div class="ieg">&lt;html&gt;&lt;head&gt;&lt;body&gt;&lt;title&gt;&lt;p&gt;&lt;h1&gt;-&lt;h6&gt;&lt;a&gt;&lt;div&gt;&lt;span&gt;&lt;ul&gt;&lt;li&gt;&lt;table&gt;&lt;form&gt;&lt;label&gt;&lt;select&gt;&lt;button&gt;&lt;audio&gt;&lt;video&gt; ...and most other tags</div></div>
+</div>
+
+<h2>Reference Priority Map</h2>
+<div class="tw"><table>
+<thead><tr><th>Chapter</th><th>Topic</th><th>How Often You'll Use It</th><th>Difficulty</th></tr></thead>
+<tbody>
+<tr><td>01</td><td>Document Anatomy</td><td><span class="tag tr2">🔴 Every page</span></td><td><span class="tag tg">Easy</span></td></tr>
+<tr><td>02</td><td>Text Content</td><td><span class="tag tr2">🔴 Every page</span></td><td><span class="tag tg">Easy</span></td></tr>
+<tr><td>03</td><td>Links &amp; Navigation</td><td><span class="tag tr2">🔴 Every page</span></td><td><span class="tag tg">Easy</span></td></tr>
+<tr><td>04</td><td>Images / Audio / Video / iframe</td><td><span class="tag ta">🟡 Most pages</span></td><td><span class="tag ta">Medium</span></td></tr>
+<tr><td>05</td><td>Lists &amp; Tables</td><td><span class="tag ta">🟡 Most pages</span></td><td><span class="tag tg">Easy</span></td></tr>
+<tr><td>06</td><td>Grouping &amp; Semantic Layout</td><td><span class="tag tr2">🔴 Every page</span></td><td><span class="tag ta">Medium</span></td></tr>
+<tr><td>07</td><td>Forms</td><td><span class="tag ta">🟡 Most sites</span></td><td><span class="tag tr2">Hardest</span></td></tr>
+<tr><td>08</td><td>Global Attributes &amp; Entities</td><td><span class="tag tb">🔵 Constantly, quietly</span></td><td><span class="tag tg">Easy</span></td></tr>
+<tr><td>09</td><td>Accessibility &amp; SEO</td><td><span class="tag tb">🔵 Professional habit</span></td><td><span class="tag ta">Medium</span></td></tr>
+</tbody></table></div>
+</section>
+
+<!-- ============================================================
+     CHAPTER 01: DOCUMENT ANATOMY
+============================================================= -->
+<section class="chapter" id="ch1">
+<div class="cn">CHAPTER 01</div><div class="ct">Document Anatomy &amp; Head Metadata</div>
+<p class="ci">Every HTML page is one tree with a strict skeleton. Get this skeleton wrong and browsers guess how to fix it — usually wrong. This is the same boilerplate you already used in <code>firstproj.html</code>, explained piece by piece.</p>
+
+<h2>How a Browser Reads Your File, Top to Bottom</h2>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl"><code>&lt;!DOCTYPE html&gt;</code></div><div class="sd">Must be the very first line, no exceptions. Tells the browser "parse this as modern HTML5," not some legacy quirks-mode guess. It is NOT a real tag — it has no closing tag and takes no attributes.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl"><code>&lt;html lang="en"&gt;</code></div><div class="sd">The root container for literally everything else. The <code>lang</code> attribute tells screen readers and translators what language the page is in.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl"><code>&lt;head&gt;...&lt;/head&gt;</code></div><div class="sd">Invisible configuration zone. Nothing inside here is rendered on the page itself — it's metadata about the page, not content of the page.</div></div></div>
+<div class="step"><div class="snum">4</div><div class="sc"><div class="sl"><code>&lt;body&gt;...&lt;/body&gt;</code></div><div class="sd">Everything the visitor actually sees and interacts with lives in here. Everything from Chapters 02-08 below goes inside <code>&lt;body&gt;</code>.</div></div></div>
+</div>
+
+<h2>Head Metadata Reference</h2>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">html</div></div>
+<pre><code>&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;!-- Character encoding. Without this, special characters (‧ é © ñ) can render as garbled boxes. VOID TAG. --&gt;
+
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;!-- Makes the page scale to the ACTUAL device width instead of shrinking a desktop layout. VOID TAG. --&gt;
+
+    &lt;meta name="description" content="A one-sentence summary shown in Google search results."&gt;
+    &lt;!-- Doesn't affect rendering at all — purely for search engines and link previews. VOID TAG. --&gt;
+
+    &lt;link rel="icon" href="images/favicon.png" type="image/png"&gt;
+    &lt;!-- Browser-tab icon. Resize the source image to a small square (e.g. 32x32 or 96x96) first. VOID TAG. --&gt;
+
+    &lt;link rel="stylesheet" href="style.css"&gt;
+    &lt;!-- This is how you'll attach your CSS file once you start that lesson. Same &lt;link&gt; tag, different rel value. VOID TAG. --&gt;
+
+    &lt;title&gt;My Page Title&lt;/title&gt;
+    &lt;!-- Text on the browser tab / bookmark name. PAIRED TAG. --&gt;
+&lt;/head&gt;</code></pre></div>
+
+<div class="mlst">
+<div class="mitem"><div class="mnm">Missing DOCTYPE</div><div class="mdc">Old browsers fall back to "quirks mode," which changes box sizing and spacing rules unpredictably. Always include it, always as the first line.</div></div>
+<div class="mitem"><div class="mnm">Attribute typos</div><div class="mdc">Duplicate attributes (writing <code>alt</code> twice on one &lt;img&gt;) are invalid — only the first is used, the rest are silently ignored. This was in your original file on both images.</div></div>
+<div class="mitem"><div class="mnm">Comment spacing</div><div class="mdc">Comments must be written <code>&lt;!-- text --&gt;</code> with no space after the first <code>!</code>. <code>&lt;! -- text --&gt;</code> is invalid, even if some browsers tolerate it.</div></div>
+</div>
+</section>
+
+<!-- ============================================================
+     CHAPTER 02: TEXT CONTENT
+============================================================= -->
+<section class="chapter" id="ch2">
+<div class="cn">CHAPTER 02</div><div class="ct">Text Content — Headings, Paragraphs &amp; Formatting</div>
+<p class="ci">This is everything from your "text formatting" section, plus the tags that carry actual meaning instead of just a look.</p>
+
+<h2>Headings &amp; Paragraphs — Live Demo</h2>
+<div class="demo"><div class="demolbl">Rendered Output</div>
+<h1 style="font-size:22px;margin-bottom:6px">This is an h1</h1>
+<h3 style="font-size:15px;color:var(--blue);margin-bottom:6px">This is an h3</h3>
+<p style="margin-bottom:0">This is a paragraph. One <code>&lt;h1&gt;</code> per page is the convention — it's your main title. Headings go h1 → h6 in order of importance, not by how big you want the text (that's CSS's job).</p>
+</div>
+
+<h2>Presentational Tags vs. Semantic Tags</h2>
+<p>Your BroCode file used <code>&lt;b&gt;</code>, <code>&lt;i&gt;</code>, <code>&lt;u&gt;</code>, <code>&lt;big&gt;</code>, <code>&lt;small&gt;</code>, <code>&lt;tt&gt;</code>, <code>&lt;sub&gt;</code>, <code>&lt;sup&gt;</code>, <code>&lt;del&gt;</code>, and <code>&lt;mark&gt;</code>. Those all still work — but several have a semantic sibling that <em>looks</em> identical by default while carrying extra meaning that screen readers announce differently.</p>
+
+<div class="isg">
+<div class="isc"><div class="ico">PRESENTATIONAL — just a look</div><div class="inm">&lt;b&gt; &lt;i&gt;</div><div class="idc">Bold/italic with zero implied meaning. Fine for stylistic-only text like a book title mentioned in passing.</div></div>
+<div class="isc g"><div class="ico">SEMANTIC — meaning + look</div><div class="inm">&lt;strong&gt; &lt;em&gt;</div><div class="idc">Renders bold/italic by default too, but tells assistive tech "this word is genuinely important / genuinely emphasized." Prefer these when the emphasis changes the sentence's meaning.</div></div>
+</div>
+
+<div class="demo"><div class="demolbl">Rendered Output — all your text-formatting tags</div>
+<p style="margin-bottom:4px"><b>Bold</b> · <i>Italic</i> · <u>Underline</u> · <del>Deleted</del> · <ins>Inserted</ins> · <sub>Sub</sub> · <sup>Sup</sup></p>
+<p style="margin-bottom:4px"><big>Big</big> · <small>Small</small> · <tt>Teletype</tt> · <mark style="background:var(--amber);color:#000">Marked</mark> · <strong>Strong</strong> · <em>Emphasis</em></p>
+<blockquote style="border-left:3px solid var(--blue);padding-left:12px;color:var(--t2);font-style:italic">"A blockquote — for quoting a chunk of another source." <cite>— cite names the source</cite></blockquote>
+<p style="margin-top:6px">Inline quote: <q>a short quote</q> (browsers add the quotation marks automatically). Abbreviation: <abbr title="HyperText Markup Language">HTML</abbr> (hover it). <address style="display:inline;font-style:normal">Contact info goes in &lt;address&gt;.</address></p>
+</div>
+
+<h2>HTML Entities — Typing Reserved Characters</h2>
+<p>Some characters are reserved by HTML itself (like <code>&lt;</code> and <code>&gt;</code>, since those define tags). To display them as literal text, you use an <strong>entity</strong> — a text code standing in for the symbol.</p>
+<div class="tw"><table>
+<thead><tr><th>Entity</th><th>Renders as</th><th>Why you'd use it</th></tr></thead>
+<tbody>
+<tr><td><code>&amp;lt;</code></td><td>&lt;</td><td>Show a literal less-than sign without it being read as the start of a tag</td></tr>
+<tr><td><code>&amp;gt;</code></td><td>&gt;</td><td>Same idea, for greater-than</td></tr>
+<tr><td><code>&amp;amp;</code></td><td>&amp;</td><td>A literal ampersand (typing a raw <code>&amp;</code> can break other entities)</td></tr>
+<tr><td><code>&amp;quot;</code></td><td>&quot;</td><td>A literal double-quote inside an attribute string</td></tr>
+<tr><td><code>&amp;nbsp;</code></td><td>(a space)</td><td>A "non-breaking space" — keeps two words glued on the same line</td></tr>
+<tr><td><code>&amp;copy;</code></td><td>&copy;</td><td>Copyright symbol — you already used this in your footer</td></tr>
+<tr><td><code>&amp;hellip;</code></td><td>&hellip;</td><td>An ellipsis, typed correctly instead of three periods</td></tr>
+</tbody></table></div>
+</section>
+
+<!-- ============================================================
+     CHAPTER 03: LINKS & NAVIGATION
+============================================================= -->
+<section class="chapter" id="ch3">
+<div class="cn">CHAPTER 03</div><div class="ct">Links &amp; Navigation</div>
+<p class="ci">The <code>&lt;a&gt;</code> (anchor) tag, every kind of destination it can point to, and the security detail most beginner tutorials skip.</p>
+
+<h2>Every Type of href, Live</h2>
+<div class="demo"><div class="demolbl">Rendered Output — all links below actually work</div>
+<p style="margin-bottom:6px"><a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" rel="noopener noreferrer">Absolute URL, opens in a new tab →</a></p>
+<p style="margin-bottom:6px"><a href="#ch7">Same-page anchor link → jumps to Chapter 07 below</a></p>
+<p style="margin-bottom:6px"><a href="mailto:example@email.com">mailto: → opens the visitor's email app</a></p>
+<p style="margin-bottom:0"><a href="tel:+639171234567">tel: → opens the phone dialer on mobile</a></p>
+</div>
+
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">html</div></div>
+<pre><code>&lt;!-- Relative path — points to a file in the SAME project folder, no https:// needed --&gt;
+&lt;a href="about.html"&gt;About Page&lt;/a&gt;
+
+&lt;!-- Same-page anchor — jumps to any element whose id matches --&gt;
+&lt;a href="#ch7"&gt;Jump to Forms&lt;/a&gt;
+&lt;section id="ch7"&gt;...&lt;/section&gt;
+
+&lt;!-- download attribute — forces the browser to download the file instead of opening it.
+     Only works reliably for files on your OWN site/origin, not random external links. --&gt;
+&lt;a href="resume.pdf" download&gt;Download my resume&lt;/a&gt;</code></pre></div>
+
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">The Security Detail Most Tutorials Skip</div>
+<p class="btx">Any time you use <code>target="_blank"</code>, also add <code>rel="noopener noreferrer"</code>. Without it, the page you just linked to gets partial JavaScript access back to your original tab — a real, documented security/performance issue. It costs nothing to add and browsers don't do it for you automatically.</p></div></div>
+</section>
+
+<!-- ============================================================
+     CHAPTER 04: IMAGES, AUDIO, VIDEO, IFRAME
+============================================================= -->
+<section class="chapter" id="ch4">
+<div class="cn">CHAPTER 04</div><div class="ct">Images, Audio, Video &amp; Embedded Pages</div>
+<p class="ci">Same tags as your practice file — <code>img</code>, <code>audio</code>, <code>video</code> — plus <code>figure</code>/<code>figcaption</code> and <code>iframe</code>, which weren't in your BroCode video. Every demo below loads from a real public URL, so you'll actually see/hear/watch it play.</p>
+
+<h2>Images — Live Demo</h2>
+<div class="demo"><div class="demolbl">Rendered Output</div>
+<figure style="margin:0">
+<img src="https://placehold.co/280x180/162038/60a5fa?text=Sample+Image" alt="Placeholder sample image showing a working img tag" width="280" height="180" style="border-radius:6px;display:block">
+<figcaption style="font-size:12px;color:var(--t3);margin-top:6px">figcaption — a caption tied semantically to the image above it</figcaption>
+</figure>
+</div>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">html</div></div>
+<pre><code>&lt;!-- Using your OWN local file (the syntax you'll use in your real projects): --&gt;
+&lt;img src="images/photo.jpg" alt="Describe what's in the photo" width="280" height="180"&gt;
+
+&lt;!-- figure + figcaption groups an image with its caption as one semantic unit --&gt;
+&lt;figure&gt;
+    &lt;img src="images/photo.jpg" alt="..."&gt;
+    &lt;figcaption&gt;A caption describing the photo above.&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre></div>
+<p><strong>alt is not optional.</strong> It's what screen readers announce, and it's what shows up if the file 404s. Two of your original images had <code>alt</code> written twice — an attribute can only appear once per element.</p>
+
+<h2>Audio — Live Demo</h2>
+<div class="demo"><div class="demolbl">Rendered Output — press play</div>
+<audio controls style="width:100%">
+    <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg">
+    <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+</div>
+<p>Multiple <code>&lt;source&gt;</code> tags let the browser pick whichever format it supports, top to bottom. <code>autoplay</code> only works combined with <code>muted</code> — browsers block audible autoplay to stop sites from blasting sound unexpectedly.</p>
+
+<h2>Video — Live Demo</h2>
+<div class="demo"><div class="demolbl">Rendered Output — press play</div>
+<video controls width="100%" style="max-width:400px;border-radius:6px;display:block">
+    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+</div>
+
+<h2>iframe — Embedding Another Page</h2>
+<div class="demo"><div class="demolbl">Rendered Output</div>
+<iframe src="https://example.com" title="Embedded example page" width="100%" height="160" style="border:1px solid var(--bdr);border-radius:6px"></iframe>
+</div>
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Not Every Site Allows Being Framed</div>
+<p class="btx">Many sites (including most social media and banking sites) send a header telling browsers "refuse to display me inside an iframe," as an anti-clickjacking security measure. <code>example.com</code> above is a domain specifically reserved for documentation and demos, so it's a safe, reliable choice for practicing this tag.</p></div></div>
+</section>
+
+<!-- ============================================================
+     CHAPTER 05: LISTS & TABLES
+============================================================= -->
+<section class="chapter" id="ch5">
+<div class="cn">CHAPTER 05</div><div class="ct">Lists &amp; Tables</div>
+<p class="ci">Your practice file covered <code>ul</code>/<code>ol</code>/<code>dl</code> and basic tables. Here's the full table anatomy (<code>thead</code>/<code>tbody</code>/<code>tfoot</code>/<code>caption</code>) you hadn't used yet, plus the correct nesting rule for lists.</p>
+
+<h2>Nested Lists — the Rule</h2>
+<div class="box red"><div class="bico">🚫</div><div class="bbd"><div class="btt">A Nested List MUST Live Inside an &lt;li&gt;</div>
+<p class="btx">Your original file placed a nested <code>&lt;ul&gt;</code> directly inside the outer <code>&lt;ul&gt;</code>, as a sibling of the <code>&lt;li&gt;</code> items. That's invalid — a <code>&lt;ul&gt;</code>'s only legal direct children are <code>&lt;li&gt;</code> elements. The nested list has to sit inside one of those <code>&lt;li&gt;</code> items.</p></div></div>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">html — correct</div></div>
+<pre><code>&lt;ul&gt;
+    &lt;li&gt;Item 1&lt;/li&gt;
+    &lt;li&gt;Item 2
+        &lt;ul&gt;
+            &lt;li&gt;Subitem A&lt;/li&gt;
+            &lt;li&gt;Subitem B&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;</code></pre></div>
+
+<h2>Full Table Anatomy</h2>
+<div class="demo"><div class="demolbl">Rendered Output</div>
+<table>
+<caption style="caption-side:top;text-align:left;color:var(--t1);font-weight:600;margin-bottom:8px">Weekly Class Schedule</caption>
+<colgroup><col style="background:rgba(59,130,246,.04)"><col><col></colgroup>
+<thead><tr><th>Day</th><th>Subject</th><th>Time</th></tr></thead>
+<tbody>
+<tr><td>Monday</td><td>WS101</td><td>8:00-11:00</td></tr>
+<tr><td>Wednesday</td><td>CC102</td><td>1:00-4:00</td></tr>
+</tbody>
+<tfoot><tr><td colspan="3" style="color:var(--t3);font-size:12px">All times subject to change per COR</td></tr></tfoot>
+</table>
+</div>
+<p><code>thead</code>/<code>tbody</code>/<code>tfoot</code> group rows semantically (header, body, summary row) — your original table only used bare <code>tr</code>. <code>caption</code> titles the whole table. <code>colgroup</code>/<code>col</code> let you style entire columns at once instead of every cell individually.</p>
+</section>
+
+<!-- ============================================================
+     CHAPTER 06: GROUPING & SEMANTIC LAYOUT
+============================================================= -->
+<section class="chapter" id="ch6">
+<div class="cn">CHAPTER 06</div><div class="ct">Grouping &amp; Semantic Layout</div>
+<p class="ci">The div-vs-span rule you already practiced, extended into the full set of layout tags — including <code>section</code> vs <code>article</code>, which trips up almost everyone at first.</p>
+
+<div class="isg">
+<div class="isc"><div class="ico">BLOCK-LEVEL</div><div class="inm">&lt;div&gt;</div><div class="idc">Stacks on its own line. Generic grouping box — no semantic meaning of its own. Can contain other block or inline elements.</div></div>
+<div class="isc g"><div class="ico">INLINE</div><div class="inm">&lt;span&gt;</div><div class="idc">Flows in the middle of a sentence. Can NEVER legally replace a block element inside <code>&lt;h1&gt;</code>-<code>&lt;h6&gt;</code> or <code>&lt;p&gt;</code> — your original file had this bug twice.</div></div>
+</div>
+
+<h2>section vs. article vs. div — The Decision</h2>
+<div class="gg">
+<div class="gc" data-g="§"><div class="gera">USE WHEN</div><div class="gtit">&lt;section&gt;</div><p class="gsp">Grouping a thematically related chunk of a page that would make sense with its own heading — e.g. an "About" section of a homepage.</p></div>
+<div class="gc" data-g="📰"><div class="gera">USE WHEN</div><div class="gtit">&lt;article&gt;</div><p class="gsp">The content could stand completely alone and be copy-pasted elsewhere and still make sense — e.g. a blog post, a forum comment, a product card.</p></div>
+</div>
+<p><strong>&lt;div&gt; is the fallback</strong> — use it only when neither section nor article's meaning actually applies and you just need a styling/scripting hook.</p>
+
+<h2>Semantic Layout Tags — Live Demo</h2>
+<div class="demo"><div class="demolbl">Rendered Output</div>
+<header style="background:var(--bgr);padding:10px;border-radius:6px;margin-bottom:8px"><strong>&lt;header&gt;</strong> — intro/branding area</header>
+<nav style="background:var(--bgr);padding:10px;border-radius:6px;margin-bottom:8px"><strong>&lt;nav&gt;</strong> — a block of navigation links</nav>
+<main style="background:var(--bgr);padding:10px;border-radius:6px;margin-bottom:8px;display:block"><strong>&lt;main&gt;</strong> — the primary, one-per-page unique content</main>
+<aside style="background:var(--bgr);padding:10px;border-radius:6px;margin-bottom:8px"><strong>&lt;aside&gt;</strong> — tangential content, sidebars</aside>
+<details style="background:var(--bgr);padding:10px;border-radius:6px;margin-bottom:8px">
+<summary style="cursor:pointer;font-weight:600">&lt;details&gt; + &lt;summary&gt; — click to expand (zero JavaScript needed!)</summary>
+<p style="margin-top:8px;margin-bottom:0">This whole collapsible box is pure HTML — no script required. Great for FAQs.</p>
+</details>
+<footer style="background:var(--bgr);padding:10px;border-radius:6px"><strong>&lt;footer&gt;</strong> — closing info, copyright</footer>
+</div>
+</section>
+
+<!-- ============================================================
+     CHAPTER 07: FORMS, END TO END
+============================================================= -->
+<section class="chapter" id="ch7">
+<div class="cn">CHAPTER 07</div><div class="ct">Forms, End to End</div>
+<p class="ci">Your practice file already covered nearly every input type that exists. This chapter adds <code>fieldset</code>/<code>legend</code> (grouping related fields, which you hadn't used) and a clean reference table of the validation attributes scattered across your form.</p>
+
+<h2>fieldset &amp; legend — Grouping Related Fields</h2>
+<div class="demo"><div class="demolbl">Rendered Output</div>
+<form onsubmit="return false">
+<fieldset style="border:1px solid var(--bdr);border-radius:6px;padding:12px 15px">
+<legend style="padding:0 8px;color:var(--blue);font-weight:600;font-size:13px">Contact Details</legend>
+<label for="demoName" style="font-size:13px">Name:</label><br>
+<input type="text" id="demoName" name="demoName" placeholder="Juan Dela Cruz" style="margin:4px 0 10px;padding:5px;width:100%;max-width:260px;background:var(--bgd);border:1px solid var(--bdr);color:var(--t1);border-radius:4px"><br>
+<label for="demoEmail" style="font-size:13px">Email:</label><br>
+<input type="email" id="demoEmail" name="demoEmail" placeholder="juan@email.com" style="margin:4px 0 4px;padding:5px;width:100%;max-width:260px;background:var(--bgd);border:1px solid var(--bdr);color:var(--t1);border-radius:4px">
+</fieldset>
+</form>
+</div>
+<p><code>fieldset</code> draws a grouping box around related inputs; <code>legend</code> is its title. Purely organizational and accessibility-friendly — screen readers announce the legend before reading the grouped fields.</p>
+
+<h2>Validation Attributes — Full Reference</h2>
+<div class="tw"><table>
+<thead><tr><th>Attribute</th><th>Applies to</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td>required</td><td>Any input</td><td>Blocks form submission until filled</td></tr>
+<tr><td>minlength / maxlength</td><td>text, password, textarea</td><td>Character count limits</td></tr>
+<tr><td>min / max</td><td>number, range, date, time</td><td>Value bounds</td></tr>
+<tr><td>pattern</td><td>text, tel, etc.</td><td>A regex the value must match</td></tr>
+<tr><td>placeholder</td><td>text-like inputs</td><td>Greyed-out example text — NOT a real value, disappears on typing</td></tr>
+<tr><td>accept</td><td>type="file"</td><td>Hints which file types the file picker allows</td></tr>
+</tbody></table></div>
+
+<div class="mlst">
+<div class="mitem"><div class="mnm">Duplicate ids</div><div class="mdc">Your original form reused <code>id="color"</code> and <code>id="file"</code> twice each. Every id on a page must be unique — the &lt;label for=""&gt; connection breaks otherwise.</div></div>
+<div class="mitem"><div class="mnm">Wrong enctype</div><div class="mdc">A form with any <code>type="file"</code> input needs <code>enctype="multipart/form-data"</code>. Plain text encoding can't carry binary file data. Your form listed enctype twice — only one value per attribute is valid.</div></div>
+<div class="mitem"><div class="mnm">Label without for</div><div class="mdc">A &lt;label&gt; only auto-connects to its input when <code>for="id"</code> matches that input's <code>id</code> exactly — a typo silently breaks the click-to-focus behavior.</div></div>
+</div>
+</section>
+
+<!-- ============================================================
+     CHAPTER 08: GLOBAL ATTRIBUTES & ENTITIES
+============================================================= -->
+<section class="chapter" id="ch8">
+<div class="cn">CHAPTER 08</div><div class="ct">Global Attributes &amp; Comments</div>
+<p class="ci">These attributes work on almost <em>any</em> HTML tag, regardless of what element it is — they're not tied to one specific tag the way <code>href</code> is tied to <code>&lt;a&gt;</code>.</p>
+
+<div class="tw"><table>
+<thead><tr><th>Attribute</th><th>Does what</th></tr></thead>
+<tbody>
+<tr><td>id</td><td>Unique page-wide identifier — used by CSS, JS, and #anchor links</td></tr>
+<tr><td>class</td><td>A label shared by multiple elements — how CSS targets groups of things</td></tr>
+<tr><td>style</td><td>Inline CSS on this one element only (fine for practice; real projects use a separate CSS file)</td></tr>
+<tr><td>title</td><td>Tooltip text shown on hover</td></tr>
+<tr><td>lang</td><td>Declares the language of this element's content</td></tr>
+<tr><td>hidden</td><td>Removes the element from the rendered page entirely</td></tr>
+<tr><td>data-*</td><td>Custom attribute for storing your own data, read later by JavaScript (e.g. <code>data-userid="42"</code>)</td></tr>
+<tr><td>tabindex</td><td>Controls keyboard Tab-key focus order</td></tr>
+<tr><td>contenteditable</td><td>Makes an element directly editable by the visitor, no form needed</td></tr>
+<tr><td>draggable</td><td>Makes an element draggable via native browser drag-and-drop</td></tr>
+</tbody></table></div>
+
+<h2>Two You Can Play With Right Now — Zero JavaScript</h2>
+<div class="demo"><div class="demolbl">Rendered Output — try clicking into the box, or dragging the chip</div>
+<p style="font-size:12px;color:var(--t3);margin-bottom:4px">contenteditable="true":</p>
+<div contenteditable="true" style="background:var(--bgd);border:1px solid var(--bdr);border-radius:6px;padding:10px;margin-bottom:12px;color:var(--t1)">Click here and start typing — this text is directly editable.</div>
+<p style="font-size:12px;color:var(--t3);margin-bottom:4px">draggable="true":</p>
+<div draggable="true" style="display:inline-block;background:var(--blue);color:#fff;padding:6px 14px;border-radius:20px;cursor:grab;font-size:13px">Drag me</div>
+</div>
+</section>
+
+<!-- ============================================================
+     CHAPTER 09: ACCESSIBILITY, SEO & WHAT'S NEXT
+============================================================= -->
+<section class="chapter" id="ch9">
+<div class="cn">CHAPTER 09</div><div class="ct">Accessibility, SEO Basics &amp; What's Next</div>
+<p class="ci">A quick professional-habits chapter, then the bridge into your next two lessons.</p>
+
+<h2>Accessibility — the 20% That Covers 80% of Cases</h2>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Always write real <code>alt</code> text</div><div class="sd">Describe what's IN the image, not "image123.jpg." Decorative-only images can use <code>alt=""</code> (empty, not missing) so screen readers skip them cleanly.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Use semantic tags over generic divs</div><div class="sd">A screen reader announces "navigation" for <code>&lt;nav&gt;</code> but says nothing useful for a <code>&lt;div class="nav"&gt;</code> — same visual result, very different accessibility.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Always pair &lt;label&gt; with its input</div><div class="sd">Either wrap the input inside the label, or use matching <code>for</code>/<code>id</code>. Screen readers and click-to-focus both depend on this connection.</div></div></div>
+</div>
+
+<h2>Script Tag Recap</h2>
+<p>You already used a basic <code>&lt;script&gt;</code> block to react to a button click. Two attributes you'll see constantly once you write real JS files:</p>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">html</div></div>
+<pre><code>&lt;!-- defer: downloads the script in the background, but waits to RUN it until the HTML
+     has finished parsing. Most common choice for scripts that touch the page's elements. --&gt;
+&lt;script src="app.js" defer&gt;&lt;/script&gt;
+
+&lt;!-- async: downloads AND runs as soon as it's ready, may interrupt HTML parsing.
+     Best for independent scripts (ads, analytics) that don't touch the page's own elements. --&gt;
+&lt;script src="analytics.js" async&gt;&lt;/script&gt;
+
+&lt;!-- noscript: shown ONLY if the visitor has JavaScript disabled --&gt;
+&lt;noscript&gt;This page needs JavaScript enabled to work fully.&lt;/noscript&gt;</code></pre></div>
+
+<div class="box green"><div class="bico">✅</div><div class="bbd"><div class="btt">You're Ready for CSS and JavaScript</div>
+<p class="btx">Structurally, this covers the full range of what HTML does: document setup, text, links, media, lists/tables, layout, forms, and the attributes that glue it all together. Your next lesson (CSS, WS101 Week 4) attaches a <code>&lt;link rel="stylesheet"&gt;</code> to everything you just learned and controls how it looks. The one after that (JavaScript, Weeks 5-6) reaches into these same elements by <code>id</code> — like your <code>getElementById("reminder")</code> example — and controls how they behave. Nothing here gets thrown away; every chapter above is a building block both of those lessons will keep referencing.</p></div></div>
+</section>
+
+<div class="footer"><p>Built for <strong>Kian</strong> · from <code>firstproj.html</code> practice + full HTML5 mastery gaps · 2026</p></div>
+</main>
+
+</body>
+</html>

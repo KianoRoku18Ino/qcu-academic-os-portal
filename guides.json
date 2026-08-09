@@ -1,0 +1,78 @@
+{
+  "_comment": "One entry per guide. To add a new guide later: drop its .html/.pdf into assets/guides/, add one object below, done — nothing in script.js needs to change. 'category' controls which sidebar group it lands under; any new category string automatically gets its own section header.",
+
+  "guides": [
+    {
+      "id": "cc101",
+      "code": "CC101",
+      "title": "Introduction to Computing",
+      "category": "Subjects",
+      "html": "assets/guides/CC101_Complete_Study_Guide.html",
+      "pdf": "assets/guides/CC101_Complete_Study_Guide.pdf"
+    },
+    {
+      "id": "cc102",
+      "code": "CC102",
+      "title": "Computer Programming 1",
+      "category": "Subjects",
+      "html": "assets/guides/CC102_Complete_Study_Guide.html",
+      "pdf": "assets/guides/CC102_Complete_Study_Guide.pdf"
+    },
+    {
+      "id": "ws101",
+      "code": "WS101",
+      "title": "Web Systems and Technologies",
+      "category": "Subjects",
+      "html": "assets/guides/WS101_Complete_Study_Guide.html",
+      "pdf": "assets/guides/WS101_Complete_Study_Guide.pdf"
+    },
+    {
+      "id": "hum2",
+      "code": "HUM2",
+      "title": "Ethics",
+      "category": "Subjects",
+      "html": "assets/guides/HUM2_Complete_Study_Guide.html",
+      "pdf": "assets/guides/HUM2_Complete_Study_Guide.pdf"
+    },
+    {
+      "id": "rizal",
+      "code": "RIZAL",
+      "title": "Life and Works of Rizal",
+      "category": "Subjects",
+      "html": "assets/guides/RIZAL_Complete_Study_Guide.html",
+      "pdf": "assets/guides/RIZAL_Complete_Study_Guide.pdf"
+    },
+    {
+      "id": "socsci3",
+      "code": "SOCSCI3",
+      "title": "Philippine Popular Culture",
+      "category": "Subjects",
+      "html": "assets/guides/SOCSCI3_Complete_Study_Guide.html",
+      "pdf": "assets/guides/SOCSCI3_Complete_Study_Guide.pdf"
+    },
+    {
+      "id": "pathfit1",
+      "code": "PATHFIT1",
+      "title": "Movement Competency Training",
+      "category": "Subjects",
+      "html": "assets/guides/PATHFIT1_Theory_Notes.html",
+      "pdf": "assets/guides/PATHFIT1_Theory_Notes.pdf"
+    },
+    {
+      "id": "html-mastery",
+      "code": "REF",
+      "title": "HTML Mastery Reference",
+      "category": "References",
+      "html": "assets/guides/html_mastery_reference.html",
+      "pdf": "assets/guides/html_mastery_reference.pdf"
+    },
+    {
+      "id": "github-mastery",
+      "code": "REF",
+      "title": "GitHub Mastery Guide",
+      "category": "References",
+      "html": "assets/guides/GitHub_Mastery_Guide.html",
+      "pdf": "assets/guides/GitHub_Mastery_Guide.pdf"
+    }
+  ]
+}

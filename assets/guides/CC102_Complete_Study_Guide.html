@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CC 102 — Fundamentals of Programming (Java) | Complete Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--bgcode:#060D18;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--purple:#8B5CF6;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(59,130,246,.15);--sw:285px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvs{padding:9px 17px 3px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t3)}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover{color:var(--t1);background:rgba(59,130,246,.08);border-left-color:var(--blue)}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:20px}
+.main{margin-left:var(--sw)}
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:52px 52px 42px;position:relative;overflow:hidden}
+.hero::before{content:'{ }';position:absolute;top:-25px;right:20px;font-family:'JetBrains Mono',monospace;font-size:150px;font-weight:900;color:rgba(59,130,246,.045);user-select:none;line-height:1}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--blue)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:48px;font-weight:700;line-height:1.05;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#3B82F6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:18px;color:var(--t2);margin-bottom:19px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+.chapter{padding:44px 52px;border-bottom:1px solid var(--bdr);max-width:980px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:19.5px;font-weight:600;margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--blue);border-radius:2px;flex-shrink:0}
+h3{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--blue);margin:22px 0 9px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+.box{border-radius:8px;padding:13px 17px;margin:15px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}.red .btt{color:var(--red)}
+.purple{background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2)}.purple .btt{color:var(--purple)}
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--blue);font-size:12px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(59,130,246,.04)}
+tbody td{padding:9px 13px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}
+.codeblock{background:var(--bgcode);border:1px solid var(--bdr);border-radius:8px;margin:15px 0;overflow:hidden}
+.cbhd{display:flex;align-items:center;justify-content:space-between;padding:8px 13px;background:var(--bgr);border-bottom:1px solid var(--bdr)}
+.cbhl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:1px}
+.dots{display:flex;gap:4px}.dot{width:9px;height:9px;border-radius:50%}.dr{background:#EF4444}.dy{background:#F59E0B}.dg{background:#10B981}
+pre{padding:16px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.75;color:#C4D4E8}
+.steps{margin:15px 0}
+.step{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.snum{background:var(--blue);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace}
+.sc{flex:1}
+.sl{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:2px}
+.sd{color:var(--t2);font-size:13px;line-height:1.7}
+.sd code{font-family:'JetBrains Mono',monospace;background:var(--bgr);padding:1px 5px;border-radius:3px;font-size:11.5px;color:var(--amber)}
+code{font-family:'JetBrains Mono',monospace;background:var(--bgr);padding:1px 6px;border-radius:3px;font-size:12.5px;color:var(--amber)}
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:4px;font-size:13px;line-height:1.75}
+li strong{color:var(--t1)}
+.footer{padding:34px 52px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--blue)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0;align-items:start}
+@media(max-width:768px){.split{grid-template-columns:1fr}}
+.tree{font-family:'JetBrains Mono',monospace;font-size:12.5px;background:var(--bgcode);border:1px solid var(--bdr);border-radius:8px;padding:15px 19px;color:var(--t2);line-height:2;margin:12px 0;overflow-x:auto;white-space:pre}
+
+/* ===== TERMINAL OUTPUT COMPONENT ===== */
+.terminal{background:#0A0E14;border:1px solid var(--bdr);border-radius:8px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.25)}
+.term-head{display:flex;align-items:center;gap:8px;padding:9px 13px;background:#161B26;border-bottom:1px solid var(--bdr)}
+.term-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--t3);text-transform:uppercase;letter-spacing:1.5px;margin-left:4px}
+.term-body{padding:16px;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.85}
+.term-body .p{color:#64748B}
+.term-body .o{color:#4ADE80;display:block}
+.term-body .e{color:#F87171;display:block}
+.term-body .c{color:#94A3B8;display:block}
+
+/* ===== EXECUTION TRACE TABLE ===== */
+.trace{margin:16px 0;border:1px solid var(--bdr);border-radius:8px;overflow:hidden}
+.trace-head{padding:9px 14px;background:rgba(139,92,246,.12);border-bottom:1px solid var(--bdr);font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--purple);text-transform:uppercase;letter-spacing:1.5px;font-weight:600}
+.trace table{font-size:12.5px}
+.trace thead th{background:var(--bgr);border-bottom:2px solid var(--purple);font-family:'JetBrains Mono',monospace}
+.trace td{font-family:'JetBrains Mono',monospace;color:var(--t2)}
+.trace td:first-child{color:var(--purple);font-weight:700;text-align:center}
+
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}}
+</style></head><body>
+<nav class="sidebar">
+<div class="sbh"><div class="sbb">CC 102 · QCU BSIT</div><div class="sbt">Fundamentals of Programming</div><div class="sbs">Complete Study Guide · AY 2026–2027</div></div>
+<ul class="nvl">
+<li class="nvs">Introduction</li>
+<li class="nvi"><a href="#overview"><span class="nn">00</span>Overview &amp; How Java Works</a></li>
+<li class="nvs">Planning Before Code</li>
+<li class="nvi"><a href="#ch1"><span class="nn">01</span>Logic Formulation</a></li>
+<li class="nvs">Foundations</li>
+<li class="nvi"><a href="#ch2"><span class="nn">02</span>Setup &amp; Hello World</a></li>
+<li class="nvi"><a href="#ch3"><span class="nn">03</span>Variables &amp; Data Types</a></li>
+<li class="nvi"><a href="#ch4"><span class="nn">04</span>Operators</a></li>
+<li class="nvs">Control Flow</li>
+<li class="nvi"><a href="#ch5"><span class="nn">05</span>Conditionals</a></li>
+<li class="nvi"><a href="#ch6"><span class="nn">06</span>Loops</a></li>
+<li class="nvs">Structuring Code</li>
+<li class="nvi"><a href="#ch7"><span class="nn">07</span>Methods</a></li>
+<li class="nvi"><a href="#ch8"><span class="nn">08</span>Arrays</a></li>
+<li class="nvi"><a href="#ch9"><span class="nn">09</span>Intro to OOP</a></li>
+</ul></nav>
+
+<main class="main">
+<div class="hero">
+<div class="he">QCU Academic OS · AY 2026–2027</div>
+<div class="ht">CC 102</div>
+<div class="hs">Fundamentals of Programming — Complete Study Reference</div>
+<div class="hm">
+<div class="mp">Course: <span>CC 102</span></div>
+<div class="mp">Units: <span>3 units</span></div>
+<div class="mp">Language: <span>Java · JDK 17</span></div>
+<div class="mp">Env: <span>VS Code · Debian Linux</span></div>
+</div></div>
+
+<!-- CHAPTER 00 -->
+<section class="chapter" id="overview">
+<div class="cn">CHAPTER 00</div><div class="ct">Course Overview &amp; How Java Actually Works</div>
+<p class="ci">CC 102 teaches programming fundamentals through <strong>Java</strong> — one of the most widely used languages in enterprise software, Android development, and academic computer science education. Every concept here is language-agnostic at its core (variables, loops, functions exist in every language) but the exact syntax is Java-specific.</p>
+
+<div class="box blue"><div class="bico">🔗</div><div class="bbd"><div class="btt">Critical Path — Twin Gate with WS 101</div>
+<p class="btx">CC 102 (combined with CC 101) is required to unlock <strong>CC 103</strong> (Intermediate Programming) and <strong>PT 101</strong> (Platform Technologies) in Semester 2. CC 103 then unlocks <strong>CC 104</strong> (Data Structures &amp; Algorithms), <strong>CC 105</strong> (Information Management), and <strong>MS 101</strong> (Discrete Math) in Year 2. Nearly your entire BSIT technical spine depends on truly understanding this course, not just passing it.</p></div></div>
+
+<h2>Where Java Came From</h2>
+<p>Java was created in 1991 by <strong>James Gosling</strong>, Mike Sheridan, and Patrick Naughton at Sun Microsystems, as part of what was internally called the <strong>Green Project</strong> — its first working product was a handheld remote control named <strong>Star 7</strong>. The language itself went through two names before "Java": first <strong>Greentalk</strong> (file extension <code>.gt</code>), then <strong>Oak</strong> — renamed because a language called Oak already existed. The team settled on <strong>Java</strong>, after the Indonesian island where Java coffee originates. <code>JDK 1.0</code> officially released on January 23, 1996, and by 1995 Time magazine had already called it one of the Ten Best Products of the year.</p>
+
+<h2>Java's Core Features</h2>
+<p>Java technology is simultaneously a programming language, a development environment, an application environment, and a deployment environment. Twelve features define it:</p>
+<div class="tw"><table>
+<thead><tr><th>Feature</th><th>What It Means</th></tr></thead>
+<tbody>
+<tr><td><strong>Object-oriented</strong></td><td>Built around objects and classes — full treatment in Chapter 09 and again in PF 101</td></tr>
+<tr><td><strong>Simple</strong></td><td>Designed to be easy to write, compile, debug, and learn</td></tr>
+<tr><td><strong>Secured</strong></td><td>No explicit pointers; runs inside the JVM's managed sandbox</td></tr>
+<tr><td><strong>Platform Independent</strong></td><td>Compiles to bytecode, not machine code — the same <code>.class</code> file runs on Windows, Linux, or macOS via each platform's own JVM</td></tr>
+<tr><td><strong>Robust</strong></td><td>Strong memory management and exception handling reduce crash-prone code</td></tr>
+<tr><td><strong>Portable</strong></td><td>Direct consequence of platform independence — write once, run anywhere</td></tr>
+<tr><td><strong>Architecture-neutral</strong></td><td>No implementation-dependent features in the language spec itself</td></tr>
+<tr><td><strong>Dynamic</strong></td><td>Adapts to an evolving environment; loads classes on demand</td></tr>
+<tr><td><strong>Interpreted</strong></td><td>Bytecode is interpreted (and JIT-compiled) by the JVM at runtime</td></tr>
+<tr><td><strong>High-performance</strong></td><td>Bytecode is close enough to native code that JIT compilation makes it fast</td></tr>
+<tr><td><strong>Multi-threaded</strong></td><td>Built-in support for running multiple threads of execution concurrently</td></tr>
+<tr><td><strong>Distributed</strong></td><td>Designed with networked, distributed environments in mind</td></tr>
+</tbody></table></div>
+<div class="box blue"><div class="bico">🔗</div><div class="bbd"><div class="btt">The One Feature That Matters Most Right Now</div>
+<p class="btx"><strong>Platform Independent</strong> is the feature the next section is entirely about — it's the whole reason JDK/JRE/JVM exist as three separate layers instead of one.</p></div></div>
+
+<h2>Applet vs. Application</h2>
+<p>Java historically produces two kinds of programs:</p>
+<div class="tw"><table>
+<thead><tr><th>Type</th><th>Definition</th><th>Status Today</th></tr></thead>
+<tbody>
+<tr><td><strong>Applet</strong></td><td>A special application designed to run inside the context of a web browser</td><td>Deprecated — no modern browser runs Java applets anymore. You'll see it defined for exam purposes, but you will never build one.</td></tr>
+<tr><td><strong>Application</strong></td><td>A stand-alone program that does not need a browser to run</td><td>This is what every program you write in CC 102 will be — including your <code>Hello.java</code> in Chapter 02</td></tr>
+</tbody></table></div>
+
+<h2>Java Program Structure</h2>
+<p>In the Java programming language, structure nests in exactly three levels:</p>
+<div class="tree">A program is made up of one or more CLASSES
+  A class contains one or more METHODS
+    A method contains program STATEMENTS</div>
+<p>A Java <strong>application</strong> always contains one method called <code>main</code> — the JVM loads the class and invokes <code>main()</code> to start execution. <code>main()</code> must always be declared <code>public</code>, <code>static</code>, and <code>void</code>. A single source file may define more than one class, but at most ONE class in that file may be declared <code>public</code>, and that class name must exactly match the filename — the exact rule you'll rely on in Chapter 02.</p>
+
+<h2>JDK vs JRE vs JVM — The Three Letters You'll See Constantly</h2>
+<div class="tw"><table>
+<thead><tr><th>Term</th><th>Full Name</th><th>What It Actually Is</th></tr></thead>
+<tbody>
+<tr><td><strong>JVM</strong></td><td>Java Virtual Machine</td><td>The engine that actually EXECUTES compiled Java bytecode. Different for each OS (Windows, Linux, macOS) — this is what makes Java portable.</td></tr>
+<tr><td><strong>JRE</strong></td><td>Java Runtime Environment</td><td>JVM + core Java libraries. Enough to RUN Java programs, but not to write/compile new ones.</td></tr>
+<tr><td><strong>JDK</strong></td><td>Java Development Kit</td><td>JRE + development tools (<code>javac</code> compiler, debugger, documentation tools). What you actually installed on your GT 30 Pro — JDK 17. Required to WRITE and compile code.</td></tr>
+</tbody></table></div>
+
+<h2>Compile Then Run — Java's Two-Step Process</h2>
+<p>Unlike Python (pure interpreter) or C (pure compiler to native machine code), Java does BOTH — this was covered conceptually in CC 101 Ch. 6, now you'll do it hands-on every single day.</p>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Write source code</div><div class="sd">You write human-readable code in a <code>.java</code> file, e.g. <code>Hello.java</code></div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Compile with javac</div><div class="sd">Terminal command: <code>javac Hello.java</code>. The compiler checks for syntax errors and converts your code into <strong>bytecode</strong> — a <code>Hello.class</code> file. This bytecode is NOT native machine code — it's platform-independent.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Run with java</div><div class="sd">Terminal command: <code>java Hello</code> (no <code>.class</code> extension). The JVM loads the bytecode and executes it, translating it to your specific machine's native instructions on the fly.</div></div></div>
+</div>
+
+<div class="terminal">
+<div class="term-head"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="term-label">bash — VS Code terminal</div></div>
+<div class="term-body">
+<span class="c">kian@debian:~/projects/CC102$ javac Hello.java</span>
+<span class="c">kian@debian:~/projects/CC102$ ls</span>
+<span class="o">Hello.class  Hello.java</span>
+<span class="c">kian@debian:~/projects/CC102$ java Hello</span>
+<span class="o">Hello, World!</span>
+</div></div>
+
+<h2>Exam &amp; Practical Priority Map</h2>
+<div class="tw"><table>
+<thead><tr><th>Topic</th><th>Chapter</th><th>Weight</th><th>Difficulty</th></tr></thead>
+<tbody>
+<tr><td>Logic Formulation (flowcharts, pseudocode)</td><td>01</td><td><span class="tag tr2">🔴 High</span></td><td><span class="tag tg">Easy</span></td></tr>
+<tr><td>Control Flow (if/else, switch)</td><td>05</td><td><span class="tag tr2">🔴 Very High</span></td><td><span class="tag tg">Easy</span></td></tr>
+<tr><td>Loops (for, while)</td><td>06</td><td><span class="tag tr2">🔴 Very High</span></td><td><span class="tag ta">Medium</span></td></tr>
+<tr><td>Variables &amp; Data Types</td><td>03</td><td><span class="tag tr2">🔴 High</span></td><td><span class="tag tg">Easy</span></td></tr>
+<tr><td>Methods</td><td>07</td><td><span class="tag tr2">🔴 High</span></td><td><span class="tag ta">Medium</span></td></tr>
+<tr><td>Arrays</td><td>08</td><td><span class="tag ta">🟡 Medium</span></td><td><span class="tag ta">Medium</span></td></tr>
+<tr><td>Operators</td><td>04</td><td><span class="tag ta">🟡 Medium</span></td><td><span class="tag tg">Easy</span></td></tr>
+<tr><td>Intro to OOP (Classes/Objects)</td><td>09</td><td><span class="tag tb">🔵 Foundational</span></td><td><span class="tag ta">Medium</span></td></tr>
+</tbody></table></div>
+</section>
+<!-- CHAPTER 01: LOGIC FORMULATION -->
+<section class="chapter" id="ch1">
+<div class="cn">CHAPTER 01</div><div class="ct">Logic Formulation — Algorithms, Pseudocode &amp; Flowcharts</div>
+<p class="ci">Before writing a single line of Java, you plan the LOGIC of a solution — independent of any programming language. This is CC 102 Weeks 2–3, and it's the skill exams test hardest in machine-problem items: can you trace a flowchart or pseudocode by hand and predict its output BEFORE touching a keyboard.</p>
+
+<h2>The Programming Cycle</h2>
+<p>Every program — from a one-line script to XoDos-Ark itself — follows the same four-stage cycle.</p>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Problem definition</div><div class="sd">State exactly what the program must accomplish — inputs, outputs, and constraints.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Problem analysis</div><div class="sd">Break the problem into smaller, manageable parts before attempting a solution.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Algorithm development</div><div class="sd">Design the step-by-step logic — usually as pseudocode or a flowchart — independent of syntax.</div></div></div>
+<div class="step"><div class="snum">4</div><div class="sc"><div class="sl">Coding &amp; debugging</div><div class="sd">Translate the algorithm into actual Java syntax, then test and fix errors.</div></div></div>
+</div>
+
+<div class="box blue"><div class="bico">🔗</div><div class="bbd"><div class="btt">Why This Comes Before Chapter 02</div>
+<p class="btx">Steps 1–3 happen entirely on paper — no compiler involved. Jumping straight to coding (step 4) without planning is the #1 reason beginners get stuck staring at a blank file. Every conditional and loop you write starting Chapter 05 already has its logic fully worked out here first.</p></div></div>
+
+<h2>Algorithm</h2>
+<p>A step-by-step problem-solving procedure — an established, finite sequence of instructions for solving a problem.</p>
+<div class="tw"><table>
+<thead><tr><th>Characteristic</th><th>Requirement</th></tr></thead>
+<tbody>
+<tr><td>Precision</td><td>Each step or instruction must be specified exactly — no ambiguity</td></tr>
+<tr><td>Finiteness</td><td>There must be a finite number of steps — it must eventually stop</td></tr>
+<tr><td>Output</td><td>There must be a definite output — a purposeless algorithm proves nothing</td></tr>
+</tbody></table></div>
+
+<h2>Pseudocode</h2>
+<p>A generic way of describing an algorithm without using the syntax of any specific programming language. It can't be executed on a real computer, but it's written at roughly the same level of detail as real code, and reads like structured, plain English.</p>
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">pseudocode</div></div>
+<pre>If student's grade is greater than or equal to 60
+    Print "passed"
+else
+    Print "failed"</pre></div>
+<div class="box green"><div class="bico">➡️</div><div class="bbd"><div class="btt">This Is Literally Chapter 05, Just Without Syntax</div>
+<p class="btx">Compare this to the <code>if / else</code> block you'll write in Chapter 05 — same logic, same structure, just missing curly braces, parentheses, and semicolons. Get comfortable reasoning in pseudocode first; the Java syntax is the easy part once the logic is right.</p></div></div>
+
+<h2>Flowcharts</h2>
+<p>A flowchart is a chart of symbols representing computer operations, describing how a program performs. Symbols are connected by flow lines (straight lines with arrows) that show the direction of data or control from one point to another.</p>
+
+<div class="tw"><table>
+<thead><tr><th>Symbol</th><th>Shape</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td>Terminal block</td><td>Oval / rounded rectangle</td><td>Marks the <strong>Start</strong> or <strong>End</strong>. A start has no incoming flow line and exactly one outgoing; an end has one incoming and none outgoing.</td></tr>
+<tr><td>Initialization</td><td>Hexagon</td><td>Declares and/or initializes the variables needed for the process (e.g. <code>X = 10</code>)</td></tr>
+<tr><td>Input / Output</td><td>Parallelogram</td><td>Getting input or displaying output — one entrance, one exit (e.g. <code>Get X</code>, <code>Display X</code>)</td></tr>
+<tr><td>Process</td><td>Rectangle</td><td>A processing step — calculations, assignments, opening/closing files. One entrance, one exit.</td></tr>
+<tr><td>Decision</td><td>Diamond</td><td>Tests a condition. One entrance, exactly <strong>two</strong> exits — one TRUE, one FALSE.</td></tr>
+<tr><td>Connector</td><td>Small circle</td><td>Links two non-adjacent sections of a flowchart. Use sparingly — overuse clutters readability.</td></tr>
+<tr><td>Flow lines</td><td>Arrows</td><td>Show the direction of data/control flow between symbols.</td></tr>
+</tbody></table></div>
+
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Decision Boxes Must Be Mathematical, Not Essay-Form</div>
+<p class="btx">A condition inside a diamond must resolve to TRUE or FALSE, e.g. <code>X &lt; 20?</code> — NOT "Is variable X less than 20?" Essay-form conditions aren't valid flowchart logic.</p></div></div>
+
+<h2>Single vs. Dual Alternative Selection</h2>
+<p>A decision box doesn't always have to do something on both paths.</p>
+<div class="tw"><table>
+<thead><tr><th>Structure</th><th>Behavior</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td><strong>Single alternative</strong></td><td>Only the TRUE (or only the FALSE) path performs an action; the other just merges through</td><td>if x &lt; y, print x</td></tr>
+<tr><td><strong>Dual alternative</strong></td><td>Both TRUE and FALSE paths perform a (different) action</td><td>if x &lt; y, print x, otherwise print y</td></tr>
+</tbody></table></div>
+
+<h2>Multiple Decision Boxes</h2>
+<p>When more than two outcomes are possible, chain decision boxes together. Worked example: ask the user to enter a number 1–3. If 1, print "Hello"; if 2, print "Hi"; if 3, print "Bye"; otherwise print "Invalid."</p>
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">flowchart logic — traced top to bottom</div></div>
+<pre>Start
+  x = 0
+  Get x
+  x == 1?  --Yes--&gt; "Hello" --&gt; End
+     |No
+  x == 2?  --Yes--&gt; "Hi"    --&gt; End
+     |No
+  x == 3?  --Yes--&gt; "Bye"   --&gt; End
+     |No
+  "Invalid" --&gt; End</pre></div>
+
+<p>Decision boxes can also test <strong>ranges</strong> instead of exact matches — chain them from lowest to highest (or highest to lowest) value:</p>
+<div class="tw"><table>
+<thead><tr><th>Department Number</th><th>Supervisor</th></tr></thead>
+<tbody>
+<tr><td>1–3</td><td>Mr. X</td></tr>
+<tr><td>4–7</td><td>Mr. Y</td></tr>
+<tr><td>8–9</td><td>Mr. Z</td></tr>
+</tbody></table></div>
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">flowchart logic</div></div>
+<pre>Dept &lt;= 3?  --Yes--&gt; "Mr. X"
+     |No
+Dept &lt;= 7?  --Yes--&gt; "Mr. Y"
+     |No
+            "Mr. Z"</pre></div>
+
+<h2>Relational Operators</h2>
+<p>Compare two values and return a Boolean value depending on whether the test condition is true or false.</p>
+<div class="tw"><table>
+<thead><tr><th>Operator</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>&lt;</code></td><td>Less than</td></tr>
+<tr><td><code>&gt;</code></td><td>Greater than</td></tr>
+<tr><td><code>&lt;=</code></td><td>Less than or equal to</td></tr>
+<tr><td><code>&gt;=</code></td><td>Greater than or equal to</td></tr>
+<tr><td><code>==</code></td><td>Is equal to</td></tr>
+<tr><td><code>!=</code> or <code>&lt;&gt;</code></td><td>Not equal to</td></tr>
+</tbody></table></div>
+<div class="box amber"><div class="bico">🔮</div><div class="bbd"><div class="btt">Preview — Chapter 04</div>
+<p class="btx">These exact symbols (except <code>&lt;&gt;</code>, which Java doesn't use) carry directly into Java's relational operators. The one that trips people up most: <code>==</code> for comparison vs. <code>=</code> for assignment — a bug you'll meet again in Chapter 04.</p></div></div>
+
+<h2>Logical Operators</h2>
+<p>Conditions can be combined using three basic logical operators: <strong>AND</strong>, <strong>OR</strong>, and <strong>NOT</strong>.</p>
+<div class="tw"><table>
+<thead><tr><th>Condition A</th><th>Condition B</th><th>A AND B</th><th>A OR B</th></tr></thead>
+<tbody>
+<tr><td>F</td><td>F</td><td>F</td><td>F</td></tr>
+<tr><td>F</td><td>T</td><td>F</td><td>T</td></tr>
+<tr><td>T</td><td>F</td><td>F</td><td>T</td></tr>
+<tr><td>T</td><td>T</td><td>T</td><td>T</td></tr>
+</tbody></table></div>
+<p><strong>NOT</strong> simply reverses a condition's result: <code>!TRUE</code> → FALSE, and <code>!FALSE</code> → TRUE.</p>
+<div class="box amber"><div class="bico">🔮</div><div class="bbd"><div class="btt">Preview — Chapter 04</div>
+<p class="btx">AND, OR, and NOT become Java's <code>&amp;&amp;</code>, <code>||</code>, and <code>!</code> operators. The truth tables above are exactly the ones you'll use to trace compound <code>if</code> conditions later.</p></div></div>
+
+<h2>Looping Constructs (Repetition Structures)</h2>
+<p>A repetition structure — also called a loop or iteration — repeats one or more instructions until a certain condition is met. This is a <strong>pre-test repetition structure</strong>: the condition is tested BEFORE any action runs, so if the condition is false from the start, the loop body never executes at all.</p>
+
+<div class="box red"><div class="bico">🚫</div><div class="bbd"><div class="btt">The #1 Flowchart Bug — the Infinite Loop</div>
+<p class="btx">The action inside a loop MUST eventually change the value being tested, or the loop never terminates. <code>X &lt; Y?</code> → Display X → back to <code>X &lt; Y?</code> with X never updated is an infinite loop. The fix: add <code>X = X + 1</code> inside the loop body so the condition eventually becomes false.</p></div></div>
+
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">corrected loop logic</div></div>
+<pre>X &lt; Y?  --Yes--&gt; Display X --&gt; X = X + 1 --&gt; (back to X &lt; Y?)
+   |No
+  (exit loop)</pre></div>
+
+<h2>Multiple / Nested Loops</h2>
+<p>A loop can exist within another loop. When a flowchart has multiple loops, it's critical to identify which condition terminates the WHOLE flowchart, not just the inner one — the same rule you'll apply to nested <code>for</code> loops in Chapter 06.</p>
+
+<h2>Full Worked Example</h2>
+<p>Create a flowchart that asks the user to enter a gender. If 'M', display "MALE"; if 'F', display "FEMALE"; otherwise display "Invalid Gender" and let the user try again. Repeat the whole process 5 times.</p>
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">flowchart logic — traced top to bottom</div></div>
+<pre>Start
+  Gen = "", Ctr = 1
+  [loop top] Ctr &lt;= 5?  --No--&gt; Stop
+     |Yes
+  Get Gen
+  Gen != 'M' AND Gen != 'F'?  --Yes--&gt; "Invalid" --&gt; Ctr = Ctr + 1 --&gt; back to [loop top]
+     |No
+  Gen == 'M'?  --Yes--&gt; "Male"   --&gt; Ctr = Ctr + 1 --&gt; back to [loop top]
+     |No
+             "Female" --&gt; Ctr = Ctr + 1 --&gt; back to [loop top]</pre></div>
+<p>The counter <code>Ctr</code> is what bounds this loop to exactly 5 repetitions — initialized once before the loop, tested at the top (pre-test), and incremented once per pass no matter which branch fired. This exact counter pattern is what becomes a Java <code>for</code> loop in Chapter 06.</p>
+
+</section>
+<!-- CHAPTER 02: SETUP & HELLO WORLD -->
+<section class="chapter" id="ch2">
+<div class="cn">CHAPTER 02</div><div class="ct">Setup &amp; Your First Program</div>
+<p class="ci">Every Java program, no matter how large, starts from the exact same anatomical structure. This chapter dissects that structure piece by piece so nothing is ever "magic syntax" you just memorize.</p>
+
+<h2>Anatomy of a Java Program</h2>
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">Hello.java</div></div>
+<pre>public class Hello {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}</pre></div>
+
+<div class="tw"><table>
+<thead><tr><th>Piece</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>public</code></td><td>Access modifier — this class is visible to any other class/file that needs it. Covered fully in Ch. 09.</td></tr>
+<tr><td><code>class Hello</code></td><td>Declares a class named <code>Hello</code>. <strong>CRITICAL RULE:</strong> the filename MUST exactly match the public class name — <code>Hello.java</code> for <code>class Hello</code>. Mismatch = compile error.</td></tr>
+<tr><td><code>public static void main(String[] args)</code></td><td>The <strong>entry point</strong> — the JVM looks for exactly this method signature to know where to start executing. <code>static</code> means it belongs to the class itself, not an object instance. <code>void</code> means it returns nothing. <code>String[] args</code> holds command-line arguments passed at runtime.</td></tr>
+<tr><td><code>System.out.println(...)</code></td><td><code>System</code> is a built-in class, <code>out</code> is its output stream object, <code>println</code> prints text then moves to a new line. <code>print</code> (no "ln") does NOT add a new line.</td></tr>
+<tr><td><code>;</code></td><td>Every statement in Java MUST end with a semicolon. Forgetting this is the #1 beginner compile error.</td></tr>
+<tr><td><code>{ }</code></td><td>Curly braces define a "block" — the class body, the method body. Every opening brace needs a matching closing brace.</td></tr>
+</tbody></table></div>
+
+<div class="terminal">
+<div class="term-head"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="term-label">expected output</div></div>
+<div class="term-body"><span class="o">Hello, World!</span></div></div>
+
+<h2>Compiler Errors You WILL Hit — And What They Mean</h2>
+<div class="tw"><table>
+<thead><tr><th>Error Message</th><th>What Actually Went Wrong</th><th>Fix</th></tr></thead>
+<tbody>
+<tr><td><code>error: ';' expected</code></td><td>Missing semicolon at end of a statement</td><td>Add the <code>;</code> at the indicated line</td></tr>
+<tr><td><code>error: class Hello is public, should be declared in a file named Hello.java</code></td><td>Filename doesn't match the public class name</td><td>Rename the file OR rename the class to match</td></tr>
+<tr><td><code>error: cannot find symbol</code></td><td>Using a variable/method name that doesn't exist — often a typo or wrong capitalization (Java is case-sensitive)</td><td>Check exact spelling and capitalization</td></tr>
+<tr><td><code>error: reached end of file while parsing</code></td><td>Missing a closing curly brace <code>}</code> somewhere</td><td>Count your opening vs closing braces</td></tr>
+<tr><td><code>Error: Could not find or load main class</code></td><td>Trying to <code>java</code> run a class with no <code>main</code> method, or running the wrong filename</td><td>Confirm the <code>main</code> method exists and matches the class you're running</td></tr>
+</tbody></table></div>
+
+<h2>Comments</h2>
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">java</div></div>
+<pre>// Single-line comment — everything after // is ignored
+
+/* Multi-line comment
+   spans several lines
+   until closed */
+
+/**
+ * Javadoc comment — generates official documentation
+ * @param args command-line arguments
+ */</pre></div>
+
+<h2>Your Debian/VS Code Workflow</h2>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Open your project folder</div><div class="sd">VS Code → <code>/home/kian/projects/CC102</code></div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Create a new .java file</div><div class="sd">Match filename to class name exactly, e.g. <code>Hello.java</code></div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Write your code, save (Ctrl+S)</div><div class="sd">The Extension Pack for Java gives you autocomplete and inline error squiggles</div></div></div>
+<div class="step"><div class="snum">4</div><div class="sc"><div class="sl">Open integrated terminal</div><div class="sd"><code>Ctrl+\`</code> — then <code>javac Hello.java</code> followed by <code>java Hello</code></div></div></div>
+</div>
+</section>
+<!-- CHAPTER 03: VARIABLES & DATA TYPES -->
+<section class="chapter" id="ch3">
+<div class="cn">CHAPTER 03</div><div class="ct">Variables &amp; Data Types</div>
+<p class="ci">A variable is a named container that holds a value in memory. Java is <strong>statically typed</strong> — you must declare exactly what TYPE of data a variable will hold, and it can never change type afterward. This is different from Python/JavaScript, which are dynamically typed.</p>
+
+<h2>Variable Declaration Syntax</h2>
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">java</div></div>
+<pre>dataType variableName = value;
+
+int age = 18;
+double gpa = 1.75;
+String name = "Kian";
+boolean isEnrolled = true;</pre></div>
+
+<h2>Types of Variables — Local, Instance, and Static</h2>
+<p>Where a variable is declared inside a class determines its <strong>scope</strong> (where it can be used) and its <strong>lifetime</strong> (how long it stays in memory). Java recognizes three kinds:</p>
+<div class="tw"><table>
+<thead><tr><th>Type</th><th>Declared Where</th><th>Lives For</th></tr></thead>
+<tbody>
+<tr><td><strong>Local variable</strong></td><td>Inside a method or constructor body</td><td>Only while that method is running — destroyed the moment it returns. Every variable you've written inside <code>main()</code> so far has been local.</td></tr>
+<tr><td><strong>Instance variable</strong></td><td>Inside the class, but outside any method</td><td>As long as the object exists — each object (instance) gets its OWN separate copy</td></tr>
+<tr><td><strong>Static variable</strong></td><td>Inside the class, outside any method, marked <code>static</code></td><td>The entire lifetime of the program — shared by ALL objects of that class, not copied per object. A static variable can never be declared local.</td></tr>
+</tbody></table></div>
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">VariableTypes.java</div></div>
+<pre>class A {
+    int data = 50;       // instance variable
+    static int m = 100;  // static variable
+
+    void method() {
+        int n = 90;        // local variable
+    }
+}</pre></div>
+<div class="box blue"><div class="bico">🔗</div><div class="bbd"><div class="btt">Forward Link — Chapter 09 (Intro to OOP)</div>
+<p class="btx">Instance and static variables won't fully click until you meet classes and objects properly in Chapter 09. For now: local = inside a method (temporary), instance = inside the class, one copy per object, static = inside the class, one copy shared by every object — this is also exactly why <code>main()</code> itself is marked <code>static</code> back in Chapter 02, since the JVM calls it before any object exists.</p></div></div>
+
+<h2>The 8 Primitive Data Types</h2>
+<p>Primitives store raw values directly in memory (not references to objects) — the most memory-efficient data types in Java.</p>
+<div class="tw"><table>
+<thead><tr><th>Type</th><th>Size</th><th>Range / Values</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td><code>byte</code></td><td>1 byte (8 bits)</td><td>-128 to 127</td><td><code>byte age = 18;</code></td></tr>
+<tr><td><code>short</code></td><td>2 bytes (16 bits)</td><td>-32,768 to 32,767</td><td><code>short year = 2026;</code></td></tr>
+<tr><td><code>int</code></td><td>4 bytes (32 bits)</td><td>≈ -2.1 billion to 2.1 billion</td><td><code>int score = 95;</code> — most commonly used integer type</td></tr>
+<tr><td><code>long</code></td><td>8 bytes (64 bits)</td><td>≈ ±9.2 quintillion</td><td><code>long population = 114000000L;</code> — note the <code>L</code> suffix</td></tr>
+<tr><td><code>float</code></td><td>4 bytes</td><td>~6-7 decimal digits precision</td><td><code>float price = 19.99f;</code> — note the <code>f</code> suffix</td></tr>
+<tr><td><code>double</code></td><td>8 bytes</td><td>~15 decimal digits precision</td><td><code>double gpa = 1.75;</code> — default for decimals, most commonly used</td></tr>
+<tr><td><code>char</code></td><td>2 bytes</td><td>A single Unicode character</td><td><code>char grade = 'A';</code> — single quotes, exactly one character</td></tr>
+<tr><td><code>boolean</code></td><td>1 bit (conceptually)</td><td><code>true</code> or <code>false</code> only</td><td><code>boolean isPassed = true;</code></td></tr>
+</tbody></table></div>
+
+<div class="box blue"><div class="bico">🔗</div><div class="bbd"><div class="btt">Forward Link — CC 101 Ch. 4 Data Representation</div>
+<p class="btx">Notice the byte sizes above match EXACTLY what you learned in CC 101's Data Representation chapter. An <code>int</code> being 4 bytes (32 bits) is not arbitrary — it directly determines its range: 2³² possible values, split between negative and positive (signed representation). This is why <code>byte</code> maxes at 127, not 256 — half the range is reserved for negative numbers.</p></div></div>
+
+<h2>String — Not a Primitive!</h2>
+<p><code>String</code> is technically a <strong>class</strong>, not a primitive — it's capitalized because it's an object type. Strings use double quotes; chars use single quotes. This is a very common beginner mix-up.</p>
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">java</div></div>
+<pre>String course = "CC 102";  // double quotes — text
+char grade = 'A';           // single quotes — ONE character only</pre></div>
+
+<h2>Type Casting</h2>
+<p>Converting a value from one data type to another.</p>
+<div class="tw"><table>
+<thead><tr><th>Type</th><th>Direction</th><th>Syntax</th><th>Risk</th></tr></thead>
+<tbody>
+<tr><td>Widening (Implicit)</td><td>Small type → Large type</td><td>Automatic, no cast needed: <code>int → long → float → double</code></td><td>Safe — no data loss</td></tr>
+<tr><td>Narrowing (Explicit)</td><td>Large type → Small type</td><td>Must manually cast: <code>double d = 9.7; int i = (int) d;</code></td><td>Can lose data (decimal truncated, or overflow if the value is too big)</td></tr>
+</tbody></table></div>
+
+<div class="split">
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">Casting.java</div></div>
+<pre>public class Casting {
+    public static void main(String[] args) {
+        double gpa = 1.75;
+        int rounded = (int) gpa;
+        System.out.println(rounded);
+
+        int wholeNum = 10;
+        double asDecimal = wholeNum;
+        System.out.println(asDecimal);
+    }
+}</pre></div>
+<div class="terminal">
+<div class="term-head"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="term-label">expected output</div></div>
+<div class="term-body">
+<span class="o">1</span>
+<span class="o">10.0</span>
+</div></div>
+</div>
+
+<div class="trace">
+<div class="trace-head">🔍 Line Expansion — Execution Trace</div>
+<table>
+<thead><tr><th>Step</th><th>Line</th><th>Variable State</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><code>double gpa = 1.75;</code></td><td>gpa = 1.75</td><td>Declares and initializes a double</td></tr>
+<tr><td>2</td><td><code>int rounded = (int) gpa;</code></td><td>gpa = 1.75, rounded = 1</td><td>Narrowing cast TRUNCATES (chops off) the decimal — does NOT round. 1.75 becomes 1, not 2.</td></tr>
+<tr><td>3</td><td><code>System.out.println(rounded);</code></td><td>—</td><td>Prints: 1</td></tr>
+<tr><td>4</td><td><code>int wholeNum = 10;</code></td><td>wholeNum = 10</td><td>Declares an int</td></tr>
+<tr><td>5</td><td><code>double asDecimal = wholeNum;</code></td><td>wholeNum = 10, asDecimal = 10.0</td><td>Widening — automatic, no cast syntax needed</td></tr>
+<tr><td>6</td><td><code>System.out.println(asDecimal);</code></td><td>—</td><td>Prints: 10.0 (note the .0 — it's genuinely a double now)</td></tr>
+</tbody></table></div>
+
+<div class="box red"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Gotcha Alert — Casting Truncates, It Does NOT Round</div>
+<p class="btx"><code>(int) 1.75</code> gives you <code>1</code>, not <code>2</code>. Casting simply chops off everything after the decimal point. To actually ROUND, use <code>Math.round(1.75)</code> instead, which correctly gives <code>2</code>.</p></div></div>
+
+<h2>Identifiers, Naming Conventions &amp; Reserved Keywords</h2>
+<p>An <strong>identifier</strong> is any name you choose for a class, variable, or method. Every identifier must start with a letter (A–Z, a–z), a dollar sign (<code>$</code>), or an underscore (<code>_</code>) — after that first character, any combination of letters, digits, <code>$</code>, or <code>_</code> is allowed. Identifiers are case-sensitive, so <code>score</code> and <code>Score</code> are two different names. <strong>Keywords</strong> (also called reserved words — things like <code>class</code>, <code>public</code>, <code>static</code>, <code>int</code>, <code>if</code>) can never be used as an identifier, since Java itself already uses them as part of its syntax.</p>
+<div class="tw"><table>
+<thead><tr><th>Rule</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td>Must start with a letter, <code>$</code>, or <code>_</code></td><td>Legal: <code>age</code>, <code>$salary</code>, <code>_value</code>, <code>__1_value</code></td></tr>
+<tr><td>Cannot start with a digit, or any other symbol</td><td>Illegal: <code>123abc</code>, <code>-salary</code></td></tr>
+<tr><td>Variables use <strong>camelCase</strong></td><td><code>studentName</code>, <code>totalScore</code> — not <code>student_name</code></td></tr>
+<tr><td>Classes use <strong>PascalCase</strong></td><td><code>StudentRecord</code>, <code>Hello</code></td></tr>
+<tr><td>Constants use <strong>UPPER_SNAKE_CASE</strong></td><td><code>final int MAX_SCORE = 100;</code></td></tr>
+<tr><td>Cannot use reserved keywords</td><td><code>class, public, static, void, int, if, for</code> — these are reserved by Java itself</td></tr>
+</tbody></table></div>
+
+<h2>Constants — the final Keyword</h2>
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">java</div></div>
+<pre>final double PI = 3.14159;
+final String UNIVERSITY = "QCU";
+// PI = 3.14; ← this line would cause a compile error — final means unchangeable</pre></div>
+</section>
+<!-- CHAPTER 04: OPERATORS -->
+<section class="chapter" id="ch4">
+<div class="cn">CHAPTER 04</div><div class="ct">Operators</div>
+<p class="ci">Operators perform operations on variables and values. Java groups them into four families you'll use constantly: arithmetic, relational, logical, and assignment.</p>
+
+<h2>Arithmetic Operators</h2>
+<div class="tw"><table>
+<thead><tr><th>Operator</th><th>Name</th><th>Example</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td><code>+</code></td><td>Addition</td><td><code>5 + 3</code></td><td>8</td></tr>
+<tr><td><code>-</code></td><td>Subtraction</td><td><code>5 - 3</code></td><td>2</td></tr>
+<tr><td><code>*</code></td><td>Multiplication</td><td><code>5 * 3</code></td><td>15</td></tr>
+<tr><td><code>/</code></td><td>Division</td><td><code>7 / 2</code></td><td>3 (int division TRUNCATES!)</td></tr>
+<tr><td><code>%</code></td><td>Modulus (remainder)</td><td><code>7 % 2</code></td><td>1</td></tr>
+<tr><td><code>++</code></td><td>Increment</td><td><code>x++</code></td><td>Adds 1 to x</td></tr>
+<tr><td><code>--</code></td><td>Decrement</td><td><code>x--</code></td><td>Subtracts 1 from x</td></tr>
+</tbody></table></div>
+
+<div class="box red"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Gotcha Alert — Integer Division Truncates</div>
+<p class="btx"><code>7 / 2</code> with two <code>int</code> operands gives <code>3</code>, NOT <code>3.5</code>. Java performs integer division when both operands are integers — it simply discards the remainder. To get a decimal result, at least ONE operand must be a double: <code>7.0 / 2</code> gives <code>3.5</code>. This trips up nearly every beginner at least once.</p></div></div>
+
+<h3>Pre vs Post Increment — A Classic Trap</h3>
+<div class="split">
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">Increment.java</div></div>
+<pre>public class Increment {
+    public static void main(String[] args) {
+        int a = 5;
+        System.out.println(a++);
+        System.out.println(a);
+
+        int b = 5;
+        System.out.println(++b);
+        System.out.println(b);
+    }
+}</pre></div>
+<div class="terminal">
+<div class="term-head"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="term-label">expected output</div></div>
+<div class="term-body">
+<span class="o">5</span>
+<span class="o">6</span>
+<span class="o">6</span>
+<span class="o">6</span>
+</div></div>
+</div>
+<div class="trace">
+<div class="trace-head">🔍 Line Expansion — Execution Trace</div>
+<table><thead><tr><th>Step</th><th>Expression</th><th>Behavior</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><code>a++</code> (post-increment)</td><td>Uses the CURRENT value (5) first, THEN increments. Prints 5, a becomes 6.</td></tr>
+<tr><td>2</td><td><code>a</code></td><td>Now 6, confirming the increment already happened.</td></tr>
+<tr><td>3</td><td><code>++b</code> (pre-increment)</td><td>Increments FIRST, THEN uses the new value. b becomes 6, prints 6 immediately.</td></tr>
+<tr><td>4</td><td><code>b</code></td><td>Still 6 — same result as step 3, just confirming.</td></tr>
+</tbody></table></div>
+
+<h2>Relational (Comparison) Operators</h2>
+<p>Always evaluate to a <code>boolean</code> (<code>true</code>/<code>false</code>) — the backbone of every condition and loop.</p>
+<div class="tw"><table>
+<thead><tr><th>Operator</th><th>Meaning</th><th>Example</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td><code>==</code></td><td>Equal to</td><td><code>5 == 5</code></td><td>true</td></tr>
+<tr><td><code>!=</code></td><td>Not equal to</td><td><code>5 != 3</code></td><td>true</td></tr>
+<tr><td><code>&gt;</code></td><td>Greater than</td><td><code>5 &gt; 3</code></td><td>true</td></tr>
+<tr><td><code>&lt;</code></td><td>Less than</td><td><code>5 &lt; 3</code></td><td>false</td></tr>
+<tr><td><code>&gt;=</code></td><td>Greater than or equal</td><td><code>5 &gt;= 5</code></td><td>true</td></tr>
+<tr><td><code>&lt;=</code></td><td>Less than or equal</td><td><code>3 &lt;= 5</code></td><td>true</td></tr>
+</tbody></table></div>
+<div class="box red"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Gotcha Alert — = vs ==</div>
+<p class="btx">A SINGLE <code>=</code> is the ASSIGNMENT operator (stores a value). A DOUBLE <code>==</code> is the COMPARISON operator (checks equality). Writing <code>if (x = 5)</code> instead of <code>if (x == 5)</code> is a classic beginner bug — in Java this actually causes a compile error for boolean contexts (unlike C), which is one small mercy, but the confusion still costs time.</p></div></div>
+
+<h2>Logical Operators</h2>
+<div class="tw"><table>
+<thead><tr><th>Operator</th><th>Name</th><th>Rule</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td><code>&amp;&amp;</code></td><td>Logical AND</td><td>true only if BOTH sides are true</td><td><code>(age &gt;= 18) &amp;&amp; (isEnrolled)</code></td></tr>
+<tr><td><code>||</code></td><td>Logical OR</td><td>true if AT LEAST ONE side is true</td><td><code>(isRegular) || (isIrregular)</code></td></tr>
+<tr><td><code>^</code></td><td>Logical XOR (Exclusive OR)</td><td>true only if the two sides are DIFFERENT (one true, one false)</td><td><code>true ^ false</code> → true, but <code>true ^ true</code> → false</td></tr>
+<tr><td><code>!</code></td><td>Logical NOT</td><td>Flips true↔false</td><td><code>!isPassed</code> (true if NOT passed)</td></tr>
+</tbody></table></div>
+
+<h2>Assignment Operators</h2>
+<div class="tw"><table>
+<thead><tr><th>Operator</th><th>Equivalent To</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td><code>=</code></td><td>Basic assignment</td><td><code>x = 5;</code></td></tr>
+<tr><td><code>+=</code></td><td><code>x = x + value</code></td><td><code>x += 3;</code> (x increases by 3)</td></tr>
+<tr><td><code>-=</code></td><td><code>x = x - value</code></td><td><code>x -= 2;</code></td></tr>
+<tr><td><code>*=</code></td><td><code>x = x * value</code></td><td><code>x *= 2;</code></td></tr>
+<tr><td><code>/=</code></td><td><code>x = x / value</code></td><td><code>x /= 2;</code></td></tr>
+<tr><td><code>%=</code></td><td><code>x = x % value</code></td><td><code>x %= 3;</code></td></tr>
+</tbody></table></div>
+
+<h2>Operator Precedence — Order of Operations</h2>
+<p>Just like in math (PEMDAS), Java evaluates expressions in a strict order when no parentheses are given. When in doubt, USE parentheses — it costs nothing and removes ambiguity entirely.</p>
+<div class="tw"><table>
+<thead><tr><th>Priority</th><th>Operators</th></tr></thead>
+<tbody>
+<tr><td>1 (highest)</td><td><code>()</code> parentheses, <code>++</code> <code>--</code></td></tr>
+<tr><td>2</td><td><code>*</code> <code>/</code> <code>%</code></td></tr>
+<tr><td>3</td><td><code>+</code> <code>-</code></td></tr>
+<tr><td>4</td><td><code>&lt; &gt; &lt;= &gt;=</code></td></tr>
+<tr><td>5</td><td><code>== !=</code></td></tr>
+<tr><td>6</td><td><code>&amp;&amp;</code></td></tr>
+<tr><td>7 (lowest)</td><td><code>||</code></td></tr>
+</tbody></table></div>
+
+<h2>Let's Try — Precedence Practice</h2>
+<p>Walk through these the same way your professor does: resolve <code>* / %</code> left-to-right first, then <code>+ -</code> left-to-right, respecting any parentheses.</p>
+<div class="split">
+<div class="trace">
+<div class="trace-head">🔍 Example 1 — <code>7 - 24 / 8 x 4 + 6</code></div>
+<table><thead><tr><th>Step</th><th>Expression</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><code>7 - 3 x 4 + 6</code></td><td><code>24 / 8</code> resolves first (division, left-to-right before multiplication of equal priority)</td></tr>
+<tr><td>2</td><td><code>7 - 12 + 6</code></td><td><code>3 x 4</code> resolves next</td></tr>
+<tr><td>3</td><td><code>-5 + 6</code></td><td><code>7 - 12</code> resolves (addition/subtraction now left-to-right)</td></tr>
+<tr><td>4</td><td><strong>= 1</strong></td><td>Final answer</td></tr>
+</tbody></table></div>
+<div class="trace">
+<div class="trace-head">🔍 Example 2 — <code>(17 - 6 / 2) + 4 x 3</code></div>
+<table><thead><tr><th>Step</th><th>Expression</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><code>(17 - 3) + 4 x 3</code></td><td>Inside the parentheses, <code>6 / 2</code> resolves first</td></tr>
+<tr><td>2</td><td><code>(14) + 4 x 3</code></td><td><code>17 - 3</code> finishes the parentheses group</td></tr>
+<tr><td>3</td><td><code>14 + 12</code></td><td><code>4 x 3</code> resolves (higher priority than the remaining <code>+</code>)</td></tr>
+<tr><td>4</td><td><strong>= 26</strong></td><td>Final answer</td></tr>
+</tbody></table></div>
+</div>
+</section>
+<!-- CHAPTER 05: CONDITIONALS -->
+<section class="chapter" id="ch5">
+<div class="cn">CHAPTER 05</div><div class="ct">Control Flow — Conditionals</div>
+<p class="ci">Conditionals let a program make DECISIONS — executing different code depending on whether an expression is true or false. This is one of the highest-weighted topics in CC 102 practicals.</p>
+
+<h2>if / else if / else</h2>
+<div class="split">
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">Grade.java</div></div>
+<pre>public class Grade {
+    public static void main(String[] args) {
+        int score = 85;
+
+        if (score >= 90) {
+            System.out.println("Excellent");
+        } else if (score >= 75) {
+            System.out.println("Passed");
+        } else {
+            System.out.println("Failed");
+        }
+    }
+}</pre></div>
+<div class="terminal">
+<div class="term-head"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="term-label">expected output</div></div>
+<div class="term-body"><span class="o">Passed</span></div></div>
+</div>
+
+<div class="trace">
+<div class="trace-head">🔍 Line Expansion — Execution Trace</div>
+<table><thead><tr><th>Step</th><th>Check</th><th>Result</th><th>Action</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><code>score >= 90</code></td><td>85 >= 90 → false</td><td>Skip this block, check next condition</td></tr>
+<tr><td>2</td><td><code>score >= 75</code></td><td>85 >= 75 → true</td><td>Execute this block: print "Passed". Once a branch matches, ALL remaining else-if/else branches are skipped entirely.</td></tr>
+<tr><td>3</td><td>(else branch)</td><td>never reached</td><td>Program exits the if-chain</td></tr>
+</tbody></table></div>
+
+<div class="box amber"><div class="bico">💡</div><div class="bbd"><div class="btt">Key Rule — Only ONE Branch Ever Executes</div>
+<p class="btx">In an if/else-if/else chain, Java checks conditions TOP TO BOTTOM and stops at the FIRST true one. Even if a later condition would also technically be true, it's never checked. Order your conditions carefully — this is why grade brackets are always checked from HIGHEST to LOWEST.</p></div></div>
+
+<h2>switch Statement</h2>
+<p>An alternative to long if/else-if chains when checking ONE variable against many possible exact values.</p>
+<div class="split">
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">DayType.java</div></div>
+<pre>public class DayType {
+    public static void main(String[] args) {
+        int day = 3;
+        String result;
+
+        switch (day) {
+            case 1:
+                result = "Monday";
+                break;
+            case 2:
+                result = "Tuesday";
+                break;
+            case 3:
+                result = "Wednesday";
+                break;
+            default:
+                result = "Invalid";
+        }
+        System.out.println(result);
+    }
+}</pre></div>
+<div class="terminal">
+<div class="term-head"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="term-label">expected output</div></div>
+<div class="term-body"><span class="o">Wednesday</span></div></div>
+</div>
+
+<div class="box red"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Gotcha Alert — Forgetting break Causes "Fall-Through"</div>
+<p class="btx">Without <code>break;</code>, execution CONTINUES into the next case block regardless of whether it matches. If the example above were missing <code>break;</code> after case 3, it would print "Wednesday" AND fall through to execute <code>default</code> too, printing "Invalid" right after. Always include <code>break;</code> unless you deliberately want fall-through behavior (rare, but occasionally intentional for grouping cases).</p></div></div>
+
+<h2>Ternary Operator — Compact if/else</h2>
+<p>A shorthand for simple if/else assignments, using <code>?</code> and <code>:</code>.</p>
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">java</div></div>
+<pre>int age = 18;
+String status = (age >= 18) ? "Adult" : "Minor";
+// Reads as: condition ? valueIfTrue : valueIfFalse
+System.out.println(status);  // Adult</pre></div>
+
+<h2>Nested Conditionals</h2>
+<p>An if statement placed INSIDE another if statement — used when a decision depends on multiple layered conditions.</p>
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">java</div></div>
+<pre>int gpa = 2;
+boolean hasBacksubject = false;
+
+if (gpa <= 3) {
+    if (!hasBacksubject) {
+        System.out.println("Eligible for Dean's List");
+    } else {
+        System.out.println("GPA qualifies, but has a back subject");
+    }
+} else {
+    System.out.println("Not eligible");
+}
+// Output: Eligible for Dean's List</pre></div>
+
+<div class="box green"><div class="bico">🇵🇭</div><div class="bbd"><div class="btt">Filipino Analogy — Conditionals</div>
+<p class="btx">Think of a <strong>jeepney fare checker</strong>: "IF you're a student with valid ID, fare is discounted. ELSE IF you're a senior citizen, also discounted. ELSE, regular fare applies." The driver checks conditions in order and applies the FIRST one that matches — exactly like an if/else-if/else chain.</p></div></div>
+
+<h2>Common Compiler/Logic Errors in Conditionals</h2>
+<div class="tw"><table>
+<thead><tr><th>Mistake</th><th>Why It's Wrong</th></tr></thead>
+<tbody>
+<tr><td><code>if (x = 5)</code></td><td>Assignment instead of comparison — should be <code>==</code></td></tr>
+<tr><td>Missing <code>break;</code> in switch</td><td>Causes unintended fall-through to next case</td></tr>
+<tr><td>Checking ranges out of order</td><td>e.g. checking <code>score >= 75</code> before <code>score >= 90</code> — the 90+ scores get caught by the first (wrong) branch</td></tr>
+<tr><td>Comparing Strings with <code>==</code></td><td>Should use <code>.equals()</code> instead — <code>==</code> compares object references, not actual text content, for non-primitive types</td></tr>
+</tbody></table></div>
+</section>
+<!-- CHAPTER 06: LOOPS -->
+<section class="chapter" id="ch6">
+<div class="cn">CHAPTER 06</div><div class="ct">Loops</div>
+<p class="ci">Loops repeat a block of code multiple times without rewriting it. This is where beginners most commonly get stuck on infinite loops and off-by-one errors — the execution traces below are built specifically to make the invisible "how many times does this actually run" visible.</p>
+
+<h2>for Loop — When You Know the Number of Repetitions</h2>
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">java</div></div>
+<pre>for (int i = 0; i < 5; i++) {
+    System.out.println(i);
+}</pre></div>
+<div class="tw"><table>
+<thead><tr><th>Part</th><th>Runs When</th><th>In This Example</th></tr></thead>
+<tbody>
+<tr><td>Initialization</td><td>ONCE, before the loop starts</td><td><code>int i = 0;</code> — creates the counter</td></tr>
+<tr><td>Condition</td><td>Checked BEFORE every single iteration</td><td><code>i < 5</code> — loop continues while true</td></tr>
+<tr><td>Update</td><td>AFTER every iteration completes</td><td><code>i++</code> — increments the counter</td></tr>
+</tbody></table></div>
+
+<div class="split">
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">ForDemo.java</div></div>
+<pre>public class ForDemo {
+    public static void main(String[] args) {
+        for (int i = 0; i < 5; i++) {
+            System.out.println(i);
+        }
+    }
+}</pre></div>
+<div class="terminal">
+<div class="term-head"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="term-label">expected output</div></div>
+<div class="term-body">
+<span class="o">0</span><span class="o">1</span><span class="o">2</span><span class="o">3</span><span class="o">4</span>
+</div></div>
+</div>
+
+<div class="trace">
+<div class="trace-head">🔍 Line Expansion — Execution Trace</div>
+<table><thead><tr><th>Iteration</th><th>Check i &lt; 5</th><th>Prints</th><th>After: i++</th></tr></thead>
+<tbody>
+<tr><td>Start</td><td>i = 0 (initialized)</td><td>—</td><td>—</td></tr>
+<tr><td>1</td><td>0 &lt; 5 → true</td><td>0</td><td>i becomes 1</td></tr>
+<tr><td>2</td><td>1 &lt; 5 → true</td><td>1</td><td>i becomes 2</td></tr>
+<tr><td>3</td><td>2 &lt; 5 → true</td><td>2</td><td>i becomes 3</td></tr>
+<tr><td>4</td><td>3 &lt; 5 → true</td><td>3</td><td>i becomes 4</td></tr>
+<tr><td>5</td><td>4 &lt; 5 → true</td><td>4</td><td>i becomes 5</td></tr>
+<tr><td>6</td><td>5 &lt; 5 → <strong>false</strong></td><td>—</td><td>Loop STOPS. Body never runs a 6th time.</td></tr>
+</tbody></table></div>
+
+<div class="box red"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Gotcha Alert — Off-By-One Errors</div>
+<p class="btx">Notice the loop prints 0,1,2,3,4 — FIVE numbers, even though the condition says "less than 5," not "less than or equal to 5." This is the #1 source of off-by-one bugs. If you wanted 1 through 5 instead, you'd write <code>for (int i = 1; i <= 5; i++)</code>. Always trace through manually the first few times until this becomes automatic.</p></div></div>
+
+<h2>while Loop — When You Don't Know the Exact Count</h2>
+<p>Checks the condition BEFORE each iteration — same as <code>for</code>, but the counter/condition logic is entirely manual.</p>
+<div class="split">
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">WhileDemo.java</div></div>
+<pre>public class WhileDemo {
+    public static void main(String[] args) {
+        int count = 0;
+        while (count < 3) {
+            System.out.println("Count: " + count);
+            count++;
+        }
+    }
+}</pre></div>
+<div class="terminal">
+<div class="term-head"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="term-label">expected output</div></div>
+<div class="term-body">
+<span class="o">Count: 0</span><span class="o">Count: 1</span><span class="o">Count: 2</span>
+</div></div>
+</div>
+
+<div class="box red"><div class="bico">🔥</div><div class="bbd"><div class="btt">Gotcha Alert — The Infinite Loop Trap</div>
+<p class="btx">If you forget <code>count++;</code> inside the loop body, <code>count</code> NEVER changes, the condition <code>count < 3</code> stays true FOREVER, and your program hangs indefinitely (you'll need Ctrl+C in the terminal to force-stop it). ALWAYS verify your loop has a way to eventually make the condition false.</p></div></div>
+
+<h2>do-while Loop — Guaranteed At Least One Execution</h2>
+<p>Checks the condition AFTER running the body — meaning the body ALWAYS runs at least once, even if the condition is false from the start.</p>
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">java</div></div>
+<pre>int num = 10;
+do {
+    System.out.println("Runs once: " + num);
+} while (num < 5);
+// Output: "Runs once: 10" — prints ONE time even though 10 < 5 is false</pre></div>
+
+<h2>for vs while vs do-while — When to Use Each</h2>
+<div class="tw"><table>
+<thead><tr><th>Loop</th><th>Checks Condition</th><th>Best When</th></tr></thead>
+<tbody>
+<tr><td><code>for</code></td><td>Before each iteration</td><td>You know the exact number of repetitions in advance (e.g. "loop 10 times")</td></tr>
+<tr><td><code>while</code></td><td>Before each iteration</td><td>Repetitions depend on a changing condition, unknown count (e.g. "keep asking until valid input")</td></tr>
+<tr><td><code>do-while</code></td><td>After each iteration</td><td>The body must run AT LEAST once regardless of the condition (e.g. menu systems: show the menu once before checking if the user wants to exit)</td></tr>
+</tbody></table></div>
+
+<h2>break and continue</h2>
+<div class="tw"><table>
+<thead><tr><th>Keyword</th><th>Effect</th></tr></thead>
+<tbody>
+<tr><td><code>break;</code></td><td>Immediately EXITS the loop entirely, skipping all remaining iterations</td></tr>
+<tr><td><code>continue;</code></td><td>Skips the REST of the current iteration only, then moves to the next one — the loop keeps going</td></tr>
+</tbody></table></div>
+
+<div class="split">
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">java</div></div>
+<pre>for (int i = 1; i <= 5; i++) {
+    if (i == 3) continue;
+    if (i == 5) break;
+    System.out.println(i);
+}</pre></div>
+<div class="terminal">
+<div class="term-head"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="term-label">expected output</div></div>
+<div class="term-body">
+<span class="o">1</span><span class="o">2</span><span class="o">4</span>
+</div></div>
+</div>
+<div class="trace">
+<div class="trace-head">🔍 Line Expansion — Execution Trace</div>
+<table><thead><tr><th>i value</th><th>i == 3?</th><th>i == 5?</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>no</td><td>no</td><td>Prints 1</td></tr>
+<tr><td>2</td><td>no</td><td>no</td><td>Prints 2</td></tr>
+<tr><td>3</td><td><strong>yes</strong></td><td>—</td><td><code>continue</code> — skips print, jumps to i++ immediately</td></tr>
+<tr><td>4</td><td>no</td><td>no</td><td>Prints 4</td></tr>
+<tr><td>5</td><td>no</td><td><strong>yes</strong></td><td><code>break</code> — loop ends immediately, 5 is never printed</td></tr>
+</tbody></table></div>
+
+<h2>Nested Loops</h2>
+<p>A loop inside another loop — the inner loop completes ALL its iterations for EACH single iteration of the outer loop.</p>
+<div class="split">
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">java</div></div>
+<pre>for (int i = 1; i <= 2; i++) {
+    for (int j = 1; j <= 3; j++) {
+        System.out.println(i + "-" + j);
+    }
+}</pre></div>
+<div class="terminal">
+<div class="term-head"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="term-label">expected output</div></div>
+<div class="term-body">
+<span class="o">1-1</span><span class="o">1-2</span><span class="o">1-3</span><span class="o">2-1</span><span class="o">2-2</span><span class="o">2-3</span>
+</div></div>
+</div>
+<p>Total iterations = outer × inner = 2 × 3 = <strong>6 total prints</strong>. This is the exact mental model you'll need for 2D array traversal in the next chapter.</p>
+
+<div class="box green"><div class="bico">🇵🇭</div><div class="bbd"><div class="btt">Filipino Analogy — Nested Loops</div>
+<p class="btx">Think of a <strong>Jollibee branch audit</strong>: outer loop = for each branch (Branch 1, Branch 2), inner loop = for each register at that branch (Register 1, 2, 3). You fully audit ALL registers at Branch 1 before moving to Branch 2 — never jumping back and forth. That's exactly how nested loops execute.</p></div></div>
+</section>
+<!-- CHAPTER 07: METHODS -->
+<section class="chapter" id="ch7">
+<div class="cn">CHAPTER 07</div><div class="ct">Methods</div>
+<p class="ci">A method is a named, reusable block of code that performs a specific task. Methods let you write logic ONCE and call it as many times as needed — the foundation of organized, non-repetitive programming, and the direct stepping stone to Object-Oriented Programming.</p>
+
+<h2>Method Anatomy</h2>
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">java</div></div>
+<pre>accessModifier returnType methodName(parameterType paramName) {
+    // method body
+    return value; // only if returnType is not void
+}
+
+public static int addNumbers(int a, int b) {
+    int sum = a + b;
+    return sum;
+}</pre></div>
+<div class="tw"><table>
+<thead><tr><th>Part</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>public</code></td><td>Access modifier — who can call this method (covered fully in Ch. 09)</td></tr>
+<tr><td><code>static</code></td><td>Belongs to the class itself, not to an object instance — callable directly without creating an object first</td></tr>
+<tr><td><code>int</code> (return type)</td><td>The data type this method WILL send back. Use <code>void</code> if it returns nothing.</td></tr>
+<tr><td><code>addNumbers</code></td><td>The method's name — called using this name plus parentheses</td></tr>
+<tr><td><code>(int a, int b)</code></td><td><strong>Parameters</strong> — the inputs the method expects, with their types</td></tr>
+<tr><td><code>return sum;</code></td><td>Sends the value back to wherever the method was called. Immediately EXITS the method — any code after <code>return</code> in that path never runs.</td></tr>
+</tbody></table></div>
+
+<h2>Calling a Method</h2>
+<div class="split">
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">Calculator.java</div></div>
+<pre>public class Calculator {
+
+    public static int addNumbers(int a, int b) {
+        int sum = a + b;
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        int result = addNumbers(5, 3);
+        System.out.println(result);
+        System.out.println(addNumbers(10, 20));
+    }
+}</pre></div>
+<div class="terminal">
+<div class="term-head"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="term-label">expected output</div></div>
+<div class="term-body">
+<span class="o">8</span><span class="o">30</span>
+</div></div>
+</div>
+
+<div class="trace">
+<div class="trace-head">🔍 Line Expansion — Execution Trace</div>
+<table><thead><tr><th>Step</th><th>What Happens</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><code>main</code> calls <code>addNumbers(5, 3)</code> — execution JUMPS out of main into the addNumbers method</td></tr>
+<tr><td>2</td><td>Inside addNumbers: parameter <code>a = 5</code>, <code>b = 3</code> (copies of the values passed in)</td></tr>
+<tr><td>3</td><td><code>int sum = a + b;</code> → sum = 8</td></tr>
+<tr><td>4</td><td><code>return sum;</code> → sends 8 back, execution JUMPS BACK to where it was called in main</td></tr>
+<tr><td>5</td><td><code>result</code> now holds 8. <code>println(result)</code> prints 8.</td></tr>
+<tr><td>6</td><td>Second call: <code>addNumbers(10, 20)</code> runs independently — new a=10, b=20, returns 30, printed directly without storing in a variable first.</td></tr>
+</tbody></table></div>
+
+<h2>Parameters vs Arguments — Don't Confuse These</h2>
+<div class="tw"><table>
+<thead><tr><th>Term</th><th>Definition</th><th>In the Example Above</th></tr></thead>
+<tbody>
+<tr><td>Parameter</td><td>The variable name listed in the method's DEFINITION</td><td><code>a</code> and <code>b</code> in <code>addNumbers(int a, int b)</code></td></tr>
+<tr><td>Argument</td><td>The actual VALUE passed in when CALLING the method</td><td><code>5</code> and <code>3</code> in <code>addNumbers(5, 3)</code></td></tr>
+</tbody></table></div>
+
+<h2>Method Overloading</h2>
+<p>Java allows MULTIPLE methods with the SAME NAME, as long as their parameter lists differ (different number or types of parameters). Java determines which one to call based on what you pass in.</p>
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">java</div></div>
+<pre>public static int add(int a, int b) {
+    return a + b;
+}
+
+public static double add(double a, double b) {
+    return a + b;
+}
+
+public static int add(int a, int b, int c) {
+    return a + b + c;
+}
+
+// add(2, 3)        -> calls the first version (int, int)
+// add(2.5, 3.5)     -> calls the second version (double, double)
+// add(1, 2, 3)      -> calls the third version (three ints)</pre></div>
+
+<h2>void vs Return Types</h2>
+<div class="tw"><table>
+<thead><tr><th>Type</th><th>Behavior</th></tr></thead>
+<tbody>
+<tr><td><code>void</code></td><td>Method performs an action but sends NOTHING back. Cannot be used in an expression like <code>int x = someVoidMethod();</code> — that's a compile error.</td></tr>
+<tr><td>Any type (<code>int</code>, <code>String</code>, etc.)</td><td>Method MUST use <code>return</code> to send back a value of that exact type on every possible code path.</td></tr>
+</tbody></table></div>
+
+<h2>Scope — Where a Variable "Exists"</h2>
+<p><strong>Scope</strong> is the region of code where a variable is accessible. A variable declared INSIDE a method only exists within that method — it cannot be accessed from outside.</p>
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">java</div></div>
+<pre>public static void methodA() {
+    int x = 10;  // x only exists inside methodA
+}
+
+public static void methodB() {
+    System.out.println(x); // ERROR — x doesn't exist here!
+}</pre></div>
+<div class="box red"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Gotcha Alert — Variables Are Local by Default</div>
+<p class="btx">Each method has its OWN isolated set of variables. Parameters and local variables declared inside a method cease to exist the moment that method finishes executing (<code>return</code>s or reaches its closing brace). This is called the variable going "out of scope."</p></div></div>
+
+<div class="box blue"><div class="bico">🔗</div><div class="bbd"><div class="btt">Forward Link — PF 101 (Year 2)</div>
+<p class="btx">Method overloading here is your FIRST taste of <strong>polymorphism</strong> — one of the four pillars of Object-Oriented Programming you'll formally study in <strong>PF 101</strong> (Object-Oriented Programming, Year 2 Sem 1). The core idea — "same name, different behavior based on context" — scales up directly into method overriding with inheritance.</p></div></div>
+</section>
+<!-- CHAPTER 08: ARRAYS -->
+<section class="chapter" id="ch8">
+<div class="cn">CHAPTER 08</div><div class="ct">Arrays</div>
+<p class="ci">An array is a fixed-size container that holds MULTIPLE values of the SAME data type, stored in contiguous memory and accessed by numeric index. Arrays are the foundation for the far more advanced data structures you'll study in <strong>CC 104</strong> (Data Structures &amp; Algorithms, Year 2).</p>
+
+<h2>Declaring &amp; Initializing Arrays</h2>
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">java</div></div>
+<pre>// Method 1: Declare then assign each index
+int[] scores = new int[5];
+scores[0] = 85;
+scores[1] = 90;
+
+// Method 2: Declare and initialize together (array literal)
+int[] grades = {85, 90, 78, 92, 88};
+
+String[] names = {"Kian", "Maria", "Jose"};</pre></div>
+
+<div class="box amber"><div class="bico">💡</div><div class="bbd"><div class="btt">Critical Rule — Arrays Are Zero-Indexed</div>
+<p class="btx">The FIRST element is at index <strong>0</strong>, not 1. An array of 5 elements has valid indices 0, 1, 2, 3, 4 — there is NO index 5. This single fact causes more beginner bugs than almost anything else in this course.</p></div></div>
+
+<h2>Accessing &amp; Modifying Elements</h2>
+<div class="split">
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">ArrayDemo.java</div></div>
+<pre>public class ArrayDemo {
+    public static void main(String[] args) {
+        int[] grades = {85, 90, 78, 92, 88};
+
+        System.out.println(grades[0]);
+        System.out.println(grades[2]);
+        System.out.println(grades.length);
+
+        grades[1] = 95;
+        System.out.println(grades[1]);
+    }
+}</pre></div>
+<div class="terminal">
+<div class="term-head"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="term-label">expected output</div></div>
+<div class="term-body">
+<span class="o">85</span><span class="o">78</span><span class="o">5</span><span class="o">95</span>
+</div></div>
+</div>
+
+<div class="trace">
+<div class="trace-head">🔍 Line Expansion — Execution Trace</div>
+<table><thead><tr><th>Index</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th></tr></thead>
+<tbody>
+<tr><td><strong>Initial values</strong></td><td>85</td><td>90</td><td>78</td><td>92</td><td>88</td></tr>
+<tr><td><strong>After grades[1]=95</strong></td><td>85</td><td style="color:var(--amber);font-weight:700">95</td><td>78</td><td>92</td><td>88</td></tr>
+</tbody></table></div>
+<p><code>grades.length</code> gives <code>5</code> — the TOTAL count of elements, NOT the last valid index. The last valid index is always <code>length - 1</code>.</p>
+
+<div class="box red"><div class="bico">🔥</div><div class="bbd"><div class="btt">Gotcha Alert — ArrayIndexOutOfBoundsException</div>
+<p class="btx">Trying to access <code>grades[5]</code> on a 5-element array crashes the program at runtime with <code>ArrayIndexOutOfBoundsException</code> — because valid indices only go up to <code>4</code> (which is <code>length - 1</code>). This is a RUNTIME error, not a compile error — the code compiles fine but crashes when actually executed.</p></div></div>
+
+<h2>Traversing Arrays with Loops</h2>
+<div class="split">
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">java — standard for loop</div></div>
+<pre>int[] grades = {85, 90, 78, 92, 88};
+for (int i = 0; i < grades.length; i++) {
+    System.out.println(grades[i]);
+}</pre></div>
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">java — enhanced for-each loop</div></div>
+<pre>int[] grades = {85, 90, 78, 92, 88};
+for (int g : grades) {
+    System.out.println(g);
+}</pre></div>
+</div>
+<div class="tw"><table>
+<thead><tr><th>Loop Style</th><th>Gives You Access To</th><th>Best When</th></tr></thead>
+<tbody>
+<tr><td>Standard <code>for</code></td><td>The INDEX (<code>i</code>) — can also modify elements via <code>grades[i] = ...</code></td><td>You need the position, or need to modify values</td></tr>
+<tr><td>Enhanced <code>for-each</code></td><td>The VALUE directly, no index</td><td>Simple read-only traversal — cleaner, less error-prone syntax</td></tr>
+</tbody></table></div>
+
+<h2>Common Array Algorithms</h2>
+<h3>Finding the Sum and Average</h3>
+<div class="split">
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">SumAvg.java</div></div>
+<pre>int[] scores = {85, 90, 78, 92, 88};
+int sum = 0;
+
+for (int s : scores) {
+    sum += s;
+}
+double average = (double) sum / scores.length;
+
+System.out.println("Sum: " + sum);
+System.out.println("Average: " + average);</pre></div>
+<div class="terminal">
+<div class="term-head"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="term-label">expected output</div></div>
+<div class="term-body">
+<span class="o">Sum: 433</span>
+<span class="o">Average: 86.6</span>
+</div></div>
+</div>
+<div class="box amber"><div class="bico">💡</div><div class="bbd"><div class="btt">Why (double) sum / scores.length, Not the Reverse</div>
+<p class="btx">If you wrote <code>sum / scores.length</code> without casting, that's INT division (both are ints) — you'd get a truncated whole number like <code>86</code> instead of <code>86.6</code>. Casting <code>sum</code> to <code>(double)</code> FIRST forces the entire division to happen in decimal — this connects directly back to the integer division gotcha in Chapter 04.</p></div></div>
+
+<h3>Finding the Maximum Value</h3>
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">java</div></div>
+<pre>int[] scores = {85, 90, 78, 92, 88};
+int max = scores[0];  // assume first element is the max initially
+
+for (int i = 1; i < scores.length; i++) {
+    if (scores[i] > max) {
+        max = scores[i];
+    }
+}
+System.out.println("Max: " + max);  // Max: 92</pre></div>
+
+<h2>2D Arrays — Arrays of Arrays</h2>
+<p>A 2D array represents a grid/table — rows and columns. Think of it as an array where each element is ITSELF another array. Just like 1D arrays, you can either declare-then-assign or use a literal:</p>
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">java — declare-then-assign</div></div>
+<pre>int[][] arr = new int[10][20];  // 10 rows, 20 columns, all zeros
+arr[0][0] = 1;                   // row_index, then column_index</pre></div>
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">java — array literal</div></div>
+<pre>int[][] grid = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+
+System.out.println(grid[0][0]);  // 1  (row 0, col 0)
+System.out.println(grid[1][2]);  // 6  (row 1, col 2)
+System.out.println(grid[2][0]);  // 7  (row 2, col 0)
+
+// Traversing a 2D array needs NESTED loops:
+for (int row = 0; row < grid.length; row++) {
+    for (int col = 0; col < grid[row].length; col++) {
+        System.out.print(grid[row][col] + " ");
+    }
+    System.out.println();
+}</pre></div>
+<div class="box blue"><div class="bico">🔗</div><div class="bbd"><div class="btt">Forward Link — Nested Loops (Chapter 06)</div>
+<p class="btx">2D array traversal is EXACTLY the nested loop pattern from Chapter 06 — outer loop walks each row, inner loop walks each column within that row. If the Jollibee branch/register analogy made sense there, this is the same structure applied to grid data instead of physical locations.</p></div></div>
+</section>
+<!-- CHAPTER 09: INTRO TO OOP -->
+<section class="chapter" id="ch9">
+<div class="cn">CHAPTER 09</div><div class="ct">Introduction to Object-Oriented Programming</div>
+<p class="ci">Everything up to this chapter has been <strong>procedural</strong> — a linear sequence of instructions. OOP is a different way of organizing code: modeling real-world things as <strong>objects</strong> that bundle together data (attributes) and behavior (methods). This chapter is intentionally light — full OOP mastery is the ENTIRE focus of <strong>PF 101</strong> next year. Here you just need the vocabulary and a working mental model.</p>
+
+<h2>Class vs Object — The Core Distinction</h2>
+<div class="tw"><table>
+<thead><tr><th>Concept</th><th>Definition</th></tr></thead>
+<tbody>
+<tr><td><strong>Class</strong></td><td>A BLUEPRINT or template describing what an object WILL have (attributes) and WILL be able to do (methods). Does not exist as a real "thing" in memory by itself.</td></tr>
+<tr><td><strong>Object</strong></td><td>A specific INSTANCE created FROM a class, with its own actual values. Multiple objects can be created from the same class, each with different data.</td></tr>
+</tbody></table></div>
+
+<div class="box green"><div class="bico">🇵🇭</div><div class="bbd"><div class="btt">Filipino Analogy — Class vs Object</div>
+<p class="btx">Think of the <strong>Jollibee brand blueprint</strong> as the class — it defines what every Jollibee branch WILL have (a menu, a location, operating hours) and WILL do (serve customers, process orders). Each actual physical Jollibee branch — SM North EDSA, Trinoma, Fairview — is an OBJECT: one specific instance built from that same blueprint, but each with its own actual address and staff.</p></div></div>
+
+<h2>Defining a Class</h2>
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">Student.java</div></div>
+<pre>public class Student {
+
+    // Attributes (instance variables) — the DATA each object holds
+    String name;
+    int age;
+    String course;
+
+    // Constructor — special method that runs when an object is CREATED
+    public Student(String n, int a, String c) {
+        name = n;
+        age = a;
+        course = c;
+    }
+
+    // Method — BEHAVIOR the object can perform
+    public void introduce() {
+        System.out.println("Hi, I'm " + name + ", " + age +
+            " years old, taking " + course + ".");
+    }
+}</pre></div>
+
+<h2>Creating &amp; Using Objects</h2>
+<div class="split">
+<div class="codeblock"><div class="cbhd"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="cbhl">Main.java</div></div>
+<pre>public class Main {
+    public static void main(String[] args) {
+        Student s1 = new Student("Kian", 18, "BSIT");
+        Student s2 = new Student("Maria", 19, "BSCS");
+
+        s1.introduce();
+        s2.introduce();
+
+        System.out.println(s1.name);
+        System.out.println(s2.age);
+    }
+}</pre></div>
+<div class="terminal">
+<div class="term-head"><div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="term-label">expected output</div></div>
+<div class="term-body">
+<span class="o">Hi, I'm Kian, 18 years old, taking BSIT.</span>
+<span class="o">Hi, I'm Maria, 19 years old, taking BSCS.</span>
+<span class="o">Kian</span>
+<span class="o">19</span>
+</div></div>
+</div>
+
+<div class="trace">
+<div class="trace-head">🔍 Line Expansion — Execution Trace</div>
+<table><thead><tr><th>Step</th><th>What Happens</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><code>new Student("Kian", 18, "BSIT")</code> — the <code>new</code> keyword allocates memory for a fresh object, then calls the constructor with these 3 arguments</td></tr>
+<tr><td>2</td><td>Inside the constructor: <code>name="Kian"</code>, <code>age=18</code>, <code>course="BSIT"</code> get stored on THIS specific object, referenced by <code>s1</code></td></tr>
+<tr><td>3</td><td><code>new Student("Maria", 19, "BSCS")</code> creates a COMPLETELY SEPARATE object, referenced by <code>s2</code> — s1 and s2 do not share data</td></tr>
+<tr><td>4</td><td><code>s1.introduce()</code> — dot notation calls the method ON that specific object, using s1's own name/age/course values</td></tr>
+<tr><td>5</td><td><code>s1.name</code> directly accesses that object's attribute — prints "Kian", confirming s1 and s2 are independent</td></tr>
+</tbody></table></div>
+
+<h2>Access Modifiers — Controlling Visibility</h2>
+<div class="tw"><table>
+<thead><tr><th>Modifier</th><th>Accessible From</th></tr></thead>
+<tbody>
+<tr><td><code>public</code></td><td>ANYWHERE — any other class, any other file</td></tr>
+<tr><td><code>private</code></td><td>ONLY within the same class — the standard way to protect an object's internal data (encapsulation)</td></tr>
+<tr><td><code>protected</code></td><td>Same class, same package, AND subclasses (relevant once inheritance is introduced in PF 101)</td></tr>
+<tr><td>(none / default)</td><td>Same package only</td></tr>
+</tbody></table></div>
+
+<h2>The Four Pillars of OOP — Preview Only</h2>
+<p>You will study these in full depth in <strong>PF 101</strong>. For now, just recognize the names and the one-sentence idea behind each.</p>
+<div class="tw"><table>
+<thead><tr><th>Pillar</th><th>One-Sentence Idea</th></tr></thead>
+<tbody>
+<tr><td><strong>Encapsulation</strong></td><td>Bundling data and methods together, hiding internal details behind <code>private</code> attributes and controlled <code>public</code> access</td></tr>
+<tr><td><strong>Inheritance</strong></td><td>A class can inherit attributes/methods from a "parent" class, avoiding rewriting shared logic — same idea as the LGU → Barangay → Purok hierarchy from CC 101</td></tr>
+<tr><td><strong>Polymorphism</strong></td><td>The same method name behaving differently depending on the object calling it — you already saw a taste of this with method overloading in Chapter 07</td></tr>
+<tr><td><strong>Abstraction</strong></td><td>Hiding complex implementation details, exposing only what's necessary to use something (you use <code>System.out.println()</code> constantly without knowing HOW it actually prints to a screen)</td></tr>
+</tbody></table></div>
+
+<div class="box blue"><div class="bico">🔗</div><div class="bbd"><div class="btt">Forward Link — PF 101 (Year 2, Semester 1)</div>
+<p class="btx">This entire chapter is deliberately just the surface. <strong>PF 101 — Object-Oriented Programming</strong> requires BOTH <strong>CC 103</strong> and <strong>PT 101</strong> as prerequisites and is where classes, objects, constructors, and all four pillars above get their full, rigorous treatment — inheritance hierarchies, interface contracts, abstract classes, and polymorphic method overriding. Everything here is the seed; PF 101 is where it fully grows.</p></div></div>
+</section>
+
+<div class="footer">
+<p><strong>CC 102 — Fundamentals of Programming (Java)</strong> · Complete Study Guide<br>
+QCU Academic OS · Compiled by KianoRoku18Ino · github.com/KianoRoku18Ino · AY 2026–2027<br>
+QCU Academic OS v4.1 · Semester Zero Advance Prep Material · JDK 17 · Debian/XFCE4 via XoDos-Ark</p>
+</div>
+
+</main>
+</body>
+</html>

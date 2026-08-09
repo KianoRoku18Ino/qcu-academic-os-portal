@@ -1,0 +1,273 @@
+/* ============================================================
+   QCU ACADEMIC OS — STUDY GUIDE PORTAL
+   Design tokens copied verbatim from the study guides' own
+   :root block so the portal, the guides, and the repo all read
+   as one product. Layout: sidebar = file browser, viewer = the
+   open window, tool panel = a utility app docked on the right.
+   ============================================================ */
+
+:root{
+  --bg:#0B1426; --bgd:#080E1A; --bgc:#111D33; --bgr:#162038; --bgcode:#060D18;
+  --blue:#3B82F6; --bluedim:#1D4ED8; --amber:#F59E0B; --green:#10B981; --red:#EF4444; --purple:#8B5CF6;
+  --t1:#E2E8F0; --t2:#94A3B8; --t3:#64748B; --bdr:rgba(59,130,246,.15);
+  --topbar-h:56px; --sidebar-w:280px; --panel-w:420px;
+}
+
+*{box-sizing:border-box}
+/* CRITICAL: the browser's own default [hidden]{display:none} rule is
+   very easy to accidentally out-rank. Any class selector below with
+   its own "display:" (e.g. .settings-drawer{display:flex}) has the
+   SAME specificity as the attribute selector, and author CSS beats
+   the browser's default stylesheet on a tie — so without !important
+   here, setting el.hidden = true in JS silently does nothing on any
+   element that also has a class-based "display" rule. This one line
+   is what makes every hidden-attribute toggle in script.js actually
+   work (settings drawers, the empty/active viewer states, etc). */
+[hidden]{display:none !important}
+html{scroll-behavior:smooth}
+body{
+  margin:0; font-family:'Inter',system-ui,sans-serif; background:var(--bg); color:var(--t1);
+  font-size:15px; line-height:1.6; -webkit-font-smoothing:antialiased;
+}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:var(--bgd)}
+::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+a{color:var(--blue)}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+
+/* ============================================================
+   SHARED CONTROLS
+   ============================================================ */
+.icon-btn{
+  width:40px; height:40px; display:flex; align-items:center; justify-content:center;
+  background:transparent; border:1px solid var(--bdr); border-radius:8px;
+  color:var(--t2); font-size:16px; cursor:pointer; transition:all .15s; flex-shrink:0;
+}
+.icon-btn:hover{background:rgba(59,130,246,.14); border-color:var(--blue); color:var(--blue)}
+.icon-btn:active{transform:scale(.94)}
+
+.pill-btn{
+  background:var(--bgr); border:1px solid var(--bdr); color:var(--t2);
+  font-size:12.5px; font-weight:500; padding:7px 15px; border-radius:20px;
+  cursor:pointer; transition:all .15s; white-space:nowrap;
+}
+.pill-btn:hover{border-color:var(--blue); color:var(--t1)}
+
+/* ============================================================
+   TOPBAR
+   ============================================================ */
+.topbar{
+  position:fixed; top:0; left:0; right:0; height:calc(var(--topbar-h) + env(safe-area-inset-top)); z-index:200;
+  display:flex; align-items:center; gap:10px;
+  padding:env(safe-area-inset-top) max(16px, env(safe-area-inset-right)) 0 max(16px, env(safe-area-inset-left));
+  background:var(--bgc); border-bottom:1px solid var(--bdr);
+}
+.hamburger-btn{display:none}
+.brand{display:flex; align-items:center; gap:8px; min-width:0}
+.brand-mark{font-family:'JetBrains Mono',monospace; color:var(--blue); font-weight:700; font-size:15px}
+.brand-text{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.topbar-spacer{flex:1}
+
+/* ============================================================
+   SIDEBAR — file browser
+   ============================================================ */
+.sidebar-backdrop{
+  position:fixed; inset:0; top:var(--topbar-h); background:rgba(3,7,15,.6);
+  z-index:190; opacity:0; pointer-events:none; transition:opacity .2s;
+}
+.sidebar-backdrop.open{opacity:1; pointer-events:auto}
+
+.sidebar{
+  position:fixed; top:var(--topbar-h); left:0; bottom:0; width:var(--sidebar-w);
+  background:var(--bgc);
+  border-right:1px solid var(--bdr); overflow-y:auto; -webkit-overflow-scrolling:touch; z-index:195;
+  display:flex; flex-direction:column; transition:transform .25s ease;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.sidebar-head{padding:18px 16px 12px; border-bottom:1px solid var(--bdr); position:relative}
+.sb-eyebrow{font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--blue); text-transform:uppercase; letter-spacing:2px; margin-bottom:4px}
+.sb-title{font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:700}
+.sidebar-close-btn{display:none; position:absolute; top:14px; right:14px}
+
+.sidebar-search-row{padding:12px 14px 6px}
+.sidebar-search-row input{
+  width:100%; background:var(--bgd); border:1px solid var(--bdr); border-radius:8px;
+  padding:8px 11px; color:var(--t1); font-size:13px;
+}
+.sidebar-search-row input:focus{border-color:var(--blue)}
+
+.guide-list{padding:6px 0 20px; flex:1}
+.gl-loading, .gl-empty, .gl-error{padding:14px 17px; font-size:12.5px; color:var(--t3)}
+.gl-error{color:var(--red)}
+.gl-section-title{padding:14px 17px 5px; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:1.5px; color:var(--t3)}
+.gl-item{
+  display:flex; align-items:center; gap:9px; width:100%; text-align:left;
+  padding:8px 17px; background:transparent; border:0; border-left:3px solid transparent;
+  color:var(--t2); font-size:13px; cursor:pointer; transition:all .15s;
+}
+.gl-item:hover{background:rgba(59,130,246,.08); color:var(--t1)}
+.gl-item.act{color:var(--blue); font-weight:500; background:rgba(59,130,246,.1); border-left-color:var(--blue)}
+.gl-item-code{font-family:'JetBrains Mono',monospace; font-size:9.5px; color:var(--t3); border:1px solid var(--bdr); border-radius:4px; padding:1px 5px; flex-shrink:0}
+.gl-item.act .gl-item-code{color:var(--blue); border-color:var(--blue)}
+.gl-item-title{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+
+/* ============================================================
+   VIEWER — the open window
+   ============================================================ */
+.viewer{
+  position:fixed; top:var(--topbar-h); left:var(--sidebar-w); right:0; bottom:0;
+  display:flex; flex-direction:column; transition:right .25s ease;
+}
+.viewer-empty{
+  flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:40px; color:var(--t3);
+}
+.ve-mark{font-family:'JetBrains Mono',monospace; font-size:34px; color:var(--bluedim); margin-bottom:10px}
+.ve-title{font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:700; color:var(--t2); margin-bottom:6px}
+.ve-sub{font-size:13px; max-width:340px; line-height:1.6}
+
+.viewer-active{flex:1; display:flex; flex-direction:column; min-height:0}
+.viewer-header{
+  display:flex; align-items:center; gap:14px; padding:12px 18px;
+  background:var(--bgc); border-bottom:1px solid var(--bdr); flex-wrap:wrap;
+}
+.vh-info{display:flex; align-items:center; gap:9px; min-width:0; flex:1}
+.vh-code{font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--blue); border:1px solid var(--bdr); border-radius:5px; padding:3px 7px; flex-shrink:0}
+.vh-title{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14.5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.vh-controls{display:flex; align-items:center; gap:10px; flex-shrink:0}
+
+.format-toggle{display:flex; background:var(--bgd); border:1px solid var(--bdr); border-radius:8px; padding:2px}
+.ft-btn{
+  background:transparent; border:0; color:var(--t3); font-family:'JetBrains Mono',monospace;
+  font-size:11px; font-weight:600; padding:5px 12px; border-radius:6px; cursor:pointer; transition:all .15s;
+}
+.ft-btn.act{background:var(--blue); color:#fff}
+.ft-btn:disabled{opacity:.35; cursor:not-allowed}
+
+.viewer-frame{flex:1; width:100%; border:0; background:var(--bg)}
+
+/* ============================================================
+   TOOL PANEL — Ask AI / Media Search
+   Docked drawer on desktop, full-bleed on mobile (matches the
+   sidebar's off-canvas pattern for consistency).
+   ============================================================ */
+.panel-backdrop{
+  position:fixed; inset:0; top:var(--topbar-h); background:rgba(3,7,15,.6);
+  z-index:290; opacity:0; pointer-events:none; transition:opacity .2s;
+}
+.panel-backdrop.open{opacity:1; pointer-events:auto}
+
+.tool-panel{
+  position:fixed; top:var(--topbar-h); right:0; bottom:0; width:var(--panel-w);
+  background:var(--bgc);
+  border-left:1px solid var(--bdr); z-index:295;
+  display:flex; flex-direction:column; min-height:0;
+  transform:translateX(100%); transition:transform .25s ease;
+}
+.tool-panel.open{transform:translateX(0)}
+
+.panel-tabs{display:flex; align-items:center; gap:6px; padding:10px 12px; border-bottom:1px solid var(--bdr); flex-shrink:0}
+.tab-btn{
+  background:transparent; border:0; color:var(--t2); font-size:13.5px; font-weight:500;
+  padding:8px 16px; border-radius:20px; cursor:pointer; transition:all .15s;
+}
+.tab-btn:hover{color:var(--t1)}
+.tab-btn.act{background:rgba(59,130,246,.15); color:var(--blue)}
+.panel-tabs-spacer{flex:1}
+.gear-btn.open{color:var(--blue); transform:rotate(35deg)}
+
+.panel-view{flex:1; display:flex; flex-direction:column; min-height:0; overflow-y:auto}
+.panel-view[hidden]{display:none}
+
+/* --- settings drawer (shared look, Ask AI + Media Search) --- */
+.settings-drawer{
+  display:flex; flex-direction:column; gap:11px; padding:14px 16px;
+  background:var(--bgd); border-bottom:1px solid var(--bdr); flex-shrink:0;
+}
+.field{display:flex; flex-direction:column; gap:5px}
+.field span{font-size:11px; font-weight:600; color:var(--t3); text-transform:uppercase; letter-spacing:.5px}
+.field input, .field select{
+  background:var(--bg); border:1px solid var(--bdr); border-radius:7px; padding:9px 11px;
+  color:var(--t1); font-size:13px; font-family:inherit;
+}
+.field input:focus, .field select:focus{outline:2px solid var(--blue); outline-offset:1px}
+.hint{font-size:11.5px; color:var(--t3); line-height:1.6; margin:0}
+.hint-link{color:var(--blue); text-decoration:underline}
+.hint code{font-family:'JetBrains Mono',monospace; background:var(--bgcode); padding:1px 5px; border-radius:3px; font-size:11px; color:var(--amber)}
+.save-btn{
+  align-self:flex-start; background:var(--blue); color:#fff; border:0; border-radius:7px;
+  padding:8px 18px; font-size:13px; font-weight:600; cursor:pointer; transition:filter .15s;
+}
+.save-btn:hover{filter:brightness(1.1)}
+.save-btn.saved{background:var(--green)}
+
+/* --- Ask AI view --- */
+.context-banner{padding:11px 16px; font-size:12px; color:var(--t3); border-bottom:1px solid var(--bdr); flex-shrink:0; line-height:1.5}
+.context-banner.has-guide{color:var(--blue)}
+
+.feed{flex:1; overflow-y:auto; padding:14px 16px; display:flex; flex-direction:column; gap:12px; min-height:0}
+.feed-empty{color:var(--t3); font-size:12.5px; text-align:center; margin-top:20px}
+
+.msg{max-width:100%; padding:10px 13px; border-radius:10px; font-size:13.5px; line-height:1.6; word-wrap:break-word}
+.msg.q{align-self:flex-end; background:var(--blue); color:#fff; border-bottom-right-radius:3px}
+.msg.a{align-self:flex-start; background:var(--bgd); border:1px solid var(--bdr); border-bottom-left-radius:3px}
+.msg.a.pending{color:var(--t3); font-style:italic}
+.msg.a.error{border-color:var(--red); color:var(--red)}
+.msg code{font-family:'JetBrains Mono',monospace; background:var(--bgcode); padding:1px 5px; border-radius:3px; font-size:12.5px; color:var(--amber)}
+
+.input-row{display:flex; gap:9px; padding:12px 16px calc(12px + env(safe-area-inset-bottom)); border-top:1px solid var(--bdr); flex-shrink:0}
+.input-row textarea{
+  flex:1; resize:none; background:var(--bgd); border:1px solid var(--bdr); border-radius:9px;
+  padding:10px 12px; color:var(--t1); font-family:inherit; font-size:13.5px; max-height:110px;
+}
+.input-row textarea:focus{outline:2px solid var(--blue); outline-offset:1px}
+
+.send-btn{
+  display:flex; align-items:center; gap:6px; background:var(--blue); color:#fff; border:0;
+  border-radius:9px; padding:0 16px; font-size:13px; font-weight:600; cursor:pointer;
+  transition:filter .15s; flex-shrink:0;
+}
+.send-btn:hover{filter:brightness(1.1)}
+.send-btn:disabled{opacity:.5; cursor:not-allowed}
+.send-btn-icon{font-size:14px}
+
+/* --- Media Search view --- */
+.ms-search-row{display:flex; gap:9px; padding:14px 16px; border-bottom:1px solid var(--bdr); flex-shrink:0}
+.ms-search-row input{
+  flex:1; background:var(--bgd); border:1px solid var(--bdr); border-radius:9px;
+  padding:10px 12px; color:var(--t1); font-size:13.5px;
+}
+.ms-search-row input:focus{outline:2px solid var(--blue); outline-offset:1px}
+
+.ms-results{flex:1; overflow-y:auto; padding:14px 16px; display:grid; grid-template-columns:1fr 1fr; gap:10px; align-content:start}
+.ms-results .feed-empty{grid-column:1 / -1}
+.ms-card{border:1px solid var(--bdr); border-radius:9px; overflow:hidden; background:var(--bgd)}
+.ms-card img{width:100%; height:100px; object-fit:cover; display:block; background:var(--bg)}
+.ms-card-credit{padding:6px 8px; font-size:10px; color:var(--t3); line-height:1.4}
+.ms-card-credit a{color:var(--t2)}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:880px){
+  .hamburger-btn{display:flex}
+  .sidebar-close-btn{display:flex}
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  .viewer{left:0}
+  .tool-panel{width:100vw}
+  .pill-btn .pill-hide-mobile{display:none}
+  /* Touch targets: 40px icon buttons and 31px-tall list rows are fine
+     with a mouse pointer but tight for a finger — bump both toward the
+     ~44px minimum real touchscreens need for reliable tapping. */
+  .icon-btn{width:44px; height:44px; font-size:17px}
+  .gl-item{padding:12px 17px}
+  .tab-btn{padding:10px 16px}
+  .send-btn, .save-btn{min-height:44px}
+}
+@media (max-width:520px){
+  .brand-text{display:none}
+  .pill-btn{padding:7px 11px; font-size:11.5px}
+  .ms-results{grid-template-columns:1fr}
+}

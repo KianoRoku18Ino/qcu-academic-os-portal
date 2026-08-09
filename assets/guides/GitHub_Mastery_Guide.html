@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GITHUB — Version Control &amp; Collaboration Mastery | Complete Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--bgcode:#060D18;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--purple:#8B5CF6;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(59,130,246,.15);--sw:285px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvs{padding:9px 17px 3px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t3)}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover,.nvi a.act{color:var(--t1);background:rgba(59,130,246,.08);border-left-color:var(--blue)}
+.nvi a.act{color:var(--blue);font-weight:500}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:20px}
+
+.main{margin-left:var(--sw)}
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:52px 52px 42px;position:relative;overflow:hidden}
+.hero::before{content:'01001000';position:absolute;top:-10px;right:15px;font-family:'JetBrains Mono',monospace;font-size:115px;font-weight:900;color:rgba(59,130,246,.04);letter-spacing:-5px;user-select:none;line-height:1}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--blue)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:48px;font-weight:700;line-height:1.05;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#3B82F6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:18px;color:var(--t2);margin-bottom:19px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+
+.chapter{padding:44px 52px;border-bottom:1px solid var(--bdr);max-width:970px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:19.5px;font-weight:600;margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--blue);border-radius:2px;flex-shrink:0}
+h3{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--blue);margin:22px 0 9px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+
+.box{border-radius:8px;padding:13px 17px;margin:15px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}.red .btt{color:var(--red)}
+
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--blue);font-size:12px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(59,130,246,.04)}
+tbody td{padding:9px 13px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}
+.nt td:not(:first-child){color:var(--amber);font-family:'JetBrains Mono',monospace}
+
+.codeblock{background:var(--bgcode);border:1px solid var(--bdr);border-radius:8px;margin:15px 0;overflow:hidden}
+.cbhd{display:flex;align-items:center;justify-content:space-between;padding:8px 13px;background:var(--bgr);border-bottom:1px solid var(--bdr)}
+.cbhl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:1px}
+.dots{display:flex;gap:4px}.dot{width:9px;height:9px;border-radius:50%}.dr{background:#EF4444}.dy{background:#F59E0B}.dg{background:#10B981}
+pre{padding:16px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.75;color:#C4D4E8}
+
+.steps{margin:15px 0}
+.step{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.snum{background:var(--blue);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace}
+.sc{flex:1}
+.sl{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:2px}
+.sd{color:var(--t2);font-size:13px;line-height:1.7}
+.sd code{font-family:'JetBrains Mono',monospace;background:var(--bgr);padding:1px 5px;border-radius:3px;font-size:11.5px;color:var(--amber)}
+
+.tl{margin:15px 0}
+.tli{display:flex;gap:14px;margin-bottom:18px;position:relative}
+.tli::before{content:'';position:absolute;left:73px;top:30px;width:1px;height:calc(100% + 5px);background:var(--bdr)}
+.tli:last-child::before{display:none}
+.tlyr{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--amber);font-weight:700;min-width:58px;padding-top:12px;text-align:right}
+.tldot{width:9px;height:9px;background:var(--blue);border-radius:50%;border:2px solid var(--bg);flex-shrink:0;margin-top:14px}
+.tlc{background:var(--bgc);border:1px solid var(--bdr);border-radius:8px;padding:11px 15px;flex:1}
+.tlt{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:3px}
+.tld{color:var(--t2);font-size:12.5px;line-height:1.65}
+
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.gc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;position:relative;overflow:hidden}
+.gc::before{content:attr(data-g);position:absolute;top:-10px;right:7px;font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:900;color:rgba(59,130,246,.05);line-height:1}
+.gera{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.gtit{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:7px}
+.gsp{font-size:12.5px;color:var(--t2);margin:0;line-height:1.7}
+.gsp strong{color:var(--blue)}
+
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:15px 0}
+.pcrd{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:13px 15px}
+.pnm{font-weight:700;color:var(--t1);font-size:13px;margin-bottom:2px}
+.pdt{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.pttl{font-size:11px;color:var(--blue);font-weight:600;margin-bottom:4px}
+.pdsc{font-size:12px;color:var(--t2);line-height:1.6}
+
+.osi{margin:15px 0}
+.osil{display:flex;align-items:center;gap:12px;padding:10px 15px;border:1px solid var(--bdr);margin-bottom:-1px;transition:background .15s}
+.osil:hover{background:rgba(59,130,246,.04)}
+.osil:first-child{border-radius:8px 8px 0 0}
+.osil:last-child{border-radius:0 0 8px 8px}
+.osin{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;min-width:22px;color:var(--amber)}
+.osnm{font-weight:600;color:var(--t1);min-width:115px;font-size:13px}
+.osip{font-size:11px;color:var(--blue);font-family:'JetBrains Mono',monospace;min-width:155px}
+.osid{font-size:12.5px;color:var(--t2);flex:1}
+
+.isg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.isc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;border-top:3px solid var(--blue)}
+.isc.a{border-top-color:var(--amber)}.isc.g{border-top-color:var(--green)}.isc.p{border-top-color:var(--purple)}
+.ico{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-bottom:3px}
+.inm{font-weight:700;font-size:14px;color:var(--t1);margin-bottom:6px}
+.idc{font-size:12.5px;color:var(--t2);line-height:1.7}
+.ieg{font-size:11.5px;color:var(--green);margin-top:6px}
+
+.mlst{margin:11px 0}
+.mitem{display:flex;gap:11px;padding:10px 0;border-bottom:1px solid var(--bdr);align-items:flex-start}
+.mitem:last-child{border-bottom:none}
+.mnm{font-weight:700;color:var(--red);min-width:110px;font-size:13px}
+.mdc{font-size:13px;color:var(--t2);line-height:1.65}
+
+.tree{font-family:'JetBrains Mono',monospace;font-size:12.5px;background:var(--bgcode);border:1px solid var(--bdr);border-radius:8px;padding:15px 19px;color:var(--t2);line-height:2;margin:12px 0;overflow-x:auto;white-space:pre}
+
+.law{background:var(--bgc);border:1px solid var(--bdr);border-left:4px solid var(--red);border-radius:8px;padding:15px 17px;margin:11px 0}
+.lra{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--red);font-weight:700;margin-bottom:3px}
+.ltit{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:4px}
+.lyr{font-size:11px;color:var(--t3);margin-bottom:7px}
+.ldc{font-size:13px;color:var(--t2);line-height:1.75}
+
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:4px;font-size:13px;line-height:1.75}
+li strong{color:var(--t1)}
+
+.footer{padding:34px 52px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--blue)}
+
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.gg,.pg,.isg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+<div class="sbh"><div class="sbb">GITHUB · Dev Skill Track</div><div class="sbt">Version Control &amp; Collaboration Mastery</div><div class="sbs">Complete Reference · 2026</div></div>
+<ul class="nvl">
+<li class="nvs">Introduction</li>
+<li class="nvi"><a href="#overview"><span class="nn">00</span>Overview &amp; Priority Map</a></li>
+<li class="nvs">Chapters</li>
+<li class="nvi"><a href="#ch1"><span class="nn">01</span>Git vs GitHub &amp; Setup</a></li>
+<li class="nvi"><a href="#ch2"><span class="nn">02</span>Repositories &amp; Structure</a></li>
+<li class="nvi"><a href="#ch3"><span class="nn">03</span>Daily Workflow &amp; Commits</a></li>
+<li class="nvi"><a href="#ch4"><span class="nn">04</span>Branching &amp; Merging</a></li>
+<li class="nvi"><a href="#ch5"><span class="nn">05</span>Remotes &amp; Syncing</a></li>
+<li class="nvi"><a href="#ch6"><span class="nn">06</span>Pull Requests &amp; Forking</a></li>
+<li class="nvi"><a href="#ch7"><span class="nn">07</span>GitHub Web UI Features</a></li>
+<li class="nvi"><a href="#ch8"><span class="nn">08</span>Undoing Mistakes</a></li>
+<li class="nvi"><a href="#ch9"><span class="nn">09</span>GitHub CLI (gh)</a></li>
+<li class="nvi"><a href="#ch10"><span class="nn">10</span>Team Collaboration</a></li>
+<li class="nvi"><a href="#ch11"><span class="nn">11</span>Professional Standards</a></li>
+<li class="nvi"><a href="#ch12"><span class="nn">12</span>Cheat Sheet &amp; Glossary</a></li>
+</ul></nav>
+
+<main class="main">
+<div class="hero">
+<div class="he">Kian's Dev Skill Track · Practical Mastery Guide · 2026</div>
+<div class="ht">GITHUB</div>
+<div class="hs">Version Control &amp; Collaboration — Complete Mastery Reference</div>
+<div class="hm">
+<div class="mp">Scope: <span>Git + GitHub</span></div>
+<div class="mp">Level: <span>Beginner → Professional</span></div>
+<div class="mp">Environment: <span>Linux (Debian/XFCE4) · VS Code · gh CLI</span></div>
+<div class="mp">Type: <span>Practical Skill Guide</span></div>
+</div></div>
+
+<section class="chapter" id="overview">
+<div class="cn">CHAPTER 00</div><div class="ct">Overview &amp; Mastery Priority Map</div>
+<p class="ci">This guide covers Git (the version control tool) and GitHub (the hosting platform built on top of it) end to end — every command, button, and workflow you need to work confidently solo, with classmates on group projects, and eventually on professional teams. It is not tied to a single QCU subject, but it directly supports every course that involves a repo: WS101/WS102 web projects, CC103 onward, and especially IPT101/IPT102, SIA101/102, and CAP101/CAP102 where group repos and version history are graded artifacts in their own right.</p>
+
+<div class="box blue"><div class="bico">🔗</div><div class="bbd"><div class="btt">Why This Matters Beyond One Subject</div>
+<p class="btx">Every BSIT group project from here on assumes you can push code without breaking a teammate's work, open a pull request without panic, and recover from a mistake without losing history. This is infrastructure knowledge — once mastered, it stops being something you think about and becomes muscle memory, the same way <code>git status</code> already is on your XoDos setup.</p></div></div>
+
+<h2>Mastery Priority Map</h2>
+<div class="tw"><table>
+<thead><tr><th>Topic</th><th>Chapter</th><th>Frequency of Use</th><th>Difficulty</th></tr></thead>
+<tbody>
+<tr><td>Daily workflow (status/add/commit/push)</td><td>03</td><td><span class="tag tr2">🔴 Constant</span></td><td><span class="tag tg">Easy</span></td></tr>
+<tr><td>Branching &amp; merging</td><td>04</td><td><span class="tag tr2">🔴 Constant</span></td><td><span class="tag ta">Medium</span></td></tr>
+<tr><td>Remotes &amp; syncing</td><td>05</td><td><span class="tag tr2">🔴 Constant</span></td><td><span class="tag tg">Easy</span></td></tr>
+<tr><td>Pull requests &amp; forking</td><td>06</td><td><span class="tag ta">🟡 Every group project</span></td><td><span class="tag ta">Medium</span></td></tr>
+<tr><td>Web UI features (Issues, Actions, Pages)</td><td>07</td><td><span class="tag ta">🟡 Weekly</span></td><td><span class="tag tg">Easy</span></td></tr>
+<tr><td>Undoing mistakes</td><td>08</td><td><span class="tag tb">🔵 Occasional, high-stakes</span></td><td><span class="tag tr2">Hard</span></td></tr>
+<tr><td>GitHub CLI (gh)</td><td>09</td><td><span class="tag tb">🔵 Optional convenience</span></td><td><span class="tag tg">Easy</span></td></tr>
+<tr><td>Team collaboration norms</td><td>10</td><td><span class="tag tr2">🔴 Every group project</span></td><td><span class="tag ta">Medium</span></td></tr>
+<tr><td>Professional standards &amp; security</td><td>11</td><td><span class="tag tb">🔵 Before job hunting</span></td><td><span class="tag tg">Easy</span></td></tr>
+</tbody></table></div>
+
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">How To Use This Guide</div>
+<p class="btx">Chapters 01–05 are the non-negotiable core — read those first and drill them until they're automatic. Chapters 06–07 you'll need the first time you do a real group project. Chapter 08 you'll need exactly when you're panicking, so it's worth skimming once now so you know it exists. Chapters 09–11 are what separates "can use Git" from "works like a professional."</p></div></div>
+</section>
+
+<section class="chapter" id="ch1">
+<div class="cn">CHAPTER 01</div><div class="ct">Git vs GitHub &amp; Setup</div>
+<p class="ci">The single most important distinction to internalize before anything else: Git and GitHub are not the same thing, and confusing them causes real workflow mistakes down the line.</p>
+
+<div class="isg">
+<div class="isc"><div class="ico">LOCAL TOOL</div><div class="inm">Git</div><div class="idc">A version control program that runs entirely on your machine. It tracks every change to your files over time, lets you branch off to try things safely, and works completely offline. Git existed before GitHub and works the same way whether or not you ever touch GitHub.</div></div>
+<div class="isc g"><div class="ico">CLOUD PLATFORM</div><div class="inm">GitHub</div><div class="idc">A website that hosts Git repositories online and adds collaboration features on top: pull requests, code review, issue tracking, project boards, CI/CD via Actions, and a public profile. GitLab and Bitbucket are competitors that do the same job.</div></div>
+</div>
+
+<h2>The Three States (Mental Model)</h2>
+<p>Every file in a Git-tracked project sits in one of three places at any moment. Understanding this is what makes every other command make sense instead of feeling like memorized incantations.</p>
+
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Working Directory</div><div class="sd">Your actual files on disk, exactly as you're editing them in VS Code right now. Nothing here is tracked by history yet.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Staging Area (the "Index")</div><div class="sd">A holding area for changes you've explicitly marked as ready with <code>git add</code>. This is Git's way of letting you build a commit out of only some of your changes, not necessarily everything you've touched.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Repository (committed history)</div><div class="sd">Once you run <code>git commit</code>, the staged snapshot becomes a permanent, named point in history that you can always return to.</div></div></div>
+</div>
+
+<div class="box green"><div class="bico">💡</div><div class="bbd"><div class="btt">The Essay Analogy</div>
+<p class="btx">Working directory is your draft as you're typing it. Staging is highlighting the paragraphs you've decided are final for this revision. Committing is saving that revision with a version label. GitHub, in this analogy, is Google Drive — a place you upload the saved revisions so others can read them or work on their own copy.</p></div></div>
+
+<h2>First-Time Setup (Per Machine)</h2>
+<p>You've already done this in your Linux dev environment — this is the reference for when you set up Git on any new machine.</p>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">bash</div></div>
+<pre><code>git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+git config --global init.defaultBranch main
+git config --global core.editor "code --wait"   # optional: VS Code as commit editor
+git config --list                                # verify everything set correctly</code></pre></div>
+
+<h2>Authentication: HTTPS vs SSH vs PAT</h2>
+<p>GitHub removed plain password authentication for Git operations in 2021 — you must use either a Personal Access Token (PAT) over HTTPS or an SSH key. Your XoDos setup already uses PAT auth via <code>gh</code>.</p>
+<div class="tw"><table>
+<thead><tr><th>Method</th><th>How it works</th><th>Best for</th></tr></thead>
+<tbody>
+<tr><td>PAT over HTTPS</td><td>Token pasted in place of a password on first push, or cached via <code>gh auth login</code></td><td>Simplest setup, works everywhere, easy to revoke/rotate</td></tr>
+<tr><td>SSH key</td><td>Key pair generated once, public key added to GitHub account, no token needed per-push</td><td>Frequent pushing from a stable machine, no repeated prompts</td></tr>
+<tr><td>gh CLI auth</td><td><code>gh auth login</code> handles token creation and storage for you</td><td>Terminal-first workflow — this is what you're using now</td></tr>
+</tbody></table></div>
+
+<div class="mlst">
+<div class="mitem"><div class="mnm">Wrong scope</div><div class="mdc">Creating a PAT without the <code>repo</code> scope checked, then wondering why pushes fail with a permissions error.</div></div>
+<div class="mitem"><div class="mnm">Global vs local</div><div class="mdc">Forgetting that <code>git config</code> without <code>--global</code> only applies to the current repo — useful when a specific project needs a different email (e.g. a work vs school account), but confusing if done by accident.</div></div>
+<div class="mitem"><div class="mnm">Skipped setup</div><div class="mdc">Cloning a repo on a fresh machine and committing before running <code>git config</code> — commits get attributed to a generic or wrong identity.</div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch2">
+<div class="cn">CHAPTER 02</div><div class="ct">Repositories &amp; Local Structure</div>
+<p class="ci">A repository ("repo") is a project folder that Git is tracking. You either start one from scratch or copy one that already exists on GitHub.</p>
+
+<h2>Starting a Repository</h2>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Option A — Start fresh locally</div><div class="sd"><code>mkdir my-project && cd my-project</code> then <code>git init</code>. This creates a hidden <code>.git</code> folder that holds the entire history — never edit its contents by hand.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Option B — Clone an existing repo</div><div class="sd"><code>git clone https://github.com/username/repo-name.git</code> downloads the full project plus its entire commit history in one step.</div></div></div>
+</div>
+
+<h2>Typical Project Structure</h2>
+<div class="tree">my-project/
+├── .git/              ← hidden, Git's internal database (never touch manually)
+├── .gitignore         ← tells Git what NOT to track
+├── README.md          ← what the project is and how to run it
+├── LICENSE             ← optional: usage terms for others
+├── src/                ← your actual source code
+└── .vscode/            ← editor settings (usually gitignored)</div>
+
+<h2>.gitignore — Keeping Noise Out of History</h2>
+<p>Without a <code>.gitignore</code>, Git will happily track build output, IDE config, and — worst case — secrets. Create this file at the project root before your first commit.</p>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">.gitignore — Java/Web project example</div></div>
+<pre><code>*.class
+target/
+.vscode/
+node_modules/
+.env
+.DS_Store
+*.log</code></pre></div>
+
+<div class="isg">
+<div class="isc"><div class="ico">DOCUMENTATION</div><div class="inm">README.md</div><div class="idc">The first thing anyone sees — classmate, professor, or future employer. Should explain what the project does, how to run it, and any setup steps. GitHub renders this automatically on the repo's front page.</div></div>
+<div class="isc a"><div class="ico">LEGAL</div><div class="inm">LICENSE</div><div class="idc">Defines how others may use your code. Optional for school assignments, but standard practice for anything public — MIT is the common permissive default. Covered in more depth in Chapter 11.</div></div>
+</div>
+
+<div class="box red"><div class="bico">🚫</div><div class="bbd"><div class="btt">Never Commit Secrets</div>
+<p class="btx">API keys, passwords, database credentials, and <code>.env</code> files should never enter Git history — even in a private repo. Add them to <code>.gitignore</code> before your first commit, not after. Once something is committed, it exists in history even if you delete it in a later commit (see Chapter 08 for what to do if this already happened).</p></div></div>
+</section>
+
+<section class="chapter" id="ch3">
+<div class="cn">CHAPTER 03</div><div class="ct">Daily Workflow &amp; Commit Craft</div>
+<p class="ci">This is the loop you'll run dozens of times a day once you're actively developing. Master this chapter cold — everything else builds on it.</p>
+
+<h2>The Core Loop</h2>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">bash</div></div>
+<pre><code>git status                       # see what's changed — run this constantly
+git add filename.java            # stage one specific file
+git add .                        # stage everything changed
+git commit -m "Add login validation"
+git push                         # send commits to GitHub</code></pre></div>
+
+<div class="box blue"><div class="bico">💡</div><div class="bbd"><div class="btt">Habit To Build Now</div>
+<p class="btx">Run <code>git status</code> before and after almost every other Git command. It tells you exactly what's staged, unstaged, or untracked at any point — there's no guessing, and it catches mistakes (like about to commit a file you didn't mean to) before they happen.</p></div></div>
+
+<h2>Staging In More Detail</h2>
+<div class="tw"><table>
+<thead><tr><th>Command</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td><code>git add file.java</code></td><td>Stages one specific file</td></tr>
+<tr><td><code>git add .</code></td><td>Stages everything changed in the current directory and below</td></tr>
+<tr><td><code>git add -p</code></td><td>Interactive patch mode — stage individual chunks within a file, not the whole file at once</td></tr>
+<tr><td><code>git diff</code></td><td>Shows exact line changes that are NOT yet staged</td></tr>
+<tr><td><code>git diff --staged</code></td><td>Shows exact line changes that ARE staged, about to be committed</td></tr>
+</tbody></table></div>
+
+<h2>Viewing History</h2>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">bash</div></div>
+<pre><code>git log                          # full history, verbose
+git log --oneline                # compact, one line per commit
+git log --oneline --graph --all  # visual branch structure</code></pre></div>
+
+<h2>Writing Commit Messages That Don't Embarrass You Later</h2>
+<p>A commit message is documentation for your future self and your teammates. The <strong>Conventional Commits</strong> format is widely used professionally and scales well to group projects:</p>
+<div class="law"><div class="lra">FORMAT</div><div class="ltit">type(scope): short description</div><div class="lyr">Conventional Commits specification</div><div class="ldc">Common types: <code>feat</code> (new feature), <code>fix</code> (bug fix), <code>docs</code> (documentation only), <code>refactor</code> (no behavior change), <code>style</code> (formatting only), <code>chore</code> (maintenance/tooling). Example: <code>fix(auth): resolve null pointer in Student.java constructor</code></div></div>
+
+<div class="mlst">
+<div class="mitem"><div class="mnm">Vague</div><div class="mdc"><code>"fix stuff"</code>, <code>"asdf"</code>, <code>"update"</code> — tells nobody, including future you, what actually changed.</div></div>
+<div class="mitem"><div class="mnm">Version-in-message</div><div class="mdc"><code>"final version 2 REAL FINAL"</code> — Git already tracks versions; this is a sign you need branches (Chapter 04), not filename-style commit messages.</div></div>
+<div class="mitem"><div class="mnm">Giant commits</div><div class="mdc">One commit containing an entire week of unrelated changes. Prefer small, frequent, logically-grouped commits — easier to review, easier to revert individually if needed.</div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch4">
+<div class="cn">CHAPTER 04</div><div class="ct">Branching &amp; Merging</div>
+<p class="ci">A branch is an independent line of work. You can experiment or build a feature without touching working code on <code>main</code> — merge it back in once it's ready, or discard it if it doesn't pan out.</p>
+
+<h2>Working With Branches</h2>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">bash</div></div>
+<pre><code>git branch                       # list all local branches
+git branch feature-login         # create a new branch (doesn't switch to it)
+git checkout feature-login       # switch to it
+git checkout -b feature-login    # create + switch in one step
+git switch feature-login         # modern alternative to checkout for switching
+git switch -c feature-login      # modern alternative for create + switch</code></pre></div>
+
+<h2>Merging</h2>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">bash</div></div>
+<pre><code>git checkout main
+git merge feature-login</code></pre></div>
+
+<div class="gg">
+<div class="gc" data-g="FF"><div class="gera">SIMPLE CASE</div><div class="gtit">Fast-Forward Merge</div><p class="gsp">When <code>main</code> hasn't changed since you branched off, Git just moves the <code>main</code> pointer forward to include your commits. No new merge commit is created — the history stays linear.</p></div>
+<div class="gc" data-g="3W"><div class="gera">COMMON CASE</div><div class="gtit">Three-Way Merge</div><p class="gsp">When <code>main</code> has moved forward with other commits since you branched, Git creates a new <strong>merge commit</strong> that combines both histories. This is what you'll see most often on active group projects.</p></div>
+</div>
+
+<h2>Resolving Merge Conflicts</h2>
+<p>A conflict happens when both branches changed the same lines. Git marks the conflicting section directly in the file — it will not guess for you.</p>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">conflict markers</div></div>
+<pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+your version of the code
+=======
+their version of the code
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; branch-name</code></pre></div>
+
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Open the flagged file</div><div class="sd">VS Code highlights conflict markers automatically and offers "Accept Current / Accept Incoming / Accept Both" buttons inline.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Decide the correct final version</div><div class="sd">Keep one side, the other, or manually combine both — then delete the <code>&lt;&lt;&lt;</code> / <code>===</code> / <code>&gt;&gt;&gt;</code> marker lines entirely.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Stage and finish the merge</div><div class="sd">Run <code>git add filename</code> then <code>git commit</code> — Git already pre-fills a merge commit message for you.</div></div></div>
+</div>
+
+<h2>Rebase (Advanced, Optional)</h2>
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">The Golden Rule of Rebase</div>
+<p class="btx"><code>git rebase</code> replays your commits on top of another branch instead of creating a merge commit, producing cleaner linear history. It's powerful but rewrites commit history — never rebase a branch that has already been pushed and that others may have pulled from. For QCU group work, plain <code>merge</code> is the safer default; save rebase for solo feature branches you haven't shared yet.</p></div></div>
+
+<h2>Deleting Branches</h2>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">bash</div></div>
+<pre><code>git branch -d feature-login       # safe delete — only works if already merged
+git branch -D feature-login       # force delete — discards unmerged work, careful</code></pre></div>
+
+<div class="mlst">
+<div class="mitem"><div class="mnm">Wrong branch</div><div class="mdc">Committing directly on <code>main</code> when you meant to be on a feature branch — check <code>git status</code> or your VS Code branch indicator before committing.</div></div>
+<div class="mitem"><div class="mnm">Stale branches</div><div class="mdc">Never deleting merged branches — clutters the branch list and makes it harder to tell what's actually active.</div></div>
+<div class="mitem"><div class="mnm">Not pulling first</div><div class="mdc">Merging without pulling <code>main</code>'s latest changes first, causing avoidable conflicts that a quick <code>git pull</code> beforehand would have surfaced earlier and more cleanly.</div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch5">
+<div class="cn">CHAPTER 05</div><div class="ct">Remotes &amp; Syncing</div>
+<p class="ci">A remote is a saved reference to a repository's URL on GitHub. When you clone a repo, Git automatically names that remote <code>origin</code>.</p>
+
+<h2>Managing Remotes</h2>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">bash</div></div>
+<pre><code>git remote -v                                          # list remotes with URLs
+git remote add origin https://github.com/user/repo.git
+git push -u origin main                                # first push, sets upstream tracking</code></pre></div>
+
+<div class="box blue"><div class="bico">💡</div><div class="bbd"><div class="btt">What "-u" Actually Does</div>
+<p class="btx">The <code>-u</code> flag (short for <code>--set-upstream</code>) links your local <code>main</code> branch to <code>origin/main</code> permanently. After this one-time setup, plain <code>git push</code> and <code>git pull</code> know exactly where to send and fetch from without needing the branch name spelled out every time.</p></div></div>
+
+<h2>Fetch vs Pull</h2>
+<div class="tw"><table>
+<thead><tr><th>Command</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td><code>git fetch</code></td><td>Downloads new commits from GitHub into your local copy of the remote branch, but does NOT touch your working files or current branch</td></tr>
+<tr><td><code>git pull</code></td><td><code>fetch</code> + automatically merges the downloaded commits into your current branch</td></tr>
+</tbody></table></div>
+<p><code>git fetch</code> first is the safer habit when working with others — it lets you review exactly what changed (<code>git log origin/main</code>) before deciding to merge it into your own work.</p>
+
+<h2>Multiple Remotes (Upstream, for Forks)</h2>
+<p>When you fork someone else's repo, your fork gets its own <code>origin</code> — but you also add their original repo as a second remote, conventionally named <code>upstream</code>, so you can pull in their updates without losing your own commits.</p>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">bash</div></div>
+<pre><code>git remote add upstream https://github.com/original-owner/repo.git
+git remote -v
+# origin    → your fork (read/write)
+# upstream  → the original repo (read-only, for pulling updates)</code></pre></div>
+</section>
+
+<section class="chapter" id="ch6">
+<div class="cn">CHAPTER 06</div><div class="ct">Pull Requests &amp; Forking</div>
+<p class="ci">A pull request (PR) is a request to merge one branch into another — the standard way to propose, review, and discuss changes before they become official. This is the single most important collaboration mechanic on GitHub.</p>
+
+<h2>The Pull Request Lifecycle</h2>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Push your branch</div><div class="sd"><code>git push -u origin your-branch-name</code></div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Open the PR</div><div class="sd">On GitHub, click "Compare &amp; pull request" — appears automatically after a branch push.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Write a clear title and description</div><div class="sd">What changed, why, and anything reviewers should pay special attention to. A good PR description saves your reviewers time and shows professionalism.</div></div></div>
+<div class="step"><div class="snum">4</div><div class="sc"><div class="sl">Review round</div><div class="sd">Teammates comment, request specific changes, or approve. Push additional commits to the same branch to address feedback — they appear on the same PR automatically.</div></div></div>
+<div class="step"><div class="snum">5</div><div class="sc"><div class="sl">Merge</div><div class="sd">Once approved, click "Merge pull request." Choose a merge strategy (below), then optionally delete the now-merged branch.</div></div></div>
+</div>
+
+<div class="box blue"><div class="bico">📝</div><div class="bbd"><div class="btt">Draft Pull Requests</div>
+<p class="btx">Open a PR as a <strong>draft</strong> when you want early visibility or feedback on work-in-progress without signaling it's ready to merge. Convert it to a regular PR once it's actually complete.</p></div></div>
+
+<h2>Merge Strategies</h2>
+<div class="isg">
+<div class="isc"><div class="ico">DEFAULT</div><div class="inm">Merge Commit</div><div class="idc">Preserves full branch history plus an explicit merge commit. Most transparent option — you can see exactly when and how each branch came in.</div></div>
+<div class="isc a"><div class="ico">CLEAN HISTORY</div><div class="inm">Squash and Merge</div><div class="idc">Combines all commits from the branch into a single commit on <code>main</code>. Great for feature branches with messy "wip", "fix typo" commits you don't need preserved individually.</div></div>
+<div class="isc g"><div class="ico">LINEAR</div><div class="inm">Rebase and Merge</div><div class="idc">Replays each commit individually onto <code>main</code> with no merge commit at all — keeps history perfectly linear, but loses the visual grouping of "these commits belonged to one feature."</div></div>
+</div>
+<p>For QCU group projects, <strong>squash and merge</strong> is usually the easiest default — one clean commit per feature/PR on <code>main</code>, regardless of how messy the branch's internal history was.</p>
+
+<h2>Forking vs Branching</h2>
+<div class="tw"><table>
+<thead><tr><th></th><th>Branch</th><th>Fork</th></tr></thead>
+<tbody>
+<tr><td>Where it lives</td><td>Same repository</td><td>Your own full copy of someone else's repository</td></tr>
+<tr><td>Requires</td><td>Write access / being added as a collaborator</td><td>Nothing — anyone can fork a public repo</td></tr>
+<tr><td>Use case</td><td>Team members with write access to a shared repo</td><td>Contributing to a repo you don't own (open source)</td></tr>
+<tr><td>Merging back</td><td>PR from branch to <code>main</code>, same repo</td><td>PR from your fork to the original repo (<code>upstream</code>)</td></tr>
+</tbody></table></div>
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Which One for QCU Group Projects</div>
+<p class="btx">When everyone is added as a collaborator on one shared repo (the normal setup for a group project), branching is simpler than forking — skip forking entirely. Save forking for contributing to a public repo you don't have write access to.</p></div></div>
+
+<h2>Contributing to an Open-Source Repo (Fork Workflow)</h2>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Fork on GitHub</div><div class="sd">Click "Fork" on the original repo's page — creates a full copy under your account.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Clone your fork</div><div class="sd"><code>git clone https://github.com/YOUR-username/repo.git</code></div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Add the original as upstream</div><div class="sd"><code>git remote add upstream https://github.com/original-owner/repo.git</code></div></div></div>
+<div class="step"><div class="snum">4</div><div class="sc"><div class="sl">Branch, commit, push to YOUR fork</div><div class="sd"><code>git push origin your-branch-name</code> — never push directly to <code>upstream</code>, you don't have write access anyway.</div></div></div>
+<div class="step"><div class="snum">5</div><div class="sc"><div class="sl">Open a PR from your fork to upstream</div><div class="sd">GitHub detects the fork relationship and offers this automatically on your fork's page.</div></div></div>
+</div>
+
+<h2>Keeping Your Fork in Sync</h2>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">bash</div></div>
+<pre><code>git fetch upstream
+git checkout main
+git merge upstream/main
+git push origin main</code></pre></div>
+</section>
+
+<section class="chapter" id="ch7">
+<div class="cn">CHAPTER 07</div><div class="ct">GitHub Web UI Features</div>
+<p class="ci">Beyond the code itself, GitHub bundles a full set of project-management and automation tools directly into every repository. Most are underused by students but expected in professional settings.</p>
+
+<div class="isg">
+<div class="isc"><div class="ico">TRACKING</div><div class="inm">Issues</div><div class="idc">Track bugs, tasks, or ideas with labels, assignees, and milestones. Even solo, this keeps a project's to-do list visible and organized instead of scattered across notes apps.</div></div>
+<div class="isc a"><div class="ico">PLANNING</div><div class="inm">Projects (Boards)</div><div class="idc">Kanban-style boards (To Do / In Progress / Done) that link directly to Issues and PRs — useful for visualizing a group project's status at a glance during a meeting.</div></div>
+</div>
+
+<h2>GitHub Actions (CI/CD)</h2>
+<p>Automate tasks that run on GitHub's servers every time you push — compiling code, running tests, or deploying automatically. Configured via a YAML file in <code>.github/workflows/</code>.</p>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">.github/workflows/build.yml</div></div>
+<pre><code>name: Build and Test
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+      - run: mvn test</code></pre></div>
+<p>More advanced — worth exploring once a project outgrows single-file assignments, but the mental model matters even before you write your first workflow: every push can automatically trigger a build/test cycle.</p>
+
+<h2>GitHub Pages</h2>
+<p>Free static site hosting straight from a repo — perfect for WS101/WS102 HTML/CSS projects. Settings → Pages → choose branch → site goes live at <code>username.github.io/repo-name</code>.</p>
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Username Change Caveat</div>
+<p class="btx">Renaming your GitHub username later will NOT redirect existing Pages sites to the new URL — worth keeping in mind before deploying anything you plan to link long-term (e.g. on a resume or portfolio).</p></div></div>
+
+<h2>Releases &amp; Tags</h2>
+<p>A tag marks a specific commit as a named version point (e.g. <code>v1.0.0</code>); a Release wraps a tag with release notes and optional downloadable files.</p>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">bash</div></div>
+<pre><code>git tag v1.0.0
+git push origin v1.0.0</code></pre></div>
+
+<div class="pg">
+<div class="pcrd"><div class="pnm">Gists</div><div class="pttl">Quick sharing</div><div class="pdsc">Share a single file or snippet without creating a whole repo — good for a code snippet in a forum post or to a classmate.</div></div>
+<div class="pcrd"><div class="pnm">Discussions</div><div class="pttl">Q&amp;A / forum</div><div class="pdsc">Threaded conversation space separate from Issues — for questions and ideas that aren't bugs or tasks.</div></div>
+<div class="pcrd"><div class="pnm">Wiki</div><div class="pttl">Long-form docs</div><div class="pdsc">Built-in wiki pages per repo — useful for documentation too long or structured for a single README.</div></div>
+</div>
+
+<h2>Notifications: Watch, Star, Subscribe</h2>
+<div class="tw"><table>
+<thead><tr><th>Action</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td>Star ⭐</td><td>Bookmark a repo to your profile — purely a personal reference, no notifications</td></tr>
+<tr><td>Watch 👀</td><td>Get notified of all activity (issues, PRs, discussions) on a repo</td></tr>
+<tr><td>Subscribe</td><td>Get notified on one specific Issue or PR thread without watching the whole repo</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="chapter" id="ch8">
+<div class="cn">CHAPTER 08</div><div class="ct">Undoing Mistakes</div>
+<p class="ci">Every developer breaks things. What separates confidence from panic is knowing exactly which undo command applies to which situation — the right tool depends entirely on how far the mistake has traveled.</p>
+
+<div class="tw"><table>
+<thead><tr><th>Situation</th><th>Command</th></tr></thead>
+<tbody class="nt">
+<tr><td>Uncommitted changes, want to discard</td><td><code>git restore filename</code></td></tr>
+<tr><td>Committed locally, not pushed yet</td><td><code>git reset</code></td></tr>
+<tr><td>Committed AND already pushed</td><td><code>git revert</code></td></tr>
+<tr><td>Mid-work, need to switch tasks temporarily</td><td><code>git stash</code></td></tr>
+</tbody></table></div>
+
+<h2>Undoing Uncommitted Changes</h2>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">bash</div></div>
+<pre><code>git restore filename.java         # discard changes to one file, back to last commit
+git restore --staged filename.java # unstage a file without discarding its edits
+git reset --hard                  # discard ALL uncommitted changes — irreversible, careful</code></pre></div>
+
+<h2>Undoing Local Commits (Not Yet Pushed)</h2>
+<div class="tw"><table>
+<thead><tr><th>Command</th><th>Effect on the commit</th><th>Effect on your changes</th></tr></thead>
+<tbody>
+<tr><td><code>git reset --soft HEAD~1</code></td><td>Removed</td><td>Kept, staged (ready to re-commit)</td></tr>
+<tr><td><code>git reset --mixed HEAD~1</code></td><td>Removed</td><td>Kept, unstaged</td></tr>
+<tr><td><code>git reset --hard HEAD~1</code></td><td>Removed</td><td>Discarded entirely — gone</td></tr>
+</tbody></table></div>
+<p><code>--mixed</code> is the default if you omit the flag. <code>git commit --amend</code> is a related shortcut for fixing the message or contents of only the most recent commit, without a full reset.</p>
+
+<h2>Undoing a Commit That's Already Pushed</h2>
+<div class="box red"><div class="bico">🚫</div><div class="bbd"><div class="btt">Never Reset Shared History</div>
+<p class="btx">Once a commit is pushed and teammates may have pulled it, use <code>git revert</code> — never <code>git reset</code>. Reset rewrites history; if others have already built on top of the old version, forcing that rewrite onto them causes major, confusing conflicts.</p></div></div>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">bash</div></div>
+<pre><code>git revert &lt;commit-hash&gt;   # creates a NEW commit that undoes the old one, history stays intact
+git push</code></pre></div>
+
+<h2>Other Everyday Recovery Tools</h2>
+<div class="isg">
+<div class="isc"><div class="ico">TEMPORARY SHELVE</div><div class="inm">git stash</div><div class="idc">Sets aside uncommitted changes without committing them, so you can switch branches cleanly. <code>git stash pop</code> restores them later; <code>git stash list</code> shows everything shelved.</div></div>
+<div class="isc a"><div class="ico">SELECTIVE COPY</div><div class="inm">git cherry-pick</div><div class="idc">Applies one specific commit from another branch onto your current branch, without merging everything else from that branch.</div></div>
+</div>
+
+<div class="box green"><div class="bico">🛟</div><div class="bbd"><div class="btt">The Ultimate Safety Net: git reflog</div>
+<p class="btx"><code>git reflog</code> shows a log of every place <code>HEAD</code> has pointed to recently — including commits "lost" by a hard reset. As long as Git's garbage collection hasn't run yet, you can almost always recover a commit you thought was gone by finding its hash in the reflog and checking it out.</p></div></div>
+
+<h2>Accidentally Committed a Secret or Password</h2>
+<p>Deleting the line in a new commit is not enough — the secret still exists in earlier history and can be found by anyone who inspects the log. Rotate or revoke the exposed credential immediately; treat it as compromised regardless of any cleanup. Removing it from history entirely requires rewriting history (tools like <code>git filter-repo</code> or GitHub's secret-scanning + BFG Repo-Cleaner) — advanced territory, and rotation matters more than the cleanup itself.</p>
+</section>
+
+<section class="chapter" id="ch9">
+<div class="cn">CHAPTER 09</div><div class="ct">GitHub CLI (gh)</div>
+<p class="ci">Since your terminal environment already has <code>gh</code> authenticated via PAT, most GitHub web actions have a faster terminal equivalent — no browser context-switch required mid-workflow.</p>
+
+<h2>Repository Commands</h2>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">bash</div></div>
+<pre><code>gh auth login                                       # one-time authentication
+gh repo create my-project --public --source=. --push  # create + push in one command
+gh repo clone username/repo-name
+gh repo view --web                                  # open current repo in browser</code></pre></div>
+
+<h2>Pull Request Commands</h2>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">bash</div></div>
+<pre><code>gh pr create --title "Add feature" --body "Description"
+gh pr list
+gh pr view 12
+gh pr checkout 12          # pull down someone else's PR branch locally to test it
+gh pr merge 12 --squash</code></pre></div>
+
+<h2>Issue Commands</h2>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">bash</div></div>
+<pre><code>gh issue create
+gh issue list
+gh issue close 4</code></pre></div>
+
+<div class="box green"><div class="bico">⚡</div><div class="bbd"><div class="btt">Why This Fits Your Setup</div>
+<p class="btx">A terminal-first workflow on a Debian/XFCE4 environment means fewer context switches to a browser for routine actions. <code>gh pr checkout</code> in particular is worth memorizing early — testing a teammate's PR locally before approving it is a habit that separates careful reviewers from rubber-stamp ones.</p></div></div>
+</section>
+
+<section class="chapter" id="ch10">
+<div class="cn">CHAPTER 10</div><div class="ct">Team Collaboration Playbook</div>
+<p class="ci">Technical commands are the easy part. What actually causes group-project pain is coordination — and that's solved with a small set of norms, not more Git knowledge.</p>
+
+<h2>Branch Protection (Repo Owner Setup)</h2>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Go to Settings → Branches</div><div class="sd">On the repo, as an owner/admin.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Add a branch protection rule for <code>main</code></div><div class="sd">Requires PRs before merging — nobody, including the repo owner, can push directly to <code>main</code> by accident.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Optionally require review approval</div><div class="sd">At least one teammate must approve before a PR can be merged — enforces the review habit instead of relying on self-discipline.</div></div></div>
+</div>
+
+<h2>Adding Collaborators</h2>
+<p>Repo → Settings → Collaborators → Add people. They must accept an email or GitHub invite before they can push.</p>
+
+<h2>Group Project Etiquette</h2>
+<div class="mlst">
+<div class="mitem"><div class="mnm">Direct pushes</div><div class="mdc">Never push directly to <code>main</code> on a shared repo, even for a "tiny" change — always branch and open a PR, so teammates have visibility into what's changing.</div></div>
+<div class="mitem"><div class="mnm">Stale local copy</div><div class="mdc">Pull before you start working each session — starting from an outdated <code>main</code> is the single biggest cause of avoidable merge conflicts.</div></div>
+<div class="mitem"><div class="mnm">Silent overlap</div><div class="mdc">Two people editing the same file on the same feature without communicating. A quick message ("I'm working on Student.java's validation logic") prevents most conflicts before they happen.</div></div>
+<div class="mitem"><div class="mnm">Review as rubber stamp</div><div class="mdc">Approving a PR without actually reading the diff. Even a quick skim catches obvious mistakes and signals the review process is real.</div></div>
+</div>
+
+<h2>Dividing Work to Minimize Conflicts</h2>
+<p>Structure feature branches around files or modules different people primarily own, rather than everyone editing the same shared file simultaneously. For a typical BSIT group project (e.g. IPT101/102 integration work), splitting by layer — one person on the database/model layer, another on UI, another on business logic — naturally keeps people out of each other's files most of the time.</p>
+
+<h2>Code Review Etiquette</h2>
+<div class="isg">
+<div class="isc"><div class="ico">GIVING FEEDBACK</div><div class="inm">Be Specific, Not Just Critical</div><div class="idc">"This loop re-queries the database on every iteration — consider fetching once outside the loop" is actionable. "This is inefficient" is not.</div></div>
+<div class="isc g"><div class="ico">RECEIVING FEEDBACK</div><div class="inm">Treat It As Improving the Project, Not You</div><div class="idc">A requested change on a PR is about the code, not a judgment of skill — the entire point of review is catching things a second set of eyes sees that the author, deep in their own logic, doesn't.</div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch11">
+<div class="cn">CHAPTER 11</div><div class="ct">Professional Standards &amp; Security</div>
+<p class="ci">This is what separates a repo that looks like a school assignment from one that looks like it was built by someone who already works like a professional — relevant well before your first internship application.</p>
+
+<h2>README Quality Checklist</h2>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">What the project does</div><div class="sd">One or two sentences, no assumed context.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">How to run it</div><div class="sd">Exact setup commands — someone should be able to clone and run it without asking you a single question.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Tech stack / dependencies</div><div class="sd">What language, framework, JDK version, database, etc.</div></div></div>
+<div class="step"><div class="snum">4</div><div class="sc"><div class="sl">Screenshots (if UI-based)</div><div class="sd">Especially valuable for web/UI projects — instant visual context.</div></div></div>
+</div>
+
+<h2>Semantic Versioning</h2>
+<div class="tw"><table>
+<thead><tr><th>Position</th><th>Name</th><th>Increments when...</th></tr></thead>
+<tbody>
+<tr><td>MAJOR (1.0.0)</td><td>Breaking change</td><td>Something incompatible with the previous version was changed</td></tr>
+<tr><td>MINOR (0.1.0)</td><td>New feature</td><td>Functionality added in a backward-compatible way</td></tr>
+<tr><td>PATCH (0.0.1)</td><td>Bug fix</td><td>Backward-compatible bug fix, no new functionality</td></tr>
+</tbody></table></div>
+
+<h2>Common Licenses</h2>
+<div class="tw"><table>
+<thead><tr><th>License</th><th>What it allows</th></tr></thead>
+<tbody>
+<tr><td>MIT</td><td>Very permissive — anyone can use, modify, and distribute, even commercially, with attribution</td></tr>
+<tr><td>Apache 2.0</td><td>Similar to MIT, plus explicit patent protection language</td></tr>
+<tr><td>GPL v3</td><td>Copyleft — derivative works must also be open-sourced under GPL</td></tr>
+</tbody></table></div>
+
+<h2>Security Basics</h2>
+<div class="box red"><div class="bico">🔐</div><div class="bbd"><div class="btt">Non-Negotiables</div>
+<p class="btx">Enable two-factor authentication (2FA) on your GitHub account. Give Personal Access Tokens the minimum scope they actually need, not full access by default. Rotate any credential the moment it's exposed, even briefly. Never commit <code>.env</code> files, API keys, or database passwords — this was covered in Chapter 02's <code>.gitignore</code> section for a reason.</p></div></div>
+
+<h2>Profile Polish</h2>
+<div class="isg">
+<div class="isc"><div class="ico">HIGH IMPACT</div><div class="inm">Profile README</div><div class="idc">Create a repo with the exact same name as your GitHub username (case-sensitive) containing a <code>README.md</code> — GitHub automatically displays it at the top of your profile page. The single highest-impact thing for making a profile look intentional rather than empty.</div></div>
+<div class="isc a"><div class="ico">CURATION</div><div class="inm">Pinned Repositories</div><div class="idc">Profile → Customize your pins — choose your 6 best/most representative projects, instead of whatever you happened to push most recently.</div></div>
+</div>
+
+<h2>Commit Hygiene as a Professional Signal</h2>
+<p>Atomic commits (one logical change each), meaningful Conventional Commits-style messages, and a clean branch history read as competence to anyone reviewing your GitHub activity later — including recruiters who look at commit history, not just the final code.</p>
+</section>
+
+<section class="chapter" id="ch12">
+<div class="cn">CHAPTER 12</div><div class="ct">Complete Command Cheat Sheet &amp; Glossary</div>
+<p class="ci">Full quick-reference for everything covered in this guide.</p>
+
+<h2>Command Reference</h2>
+<div class="tw"><table>
+<thead><tr><th>Command</th><th>Purpose</th></tr></thead>
+<tbody>
+<tr><td><code>git status</code></td><td>What's changed / staged</td></tr>
+<tr><td><code>git add .</code></td><td>Stage everything</td></tr>
+<tr><td><code>git add -p</code></td><td>Stage selected chunks interactively</td></tr>
+<tr><td><code>git commit -m "msg"</code></td><td>Save a snapshot with a message</td></tr>
+<tr><td><code>git commit --amend</code></td><td>Edit the most recent commit</td></tr>
+<tr><td><code>git push</code></td><td>Upload commits to GitHub</td></tr>
+<tr><td><code>git pull</code></td><td>Download + merge latest changes</td></tr>
+<tr><td><code>git fetch</code></td><td>Download changes without merging</td></tr>
+<tr><td><code>git log --oneline --graph --all</code></td><td>Compact, visual commit history</td></tr>
+<tr><td><code>git diff</code></td><td>Unstaged line changes</td></tr>
+<tr><td><code>git diff --staged</code></td><td>Staged line changes</td></tr>
+<tr><td><code>git branch</code></td><td>List branches</td></tr>
+<tr><td><code>git checkout -b name</code> / <code>git switch -c name</code></td><td>Create + switch to new branch</td></tr>
+<tr><td><code>git merge branch-name</code></td><td>Merge a branch into the current one</td></tr>
+<tr><td><code>git clone url</code></td><td>Download a repo with full history</td></tr>
+<tr><td><code>git remote add name url</code></td><td>Add a remote reference</td></tr>
+<tr><td><code>git restore file</code></td><td>Discard uncommitted changes to a file</td></tr>
+<tr><td><code>git reset --soft/--mixed/--hard HEAD~1</code></td><td>Undo local commit (varying severity)</td></tr>
+<tr><td><code>git revert &lt;hash&gt;</code></td><td>Safely undo a pushed commit</td></tr>
+<tr><td><code>git stash</code> / <code>git stash pop</code></td><td>Temporarily shelve / restore changes</td></tr>
+<tr><td><code>git cherry-pick &lt;hash&gt;</code></td><td>Apply one specific commit onto current branch</td></tr>
+<tr><td><code>git reflog</code></td><td>Recovery log of everywhere HEAD has pointed</td></tr>
+<tr><td><code>git tag v1.0.0</code></td><td>Mark a commit as a named version</td></tr>
+</tbody></table></div>
+
+<h2>Glossary</h2>
+<div class="tw"><table>
+<tbody>
+<tr><td><strong>Repository (repo)</strong></td><td>A project's folder, tracked by Git</td></tr>
+<tr><td><strong>Commit</strong></td><td>A saved snapshot of changes, with a message</td></tr>
+<tr><td><strong>Branch</strong></td><td>An independent line of development</td></tr>
+<tr><td><strong>Merge</strong></td><td>Combining changes from one branch into another</td></tr>
+<tr><td><strong>Clone</strong></td><td>Downloading a full copy of a remote repo, including history</td></tr>
+<tr><td><strong>Fork</strong></td><td>Your own copy of someone else's repo, on GitHub</td></tr>
+<tr><td><strong>Pull Request (PR)</strong></td><td>A proposal to merge changes, with review/discussion attached</td></tr>
+<tr><td><strong>HEAD</strong></td><td>Pointer to your current position in history</td></tr>
+<tr><td><strong>Origin</strong></td><td>Default name for your main remote (usually GitHub)</td></tr>
+<tr><td><strong>Upstream</strong></td><td>Conventional name for the original repo you forked from</td></tr>
+<tr><td><strong>Staging area</strong></td><td>Changes marked ready to commit, via <code>git add</code></td></tr>
+<tr><td><strong>Conflict</strong></td><td>When two branches change the same lines and Git can't auto-merge</td></tr>
+<tr><td><strong>Rebase</strong></td><td>Replaying commits onto a new base, producing linear history</td></tr>
+<tr><td><strong>Squash</strong></td><td>Combining multiple commits into one</td></tr>
+<tr><td><strong>Reflog</strong></td><td>Local log of every place HEAD has pointed — the ultimate undo safety net</td></tr>
+</tbody></table></div>
+</section>
+
+<div class="footer"><p>Built for <strong>Kian</strong> · Practical Dev Skill Track · Complements WS101/WS102, IPT101/102, SIA101/102, and CAP101/102 group repo work</p></div>
+</main>
+
+</body>
+</html>

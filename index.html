@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>QCU Academic OS · Study Guide Portal</title>
+<meta name="description" content="Library and AI study assistant for the QCU Academic OS guide collection.">
+<meta name="theme-color" content="#0B1426">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230B1426'/%3E%3Ctext x='50' y='66' font-size='54' font-family='monospace' font-weight='700' fill='%233B82F6' text-anchor='middle'%3E%7B%7D%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================================================================
+     TOPBAR
+     Fixed strip across the very top. Hamburger only shows on mobile
+     (see style.css) — it's the only way to reach the sidebar once
+     the sidebar starts off-canvas below the ~880px breakpoint.
+     ================================================================ -->
+<header class="topbar">
+  <button class="icon-btn hamburger-btn" id="hamburgerBtn" aria-label="Open library" aria-expanded="false">☰</button>
+  <div class="brand">
+    <span class="brand-mark">{ }</span>
+    <span class="brand-text">QCU Academic OS</span>
+  </div>
+  <div class="topbar-spacer"></div>
+  <button class="pill-btn" id="openAiBtn" type="button">Ask AI</button>
+  <button class="pill-btn" id="openMsBtn" type="button">Media Search</button>
+  <a class="icon-btn" href="https://github.com/KianoRoku18Ino" target="_blank" rel="noopener" aria-label="GitHub profile">⌥</a>
+</header>
+
+<!-- ================================================================
+     SIDEBAR — the "file browser"
+     Populated entirely from guides.json by script.js. Nothing here
+     is hardcoded per-guide; #guideList is filled at runtime.
+     ================================================================ -->
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-head">
+    <div class="sb-eyebrow">Library</div>
+    <div class="sb-title">Study Guides</div>
+    <button class="icon-btn sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close library">✕</button>
+  </div>
+  <div class="sidebar-search-row">
+    <input type="text" id="sidebarSearch" placeholder="Filter guides…" autocomplete="off">
+  </div>
+  <div class="guide-list" id="guideList">
+    <!-- script.js renders <div class="gl-section"> groups here from guides.json -->
+    <div class="gl-loading" id="guideListLoading">Loading library…</div>
+  </div>
+</nav>
+
+<!-- ================================================================
+     MAIN VIEWER — the "open window"
+     Empty state until a guide is picked from the sidebar. Once one
+     is open, an HTML/PDF toggle sits in the header (guides that only
+     shipped one format just don't render the other button — see
+     renderViewerHeader() in script.js).
+     ================================================================ -->
+<main class="viewer" id="viewer">
+  <div class="viewer-empty" id="viewerEmpty">
+    <div class="ve-mark">{ }</div>
+    <div class="ve-title">No guide open</div>
+    <div class="ve-sub">Pick one from the library to read it here — or open the library on mobile with the ☰ icon top-left.</div>
+  </div>
+
+  <div class="viewer-active" id="viewerActive" hidden>
+    <div class="viewer-header">
+      <div class="vh-info">
+        <span class="vh-code" id="vhCode">—</span>
+        <span class="vh-title" id="vhTitle">—</span>
+      </div>
+      <div class="vh-controls">
+        <div class="format-toggle" id="formatToggle">
+          <button class="ft-btn act" id="formatHtmlBtn" type="button">HTML</button>
+          <button class="ft-btn" id="formatPdfBtn" type="button">PDF</button>
+        </div>
+        <a class="icon-btn" id="openNewTabBtn" href="#" target="_blank" rel="noopener" aria-label="Open in new tab">⤢</a>
+      </div>
+    </div>
+    <iframe class="viewer-frame" id="viewerFrame" title="Study guide content"></iframe>
+  </div>
+</main>
+
+<!-- ================================================================
+     TOOL PANEL — Ask AI + Media Search
+     Both views live in the same panel shell and share the tab row,
+     gear icon, and X button. Only one of #askAiView / #mediaSearchView
+     is visible at a time — toggled by script.js, never by removing
+     either from the DOM.
+     ================================================================ -->
+<div class="panel-backdrop" id="panelBackdrop"></div>
+<aside class="tool-panel" id="toolPanel">
+  <div class="panel-tabs">
+    <button class="tab-btn act" id="tabAiBtn" data-tab="ai" type="button">Ask AI</button>
+    <button class="tab-btn" id="tabMsBtn" data-tab="ms" type="button">Media Search</button>
+    <div class="panel-tabs-spacer"></div>
+    <button class="icon-btn gear-btn" id="gearBtn" type="button" aria-label="AI settings" aria-expanded="false">⚙</button>
+    <button class="icon-btn panel-close-btn" id="panelCloseBtn" type="button" aria-label="Close panel">✕</button>
+  </div>
+
+  <!-- ============================================================
+       ASK AI VIEW
+       ============================================================ -->
+  <section class="panel-view" id="askAiView">
+
+    <!-- Settings drawer — same field set/behavior as Numen's AI
+         settings, kept identical on purpose so the pattern is
+         instantly familiar across both projects. -->
+    <div class="settings-drawer" id="aiSettings" hidden>
+      <label class="field">
+        <span>Provider</span>
+        <select id="aiProviderSelect">
+          <option value="openrouter">OpenRouter (auto free-model fallback)</option>
+          <option value="gemini">Google Gemini</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>Model</span>
+        <input type="text" id="aiModelInput" value="openrouter/free" spellcheck="false">
+      </label>
+      <label class="field">
+        <span>API key</span>
+        <input type="password" id="aiKeyInput" placeholder="Paste your API key" spellcheck="false" autocomplete="off">
+      </label>
+      <p class="hint" id="aiHintOpenrouter">Stored only in this browser's local storage. Never sent anywhere except directly to OpenRouter's API. Get a free key (no credit card needed) at <a class="hint-link" href="https://openrouter.ai/keys" target="_blank" rel="noopener">openrouter.ai/keys</a>. The default model, <code>openrouter/free</code>, automatically falls back across free models if one is busy. Free tier: 20 requests/minute, 50/day.</p>
+      <p class="hint" id="aiHintGemini" hidden>Stored only in this browser's local storage. Never sent anywhere except directly to Google's API. Get a free key at <a class="hint-link" href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com</a>.</p>
+      <button class="save-btn" id="aiSaveBtn" type="button">Save</button>
+    </div>
+
+    <div class="context-banner" id="aiContextBanner">Open a guide first, then ask a question about what's on the page.</div>
+
+    <div class="feed" id="aiFeed">
+      <div class="feed-empty" id="aiFeedEmpty">Questions and answers will show up here.</div>
+    </div>
+
+    <div class="input-row">
+      <textarea id="aiQuestion" placeholder="Ask about the guide that's open…" rows="1"></textarea>
+      <button class="send-btn" id="aiSendBtn" type="button" aria-label="Send">
+        <span class="send-btn-label">Send</span>
+        <span class="send-btn-icon" aria-hidden="true">➤</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MEDIA SEARCH VIEW
+       ============================================================ -->
+  <section class="panel-view" id="mediaSearchView" hidden>
+
+    <div class="settings-drawer" id="msSettings" hidden>
+      <label class="field">
+        <span>Unsplash access key</span>
+        <input type="password" id="msKeyInput" placeholder="Paste your Unsplash Access Key" spellcheck="false" autocomplete="off">
+      </label>
+      <p class="hint">Stored only in this browser's local storage. Never sent anywhere except directly to Unsplash's API. Get a free key at <a class="hint-link" href="https://unsplash.com/developers" target="_blank" rel="noopener">unsplash.com/developers</a> (create an app, use its Access Key). Demo-tier free limit: 50 requests/hour.</p>
+      <button class="save-btn" id="msSaveBtn" type="button">Save</button>
+    </div>
+
+    <div class="ms-search-row">
+      <input type="text" id="msQuery" placeholder="Search images…" autocomplete="off">
+      <button class="send-btn" id="msSearchBtn" type="button" aria-label="Search">
+        <span class="send-btn-icon" aria-hidden="true">⌕</span>
+      </button>
+    </div>
+
+    <div class="ms-results" id="msResults">
+      <div class="feed-empty" id="msResultsEmpty">Search results will show up here.</div>
+    </div>
+  </section>
+</aside>
+
+<script src="script.js"></script>
+</body>
+</html>
