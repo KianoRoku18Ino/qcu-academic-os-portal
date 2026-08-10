@@ -223,6 +223,7 @@
     viewerFrame.src = currentFormat === "html" ? guide.html : guide.pdf;
     renderViewerHeader();
     updateAiContextBanner();
+    aiHistory = []; // new guide = new context; old turns would reference the wrong one
 
     // Re-highlight the active row in the sidebar.
     guideListEl.querySelectorAll(".gl-item").forEach((el) => el.classList.remove("act"));
@@ -258,6 +259,20 @@
 
   const AI_STORAGE_KEY = "qcuAcademicOsAiSettings";
   const AI_MODEL_DEFAULTS = { openrouter: "openrouter/free", gemini: "gemini-3.6-flash" };
+
+  // Conversation memory: without this, every question was sent to the API
+  // as a fresh, isolated request — the model had no idea what "them" or
+  // "yes" referred to because it never saw the earlier turns, even though
+  // they were still visible in the feed. Capped so a long chat plus a big
+  // guide-text system prompt doesn't blow past free-tier context limits.
+  let aiHistory = [];
+  const MAX_HISTORY_MESSAGES = 10; // last ~5 question/answer pairs
+
+  const clearChatBtn = document.getElementById("clearChatBtn");
+  clearChatBtn.addEventListener("click", () => {
+    aiHistory = [];
+    aiFeed.innerHTML = '<div class="feed-empty" id="aiFeedEmpty">Questions and answers will show up here.</div>';
+  });
 
   function syncAiProviderUI() {
     const provider = aiProviderSelect.value;
@@ -445,15 +460,19 @@
     "> blockquotes, and | table | syntax where a table genuinely fits. Don't overuse headings " +
     "or tables for short answers — plain paragraphs are fine for anything simple.";
 
-  async function askGemini(question, model, apiKey, systemPrompt) {
+  async function askGemini(history, model, apiKey, systemPrompt) {
     const url = "https://generativelanguage.googleapis.com/v1beta/models/" +
       encodeURIComponent(model) + ":generateContent?key=" + encodeURIComponent(apiKey);
+    const contents = history.map((m) => ({
+      role: m.role === "assistant" ? "model" : "user",
+      parts: [{ text: m.content }],
+    }));
     const res = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         systemInstruction: { parts: [{ text: systemPrompt }] },
-        contents: [{ parts: [{ text: question }] }],
+        contents: contents,
       }),
     });
     const data = await res.json().catch(() => null);
@@ -467,7 +486,7 @@
     return text.trim();
   }
 
-  async function askOpenRouter(question, model, apiKey, systemPrompt) {
+  async function askOpenRouter(history, model, apiKey, systemPrompt) {
     const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -480,7 +499,7 @@
         model: model,
         messages: [
           { role: "system", content: systemPrompt },
-          { role: "user", content: question },
+          ...history.map((m) => ({ role: m.role, content: m.content })),
         ],
       }),
     });
@@ -522,13 +541,18 @@
     const pending = addAiMessage("Thinking…", "a pending");
     aiSendBtn.disabled = true;
 
+    aiHistory.push({ role: "user", content: question });
+    if (aiHistory.length > MAX_HISTORY_MESSAGES) aiHistory = aiHistory.slice(-MAX_HISTORY_MESSAGES);
+
     try {
       const answer = provider === "openrouter"
-        ? await askOpenRouter(question, model, apiKey, systemPrompt)
-        : await askGemini(question, model, apiKey, systemPrompt);
+        ? await askOpenRouter(aiHistory, model, apiKey, systemPrompt)
+        : await askGemini(aiHistory, model, apiKey, systemPrompt);
+      aiHistory.push({ role: "assistant", content: answer });
       pending.innerHTML = formatAiAnswer(answer);
       pending.className = "msg a";
     } catch (err) {
+      aiHistory.pop(); // drop the unanswered question — don't leave a dangling turn for next time
       pending.textContent = "Couldn't get an answer: " + err.message;
       pending.className = "msg a error";
     } finally {
