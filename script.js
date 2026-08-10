@@ -345,16 +345,95 @@
     return div;
   }
 
-  // Narrow, safe Markdown-to-HTML: escapes &/</> first, so no matter
-  // what the API returns, the only tags that can ever land in the page
-  // are the three this function creates itself.
+  // Block-level Markdown-to-HTML: headings, tables, blockquotes, lists,
+  // and paragraphs (with real line breaks), plus bold/code/italic inline.
+  // Every fragment is HTML-escaped before any tag is added, so no matter
+  // what the API returns, the only tags that can ever land on the page
+  // are the ones this function creates itself.
+  function escapeHtmlMd(s) {
+    return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+  function inlineMd(s) {
+    return s
+      .replace(/`([^`]+?)`/g, "<code>$1</code>")
+      .replace(/\*\*([^*]+?)\*\*/g, "<strong>$1</strong>")
+      .replace(/(^|[^*])\*([^*]+?)\*(?!\*)/g, "$1<em>$2</em>");
+  }
+  function isTableRow(line) { return /^\|.*\|$/.test(line.trim()); }
+  function isTableSeparator(line) {
+    const t = line.trim();
+    return /^\|?[-:\s|]+\|?$/.test(t) && t.includes("-") && t.includes("|");
+  }
+  function tableCells(line) {
+    return line.trim().replace(/^\|/, "").replace(/\|$/, "").split("|").map((c) => c.trim());
+  }
+
   function formatAiAnswer(text) {
-    let html = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    html = html
-      .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-      .replace(/`(.+?)`/g, "<code>$1</code>")
-      .replace(/(^|[^*])\*(?!\*)([^*]+?)\*(?!\*)/g, "$1<em>$2</em>");
-    return html;
+    const lines = text.split(/\r?\n/);
+    const blocks = [];
+    let i = 0;
+
+    while (i < lines.length) {
+      const line = lines[i];
+
+      if (!line.trim()) { i++; continue; }
+
+      // Heading: # / ## / ### / ####
+      let m = line.match(/^(#{1,4})\s+(.*)$/);
+      if (m) {
+        const level = Math.min(m[1].length + 2, 6);
+        blocks.push(`<h${level} class="msg-h">${inlineMd(escapeHtmlMd(m[2].trim()))}</h${level}>`);
+        i++; continue;
+      }
+
+      // Table: a row line immediately followed by a |---|---| separator
+      if (isTableRow(line) && lines[i + 1] && isTableSeparator(lines[i + 1])) {
+        const head = tableCells(line);
+        i += 2;
+        const rows = [];
+        while (i < lines.length && isTableRow(lines[i])) { rows.push(tableCells(lines[i])); i++; }
+        let html = '<table class="msg-table"><thead><tr>' +
+          head.map((c) => `<th>${inlineMd(escapeHtmlMd(c))}</th>`).join("") + "</tr></thead><tbody>";
+        rows.forEach((r) => { html += "<tr>" + r.map((c) => `<td>${inlineMd(escapeHtmlMd(c))}</td>`).join("") + "</tr>"; });
+        blocks.push(html + "</tbody></table>");
+        continue;
+      }
+
+      // Blockquote: consecutive lines starting with ">"
+      if (/^>\s?/.test(line)) {
+        const q = [];
+        while (i < lines.length && /^>\s?/.test(lines[i])) { q.push(lines[i].replace(/^>\s?/, "")); i++; }
+        blocks.push(`<blockquote class="msg-quote">${inlineMd(escapeHtmlMd(q.join(" ")))}</blockquote>`);
+        continue;
+      }
+
+      // Unordered list
+      if (/^[-*]\s+/.test(line)) {
+        const items = [];
+        while (i < lines.length && /^[-*]\s+/.test(lines[i])) { items.push(lines[i].replace(/^[-*]\s+/, "")); i++; }
+        blocks.push('<ul class="msg-list">' + items.map((it) => `<li>${inlineMd(escapeHtmlMd(it))}</li>`).join("") + "</ul>");
+        continue;
+      }
+
+      // Ordered list
+      if (/^\d+\.\s+/.test(line)) {
+        const items = [];
+        while (i < lines.length && /^\d+\.\s+/.test(lines[i])) { items.push(lines[i].replace(/^\d+\.\s+/, "")); i++; }
+        blocks.push('<ol class="msg-list">' + items.map((it) => `<li>${inlineMd(escapeHtmlMd(it))}</li>`).join("") + "</ol>");
+        continue;
+      }
+
+      // Paragraph: consecutive plain lines, joined with a space
+      const p = [];
+      while (
+        i < lines.length && lines[i].trim() &&
+        !/^(#{1,4})\s+/.test(lines[i]) && !/^>\s?/.test(lines[i]) &&
+        !/^[-*]\s+/.test(lines[i]) && !/^\d+\.\s+/.test(lines[i]) && !isTableRow(lines[i])
+      ) { p.push(lines[i]); i++; }
+      blocks.push(`<p>${inlineMd(escapeHtmlMd(p.join(" ")))}</p>`);
+    }
+
+    return blocks.join("");
   }
 
   const AI_BASE_PROMPT =
@@ -362,7 +441,9 @@
     "When study guide content is included below, answer using it and stay accurate to it — " +
     "don't contradict it. If no guide content is included, or the question isn't covered by " +
     "it, say so plainly, then answer generally if you can. Keep answers concise. You may use " +
-    "**bold**, `inline code`, and *italic* Markdown; no other formatting.";
+    "Markdown: **bold**, `inline code`, *italic*, ### headings, - bullet or 1. numbered lists, " +
+    "> blockquotes, and | table | syntax where a table genuinely fits. Don't overuse headings " +
+    "or tables for short answers — plain paragraphs are fine for anything simple.";
 
   async function askGemini(question, model, apiKey, systemPrompt) {
     const url = "https://generativelanguage.googleapis.com/v1beta/models/" +
