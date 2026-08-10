@@ -52,11 +52,11 @@ p strong{color:var(--t1);font-weight:600}
 .purple{background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2)}.purple .btt{color:var(--purple)}
 .maroon{background:rgba(185,28,60,.08);border:1px solid rgba(185,28,60,.2)}.maroon .btt{color:var(--maroon)}
 .tw{overflow-x:auto;margin:14px 0}
-table{width:100%;border-collapse:collapse;font-size:13px}
-thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--maroon);font-size:12px}
+table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--maroon);font-size:12px;overflow-wrap:break-word;word-break:break-word}
 tbody tr{border-bottom:1px solid var(--bdr)}
 tbody tr:hover{background:rgba(59,130,246,.04)}
-tbody td{padding:9px 13px;color:var(--t2);vertical-align:top}
+tbody td{padding:9px 13px;color:var(--t2);vertical-align:top;overflow-wrap:break-word;word-break:break-word}
 tbody td:first-child{color:var(--t1);font-weight:500}
 .tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
 .tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}.tm{background:rgba(185,28,60,.15);color:var(--maroon)}
@@ -106,6 +106,14 @@ li strong{color:var(--t1)}
 .sym-mean{font-size:12.5px;color:var(--t2);line-height:1.65}
 
 @media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.pg,.pg2{grid-template-columns:1fr}}
+
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+table{font-size:11.5px}
+pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
+}
 </style></head><body>
 <nav class="sidebar">
 <div class="sbh"><div class="sbb">RIZAL · QCU BSIT</div><div class="sbt">Life and Works of Rizal</div><div class="sbs">Complete Study Guide · AY 2026–2027</div></div>

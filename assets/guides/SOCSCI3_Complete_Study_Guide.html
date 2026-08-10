@@ -52,12 +52,22 @@ p strong{color:var(--t1);font-weight:600}
 .purple{background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2)}.purple .btt{color:var(--purple)}
 .cyan{background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2)}.cyan .btt{color:var(--cyan)}
 .tw{overflow-x:auto;margin:14px 0}
-table{width:100%;border-collapse:collapse;font-size:13px}
-thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--blue);font-size:12px}
+table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--blue);font-size:12px;overflow-wrap:break-word;word-break:break-word}
 tbody tr{border-bottom:1px solid var(--bdr)}
 tbody tr:hover{background:rgba(59,130,246,.04)}
-tbody td{padding:9px 13px;color:var(--t2);vertical-align:top}
+tbody td{padding:9px 13px;color:var(--t2);vertical-align:top;overflow-wrap:break-word;word-break:break-word}
 tbody td:first-child{color:var(--t1);font-weight:500}
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+.exammarker{margin:0 30px}
+table{font-size:11.5px}
+.pg{grid-template-columns:1fr 1fr}
+.dimgrid{grid-template-columns:repeat(3,1fr)}
+.sdggrid{grid-template-columns:repeat(4,1fr)}
+}
 .tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
 .tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}
 code{font-family:'JetBrains Mono',monospace;background:var(--bgr);padding:1px 6px;border-radius:3px;font-size:12.5px;color:var(--amber)}
@@ -109,66 +119,97 @@ li strong{color:var(--t1)}
 .statnum{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:800;color:var(--amber);line-height:1.1}
 .statlbl{font-size:11px;color:var(--t2);margin-top:5px;line-height:1.4}
 
-/* ===== THEORY COMPARISON (uses .tw table already) ===== */
+/* ===== WEEK / EXAM MARKER ===== */
+.exammarker{max-width:980px;margin:0 52px;padding:16px 22px;background:rgba(245,158,11,.06);border:1px dashed rgba(245,158,11,.35);border-radius:10px;display:flex;align-items:center;gap:12px}
+.exammarker .em-ico{font-size:20px}
+.exammarker .em-t{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:var(--amber)}
+.exammarker .em-d{font-size:12px;color:var(--t2)}
+.wktag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--cyan);background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.25);padding:3px 9px;border-radius:12px;margin-bottom:10px}
 
-@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.pg,.pg2{grid-template-columns:1fr}.dimgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.pg,.pg2{grid-template-columns:1fr}.dimgrid{grid-template-columns:repeat(2,1fr)}.exammarker{margin:0 18px}}
 </style></head><body>
 <nav class="sidebar">
 <div class="sbh"><div class="sbb">SOCSCI 3 · QCU BSIT</div><div class="sbt">The Contemporary World</div><div class="sbs">Complete Study Guide · AY 2026–2027</div></div>
 <ul class="nvl">
 <li class="nvs">Introduction</li>
 <li class="nvi"><a href="#overview"><span class="nn">00</span>Course Overview</a></li>
-<li class="nvs">Foundations</li>
-<li class="nvi"><a href="#ch1"><span class="nn">01</span>Understanding Globalization</a></li>
-<li class="nvi"><a href="#ch2"><span class="nn">02</span>History of Globalization</a></li>
-<li class="nvs">Systems</li>
-<li class="nvi"><a href="#ch3"><span class="nn">03</span>The Global Economy</a></li>
-<li class="nvi"><a href="#ch4"><span class="nn">04</span>Global Governance</a></li>
-<li class="nvi"><a href="#ch5"><span class="nn">05</span>Demography &amp; Mobility</a></li>
-<li class="nvs">Culture &amp; Issues</li>
-<li class="nvi"><a href="#ch6"><span class="nn">06</span>Global Culture &amp; Media</a></li>
-<li class="nvi"><a href="#ch7"><span class="nn">07</span>Environment &amp; Sustainability</a></li>
-<li class="nvi"><a href="#ch8"><span class="nn">08</span>Inequality, Citizenship &amp; PH</a></li>
+<li class="nvs">Foundations · Wk 1–4</li>
+<li class="nvi"><a href="#ch1"><span class="nn">01</span>Globalization &amp; Its Metaphors</a></li>
+<li class="nvi"><a href="#ch2"><span class="nn">02</span>Structure, Economy &amp; 4IR</a></li>
+<li class="nvs">Systems &amp; Theory · Wk 5–8</li>
+<li class="nvi"><a href="#ch3"><span class="nn">03</span>Facilitators &amp; Theories</a></li>
+<li class="nvi"><a href="#ch4"><span class="nn">04</span>Interstate System &amp; Governance</a></li>
+<li class="nvs">Global Issues · Wk 10–17</li>
+<li class="nvi"><a href="#ch5"><span class="nn">05</span>North-South, Inequality &amp; ASEAN</a></li>
+<li class="nvi"><a href="#ch6"><span class="nn">06</span>Media &amp; Globalization</a></li>
+<li class="nvi"><a href="#ch7"><span class="nn">07</span>Population, Migration &amp; Cities</a></li>
+<li class="nvi"><a href="#ch8"><span class="nn">08</span>Globalization &amp; COVID-19</a></li>
+<li class="nvs">Enrichment</li>
+<li class="nvi"><a href="#ch9"><span class="nn">09</span>Environment &amp; Citizenship</a></li>
 </ul></nav>
 
 <main class="main">
 <div class="hero">
 <div class="he">QCU Academic OS · AY 2026–2027</div>
 <div class="ht">The Contemporary World</div>
-<div class="hs">SOCSCI 3 — Complete Study Reference</div>
+<div class="hs">SOCSCI 3 — Complete Study Reference · Aligned to the Official OBTL Plan</div>
 <div class="hm">
 <div class="mp">Course: <span>SOCSCI 3</span></div>
 <div class="mp">Units: <span>3 units</span></div>
 <div class="mp">CHED Mandate: <span>GE Core Course</span></div>
-<div class="mp">Type: <span>Global Studies</span></div>
+<div class="mp">Structure: <span>18 weeks, syllabus-mapped</span></div>
 </div></div>
 
 <!-- CHAPTER 00 -->
 <section class="chapter" id="overview">
 <div class="cn">CHAPTER 00</div><div class="ct">Course Overview</div>
-<p class="ci">The Contemporary World is one of the CHED-mandated General Education courses required across ALL Philippine college programs, regardless of major. It examines <strong>globalization</strong> — the accelerating interconnection of the world's economies, governments, cultures, and peoples — and asks what that interconnection means for ordinary people, nations, and the Philippines specifically. Unlike RIZAL (one person's biography) or CC 101 (fixed technical facts), this course studies systems that are actively shifting RIGHT NOW — meaning some content here reflects the world as of mid-2026, not settled history.</p>
+<p class="ci">The Contemporary World is one of the CHED-mandated General Education courses required across ALL Philippine college programs, regardless of major. It examines <strong>globalization</strong> — the accelerating interconnection of the world's economies, governments, cultures, and peoples — and asks what that interconnection means for ordinary people, nations, and the Philippines specifically. This edition of the guide has been restructured chapter-by-chapter to follow the official Week 1–18 Outcomes-Based Teaching and Learning (OBTL) Plan issued for this course, so each chapter lines up with what's actually being covered in class that week, rather than a general independent reference order.</p>
 
 <div class="box blue"><div class="bico">🌍</div><div class="bbd"><div class="btt">Why "Contemporary" Actually Matters Here</div>
 <p class="btx">This is not a history course. When your professor asks about "the current state of globalization," they want you to reference genuinely recent developments — trade tensions, shifting alliances, new technology — not decade-old textbook examples. This guide includes several 2025–2026 developments specifically because currency is part of the actual subject matter.</p></div></div>
+
+<h2>Week-by-Week Topic &amp; Chapter Map</h2>
+<div class="tw"><table>
+<thead><tr><th>Week</th><th>Official OBTL Topic</th><th>Guide Chapter</th><th>Graded Output</th></tr></thead>
+<tbody>
+<tr><td>1–2</td><td>Introduction to Globalization; Metaphors of Globalization</td><td>01</td><td>Quiz, Recitation, "A Picture Says A Thousand Words"</td></tr>
+<tr><td>3–4</td><td>Structure of Globalization; History of the Global Economy; 4th Industrial Revolution</td><td>02</td><td>Quiz, Recitation, "Global Nostradamus" activity</td></tr>
+<tr><td>5–6</td><td>Facilitators of Globalization; Theories of Globalization</td><td>03</td><td>Recitation, Worksheet, Quiz</td></tr>
+<tr><td>7–8</td><td>Global Interstate System; Global Governance</td><td>04</td><td>Recitation, Worksheet</td></tr>
+<tr><td>9</td><td colspan="3"><strong>MIDTERM EXAMINATION</strong></td></tr>
+<tr><td>10–11</td><td>North-South Divide; Global Inequality; Latin America; ASEAN</td><td>05</td><td>Recitation, Quiz</td></tr>
+<tr><td>12–13</td><td>Media Platforms and Globalization</td><td>06</td><td>Recitation, Worksheet</td></tr>
+<tr><td>14–15</td><td>Global Population &amp; Mobility; Demographic Transition; Migration; Urbanization</td><td>07</td><td>Recitation, Quiz, "My Kind of City" activity</td></tr>
+<tr><td>16–17</td><td>Globalization Amid the Deadly Pandemic (COVID-19)</td><td>08</td><td>Recitation, Reflection Paper, Quiz</td></tr>
+<tr><td>18</td><td colspan="3"><strong>FINAL EXAMINATION</strong></td></tr>
+</tbody></table></div>
+
+<div class="box amber"><div class="bico">📋</div><div class="bbd"><div class="btt">Grading Breakdown (per official syllabus)</div>
+<p class="btx">Class Standing is 60% of each term grade, broken down as: Active Participation 15%, Quizzes 15%, Project 20%, Assignment 10%. The remaining 40% is the Midterm/Final Exam itself. Your overall Final Grade is the average of your Midterm Grade and Final Term Grade (50/50). Since Class Standing carries more weight than either single exam, consistent recitation and quiz performance across every week matters more than cramming before the two big exams.</p></div></div>
 
 <h2>Exam &amp; Discussion Priority Map</h2>
 <div class="tw"><table>
 <thead><tr><th>Topic</th><th>Chapter</th><th>Weight</th><th>Format Usually Tested</th></tr></thead>
 <tbody>
-<tr><td>Globalization definitions &amp; theories</td><td>01</td><td><span class="tag tr2">🔴 Very High</span></td><td>Identification, essay, theory application</td></tr>
-<tr><td>Global economy (IMF/WB/WTO, trade)</td><td>03</td><td><span class="tag tr2">🔴 High</span></td><td>Identification, case analysis</td></tr>
-<tr><td>Global governance &amp; the UN system</td><td>04</td><td><span class="tag tr2">🔴 High</span></td><td>Identification, structure diagrams</td></tr>
-<tr><td>Migration, OFWs &amp; global mobility</td><td>05</td><td><span class="tag ta">🟡 Medium-High</span></td><td>Case study, Philippine-specific essay</td></tr>
-<tr><td>SDGs &amp; environmental governance</td><td>07</td><td><span class="tag ta">🟡 Medium</span></td><td>Identification, position paper</td></tr>
-<tr><td>Cultural globalization &amp; glocalization</td><td>06</td><td><span class="tag ta">🟡 Medium</span></td><td>Reflection essay, examples</td></tr>
-<tr><td>Global inequality &amp; citizenship</td><td>08</td><td><span class="tag ta">🟡 Medium</span></td><td>Reflection, synthesis essay</td></tr>
-<tr><td>History/waves of globalization</td><td>02</td><td><span class="tag tb">🔵 Lower</span></td><td>Timeline, identification</td></tr>
+<tr><td>Globalization definitions, dimensions &amp; metaphors</td><td>01</td><td><span class="tag tr2">🔴 Very High</span></td><td>Identification, essay, visual/metaphor activity</td></tr>
+<tr><td>Global economy, 4IR &amp; economic history</td><td>02</td><td><span class="tag tr2">🔴 High</span></td><td>Identification, case analysis</td></tr>
+<tr><td>Facilitators &amp; theories of globalization</td><td>03</td><td><span class="tag tr2">🔴 High</span></td><td>Identification, position paper, essay</td></tr>
+<tr><td>Interstate system &amp; global governance (UN system)</td><td>04</td><td><span class="tag tr2">🔴 High</span></td><td>Identification, structure diagrams</td></tr>
+<tr><td>North-South divide, inequality, Latin America, ASEAN</td><td>05</td><td><span class="tag ta">🟡 Medium-High</span></td><td>Identification, regional case study</td></tr>
+<tr><td>Media &amp; cultural globalization</td><td>06</td><td><span class="tag ta">🟡 Medium</span></td><td>Reflection essay, examples</td></tr>
+<tr><td>Population, migration, demographic transition, OFWs</td><td>07</td><td><span class="tag ta">🟡 Medium-High</span></td><td>Case study, Philippine-specific essay</td></tr>
+<tr><td>COVID-19 &amp; globalization</td><td>08</td><td><span class="tag tr2">🔴 High (final-term)</span></td><td>Reflection paper, quiz</td></tr>
+<tr><td>Environment, SDGs &amp; global citizenship</td><td>09</td><td><span class="tag tb">🔵 Not on official OBTL — enrichment only</span></td><td>May surface in a comprehensive final essay</td></tr>
 </tbody></table></div>
+<div class="box red"><div class="bico">⚠️</div><div class="bbd"><div class="btt">One Thing to Verify With Your Professor</div>
+<p class="btx">Chapter 09 (environment/SDGs/global citizenship) does NOT appear anywhere in the official Week 1–18 topic list you were given — it's kept in this guide purely as general GE enrichment since it's a common theme in other sections of this course. Don't over-invest study time there unless your professor explicitly mentions it in class or announces additional modules.</p></div></div>
 </section>
-<!-- CHAPTER 01: UNDERSTANDING GLOBALIZATION -->
+
+<!-- CHAPTER 01: GLOBALIZATION & ITS METAPHORS -->
 <section class="chapter" id="ch1">
-<div class="cn">CHAPTER 01</div><div class="ct">Understanding Globalization</div>
-<p class="ci">Before analyzing globalization's effects, you need a precise working definition and a map of its different dimensions — economists, political scientists, and cultural theorists don't all mean the same thing when they say "globalization."</p>
+<div class="wktag">WEEK 1–2</div>
+<div class="cn">CHAPTER 01</div><div class="ct">Understanding Globalization &amp; Its Metaphors</div>
+<p class="ci">Before analyzing globalization's effects, you need a precise working definition, a map of its dimensions, and — per your syllabus — familiarity with the well-known "metaphors" scholars and journalists use to explain it in vivid, memorable terms. This chapter directly supports the "A Picture Says A Thousand Words" group activity, since each metaphor below is essentially a compact visual image for a bigger idea.</p>
 
 <h2>Working Definition</h2>
 <p><strong>Globalization</strong> is the ongoing process by which economies, societies, cultures, and populations become increasingly interconnected and interdependent through the accelerated flow of trade, capital, people, information, and ideas across national borders. It is NOT a single event with a start date — it is an intensifying, uneven, and contested PROCESS, still actively unfolding and even reversing in some areas today.</p>
@@ -204,33 +245,55 @@ li strong{color:var(--t1)}
 <div class="pcrd"><div class="pnm">Arjun Appadurai</div><div class="pdt">Anthropologist, b. 1949</div><div class="pttl">Five Global "Scapes"</div><div class="pdsc">Proposed globalization flows through 5 dimensions: ethnoscapes (people), mediascapes (images/info), technoscapes (technology), financescapes (capital), and ideoscapes (ideologies).</div></div>
 <div class="pcrd"><div class="pnm">Roland Robertson</div><div class="pdt">Sociologist, b. 1938</div><div class="pttl">Coined "Glocalization"</div><div class="pdsc">Argued global and local forces don't simply replace each other — they blend, producing hybrid outcomes adapted to local contexts. Central to Chapter 06.</div></div>
 </div>
+
+<h2>The Metaphors of Globalization</h2>
+<p>Because "globalization" is such an abstract, sprawling process, several influential writers built their entire arguments around a single vivid metaphor or image — partly to make the concept memorable, partly to push a specific interpretation of what globalization IS. These are the metaphors most commonly compiled in Philippine "Contemporary World" reviewers and modules; each one doubles as a visual you could sketch for the "A Picture Says A Thousand Words" activity.</p>
+<div class="tw"><table>
+<thead><tr><th>Metaphor / Work</th><th>Author</th><th>Core Idea</th></tr></thead>
+<tbody>
+<tr><td><strong>The Lexus and the Olive Tree</strong></td><td>Thomas Friedman</td><td>Globalization pits the drive for modern prosperity and technology (the Lexus car) against the pull of tradition, identity, and community (the olive tree) — nations must find balance between the two, not choose only one.</td></tr>
+<tr><td><strong>The World Is Flat</strong></td><td>Thomas Friedman</td><td>Digital technology has "flattened" the global economic playing field, letting individuals, small firms, and developing economies compete directly against large, established ones.</td></tr>
+<tr><td><strong>Jihad vs. McWorld</strong></td><td>Benjamin Barber</td><td>Globalization provokes two opposite reactions at once: a homogenizing, corporate consumer culture ("McWorld") on one side, and a defensive retreat into tribal, ethnic, or religious identity ("Jihad") on the other.</td></tr>
+<tr><td><strong>The Clash of Civilizations</strong></td><td>Samuel Huntington</td><td>Post-Cold War global conflict is driven less by ideology or economics and more by cultural and religious fault lines between major civilizational blocs (Western, Islamic, Sinic, etc.).</td></tr>
+<tr><td><strong>The End of History</strong></td><td>Francis Fukuyama</td><td>With the Cold War's end, liberal democracy and free-market capitalism represent the final, most evolved form of political-economic organization, toward which all societies are gradually converging.</td></tr>
+<tr><td><strong>McDonaldization</strong></td><td>George Ritzer</td><td>The organizing principles of the fast-food industry — efficiency, calculability, predictability, and control — increasingly shape institutions worldwide far beyond food, standardizing global life.</td></tr>
+</tbody></table></div>
+
+<div class="box red"><div class="bico">📌</div><div class="bbd"><div class="btt">Verify Against Your Own Module/PPT</div>
+<p class="btx">These six are the most widely circulated set in Philippine GE reviewers for this exact topic, but the precise roster your professor emphasizes can vary slightly depending on which module or textbook chapter was assigned. When you receive the actual PPT or module for this week, cross-check the list — the underlying idea (each metaphor = one author's central argument about globalization) will still hold either way.</p></div></div>
+
+<div class="box purple"><div class="bico">💭</div><div class="bbd"><div class="btt">How These Connect Back to the Three Perspectives</div>
+<p class="btx">Notice the metaphors aren't neutral — each leans toward one of the three theoretical camps above. Friedman's two books ("Lexus," "Flat") are essentially hyperglobalist arguments dressed up as travel narratives. Barber's "Jihad vs. McWorld" and Huntington's "Clash of Civilizations" are more skeptical of a smooth, unified global future. Being able to say WHICH camp a given metaphor supports, and why, is a strong move on an identification or short-essay item.</p></div></div>
 </section>
-<!-- CHAPTER 02: HISTORY OF GLOBALIZATION -->
+
+<!-- CHAPTER 02: STRUCTURE, ECONOMY & 4IR -->
 <section class="chapter" id="ch2">
-<div class="cn">CHAPTER 02</div><div class="ct">History &amp; Waves of Globalization</div>
-<p class="ci">Globalization is not a 21st-century invention — trade networks, migration, and cultural exchange span thousands of years. Historians typically describe globalization as occurring in distinct "waves," each accelerated by a specific technological or political shift.</p>
+<div class="wktag">WEEK 3–4</div>
+<div class="cn">CHAPTER 02</div><div class="ct">Structure of Globalization, the Modern Global Economy &amp; the Fourth Industrial Revolution</div>
+<p class="ci">This chapter covers three linked ideas from your syllabus: HOW globalization is structured as a system, the specific HISTORY of how today's global economy was built, and the technological wave — the Fourth Industrial Revolution — currently reshaping that economy in real time.</p>
 
-<h2>Timeline — The Major Waves of Globalization</h2>
+<h2>The "Structures" of Globalization</h2>
+<p>Where Chapter 01 introduced globalization's five DIMENSIONS as a way of describing what kind of activity is happening, thinking in terms of <strong>structures</strong> asks a slightly different question: what are the actual systems and institutions that carry each dimension out? Most Contemporary World modules organize the rest of the course around exactly these structures — which is also, not coincidentally, how this guide's remaining chapters are organized.</p>
+<div class="tw"><table>
+<thead><tr><th>Structure</th><th>Carries Out</th><th>Covered In</th></tr></thead>
+<tbody>
+<tr><td>Economic structure</td><td>Trade, finance, MNCs, supply chains, trade blocs</td><td>This chapter + Ch. 03, 05</td></tr>
+<tr><td>Political structure</td><td>The interstate system, treaties, intergovernmental organizations</td><td>Chapter 04</td></tr>
+<tr><td>Cultural structure</td><td>Media, entertainment, consumer values, language</td><td>Chapter 06</td></tr>
+<tr><td>Demographic structure</td><td>Population movement, migration, urbanization</td><td>Chapter 07</td></tr>
+<tr><td>Ecological/technological structure</td><td>Shared environmental systems and the tech infrastructure enabling every other structure</td><td>This chapter (4IR) + Chapter 09</td></tr>
+</tbody></table></div>
+
+<h2>History of the Modern Global Economy</h2>
+<p>Today's global economic system wasn't inevitable — it was deliberately built, mostly after two catastrophic collapses in global cooperation.</p>
 <div class="tl">
-<div class="tli"><div class="tlyr">~130 BC</div><div class="tldot"></div><div class="tlc"><div class="tlt">The Silk Road Opens</div><div class="tld">Trade routes connecting China, Central Asia, the Middle East, and Europe. Carried silk, spices, and technology — but also ideas, religions, and disease, across thousands of kilometers, over centuries.</div></div></div>
-<div class="tli"><div class="tlyr">1400s–1600s</div><div class="tldot"></div><div class="tlc"><div class="tlt">Wave 1 — The Age of Exploration</div><div class="tld">European maritime powers (Spain, Portugal, later Netherlands, England) connected the Americas, Africa, Asia, and Europe into a single trading system for the first time. This is also the era that led directly to Spanish colonization of the Philippines (1521 onward) — globalization and colonialism were deeply intertwined from this point forward.</div></div></div>
-<div class="tli"><div class="tlyr">1800s–1914</div><div class="tldot"></div><div class="tlc"><div class="tlt">Wave 2 — Industrial-Era Globalization</div><div class="tld">Steamships, railroads, and the telegraph dramatically cut travel and communication time. Global trade volumes reached levels (relative to GDP) that some economists argue weren't matched again until the late 20th century — a key data point Skeptic theorists cite.</div></div></div>
 <div class="tli"><div class="tlyr">1914–1945</div><div class="tldot"></div><div class="tlc"><div class="tlt">The Great Reversal</div><div class="tld">Two World Wars and the Great Depression caused a dramatic RETREAT from global trade and integration — proof that globalization is not automatically permanent or one-directional. Countries turned inward (protectionism, tariffs) during this period.</div></div></div>
-<div class="tli"><div class="tlyr">1944–1947</div><div class="tldot"></div><div class="tlc"><div class="tlt">Post-War Institution Building</div><div class="tld">The Bretton Woods Conference (1944) created the IMF and World Bank. The GATT (General Agreement on Tariffs and Trade, precursor to the WTO) was signed in 1947 — deliberately designed to prevent a repeat of the 1930s trade collapse. Covered fully in Chapter 03.</div></div></div>
-<div class="tli"><div class="tlyr">1989–1991</div><div class="tldot"></div><div class="tlc"><div class="tlt">Wave 3 — Post-Cold War Acceleration</div><div class="tld">Fall of the Berlin Wall (1989) and Soviet collapse (1991) opened former communist economies to global markets. Widely seen as the beginning of the most intense phase of globalization to date.</div></div></div>
-<div class="tli"><div class="tlyr">1995</div><div class="tldot"></div><div class="tlc"><div class="tlt">World Trade Organization founded</div><div class="tld">Replaced GATT with a permanent, more powerful institution to govern global trade rules and resolve disputes between nations. Covered in Chapter 03.</div></div></div>
-<div class="tli"><div class="tlyr">2001–2010s</div><div class="tldot"></div><div class="tlc"><div class="tlt">Wave 4 — The Digital &amp; Internet Wave</div><div class="tld">China joins WTO (2001), smartphones and broadband internet spread globally, social media connects billions instantly. Information and culture now move at near-zero marginal cost across borders.</div></div></div>
-<div class="tli"><div class="tlyr">2020–2023</div><div class="tldot"></div><div class="tlc"><div class="tlt">COVID-19 Disruption</div><div class="tld">Global supply chains broke down simultaneously worldwide, border closures halted international travel and migration, exposing how fragile deep global interdependence actually is. Many countries began actively "reshoring" critical manufacturing afterward.</div></div></div>
-<div class="tli"><div class="tlyr">2025–2026</div><div class="tldot"></div><div class="tlc"><div class="tlt">Wave 5? — Rising Deglobalization Pressures</div><div class="tld">Renewed tariff disputes, the US withdrawing from dozens of international bodies and rejecting the SDGs (Jan 2026), and new taxes on cross-border remittances (including a 1% US tax on OFW money transfers) signal a possible partial retreat from deep global integration — actively debated by scholars as this guide is being written.</div></div></div>
+<div class="tli"><div class="tlyr">1944–1947</div><div class="tldot"></div><div class="tlc"><div class="tlt">Post-War Institution Building</div><div class="tld">The Bretton Woods Conference (1944) created the IMF and World Bank. The GATT (General Agreement on Tariffs and Trade, precursor to the WTO) was signed in 1947 — deliberately designed to prevent a repeat of the 1930s trade collapse.</div></div></div>
+<div class="tli"><div class="tlyr">1989–1991</div><div class="tldot"></div><div class="tlc"><div class="tlt">Post-Cold War Acceleration</div><div class="tld">Fall of the Berlin Wall (1989) and Soviet collapse (1991) opened former communist economies to global markets — widely seen as the start of the most intense phase of globalization to date.</div></div></div>
+<div class="tli"><div class="tlyr">1995</div><div class="tldot"></div><div class="tlc"><div class="tlt">World Trade Organization Founded</div><div class="tld">Replaced GATT with a permanent, more powerful institution to govern global trade rules and resolve disputes between nations.</div></div></div>
+<div class="tli"><div class="tlyr">2001–2010s</div><div class="tldot"></div><div class="tlc"><div class="tlt">The Digital &amp; Internet Wave</div><div class="tld">China joins the WTO (2001), smartphones and broadband internet spread globally, social media connects billions instantly — capital and information now move at near-zero marginal cost across borders.</div></div></div>
+<div class="tli"><div class="tlyr">2025–2026</div><div class="tldot"></div><div class="tlc"><div class="tlt">Rising Deglobalization Pressures</div><div class="tld">Renewed tariff disputes, the US withdrawing from dozens of international bodies, and a new 1% US tax on cross-border remittances (including OFW money transfers) signal a possible partial retreat from deep global integration — actively debated as this guide is being written.</div></div></div>
 </div>
-
-<div class="box purple"><div class="bico">💭</div><div class="bbd"><div class="btt">Common Essay Prompt on This Chapter</div>
-<p class="btx">"Is globalization inevitable, or can it reverse?" The 1914–1945 retreat AND the 2020s deglobalization pressures are your strongest historical evidence that globalization is NOT a one-way, unstoppable process — it has reversed before and shows signs of partial reversal again now. This directly supports Skeptic and Transformationalist positions over the Hyperglobalist view from Chapter 01.</p></div></div>
-</section>
-<!-- CHAPTER 03: THE GLOBAL ECONOMY -->
-<section class="chapter" id="ch3">
-<div class="cn">CHAPTER 03</div><div class="ct">The Global Economy</div>
-<p class="ci">This chapter covers the institutions and mechanisms that structure how money, goods, and services move across borders — the "hardware" of economic globalization.</p>
 
 <h2>The Big Three Post-War Institutions</h2>
 <div class="pg">
@@ -238,56 +301,118 @@ li strong{color:var(--t1)}
 <div class="pcrd"><div class="pnm">World Bank</div><div class="pdt">Founded 1944, Bretton Woods</div><div class="pttl">International Bank for Reconstruction &amp; Development</div><div class="pdsc">Provides long-term loans and grants for development projects (infrastructure, education, health) in developing countries, distinct from the IMF's short-term crisis focus.</div></div>
 <div class="pcrd"><div class="pnm">WTO</div><div class="pdt">Founded 1995, Geneva</div><div class="pttl">World Trade Organization</div><div class="pdsc">Sets global trade rules, negotiates trade agreements between member states, and provides a formal system for resolving trade disputes between countries.</div></div>
 </div>
-
 <div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Common Point of Confusion — IMF vs World Bank</div>
 <p class="btx">Students frequently mix these up. Simple distinction: the <strong>IMF</strong> is like an emergency room — short-term crisis loans to stabilize a country's finances. The <strong>World Bank</strong> is like a long-term investor — development loans for building things (roads, schools, power grids) over years or decades.</p></div></div>
 
-<h2>Multinational Corporations (MNCs)</h2>
-<p>Companies that operate production, sales, or services across multiple countries simultaneously — among the most powerful economic actors in globalization, sometimes with revenues exceeding the GDP of entire nations.</p>
-<div class="tw"><table>
-<thead><tr><th>Argument FOR MNCs</th><th>Argument AGAINST MNCs</th></tr></thead>
-<tbody>
-<tr><td>Create jobs and transfer technology/skills to host countries</td><td>Can exploit weaker labor and environmental regulations in developing countries</td></tr>
-<tr><td>Increase host-country tax revenue and infrastructure investment</td><td>Profits often flow back to the home country rather than staying local</td></tr>
-<tr><td>Introduce competition, potentially lowering consumer prices</td><td>Can undercut and destroy local small businesses unable to compete</td></tr>
-<tr><td>Connect local economies to global supply chains and markets</td><td>Can create dependency, leaving host economies vulnerable to the MNC's decisions</td></tr>
-</tbody></table></div>
-
-<h2>Global Supply Chains</h2>
-<p>A modern product is rarely made in one country. A single smartphone might have chip design in the US, semiconductor fabrication in Taiwan, rare-earth mineral mining in the DRC, assembly in China or Vietnam, and final sale worldwide — each step adding value in a different country before the final product reaches a consumer.</p>
+<h2>Multinational Corporations, Supply Chains &amp; Trade Policy</h2>
+<p><strong>Multinational corporations (MNCs)</strong> operate production, sales, or services across multiple countries simultaneously — among the most powerful economic actors in globalization, sometimes with revenues exceeding the GDP of entire nations. A modern product is rarely made in one country: a single smartphone might have chip design in the US, semiconductor fabrication in Taiwan, rare-earth mineral mining in the DRC, and assembly in China or Vietnam — a <strong>global supply chain</strong> in action.</p>
 
 <div class="box green"><div class="bico">🇵🇭</div><div class="bbd"><div class="btt">Philippine Example — BPO Industry</div>
-<p class="btx">The Philippine Business Process Outsourcing (BPO) industry — call centers, back-office processing, IT services — is a direct product of global supply chains extending into SERVICES, not just physical goods. A US company can have its customer service handled entirely from a Manila call center, made possible by internet infrastructure, English proficiency, and labor cost differences — pure economic globalization in action, employing over a million Filipinos.</p></div></div>
+<p class="btx">The Philippine Business Process Outsourcing (BPO) industry — call centers, back-office processing, IT services — is a direct product of global supply chains extending into SERVICES, not just physical goods, employing over a million Filipinos.</p></div></div>
 
-<h2>Free Trade vs Protectionism</h2>
 <div class="tw"><table>
 <thead><tr><th>Approach</th><th>Core Idea</th><th>Tools Used</th></tr></thead>
 <tbody>
 <tr><td><strong>Free Trade</strong></td><td>Minimal government interference in cross-border trade; let comparative advantage determine what each country produces</td><td>Trade agreements (FTAs), tariff reduction, open borders for goods/capital</td></tr>
 <tr><td><strong>Protectionism</strong></td><td>Shield domestic industries from foreign competition to protect local jobs and strategic sectors</td><td>Tariffs (import taxes), import quotas, subsidies for domestic producers</td></tr>
 </tbody></table></div>
-
 <div class="box red"><div class="bico">📌</div><div class="bbd"><div class="btt">Current 2025–2026 Example — Rising Protectionism</div>
-<p class="btx">Renewed tariff disputes between major economies through 2025–2026, alongside the new 1% US tax specifically targeting outbound remittances (directly affecting OFW families back home), are live examples of protectionist tools being actively deployed right now — useful, citable evidence for any essay asking you to identify CURRENT protectionist trends rather than historical ones.</p></div></div>
+<p class="btx">Renewed tariff disputes between major economies through 2025–2026, alongside the new 1% US tax specifically targeting outbound remittances, are live examples of protectionist tools being actively deployed right now.</p></div></div>
 
-<h2>Regional Trade Blocs</h2>
+<h2>The Fourth Industrial Revolution</h2>
+<p>Coined by Klaus Schwab, founder of the World Economic Forum, the <strong>Fourth Industrial Revolution (4IR)</strong> describes the current wave of technological change built on top of the digital foundation laid by the Third Industrial Revolution — but going further by blurring the lines between the physical, digital, and biological worlds.</p>
 <div class="tw"><table>
-<thead><tr><th>Bloc</th><th>Region</th><th>Purpose</th></tr></thead>
+<thead><tr><th>Revolution</th><th>Era</th><th>Defining Shift</th></tr></thead>
 <tbody>
-<tr><td>ASEAN</td><td>Southeast Asia (10 members incl. Philippines)</td><td>Regional economic and political cooperation; ASEAN Economic Community aims for freer movement of goods, services, and skilled labor within the region</td></tr>
-<tr><td>EU</td><td>Europe (27 members)</td><td>Deepest regional integration globally — shared currency (Euro) for most members, common market, free movement of people</td></tr>
-<tr><td>USMCA</td><td>North America (US, Mexico, Canada)</td><td>Successor to NAFTA, governs North American trade relations</td></tr>
+<tr><td>1st</td><td>Late 1700s</td><td>Steam power, mechanization of production</td></tr>
+<tr><td>2nd</td><td>Late 1800s–early 1900s</td><td>Electricity, mass production, assembly lines</td></tr>
+<tr><td>3rd</td><td>1960s–2000s</td><td>Electronics, computers, the early internet — the "Digital Revolution"</td></tr>
+<tr><td>4th</td><td>2010s–present</td><td>AI, robotics, the Internet of Things, biotechnology, and nanotechnology converging and merging the physical, digital, and biological worlds</td></tr>
 </tbody></table></div>
-<div class="box blue"><div class="bico">🔗</div><div class="bbd"><div class="btt">Connects to Chapter 01 — The Skeptic Argument</div>
-<p class="btx">Regional blocs like ASEAN and the EU are exactly what Skeptic theorists point to as evidence that "globalization" is often really just REGIONALIZATION — deeper integration within a bloc of neighboring countries, rather than true borderless global integration.</p></div></div>
+
+<h3>Why 4IR Is Different, Not Just "More Technology"</h3>
+<ul>
+<li><strong>Velocity</strong> — change is happening at an exponential, not linear, pace</li>
+<li><strong>Breadth and depth</strong> — entire systems of production, management, and governance are being transformed, not just individual products</li>
+<li><strong>Systems impact</strong> — it reshapes whole industries, economies, and even raises questions about what it means to be human (as biology and technology increasingly merge)</li>
+</ul>
+
+<div class="box amber"><div class="bico">⚖️</div><div class="bbd"><div class="btt">Opportunities vs. Risks</div>
+<p class="btx"><strong>Opportunities:</strong> new industries, major productivity gains, medical breakthroughs, improved quality of life. <strong>Risks:</strong> automation displacing routine jobs, capital owners benefiting far more than labor (widening inequality — connects to Chapter 05), privacy and surveillance concerns, and a constant need for reskilling as job requirements shift faster than before.</p></div></div>
+
+<div class="box green"><div class="bico">🇵🇭</div><div class="bbd"><div class="btt">Why This Chapter Matters Directly for a BSIT Student</div>
+<p class="btx">The Philippine BPO industry — the same one cited above as a globalization success story — is also one of the sectors most exposed to 4IR-driven automation, as AI chatbots and voice systems take over routine customer service work. Philippine government digital transformation initiatives are also accelerating. This is the most direct link this entire course has to your actual degree program: the skills you're building in BSIT sit right at the center of this shift.</p></div></div>
 </section>
-<!-- CHAPTER 04: GLOBAL GOVERNANCE -->
+
+<!-- CHAPTER 03: FACILITATORS & THEORIES -->
+<section class="chapter" id="ch3">
+<div class="wktag">WEEK 5–6</div>
+<div class="cn">CHAPTER 03</div><div class="ct">Facilitators of Globalization &amp; Theories of Globalization</div>
+<p class="ci">Chapter 02 showed WHAT was built. This chapter asks two different questions: WHAT specific forces made all of that possible (facilitators), and WHAT theoretical frameworks scholars use to explain and critique globalization's actual outcomes — particularly whether it benefits everyone equally.</p>
+
+<h2>Facilitators of Globalization</h2>
+<p>A <strong>facilitator</strong> here means any concrete force, technology, or policy that made deeper global integration physically and practically possible — the "engines" underneath the abstract process.</p>
+<div class="tw"><table>
+<thead><tr><th>Facilitator</th><th>How It Enables Globalization</th></tr></thead>
+<tbody>
+<tr><td>Technological infrastructure</td><td>The internet, mobile networks, and satellites make instant global communication and data flow possible</td></tr>
+<tr><td>Transportation advances</td><td>Containerized shipping and commercial aviation made moving goods and people across the world dramatically cheaper and faster</td></tr>
+<tr><td>Multinational corporations &amp; FDI</td><td>Direct investment spreads production, capital, and jobs across borders (Chapter 02)</td></tr>
+<tr><td>International financial institutions &amp; trade agreements</td><td>The IMF, World Bank, WTO, and FTAs provide shared rules and infrastructure that make cross-border trade and finance predictable</td></tr>
+<tr><td>Global media &amp; communication networks</td><td>Spread information, culture, and ideas across borders almost instantly (Chapter 06)</td></tr>
+<tr><td>Migration networks &amp; diaspora communities</td><td>Move labor, remittances, and cultural practices across borders, and lower the cost of future migration for others (Chapter 07)</td></tr>
+<tr><td>English as a global lingua franca</td><td>Reduces communication friction for international business, science, and diplomacy</td></tr>
+</tbody></table></div>
+
+<h2>Theories of Globalization</h2>
+<p>Beyond the process-focused Hyperglobalist / Skeptic / Transformationalist debate from Chapter 01, a separate set of theories tries to explain WHO actually benefits from globalization, and why some countries stay poor while others get rich. Your syllabus explicitly asks you to critique the theories that "lend justification" to globalization — these are the ones most commonly targeted.</p>
+<div class="pg">
+<div class="pcrd"><div class="pnm">Modernization Theory</div><div class="pdt">Development framework</div><div class="pttl">"Traditional" → "Modern"</div><div class="pdsc">Claims developing societies naturally progress toward becoming industrialized, Western-style "modern" societies by adopting the same technology, institutions, and values today's developed nations already have — following the same path.</div></div>
+<div class="pcrd"><div class="pnm">Dependency Theory</div><div class="pdt">Critical/structural framework</div><div class="pttl">Core exploits Periphery</div><div class="pdsc">Argues developing ("periphery") countries stay poor not from a lack of modernization, but because their economies are structurally dependent on, and exploited by, wealthy "core" countries — a legacy of colonialism perpetuated through trade and debt.</div></div>
+<div class="pcrd"><div class="pnm">World-Systems Theory</div><div class="pdt">Immanuel Wallerstein</div><div class="pttl">Core–Semi-Periphery–Periphery</div><div class="pdsc">The global economy is one interconnected system divided into wealthy industrialized "core" countries, transitional "semi-periphery" countries, and resource-exporting "periphery" countries — a nation's position constrains its development options.</div></div>
+</div>
+
+<div class="box amber"><div class="bico">📌</div><div class="bbd"><div class="btt">Exam-Critical — The Theory Most Often Criticized</div>
+<p class="btx">Modernization Theory is the theory most frequently targeted for critique in Philippine Contemporary World courses: critics argue it treats the Western development path as the ONLY legitimate one, ignores how colonialism actively created today's inequality (rather than developing countries simply "not catching up" yet), and can function as an ideological justification for continued Western economic influence dressed up as "helping" developing nations modernize. Dependency Theory and World-Systems Theory were both developed largely as direct responses to this critique.</p></div></div>
+
+<h2>Economic Globalization vs. Economic Nationalism — Where Does the Philippines Stand?</h2>
+<p>Your syllabus explicitly asks you to defend a stance on whether the Philippines should embrace economic globalization or economic nationalism — a strong candidate for a position paper or recitation prompt.</p>
+<div class="tw"><table>
+<thead><tr><th>Case for Economic Globalization</th><th>Case for Economic Nationalism</th></tr></thead>
+<tbody>
+<tr><td>BPO jobs and FDI depend on the Philippines staying open to global business</td><td>Reduces vulnerability to sudden foreign policy shocks, like the 2026 US remittance tax</td></tr>
+<tr><td>OFW remittances ($35.6B in 2025) require continued global labor mobility</td><td>Protects domestic agriculture and strategic industries from being undercut by cheaper imports</td></tr>
+<tr><td>Access to global markets, technology, and investment accelerates growth</td><td>Strengthens food security and reduces dependency on volatile global supply chains</td></tr>
+<tr><td>Regional integration (ASEAN) offers scale advantages a single small economy can't reach alone</td><td>Keeps more decision-making power over the domestic economy inside the country itself</td></tr>
+</tbody></table></div>
+<div class="box purple"><div class="bico">💭</div><div class="bbd"><div class="btt">Strongest Answer Pattern</div>
+<p class="btx">The strongest position papers on this prompt don't pick a pure extreme — they argue for SELECTIVE engagement: staying open where the Philippines has a genuine advantage (BPO, labor migration) while protecting specific vulnerable sectors (agriculture, strategic industries) — essentially a managed, not maximal, version of economic globalization.</p></div></div>
+</section>
+
+<!-- CHAPTER 04: INTERSTATE SYSTEM & GOVERNANCE -->
 <section class="chapter" id="ch4">
-<div class="cn">CHAPTER 04</div><div class="ct">Global Governance</div>
-<p class="ci">If there's no single "world government," how does the international community coordinate on shared problems at all? This chapter covers the institutions, and the fundamental tension, at the heart of global governance: no country wants to give up its sovereignty, yet many problems (pandemics, climate change, trade) cannot be solved by any single country alone.</p>
+<div class="wktag">WEEK 7–8</div>
+<div class="cn">CHAPTER 04</div><div class="ct">The Global Interstate System &amp; Global Governance</div>
+<p class="ci">If there's no single "world government," how does the world organize itself at all, and how does the international community coordinate on shared problems? This chapter covers both the underlying STATE SYSTEM the whole world operates within, and the GOVERNANCE institutions built on top of it to manage cooperation without erasing state sovereignty.</p>
+
+<h2>The Global Interstate System</h2>
+<p>The <strong>interstate system</strong> is the foundational structure of modern international relations: a world divided into sovereign, territorially bounded nation-states, each recognized as the supreme legal authority within its own borders. This system traces back to the <strong>Peace of Westphalia (1648)</strong>, which ended a series of European religious wars by establishing that states would not interfere in each other's internal and religious affairs — the origin of the modern concept of sovereignty.</p>
+<ul>
+<li><strong>Sovereignty</strong> — a state holds supreme authority over its own territory and internal affairs</li>
+<li><strong>Territoriality</strong> — states have defined, recognized borders</li>
+<li><strong>Anarchy (in the IR sense)</strong> — there is no central world government ABOVE states, unlike the ordered hierarchy within a single country</li>
+<li><strong>Self-help</strong> — because there's no central authority to appeal to, states ultimately rely on their own power or alliances for security</li>
+</ul>
+
+<h3>Two Basic Lenses for Reading State Behavior</h3>
+<div class="pg2">
+<div class="pcrd"><div class="pnm">Realism</div><div class="pttl">States act on self-interest and power</div><div class="pdsc">Conflict and competition are inherent to an anarchic system; security is every state's primary concern; cooperation is possible but always fragile and secondary to self-interest.</div></div>
+<div class="pcrd"><div class="pnm">Liberalism / Idealism</div><div class="pttl">Cooperation is achievable and beneficial</div><div class="pdsc">International institutions, trade, and shared norms create real interdependence that reduces the likelihood of conflict — the theoretical foundation most global governance institutions are built on.</div></div>
+</div>
+<p>Related concept: <strong>balance of power</strong> — states and alliances counterbalance each other's strength specifically to prevent any single state from dominating the whole system.</p>
 
 <h2>What Is Global Governance?</h2>
-<p><strong>Global governance</strong> refers to the collective ways states, international organizations, and other actors cooperate to manage shared global problems — WITHOUT a central world government holding binding authority over sovereign nations. It relies on treaties, voluntary cooperation, shared norms, and institutions that countries choose to join and can, in principle, choose to leave.</p>
+<p><strong>Global governance</strong> refers to the collective ways states, international organizations, and other actors cooperate to manage shared global problems — WITHOUT a central world government holding binding authority over sovereign nations. It relies on treaties, voluntary cooperation, shared norms, and institutions that countries choose to join and can, in principle, choose to leave. In other words: governance is the layer of cooperation states have built ON TOP OF the anarchic interstate system described above, precisely because some problems (pandemics, climate change, trade) can't be solved by any single state alone.</p>
 
 <h2>The United Nations System</h2>
 <div class="statrow">
@@ -311,32 +436,120 @@ li strong{color:var(--t1)}
 <p class="btx">The Security Council veto means the UN's most powerful enforcement body can be paralyzed whenever a conflict involves the interests of any ONE of the 5 permanent members. This structural flaw is a standard essay topic: "Is the UN Security Council structure still fit for purpose in today's world?" — there is no single correct answer, but you should be able to explain BOTH the original post-WWII logic for the veto and its modern criticisms.</p></div></div>
 
 <h2>State Sovereignty vs Global Governance — The Central Tension</h2>
-<p>Sovereignty is a state's supreme authority over its own territory and internal affairs, free from outside interference — a principle enshrined in the UN Charter itself. Yet solving genuinely global problems (pandemics, climate change, financial crises, terrorism) often requires countries to accept SOME external rules or coordination. This creates constant friction: how much sovereignty should a country give up for the sake of collective global problem-solving?</p>
-
 <div class="box red"><div class="bico">📌</div><div class="bbd"><div class="btt">Current, Highly Citable 2026 Example</div>
-<p class="btx">In January 2026, the United States formally withdrew from more than 60 international organizations and declared open opposition to the UN's Sustainable Development Goals and the 2030 Agenda. In 2025, the US voted with the international majority on only about 5% of UN General Assembly resolutions where a vote was recorded — a dramatic outlier. This is a live, real-time demonstration of the sovereignty-vs-global-governance tension: a powerful state choosing to prioritize its own sovereignty and interests over collective multilateral commitments, regardless of how the rest of the world votes.</p></div></div>
+<p class="btx">In January 2026, the United States formally withdrew from more than 60 international organizations and declared open opposition to the UN's Sustainable Development Goals and the 2030 Agenda. In 2025, the US voted with the international majority on only about 5% of UN General Assembly resolutions where a vote was recorded — a dramatic outlier. This is a live, real-time demonstration of the sovereignty-vs-global-governance tension described above: a powerful state choosing its own sovereignty and interests over collective multilateral commitments.</p></div></div>
 
 <h2>Other Major International Organizations</h2>
 <div class="tw"><table>
 <thead><tr><th>Organization</th><th>Focus</th></tr></thead>
 <tbody>
-<tr><td>WHO — World Health Organization</td><td>Global public health coordination, disease outbreak response (e.g. COVID-19 pandemic coordination)</td></tr>
+<tr><td>WHO — World Health Organization</td><td>Global public health coordination, disease outbreak response (covered in depth in Chapter 08)</td></tr>
 <tr><td>UNESCO</td><td>Education, science, and cultural cooperation; maintains the World Heritage Site list</td></tr>
 <tr><td>UNICEF</td><td>Children's welfare, education, and protection worldwide</td></tr>
 <tr><td>NATO</td><td>Military alliance (mostly North America + Europe), collective defense pact</td></tr>
-<tr><td>ASEAN</td><td>Southeast Asian regional political and economic cooperation (covered in Ch. 03)</td></tr>
+<tr><td>ASEAN</td><td>Southeast Asian regional political and economic cooperation (covered in depth in Chapter 05)</td></tr>
 </tbody></table></div>
 
 <h2>International Law — How Does It Actually Get Enforced?</h2>
 <p>Unlike domestic law, international law has no single police force or automatic enforcement mechanism. It relies primarily on: (1) states voluntarily complying to maintain their reputation and relationships, (2) economic sanctions imposed by other states as a consequence for violations, (3) the ICJ and International Criminal Court (ICC) issuing rulings — though these bodies still depend on state cooperation to actually enforce judgments, since neither has its own police force.</p>
-
-<div class="box blue"><div class="bico">🔗</div><div class="bbd"><div class="btt">Forward Link — Chapter 08</div>
-<p class="btx">The sovereignty-vs-governance tension explored here becomes the foundation for Chapter 08's discussion of global citizenship: if state sovereignty limits what global institutions can actually enforce, what responsibility do INDIVIDUALS have in addressing problems states won't fully cooperate on?</p></div></div>
 </section>
-<!-- CHAPTER 05: DEMOGRAPHY & MOBILITY -->
+
+<div class="exammarker"><div class="em-ico">📝</div><div><div class="em-t">MIDTERM EXAMINATION — WEEK 9</div><div class="em-d">Covers Chapters 01–04. Everything above this marker is midterm-scope material.</div></div></div>
+
+<!-- CHAPTER 05: NORTH-SOUTH, INEQUALITY, LATIN AMERICA & ASEAN -->
 <section class="chapter" id="ch5">
-<div class="cn">CHAPTER 05</div><div class="ct">Global Demography &amp; Mobility</div>
-<p class="ci">People move — for work, safety, education, and family. This chapter covers global migration patterns, urbanization, and gives special attention to the Philippines' unique, massive role in global labor migration, since this is very likely to appear as a case-study essay question.</p>
+<div class="wktag">WEEK 10–11</div>
+<div class="cn">CHAPTER 05</div><div class="ct">North-South Divide, Global Inequality, Latin America &amp; ASEAN</div>
+<p class="ci">This chapter opens the final-term stretch by asking the central fairness question of the whole course: has globalization narrowed the gap between rich and poor countries, or widened it? It examines the world's most common regional framing for that gap, plus two regional case studies — Latin America and ASEAN — that illustrate opposite ends of the development spectrum.</p>
+
+<h2>The North-South Divide</h2>
+<p>The <strong>Global North</strong> and <strong>Global South</strong> are informal socio-economic groupings, not strict geography — the terms describe wealthier, more industrialized nations (roughly North America, Europe, and developed parts of East Asia and Oceania) versus poorer, developing nations (roughly most of Africa, Latin America, and Asia). The dividing line is commonly traced back to the <strong>Brandt Line</strong>, a rough boundary drawn near 30°N latitude in the 1980 Brandt Report led by former West German Chancellor Willy Brandt.</p>
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Known Limitation of the Framework</div>
+<p class="btx">The North-South split oversimplifies real diversity within each group — wealthy Gulf states technically sit in the geographic "South," while poorer regions exist inside "Northern" countries too. The rise of large emerging Southern economies (China, India, Brazil) has blurred the line further, which is itself a common critique/essay angle.</p></div></div>
+
+<h2>Two Kinds of Global Inequality</h2>
+<div class="tw"><table>
+<thead><tr><th>Type</th><th>Definition</th><th>Trend</th></tr></thead>
+<tbody>
+<tr><td>Inequality BETWEEN countries</td><td>Gaps in average wealth/income comparing entire nations against each other</td><td>Has generally NARROWED in recent decades — largely due to rapid growth in China, India, and other emerging economies</td></tr>
+<tr><td>Inequality WITHIN countries</td><td>Gaps between rich and poor citizens inside the same nation</td><td>Has WIDENED in many countries, including highly globalized economies, where gains from trade and technology often concentrate among already-wealthy groups</td></tr>
+</tbody></table></div>
+<div class="box amber"><div class="bico">📌</div><div class="bbd"><div class="btt">The Key Insight Professors Look For</div>
+<p class="btx">A country can look more "globally equal" on average (between-country gap narrowing) while its OWN citizens experience worsening inequality (within-country gap widening) at the same time. Both things are simultaneously true — this apparent contradiction is a favorite exam and discussion topic precisely because it resists a simple answer.</p></div></div>
+
+<h2>Regional Case Study — Latin America</h2>
+<p>Latin America is a frequently cited example of how colonial history shapes long-term economic structure — a direct parallel to the Philippines' own Spanish colonial past (Chapter 02).</p>
+<ul>
+<li><strong>Colonial legacy:</strong> Spanish and Portuguese colonization established extractive, raw-material-export economies that shaped regional development patterns still visible today</li>
+<li><strong>The 1980s debt crisis ("Lost Decade"):</strong> Multiple Latin American countries defaulted on foreign debt, leading to IMF-imposed structural adjustment programs — a real-world illustration of Dependency Theory (Chapter 03) in action</li>
+<li><strong>Regional integration — Mercosur:</strong> the Southern Common Market (Argentina, Brazil, Paraguay, Uruguay, and associates), Latin America's rough equivalent of ASEAN or the EU</li>
+<li><strong>Current relevance:</strong> continued reliance on commodity exports and recurring political/economic volatility, alongside a growing voice within broader "Global South" solidarity movements</li>
+</ul>
+
+<h2>Regional Case Study — ASEAN</h2>
+<div class="statrow">
+<div class="statcard"><div class="statnum">1967</div><div class="statlbl">Founded (Bangkok Declaration)</div></div>
+<div class="statcard"><div class="statnum">10</div><div class="statlbl">Member states, incl. the Philippines</div></div>
+<div class="statcard"><div class="statnum">2015</div><div class="statlbl">ASEAN Economic Community (AEC) established</div></div>
+</div>
+<p>ASEAN began with five founding members — Indonesia, Malaysia, the Philippines, Singapore, and Thailand — and later grew to ten with the addition of Brunei, Vietnam, Laos, Myanmar, and Cambodia. The <strong>ASEAN Economic Community (AEC)</strong> aims for the freer movement of goods, services, investment, capital, and skilled labor within the region — ASEAN's answer to the EU's single market, though considerably less integrated (no shared currency, weaker enforcement mechanisms).</p>
+<div class="box blue"><div class="bico">🔗</div><div class="bbd"><div class="btt">ASEAN as a Microcosm of the North-South Divide</div>
+<p class="btx">ASEAN's own members span a wide development range internally — Singapore functions almost like a "Northern," highly developed economy, while Myanmar, Cambodia, and Laos remain much less developed. This makes ASEAN a useful smaller-scale illustration of the exact same North-South tension playing out globally, just compressed into one region.</p></div></div>
+<p>The Philippines has been an ASEAN member since its founding, remains active in regional geopolitics (including the South China Sea / West Philippine Sea disputes), and participates heavily in intra-ASEAN labor migration.</p>
+</section>
+
+<!-- CHAPTER 06: MEDIA & GLOBALIZATION -->
+<section class="chapter" id="ch6">
+<div class="wktag">WEEK 12–13</div>
+<div class="cn">CHAPTER 06</div><div class="ct">Media Platforms and Globalization</div>
+<p class="ci">Beyond money and governments, globalization moves IDEAS, VALUES, and CULTURAL PRODUCTS across borders at unprecedented speed — reshaping the political, economic, and social landscape of the "new world order" your syllabus specifically asks about, and reshaping how people everywhere eat, dress, communicate, and see themselves in the process.</p>
+
+<h2>Cultural Globalization — Two Competing Fears</h2>
+<div class="tw"><table>
+<thead><tr><th>Concept</th><th>Core Argument</th></tr></thead>
+<tbody>
+<tr><td><strong>Cultural Homogenization</strong></td><td>Global media and consumer brands are erasing local cultural differences, producing an increasingly uniform global culture — critics call this "Americanization" or "Westernization" of global taste, values, and consumption habits.</td></tr>
+<tr><td><strong>Cultural Hybridization</strong></td><td>Local cultures don't passively absorb global influences — they actively blend, remix, and reinterpret them, producing entirely new hybrid cultural forms rather than simple uniformity.</td></tr>
+</tbody></table></div>
+
+<h2>Glocalization</h2>
+<p>Coined by sociologist Roland Robertson (Ch. 01), <strong>glocalization</strong> describes how global products and ideas get actively ADAPTED to local contexts rather than simply imposed unchanged. This is the most widely cited concept for explaining what actually happens in cultural globalization, more so than pure homogenization.</p>
+<div class="box green"><div class="bico">🇵🇭</div><div class="bbd"><div class="btt">Philippine Examples of Glocalization</div>
+<p class="btx">McDonald's serving <strong>McSpaghetti</strong> and rice meals only in the Philippines. Jollibee — a genuinely Filipino brand — expanding internationally while keeping Filipino flavor profiles for diaspora communities abroad. K-pop and Spotify algorithms surfacing OPM (Original Pilipino Music) to global audiences. Each is neither purely "global" nor purely "local" — they're a deliberate blend.</p></div></div>
+
+<h2>Media Platforms &amp; Global Communication Order</h2>
+<p>Each era's dominant media technology directly reshaped who could participate in global communication, and how much control governments and broadcasters held over that flow.</p>
+<div class="tw"><table>
+<thead><tr><th>Era</th><th>Dominant Media Platform</th><th>Characteristic</th></tr></thead>
+<tbody>
+<tr><td>Pre-1990s</td><td>Print, radio, broadcast TV</td><td>Largely one-directional (national broadcasters to national audiences), limited cross-border flow, tightly controlled by governments/networks</td></tr>
+<tr><td>1990s–2000s</td><td>Cable TV, early internet</td><td>24-hour global news networks (CNN), beginning of real-time cross-border information flow</td></tr>
+<tr><td>2010s–present</td><td>Social media, streaming platforms</td><td>Instant, many-to-many global communication; ordinary individuals, not just broadcasters, now shape global cultural, economic, and political flows (viral trends, influencer culture, crowdfunded movements)</td></tr>
+</tbody></table></div>
+<div class="box blue"><div class="bico">🔗</div><div class="bbd"><div class="btt">Political, Economic &amp; Social Landscape Effects</div>
+<p class="btx"><strong>Political:</strong> social media enables rapid mobilization and disinformation alike, reshaping elections and protest movements worldwide. <strong>Economic:</strong> e-commerce and digital platforms let even small Philippine sellers reach global buyers directly. <strong>Social:</strong> algorithmic media exposes people to global trends and communities faster than traditional gatekeepers ever could, for better and worse.</p></div></div>
+
+<h2>Digital Culture &amp; the Filipino Internet Presence</h2>
+<p>The Philippines is consistently ranked among the world's heaviest social media-using populations by time spent online. This creates a genuinely two-way cultural flow: Filipino content, memes, and trends increasingly influence global online culture, not just the reverse — a meaningful shift from earlier eras where cultural flow was overwhelmingly one-directional (developed world to developing world).</p>
+
+<h2>Language &amp; Globalization</h2>
+<div class="tw"><table>
+<thead><tr><th>Trend</th><th>Detail</th></tr></thead>
+<tbody>
+<tr><td>English as global lingua franca</td><td>Dominant language of international business, science, aviation, and the internet — a direct legacy of British and American global influence historically</td></tr>
+<tr><td>Language endangerment</td><td>UNESCO estimates a significant share of the world's roughly 7,000 languages are at risk of disappearing this century, partly due to globalization pressure favoring dominant languages</td></tr>
+<tr><td>Digital code-switching</td><td>Taglish (Tagalog-English mixing) itself is an everyday linguistic product of globalization — reflecting the Philippines' colonial history and ongoing global integration simultaneously</td></tr>
+</tbody></table></div>
+
+<div class="box purple"><div class="bico">💭</div><div class="bbd"><div class="btt">Common Reflection Essay Prompt</div>
+<p class="btx">"Is globalization erasing Filipino culture, or strengthening it?" Strong answers avoid a simple yes/no — they apply glocalization directly: Filipino culture is simultaneously ABSORBING global influences (K-pop, US media, global fast food) AND actively EXPORTING itself globally (OFW diaspora spreading Filipino food/language worldwide, OPM gaining international streaming traction). Both directions are happening at once.</p></div></div>
+</section>
+
+<!-- CHAPTER 07: POPULATION, MIGRATION & CITIES -->
+<section class="chapter" id="ch7">
+<div class="wktag">WEEK 14–15</div>
+<div class="cn">CHAPTER 07</div><div class="ct">Global Population &amp; Mobility, Demographic Transition, Migration &amp; Urbanization</div>
+<p class="ci">People move — for work, safety, education, and family. This chapter covers global migration patterns, the demographic transition model, and urbanization, with special attention to the Philippines' unique, massive role in global labor migration, since this is very likely to appear as a case-study essay question or feed the "My Kind of City" group activity.</p>
 
 <h2>Current Global Population Snapshot</h2>
 <div class="statrow">
@@ -346,6 +559,20 @@ li strong{color:var(--t1)}
 <div class="statcard"><div class="statnum">31.1</div><div class="statlbl">Global median age (years)</div></div>
 </div>
 <p>The UN projects global population will peak around <strong>10.3 billion in the mid-2080s</strong> before gradually declining — driven mainly by falling fertility rates worldwide, now averaging 2.3 births per woman globally (down from far higher rates a generation ago).</p>
+
+<h2>The Demographic Transition Model</h2>
+<p>The <strong>demographic transition model (DTM)</strong> describes how a country's birth rate and death rate typically change as it develops economically — and therefore how fast (or slow) its population grows at each stage.</p>
+<div class="tw"><table>
+<thead><tr><th>Stage</th><th>Birth Rate</th><th>Death Rate</th><th>Population Growth</th><th>Typical Example</th></tr></thead>
+<tbody>
+<tr><td>1 — High Stationary</td><td>High</td><td>High</td><td>Low/stable</td><td>Pre-industrial societies (rare today)</td></tr>
+<tr><td>2 — Early Expanding</td><td>Stays high</td><td>Falls sharply (better healthcare, sanitation, food)</td><td>Rapid growth</td><td>Least-developed countries, parts of Sub-Saharan Africa</td></tr>
+<tr><td>3 — Late Expanding</td><td>Begins falling (urbanization, education, family planning access)</td><td>Continues falling slowly</td><td>Growth slows</td><td>Many developing countries, including much of the Philippines' current profile</td></tr>
+<tr><td>4 — Low Stationary</td><td>Low</td><td>Low</td><td>Stable, slow growth</td><td>Most developed countries (US, much of Europe)</td></tr>
+<tr><td>5 — Decline (sometimes added)</td><td>Falls below death rate</td><td>Low, but births are lower still</td><td>Population shrinks and ages</td><td>Japan, South Korea, increasingly China</td></tr>
+</tbody></table></div>
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Don't Overstate the Philippines' Exact Stage</div>
+<p class="btx">The Philippines is generally described as being in late Stage 2 to Stage 3 — death rates are low, but birth rates, while declining, remain moderately elevated relative to fully developed Stage 4 countries. Treat this as a general positioning, not an exact classification, and confirm the specific framing your professor uses in the actual lecture.</p></div></div>
 
 <h2>Types of Human Migration</h2>
 <div class="tw"><table>
@@ -365,23 +592,9 @@ li strong{color:var(--t1)}
 <div class="statcard"><div class="statnum">7.3%</div><div class="statlbl">Share of Philippine GDP from remittances alone</div></div>
 <div class="statcard"><div class="statnum">57%</div><div class="statlbl">Share of OFWs who are women</div></div>
 </div>
-
-<h3>Where OFW Remittances Come From (2025)</h3>
-<div class="tw"><table>
-<thead><tr><th>Source Country</th><th>Share of Total Remittances</th></tr></thead>
-<tbody>
-<tr><td>United States</td><td>39.7%</td></tr>
-<tr><td>Singapore</td><td>7.3%</td></tr>
-<tr><td>Saudi Arabia</td><td>6.6%</td></tr>
-<tr><td>Japan</td><td>5.0%</td></tr>
-<tr><td>United Kingdom</td><td>4.6%</td></tr>
-<tr><td>United Arab Emirates</td><td>4.6%</td></tr>
-</tbody></table></div>
-
-<p>The Philippines is consistently the <strong>world's 4th-largest remittance recipient</strong>, after India, Mexico, and China — and the world's largest single source of seafarers and among the top sources of nurses globally. This isn't incidental: it reflects decades of deliberate Philippine government labor export policy (dating to the 1970s) alongside genuine global demand for Filipino healthcare, maritime, and domestic workers.</p>
-
+<p>The Philippines is consistently the <strong>world's 4th-largest remittance recipient</strong>, after India, Mexico, and China — and the world's largest single source of seafarers and among the top sources of nurses globally.</p>
 <div class="box red"><div class="bico">📌</div><div class="bbd"><div class="btt">Current 2026 Development Worth Knowing</div>
-<p class="btx">A new 1% US tax on outbound cash remittances took effect in 2026, specifically affecting money OFWs in America send home. Economists tracked a surge in remittances in December 2025 as OFWs rushed to transfer funds before the tax began — a real, current illustration of how a single policy change in one country can immediately ripple into millions of Filipino households, and a strong example of protectionism (Ch. 03) intersecting directly with migration.</p></div></div>
+<p class="btx">A new 1% US tax on outbound cash remittances took effect in 2026, specifically affecting money OFWs in America send home. Economists tracked a surge in remittances in December 2025 as OFWs rushed to transfer funds before the tax began — a real, current illustration of how a single policy change in one country can immediately ripple into millions of Filipino households.</p></div></div>
 
 <h2>Why Migration Matters — Weighing Both Sides</h2>
 <div class="tw"><table>
@@ -395,61 +608,52 @@ li strong{color:var(--t1)}
 
 <h2>Urbanization &amp; Global Cities</h2>
 <p>More than half the world's population now lives in urban areas, a trend accelerating rapidly in developing countries. <strong>Global cities</strong> — like New York, London, Tokyo, Singapore, and increasingly Manila — function as command centers for the global economy: hubs for finance, corporate headquarters, media, and international migration, disproportionately influential relative to their physical size.</p>
-
 <div class="box green"><div class="bico">🇵🇭</div><div class="bbd"><div class="btt">Metro Manila as a Global City</div>
-<p class="btx">Metro Manila (including Quezon City, where QCU sits) functions as the Philippines' primary global city node — hosting the BPO industry's headquarters, major international corporate offices, embassies, and serving as the departure/return point for the majority of the country's 2+ million OFWs.</p></div></div>
+<p class="btx">Metro Manila (including Quezon City, where QCU sits) functions as the Philippines' primary global city node — hosting the BPO industry's headquarters, major international corporate offices, embassies, and serving as the departure/return point for the majority of the country's 2+ million OFWs. Good raw material if the "My Kind of City" activity asks you to design or evaluate an ideal globalized, sustainable city.</p></div></div>
 </section>
-<!-- CHAPTER 06: GLOBAL CULTURE & MEDIA -->
-<section class="chapter" id="ch6">
-<div class="cn">CHAPTER 06</div><div class="ct">Global Culture &amp; Media</div>
-<p class="ci">Beyond money and governments, globalization moves IDEAS, VALUES, and CULTURAL PRODUCTS across borders at unprecedented speed — reshaping how people everywhere eat, dress, communicate, and see themselves.</p>
 
-<h2>Cultural Globalization — Two Competing Fears</h2>
+<!-- CHAPTER 08: GLOBALIZATION & COVID-19 -->
+<section class="chapter" id="ch8">
+<div class="wktag">WEEK 16–17</div>
+<div class="cn">CHAPTER 08</div><div class="ct">Globalization Amid the Deadly Pandemic — COVID-19</div>
+<p class="ci">COVID-19 is the clearest real-world stress test globalization has faced this century. This chapter covers how the pandemic exposed globalization's fragility, and how different countries' responses can inform better preventive policy — directly feeding your required Reflection Paper for this unit.</p>
+
+<h2>How COVID-19 Exposed Globalization's Fragility</h2>
 <div class="tw"><table>
-<thead><tr><th>Concept</th><th>Core Argument</th></tr></thead>
+<thead><tr><th>Disruption</th><th>What Happened</th></tr></thead>
 <tbody>
-<tr><td><strong>Cultural Homogenization</strong></td><td>Global media and consumer brands are erasing local cultural differences, producing an increasingly uniform global culture — critics call this "Americanization" or "Westernization" of global taste, values, and consumption habits.</td></tr>
-<tr><td><strong>Cultural Hybridization</strong></td><td>Local cultures don't passively absorb global influences — they actively blend, remix, and reinterpret them, producing entirely new hybrid cultural forms rather than simple uniformity.</td></tr>
+<tr><td>Supply chain breakdown</td><td>Global supply chains broke down nearly simultaneously worldwide; single-source dependency on specific countries for goods like PPE and semiconductors caused severe shortages, prompting many firms to pursue "reshoring" or "friend-shoring" afterward</td></tr>
+<tr><td>Border closures &amp; travel bans</td><td>Nearly universal, sudden halt of international travel and migration proved that even a supposedly "borderless" world can snap back to hard national borders within days — real-time support for the Skeptic/Realist view that state sovereignty remains powerful</td></tr>
+<tr><td>Vaccine nationalism vs. vaccine diplomacy</td><td>Wealthy countries pre-purchased and stockpiled vaccine supply ("vaccine nationalism"), while COVAX — a WHO-led global vaccine-sharing initiative — tried to ensure more equitable distribution but fell short of its targets</td></tr>
+<tr><td>WHO's role &amp; criticism</td><td>Coordinated global health information and response, but faced real criticism over the speed and independence of its early actions — a live case study for Chapter 04's debate on whether global governance can actually solve global problems</td></tr>
+<tr><td>Digital acceleration</td><td>Remote work, e-commerce, telemedicine, and online education expanded massively — a form of DIGITAL globalization that deepened even while physical, travel-based globalization froze almost completely</td></tr>
 </tbody></table></div>
 
-<h2>Glocalization</h2>
-<p>Coined by sociologist Roland Robertson (Ch. 01), <strong>glocalization</strong> describes how global products and ideas get actively ADAPTED to local contexts rather than simply imposed unchanged. This is the most widely cited concept for explaining what actually happens in cultural globalization, more so than pure homogenization.</p>
+<h2>Formulating Preventive Policy — Comparing Country Responses</h2>
+<p>Your syllabus specifically asks you to formulate preventive policies based on successful approaches used elsewhere. A few comparative patterns worth knowing:</p>
+<ul>
+<li><strong>Early, aggressive testing and contact tracing</strong> — countries like South Korea and Vietnam that acted early with mass testing and tracing generally slowed initial spread more effectively than countries that waited</li>
+<li><strong>Strong universal healthcare and public health infrastructure</strong> — countries with more robust existing health systems generally handled surges with fewer excess deaths</li>
+<li><strong>Coordinated, clearly communicated public messaging</strong> — inconsistent or delayed communication in several countries correlated with lower public compliance and slower containment</li>
+</ul>
 
-<div class="box green"><div class="bico">🇵🇭</div><div class="bbd"><div class="btt">Philippine Examples of Glocalization</div>
-<p class="btx">McDonald's serving <strong>McSpaghetti</strong> and rice meals only in the Philippines. Jollibee — a genuinely Filipino brand — expanding internationally while keeping Filipino flavor profiles for diaspora communities abroad. K-pop and Spotify algorithms surfacing OPM (Original Pilipino Music) to global audiences. Each is neither purely "global" nor purely "local" — they're a deliberate blend.</p></div></div>
+<div class="box green"><div class="bico">🇵🇭</div><div class="bbd"><div class="btt">The Philippine COVID-19 Experience</div>
+<p class="btx">The Philippines implemented some of the world's longest lockdowns, which limited early spread but came with major economic contraction, disrupted education (a direct precursor to the "Online Delivery of Instruction" now used in your own courses), and a comparatively slower initial vaccine rollout pace than several neighboring ASEAN countries. This gives you specific, personal-experience material for the required reflection paper.</p></div></div>
 
-<h2>Media Flows &amp; Global Communication</h2>
-<div class="tw"><table>
-<thead><tr><th>Era</th><th>Dominant Media</th><th>Characteristic</th></tr></thead>
-<tbody>
-<tr><td>Pre-1990s</td><td>Print, radio, broadcast TV</td><td>Largely one-directional (national broadcasters to national audiences), limited cross-border flow</td></tr>
-<tr><td>1990s–2000s</td><td>Cable TV, early internet</td><td>24-hour global news networks (CNN), beginning of real-time cross-border information flow</td></tr>
-<tr><td>2010s–present</td><td>Social media, streaming platforms</td><td>Instant, many-to-many global communication; ordinary individuals, not just broadcasters, now shape global cultural flows (viral trends, influencer culture)</td></tr>
-</tbody></table></div>
-
-<h2>Digital Culture &amp; the Filipino Internet Presence</h2>
-<p>The Philippines is consistently ranked among the world's heaviest social media-using populations by time spent online. This creates a genuinely two-way cultural flow: Filipino content, memes, and trends increasingly influence global online culture, not just the reverse — a meaningful shift from earlier eras where cultural flow was overwhelmingly one-directional (developed world to developing world).</p>
-
-<h2>Language &amp; Globalization</h2>
-<div class="tw"><table>
-<thead><tr><th>Trend</th><th>Detail</th></tr></thead>
-<tbody>
-<tr><td>English as global lingua franca</td><td>Dominant language of international business, science, aviation, and the internet — a direct legacy of British and American global influence historically</td></tr>
-<tr><td>Language endangerment</td><td>UNESCO estimates a significant share of the world's roughly 7,000 languages are at risk of disappearing this century, partly due to globalization pressure favoring dominant languages</td></tr>
-<tr><td>Digital code-switching</td><td>Taglish (Tagalog-English mixing) itself is a everyday linguistic product of globalization — reflecting the Philippines' colonial history and ongoing global integration simultaneously</td></tr>
-</tbody></table></div>
-
-<div class="box purple"><div class="bico">💭</div><div class="bbd"><div class="btt">Common Reflection Essay Prompt</div>
-<p class="btx">"Is globalization erasing Filipino culture, or strengthening it?" Strong answers avoid a simple yes/no — they apply glocalization directly: Filipino culture is simultaneously ABSORBING global influences (K-pop, US media, global fast food) AND actively EXPORTING itself globally (OFW diaspora spreading Filipino food/language worldwide, OPM gaining international streaming traction). Both directions are happening at once.</p></div></div>
+<div class="box purple"><div class="bico">📝</div><div class="bbd"><div class="btt">Reflection Paper Prep — Questions to Actually Answer</div>
+<p class="btx">Strong reflection papers on this topic engage directly with: (1) how the pandemic personally or locally affected you and your community, (2) what specifically worked or failed in the Philippine response compared to other countries covered above, and (3) what a better-prepared Philippines or world would concretely look like heading into a future pandemic. Generic "COVID was hard for everyone" reflections score lower than ones grounded in specific comparisons like the table above.</p></div></div>
 </section>
-<!-- CHAPTER 07: ENVIRONMENT & SUSTAINABILITY -->
-<section class="chapter" id="ch7">
-<div class="cn">CHAPTER 07</div><div class="ct">Global Environment &amp; Sustainability</div>
-<p class="ci">Climate change and environmental degradation are the clearest example of a truly borderless problem — no single country can solve them alone, regardless of how much sovereignty it holds. This chapter covers the global framework built to address this, and its genuinely uneven current progress.</p>
+
+<div class="exammarker"><div class="em-ico">📝</div><div><div class="em-t">FINAL EXAMINATION — WEEK 18</div><div class="em-d">Covers Chapters 05–08 (final-term scope), though comprehensive finals may draw on the whole course.</div></div></div>
+
+<!-- CHAPTER 09: ENVIRONMENT & CITIZENSHIP (ENRICHMENT) -->
+<section class="chapter" id="ch9">
+<div class="wktag">ENRICHMENT — NOT ON OFFICIAL OBTL</div>
+<div class="cn">CHAPTER 09</div><div class="ct">Environment, Sustainability &amp; Global Citizenship — Supplementary</div>
+<p class="ci">This chapter does not correspond to a specific week on your official syllabus. It's kept here as general GE enrichment, since environment/sustainability and global-citizenship themes are common in other sections of this course and can still surface in a comprehensive final essay tying the whole semester together. Treat everything below as lower priority than Chapters 00–08 unless your professor explicitly assigns it.</p>
 
 <h2>The Sustainable Development Goals (SDGs)</h2>
 <p>Adopted by all 193 UN member states in 2015 as the <strong>2030 Agenda for Sustainable Development</strong> — 17 interconnected goals covering poverty, health, education, equality, climate, and governance, meant to be achieved by 2030.</p>
-
 <div class="sdggrid">
 <div class="sdgcard"><div class="sdgnum">1</div><div class="sdgtxt">No Poverty</div></div>
 <div class="sdgcard"><div class="sdgnum">2</div><div class="sdgtxt">Zero Hunger</div></div>
@@ -469,86 +673,46 @@ li strong{color:var(--t1)}
 <div class="sdgcard"><div class="sdgnum">16</div><div class="sdgtxt">Peace, Justice, Strong Institutions</div></div>
 <div class="sdgcard"><div class="sdgnum">17</div><div class="sdgtxt">Partnerships for the Goals</div></div>
 </div>
-
 <div class="box red"><div class="bico">📌</div><div class="bbd"><div class="btt">Current 2026 Status — Genuinely Off Track</div>
-<p class="btx">As of the 2026 Sustainable Development Report, <strong>none of the 17 SDGs are on track to be achieved by the 2030 deadline</strong>. Roughly 16% of specific targets are progressing well, while another 16% are actively worsening. SDG 11 (Sustainable Cities), 14 (Life Below Water), 15 (Life on Land), and 16 (Peace, Justice, Institutions) are flagged as particularly off-track globally. This is a genuinely current, citable statistic — far more accurate than assuming steady linear progress toward 2030.</p></div></div>
-
-<h2>Who's Leading, Who's Lagging</h2>
-<div class="tw"><table>
-<thead><tr><th>Finding</th><th>Detail</th></tr></thead>
-<tbody>
-<tr><td>Top performers</td><td>Nordic countries dominate — Finland, Sweden, and Denmark rank highest globally on the 2026 SDG Index, with 19 of the top 20 countries being European</td></tr>
-<tr><td>Fastest-improving region</td><td>East and South Asia have shown the strongest SDG progress of any region since 2015, with India and China posting major rank improvements</td></tr>
-<tr><td>Biggest barrier cited</td><td>Limited financing — the annual investment gap for developing countries to meet SDG targets has grown to trillions of dollars short of what's needed</td></tr>
-</tbody></table></div>
+<p class="btx">As of the 2026 Sustainable Development Report, <strong>none of the 17 SDGs are on track to be achieved by the 2030 deadline</strong>. Roughly 16% of specific targets are progressing well, while another 16% are actively worsening. SDG 11 (Sustainable Cities), 14 (Life Below Water), 15 (Life on Land), and 16 (Peace, Justice, Institutions) are flagged as particularly off-track globally.</p></div></div>
 
 <h2>Climate Change as a Global Governance Problem</h2>
-<p>Climate change is the textbook example of a <strong>collective action problem</strong>: every country benefits from a stable climate, but any single country reducing emissions alone bears real economic costs while other countries "free-ride" on the benefit. This structural tension explains why international climate agreements are notoriously difficult to negotiate and enforce.</p>
-
+<p>Climate change is the textbook example of a <strong>collective action problem</strong>: every country benefits from a stable climate, but any single country reducing emissions alone bears real economic costs while other countries "free-ride" on the benefit.</p>
 <div class="tw"><table>
 <thead><tr><th>Agreement</th><th>Year</th><th>Key Feature</th></tr></thead>
 <tbody>
 <tr><td>Kyoto Protocol</td><td>1997</td><td>First binding emissions targets, but only for developed countries — the US never ratified it</td></tr>
-<tr><td>Paris Agreement</td><td>2015</td><td>Nearly universal participation; each country sets its OWN voluntary emissions targets ("Nationally Determined Contributions") rather than binding external targets — a deliberate design compromise to secure broader participation, at the cost of weaker enforcement</td></tr>
+<tr><td>Paris Agreement</td><td>2015</td><td>Nearly universal participation; each country sets its OWN voluntary emissions targets ("Nationally Determined Contributions") rather than binding external targets</td></tr>
 </tbody></table></div>
 
 <h2>The Philippines &amp; Climate Vulnerability</h2>
-<p>The Philippines is consistently ranked among the world's most disaster-vulnerable countries — facing an average of 20+ tropical cyclones annually, alongside earthquakes, volcanic activity, and rising sea levels threatening its thousands of islands. This makes the Philippines a frequently cited example of <strong>climate injustice</strong>: the country contributes a very small share of global greenhouse gas emissions historically, yet bears disproportionately severe consequences from a problem largely caused by heavily industrialized nations.</p>
-
-<div class="box amber"><div class="bico">📌</div><div class="bbd"><div class="btt">Exam-Critical Concept — Climate Justice</div>
-<p class="btx">"Climate justice" argues that developed nations, which industrialized earlier and emitted the most historical greenhouse gases, bear greater responsibility for funding climate adaptation and mitigation in vulnerable developing nations like the Philippines — a frequently debated principle in international climate negotiations and a strong topic for position papers in this course.</p></div></div>
-</section>
-<!-- CHAPTER 08: INEQUALITY, CITIZENSHIP & THE PHILIPPINES -->
-<section class="chapter" id="ch8">
-<div class="cn">CHAPTER 08</div><div class="ct">Global Inequality, Citizenship &amp; the Philippines in Context</div>
-<p class="ci">This closing chapter ties every previous chapter together: does globalization reduce inequality between and within countries, or worsen it? And once you understand these global systems, what does it actually mean to act as a responsible "global citizen"? This is the chapter most likely to appear as a comprehensive final essay prompt.</p>
-
-<h2>Two Kinds of Global Inequality</h2>
-<div class="tw"><table>
-<thead><tr><th>Type</th><th>Definition</th><th>Trend</th></tr></thead>
-<tbody>
-<tr><td>Inequality BETWEEN countries</td><td>Gaps in average wealth/income comparing entire nations against each other</td><td>Has generally NARROWED in recent decades — largely due to rapid growth in China, India, and other emerging economies</td></tr>
-<tr><td>Inequality WITHIN countries</td><td>Gaps between rich and poor citizens inside the same nation</td><td>Has WIDENED in many countries, including highly globalized economies, where gains from trade and technology often concentrate among already-wealthy groups</td></tr>
-</tbody></table></div>
-<div class="box amber"><div class="bico">📌</div><div class="bbd"><div class="btt">The Key Insight Professors Look For</div>
-<p class="btx">A country can look more "globally equal" on average (between-country gap narrowing) while its OWN citizens experience worsening inequality (within-country gap widening) at the same time. Both things are simultaneously true — this apparent contradiction is a favorite exam and discussion topic precisely because it resists a simple answer.</p></div></div>
-
-<h2>Conflict &amp; Globalization</h2>
-<p>Globalization doesn't eliminate conflict — it changes its shape. Modern conflicts increasingly involve: cyberattacks crossing borders instantly, economic sanctions as a substitute for military action, competition over globally-traded resources, and non-state actors (terrorist networks, criminal organizations) that exploit the same global mobility and communication tools that enable legitimate trade and travel.</p>
+<p>The Philippines is consistently ranked among the world's most disaster-vulnerable countries — facing an average of 20+ tropical cyclones annually, alongside earthquakes, volcanic activity, and rising sea levels. This makes the Philippines a frequently cited example of <strong>climate injustice</strong>: the country contributes a very small share of global greenhouse gas emissions historically, yet bears disproportionately severe consequences.</p>
 
 <h2>Global Citizenship</h2>
 <p><strong>Global citizenship</strong> is the idea that, beyond national identity, individuals hold responsibilities toward the wider world — human rights, environmental stewardship, and solidarity with people in other countries — even without any formal global government to enforce these obligations.</p>
-<div class="tw"><table>
-<thead><tr><th>Dimension</th><th>What It Looks Like in Practice</th></tr></thead>
-<tbody>
-<tr><td>Awareness</td><td>Understanding how local choices connect to global systems (e.g. consumer choices affecting global supply chains)</td></tr>
-<tr><td>Responsibility</td><td>Recognizing ethical obligations that extend beyond one's own national borders</td></tr>
-<tr><td>Participation</td><td>Engaging with global issues through advocacy, informed voting, or direct civic action</td></tr>
-</tbody></table></div>
 
 <h2>Synthesis — The Philippines Across Every Chapter</h2>
-<p>Pull the threads together: the Philippines is deeply enmeshed in EVERY dimension of globalization covered in this guide — economically through BPO and 2+ million OFWs (Ch. 03, 05), politically as an ASEAN member navigating great-power tensions (Ch. 03, 04), culturally through both absorbing and exporting media (Ch. 06), environmentally as one of the world's most climate-vulnerable nations despite minimal historical emissions (Ch. 07), and demographically as one of the largest sources of global labor migration on Earth (Ch. 05).</p>
-
 <div class="tw"><table>
 <thead><tr><th>Chapter</th><th>Philippine Connection</th></tr></thead>
 <tbody>
-<tr><td>01 — Globalization Theory</td><td>OFW example touches all five dimensions simultaneously</td></tr>
-<tr><td>02 — History</td><td>Spanish colonization (1521) as an early globalization wave; also connects directly to your RIZAL course</td></tr>
-<tr><td>03 — Global Economy</td><td>BPO industry, ASEAN membership, vulnerability to US tariff/remittance-tax policy</td></tr>
-<tr><td>04 — Global Governance</td><td>UN member state; navigates sovereignty tensions amid great-power competition in the region</td></tr>
-<tr><td>05 — Demography</td><td>World's 4th-largest remittance recipient; massive labor migration economy</td></tr>
-<tr><td>06 — Culture</td><td>Jollibee, McSpaghetti, OPM — textbook glocalization case studies</td></tr>
-<tr><td>07 — Environment</td><td>Among the world's most climate-disaster-vulnerable nations; central climate justice example</td></tr>
+<tr><td>01 — Globalization &amp; Metaphors</td><td>OFW example touches all five dimensions simultaneously</td></tr>
+<tr><td>02 — Structure, Economy &amp; 4IR</td><td>BPO industry as both a globalization success story and a 4IR automation risk</td></tr>
+<tr><td>03 — Facilitators &amp; Theories</td><td>Live economic-globalization-vs-nationalism debate around the 2026 remittance tax</td></tr>
+<tr><td>04 — Interstate System &amp; Governance</td><td>UN member state; navigates sovereignty tensions amid great-power competition in the region</td></tr>
+<tr><td>05 — North-South, Inequality &amp; ASEAN</td><td>Founding ASEAN member; internal North-South-style development gaps within the bloc</td></tr>
+<tr><td>06 — Media &amp; Globalization</td><td>Jollibee, McSpaghetti, OPM — textbook glocalization case studies</td></tr>
+<tr><td>07 — Population, Migration &amp; Cities</td><td>World's 4th-largest remittance recipient; massive labor migration economy</td></tr>
+<tr><td>08 — COVID-19</td><td>Among the world's longest lockdowns; direct precursor to today's Online Delivery of Instruction</td></tr>
 </tbody></table></div>
 
 <div class="box blue"><div class="bico">🎓</div><div class="bbd"><div class="btt">The Question This Whole Course Builds Toward</div>
-<p class="btx">Nearly every final exam or capstone essay in this course asks some version of: <em>"Is globalization good or bad for the Philippines?"</em> The strongest answers reject the binary. Globalization has brought the Philippines real economic lifelines (remittances, BPO jobs) while also exposing it to real vulnerabilities (climate injustice, dependency on volatile foreign policy decisions like the 2026 remittance tax, brain drain). A synthesis answer — weighing BOTH the benefits and the costs with specific, current evidence from this guide — will consistently outperform a one-sided answer.</p></div></div>
+<p class="btx">Nearly every final exam or capstone essay in this course asks some version of: <em>"Is globalization good or bad for the Philippines?"</em> The strongest answers reject the binary. Globalization has brought the Philippines real economic lifelines (remittances, BPO jobs) while also exposing it to real vulnerabilities (climate injustice, dependency on volatile foreign policy decisions, brain drain, pandemic shocks). A synthesis answer — weighing BOTH the benefits and the costs with specific, current evidence from this guide — will consistently outperform a one-sided answer.</p></div></div>
 </section>
 
 <div class="footer">
 <p><strong>SOCSCI 3 — The Contemporary World</strong> · Complete Study Guide<br>
 QCU Academic OS · Compiled by KianoRoku18Ino · github.com/KianoRoku18Ino · AY 2026–2027<br>
-QCU Academic OS v4.1 · Semester Zero Advance Prep Material · Current data grounded as of mid-2026</p>
+QCU Academic OS v4.3 · Restructured to follow the official Week 1–18 OBTL Plan · Current data grounded as of mid-2026</p>
 </div>
 
 </main>

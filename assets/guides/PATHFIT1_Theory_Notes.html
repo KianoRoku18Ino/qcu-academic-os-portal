@@ -48,10 +48,10 @@ p strong{color:var(--t1);font-weight:600}
 .green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
 .red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}.red .btt{color:var(--red)}
 .tw{overflow-x:auto;margin:13px 0}
-table{width:100%;border-collapse:collapse;font-size:13px}
-thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:9px 12px;text-align:left;border-bottom:2px solid var(--green);font-size:11.5px}
+table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:9px 12px;text-align:left;border-bottom:2px solid var(--green);font-size:11.5px;overflow-wrap:break-word;word-break:break-word}
 tbody tr{border-bottom:1px solid var(--bdr)}
-tbody td{padding:8px 12px;color:var(--t2);vertical-align:top}
+tbody td{padding:8px 12px;color:var(--t2);vertical-align:top;overflow-wrap:break-word;word-break:break-word}
 tbody td:first-child{color:var(--t1);font-weight:500}
 .tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:10.5px;font-weight:600;font-family:'JetBrains Mono',monospace}
 .tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}
@@ -71,6 +71,14 @@ li strong{color:var(--t1)}
 .fdesc{font-size:10.8px;color:var(--t2);line-height:1.5}
 
 @media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:24px 18px}.fgrid{grid-template-columns:repeat(2,1fr)}}
+
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+table{font-size:11.5px}
+pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
+}
 </style></head><body>
 <nav class="sidebar">
 <div class="sbh"><div class="sbb">PATHFIT 1 · QCU BSIT</div><div class="sbt">Theory Notes</div><div class="sbs">Written-Exam Content Only</div></div>

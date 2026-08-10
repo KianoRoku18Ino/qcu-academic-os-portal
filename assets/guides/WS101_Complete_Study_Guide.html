@@ -50,11 +50,11 @@ p strong{color:var(--t1);font-weight:600}
 .green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
 .red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}.red .btt{color:var(--red)}
 .tw{overflow-x:auto;margin:14px 0}
-table{width:100%;border-collapse:collapse;font-size:13px}
-thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--blue);font-size:12px}
+table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--blue);font-size:12px;overflow-wrap:break-word;word-break:break-word}
 tbody tr{border-bottom:1px solid var(--bdr)}
 tbody tr:hover{background:rgba(59,130,246,.04)}
-tbody td{padding:9px 13px;color:var(--t2);vertical-align:top}
+tbody td{padding:9px 13px;color:var(--t2);vertical-align:top;overflow-wrap:break-word;word-break:break-word}
 tbody td:first-child{color:var(--t1);font-weight:500}
 .tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
 .tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}
@@ -105,6 +105,14 @@ li strong{color:var(--t1)}
 .sw-label b{display:block;color:var(--t1);font-size:11.5px;margin-bottom:1px}
 
 @media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}}
+
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+table{font-size:11.5px}
+pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
+}
 </style></head><body>
 <nav class="sidebar">
 <div class="sbh"><div class="sbb">WS 101 · QCU BSIT</div><div class="sbt">Web Systems &amp; Technologies 1</div><div class="sbs">Complete Study Guide · AY 2026–2027</div></div>
@@ -247,6 +255,14 @@ article{background:#A7F3D0;padding:10px;border-radius:5px;margin-top:8px}
 aside{background:#FEF3C7;padding:12px;border-radius:6px;flex:1}
 footer{background:#1E293B;color:#fff;padding:12px;text-align:center}
 .tag{font-family:monospace;font-weight:bold;color:#1D4ED8;display:block;margin-bottom:4px}
+
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+table{font-size:11.5px}
+pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
+}
 </style></head><body>
 <header><span class="tag">&lt;header&gt;</span>QCU Site Logo + Title</header>
 <nav><span class="tag">&lt;nav&gt;</span>Home | About | Courses | Contact</nav>
@@ -304,6 +320,14 @@ h2{font-size:17px;margin:10px 0 4px;color:#1E293B}
 h3{font-size:14px;margin:8px 0 4px;color:#334155}
 p{margin:4px 0;line-height:1.5}
 blockquote{border-left:3px solid #3B82F6;margin:8px 0;padding:4px 12px;color:#475569;font-style:italic;background:#F1F5F9}
+
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+table{font-size:11.5px}
+pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
+}
 </style></head><body>
 <h1>Main Title</h1>
 <h2>Section Title</h2>
@@ -366,6 +390,14 @@ ul,ol{margin:0 0 6px 18px;padding:0}
 dl{margin:0}
 dt{font-weight:bold}
 dd{margin:0 0 6px 14px;color:#475569}
+
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+table{font-size:11.5px}
+pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
+}
 </style></head><body>
 <h3>Unordered</h3>
 <ul><li>HTML</li><li>CSS</li></ul>
@@ -414,6 +446,14 @@ body{font-family:Arial,sans-serif;color:#1E293B;padding:14px;font-size:13px;text
 figure{margin:0}
 figcaption{font-size:11.5px;color:#64748B;margin-top:6px;font-style:italic}
 img{border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+table{font-size:11.5px}
+pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
+}
 </style></head><body>
 <figure>
 <img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27130%27%3E%3Crect width=%27300%27 height=%27130%27 fill=%27%2393C5FD%27/%3E%3Ccircle cx=%27240%27 cy=%2735%27 r=%2218%27 fill=%27%23FCD34D%27/%3E%3Cpath d=%27M0 110 L70 60 L140 95 L210 55 L300 100 L300 130 L0 130 Z%27 fill=%27%231D4ED8%27/%3E%3C/svg%3E" alt="Mountains at sunrise" width="260">
@@ -472,6 +512,14 @@ table{border-collapse:collapse;width:100%}
 th{background:#1D4ED8;color:#fff;padding:8px 10px;text-align:left;font-size:12.5px}
 td{padding:8px 10px;border-bottom:1px solid #E2E8F0;color:#334155}
 tr:nth-child(even){background:#F1F5F9}
+
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+table{font-size:11.5px}
+pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
+}
 </style></head><body>
 <table>
 <thead><tr><th>Subject</th><th>Units</th></tr></thead>
@@ -539,6 +587,14 @@ input[type=text],input[type=email],select{padding:8px;border:1px solid #CBD5E1;b
 .chk{display:flex;align-items:center;gap:6px;font-weight:normal;font-size:12.5px}
 button{background:#3B82F6;color:#fff;border:none;padding:10px;border-radius:6px;font-weight:bold;font-size:13px;cursor:pointer;margin-top:4px}
 button:hover{background:#1D4ED8}
+
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+table{font-size:11.5px}
+pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
+}
 </style></head><body>
 <form onsubmit="return false">
 <label for="nm">Name</label>
@@ -631,7 +687,15 @@ button:hover{background:#1D4ED8}
 &amp;nbsp;  &amp;quot;</pre></div>
 <div class="livedemo">
 <div class="ld-head"><div class="ld-dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="ld-label">live preview</div></div>
-<iframe class="ld-frame" height="120" srcdoc='<!DOCTYPE html><html><head><style>body{font-family:Arial,sans-serif;padding:16px;font-size:22px;color:#1E293B;display:flex;gap:18px}span{display:flex;flex-direction:column;align-items:center;font-size:13px;color:#64748B}b{font-size:24px;color:#1E293B}</style></head><body>
+<iframe class="ld-frame" height="120" srcdoc='<!DOCTYPE html><html><head><style>body{font-family:Arial,sans-serif;padding:16px;font-size:22px;color:#1E293B;display:flex;gap:18px}span{display:flex;flex-direction:column;align-items:center;font-size:13px;color:#64748B}b{font-size:24px;color:#1E293B}
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+table{font-size:11.5px}
+pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
+}
+</style></head><body>
 <span><b>&lt;</b>less than</span>
 <span><b>&amp;</b>ampersand</span>
 <span><b>&copy;</b>copyright</span>
@@ -770,6 +834,14 @@ p{color:gray}
 .note{color:orange}
 #alert{color:red;font-weight:bold}
 small{display:block;margin-top:10px;color:#64748B;font-size:11px}
+
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+table{font-size:11.5px}
+pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
+}
 </style></head><body>
 <p id="alert" class="note">Which color wins?</p>
 <small>ID beats class beats element. Red wins (highest specificity).</small>
@@ -845,6 +917,14 @@ body{font-family:Arial,sans-serif;padding:16px;font-size:12.5px;color:#1E293B}
 .block-box{display:block;background:#93C5FD;padding:6px;margin:2px 0;border-radius:4px}
 .inline-box{display:inline;background:#86EFAC;padding:6px;border-radius:4px}
 .iblock-box{display:inline-block;background:#FCA5A5;padding:6px;margin:2px;border-radius:4px;width:80px;text-align:center}
+
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+table{font-size:11.5px}
+pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
+}
 </style></head><body>
 <div class="lbl">display: block (own line, full width)</div>
 <div class="block-box">Box A</div><div class="block-box">Box B</div>
@@ -874,6 +954,14 @@ body{font-family:Arial,sans-serif;padding:18px;font-size:12.5px}
 .parent{position:relative;background:#E2E8F0;height:110px;border-radius:6px;padding:10px}
 .badge{position:absolute;top:8px;right:8px;background:#EF4444;color:#fff;padding:4px 9px;border-radius:12px;font-size:11px;font-weight:bold}
 .label{color:#475569}
+
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+table{font-size:11.5px}
+pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
+}
 </style></head><body>
 <div class="parent">
 <span class="label">position: relative (parent container)</span>
@@ -914,6 +1002,14 @@ p{margin:8px 0}
 .sans{font-family:Arial,sans-serif}
 .mono{font-family:"Courier New",monospace}
 small{color:#94A3B8;font-size:11px;font-family:Arial}
+
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+table{font-size:11.5px}
+pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
+}
 </style></head><body>
 <p class="serif">Serif: The quick brown fox <small>(Georgia)</small></p>
 <p class="sans">Sans-serif: The quick brown fox <small>(Arial)</small></p>
@@ -959,6 +1055,14 @@ body{margin:0;display:flex;gap:10px;padding:14px;font-family:Arial}
 .g1{background:linear-gradient(135deg,#3B82F6,#8B5CF6)}
 .g2{background:linear-gradient(to right,#10B981,#F59E0B)}
 .g3{background:radial-gradient(circle,#F59E0B,#EF4444)}
+
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+table{font-size:11.5px}
+pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
+}
 </style></head><body>
 <div class="g g1">linear-gradient 135deg</div>
 <div class="g g2">linear-gradient →</div>
@@ -998,6 +1102,14 @@ body{font-family:Arial,sans-serif;padding:14px;font-size:11px}
 .row{display:flex;flex-direction:row;gap:6px;margin-bottom:14px}
 .col{display:flex;flex-direction:column;gap:6px;width:90px}
 .box{background:#3B82F6;color:#fff;padding:10px;border-radius:5px;text-align:center;font-weight:bold}
+
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+table{font-size:11.5px}
+pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
+}
 </style></head><body>
 <div class="lbl">flex-direction: row (default)</div>
 <div class="row"><div class="box">1</div><div class="box">2</div><div class="box">3</div></div>
@@ -1020,6 +1132,14 @@ body{font-family:Arial,sans-serif;padding:12px;font-size:10.5px}
 .jfe{justify-content:flex-end}
 .jsb{justify-content:space-between}
 .jsa{justify-content:space-around}
+
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+table{font-size:11.5px}
+pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
+}
 </style></head><body>
 <div class="lbl">flex-start (default)</div><div class="row jfs"><div class="box">1</div><div class="box">2</div><div class="box">3</div></div>
 <div class="lbl">center</div><div class="row jc"><div class="box">1</div><div class="box">2</div><div class="box">3</div></div>
@@ -1043,6 +1163,14 @@ body{font-family:Arial,sans-serif;padding:12px;font-size:10.5px}
 .afe{align-items:flex-end}
 .ast{align-items:stretch}
 .ast .box{padding-top:7px;padding-bottom:7px}
+
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+table{font-size:11.5px}
+pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
+}
 </style></head><body>
 <div class="lbl">flex-start</div><div class="row afs"><div class="box">A</div><div class="box">Tall B</div></div>
 <div class="lbl">center</div><div class="row ac"><div class="box">A</div><div class="box">Tall B</div></div>
@@ -1060,6 +1188,14 @@ body{font-family:Arial,sans-serif;padding:14px;font-size:11px}
 .lbl{font-family:monospace;font-weight:bold;color:#64748B;margin:6px 0 4px}
 .row{display:flex;flex-wrap:wrap;gap:6px;width:220px;background:#F1F5F9;padding:6px;border-radius:5px}
 .box{background:#F59E0B;color:#fff;padding:10px 14px;border-radius:4px;font-weight:bold}
+
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+table{font-size:11.5px}
+pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
+}
 </style></head><body>
 <div class="lbl">flex-wrap: wrap (220px container, 6 boxes)</div>
 <div class="row"><div class="box">1</div><div class="box">2</div><div class="box">3</div><div class="box">4</div><div class="box">5</div><div class="box">6</div></div>
@@ -1108,6 +1244,14 @@ body{font-family:Arial,sans-serif;padding:16px}
 .cell:nth-child(2){background:#8B5CF6}
 .cell:nth-child(3){background:#F59E0B}
 .cell:nth-child(5){background:#10B981}
+
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+table{font-size:11.5px}
+pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
+}
 </style></head><body>
 <div class="gallery">
 <div class="cell">1</div><div class="cell">2</div><div class="cell">3</div>
@@ -1131,6 +1275,14 @@ body{font-family:Arial,sans-serif;padding:16px}
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .cell{background:#94A3B8;color:#fff;padding:18px 0;text-align:center;border-radius:6px;font-weight:bold;font-size:11px}
 .featured{grid-column:span 2;background:#EF4444;padding:18px 0}
+
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+table{font-size:11.5px}
+pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
+}
 </style></head><body>
 <div class="gallery">
 <div class="cell featured">Featured (span 2)</div><div class="cell">3</div>
@@ -1291,7 +1443,15 @@ document.write(
 &lt;/script&gt;</pre></div>
 <div class="livedemo">
 <div class="ld-head"><div class="ld-dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="ld-label">live preview</div></div>
-<iframe class="ld-frame" height="80" srcdoc='<!DOCTYPE html><html><head><style>body{font-family:Arial,sans-serif;padding:16px;font-size:14px;color:#1E293B}</style></head><body><script>
+<iframe class="ld-frame" height="80" srcdoc='<!DOCTYPE html><html><head><style>body{font-family:Arial,sans-serif;padding:16px;font-size:14px;color:#1E293B}
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+table{font-size:11.5px}
+pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
+}
+</style></head><body><script>
 var schoolName = "QCU";
 var unitsText = "3";
 var units = parseInt(unitsText);
@@ -1328,7 +1488,15 @@ document.write(strBoth);
 &lt;/script&gt;</pre></div>
 <div class="livedemo">
 <div class="ld-head"><div class="ld-dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="ld-label">live preview</div></div>
-<iframe class="ld-frame" height="60" srcdoc='<!DOCTYPE html><html><head><style>body{font-family:Arial,sans-serif;padding:16px;font-size:14px;color:#1E293B}</style></head><body><script>
+<iframe class="ld-frame" height="60" srcdoc='<!DOCTYPE html><html><head><style>body{font-family:Arial,sans-serif;padding:16px;font-size:14px;color:#1E293B}
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+table{font-size:11.5px}
+pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
+}
+</style></head><body><script>
 var strTest1 = "Welcome to QCU.";
 var strTest2 = "Enjoy your stay.";
 var strBoth = strTest1 + " " + strTest2;
@@ -1373,7 +1541,15 @@ score[3] = 49;
 var score2 = [39, 40, 100, 49];</pre></div>
 <div class="livedemo">
 <div class="ld-head"><div class="ld-dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="ld-label">live preview</div></div>
-<iframe class="ld-frame" height="70" srcdoc='<!DOCTYPE html><html><head><style>body{font-family:Arial,sans-serif;padding:16px;font-size:13px;color:#1E293B}</style></head><body><script>
+<iframe class="ld-frame" height="70" srcdoc='<!DOCTYPE html><html><head><style>body{font-family:Arial,sans-serif;padding:16px;font-size:13px;color:#1E293B}
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+table{font-size:11.5px}
+pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
+}
+</style></head><body><script>
 var score = new Array();
 score[0]=39; score[1]=40; score[2]=100; score[3]=49;
 var total=0;
@@ -1428,7 +1604,15 @@ if (grade &gt;= 75) {
 &lt;/script&gt;</pre></div>
 <div class="livedemo">
 <div class="ld-head"><div class="ld-dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="ld-label">live preview</div></div>
-<iframe class="ld-frame" height="60" srcdoc='<!DOCTYPE html><html><head><style>body{font-family:Arial,sans-serif;padding:16px;font-size:14px;color:#1E293B}</style></head><body><script>
+<iframe class="ld-frame" height="60" srcdoc='<!DOCTYPE html><html><head><style>body{font-family:Arial,sans-serif;padding:16px;font-size:14px;color:#1E293B}
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+table{font-size:11.5px}
+pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
+}
+</style></head><body><script>
 var grade = 78;
 if (grade >= 75) { document.write("Result: PASSED (" + grade + ")"); }
 else { document.write("Result: FAILED (" + grade + ")"); }
@@ -1465,7 +1649,15 @@ do {
 } while (total &lt; 10);</pre></div>
 <div class="livedemo">
 <div class="ld-head"><div class="ld-dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="ld-label">live preview — for loop</div></div>
-<iframe class="ld-frame" height="130" srcdoc='<!DOCTYPE html><html><head><style>body{font-family:Arial,sans-serif;padding:16px;font-size:13px;color:#1E293B}</style></head><body><script>
+<iframe class="ld-frame" height="130" srcdoc='<!DOCTYPE html><html><head><style>body{font-family:Arial,sans-serif;padding:16px;font-size:13px;color:#1E293B}
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+table{font-size:11.5px}
+pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
+}
+</style></head><body><script>
 for (var i=0;i<5;i++){ document.write("Subject " + i + "<br>"); }
 </script></body></html>'></iframe>
 </div>
@@ -1584,7 +1776,15 @@ var res = str.match(/ain/g);
 &lt;/button&gt;</pre></div>
 <div class="livedemo">
 <div class="ld-head"><div class="ld-dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div><div class="ld-label">live preview — tappable</div></div>
-<iframe class="ld-frame" height="100" srcdoc='<!DOCTYPE html><html><head><style>body{font-family:Arial,sans-serif;padding:16px;font-size:13px;color:#1E293B}button{background:#3B82F6;color:#fff;border:none;padding:8px 14px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:13px}p{margin-top:10px;color:#334155}</style></head><body>
+<iframe class="ld-frame" height="100" srcdoc='<!DOCTYPE html><html><head><style>body{font-family:Arial,sans-serif;padding:16px;font-size:13px;color:#1E293B}button{background:#3B82F6;color:#fff;border:none;padding:8px 14px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:13px}p{margin-top:10px;color:#334155}
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+table{font-size:11.5px}
+pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
+}
+</style></head><body>
 <button onclick="document.getElementById(&quot;t&quot;).innerHTML = new Date().toLocaleString();">Check Time</button>
 <p id="t"></p>
 </body></html>'></iframe>

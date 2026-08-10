@@ -51,11 +51,11 @@ p strong{color:var(--t1);font-weight:600}
 .green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
 .red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}.red .btt{color:var(--red)}
 .tw{overflow-x:auto;margin:14px 0}
-table{width:100%;border-collapse:collapse;font-size:13px}
-thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--blue);font-size:12px}
+table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--blue);font-size:12px;overflow-wrap:break-word;word-break:break-word}
 tbody tr{border-bottom:1px solid var(--bdr)}
 tbody tr:hover{background:rgba(59,130,246,.04)}
-tbody td{padding:9px 13px;color:var(--t2);vertical-align:top}
+tbody td{padding:9px 13px;color:var(--t2);vertical-align:top;overflow-wrap:break-word;word-break:break-word}
 tbody td:first-child{color:var(--t1);font-weight:500}
 .tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
 .tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}
@@ -111,10 +111,10 @@ pre{padding:16px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-siz
 .idc{font-size:12.5px;color:var(--t2);line-height:1.7}
 .ieg{font-size:11.5px;color:var(--green);margin-top:6px}
 .mlst{margin:11px 0}
-.mitem{display:flex;gap:11px;padding:10px 0;border-bottom:1px solid var(--bdr);align-items:flex-start}
+.mitem{display:grid;grid-template-columns:110px 1fr;gap:11px;padding:10px 0;border-bottom:1px solid var(--bdr);align-items:start}
 .mitem:last-child{border-bottom:none}
-.mnm{font-weight:700;color:var(--red);min-width:110px;font-size:13px}
-.mdc{font-size:13px;color:var(--t2);line-height:1.65}
+.mnm{font-weight:700;color:var(--red);font-size:13px;min-width:0;overflow-wrap:break-word}
+.mdc{font-size:13px;color:var(--t2);line-height:1.65;min-width:0;max-width:100%;overflow-wrap:break-word}
 .tree{font-family:'JetBrains Mono',monospace;font-size:12.5px;background:var(--bgcode);border:1px solid var(--bdr);border-radius:8px;padding:15px 19px;color:var(--t2);line-height:2;margin:12px 0;overflow-x:auto;white-space:pre}
 .law{background:var(--bgc);border:1px solid var(--bdr);border-left:4px solid var(--red);border-radius:8px;padding:15px 17px;margin:11px 0}
 .lra{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--red);font-weight:700;margin-bottom:3px}
@@ -128,6 +128,14 @@ li strong{color:var(--t1)}
 .footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
 .footer strong{color:var(--blue)}
 @media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.gg,.pg,.isg{grid-template-columns:1fr}}
+
+@media print{
+.sidebar{display:none}
+.main{margin-left:0}
+.hero,.chapter{padding:28px 30px}
+table{font-size:11.5px}
+pre{white-space:pre-wrap;word-break:break-word;overflow-x:visible}
+}
 </style></head><body>
 <nav class="sidebar">
 <div class="sbh"><div class="sbb">CC 101 · QCU BSIT</div><div class="sbt">Introduction to Computing</div><div class="sbs">Complete Study Guide · AY 2026–2027</div></div>
