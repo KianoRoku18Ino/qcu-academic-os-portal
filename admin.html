@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>QCU Academic OS · Admin</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0B1426">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230B1426'/%3E%3Ctext x='50' y='66' font-size='54' font-family='monospace' font-weight='700' fill='%233B82F6' text-anchor='middle'%3E%7B%7D%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=3">
+</head>
+<body class="admin-body">
+
+<header class="topbar">
+  <a class="icon-btn" href="index.html" aria-label="Back to library" title="Back to library">←</a>
+  <div class="brand">
+    <span class="brand-mark">{ }</span>
+    <span class="brand-text">Admin</span>
+  </div>
+  <div class="topbar-spacer"></div>
+  <span class="admin-scope-note" id="scopeNote">Not connected</span>
+</header>
+
+<main class="admin-shell">
+
+  <!-- ============================================================
+       CONNECT — GitHub token, repo target. Nothing writes anywhere
+       until this succeeds. The token never leaves this browser
+       except in Authorization headers sent straight to api.github.com.
+       ============================================================ -->
+  <section class="admin-card" id="connectCard">
+    <h2 class="admin-card-title">Connect</h2>
+    <p class="admin-card-sub">
+      Publishing writes directly to your GitHub repo through the GitHub API — no server in between.
+      Use a <strong>fine-grained personal access token</strong> scoped to just this one repository,
+      with <strong>Contents: Read and write</strong> permission and a short expiry. Create one at
+      <a class="hint-link" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a>.
+      This page is public like the rest of the site — it's harmless to anyone without your token, since nothing writes without one.
+    </p>
+
+    <div class="admin-grid">
+      <label class="field">
+        <span>Repo owner</span>
+        <input type="text" id="ghOwner" value="KianoRoku18Ino" spellcheck="false" autocomplete="off">
+      </label>
+      <label class="field">
+        <span>Repo name</span>
+        <input type="text" id="ghRepo" value="qcu-academic-os-portal" spellcheck="false" autocomplete="off">
+      </label>
+      <label class="field">
+        <span>Branch</span>
+        <input type="text" id="ghBranch" value="main" spellcheck="false" autocomplete="off">
+      </label>
+      <label class="field">
+        <span>Personal access token</span>
+        <input type="password" id="ghToken" placeholder="github_pat_…" spellcheck="false" autocomplete="off">
+      </label>
+    </div>
+
+    <label class="checkbox-row">
+      <input type="checkbox" id="ghRemember">
+      <span>Remember this token on this device (localStorage). Leave unchecked to keep it session-only — cleared when this tab closes.</span>
+    </label>
+
+    <button class="save-btn" id="ghConnectBtn" type="button">Connect</button>
+    <div class="admin-status" id="connectStatus"></div>
+  </section>
+
+  <!-- ============================================================
+       PUBLISH — Year / Semester / Subject, then the HTML (paste or
+       upload) and an optional paired PDF. Hidden until connected.
+       ============================================================ -->
+  <section class="admin-card" id="publishCard" hidden>
+    <h2 class="admin-card-title">Publish a guide</h2>
+    <p class="admin-card-sub">
+      Folders aren't separate objects in git — one just appears the moment the first file lands in it.
+      Pick Year + Semester + Subject below and publishing creates
+      <code>assets/guides/year-{n}/sem-{n}/{subject-slug}/</code> automatically if it doesn't exist yet,
+      or updates the file in place if it does.
+    </p>
+
+    <div class="admin-grid">
+      <label class="field">
+        <span>Year</span>
+        <select id="pubYear">
+          <option value="1">Year 1</option>
+          <option value="2">Year 2</option>
+          <option value="3">Year 3</option>
+          <option value="4">Year 4</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>Semester</span>
+        <select id="pubSem">
+          <option value="1">Semester 1</option>
+          <option value="2">Semester 2</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>Subject code</span>
+        <input type="text" id="pubCode" placeholder="e.g. CC104" spellcheck="false" autocomplete="off">
+      </label>
+      <label class="field">
+        <span>Subject title</span>
+        <input type="text" id="pubTitle" placeholder="e.g. Data Structures and Algorithms" spellcheck="false" autocomplete="off">
+      </label>
+    </div>
+
+    <div class="admin-source-tabs">
+      <button class="tab-btn act" id="srcPasteTab" type="button" data-src="paste">Paste HTML</button>
+      <button class="tab-btn" id="srcUploadTab" type="button" data-src="upload">Upload HTML file</button>
+    </div>
+
+    <div id="srcPastePanel">
+      <label class="field">
+        <span>HTML content</span>
+        <textarea id="pubHtmlPaste" rows="8" spellcheck="false" placeholder="Paste the full study guide HTML here…"></textarea>
+      </label>
+    </div>
+    <div id="srcUploadPanel" hidden>
+      <label class="field">
+        <span>HTML file</span>
+        <input type="file" id="pubHtmlFile" accept=".html,text/html">
+      </label>
+    </div>
+
+    <label class="field">
+      <span>Paired PDF (optional)</span>
+      <input type="file" id="pubPdfFile" accept=".pdf,application/pdf">
+    </label>
+    <p class="hint">Works well for typical guide sizes. The GitHub Contents API this page uses caps out around 1&nbsp;MB per file — for anything larger, push it with git normally instead.</p>
+
+    <label class="field">
+      <span>Commit message</span>
+      <input type="text" id="pubMessage" placeholder="Publish CC104 (Year 2 Sem 1)" spellcheck="false" autocomplete="off">
+    </label>
+
+    <button class="save-btn" id="pubPublishBtn" type="button">Publish</button>
+    <div class="admin-status" id="publishStatus"></div>
+    <div class="admin-result" id="publishResult" hidden></div>
+  </section>
+
+  <!-- ============================================================
+       LIBRARY — read-only tree of what's already published, with
+       a direct per-guide URL (the one to feed into Gizmo's Website
+       Link import — it resolves to just that file, not the portal
+       shell around it) and a delete action.
+       ============================================================ -->
+  <section class="admin-card" id="libraryCard" hidden>
+    <h2 class="admin-card-title">Published guides</h2>
+    <p class="admin-card-sub">Each URL below points straight at that one file — nothing else on the site loads with it, so it's what to paste into Gizmo's Website Link import.</p>
+    <div id="libraryTree" class="admin-tree"></div>
+  </section>
+
+</main>
+
+<script src="admin.js?v=1"></script>
+</body>
+</html>

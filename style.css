@@ -285,3 +285,76 @@ button{font-family:inherit}
   .pill-btn{padding:7px 11px; font-size:11.5px}
   .ms-results{grid-template-columns:1fr}
 }
+
+/* ============================================================
+   ADMIN PAGE
+   Reuses every token above — same palette, same type stack.
+   Laid out as a single scrolling column of cards instead of the
+   sidebar/viewer/panel shell, since there's nothing to dock: no
+   library to browse alongside a form, just one task at a time.
+   ============================================================ */
+.admin-body{padding-top:calc(var(--topbar-h) + env(safe-area-inset-top) + 24px)}
+.admin-scope-note{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--t3); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:40vw}
+
+.admin-shell{max-width:720px; margin:0 auto; padding:0 18px 60px; display:flex; flex-direction:column; gap:18px}
+
+.admin-card{background:var(--bgc); border:1px solid var(--bdr); border-radius:12px; padding:20px 22px}
+.admin-card-title{font-family:'Space Grotesk',sans-serif; font-size:17px; font-weight:700; margin:0 0 8px}
+.admin-card-sub{font-size:12.5px; color:var(--t3); line-height:1.65; margin:0 0 16px}
+.admin-card-sub code{font-family:'JetBrains Mono',monospace; background:var(--bgcode); padding:1px 5px; border-radius:3px; font-size:11.5px; color:var(--amber)}
+
+.admin-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px 14px; margin-bottom:14px}
+.admin-grid .field{margin:0}
+@media (max-width:560px){.admin-grid{grid-template-columns:1fr}}
+
+.checkbox-row{display:flex; align-items:flex-start; gap:9px; font-size:12px; color:var(--t3); line-height:1.5; margin-bottom:16px; cursor:pointer}
+.checkbox-row input{margin-top:2px; flex-shrink:0}
+
+.admin-status{font-size:12.5px; margin-top:10px; min-height:1.2em; color:var(--t3)}
+.admin-status.success{color:var(--green)}
+.admin-status.error{color:var(--red)}
+
+.admin-source-tabs{display:flex; gap:6px; margin:4px 0 14px}
+.admin-source-tabs .tab-btn{border:1px solid var(--bdr)}
+
+#srcPastePanel .field, #srcUploadPanel .field{margin-bottom:14px}
+.admin-card textarea{
+  width:100%; background:var(--bg); border:1px solid var(--bdr); border-radius:7px;
+  padding:10px 12px; color:var(--t1); font-family:'JetBrains Mono',monospace; font-size:12px;
+  resize:vertical; line-height:1.55;
+}
+.admin-card textarea:focus{outline:2px solid var(--blue); outline-offset:1px}
+.admin-card input[type="file"]{
+  width:100%; background:var(--bg); border:1px solid var(--bdr); border-radius:7px;
+  padding:9px 11px; color:var(--t2); font-size:12.5px;
+}
+.admin-card .field{margin-bottom:14px}
+
+.admin-result{margin-top:14px; padding:13px 15px; background:var(--bgd); border:1px solid var(--bdr); border-radius:9px}
+.admin-result-label{font-size:11px; color:var(--t3); text-transform:uppercase; letter-spacing:.5px; margin-bottom:6px}
+.admin-result-url{display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+.admin-result-url code{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--blue); word-break:break-all}
+
+.copy-btn{
+  flex-shrink:0; background:transparent; border:1px solid var(--bdr); color:var(--t2);
+  font-size:11px; padding:4px 10px; border-radius:6px; cursor:pointer; font-family:inherit;
+}
+.copy-btn:hover{color:var(--t1); border-color:var(--t3)}
+
+.admin-tree{display:flex; flex-direction:column}
+.admin-tree-item{
+  display:grid; grid-template-columns:1fr auto; gap:4px 10px; align-items:center;
+  padding:10px 4px; border-bottom:1px solid var(--bdr);
+}
+.admin-tree-item:last-child{border-bottom:0}
+.admin-tree-item-main{display:flex; align-items:center; gap:9px; grid-column:1; min-width:0}
+.admin-tree-item-url{grid-column:1; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+.admin-tree-item-url code{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--t3); word-break:break-all}
+.admin-tree-item .delete-btn{grid-column:2; grid-row:1 / span 2; align-self:start}
+
+.delete-btn{
+  background:transparent; border:1px solid var(--red); color:var(--red);
+  font-size:11px; padding:5px 11px; border-radius:6px; cursor:pointer; font-family:inherit; flex-shrink:0;
+}
+.delete-btn:hover{background:rgba(239,68,68,.12)}
+.delete-btn:disabled{opacity:.5; cursor:not-allowed}

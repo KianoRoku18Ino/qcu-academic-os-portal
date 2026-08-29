@@ -1,9 +1,12 @@
 /* ============================================================
    QCU ACADEMIC OS — STUDY GUIDE PORTAL
    Three independent systems sharing one screen:
-   1) Library — guides.json drives the sidebar. Add a guide by
-      dropping its file in assets/guides/ and adding one entry
-      to guides.json, no code changes here.
+   1) Library — manifest.json drives the sidebar, grouped Year ->
+      Semester -> Subject. Guides are normally added through
+      /admin.html (paste a GitHub token, publish — it writes the
+      file and updates manifest.json for you). Manual editing of
+      manifest.json works too; nothing here needs to change either
+      way, this file only ever reads it.
    2) Viewer — opens whichever guide was clicked in an iframe,
       toggling between its HTML and PDF version if both exist.
    3) Tool panel — Ask AI (reads the open guide, answers via
@@ -108,7 +111,12 @@
   });
 
   /* ================================================================
-     PART 2 — LIBRARY: fetch guides.json, render the sidebar
+     PART 2 — LIBRARY: fetch manifest.json, render the sidebar
+     manifest.json is nested (years -> semesters -> subjects). It's
+     flattened once into allGuides for search/lookup, but each guide
+     keeps a groupLabel ("Year 1 · Semester 1") computed from its
+     position in the tree, so rendering can still group by it exactly
+     like the old flat "category" field did.
      ================================================================ */
   const guideListEl = document.getElementById("guideList");
   const sidebarSearchEl = document.getElementById("sidebarSearch");
@@ -124,6 +132,12 @@
   }
 
   function renderGuideList(filterText) {
+    if (allGuides.length === 0) {
+      guideListEl.innerHTML =
+        '<div class="gl-empty">No guides published yet.<br>Tap the ✎ icon above to publish your first one.</div>';
+      return;
+    }
+
     const q = (filterText || "").trim().toLowerCase();
     const filtered = q
       ? allGuides.filter((g) => (g.title + " " + g.code).toLowerCase().includes(q))
@@ -134,20 +148,22 @@
       return;
     }
 
-    // Group by category, preserving the order categories first appear
-    // in guides.json (Object, not Map, is fine here — insertion order
-    // is guaranteed for string keys in every modern JS engine).
+    // Group by groupLabel, preserving the order groups first appear in
+    // (Object, not Map, is fine here — insertion order is guaranteed
+    // for string keys in every modern JS engine). allGuides was built
+    // in year/semester order in loadLibrary(), so groups come out in
+    // that same order automatically.
     const groups = {};
     filtered.forEach((g) => {
-      const cat = g.category || "Guides";
-      if (!groups[cat]) groups[cat] = [];
-      groups[cat].push(g);
+      const label = g.groupLabel || "Guides";
+      if (!groups[label]) groups[label] = [];
+      groups[label].push(g);
     });
 
     let html = "";
-    Object.keys(groups).forEach((cat) => {
-      html += '<div class="gl-section-title">' + cat + "</div>";
-      html += groups[cat].map(guideItemHTML).join("");
+    Object.keys(groups).forEach((label) => {
+      html += '<div class="gl-section-title">' + label + "</div>";
+      html += groups[label].map(guideItemHTML).join("");
     });
     guideListEl.innerHTML = html;
 
@@ -173,10 +189,21 @@
 
   async function loadLibrary() {
     try {
-      const res = await fetch("guides.json");
+      const res = await fetch("manifest.json");
       if (!res.ok) throw new Error("HTTP " + res.status);
       const data = await res.json();
-      allGuides = data.guides || [];
+      const years = data.years || [];
+      allGuides = [];
+      years.forEach((y) => {
+        (y.semesters || []).forEach((s) => {
+          (s.subjects || []).forEach((subj) => {
+            const guide = Object.assign({}, subj, {
+              groupLabel: (y.label || "Year " + y.year) + " · " + (s.label || "Semester " + s.sem),
+            });
+            allGuides.push(guide);
+          });
+        });
+      });
       renderGuideList("");
     } catch (err) {
       // Almost always means the site was opened via file:// instead of

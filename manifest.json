@@ -1,0 +1,37 @@
+{
+  "_comment": "Structure: years -> semesters -> subjects. Every subjects array starts empty — publish a guide from /admin.html and it lands here automatically (year/semester/subject folder, plus this entry). Nothing in script.js needs to change when subjects are added. Manual editing works too: subject shape is {id, code, title, html, pdf?} where html/pdf are paths relative to this file.",
+  "years": [
+    {
+      "year": 1,
+      "label": "Year 1",
+      "semesters": [
+        { "sem": 1, "label": "Semester 1", "subjects": [] },
+        { "sem": 2, "label": "Semester 2", "subjects": [] }
+      ]
+    },
+    {
+      "year": 2,
+      "label": "Year 2",
+      "semesters": [
+        { "sem": 1, "label": "Semester 1", "subjects": [] },
+        { "sem": 2, "label": "Semester 2", "subjects": [] }
+      ]
+    },
+    {
+      "year": 3,
+      "label": "Year 3",
+      "semesters": [
+        { "sem": 1, "label": "Semester 1", "subjects": [] },
+        { "sem": 2, "label": "Semester 2", "subjects": [] }
+      ]
+    },
+    {
+      "year": 4,
+      "label": "Year 4",
+      "semesters": [
+        { "sem": 1, "label": "Semester 1", "subjects": [] },
+        { "sem": 2, "label": "Semester 2", "subjects": [] }
+      ]
+    }
+  ]
+}
