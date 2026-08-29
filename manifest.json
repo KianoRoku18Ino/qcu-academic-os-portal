@@ -14,6 +14,12 @@
               "code": "RIZAL",
               "title": "The Life and Works of RIZAL",
               "html": "assets/guides/year-1/sem-1/rizal/RIZAL_Complete_Study_Guide.html"
+            },
+            {
+              "id": "y1-s1-hum2",
+              "code": "HUM2",
+              "title": "Ethics",
+              "html": "assets/guides/year-1/sem-1/hum2/HUM2_Ethics_Mastery_Guide.html"
             }
           ]
         },
