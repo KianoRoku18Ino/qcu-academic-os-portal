@@ -271,6 +271,11 @@
     });
   }
 
+  // HTML is only required when creating a subject for the first time.
+  // Updating an existing one can supply just a PDF (or just new HTML) —
+  // whichever file isn't resupplied carries forward from the existing
+  // manifest entry untouched, so adding a PDF later never clobbers the
+  // HTML that's already live, and vice versa.
   async function handlePublish() {
     if (!activeConn) {
       statusEl(publishStatus, "Connect first.", "error");
@@ -286,31 +291,29 @@
       return;
     }
 
-    let htmlBase64, htmlFilename;
-    if (htmlSource === "paste") {
-      const content = pubHtmlPaste.value;
-      if (!content.trim()) {
-        statusEl(publishStatus, "Paste some HTML, or switch to Upload HTML file.", "error");
-        return;
-      }
-      htmlBase64 = textToBase64(content);
-      htmlFilename = code + "_Complete_Study_Guide.html";
-    } else {
-      const file = pubHtmlFile.files[0];
-      if (!file) {
-        statusEl(publishStatus, "Choose an HTML file, or switch to Paste HTML.", "error");
-        return;
-      }
-      const buf = await readFileAsArrayBuffer(file);
-      htmlBase64 = arrayBufferToBase64(buf);
-      htmlFilename = file.name;
+    // Read whatever HTML input was actually given this time — may be
+    // nothing at all, if this call is only meant to attach/replace the
+    // PDF on a subject that's already published.
+    let newHtmlBase64 = null;
+    let newHtmlFilename = null;
+    if (htmlSource === "paste" && pubHtmlPaste.value.trim()) {
+      newHtmlBase64 = textToBase64(pubHtmlPaste.value);
+      newHtmlFilename = code + "_Complete_Study_Guide.html";
+    } else if (htmlSource === "upload" && pubHtmlFile.files[0]) {
+      const buf = await readFileAsArrayBuffer(pubHtmlFile.files[0]);
+      newHtmlBase64 = arrayBufferToBase64(buf);
+      newHtmlFilename = pubHtmlFile.files[0].name;
     }
 
     const pdfFile = pubPdfFile.files[0] || null;
+    if (!newHtmlBase64 && !pdfFile) {
+      statusEl(publishStatus, "Provide new HTML content/file, a PDF, or both.", "error");
+      return;
+    }
+
     const slug = slugify(code);
+    const subjectId = "y" + year + "-s" + sem + "-" + slug;
     const basePath = "assets/guides/year-" + year + "/sem-" + sem + "/" + slug + "/";
-    const htmlPath = basePath + htmlFilename;
-    const pdfPath = pdfFile ? basePath + pdfFile.name : null;
     const message = pubMessage.value.trim() || ("Publish " + code + " (Year " + year + " Sem " + sem + ")");
 
     pubPublishBtn.disabled = true;
@@ -318,34 +321,56 @@
     const { owner, repo, branch, token } = activeConn;
 
     try {
-      statusEl(publishStatus, "Uploading " + htmlFilename + "…", "");
-      const existingHtml = await getFile(owner, repo, branch, token, htmlPath);
-      await putFile(owner, repo, branch, token, htmlPath, htmlBase64, message, existingHtml ? existingHtml.sha : null);
+      statusEl(publishStatus, "Checking existing entry…", "");
+      const manifestFile = await getFile(owner, repo, branch, token, "manifest.json");
+      if (!manifestFile) throw new Error("manifest.json not found in this repo/branch.");
+      const manifestSnapshot = JSON.parse(base64ToText(manifestFile.content));
+      const semSnapshot = findSemester(manifestSnapshot, year, sem);
+      const existing = semSnapshot.subjects.find((s) => s.id === subjectId) || null;
 
+      if (!existing && !newHtmlBase64 && !pdfFile) {
+        throw new Error("No existing guide at this Year/Semester/Code — provide at least one file to create it.");
+      }
+
+      // HTML: upload a new one if given, otherwise keep whatever path
+      // (if any) the existing entry already had.
+      let htmlPath = existing ? existing.html || null : null;
+      if (newHtmlBase64) {
+        htmlPath = basePath + newHtmlFilename;
+        statusEl(publishStatus, "Uploading " + newHtmlFilename + "…", "");
+        const existingHtmlFile = await getFile(owner, repo, branch, token, htmlPath);
+        await putFile(owner, repo, branch, token, htmlPath, newHtmlBase64, message, existingHtmlFile ? existingHtmlFile.sha : null);
+      }
+
+      // PDF: same carry-forward rule.
+      let pdfPath = existing ? existing.pdf || null : null;
       if (pdfFile) {
+        pdfPath = basePath + pdfFile.name;
         statusEl(publishStatus, "Uploading " + pdfFile.name + "…", "");
         const pdfBuf = await readFileAsArrayBuffer(pdfFile);
         const pdfBase64 = arrayBufferToBase64(pdfBuf);
-        const existingPdf = await getFile(owner, repo, branch, token, pdfPath);
-        await putFile(owner, repo, branch, token, pdfPath, pdfBase64, message, existingPdf ? existingPdf.sha : null);
+        const existingPdfFile = await getFile(owner, repo, branch, token, pdfPath);
+        await putFile(owner, repo, branch, token, pdfPath, pdfBase64, message, existingPdfFile ? existingPdfFile.sha : null);
       }
 
       statusEl(publishStatus, "Updating manifest.json…", "");
-      const subjectId = "y" + year + "-s" + sem + "-" + slug;
       await updateManifest(owner, repo, branch, token, (manifest) => {
         const semObj = findSemester(manifest, year, sem);
-        const entry = { id: subjectId, code: code, title: title, html: htmlPath };
+        const entry = { id: subjectId, code: code, title: title };
+        if (htmlPath) entry.html = htmlPath;
         if (pdfPath) entry.pdf = pdfPath;
         const idx = semObj.subjects.findIndex((s) => s.id === subjectId);
         if (idx >= 0) semObj.subjects[idx] = entry;
         else semObj.subjects.push(entry);
       }, message);
 
-      const pagesUrl = "https://" + owner + ".github.io/" + repo + "/" + htmlPath;
+      const primaryPath = htmlPath || pdfPath;
+      const pagesUrl = "https://" + owner + ".github.io/" + repo + "/" + primaryPath;
+      const label = htmlPath ? "Gizmo-ready URL (this file only, no site chrome):" : "Direct PDF URL:";
       statusEl(publishStatus, "Published.", "success");
       publishResult.hidden = false;
       publishResult.innerHTML =
-        '<div class="admin-result-label">Gizmo-ready URL (this file only, no site chrome):</div>' +
+        '<div class="admin-result-label">' + label + '</div>' +
         '<div class="admin-result-url"><code>' + pagesUrl + '</code>' +
         '<button class="copy-btn" type="button" data-copy="' + pagesUrl + '">Copy</button></div>' +
         '<p class="hint">GitHub Pages usually takes 30–90 seconds to rebuild after a push before this URL goes live.</p>';
