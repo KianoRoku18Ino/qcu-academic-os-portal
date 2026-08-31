@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body class="admin-body">
 
@@ -76,10 +76,11 @@
   <section class="admin-card" id="publishCard" hidden>
     <h2 class="admin-card-title">Publish a guide</h2>
     <p class="admin-card-sub">
-      Folders aren't separate objects in git — one just appears the moment the first file lands in it.
-      Pick Year + Semester + Subject below and publishing creates
-      <code>assets/guides/year-{n}/sem-{n}/{subject-slug}/</code> automatically if it doesn't exist yet,
-      or updates the file in place if it does.
+      A subject is a folder — <code>assets/guides/year-{n}/sem-{n}/{subject-slug}/</code>, created
+      automatically the moment its first file lands in it. What you're publishing each time is one
+      <strong>item</strong> inside that folder: a numbered week, or a freeform "special" entry like a
+      Midterm Reviewer. Republishing the same Year/Semester/Code/item only touches that one item —
+      every other week or special entry already in the subject is left alone.
     </p>
 
     <div class="admin-grid">
@@ -109,6 +110,28 @@
       </label>
     </div>
 
+    <div class="admin-source-tabs" id="pubItemTypeTabs">
+      <button class="tab-btn act" id="itemTypeWeekTab" type="button" data-item-type="week">Numbered week</button>
+      <button class="tab-btn" id="itemTypeSpecialTab" type="button" data-item-type="special">Special item</button>
+    </div>
+
+    <div class="admin-grid" id="pubWeekPanel">
+      <label class="field">
+        <span>Week number</span>
+        <input type="number" id="pubWeekNumber" min="1" max="30" step="1" value="1">
+      </label>
+      <label class="field">
+        <span>Subtitle (optional)</span>
+        <input type="text" id="pubWeekSubtitle" placeholder="e.g. Arrays &amp; Complexity" spellcheck="false" autocomplete="off">
+      </label>
+    </div>
+    <div class="admin-grid" id="pubSpecialPanel" hidden>
+      <label class="field field-full">
+        <span>Item label</span>
+        <input type="text" id="pubSpecialLabel" placeholder="e.g. Midterm Reviewer" spellcheck="false" autocomplete="off">
+      </label>
+    </div>
+
     <div class="admin-source-tabs">
       <button class="tab-btn act" id="srcPasteTab" type="button" data-src="paste">Paste HTML</button>
       <button class="tab-btn" id="srcUploadTab" type="button" data-src="upload">Upload HTML file</button>
@@ -132,7 +155,7 @@
       <input type="file" id="pubPdfFile" accept=".pdf,application/pdf">
     </label>
     <p class="hint">Works well for typical guide sizes. The GitHub Contents API this page uses caps out around 1&nbsp;MB per file — for anything larger, push it with git normally instead.</p>
-    <p class="hint">To add or replace just the PDF on a guide you already published, leave the HTML paste box empty (or don't choose an HTML file), keep the same Year/Semester/Code, attach the PDF, and publish — the existing HTML is left untouched. Same the other way around for an HTML-only update.</p>
+    <p class="hint">To add or replace just the PDF on an item you already published, leave the HTML paste box empty (or don't choose an HTML file), keep the same Year/Semester/Code/item, attach the PDF, and publish — the existing HTML is left untouched. Same the other way around for an HTML-only update.</p>
 
     <label class="field">
       <span>Commit message</span>
@@ -152,12 +175,12 @@
        ============================================================ -->
   <section class="admin-card" id="libraryCard" hidden>
     <h2 class="admin-card-title">Published guides</h2>
-    <p class="admin-card-sub">Each URL below points straight at that one file — nothing else on the site loads with it, so it's what to paste into Gizmo's Website Link import.</p>
+    <p class="admin-card-sub">Grouped by subject. Each URL points straight at that one item's file — nothing else on the site loads with it, so it's what to paste into Gizmo's Website Link import.</p>
     <div id="libraryTree" class="admin-tree"></div>
   </section>
 
 </main>
 
-<script src="admin.js?v=1"></script>
+<script src="admin.js?v=2"></script>
 </body>
 </html>

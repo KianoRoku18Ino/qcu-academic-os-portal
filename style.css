@@ -111,6 +111,18 @@ button{font-family:inherit}
 .gl-item-code{font-family:'JetBrains Mono',monospace; font-size:9.5px; color:var(--t3); border:1px solid var(--bdr); border-radius:4px; padding:1px 5px; flex-shrink:0}
 .gl-item.act .gl-item-code{color:var(--blue); border-color:var(--blue)}
 .gl-item-title{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.gl-item.sub{padding-left:34px}
+
+/* --- subject group headers (collapsible, one level above items) --- */
+.gl-subject-head{
+  display:flex; align-items:center; gap:8px; width:100%; text-align:left;
+  padding:9px 17px; background:transparent; border:0; border-left:3px solid transparent;
+  color:var(--t1); font-size:13px; font-weight:500; cursor:pointer; transition:all .15s;
+}
+.gl-subject-head:hover{background:rgba(59,130,246,.08)}
+.gl-subject-head.open{color:var(--blue)}
+.gl-subject-chevron{font-size:10px; color:var(--t3); flex-shrink:0; width:10px; text-align:center}
+.gl-subject-head.open .gl-subject-chevron{color:var(--blue)}
 
 /* ============================================================
    VIEWER — the open window
@@ -148,7 +160,7 @@ button{font-family:inherit}
 .viewer-frame{flex:1; width:100%; border:0; background:var(--bg)}
 
 /* ============================================================
-   TOOL PANEL — Ask AI / Media Search
+   TOOL PANEL — Ask AI / Videos
    Docked drawer on desktop, full-bleed on mobile (matches the
    sidebar's off-canvas pattern for consistency).
    ============================================================ */
@@ -180,7 +192,7 @@ button{font-family:inherit}
 .panel-view{flex:1; display:flex; flex-direction:column; min-height:0; overflow-y:auto}
 .panel-view[hidden]{display:none}
 
-/* --- settings drawer (shared look, Ask AI + Media Search) --- */
+/* --- settings drawer (shared look, Ask AI + Videos) --- */
 .settings-drawer{
   display:flex; flex-direction:column; gap:11px; padding:14px 16px;
   background:var(--bgd); border-bottom:1px solid var(--bdr); flex-shrink:0;
@@ -246,7 +258,7 @@ button{font-family:inherit}
 .send-btn:disabled{opacity:.5; cursor:not-allowed}
 .send-btn-icon{font-size:14px}
 
-/* --- Media Search view --- */
+/* --- Videos view (YouTube search + inline embedded playback) --- */
 .ms-search-row{display:flex; gap:9px; padding:14px 16px; border-bottom:1px solid var(--bdr); flex-shrink:0}
 .ms-search-row input{
   flex:1; background:var(--bgd); border:1px solid var(--bdr); border-radius:9px;
@@ -257,9 +269,18 @@ button{font-family:inherit}
 .ms-results{flex:1; overflow-y:auto; padding:14px 16px; display:grid; grid-template-columns:1fr 1fr; gap:10px; align-content:start}
 .ms-results .feed-empty{grid-column:1 / -1}
 .ms-card{border:1px solid var(--bdr); border-radius:9px; overflow:hidden; background:var(--bgd)}
-.ms-card img{width:100%; height:100px; object-fit:cover; display:block; background:var(--bg)}
+.ms-card img{width:100%; height:100%; object-fit:cover; display:block; background:var(--bg)}
 .ms-card-credit{padding:6px 8px; font-size:10px; color:var(--t3); line-height:1.4}
 .ms-card-credit a{color:var(--t2)}
+
+.yt-thumb-btn{position:relative; display:block; width:100%; padding:0; border:0; background:var(--bg); cursor:pointer; aspect-ratio:16/9}
+.yt-play-badge{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  font-size:26px; color:#fff; background:rgba(3,7,15,.28); transition:background .15s;
+}
+.yt-thumb-btn:hover .yt-play-badge{background:rgba(3,7,15,.5)}
+.yt-embed-wrap{position:relative; width:100%; aspect-ratio:16/9; background:#000}
+.yt-embed-wrap iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
 
 /* ============================================================
    RESPONSIVE
@@ -305,6 +326,7 @@ button{font-family:inherit}
 
 .admin-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px 14px; margin-bottom:14px}
 .admin-grid .field{margin:0}
+.field-full{grid-column:1 / -1}
 @media (max-width:560px){.admin-grid{grid-template-columns:1fr}}
 
 .checkbox-row{display:flex; align-items:flex-start; gap:9px; font-size:12px; color:var(--t3); line-height:1.5; margin-bottom:16px; cursor:pointer}
@@ -351,6 +373,12 @@ button{font-family:inherit}
 .admin-tree-item-url{grid-column:1; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
 .admin-tree-item-url code{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--t3); word-break:break-all}
 .admin-tree-item .delete-btn{grid-column:2; grid-row:1 / span 2; align-self:start}
+
+/* --- subject sub-heading + its items, nested inside the published tree --- */
+.admin-tree-subject{
+  display:flex; align-items:center; gap:9px; padding:10px 4px 4px; margin-top:4px; border-top:1px solid var(--bdr);
+}
+.admin-tree-item-sub{padding-left:18px}
 
 .delete-btn{
   background:transparent; border:1px solid var(--red); color:var(--red);

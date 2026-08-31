@@ -10,17 +10,31 @@
    Flow:
    1) Connect — validate the token against the repo, show who/what
       it can write to.
-   2) Publish — upload the HTML (+ optional PDF) to
-      assets/guides/year-{n}/sem-{n}/{subject-slug}/, then read-
-      modify-write manifest.json so the portal picks it up.
-   3) Library — re-reads manifest.json and lists what's there, with
-      a delete action per subject (removes the files + the entry).
+   2) Publish — a subject is a folder; each item inside it (a
+      numbered week, or a freeform "special" entry like a Midterm
+      Reviewer) is its own upload. Uploads the HTML (+ optional PDF)
+      to assets/guides/year-{n}/sem-{n}/{subject-slug}/{item-slug}.*,
+      then read-modify-writes manifest.json so the portal picks it
+      up — without touching the subject's other items.
+   3) Library — re-reads manifest.json and lists what's there,
+      grouped by subject, with a delete action per item (removes
+      the files + the entry; a subject with no items left is
+      dropped from the manifest too).
    ============================================================ */
 
 (function () {
   "use strict";
 
   const API = "https://api.github.com";
+
+  // Every dynamic string that lands in innerHTML anywhere in this file
+  // goes through this — manifest content (codes/titles/labels) and
+  // GitHub API error messages are not trusted input.
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, (c) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+    }[c]));
+  }
 
   /* ================================================================
      STORAGE — token + repo target, session-only unless "remember"
@@ -150,8 +164,8 @@
     return s;
   }
 
-  function slugify(code) {
-    return code.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "subject";
+  function slugify(text) {
+    return text.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "item";
   }
 
   /* ================================================================
@@ -234,11 +248,26 @@
 
   /* ================================================================
      PART 2 — PUBLISH
+     A subject (Year/Semester/Code/Title) is the folder; what's
+     actually being published each time is one ITEM inside it —
+     either a numbered week or a freeform "special" entry (Midterm
+     Reviewer, Course Overview, etc). Publishing never touches the
+     subject's other items: it finds-or-creates the subject, then
+     finds-or-creates just that one item inside its `items` array.
      ================================================================ */
   const pubYear = document.getElementById("pubYear");
   const pubSem = document.getElementById("pubSem");
   const pubCode = document.getElementById("pubCode");
   const pubTitle = document.getElementById("pubTitle");
+
+  const itemTypeWeekTab = document.getElementById("itemTypeWeekTab");
+  const itemTypeSpecialTab = document.getElementById("itemTypeSpecialTab");
+  const pubWeekPanel = document.getElementById("pubWeekPanel");
+  const pubSpecialPanel = document.getElementById("pubSpecialPanel");
+  const pubWeekNumber = document.getElementById("pubWeekNumber");
+  const pubWeekSubtitle = document.getElementById("pubWeekSubtitle");
+  const pubSpecialLabel = document.getElementById("pubSpecialLabel");
+
   const srcPasteTab = document.getElementById("srcPasteTab");
   const srcUploadTab = document.getElementById("srcUploadTab");
   const srcPastePanel = document.getElementById("srcPastePanel");
@@ -250,6 +279,17 @@
   const pubPublishBtn = document.getElementById("pubPublishBtn");
   const publishStatus = document.getElementById("publishStatus");
   const publishResult = document.getElementById("publishResult");
+
+  let itemType = "week"; // "week" | "special"
+  function setItemType(t) {
+    itemType = t;
+    itemTypeWeekTab.classList.toggle("act", t === "week");
+    itemTypeSpecialTab.classList.toggle("act", t === "special");
+    pubWeekPanel.hidden = t !== "week";
+    pubSpecialPanel.hidden = t !== "special";
+  }
+  itemTypeWeekTab.addEventListener("click", () => setItemType("week"));
+  itemTypeSpecialTab.addEventListener("click", () => setItemType("special"));
 
   let htmlSource = "paste";
   function setHtmlSource(src) {
@@ -271,11 +311,15 @@
     });
   }
 
-  // HTML is only required when creating a subject for the first time.
+  // HTML is only required when creating an item for the first time.
   // Updating an existing one can supply just a PDF (or just new HTML) —
   // whichever file isn't resupplied carries forward from the existing
   // manifest entry untouched, so adding a PDF later never clobbers the
-  // HTML that's already live, and vice versa.
+  // HTML that's already live, and vice versa. Filenames are always
+  // derived from the item id (week-3.html, midterm-reviewer.pdf, …)
+  // rather than whatever the source file happened to be called, so
+  // multiple weeks uploaded from files that all share some generic
+  // local name (guide.html, notes.pdf) never collide with each other.
   async function handlePublish() {
     if (!activeConn) {
       statusEl(publishStatus, "Connect first.", "error");
@@ -291,18 +335,37 @@
       return;
     }
 
+    let itemKind, itemId, itemLabel, weekNum = null;
+    if (itemType === "week") {
+      weekNum = parseInt(pubWeekNumber.value, 10);
+      if (!weekNum || weekNum < 1) {
+        statusEl(publishStatus, "Enter a valid week number.", "error");
+        return;
+      }
+      itemKind = "week";
+      itemId = "week-" + weekNum;
+      const subtitle = pubWeekSubtitle.value.trim();
+      itemLabel = subtitle ? ("Week " + weekNum + " — " + subtitle) : ("Week " + weekNum);
+    } else {
+      const label = pubSpecialLabel.value.trim();
+      if (!label) {
+        statusEl(publishStatus, "Enter a label for the special item.", "error");
+        return;
+      }
+      itemKind = "special";
+      itemLabel = label;
+      itemId = slugify(label);
+    }
+
     // Read whatever HTML input was actually given this time — may be
     // nothing at all, if this call is only meant to attach/replace the
-    // PDF on a subject that's already published.
+    // PDF on an item that's already published.
     let newHtmlBase64 = null;
-    let newHtmlFilename = null;
     if (htmlSource === "paste" && pubHtmlPaste.value.trim()) {
       newHtmlBase64 = textToBase64(pubHtmlPaste.value);
-      newHtmlFilename = code + "_Complete_Study_Guide.html";
     } else if (htmlSource === "upload" && pubHtmlFile.files[0]) {
       const buf = await readFileAsArrayBuffer(pubHtmlFile.files[0]);
       newHtmlBase64 = arrayBufferToBase64(buf);
-      newHtmlFilename = pubHtmlFile.files[0].name;
     }
 
     const pdfFile = pubPdfFile.files[0] || null;
@@ -311,10 +374,10 @@
       return;
     }
 
-    const slug = slugify(code);
-    const subjectId = "y" + year + "-s" + sem + "-" + slug;
-    const basePath = "assets/guides/year-" + year + "/sem-" + sem + "/" + slug + "/";
-    const message = pubMessage.value.trim() || ("Publish " + code + " (Year " + year + " Sem " + sem + ")");
+    const subjectSlug = slugify(code);
+    const subjectId = "y" + year + "-s" + sem + "-" + subjectSlug;
+    const basePath = "assets/guides/year-" + year + "/sem-" + sem + "/" + subjectSlug + "/";
+    const message = pubMessage.value.trim() || ("Publish " + code + " " + itemLabel + " (Year " + year + " Sem " + sem + ")");
 
     pubPublishBtn.disabled = true;
     publishResult.hidden = true;
@@ -326,53 +389,74 @@
       if (!manifestFile) throw new Error("manifest.json not found in this repo/branch.");
       const manifestSnapshot = JSON.parse(base64ToText(manifestFile.content));
       const semSnapshot = findSemester(manifestSnapshot, year, sem);
-      const existing = semSnapshot.subjects.find((s) => s.id === subjectId) || null;
+      const subjectSnapshot = (semSnapshot.subjects || []).find((s) => s.id === subjectId) || null;
+      const existingItem = subjectSnapshot ? (subjectSnapshot.items || []).find((it) => it.id === itemId) || null : null;
 
-      if (!existing && !newHtmlBase64 && !pdfFile) {
-        throw new Error("No existing guide at this Year/Semester/Code — provide at least one file to create it.");
+      if (!existingItem && !newHtmlBase64 && !pdfFile) {
+        throw new Error("No existing item at this Year/Semester/Subject/Item — provide at least one file to create it.");
       }
 
       // HTML: upload a new one if given, otherwise keep whatever path
-      // (if any) the existing entry already had.
-      let htmlPath = existing ? existing.html || null : null;
+      // (if any) the existing item already had.
+      let htmlPath = existingItem ? existingItem.html || null : null;
       if (newHtmlBase64) {
-        htmlPath = basePath + newHtmlFilename;
-        statusEl(publishStatus, "Uploading " + newHtmlFilename + "…", "");
+        htmlPath = basePath + itemId + ".html";
+        statusEl(publishStatus, "Uploading " + itemId + ".html…", "");
         const existingHtmlFile = await getFile(owner, repo, branch, token, htmlPath);
         await putFile(owner, repo, branch, token, htmlPath, newHtmlBase64, message, existingHtmlFile ? existingHtmlFile.sha : null);
       }
 
       // PDF: same carry-forward rule.
-      let pdfPath = existing ? existing.pdf || null : null;
+      let pdfPath = existingItem ? existingItem.pdf || null : null;
       if (pdfFile) {
-        pdfPath = basePath + pdfFile.name;
-        statusEl(publishStatus, "Uploading " + pdfFile.name + "…", "");
+        pdfPath = basePath + itemId + ".pdf";
+        statusEl(publishStatus, "Uploading " + itemId + ".pdf…", "");
         const pdfBuf = await readFileAsArrayBuffer(pdfFile);
         const pdfBase64 = arrayBufferToBase64(pdfBuf);
         const existingPdfFile = await getFile(owner, repo, branch, token, pdfPath);
         await putFile(owner, repo, branch, token, pdfPath, pdfBase64, message, existingPdfFile ? existingPdfFile.sha : null);
       }
 
+      // Order: weeks sort by week number; specials sort after every
+      // week, in the order they were first created. Republishing an
+      // item that already exists keeps its original order untouched.
+      const itemOrder = existingItem && typeof existingItem.order === "number"
+        ? existingItem.order
+        : (itemKind === "week"
+            ? weekNum
+            : 1000 + ((subjectSnapshot && (subjectSnapshot.items || []).filter((it) => it.kind === "special").length) || 0));
+
       statusEl(publishStatus, "Updating manifest.json…", "");
       await updateManifest(owner, repo, branch, token, (manifest) => {
         const semObj = findSemester(manifest, year, sem);
-        const entry = { id: subjectId, code: code, title: title };
+        let subject = semObj.subjects.find((s) => s.id === subjectId);
+        if (!subject) {
+          subject = { id: subjectId, code: code, title: title, items: [] };
+          semObj.subjects.push(subject);
+        } else {
+          subject.code = code;
+          subject.title = title;
+          if (!subject.items) subject.items = [];
+        }
+        const entry = { id: itemId, kind: itemKind, label: itemLabel, order: itemOrder };
+        if (itemKind === "week") entry.week = weekNum;
         if (htmlPath) entry.html = htmlPath;
         if (pdfPath) entry.pdf = pdfPath;
-        const idx = semObj.subjects.findIndex((s) => s.id === subjectId);
-        if (idx >= 0) semObj.subjects[idx] = entry;
-        else semObj.subjects.push(entry);
+        const idx = subject.items.findIndex((it) => it.id === itemId);
+        if (idx >= 0) subject.items[idx] = entry;
+        else subject.items.push(entry);
+        subject.items.sort((a, b) => (a.order || 0) - (b.order || 0));
       }, message);
 
       const primaryPath = htmlPath || pdfPath;
       const pagesUrl = "https://" + owner + ".github.io/" + repo + "/" + primaryPath;
-      const label = htmlPath ? "Gizmo-ready URL (this file only, no site chrome):" : "Direct PDF URL:";
+      const urlLabel = htmlPath ? "Gizmo-ready URL (this file only, no site chrome):" : "Direct PDF URL:";
       statusEl(publishStatus, "Published.", "success");
       publishResult.hidden = false;
       publishResult.innerHTML =
-        '<div class="admin-result-label">' + label + '</div>' +
-        '<div class="admin-result-url"><code>' + pagesUrl + '</code>' +
-        '<button class="copy-btn" type="button" data-copy="' + pagesUrl + '">Copy</button></div>' +
+        '<div class="admin-result-label">' + escapeHtml(urlLabel) + "</div>" +
+        '<div class="admin-result-url"><code>' + escapeHtml(pagesUrl) + "</code>" +
+        '<button class="copy-btn" type="button" data-copy="' + escapeHtml(pagesUrl) + '">Copy</button></div>' +
         '<p class="hint">GitHub Pages usually takes 30–90 seconds to rebuild after a push before this URL goes live.</p>';
 
       pubHtmlPaste.value = "";
@@ -401,6 +485,10 @@
 
   /* ================================================================
      PART 3 — LIBRARY TREE (read-only list + delete)
+     Three levels: Year·Semester -> Subject -> Item. Deleting an item
+     removes its file(s) and its entry; if that empties a subject's
+     items array, the subject entry itself is dropped from the
+     manifest too, so nothing keeps an empty folder around forever.
      ================================================================ */
   const libraryTree = document.getElementById("libraryTree");
 
@@ -417,37 +505,46 @@
       let any = false;
       years.forEach((y) => {
         (y.semesters || []).forEach((s) => {
-          if (!s.subjects || s.subjects.length === 0) return;
+          const subjects = (s.subjects || []).filter((subj) => subj.items && subj.items.length > 0);
+          if (subjects.length === 0) return;
           any = true;
-          html += '<div class="gl-section-title">' + (y.label || "Year " + y.year) + " · " + (s.label || "Semester " + s.sem) + "</div>";
-          s.subjects.forEach((subj) => {
-            const url = "https://" + owner + ".github.io/" + repo + "/" + subj.html;
+          html += '<div class="gl-section-title">' + escapeHtml(y.label || "Year " + y.year) + " · " + escapeHtml(s.label || "Semester " + s.sem) + "</div>";
+          subjects.forEach((subj) => {
             html +=
-              '<div class="admin-tree-item">' +
-              '<div class="admin-tree-item-main">' +
-              '<span class="gl-item-code">' + subj.code + "</span>" +
-              '<span class="gl-item-title">' + subj.title + "</span>" +
-              "</div>" +
-              '<div class="admin-tree-item-url"><code>' + url + '</code>' +
-              '<button class="copy-btn" type="button" data-copy="' + url + '">Copy</button></div>' +
-              '<button class="delete-btn" type="button" data-delete-id="' + subj.id + '" data-year="' + y.year + '" data-sem="' + s.sem + '">Delete</button>' +
+              '<div class="admin-tree-subject">' +
+              '<span class="gl-item-code">' + escapeHtml(subj.code) + "</span>" +
+              '<span class="gl-item-title">' + escapeHtml(subj.title) + "</span>" +
               "</div>";
+            const items = (subj.items || []).slice().sort((a, b) => (a.order || 0) - (b.order || 0));
+            items.forEach((it) => {
+              const primaryPath = it.html || it.pdf || "";
+              const url = "https://" + owner + ".github.io/" + repo + "/" + primaryPath;
+              html +=
+                '<div class="admin-tree-item admin-tree-item-sub">' +
+                '<div class="admin-tree-item-main"><span class="gl-item-title">' + escapeHtml(it.label) + "</span></div>" +
+                '<div class="admin-tree-item-url"><code>' + escapeHtml(url) + "</code>" +
+                '<button class="copy-btn" type="button" data-copy="' + escapeHtml(url) + '">Copy</button></div>' +
+                '<button class="delete-btn" type="button" data-delete-subject-id="' + escapeHtml(subj.id) +
+                '" data-delete-item-id="' + escapeHtml(it.id) + '" data-year="' + y.year + '" data-sem="' + s.sem + '">Delete</button>' +
+                "</div>";
+            });
           });
         });
       });
       libraryTree.innerHTML = any ? html : '<div class="gl-empty">Nothing published yet.</div>';
     } catch (err) {
-      libraryTree.innerHTML = '<div class="gl-error">Couldn\'t load: ' + err.message + "</div>";
+      libraryTree.innerHTML = '<div class="gl-error">Couldn\'t load: ' + escapeHtml(err.message) + "</div>";
     }
   }
 
   libraryTree.addEventListener("click", async (e) => {
     const btn = e.target.closest(".delete-btn");
     if (!btn || !activeConn) return;
-    const subjectId = btn.dataset.deleteId;
+    const subjectId = btn.dataset.deleteSubjectId;
+    const itemId = btn.dataset.deleteItemId;
     const year = parseInt(btn.dataset.year, 10);
     const sem = parseInt(btn.dataset.sem, 10);
-    if (!confirm("Delete this guide's files and remove it from the library? This can't be undone from here.")) return;
+    if (!confirm("Delete this item's files and remove it from the library? This can't be undone from here.")) return;
 
     btn.disabled = true;
     btn.textContent = "Deleting…";
@@ -457,22 +554,29 @@
       const file = await getFile(owner, repo, branch, token, "manifest.json");
       const manifest = JSON.parse(base64ToText(file.content));
       const semObj = findSemester(manifest, year, sem);
-      const subject = semObj.subjects.find((s) => s.id === subjectId);
+      const subject = (semObj.subjects || []).find((s) => s.id === subjectId);
       if (!subject) throw new Error("Already gone from manifest.json.");
+      const item = (subject.items || []).find((it) => it.id === itemId);
+      if (!item) throw new Error("Already gone from manifest.json.");
 
-      const message = "Remove " + subject.code;
-      if (subject.html) {
-        const htmlFile = await getFile(owner, repo, branch, token, subject.html);
-        if (htmlFile) await deleteFile(owner, repo, branch, token, subject.html, htmlFile.sha, message);
+      const message = "Remove " + subject.code + " — " + item.label;
+      if (item.html) {
+        const htmlFile = await getFile(owner, repo, branch, token, item.html);
+        if (htmlFile) await deleteFile(owner, repo, branch, token, item.html, htmlFile.sha, message);
       }
-      if (subject.pdf) {
-        const pdfFile = await getFile(owner, repo, branch, token, subject.pdf);
-        if (pdfFile) await deleteFile(owner, repo, branch, token, subject.pdf, pdfFile.sha, message);
+      if (item.pdf) {
+        const pdfFile = await getFile(owner, repo, branch, token, item.pdf);
+        if (pdfFile) await deleteFile(owner, repo, branch, token, item.pdf, pdfFile.sha, message);
       }
 
       await updateManifest(owner, repo, branch, token, (m) => {
         const s2 = findSemester(m, year, sem);
-        s2.subjects = s2.subjects.filter((s) => s.id !== subjectId);
+        const subj2 = (s2.subjects || []).find((s) => s.id === subjectId);
+        if (!subj2) return;
+        subj2.items = (subj2.items || []).filter((it) => it.id !== itemId);
+        if (subj2.items.length === 0) {
+          s2.subjects = s2.subjects.filter((s) => s.id !== subjectId);
+        }
       }, message);
 
       loadLibraryTree();

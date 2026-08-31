@@ -2,21 +2,32 @@
    QCU ACADEMIC OS — STUDY GUIDE PORTAL
    Three independent systems sharing one screen:
    1) Library — manifest.json drives the sidebar, grouped Year ->
-      Semester -> Subject. Guides are normally added through
-      /admin.html (paste a GitHub token, publish — it writes the
-      file and updates manifest.json for you). Manual editing of
-      manifest.json works too; nothing here needs to change either
-      way, this file only ever reads it.
-   2) Viewer — opens whichever guide was clicked in an iframe,
+      Semester -> Subject -> Item. A subject is a folder of items
+      (numbered weeks and/or freeform "special" entries like a
+      Midterm Reviewer), each its own html/pdf pair. Guides are
+      normally added through /admin.html (paste a GitHub token,
+      publish — it writes the file and updates manifest.json for
+      you). Manual editing of manifest.json works too; nothing
+      here needs to change either way, this file only ever reads it.
+   2) Viewer — opens whichever item was clicked in an iframe,
       toggling between its HTML and PDF version if both exist.
-   3) Tool panel — Ask AI (reads the open guide, answers via
-      OpenRouter or Gemini) and Media Search (Unsplash), both
-      BYOK exactly like Numen: keys live only in localStorage
+   3) Tool panel — Ask AI (reads the open item, answers via
+      OpenRouter or Gemini) and Videos (YouTube search + inline
+      embedded playback), both BYOK: keys live only in localStorage
       and are sent only to that provider's own endpoint.
    ============================================================ */
 
 (function () {
   "use strict";
+
+  // Every dynamic string that lands in innerHTML anywhere in this file
+  // goes through this first — manifest content (titles/labels) and API
+  // responses (video titles, error messages) are not trusted input.
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, (c) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+    }[c]));
+  }
 
   /* ================================================================
      PART 1 — SHELL: sidebar / tool panel open-close plumbing
@@ -112,27 +123,47 @@
 
   /* ================================================================
      PART 2 — LIBRARY: fetch manifest.json, render the sidebar
-     manifest.json is nested (years -> semesters -> subjects). It's
-     flattened once into allGuides for search/lookup, but each guide
-     keeps a groupLabel ("Year 1 · Semester 1") computed from its
-     position in the tree, so rendering can still group by it exactly
-     like the old flat "category" field did.
+     manifest.json nests years -> semesters -> subjects -> items.
+     A subject is a folder; each item inside it (a numbered week, or
+     a freeform "special" entry like a Midterm Reviewer) is its own
+     html/pdf pair. It's flattened once into allItems for search —
+     each item keeps its subject's id/code/title and a groupLabel
+     ("Year 1 · Semester 1") so rendering can re-group by subject
+     and by term, same idea as v2's flat "category" grouping just
+     one level deeper. Item ids ("week-1") repeat across subjects,
+     so every item also gets a uid ("<subjectId>::<itemId>") that's
+     the only thing ever used to look one back up or highlight it.
      ================================================================ */
   const guideListEl = document.getElementById("guideList");
   const sidebarSearchEl = document.getElementById("sidebarSearch");
-  let allGuides = [];
+  let allItems = [];
+  // Manually expanded/collapsed subjects, keyed by subjectId. A filter
+  // in progress force-expands whatever matched (see renderGuideList)
+  // without touching this set, so the manual state is exactly what's
+  // restored once the search box is cleared.
+  const expandedSubjects = new Set();
 
-  function guideItemHTML(g) {
+  function subjectHeaderHTML(subjectId, subj, isOpen) {
     return (
-      '<button class="gl-item" data-id="' + g.id + '" type="button">' +
-      '<span class="gl-item-code">' + g.code + "</span>" +
-      '<span class="gl-item-title">' + g.title + "</span>" +
+      '<button class="gl-subject-head' + (isOpen ? " open" : "") + '" data-subject-id="' +
+      escapeHtml(subjectId) + '" type="button" aria-expanded="' + isOpen + '">' +
+      '<span class="gl-subject-chevron">' + (isOpen ? "▾" : "▸") + "</span>" +
+      '<span class="gl-item-code">' + escapeHtml(subj.code) + "</span>" +
+      '<span class="gl-item-title">' + escapeHtml(subj.title) + "</span>" +
+      "</button>"
+    );
+  }
+
+  function itemRowHTML(it) {
+    return (
+      '<button class="gl-item sub" data-uid="' + escapeHtml(it.uid) + '" type="button">' +
+      '<span class="gl-item-title">' + escapeHtml(it.label) + "</span>" +
       "</button>"
     );
   }
 
   function renderGuideList(filterText) {
-    if (allGuides.length === 0) {
+    if (allItems.length === 0) {
       guideListEl.innerHTML =
         '<div class="gl-empty">No guides published yet.<br>Tap the ✎ icon above to publish your first one.</div>';
       return;
@@ -140,49 +171,71 @@
 
     const q = (filterText || "").trim().toLowerCase();
     const filtered = q
-      ? allGuides.filter((g) => (g.title + " " + g.code).toLowerCase().includes(q))
-      : allGuides;
+      ? allItems.filter((it) =>
+          (it.subjectCode + " " + it.subjectTitle + " " + it.label).toLowerCase().includes(q)
+        )
+      : allItems;
 
     if (filtered.length === 0) {
-      guideListEl.innerHTML = '<div class="gl-empty">No guides match "' + q + '".</div>';
+      guideListEl.innerHTML = '<div class="gl-empty">No guides match "' + escapeHtml(q) + '".</div>';
       return;
     }
 
-    // Group by groupLabel, preserving the order groups first appear in
-    // (Object, not Map, is fine here — insertion order is guaranteed
-    // for string keys in every modern JS engine). allGuides was built
-    // in year/semester order in loadLibrary(), so groups come out in
-    // that same order automatically.
+    // Group by groupLabel, then by subject, preserving first-seen order
+    // (Object insertion order is guaranteed for string keys in every
+    // modern JS engine). allItems was built in year/semester/manifest
+    // order in loadLibrary(), so groups and subjects come out in that
+    // same order automatically.
     const groups = {};
-    filtered.forEach((g) => {
-      const label = g.groupLabel || "Guides";
-      if (!groups[label]) groups[label] = [];
-      groups[label].push(g);
+    filtered.forEach((it) => {
+      const gl = it.groupLabel || "Guides";
+      if (!groups[gl]) groups[gl] = {};
+      if (!groups[gl][it.subjectId]) {
+        groups[gl][it.subjectId] = { code: it.subjectCode, title: it.subjectTitle, items: [] };
+      }
+      groups[gl][it.subjectId].items.push(it);
     });
 
     let html = "";
-    Object.keys(groups).forEach((label) => {
-      html += '<div class="gl-section-title">' + label + "</div>";
-      html += groups[label].map(guideItemHTML).join("");
+    Object.keys(groups).forEach((gl) => {
+      html += '<div class="gl-section-title">' + escapeHtml(gl) + "</div>";
+      const subjMap = groups[gl];
+      Object.keys(subjMap).forEach((subjectId) => {
+        const subj = subjMap[subjectId];
+        // While filtering, every subject left in `groups` already has
+        // at least one matching item — show it open so the match is
+        // actually visible instead of hidden behind a collapsed head.
+        const isOpen = q ? true : expandedSubjects.has(subjectId);
+        html += subjectHeaderHTML(subjectId, subj, isOpen);
+        if (isOpen) html += subj.items.map(itemRowHTML).join("");
+      });
     });
     guideListEl.innerHTML = html;
 
-    // Re-highlight whichever guide is currently open, if it's still
-    // in the filtered list.
+    // Re-highlight whichever item is currently open, if it's still
+    // in the filtered/expanded list.
     if (currentGuide) {
-      const btn = guideListEl.querySelector('[data-id="' + currentGuide.id + '"]');
+      const btn = guideListEl.querySelector('[data-uid="' + currentGuide.uid + '"]');
       if (btn) btn.classList.add("act");
     }
   }
 
   // Delegated click listener — one binding for the whole list instead
-  // of one per button, so newly-rendered items (after a search filter)
-  // work automatically with no re-binding needed.
+  // of one per button, so newly-rendered items (after a search filter
+  // or an expand/collapse) work automatically with no re-binding needed.
   guideListEl.addEventListener("click", (e) => {
+    const subjBtn = e.target.closest(".gl-subject-head");
+    if (subjBtn) {
+      const sid = subjBtn.dataset.subjectId;
+      if (expandedSubjects.has(sid)) expandedSubjects.delete(sid);
+      else expandedSubjects.add(sid);
+      renderGuideList(sidebarSearchEl.value);
+      return;
+    }
     const btn = e.target.closest(".gl-item");
     if (!btn) return;
-    const guide = allGuides.find((g) => g.id === btn.dataset.id);
-    if (guide) openGuide(guide);
+    const item = allItems.find((it) => it.uid === btn.dataset.uid);
+    if (item) openGuide(item);
   });
 
   sidebarSearchEl.addEventListener("input", () => renderGuideList(sidebarSearchEl.value));
@@ -193,14 +246,20 @@
       if (!res.ok) throw new Error("HTTP " + res.status);
       const data = await res.json();
       const years = data.years || [];
-      allGuides = [];
+      allItems = [];
       years.forEach((y) => {
         (y.semesters || []).forEach((s) => {
           (s.subjects || []).forEach((subj) => {
-            const guide = Object.assign({}, subj, {
-              groupLabel: (y.label || "Year " + y.year) + " · " + (s.label || "Semester " + s.sem),
+            const groupLabel = (y.label || "Year " + y.year) + " · " + (s.label || "Semester " + s.sem);
+            (subj.items || []).forEach((item) => {
+              allItems.push(Object.assign({}, item, {
+                uid: subj.id + "::" + item.id,
+                subjectId: subj.id,
+                subjectCode: subj.code,
+                subjectTitle: subj.title,
+                groupLabel: groupLabel,
+              }));
             });
-            allGuides.push(guide);
           });
         });
       });
@@ -210,14 +269,14 @@
       // being served — fetch() can't read local files under that
       // protocol. Say so directly instead of a bare "failed to fetch".
       guideListEl.innerHTML =
-        '<div class="gl-error">Couldn\'t load the library (' + err.message + '). ' +
+        '<div class="gl-error">Couldn\'t load the library (' + escapeHtml(err.message) + "). " +
         "This page needs to be served over http(s) — file:// won't work. " +
         "Locally: <code>python3 -m http.server</code>. Deployed: GitHub Pages does this automatically.</div>";
     }
   }
 
   /* ================================================================
-     PART 3 — VIEWER: open a guide, toggle HTML/PDF
+     PART 3 — VIEWER: open an item, toggle HTML/PDF
      ================================================================ */
   const viewerEmpty = document.getElementById("viewerEmpty");
   const viewerActive = document.getElementById("viewerActive");
@@ -228,12 +287,12 @@
   const formatPdfBtn = document.getElementById("formatPdfBtn");
   const openNewTabBtn = document.getElementById("openNewTabBtn");
 
-  let currentGuide = null;   // the guide object from guides.json, or null
+  let currentGuide = null;    // the flattened item object (with subjectCode/subjectTitle/label/uid), or null
   let currentFormat = "html"; // "html" | "pdf" — which version is showing
 
   function renderViewerHeader() {
-    vhCode.textContent = currentGuide.code;
-    vhTitle.textContent = currentGuide.title;
+    vhCode.textContent = currentGuide.subjectCode;
+    vhTitle.textContent = currentGuide.subjectTitle + " — " + currentGuide.label;
     formatHtmlBtn.disabled = !currentGuide.html;
     formatPdfBtn.disabled = !currentGuide.pdf;
     formatHtmlBtn.classList.toggle("act", currentFormat === "html");
@@ -242,19 +301,19 @@
     openNewTabBtn.href = src;
   }
 
-  function openGuide(guide, format) {
-    currentGuide = guide;
-    currentFormat = format || (guide.html ? "html" : "pdf");
+  function openGuide(item, format) {
+    currentGuide = item;
+    currentFormat = format || (item.html ? "html" : "pdf");
     viewerEmpty.hidden = true;
     viewerActive.hidden = false;
-    viewerFrame.src = currentFormat === "html" ? guide.html : guide.pdf;
+    viewerFrame.src = currentFormat === "html" ? item.html : item.pdf;
     renderViewerHeader();
     updateAiContextBanner();
-    aiHistory = []; // new guide = new context; old turns would reference the wrong one
+    aiHistory = []; // new item = new context; old turns would reference the wrong one
 
     // Re-highlight the active row in the sidebar.
     guideListEl.querySelectorAll(".gl-item").forEach((el) => el.classList.remove("act"));
-    const btn = guideListEl.querySelector('[data-id="' + guide.id + '"]');
+    const btn = guideListEl.querySelector('[data-uid="' + item.uid + '"]');
     if (btn) btn.classList.add("act");
 
     closeSidebar(); // mobile: picking a guide should return focus to the reading pane
@@ -347,16 +406,16 @@
       aiContextBanner.classList.remove("has-guide");
       return;
     }
+    const label = currentGuide.subjectCode + " — " + currentGuide.subjectTitle + " (" + currentGuide.label + ")";
     if (currentFormat === "pdf") {
-      aiContextBanner.textContent = "Reading: " + currentGuide.code + " — " + currentGuide.title +
-        " (PDF mode — switch to HTML to let Ask AI read the page content).";
+      aiContextBanner.textContent = "Reading: " + label + " (PDF mode — switch to HTML to let Ask AI read the page content).";
     } else {
-      aiContextBanner.textContent = "Reading: " + currentGuide.code + " — " + currentGuide.title;
+      aiContextBanner.textContent = "Reading: " + label;
     }
     aiContextBanner.classList.add("has-guide");
   }
 
-  // Pulls plain text out of the currently open guide's iframe. Only
+  // Pulls plain text out of the currently open item's iframe. Only
   // works in HTML mode and only same-origin (true once this is served
   // from its own domain, e.g. GitHub Pages) — returns null otherwise
   // so the caller can fall back to a plain, guide-less answer instead
@@ -392,9 +451,6 @@
   // Every fragment is HTML-escaped before any tag is added, so no matter
   // what the API returns, the only tags that can ever land on the page
   // are the ones this function creates itself.
-  function escapeHtmlMd(s) {
-    return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  }
   function inlineMd(s) {
     return s
       .replace(/`([^`]+?)`/g, "<code>$1</code>")
@@ -424,7 +480,7 @@
       let m = line.match(/^(#{1,4})\s+(.*)$/);
       if (m) {
         const level = Math.min(m[1].length + 2, 6);
-        blocks.push(`<h${level} class="msg-h">${inlineMd(escapeHtmlMd(m[2].trim()))}</h${level}>`);
+        blocks.push(`<h${level} class="msg-h">${inlineMd(escapeHtml(m[2].trim()))}</h${level}>`);
         i++; continue;
       }
 
@@ -435,8 +491,8 @@
         const rows = [];
         while (i < lines.length && isTableRow(lines[i])) { rows.push(tableCells(lines[i])); i++; }
         let html = '<table class="msg-table"><thead><tr>' +
-          head.map((c) => `<th>${inlineMd(escapeHtmlMd(c))}</th>`).join("") + "</tr></thead><tbody>";
-        rows.forEach((r) => { html += "<tr>" + r.map((c) => `<td>${inlineMd(escapeHtmlMd(c))}</td>`).join("") + "</tr>"; });
+          head.map((c) => `<th>${inlineMd(escapeHtml(c))}</th>`).join("") + "</tr></thead><tbody>";
+        rows.forEach((r) => { html += "<tr>" + r.map((c) => `<td>${inlineMd(escapeHtml(c))}</td>`).join("") + "</tr>"; });
         blocks.push(html + "</tbody></table>");
         continue;
       }
@@ -445,7 +501,7 @@
       if (/^>\s?/.test(line)) {
         const q = [];
         while (i < lines.length && /^>\s?/.test(lines[i])) { q.push(lines[i].replace(/^>\s?/, "")); i++; }
-        blocks.push(`<blockquote class="msg-quote">${inlineMd(escapeHtmlMd(q.join(" ")))}</blockquote>`);
+        blocks.push(`<blockquote class="msg-quote">${inlineMd(escapeHtml(q.join(" ")))}</blockquote>`);
         continue;
       }
 
@@ -453,7 +509,7 @@
       if (/^[-*]\s+/.test(line)) {
         const items = [];
         while (i < lines.length && /^[-*]\s+/.test(lines[i])) { items.push(lines[i].replace(/^[-*]\s+/, "")); i++; }
-        blocks.push('<ul class="msg-list">' + items.map((it) => `<li>${inlineMd(escapeHtmlMd(it))}</li>`).join("") + "</ul>");
+        blocks.push('<ul class="msg-list">' + items.map((it) => `<li>${inlineMd(escapeHtml(it))}</li>`).join("") + "</ul>");
         continue;
       }
 
@@ -461,7 +517,7 @@
       if (/^\d+\.\s+/.test(line)) {
         const items = [];
         while (i < lines.length && /^\d+\.\s+/.test(lines[i])) { items.push(lines[i].replace(/^\d+\.\s+/, "")); i++; }
-        blocks.push('<ol class="msg-list">' + items.map((it) => `<li>${inlineMd(escapeHtmlMd(it))}</li>`).join("") + "</ol>");
+        blocks.push('<ol class="msg-list">' + items.map((it) => `<li>${inlineMd(escapeHtml(it))}</li>`).join("") + "</ol>");
         continue;
       }
 
@@ -472,7 +528,7 @@
         !/^(#{1,4})\s+/.test(lines[i]) && !/^>\s?/.test(lines[i]) &&
         !/^[-*]\s+/.test(lines[i]) && !/^\d+\.\s+/.test(lines[i]) && !isTableRow(lines[i])
       ) { p.push(lines[i]); i++; }
-      blocks.push(`<p>${inlineMd(escapeHtmlMd(p.join(" ")))}</p>`);
+      blocks.push(`<p>${inlineMd(escapeHtml(p.join(" ")))}</p>`);
     }
 
     return blocks.join("");
@@ -560,7 +616,8 @@
     const model = aiModelInput.value.trim() || AI_MODEL_DEFAULTS[provider];
     const guideText = extractGuideText();
     const systemPrompt = guideText
-      ? AI_BASE_PROMPT + "\n\n--- Currently open guide: " + currentGuide.code + " — " + currentGuide.title + " ---\n" + guideText
+      ? AI_BASE_PROMPT + "\n\n--- Currently open guide: " + currentGuide.subjectCode + " — " +
+        currentGuide.subjectTitle + " (" + currentGuide.label + ") ---\n" + guideText
       : AI_BASE_PROMPT;
 
     addAiMessage(question, "q");
@@ -599,7 +656,12 @@
   });
 
   /* ================================================================
-     PART 5 — MEDIA SEARCH (Unsplash, BYOK)
+     PART 5 — VIDEOS (YouTube Data API, BYOK)
+     Search runs through YouTube's `search` endpoint (API-key auth,
+     no OAuth needed — same BYOK shape as everything else in this
+     app). Results render as thumbnail cards; tapping one swaps its
+     thumbnail for a live embedded player in place, so a video plays
+     right there in the panel instead of bouncing out to youtube.com.
      ================================================================ */
   const msKeyInput = document.getElementById("msKeyInput");
   const msSaveBtn = document.getElementById("msSaveBtn");
@@ -608,43 +670,67 @@
   const msResults = document.getElementById("msResults");
   const msResultsEmpty = document.getElementById("msResultsEmpty");
 
-  const MS_STORAGE_KEY = "qcuAcademicOsMsSettings";
+  // Renamed from the old Unsplash-era key (qcuAcademicOsMsSettings) since
+  // the stored shape changed meaning (Unsplash Access Key -> YouTube API
+  // key). Any old value just sits unused under its old name.
+  const YT_STORAGE_KEY = "qcuAcademicOsYtSettings";
 
   function loadMsSettings() {
     try {
-      const raw = localStorage.getItem(MS_STORAGE_KEY);
+      const raw = localStorage.getItem(YT_STORAGE_KEY);
       if (raw) {
         const saved = JSON.parse(raw);
         if (saved.key) msKeyInput.value = saved.key;
       }
     } catch (err) {
-      console.warn("Could not load saved Media Search settings:", err);
+      console.warn("Could not load saved Videos settings:", err);
     }
   }
 
   msSaveBtn.addEventListener("click", () => {
     try {
-      localStorage.setItem(MS_STORAGE_KEY, JSON.stringify({ key: msKeyInput.value.trim() }));
+      localStorage.setItem(YT_STORAGE_KEY, JSON.stringify({ key: msKeyInput.value.trim() }));
       msSaveBtn.textContent = "Saved";
       msSaveBtn.classList.add("saved");
       setTimeout(() => { msSaveBtn.textContent = "Save"; msSaveBtn.classList.remove("saved"); }, 1400);
     } catch (err) {
-      console.warn("Could not save Media Search settings:", err);
+      console.warn("Could not save Videos settings:", err);
     }
   });
 
-  function msCardHTML(photo) {
-    const thumb = photo.urls && photo.urls.small;
-    const photoLink = (photo.links && photo.links.html || "#") + "?utm_source=qcu_academic_os&utm_medium=referral";
-    const userLink = (photo.user && photo.user.links && photo.user.links.html || "#") + "?utm_source=qcu_academic_os&utm_medium=referral";
-    const name = (photo.user && photo.user.name) || "Unknown";
+  function ytCardHTML(video) {
+    const vid = video.id && video.id.videoId;
+    if (!vid) return "";
+    const sn = video.snippet || {};
+    const thumb = sn.thumbnails && (sn.thumbnails.medium || sn.thumbnails.default);
+    const title = sn.title || "Untitled";
+    const channel = sn.channelTitle || "Unknown channel";
     return (
-      '<div class="ms-card">' +
-      '<a href="' + photoLink + '" target="_blank" rel="noopener"><img src="' + thumb + '" alt="' + (photo.alt_description || "").replace(/"/g, "&quot;") + '" loading="lazy"></a>' +
-      '<div class="ms-card-credit">Photo by <a href="' + userLink + '" target="_blank" rel="noopener">' + name + '</a> on <a href="https://unsplash.com/?utm_source=qcu_academic_os&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></div>' +
+      '<div class="ms-card yt-card">' +
+      '<button class="yt-thumb-btn" type="button" data-vid="' + escapeHtml(vid) + '" aria-label="Play ' + escapeHtml(title) + '">' +
+      (thumb ? '<img src="' + escapeHtml(thumb.url) + '" alt="" loading="lazy">' : "") +
+      '<span class="yt-play-badge" aria-hidden="true">▶</span>' +
+      "</button>" +
+      '<div class="ms-card-credit">' + escapeHtml(title) + "<br>" +
+      '<a href="https://www.youtube.com/watch?v=' + encodeURIComponent(vid) + '" target="_blank" rel="noopener">' +
+      escapeHtml(channel) + "</a> on YouTube</div>" +
       "</div>"
     );
   }
+
+  // Delegated: swaps a card's thumbnail button for a live embed on click,
+  // instead of every card getting its own listener at render time.
+  msResults.addEventListener("click", (e) => {
+    const btn = e.target.closest(".yt-thumb-btn");
+    if (!btn) return;
+    const vid = btn.dataset.vid;
+    const wrap = document.createElement("div");
+    wrap.className = "yt-embed-wrap";
+    wrap.innerHTML =
+      '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(vid) + '?autoplay=1" ' +
+      'title="YouTube video player" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+    btn.replaceWith(wrap);
+  });
 
   async function handleMsSearch() {
     const query = msQuery.value.trim();
@@ -655,7 +741,7 @@
       msSettings.hidden = false;
       gearBtn.classList.add("open");
       gearBtn.setAttribute("aria-expanded", "true");
-      msResults.innerHTML = '<div class="gl-error">Add your Unsplash access key above before searching.</div>';
+      msResults.innerHTML = '<div class="gl-error">Add your YouTube API key above before searching.</div>';
       return;
     }
 
@@ -663,22 +749,22 @@
     msResults.innerHTML = '<div class="feed-empty">Searching…</div>';
 
     try {
-      const url = "https://api.unsplash.com/search/photos?per_page=12&query=" +
-        encodeURIComponent(query) + "&client_id=" + encodeURIComponent(key);
+      const url = "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=12&q=" +
+        encodeURIComponent(query) + "&key=" + encodeURIComponent(key);
       const res = await fetch(url);
       const data = await res.json().catch(() => null);
       if (!res.ok) {
-        const msg = data && data.errors && data.errors[0] ? data.errors[0] : "Request failed (HTTP " + res.status + ")";
+        const msg = data && data.error && data.error.message ? data.error.message : "Request failed (HTTP " + res.status + ")";
         throw new Error(msg);
       }
-      const results = (data && data.results) || [];
+      const results = (data && data.items) || [];
       if (results.length === 0) {
-        msResults.innerHTML = '<div class="feed-empty">No results for "' + query + '".</div>';
+        msResults.innerHTML = '<div class="feed-empty">No results for "' + escapeHtml(query) + '".</div>';
         return;
       }
-      msResults.innerHTML = results.map(msCardHTML).join("");
+      msResults.innerHTML = results.map(ytCardHTML).join("");
     } catch (err) {
-      msResults.innerHTML = '<div class="gl-error">Search failed: ' + err.message + "</div>";
+      msResults.innerHTML = '<div class="gl-error">Search failed: ' + escapeHtml(err.message) + "</div>";
     } finally {
       msSearchBtn.disabled = false;
     }

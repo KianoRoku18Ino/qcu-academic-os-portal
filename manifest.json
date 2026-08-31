@@ -1,81 +1,36 @@
 {
-  "_comment": "Structure: years -> semesters -> subjects. Every subjects array starts empty — publish a guide from /admin.html and it lands here automatically (year/semester/subject folder, plus this entry). Nothing in script.js needs to change when subjects are added. Manual editing works too: subject shape is {id, code, title, html, pdf?} where html/pdf are paths relative to this file.",
+  "_comment": "Structure: years -> semesters -> subjects -> items. A subject is a folder (e.g. assets/guides/year-1/sem-1/cc104/); every subjects array starts empty — publish from /admin.html and it lands here automatically. Subject shape: {id, code, title, items: []}. Each item is one numbered week or freeform 'special' entry inside that subject: {id, kind: \"week\"|\"special\", label, order, week?, html?, pdf?} — week/html/pdf are all optional (week only on kind:\"week\"; html/pdf are paths relative to this file, an item needs at least one of them). order controls sidebar/library sort order. Nothing in script.js needs to change when subjects or items are added — manual editing works too.",
   "years": [
     {
       "year": 1,
       "label": "Year 1",
       "semesters": [
-        {
-          "sem": 1,
-          "label": "Semester 1",
-          "subjects": [
-            {
-              "id": "y1-s1-rizal",
-              "code": "RIZAL",
-              "title": "The Life and Works of RIZAL",
-              "html": "assets/guides/year-1/sem-1/rizal/RIZAL_Complete_Study_Guide.html"
-            },
-            {
-              "id": "y1-s1-hum2",
-              "code": "HUM2",
-              "title": "Ethics",
-              "html": "assets/guides/year-1/sem-1/hum2/HUM2_Ethics_Mastery_Guide.html"
-            }
-          ]
-        },
-        {
-          "sem": 2,
-          "label": "Semester 2",
-          "subjects": []
-        }
+        { "sem": 1, "label": "Semester 1", "subjects": [] },
+        { "sem": 2, "label": "Semester 2", "subjects": [] }
       ]
     },
     {
       "year": 2,
       "label": "Year 2",
       "semesters": [
-        {
-          "sem": 1,
-          "label": "Semester 1",
-          "subjects": []
-        },
-        {
-          "sem": 2,
-          "label": "Semester 2",
-          "subjects": []
-        }
+        { "sem": 1, "label": "Semester 1", "subjects": [] },
+        { "sem": 2, "label": "Semester 2", "subjects": [] }
       ]
     },
     {
       "year": 3,
       "label": "Year 3",
       "semesters": [
-        {
-          "sem": 1,
-          "label": "Semester 1",
-          "subjects": []
-        },
-        {
-          "sem": 2,
-          "label": "Semester 2",
-          "subjects": []
-        }
+        { "sem": 1, "label": "Semester 1", "subjects": [] },
+        { "sem": 2, "label": "Semester 2", "subjects": [] }
       ]
     },
     {
       "year": 4,
       "label": "Year 4",
       "semesters": [
-        {
-          "sem": 1,
-          "label": "Semester 1",
-          "subjects": []
-        },
-        {
-          "sem": 2,
-          "label": "Semester 2",
-          "subjects": []
-        }
+        { "sem": 1, "label": "Semester 1", "subjects": [] },
+        { "sem": 2, "label": "Semester 2", "subjects": [] }
       ]
     }
   ]
