@@ -20,6 +20,7 @@ Everything else — the Library, Viewer (HTML/PDF toggle), Ask AI (BYOK, OpenRou
 
 - **Subjects are folders of items, not single guides.** A subject can now hold multiple pieces: numbered weeks (`Week 1`, `Week 2`, …) and/or freeform "special" entries (`Midterm Reviewer`, `Course Overview`, whatever fits). Each item is its own independent html/pdf pair with its own path — publishing or deleting one item never touches its subject's other items. The sidebar reflects this as a third level: **Year·Semester → Subject (tap to expand) → Item**.
 - **Media Search → Videos.** Unsplash (generic stock photography) is gone — it was a poor fit for a CS/IT study tool. In its place: YouTube Data API search with results playable *inline* (tap a thumbnail, it plays right there in the panel, no tab switch). Same BYOK pattern as before — paste an API key, nothing routes through a server of ours.
+- **Reference Library.** A second content tree, independent of Year/Semester/Subject entirely — for material that's relevant across the whole curriculum (a full HTML/CSS reference, a GitHub mastery guide). Grouped by a freeform category instead of the curriculum tree; shows up in the sidebar above the year-by-year guides. Its own Publish/Library cards on the admin page. Starts empty — nothing shows in the sidebar for it until something's actually published there.
 
 ## Running it locally
 
@@ -54,9 +55,11 @@ Go to `/admin.html` (there's also a small ✎ icon in the portal's topbar). It's
 
 **4. Manage what's published.** The bottom of the admin page lists everything currently in `manifest.json`, grouped by subject, with each item's direct URL (Copy button) and a Delete action (removes that item's file(s) and its manifest entry; if that empties a subject, the subject entry is dropped too).
 
+**5. References work the same way, separately.** Further down the admin page, "Publish a reference" takes just a Category and an Item title (no Year/Semester/Subject) — everything else about it (paste-or-upload HTML, optional PDF, carry-forward-on-republish, per-item delete, empty-category cleanup) mirrors guide publishing exactly. Lives at `assets/references/{category-slug}/{item-slug}.*`, separate from `assets/guides/`.
+
 **Known limits:**
-- The GitHub Contents API this page uses caps out around 1 MB per file. Guides built as clean HTML are normally well under that; a very large PDF might not be. For anything bigger, push it with git normally instead — the portal doesn't care how a file got into `assets/guides/`, only that `manifest.json` points at it.
-- No file at `assets/guides/` is required for the portal to work with an empty library — see "Adding a guide" below for the empty-state message.
+- The GitHub Contents API this page uses caps out around 1 MB per file. Guides built as clean HTML are normally well under that; a very large PDF might not be. For anything bigger, push it with git normally instead — the portal doesn't care how a file got into `assets/guides/` or `assets/references/`, only that `manifest.json` points at it.
+- No file at `assets/guides/` or `assets/references/` is required for the portal to work with an empty library — see "Adding a guide" below for the empty-state message.
 
 ## Adding a guide manually (without the admin page)
 
@@ -91,6 +94,30 @@ Go to `/admin.html` (there's also a small ✎ icon in the portal's topbar). It's
 An item needs at least one of `html`/`pdf` (both is fine too). `order` controls sort position in the sidebar and the admin's library tree — weeks conventionally use their week number, specials use `1000+` so they sort after every week.
 
 3. Done — `script.js` and `index.html` need no changes either way.
+
+## Adding a reference manually (without the admin page)
+
+Same idea, one level shallower — no Year/Semester nesting, just a top-level `references` array of categories:
+
+1. Drop the file(s) into `assets/references/{category-slug}/`, named however you like.
+2. Add or extend one category entry in the top-level `references` array in `manifest.json`:
+
+```json
+{
+  "id": "web-development",
+  "label": "Web Development",
+  "items": [
+    {
+      "id": "html-complete-reference",
+      "title": "HTML Complete Reference",
+      "order": 1,
+      "html": "assets/references/web-development/html-complete-reference.html"
+    }
+  ]
+}
+```
+
+3. Done — shows up in the sidebar under "Reference Library" the next time the page loads.
 
 ## Ask AI — how it works, and its real limit
 

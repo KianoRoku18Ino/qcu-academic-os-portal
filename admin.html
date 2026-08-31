@@ -168,6 +168,67 @@
   </section>
 
   <!-- ============================================================
+       PUBLISH A REFERENCE — general material that isn't scoped to
+       any Year/Semester/Subject at all (a full HTML reference, a
+       GitHub mastery guide, etc). Grouped by a freeform category
+       instead of the curriculum tree. Hidden until connected.
+       ============================================================ -->
+  <section class="admin-card" id="refPublishCard" hidden>
+    <h2 class="admin-card-title">Publish a reference</h2>
+    <p class="admin-card-sub">
+      For material that isn't tied to a specific Year/Semester/Subject — a full HTML/CSS reference,
+      a GitHub mastery guide, anything meant to be useful across the whole curriculum. Grouped by a
+      category you name yourself (reuse the same category on a later publish to add another item under
+      it); lives at <code>assets/references/{category-slug}/{item-slug}/</code>, separate from the
+      year-by-year guides. Shows up in the sidebar under its own "Reference Library" section.
+    </p>
+
+    <div class="admin-grid">
+      <label class="field">
+        <span>Category</span>
+        <input type="text" id="refCategory" placeholder="e.g. Web Development" spellcheck="false" autocomplete="off">
+      </label>
+      <label class="field">
+        <span>Item title</span>
+        <input type="text" id="refTitle" placeholder="e.g. HTML Complete Reference" spellcheck="false" autocomplete="off">
+      </label>
+    </div>
+
+    <div class="admin-source-tabs">
+      <button class="tab-btn act" id="refSrcPasteTab" type="button" data-src="paste">Paste HTML</button>
+      <button class="tab-btn" id="refSrcUploadTab" type="button" data-src="upload">Upload HTML file</button>
+    </div>
+
+    <div id="refSrcPastePanel">
+      <label class="field">
+        <span>HTML content</span>
+        <textarea id="refHtmlPaste" rows="8" spellcheck="false" placeholder="Paste the full reference HTML here…"></textarea>
+      </label>
+    </div>
+    <div id="refSrcUploadPanel" hidden>
+      <label class="field">
+        <span>HTML file</span>
+        <input type="file" id="refHtmlFile" accept=".html,text/html">
+      </label>
+    </div>
+
+    <label class="field">
+      <span>Paired PDF (optional)</span>
+      <input type="file" id="refPdfFile" accept=".pdf,application/pdf">
+    </label>
+    <p class="hint">To add or replace just the PDF on a reference you already published, leave the HTML paste box empty (or don't choose an HTML file), keep the same Category/Title, attach the PDF, and publish — the existing HTML is left untouched. Same the other way around for an HTML-only update.</p>
+
+    <label class="field">
+      <span>Commit message</span>
+      <input type="text" id="refMessage" placeholder="Publish HTML Complete Reference" spellcheck="false" autocomplete="off">
+    </label>
+
+    <button class="save-btn" id="refPublishBtn" type="button">Publish</button>
+    <div class="admin-status" id="refPublishStatus"></div>
+    <div class="admin-result" id="refPublishResult" hidden></div>
+  </section>
+
+  <!-- ============================================================
        LIBRARY — read-only tree of what's already published, with
        a direct per-guide URL (the one to feed into Gizmo's Website
        Link import — it resolves to just that file, not the portal
@@ -179,8 +240,14 @@
     <div id="libraryTree" class="admin-tree"></div>
   </section>
 
+  <section class="admin-card" id="refLibraryCard" hidden>
+    <h2 class="admin-card-title">Published references</h2>
+    <p class="admin-card-sub">Grouped by category. Same idea as the guide library above, just for the year/subject-independent material.</p>
+    <div id="refLibraryTree" class="admin-tree"></div>
+  </section>
+
 </main>
 
-<script src="admin.js?v=2"></script>
+<script src="admin.js?v=3"></script>
 </body>
 </html>

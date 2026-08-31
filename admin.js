@@ -181,6 +181,8 @@
   const scopeNote = document.getElementById("scopeNote");
   const publishCard = document.getElementById("publishCard");
   const libraryCard = document.getElementById("libraryCard");
+  const refPublishCard = document.getElementById("refPublishCard");
+  const refLibraryCard = document.getElementById("refLibraryCard");
 
   let activeConn = null; // { owner, repo, branch, token } once connected
 
@@ -223,7 +225,10 @@
       statusEl(connectStatus, "Connected. Write access confirmed.", "success");
       publishCard.hidden = false;
       libraryCard.hidden = false;
+      refPublishCard.hidden = false;
+      refLibraryCard.hidden = false;
       loadLibraryTree();
+      loadReferenceLibraryTree();
     } catch (err) {
       statusEl(connectStatus, "Couldn't connect: " + err.message, "error");
     } finally {
@@ -580,6 +585,242 @@
       }, message);
 
       loadLibraryTree();
+    } catch (err) {
+      alert("Couldn't delete: " + err.message);
+      btn.disabled = false;
+      btn.textContent = "Delete";
+    }
+  });
+
+  /* ================================================================
+     PART 4 — PUBLISH A REFERENCE
+     Same idea as Part 2, minus the Year/Semester/Subject nesting —
+     references only have a category (freeform, like "special" items)
+     and a title. Lives at manifest.references (sibling to years, not
+     inside it), and at assets/references/{category-slug}/{item-slug}.*
+     on disk. Independent find-or-create at both the category and the
+     item level, exactly like subjects/items: republishing one item
+     never touches any other item in its category.
+     ================================================================ */
+  const refCategory = document.getElementById("refCategory");
+  const refTitle = document.getElementById("refTitle");
+  const refSrcPasteTab = document.getElementById("refSrcPasteTab");
+  const refSrcUploadTab = document.getElementById("refSrcUploadTab");
+  const refSrcPastePanel = document.getElementById("refSrcPastePanel");
+  const refSrcUploadPanel = document.getElementById("refSrcUploadPanel");
+  const refHtmlPaste = document.getElementById("refHtmlPaste");
+  const refHtmlFile = document.getElementById("refHtmlFile");
+  const refPdfFile = document.getElementById("refPdfFile");
+  const refMessage = document.getElementById("refMessage");
+  const refPublishBtn = document.getElementById("refPublishBtn");
+  const refPublishStatus = document.getElementById("refPublishStatus");
+  const refPublishResult = document.getElementById("refPublishResult");
+
+  let refHtmlSource = "paste";
+  function setRefHtmlSource(src) {
+    refHtmlSource = src;
+    refSrcPasteTab.classList.toggle("act", src === "paste");
+    refSrcUploadTab.classList.toggle("act", src === "upload");
+    refSrcPastePanel.hidden = src !== "paste";
+    refSrcUploadPanel.hidden = src !== "upload";
+  }
+  refSrcPasteTab.addEventListener("click", () => setRefHtmlSource("paste"));
+  refSrcUploadTab.addEventListener("click", () => setRefHtmlSource("upload"));
+
+  async function handlePublishReference() {
+    if (!activeConn) {
+      statusEl(refPublishStatus, "Connect first.", "error");
+      return;
+    }
+    const categoryLabel = refCategory.value.trim();
+    const itemTitle = refTitle.value.trim();
+    if (!categoryLabel || !itemTitle) {
+      statusEl(refPublishStatus, "Category and item title are both required.", "error");
+      return;
+    }
+
+    let newHtmlBase64 = null;
+    if (refHtmlSource === "paste" && refHtmlPaste.value.trim()) {
+      newHtmlBase64 = textToBase64(refHtmlPaste.value);
+    } else if (refHtmlSource === "upload" && refHtmlFile.files[0]) {
+      const buf = await readFileAsArrayBuffer(refHtmlFile.files[0]);
+      newHtmlBase64 = arrayBufferToBase64(buf);
+    }
+
+    const pdfFile = refPdfFile.files[0] || null;
+    if (!newHtmlBase64 && !pdfFile) {
+      statusEl(refPublishStatus, "Provide new HTML content/file, a PDF, or both.", "error");
+      return;
+    }
+
+    const categoryId = slugify(categoryLabel);
+    const itemId = slugify(itemTitle);
+    const basePath = "assets/references/" + categoryId + "/";
+    const message = refMessage.value.trim() || ("Publish reference: " + itemTitle);
+
+    refPublishBtn.disabled = true;
+    refPublishResult.hidden = true;
+    const { owner, repo, branch, token } = activeConn;
+
+    try {
+      statusEl(refPublishStatus, "Checking existing entry…", "");
+      const manifestFile = await getFile(owner, repo, branch, token, "manifest.json");
+      if (!manifestFile) throw new Error("manifest.json not found in this repo/branch.");
+      const manifestSnapshot = JSON.parse(base64ToText(manifestFile.content));
+      const categorySnapshot = (manifestSnapshot.references || []).find((c) => c.id === categoryId) || null;
+      const existingItem = categorySnapshot ? (categorySnapshot.items || []).find((it) => it.id === itemId) || null : null;
+
+      if (!existingItem && !newHtmlBase64 && !pdfFile) {
+        throw new Error("No existing reference at this Category/Title — provide at least one file to create it.");
+      }
+
+      let htmlPath = existingItem ? existingItem.html || null : null;
+      if (newHtmlBase64) {
+        htmlPath = basePath + itemId + ".html";
+        statusEl(refPublishStatus, "Uploading " + itemId + ".html…", "");
+        const existingHtmlFile = await getFile(owner, repo, branch, token, htmlPath);
+        await putFile(owner, repo, branch, token, htmlPath, newHtmlBase64, message, existingHtmlFile ? existingHtmlFile.sha : null);
+      }
+
+      let pdfPath = existingItem ? existingItem.pdf || null : null;
+      if (pdfFile) {
+        pdfPath = basePath + itemId + ".pdf";
+        statusEl(refPublishStatus, "Uploading " + itemId + ".pdf…", "");
+        const pdfBuf = await readFileAsArrayBuffer(pdfFile);
+        const pdfBase64 = arrayBufferToBase64(pdfBuf);
+        const existingPdfFile = await getFile(owner, repo, branch, token, pdfPath);
+        await putFile(owner, repo, branch, token, pdfPath, pdfBase64, message, existingPdfFile ? existingPdfFile.sha : null);
+      }
+
+      // No inherent ordering concept like week numbers — new items just
+      // append after whatever's already in the category. Republishing
+      // an existing item keeps its original position.
+      const itemOrder = existingItem && typeof existingItem.order === "number"
+        ? existingItem.order
+        : ((categorySnapshot && (categorySnapshot.items || []).length) || 0) + 1;
+
+      statusEl(refPublishStatus, "Updating manifest.json…", "");
+      await updateManifest(owner, repo, branch, token, (manifest) => {
+        if (!manifest.references) manifest.references = [];
+        let category = manifest.references.find((c) => c.id === categoryId);
+        if (!category) {
+          category = { id: categoryId, label: categoryLabel, items: [] };
+          manifest.references.push(category);
+        } else {
+          category.label = categoryLabel;
+          if (!category.items) category.items = [];
+        }
+        const entry = { id: itemId, title: itemTitle, order: itemOrder };
+        if (htmlPath) entry.html = htmlPath;
+        if (pdfPath) entry.pdf = pdfPath;
+        const idx = category.items.findIndex((it) => it.id === itemId);
+        if (idx >= 0) category.items[idx] = entry;
+        else category.items.push(entry);
+        category.items.sort((a, b) => (a.order || 0) - (b.order || 0));
+      }, message);
+
+      const primaryPath = htmlPath || pdfPath;
+      const pagesUrl = "https://" + owner + ".github.io/" + repo + "/" + primaryPath;
+      const urlLabel = htmlPath ? "Gizmo-ready URL (this file only, no site chrome):" : "Direct PDF URL:";
+      statusEl(refPublishStatus, "Published.", "success");
+      refPublishResult.hidden = false;
+      refPublishResult.innerHTML =
+        '<div class="admin-result-label">' + escapeHtml(urlLabel) + "</div>" +
+        '<div class="admin-result-url"><code>' + escapeHtml(pagesUrl) + "</code>" +
+        '<button class="copy-btn" type="button" data-copy="' + escapeHtml(pagesUrl) + '">Copy</button></div>' +
+        '<p class="hint">GitHub Pages usually takes 30–90 seconds to rebuild after a push before this URL goes live.</p>';
+
+      refHtmlPaste.value = "";
+      refHtmlFile.value = "";
+      refPdfFile.value = "";
+      loadReferenceLibraryTree();
+    } catch (err) {
+      statusEl(refPublishStatus, "Publish failed: " + err.message, "error");
+    } finally {
+      refPublishBtn.disabled = false;
+    }
+  }
+
+  refPublishBtn.addEventListener("click", handlePublishReference);
+
+  /* ================================================================
+     PART 5 — REFERENCE LIBRARY TREE (read-only list + delete)
+     Two levels: category -> item. Mirrors Part 3 exactly, just
+     reading manifest.references instead of manifest.years.
+     ================================================================ */
+  const refLibraryTree = document.getElementById("refLibraryTree");
+
+  async function loadReferenceLibraryTree() {
+    if (!activeConn) return;
+    const { owner, repo, branch, token } = activeConn;
+    refLibraryTree.innerHTML = '<div class="gl-loading">Loading…</div>';
+    try {
+      const file = await getFile(owner, repo, branch, token, "manifest.json");
+      if (!file) throw new Error("manifest.json not found.");
+      const manifest = JSON.parse(base64ToText(file.content));
+      const categories = (manifest.references || []).filter((cat) => cat.items && cat.items.length > 0);
+      let html = "";
+      categories.forEach((cat) => {
+        html += '<div class="gl-section-title">' + escapeHtml(cat.label) + "</div>";
+        const items = (cat.items || []).slice().sort((a, b) => (a.order || 0) - (b.order || 0));
+        items.forEach((it) => {
+          const primaryPath = it.html || it.pdf || "";
+          const url = "https://" + owner + ".github.io/" + repo + "/" + primaryPath;
+          html +=
+            '<div class="admin-tree-item">' +
+            '<div class="admin-tree-item-main"><span class="gl-item-title">' + escapeHtml(it.title) + "</span></div>" +
+            '<div class="admin-tree-item-url"><code>' + escapeHtml(url) + "</code>" +
+            '<button class="copy-btn" type="button" data-copy="' + escapeHtml(url) + '">Copy</button></div>' +
+            '<button class="delete-btn" type="button" data-delete-category-id="' + escapeHtml(cat.id) +
+            '" data-delete-item-id="' + escapeHtml(it.id) + '">Delete</button>' +
+            "</div>";
+        });
+      });
+      refLibraryTree.innerHTML = categories.length > 0 ? html : '<div class="gl-empty">Nothing published yet.</div>';
+    } catch (err) {
+      refLibraryTree.innerHTML = '<div class="gl-error">Couldn\'t load: ' + escapeHtml(err.message) + "</div>";
+    }
+  }
+
+  refLibraryTree.addEventListener("click", async (e) => {
+    const btn = e.target.closest(".delete-btn");
+    if (!btn || !activeConn) return;
+    const categoryId = btn.dataset.deleteCategoryId;
+    const itemId = btn.dataset.deleteItemId;
+    if (!confirm("Delete this reference's files and remove it from the library? This can't be undone from here.")) return;
+
+    btn.disabled = true;
+    btn.textContent = "Deleting…";
+    const { owner, repo, branch, token } = activeConn;
+
+    try {
+      const file = await getFile(owner, repo, branch, token, "manifest.json");
+      const manifest = JSON.parse(base64ToText(file.content));
+      const category = (manifest.references || []).find((c) => c.id === categoryId);
+      if (!category) throw new Error("Already gone from manifest.json.");
+      const item = (category.items || []).find((it) => it.id === itemId);
+      if (!item) throw new Error("Already gone from manifest.json.");
+
+      const message = "Remove reference: " + item.title;
+      if (item.html) {
+        const htmlFile = await getFile(owner, repo, branch, token, item.html);
+        if (htmlFile) await deleteFile(owner, repo, branch, token, item.html, htmlFile.sha, message);
+      }
+      if (item.pdf) {
+        const pdfFile = await getFile(owner, repo, branch, token, item.pdf);
+        if (pdfFile) await deleteFile(owner, repo, branch, token, item.pdf, pdfFile.sha, message);
+      }
+
+      await updateManifest(owner, repo, branch, token, (m) => {
+        const cat2 = (m.references || []).find((c) => c.id === categoryId);
+        if (!cat2) return;
+        cat2.items = (cat2.items || []).filter((it) => it.id !== itemId);
+        if (cat2.items.length === 0) {
+          m.references = (m.references || []).filter((c) => c.id !== categoryId);
+        }
+      }, message);
+
+      loadReferenceLibraryTree();
     } catch (err) {
       alert("Couldn't delete: " + err.message);
       btn.disabled = false;

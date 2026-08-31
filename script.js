@@ -123,33 +123,52 @@
 
   /* ================================================================
      PART 2 — LIBRARY: fetch manifest.json, render the sidebar
-     manifest.json nests years -> semesters -> subjects -> items.
-     A subject is a folder; each item inside it (a numbered week, or
-     a freeform "special" entry like a Midterm Reviewer) is its own
-     html/pdf pair. It's flattened once into allItems for search —
-     each item keeps its subject's id/code/title and a groupLabel
-     ("Year 1 · Semester 1") so rendering can re-group by subject
-     and by term, same idea as v2's flat "category" grouping just
-     one level deeper. Item ids ("week-1") repeat across subjects,
-     so every item also gets a uid ("<subjectId>::<itemId>") that's
-     the only thing ever used to look one back up or highlight it.
+     Two independent content trees feed one flat list, one sidebar:
+       - manifest.years: years -> semesters -> subjects -> items. A
+         subject is a folder; each item inside it (a numbered week,
+         or a freeform "special" entry like a Midterm Reviewer) is
+         its own html/pdf pair.
+       - manifest.references: reference categories -> items. Not
+         scoped to a year/semester at all — general material like a
+         full HTML/CSS reference or a GitHub mastery guide that's
+         relevant no matter what subject you're in. Starts as an
+         empty array; nothing shows up in the sidebar for it until
+         at least one reference item is actually published.
+     Both flatten into ONE allItems array so search/grouping/open
+     logic never has to branch on which kind of item it's looking
+     at — every entry gets a uid, a top-level groupLabel ("Year 1 ·
+     Semester 1" or "Reference Library"), a subgroup (the subject, or
+     the reference category) to nest under, and two viewer-facing
+     strings precomputed once so the Viewer/Ask AI code never needs
+     to know which kind of item is open either:
+       - badgeText: the subject code ("CC104"), or the reference
+         category's label if there's no natural "code" for it
+       - displayTitle: "<subject title> — <item label>" for a
+         subject item, or just the reference item's own title
+     Item ids repeat across subjects/categories ("week-1" in ten
+     different subjects, say), so every entry's uid is namespaced by
+     where it lives ("<subjectId>::<itemId>" / "ref::<categoryId>::
+     <itemId>") — that's the only thing ever used to look one back
+     up, highlight it, or track its expand/collapse state.
      ================================================================ */
   const guideListEl = document.getElementById("guideList");
   const sidebarSearchEl = document.getElementById("sidebarSearch");
   let allItems = [];
-  // Manually expanded/collapsed subjects, keyed by subjectId. A filter
-  // in progress force-expands whatever matched (see renderGuideList)
-  // without touching this set, so the manual state is exactly what's
-  // restored once the search box is cleared.
-  const expandedSubjects = new Set();
+  // Manually expanded/collapsed groups (subjects AND reference
+  // categories share this one Set — their ids never collide, see the
+  // "ref::" namespacing above). A filter in progress force-expands
+  // whatever matched (see renderGuideList) without touching this set,
+  // so the manual state is exactly what's restored once the search
+  // box is cleared.
+  const expandedGroups = new Set();
 
-  function subjectHeaderHTML(subjectId, subj, isOpen) {
+  function groupHeadHTML(groupId, group, isOpen) {
     return (
-      '<button class="gl-subject-head' + (isOpen ? " open" : "") + '" data-subject-id="' +
-      escapeHtml(subjectId) + '" type="button" aria-expanded="' + isOpen + '">' +
-      '<span class="gl-subject-chevron">' + (isOpen ? "▾" : "▸") + "</span>" +
-      '<span class="gl-item-code">' + escapeHtml(subj.code) + "</span>" +
-      '<span class="gl-item-title">' + escapeHtml(subj.title) + "</span>" +
+      '<button class="gl-group-head' + (isOpen ? " open" : "") + '" data-group-id="' +
+      escapeHtml(groupId) + '" type="button" aria-expanded="' + isOpen + '">' +
+      '<span class="gl-group-chevron">' + (isOpen ? "▾" : "▸") + "</span>" +
+      (group.code ? '<span class="gl-item-code">' + escapeHtml(group.code) + "</span>" : "") +
+      '<span class="gl-item-title">' + escapeHtml(group.title) + "</span>" +
       "</button>"
     );
   }
@@ -171,9 +190,7 @@
 
     const q = (filterText || "").trim().toLowerCase();
     const filtered = q
-      ? allItems.filter((it) =>
-          (it.subjectCode + " " + it.subjectTitle + " " + it.label).toLowerCase().includes(q)
-        )
+      ? allItems.filter((it) => (it.badgeText + " " + it.displayTitle).toLowerCase().includes(q))
       : allItems;
 
     if (filtered.length === 0) {
@@ -181,33 +198,33 @@
       return;
     }
 
-    // Group by groupLabel, then by subject, preserving first-seen order
-    // (Object insertion order is guaranteed for string keys in every
-    // modern JS engine). allItems was built in year/semester/manifest
-    // order in loadLibrary(), so groups and subjects come out in that
-    // same order automatically.
+    // Group by groupLabel, then by subgroup (subject, or reference
+    // category), preserving first-seen order (Object insertion order
+    // is guaranteed for string keys in every modern JS engine).
+    // allItems is built references-first, then year/semester order,
+    // in loadLibrary() — so that's the order sections render in too.
     const groups = {};
     filtered.forEach((it) => {
       const gl = it.groupLabel || "Guides";
       if (!groups[gl]) groups[gl] = {};
-      if (!groups[gl][it.subjectId]) {
-        groups[gl][it.subjectId] = { code: it.subjectCode, title: it.subjectTitle, items: [] };
+      if (!groups[gl][it.subgroupId]) {
+        groups[gl][it.subgroupId] = { code: it.subgroupCode, title: it.subgroupTitle, items: [] };
       }
-      groups[gl][it.subjectId].items.push(it);
+      groups[gl][it.subgroupId].items.push(it);
     });
 
     let html = "";
     Object.keys(groups).forEach((gl) => {
       html += '<div class="gl-section-title">' + escapeHtml(gl) + "</div>";
-      const subjMap = groups[gl];
-      Object.keys(subjMap).forEach((subjectId) => {
-        const subj = subjMap[subjectId];
-        // While filtering, every subject left in `groups` already has
+      const subMap = groups[gl];
+      Object.keys(subMap).forEach((groupId) => {
+        const group = subMap[groupId];
+        // While filtering, every group left in `groups` already has
         // at least one matching item — show it open so the match is
         // actually visible instead of hidden behind a collapsed head.
-        const isOpen = q ? true : expandedSubjects.has(subjectId);
-        html += subjectHeaderHTML(subjectId, subj, isOpen);
-        if (isOpen) html += subj.items.map(itemRowHTML).join("");
+        const isOpen = q ? true : expandedGroups.has(groupId);
+        html += groupHeadHTML(groupId, group, isOpen);
+        if (isOpen) html += group.items.map(itemRowHTML).join("");
       });
     });
     guideListEl.innerHTML = html;
@@ -224,11 +241,11 @@
   // of one per button, so newly-rendered items (after a search filter
   // or an expand/collapse) work automatically with no re-binding needed.
   guideListEl.addEventListener("click", (e) => {
-    const subjBtn = e.target.closest(".gl-subject-head");
-    if (subjBtn) {
-      const sid = subjBtn.dataset.subjectId;
-      if (expandedSubjects.has(sid)) expandedSubjects.delete(sid);
-      else expandedSubjects.add(sid);
+    const groupBtn = e.target.closest(".gl-group-head");
+    if (groupBtn) {
+      const gid = groupBtn.dataset.groupId;
+      if (expandedGroups.has(gid)) expandedGroups.delete(gid);
+      else expandedGroups.add(gid);
       renderGuideList(sidebarSearchEl.value);
       return;
     }
@@ -245,24 +262,45 @@
       const res = await fetch("manifest.json");
       if (!res.ok) throw new Error("HTTP " + res.status);
       const data = await res.json();
-      const years = data.years || [];
       allItems = [];
-      years.forEach((y) => {
+
+      // References first, so the "Reference Library" section — general
+      // material that's relevant no matter what subject you're in —
+      // renders above the year-by-year curriculum, not buried under it.
+      (data.references || []).forEach((cat) => {
+        (cat.items || []).forEach((item) => {
+          allItems.push(Object.assign({}, item, {
+            uid: "ref::" + cat.id + "::" + item.id,
+            groupLabel: "Reference Library",
+            subgroupId: "ref::" + cat.id,
+            subgroupCode: null, // category label already IS the header text, no separate badge needed
+            subgroupTitle: cat.label,
+            label: item.title,
+            badgeText: cat.label,
+            displayTitle: item.title,
+          }));
+        });
+      });
+
+      (data.years || []).forEach((y) => {
         (y.semesters || []).forEach((s) => {
           (s.subjects || []).forEach((subj) => {
             const groupLabel = (y.label || "Year " + y.year) + " · " + (s.label || "Semester " + s.sem);
             (subj.items || []).forEach((item) => {
               allItems.push(Object.assign({}, item, {
                 uid: subj.id + "::" + item.id,
-                subjectId: subj.id,
-                subjectCode: subj.code,
-                subjectTitle: subj.title,
                 groupLabel: groupLabel,
+                subgroupId: subj.id,
+                subgroupCode: subj.code,
+                subgroupTitle: subj.title,
+                badgeText: subj.code,
+                displayTitle: subj.title + " — " + item.label,
               }));
             });
           });
         });
       });
+
       renderGuideList("");
     } catch (err) {
       // Almost always means the site was opened via file:// instead of
@@ -287,12 +325,12 @@
   const formatPdfBtn = document.getElementById("formatPdfBtn");
   const openNewTabBtn = document.getElementById("openNewTabBtn");
 
-  let currentGuide = null;    // the flattened item object (with subjectCode/subjectTitle/label/uid), or null
+  let currentGuide = null;    // the flattened item object (badgeText/displayTitle/uid/html/pdf), or null
   let currentFormat = "html"; // "html" | "pdf" — which version is showing
 
   function renderViewerHeader() {
-    vhCode.textContent = currentGuide.subjectCode;
-    vhTitle.textContent = currentGuide.subjectTitle + " — " + currentGuide.label;
+    vhCode.textContent = currentGuide.badgeText;
+    vhTitle.textContent = currentGuide.displayTitle;
     formatHtmlBtn.disabled = !currentGuide.html;
     formatPdfBtn.disabled = !currentGuide.pdf;
     formatHtmlBtn.classList.toggle("act", currentFormat === "html");
@@ -406,7 +444,7 @@
       aiContextBanner.classList.remove("has-guide");
       return;
     }
-    const label = currentGuide.subjectCode + " — " + currentGuide.subjectTitle + " (" + currentGuide.label + ")";
+    const label = currentGuide.badgeText + " — " + currentGuide.displayTitle;
     if (currentFormat === "pdf") {
       aiContextBanner.textContent = "Reading: " + label + " (PDF mode — switch to HTML to let Ask AI read the page content).";
     } else {
@@ -616,8 +654,8 @@
     const model = aiModelInput.value.trim() || AI_MODEL_DEFAULTS[provider];
     const guideText = extractGuideText();
     const systemPrompt = guideText
-      ? AI_BASE_PROMPT + "\n\n--- Currently open guide: " + currentGuide.subjectCode + " — " +
-        currentGuide.subjectTitle + " (" + currentGuide.label + ") ---\n" + guideText
+      ? AI_BASE_PROMPT + "\n\n--- Currently open guide: " + currentGuide.badgeText + " — " +
+        currentGuide.displayTitle + " ---\n" + guideText
       : AI_BASE_PROMPT;
 
     addAiMessage(question, "q");
@@ -711,26 +749,36 @@
       (thumb ? '<img src="' + escapeHtml(thumb.url) + '" alt="" loading="lazy">' : "") +
       '<span class="yt-play-badge" aria-hidden="true">▶</span>' +
       "</button>" +
-      '<div class="ms-card-credit">' + escapeHtml(title) + "<br>" +
-      '<a href="https://www.youtube.com/watch?v=' + encodeURIComponent(vid) + '" target="_blank" rel="noopener">' +
+      '<div class="ms-card-credit">' +
+      '<div class="yt-title">' + escapeHtml(title) + "</div>" +
+      '<div class="yt-channel"><a href="https://www.youtube.com/watch?v=' + encodeURIComponent(vid) + '" target="_blank" rel="noopener">' +
       escapeHtml(channel) + "</a> on YouTube</div>" +
+      "</div>" +
       "</div>"
     );
   }
 
   // Delegated: swaps a card's thumbnail button for a live embed on click,
-  // instead of every card getting its own listener at render time.
+  // instead of every card getting its own listener at render time. The
+  // card itself also grows to span every grid column — a video embedded
+  // at its original ~180px thumbnail width isn't actually watchable.
   msResults.addEventListener("click", (e) => {
     const btn = e.target.closest(".yt-thumb-btn");
     if (!btn) return;
     const vid = btn.dataset.vid;
+    const card = btn.closest(".ms-card");
     const wrap = document.createElement("div");
     wrap.className = "yt-embed-wrap";
     wrap.innerHTML =
       '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(vid) + '?autoplay=1" ' +
       'title="YouTube video player" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
     btn.replaceWith(wrap);
+    if (card) {
+      card.classList.add("yt-playing");
+      card.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
   });
+
 
   async function handleMsSearch() {
     const query = msQuery.value.trim();

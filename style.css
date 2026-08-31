@@ -114,15 +114,15 @@ button{font-family:inherit}
 .gl-item.sub{padding-left:34px}
 
 /* --- subject group headers (collapsible, one level above items) --- */
-.gl-subject-head{
+.gl-group-head{
   display:flex; align-items:center; gap:8px; width:100%; text-align:left;
   padding:9px 17px; background:transparent; border:0; border-left:3px solid transparent;
   color:var(--t1); font-size:13px; font-weight:500; cursor:pointer; transition:all .15s;
 }
-.gl-subject-head:hover{background:rgba(59,130,246,.08)}
-.gl-subject-head.open{color:var(--blue)}
-.gl-subject-chevron{font-size:10px; color:var(--t3); flex-shrink:0; width:10px; text-align:center}
-.gl-subject-head.open .gl-subject-chevron{color:var(--blue)}
+.gl-group-head:hover{background:rgba(59,130,246,.08)}
+.gl-group-head.open{color:var(--blue)}
+.gl-group-chevron{font-size:10px; color:var(--t3); flex-shrink:0; width:10px; text-align:center}
+.gl-group-head.open .gl-group-chevron{color:var(--blue)}
 
 /* ============================================================
    VIEWER — the open window
@@ -266,12 +266,23 @@ button{font-family:inherit}
 }
 .ms-search-row input:focus{outline:2px solid var(--blue); outline-offset:1px}
 
-.ms-results{flex:1; overflow-y:auto; padding:14px 16px; display:grid; grid-template-columns:1fr 1fr; gap:10px; align-content:start}
+/* auto-fill sizes columns off the panel's actual rendered width, not the
+   page viewport — a fixed 2-col/1-col breakpoint on viewport width drifts
+   out of sync with reality the moment the panel's own width isn't a fixed
+   fraction of the viewport (which it never is: 420px fixed drawer on
+   desktop, 100vw on mobile). This can't have that problem — it just fits
+   as many >=160px columns as the container currently has room for. */
+.ms-results{flex:1; overflow-y:auto; padding:14px 16px; display:grid; grid-template-columns:repeat(auto-fill, minmax(160px, 1fr)); gap:10px; align-content:start}
 .ms-results .feed-empty{grid-column:1 / -1}
 .ms-card{border:1px solid var(--bdr); border-radius:9px; overflow:hidden; background:var(--bgd)}
 .ms-card img{width:100%; height:100%; object-fit:cover; display:block; background:var(--bg)}
-.ms-card-credit{padding:6px 8px; font-size:10px; color:var(--t3); line-height:1.4}
-.ms-card-credit a{color:var(--t2)}
+.ms-card-credit{padding:7px 9px; line-height:1.4}
+.yt-title{
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+  font-size:12px; color:var(--t2); margin-bottom:3px;
+}
+.yt-channel{font-size:10px; color:var(--t3)}
+.yt-channel a{color:var(--t2)}
 
 .yt-thumb-btn{position:relative; display:block; width:100%; padding:0; border:0; background:var(--bg); cursor:pointer; aspect-ratio:16/9}
 .yt-play-badge{
@@ -281,6 +292,10 @@ button{font-family:inherit}
 .yt-thumb-btn:hover .yt-play-badge{background:rgba(3,7,15,.5)}
 .yt-embed-wrap{position:relative; width:100%; aspect-ratio:16/9; background:#000}
 .yt-embed-wrap iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
+/* Once a card starts playing, it spans every column instead of staying
+   pinned to its original ~180px cell — a video crammed into a thumbnail-
+   sized box isn't actually watchable. */
+.ms-card.yt-playing{grid-column:1 / -1}
 
 /* ============================================================
    RESPONSIVE
@@ -304,7 +319,6 @@ button{font-family:inherit}
 @media (max-width:520px){
   .brand-text{display:none}
   .pill-btn{padding:7px 11px; font-size:11.5px}
-  .ms-results{grid-template-columns:1fr}
 }
 
 /* ============================================================
