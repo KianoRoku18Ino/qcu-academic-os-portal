@@ -5,32 +5,80 @@
       "year": 1,
       "label": "Year 1",
       "semesters": [
-        { "sem": 1, "label": "Semester 1", "subjects": [] },
-        { "sem": 2, "label": "Semester 2", "subjects": [] }
+        {
+          "sem": 1,
+          "label": "Semester 1",
+          "subjects": [
+            {
+              "id": "y1-s1-pathfit",
+              "code": "PATHFIT",
+              "title": "Physical Activities Towards Health and Fitness",
+              "items": [
+                {
+                  "id": "week-1",
+                  "kind": "week",
+                  "label": "Week 1 — Components of Physical Fitness",
+                  "order": 1,
+                  "week": 1,
+                  "html": "assets/guides/year-1/sem-1/pathfit/week-1.html"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "sem": 2,
+          "label": "Semester 2",
+          "subjects": []
+        }
       ]
     },
     {
       "year": 2,
       "label": "Year 2",
       "semesters": [
-        { "sem": 1, "label": "Semester 1", "subjects": [] },
-        { "sem": 2, "label": "Semester 2", "subjects": [] }
+        {
+          "sem": 1,
+          "label": "Semester 1",
+          "subjects": []
+        },
+        {
+          "sem": 2,
+          "label": "Semester 2",
+          "subjects": []
+        }
       ]
     },
     {
       "year": 3,
       "label": "Year 3",
       "semesters": [
-        { "sem": 1, "label": "Semester 1", "subjects": [] },
-        { "sem": 2, "label": "Semester 2", "subjects": [] }
+        {
+          "sem": 1,
+          "label": "Semester 1",
+          "subjects": []
+        },
+        {
+          "sem": 2,
+          "label": "Semester 2",
+          "subjects": []
+        }
       ]
     },
     {
       "year": 4,
       "label": "Year 4",
       "semesters": [
-        { "sem": 1, "label": "Semester 1", "subjects": [] },
-        { "sem": 2, "label": "Semester 2", "subjects": [] }
+        {
+          "sem": 1,
+          "label": "Semester 1",
+          "subjects": []
+        },
+        {
+          "sem": 2,
+          "label": "Semester 2",
+          "subjects": []
+        }
       ]
     }
   ],
