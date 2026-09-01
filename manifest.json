@@ -8,23 +8,7 @@
         {
           "sem": 1,
           "label": "Semester 1",
-          "subjects": [
-            {
-              "id": "y1-s1-pathfit",
-              "code": "PATHFIT",
-              "title": "Physical Activities Towards Health and Fitness",
-              "items": [
-                {
-                  "id": "week-1",
-                  "kind": "week",
-                  "label": "Week 1 — Anatomical Directions & Major Muscle Groups",
-                  "order": 1,
-                  "week": 1,
-                  "html": "assets/guides/year-1/sem-1/pathfit/week-1.html"
-                }
-              ]
-            }
-          ]
+          "subjects": []
         },
         {
           "sem": 2,
