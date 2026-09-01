@@ -115,6 +115,7 @@
 
   window.addEventListener("keydown", (e) => {
     if (e.key !== "Escape") return;
+    if (videoLightbox.classList.contains("open")) { closeVideoLightbox(); return; }
     if (!aiSettings.hidden) { aiSettings.hidden = true; gearBtn.classList.remove("open"); return; }
     if (!msSettings.hidden) { msSettings.hidden = true; gearBtn.classList.remove("open"); return; }
     if (toolPanel.classList.contains("open")) { closePanel(); return; }
@@ -384,6 +385,18 @@
   const AI_STORAGE_KEY = "qcuAcademicOsAiSettings";
   const AI_MODEL_DEFAULTS = { openrouter: "openrouter/free", gemini: "gemini-3.6-flash" };
 
+  // Each provider keeps its own model + key. The model/key input fields
+  // only ever show whichever provider is currently selected — switching
+  // the dropdown swaps what's displayed, it never overwrites the OTHER
+  // provider's stored value. Without this, a Gemini key pasted while
+  // OpenRouter's key was still sitting in the same shared field would
+  // silently get sent to whichever provider happened to be selected —
+  // which is exactly the bug this replaces.
+  let aiProviderData = {
+    openrouter: { model: AI_MODEL_DEFAULTS.openrouter, key: "" },
+    gemini: { model: AI_MODEL_DEFAULTS.gemini, key: "" },
+  };
+
   // Conversation memory: without this, every question was sent to the API
   // as a fresh, isolated request — the model had no idea what "them" or
   // "yes" referred to because it never saw the earlier turns, even though
@@ -402,9 +415,9 @@
     const provider = aiProviderSelect.value;
     aiHintOpenrouter.hidden = provider !== "openrouter";
     aiHintGemini.hidden = provider !== "gemini";
-    const current = aiModelInput.value.trim();
-    const isDefaultOrEmpty = current === "" || Object.values(AI_MODEL_DEFAULTS).includes(current);
-    if (isDefaultOrEmpty) aiModelInput.value = AI_MODEL_DEFAULTS[provider];
+    const data = aiProviderData[provider] || {};
+    aiModelInput.value = data.model || AI_MODEL_DEFAULTS[provider];
+    aiKeyInput.value = data.key || "";
   }
   aiProviderSelect.addEventListener("change", syncAiProviderUI);
 
@@ -413,9 +426,11 @@
       const raw = localStorage.getItem(AI_STORAGE_KEY);
       if (raw) {
         const saved = JSON.parse(raw);
-        if (saved.provider) aiProviderSelect.value = saved.provider;
-        if (saved.model) aiModelInput.value = saved.model;
-        if (saved.key) aiKeyInput.value = saved.key;
+        if (saved.providers) {
+          if (saved.providers.openrouter) Object.assign(aiProviderData.openrouter, saved.providers.openrouter);
+          if (saved.providers.gemini) Object.assign(aiProviderData.gemini, saved.providers.gemini);
+        }
+        if (saved.activeProvider) aiProviderSelect.value = saved.activeProvider;
       }
     } catch (err) {
       console.warn("Could not load saved Ask AI settings:", err);
@@ -424,11 +439,15 @@
   }
 
   aiSaveBtn.addEventListener("click", () => {
+    const provider = aiProviderSelect.value;
+    aiProviderData[provider] = {
+      model: aiModelInput.value.trim() || AI_MODEL_DEFAULTS[provider],
+      key: aiKeyInput.value.trim(),
+    };
     try {
       localStorage.setItem(AI_STORAGE_KEY, JSON.stringify({
-        provider: aiProviderSelect.value,
-        model: aiModelInput.value.trim(),
-        key: aiKeyInput.value.trim(),
+        activeProvider: provider,
+        providers: aiProviderData,
       }));
       aiSaveBtn.textContent = "Saved";
       aiSaveBtn.classList.add("saved");
@@ -697,9 +716,13 @@
      PART 5 — VIDEOS (YouTube Data API, BYOK)
      Search runs through YouTube's `search` endpoint (API-key auth,
      no OAuth needed — same BYOK shape as everything else in this
-     app). Results render as thumbnail cards; tapping one swaps its
-     thumbnail for a live embedded player in place, so a video plays
-     right there in the panel instead of bouncing out to youtube.com.
+     app). Results render as thumbnail cards; tapping one opens a
+     full-viewport lightbox with the video embedded large — playing
+     it inline at a ~180px thumbnail's width inside the side panel
+     was never going to leave room for YouTube's own controls to be
+     usable, especially on a narrow or landscape screen. The lightbox
+     sidesteps that entirely: however wide the results grid gets, the
+     player itself always renders at a real, controllable size.
      ================================================================ */
   const msKeyInput = document.getElementById("msKeyInput");
   const msSaveBtn = document.getElementById("msSaveBtn");
@@ -707,6 +730,10 @@
   const msSearchBtn = document.getElementById("msSearchBtn");
   const msResults = document.getElementById("msResults");
   const msResultsEmpty = document.getElementById("msResultsEmpty");
+  const videoLightboxBackdrop = document.getElementById("videoLightboxBackdrop");
+  const videoLightbox = document.getElementById("videoLightbox");
+  const videoLightboxFrame = document.getElementById("videoLightboxFrame");
+  const videoLightboxClose = document.getElementById("videoLightboxClose");
 
   // Renamed from the old Unsplash-era key (qcuAcademicOsMsSettings) since
   // the stored shape changed meaning (Unsplash Access Key -> YouTube API
@@ -758,27 +785,36 @@
     );
   }
 
-  // Delegated: swaps a card's thumbnail button for a live embed on click,
-  // instead of every card getting its own listener at render time. The
-  // card itself also grows to span every grid column — a video embedded
-  // at its original ~180px thumbnail width isn't actually watchable.
+  // "fullscreen" has to be in BOTH the allow list AND the legacy
+  // allowfullscreen attribute — some browsers only honor the Fullscreen
+  // API request from inside the iframe if the permission is granted via
+  // the allow list specifically; allowfullscreen alone isn't always
+  // enough. Missing it here was why the player's own fullscreen button
+  // did nothing.
+  function openVideoLightbox(vid) {
+    videoLightboxFrame.innerHTML =
+      '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(vid) + '?autoplay=1" ' +
+      'title="YouTube video player" frameborder="0" ' +
+      'allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+    videoLightboxBackdrop.classList.add("open");
+    videoLightbox.classList.add("open");
+  }
+
+  function closeVideoLightbox() {
+    videoLightboxBackdrop.classList.remove("open");
+    videoLightbox.classList.remove("open");
+    videoLightboxFrame.innerHTML = ""; // removing the iframe actually stops playback, not just hides it
+  }
+
+  // Delegated: one listener for the whole results grid instead of one
+  // per card, so newly-rendered search results work with no re-binding.
   msResults.addEventListener("click", (e) => {
     const btn = e.target.closest(".yt-thumb-btn");
     if (!btn) return;
-    const vid = btn.dataset.vid;
-    const card = btn.closest(".ms-card");
-    const wrap = document.createElement("div");
-    wrap.className = "yt-embed-wrap";
-    wrap.innerHTML =
-      '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(vid) + '?autoplay=1" ' +
-      'title="YouTube video player" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
-    btn.replaceWith(wrap);
-    if (card) {
-      card.classList.add("yt-playing");
-      card.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    }
+    openVideoLightbox(btn.dataset.vid);
   });
-
+  videoLightboxClose.addEventListener("click", closeVideoLightbox);
+  videoLightboxBackdrop.addEventListener("click", closeVideoLightbox);
 
   async function handleMsSearch() {
     const query = msQuery.value.trim();

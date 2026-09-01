@@ -290,12 +290,32 @@ button{font-family:inherit}
   font-size:26px; color:#fff; background:rgba(3,7,15,.28); transition:background .15s;
 }
 .yt-thumb-btn:hover .yt-play-badge{background:rgba(3,7,15,.5)}
-.yt-embed-wrap{position:relative; width:100%; aspect-ratio:16/9; background:#000}
-.yt-embed-wrap iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
-/* Once a card starts playing, it spans every column instead of staying
-   pinned to its original ~180px cell — a video crammed into a thumbnail-
-   sized box isn't actually watchable. */
-.ms-card.yt-playing{grid-column:1 / -1}
+
+/* --- Video lightbox: opens over everything on tap, same open/close
+   pattern as .panel-backdrop/.tool-panel above (opacity + pointer-events
+   toggled via .open, not [hidden] — the transition needs the element to
+   stay in the DOM the whole time). z-index is above the tool panel
+   (295) and everything else so it's never accidentally covered. --- */
+.video-lightbox-backdrop{
+  position:fixed; inset:0; background:rgba(3,7,15,.82);
+  z-index:390; opacity:0; pointer-events:none; transition:opacity .2s;
+}
+.video-lightbox-backdrop.open{opacity:1; pointer-events:auto}
+.video-lightbox{
+  position:fixed; inset:0; z-index:395; display:flex; align-items:center; justify-content:center;
+  padding:20px; opacity:0; pointer-events:none; transition:opacity .2s;
+}
+.video-lightbox.open{opacity:1; pointer-events:auto}
+.video-lightbox-frame{
+  position:relative; width:100%; max-width:960px; aspect-ratio:16/9;
+  background:#000; border-radius:10px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+.video-lightbox-frame iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
+.video-lightbox-close{
+  position:fixed; top:calc(env(safe-area-inset-top) + 16px); right:16px; z-index:396;
+  width:40px; height:40px; border-radius:50%; background:rgba(3,7,15,.7); border:1px solid var(--bdr);
+  color:#fff; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center;
+}
 
 /* ============================================================
    RESPONSIVE
