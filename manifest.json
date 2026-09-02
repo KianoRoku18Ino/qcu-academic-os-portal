@@ -38,6 +38,20 @@
                   "html": "assets/guides/year-1/sem-1/pathfit/quiz-1-components-of-physical-fitness.html"
                 }
               ]
+            },
+            {
+              "id": "y1-s1-rizal",
+              "code": "RIZAL",
+              "title": "The Life and Works of RIZAL",
+              "items": [
+                {
+                  "id": "full-reviewer",
+                  "kind": "special",
+                  "label": "Full Reviewer",
+                  "order": 1000,
+                  "html": "assets/guides/year-1/sem-1/rizal/full-reviewer.html"
+                }
+              ]
             }
           ]
         },
