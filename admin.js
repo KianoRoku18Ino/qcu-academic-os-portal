@@ -267,11 +267,16 @@
 
   const itemTypeWeekTab = document.getElementById("itemTypeWeekTab");
   const itemTypeSpecialTab = document.getElementById("itemTypeSpecialTab");
+  const itemTypeNoteTab = document.getElementById("itemTypeNoteTab");
   const pubWeekPanel = document.getElementById("pubWeekPanel");
   const pubSpecialPanel = document.getElementById("pubSpecialPanel");
+  const pubNotePanel = document.getElementById("pubNotePanel");
+  const pubFileFields = document.getElementById("pubFileFields");
   const pubWeekNumber = document.getElementById("pubWeekNumber");
   const pubWeekSubtitle = document.getElementById("pubWeekSubtitle");
   const pubSpecialLabel = document.getElementById("pubSpecialLabel");
+  const pubNoteLabel = document.getElementById("pubNoteLabel");
+  const pubNoteText = document.getElementById("pubNoteText");
 
   const srcPasteTab = document.getElementById("srcPasteTab");
   const srcUploadTab = document.getElementById("srcUploadTab");
@@ -285,16 +290,21 @@
   const publishStatus = document.getElementById("publishStatus");
   const publishResult = document.getElementById("publishResult");
 
-  let itemType = "week"; // "week" | "special"
+  let itemType = "week"; // "week" | "special" | "note"
   function setItemType(t) {
     itemType = t;
     itemTypeWeekTab.classList.toggle("act", t === "week");
     itemTypeSpecialTab.classList.toggle("act", t === "special");
+    itemTypeNoteTab.classList.toggle("act", t === "note");
     pubWeekPanel.hidden = t !== "week";
     pubSpecialPanel.hidden = t !== "special";
+    pubNotePanel.hidden = t !== "note";
+    // A note is just text — no file, no upload UI, no PDF, none of it applies.
+    pubFileFields.hidden = t === "note";
   }
   itemTypeWeekTab.addEventListener("click", () => setItemType("week"));
   itemTypeSpecialTab.addEventListener("click", () => setItemType("special"));
+  itemTypeNoteTab.addEventListener("click", () => setItemType("note"));
 
   let htmlSource = "paste";
   function setHtmlSource(src) {
@@ -325,6 +335,8 @@
   // rather than whatever the source file happened to be called, so
   // multiple weeks uploaded from files that all share some generic
   // local name (guide.html, notes.pdf) never collide with each other.
+  // Notes skip all of this entirely — there's no file, so no GitHub
+  // Contents API call at all, just a single manifest.json write.
   async function handlePublish() {
     if (!activeConn) {
       statusEl(publishStatus, "Connect first.", "error");
@@ -340,7 +352,7 @@
       return;
     }
 
-    let itemKind, itemId, itemLabel, weekNum = null;
+    let itemKind, itemId, itemLabel, weekNum = null, noteText = null;
     if (itemType === "week") {
       weekNum = parseInt(pubWeekNumber.value, 10);
       if (!weekNum || weekNum < 1) {
@@ -351,7 +363,7 @@
       itemId = "week-" + weekNum;
       const subtitle = pubWeekSubtitle.value.trim();
       itemLabel = subtitle ? ("Week " + weekNum + " — " + subtitle) : ("Week " + weekNum);
-    } else {
+    } else if (itemType === "special") {
       const label = pubSpecialLabel.value.trim();
       if (!label) {
         statusEl(publishStatus, "Enter a label for the special item.", "error");
@@ -360,21 +372,33 @@
       itemKind = "special";
       itemLabel = label;
       itemId = slugify(label);
+    } else {
+      const label = pubNoteLabel.value.trim();
+      noteText = pubNoteText.value.trim();
+      if (!label || !noteText) {
+        statusEl(publishStatus, "A note needs both a title and some text.", "error");
+        return;
+      }
+      itemKind = "note";
+      itemLabel = label;
+      itemId = slugify(label);
     }
 
     // Read whatever HTML input was actually given this time — may be
     // nothing at all, if this call is only meant to attach/replace the
-    // PDF on an item that's already published.
+    // PDF on an item that's already published. Doesn't apply to notes.
     let newHtmlBase64 = null;
-    if (htmlSource === "paste" && pubHtmlPaste.value.trim()) {
-      newHtmlBase64 = textToBase64(pubHtmlPaste.value);
-    } else if (htmlSource === "upload" && pubHtmlFile.files[0]) {
-      const buf = await readFileAsArrayBuffer(pubHtmlFile.files[0]);
-      newHtmlBase64 = arrayBufferToBase64(buf);
+    if (itemKind !== "note") {
+      if (htmlSource === "paste" && pubHtmlPaste.value.trim()) {
+        newHtmlBase64 = textToBase64(pubHtmlPaste.value);
+      } else if (htmlSource === "upload" && pubHtmlFile.files[0]) {
+        const buf = await readFileAsArrayBuffer(pubHtmlFile.files[0]);
+        newHtmlBase64 = arrayBufferToBase64(buf);
+      }
     }
 
-    const pdfFile = pubPdfFile.files[0] || null;
-    if (!newHtmlBase64 && !pdfFile) {
+    const pdfFile = itemKind !== "note" ? (pubPdfFile.files[0] || null) : null;
+    if (itemKind !== "note" && !newHtmlBase64 && !pdfFile) {
       statusEl(publishStatus, "Provide new HTML content/file, a PDF, or both.", "error");
       return;
     }
@@ -397,12 +421,12 @@
       const subjectSnapshot = (semSnapshot.subjects || []).find((s) => s.id === subjectId) || null;
       const existingItem = subjectSnapshot ? (subjectSnapshot.items || []).find((it) => it.id === itemId) || null : null;
 
-      if (!existingItem && !newHtmlBase64 && !pdfFile) {
+      if (itemKind !== "note" && !existingItem && !newHtmlBase64 && !pdfFile) {
         throw new Error("No existing item at this Year/Semester/Subject/Item — provide at least one file to create it.");
       }
 
       // HTML: upload a new one if given, otherwise keep whatever path
-      // (if any) the existing item already had.
+      // (if any) the existing item already had. Skipped for notes.
       let htmlPath = existingItem ? existingItem.html || null : null;
       if (newHtmlBase64) {
         htmlPath = basePath + itemId + ".html";
@@ -411,7 +435,7 @@
         await putFile(owner, repo, branch, token, htmlPath, newHtmlBase64, message, existingHtmlFile ? existingHtmlFile.sha : null);
       }
 
-      // PDF: same carry-forward rule.
+      // PDF: same carry-forward rule. Skipped for notes.
       let pdfPath = existingItem ? existingItem.pdf || null : null;
       if (pdfFile) {
         pdfPath = basePath + itemId + ".pdf";
@@ -422,14 +446,15 @@
         await putFile(owner, repo, branch, token, pdfPath, pdfBase64, message, existingPdfFile ? existingPdfFile.sha : null);
       }
 
-      // Order: weeks sort by week number; specials sort after every
-      // week, in the order they were first created. Republishing an
-      // item that already exists keeps its original order untouched.
+      // Order: weeks sort by week number; specials and notes both sort
+      // after every week, interleaved in the order they were first
+      // created. Republishing an item that already exists keeps its
+      // original order untouched.
       const itemOrder = existingItem && typeof existingItem.order === "number"
         ? existingItem.order
         : (itemKind === "week"
             ? weekNum
-            : 1000 + ((subjectSnapshot && (subjectSnapshot.items || []).filter((it) => it.kind === "special").length) || 0));
+            : 1000 + ((subjectSnapshot && (subjectSnapshot.items || []).filter((it) => it.kind !== "week").length) || 0));
 
       statusEl(publishStatus, "Updating manifest.json…", "");
       await updateManifest(owner, repo, branch, token, (manifest) => {
@@ -445,6 +470,7 @@
         }
         const entry = { id: itemId, kind: itemKind, label: itemLabel, order: itemOrder };
         if (itemKind === "week") entry.week = weekNum;
+        if (itemKind === "note") entry.text = noteText;
         if (htmlPath) entry.html = htmlPath;
         if (pdfPath) entry.pdf = pdfPath;
         const idx = subject.items.findIndex((it) => it.id === itemId);
@@ -453,20 +479,28 @@
         subject.items.sort((a, b) => (a.order || 0) - (b.order || 0));
       }, message);
 
-      const primaryPath = htmlPath || pdfPath;
-      const pagesUrl = "https://" + owner + ".github.io/" + repo + "/" + primaryPath;
-      const urlLabel = htmlPath ? "Gizmo-ready URL (this file only, no site chrome):" : "Direct PDF URL:";
       statusEl(publishStatus, "Published.", "success");
       publishResult.hidden = false;
-      publishResult.innerHTML =
-        '<div class="admin-result-label">' + escapeHtml(urlLabel) + "</div>" +
-        '<div class="admin-result-url"><code>' + escapeHtml(pagesUrl) + "</code>" +
-        '<button class="copy-btn" type="button" data-copy="' + escapeHtml(pagesUrl) + '">Copy</button></div>' +
-        '<p class="hint">GitHub Pages usually takes 30–90 seconds to rebuild after a push before this URL goes live.</p>';
+      if (itemKind === "note") {
+        // No file, no URL — there's nothing to feed into Gizmo here,
+        // it's just live in the sidebar the next time the page loads.
+        publishResult.innerHTML = '<div class="admin-result-label">Note published — it\'ll show up in the sidebar on next load.</div>';
+      } else {
+        const primaryPath = htmlPath || pdfPath;
+        const pagesUrl = "https://" + owner + ".github.io/" + repo + "/" + primaryPath;
+        const urlLabel = htmlPath ? "Gizmo-ready URL (this file only, no site chrome):" : "Direct PDF URL:";
+        publishResult.innerHTML =
+          '<div class="admin-result-label">' + escapeHtml(urlLabel) + "</div>" +
+          '<div class="admin-result-url"><code>' + escapeHtml(pagesUrl) + "</code>" +
+          '<button class="copy-btn" type="button" data-copy="' + escapeHtml(pagesUrl) + '">Copy</button></div>' +
+          '<p class="hint">GitHub Pages usually takes 30–90 seconds to rebuild after a push before this URL goes live.</p>';
+      }
 
       pubHtmlPaste.value = "";
       pubHtmlFile.value = "";
       pubPdfFile.value = "";
+      pubNoteLabel.value = "";
+      pubNoteText.value = "";
       loadLibraryTree();
     } catch (err) {
       statusEl(publishStatus, "Publish failed: " + err.message, "error");
@@ -522,13 +556,22 @@
               "</div>";
             const items = (subj.items || []).slice().sort((a, b) => (a.order || 0) - (b.order || 0));
             items.forEach((it) => {
-              const primaryPath = it.html || it.pdf || "";
-              const url = "https://" + owner + ".github.io/" + repo + "/" + primaryPath;
+              const kindTag = it.kind === "note" ? '<span class="gl-item-kind" aria-hidden="true">note</span>' : "";
+              html += '<div class="admin-tree-item admin-tree-item-sub">';
+              if (it.kind === "note") {
+                const preview = (it.text || "").slice(0, 140) + ((it.text || "").length > 140 ? "…" : "");
+                html +=
+                  '<div class="admin-tree-item-main">' + kindTag + '<span class="gl-item-title">' + escapeHtml(it.label) + "</span></div>" +
+                  '<div class="admin-tree-item-url"><code>' + escapeHtml(preview) + "</code></div>";
+              } else {
+                const primaryPath = it.html || it.pdf || "";
+                const url = "https://" + owner + ".github.io/" + repo + "/" + primaryPath;
+                html +=
+                  '<div class="admin-tree-item-main">' + kindTag + '<span class="gl-item-title">' + escapeHtml(it.label) + "</span></div>" +
+                  '<div class="admin-tree-item-url"><code>' + escapeHtml(url) + "</code>" +
+                  '<button class="copy-btn" type="button" data-copy="' + escapeHtml(url) + '">Copy</button></div>';
+              }
               html +=
-                '<div class="admin-tree-item admin-tree-item-sub">' +
-                '<div class="admin-tree-item-main"><span class="gl-item-title">' + escapeHtml(it.label) + "</span></div>" +
-                '<div class="admin-tree-item-url"><code>' + escapeHtml(url) + "</code>" +
-                '<button class="copy-btn" type="button" data-copy="' + escapeHtml(url) + '">Copy</button></div>' +
                 '<button class="delete-btn" type="button" data-delete-subject-id="' + escapeHtml(subj.id) +
                 '" data-delete-item-id="' + escapeHtml(it.id) + '" data-year="' + y.year + '" data-sem="' + s.sem + '">Delete</button>' +
                 "</div>";
@@ -604,6 +647,11 @@
      ================================================================ */
   const refCategory = document.getElementById("refCategory");
   const refTitle = document.getElementById("refTitle");
+  const refItemTypeFileTab = document.getElementById("refItemTypeFileTab");
+  const refItemTypeNoteTab = document.getElementById("refItemTypeNoteTab");
+  const refNotePanel = document.getElementById("refNotePanel");
+  const refFileFields = document.getElementById("refFileFields");
+  const refNoteText = document.getElementById("refNoteText");
   const refSrcPasteTab = document.getElementById("refSrcPasteTab");
   const refSrcUploadTab = document.getElementById("refSrcUploadTab");
   const refSrcPastePanel = document.getElementById("refSrcPastePanel");
@@ -615,6 +663,17 @@
   const refPublishBtn = document.getElementById("refPublishBtn");
   const refPublishStatus = document.getElementById("refPublishStatus");
   const refPublishResult = document.getElementById("refPublishResult");
+
+  let refItemType = "file"; // "file" | "note"
+  function setRefItemType(t) {
+    refItemType = t;
+    refItemTypeFileTab.classList.toggle("act", t === "file");
+    refItemTypeNoteTab.classList.toggle("act", t === "note");
+    refNotePanel.hidden = t !== "note";
+    refFileFields.hidden = t === "note";
+  }
+  refItemTypeFileTab.addEventListener("click", () => setRefItemType("file"));
+  refItemTypeNoteTab.addEventListener("click", () => setRefItemType("note"));
 
   let refHtmlSource = "paste";
   function setRefHtmlSource(src) {
@@ -639,16 +698,27 @@
       return;
     }
 
-    let newHtmlBase64 = null;
-    if (refHtmlSource === "paste" && refHtmlPaste.value.trim()) {
-      newHtmlBase64 = textToBase64(refHtmlPaste.value);
-    } else if (refHtmlSource === "upload" && refHtmlFile.files[0]) {
-      const buf = await readFileAsArrayBuffer(refHtmlFile.files[0]);
-      newHtmlBase64 = arrayBufferToBase64(buf);
+    let noteText = null;
+    if (refItemType === "note") {
+      noteText = refNoteText.value.trim();
+      if (!noteText) {
+        statusEl(refPublishStatus, "Enter some text for the note.", "error");
+        return;
+      }
     }
 
-    const pdfFile = refPdfFile.files[0] || null;
-    if (!newHtmlBase64 && !pdfFile) {
+    let newHtmlBase64 = null;
+    if (refItemType === "file") {
+      if (refHtmlSource === "paste" && refHtmlPaste.value.trim()) {
+        newHtmlBase64 = textToBase64(refHtmlPaste.value);
+      } else if (refHtmlSource === "upload" && refHtmlFile.files[0]) {
+        const buf = await readFileAsArrayBuffer(refHtmlFile.files[0]);
+        newHtmlBase64 = arrayBufferToBase64(buf);
+      }
+    }
+
+    const pdfFile = refItemType === "file" ? (refPdfFile.files[0] || null) : null;
+    if (refItemType === "file" && !newHtmlBase64 && !pdfFile) {
       statusEl(refPublishStatus, "Provide new HTML content/file, a PDF, or both.", "error");
       return;
     }
@@ -670,7 +740,7 @@
       const categorySnapshot = (manifestSnapshot.references || []).find((c) => c.id === categoryId) || null;
       const existingItem = categorySnapshot ? (categorySnapshot.items || []).find((it) => it.id === itemId) || null : null;
 
-      if (!existingItem && !newHtmlBase64 && !pdfFile) {
+      if (refItemType === "file" && !existingItem && !newHtmlBase64 && !pdfFile) {
         throw new Error("No existing reference at this Category/Title — provide at least one file to create it.");
       }
 
@@ -710,7 +780,8 @@
           category.label = categoryLabel;
           if (!category.items) category.items = [];
         }
-        const entry = { id: itemId, title: itemTitle, order: itemOrder };
+        const entry = { id: itemId, title: itemTitle, order: itemOrder, kind: refItemType === "note" ? "note" : "doc" };
+        if (refItemType === "note") entry.text = noteText;
         if (htmlPath) entry.html = htmlPath;
         if (pdfPath) entry.pdf = pdfPath;
         const idx = category.items.findIndex((it) => it.id === itemId);
@@ -719,20 +790,25 @@
         category.items.sort((a, b) => (a.order || 0) - (b.order || 0));
       }, message);
 
-      const primaryPath = htmlPath || pdfPath;
-      const pagesUrl = "https://" + owner + ".github.io/" + repo + "/" + primaryPath;
-      const urlLabel = htmlPath ? "Gizmo-ready URL (this file only, no site chrome):" : "Direct PDF URL:";
       statusEl(refPublishStatus, "Published.", "success");
       refPublishResult.hidden = false;
-      refPublishResult.innerHTML =
-        '<div class="admin-result-label">' + escapeHtml(urlLabel) + "</div>" +
-        '<div class="admin-result-url"><code>' + escapeHtml(pagesUrl) + "</code>" +
-        '<button class="copy-btn" type="button" data-copy="' + escapeHtml(pagesUrl) + '">Copy</button></div>' +
-        '<p class="hint">GitHub Pages usually takes 30–90 seconds to rebuild after a push before this URL goes live.</p>';
+      if (refItemType === "note") {
+        refPublishResult.innerHTML = '<div class="admin-result-label">Note published — it\'ll show up in the sidebar on next load.</div>';
+      } else {
+        const primaryPath = htmlPath || pdfPath;
+        const pagesUrl = "https://" + owner + ".github.io/" + repo + "/" + primaryPath;
+        const urlLabel = htmlPath ? "Gizmo-ready URL (this file only, no site chrome):" : "Direct PDF URL:";
+        refPublishResult.innerHTML =
+          '<div class="admin-result-label">' + escapeHtml(urlLabel) + "</div>" +
+          '<div class="admin-result-url"><code>' + escapeHtml(pagesUrl) + "</code>" +
+          '<button class="copy-btn" type="button" data-copy="' + escapeHtml(pagesUrl) + '">Copy</button></div>' +
+          '<p class="hint">GitHub Pages usually takes 30–90 seconds to rebuild after a push before this URL goes live.</p>';
+      }
 
       refHtmlPaste.value = "";
       refHtmlFile.value = "";
       refPdfFile.value = "";
+      refNoteText.value = "";
       loadReferenceLibraryTree();
     } catch (err) {
       statusEl(refPublishStatus, "Publish failed: " + err.message, "error");
@@ -764,13 +840,24 @@
         html += '<div class="gl-section-title">' + escapeHtml(cat.label) + "</div>";
         const items = (cat.items || []).slice().sort((a, b) => (a.order || 0) - (b.order || 0));
         items.forEach((it) => {
-          const primaryPath = it.html || it.pdf || "";
-          const url = "https://" + owner + ".github.io/" + repo + "/" + primaryPath;
+          const kindTag = it.kind === "note" ? '<span class="gl-item-kind" aria-hidden="true">note</span>' : "";
+          html += '<div class="admin-tree-item">';
+          if (it.kind === "note") {
+            // A note has no file/URL — show a text preview instead of a
+            // broken link with an empty path.
+            const preview = (it.text || "").slice(0, 140) + ((it.text || "").length > 140 ? "…" : "");
+            html +=
+              '<div class="admin-tree-item-main">' + kindTag + '<span class="gl-item-title">' + escapeHtml(it.title) + "</span></div>" +
+              '<div class="admin-tree-item-url"><code>' + escapeHtml(preview) + "</code></div>";
+          } else {
+            const primaryPath = it.html || it.pdf || "";
+            const url = "https://" + owner + ".github.io/" + repo + "/" + primaryPath;
+            html +=
+              '<div class="admin-tree-item-main">' + kindTag + '<span class="gl-item-title">' + escapeHtml(it.title) + "</span></div>" +
+              '<div class="admin-tree-item-url"><code>' + escapeHtml(url) + "</code>" +
+              '<button class="copy-btn" type="button" data-copy="' + escapeHtml(url) + '">Copy</button></div>';
+          }
           html +=
-            '<div class="admin-tree-item">' +
-            '<div class="admin-tree-item-main"><span class="gl-item-title">' + escapeHtml(it.title) + "</span></div>" +
-            '<div class="admin-tree-item-url"><code>' + escapeHtml(url) + "</code>" +
-            '<button class="copy-btn" type="button" data-copy="' + escapeHtml(url) + '">Copy</button></div>' +
             '<button class="delete-btn" type="button" data-delete-category-id="' + escapeHtml(cat.id) +
             '" data-delete-item-id="' + escapeHtml(it.id) + '">Delete</button>' +
             "</div>";

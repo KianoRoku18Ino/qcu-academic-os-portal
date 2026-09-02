@@ -110,6 +110,10 @@ button{font-family:inherit}
 .gl-item.act{color:var(--blue); font-weight:500; background:rgba(59,130,246,.1); border-left-color:var(--blue)}
 .gl-item-code{font-family:'JetBrains Mono',monospace; font-size:9.5px; color:var(--t3); border:1px solid var(--bdr); border-radius:4px; padding:1px 5px; flex-shrink:0}
 .gl-item.act .gl-item-code{color:var(--blue); border-color:var(--blue)}
+.gl-item-kind{
+  font-family:'JetBrains Mono',monospace; font-size:9px; text-transform:uppercase; letter-spacing:.04em;
+  color:var(--amber); border:1px solid rgba(245,158,11,.35); border-radius:4px; padding:1px 5px; flex-shrink:0;
+}
 .gl-item-title{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
 .gl-item.sub{padding-left:34px}
 
@@ -158,6 +162,18 @@ button{font-family:inherit}
 .ft-btn:disabled{opacity:.35; cursor:not-allowed}
 
 .viewer-frame{flex:1; width:100%; border:0; background:var(--bg)}
+.viewer-note{
+  flex:1; width:100%; overflow-y:auto; padding:28px clamp(20px, 6vw, 80px);
+  background:var(--bg); color:var(--t1); line-height:1.7; font-size:15px;
+}
+.viewer-note .msg-h{font-family:'Space Grotesk',sans-serif; color:var(--t1); margin:20px 0 8px}
+.viewer-note p{margin:0 0 14px}
+.viewer-note .msg-list{margin:0 0 14px 22px}
+.viewer-note .msg-quote{border-left:2px solid var(--blue); padding-left:12px; color:var(--t2); margin:0 0 14px}
+.viewer-note .msg-table{border-collapse:collapse; width:100%; margin:0 0 14px; font-size:14px}
+.viewer-note .msg-table th, .viewer-note .msg-table td{border:1px solid var(--bdr); padding:7px 10px; text-align:left; vertical-align:top}
+.viewer-note .msg-table th{background:var(--bgr); color:var(--t1); font-family:'Space Grotesk',sans-serif}
+.viewer-note code{font-family:'JetBrains Mono',monospace; background:var(--bgcode); border-radius:4px; padding:1px 5px; font-size:13px}
 
 /* ============================================================
    TOOL PANEL — Ask AI / Videos

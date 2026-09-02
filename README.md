@@ -21,6 +21,10 @@ Everything else — the Library, Viewer (HTML/PDF toggle), Ask AI (BYOK, OpenRou
 - **Subjects are folders of items, not single guides.** A subject can now hold multiple pieces: numbered weeks (`Week 1`, `Week 2`, …) and/or freeform "special" entries (`Midterm Reviewer`, `Course Overview`, whatever fits). Each item is its own independent html/pdf pair with its own path — publishing or deleting one item never touches its subject's other items. The sidebar reflects this as a third level: **Year·Semester → Subject (tap to expand) → Item**.
 - **Media Search → Videos.** Unsplash (generic stock photography) is gone — it was a poor fit for a CS/IT study tool. In its place: YouTube Data API search with results playable *inline* (tap a thumbnail, it plays right there in the panel, no tab switch). Same BYOK pattern as before — paste an API key, nothing routes through a server of ours.
 - **Reference Library.** A second content tree, independent of Year/Semester/Subject entirely — for material that's relevant across the whole curriculum (a full HTML/CSS reference, a GitHub mastery guide). Grouped by a freeform category instead of the curriculum tree; shows up in the sidebar above the year-by-year guides. Its own Publish/Library cards on the admin page. Starts empty — nothing shows in the sidebar for it until something's actually published there.
+- **Notes.** A third item type, alongside weeks/specials (and reference docs) — just markdown text, no file, no upload. Publish one from either publish card by switching its type tab to "Note"; it's written straight into `manifest.json` and shows up in the sidebar tagged `note`, rendered with the same Markdown formatter Ask AI's answers already use. Fastest possible way to jot something down without touching a file at all.
+- **The sidebar library now bypasses the browser/CDN cache on every load** — a plain `fetch("manifest.json")` could serve a stale copy for a while after a fresh publish (GitHub Pages sits behind a CDN); it's now fetched with a cache-busting timestamp and `cache: "no-store"`, so what you just published always shows up (once GitHub Pages finishes its own ~30–90s rebuild).
+- **Ask AI keys are now per-provider.** OpenRouter and Gemini used to share one key/model field — pasting a Gemini key while OpenRouter's was still in the field would silently misroute it. Each provider now keeps its own saved key and model; switching the dropdown just changes which one's showing.
+- **Videos: fullscreen actually works now, and playback opens in a proper lightbox.** The embedded player's `allow` list was missing the `fullscreen` permission (present but non-functional fullscreen button). Playback also no longer happens inline inside a ~180px results-grid card — tapping a thumbnail now opens a full-viewport lightbox, so the player is always a real, controllable size regardless of how the results grid is laid out.
 
 ## Running it locally
 
@@ -86,12 +90,19 @@ Go to `/admin.html` (there's also a small ✎ icon in the portal's topbar). It's
       "label": "Midterm Reviewer",
       "order": 1000,
       "pdf": "assets/guides/year-1/sem-1/cc104/midterm-reviewer.pdf"
+    },
+    {
+      "id": "profs-note",
+      "kind": "note",
+      "label": "Prof's note",
+      "order": 1001,
+      "text": "Midterm covers **chapters 1-3 only**, per the announcement in class."
     }
   ]
 }
 ```
 
-An item needs at least one of `html`/`pdf` (both is fine too). `order` controls sort position in the sidebar and the admin's library tree — weeks conventionally use their week number, specials use `1000+` so they sort after every week.
+A week/special item needs at least one of `html`/`pdf` (both is fine too). A `kind:"note"` item has neither — it carries `text` (Markdown) directly instead, rendered inline with no file involved at all. `order` controls sort position in the sidebar and the admin's library tree — weeks conventionally use their week number, specials and notes use `1000+` so they sort after every week, interleaved in whatever order they were added.
 
 3. Done — `script.js` and `index.html` need no changes either way.
 

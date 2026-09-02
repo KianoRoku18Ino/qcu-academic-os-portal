@@ -1,113 +1,36 @@
 {
-  "_comment": "Two independent trees. (1) years -> semesters -> subjects -> items: a subject is a folder (e.g. assets/guides/year-1/sem-1/cc104/); subject shape {id, code, title, items: []}, each item one numbered week or freeform 'special' entry {id, kind: \"week\"|\"special\", label, order, week?, html?, pdf?} (week only on kind:\"week\"; html/pdf are paths relative to this file, an item needs at least one). (2) references -> items: general material not tied to any year/semester/subject (e.g. assets/references/web-development/); category shape {id, label, items: []}, each item {id, title, order, html?, pdf?}. Both start empty — publish from /admin.html and entries land here automatically. order controls sidebar/library sort order in both trees. Nothing in script.js needs to change when subjects, items, or reference categories are added — manual editing works too.",
+  "_comment": "Two independent trees. (1) years -> semesters -> subjects -> items: a subject is a folder (e.g. assets/guides/year-1/sem-1/cc104/); subject shape {id, code, title, items: []}. Each item is one of three kinds: {id, kind:\"week\", label, order, week, html?, pdf?} (numbered week), {id, kind:\"special\", label, order, html?, pdf?} (freeform entry like a Midterm Reviewer), or {id, kind:\"note\", label, order, text} (markdown text stored inline, no file at all). html/pdf are paths relative to this file; a week/special item needs at least one of them, a note needs `text` instead and never has html/pdf. (2) references -> items: general material not tied to any year/semester/subject (e.g. assets/references/web-development/); category shape {id, label, items: []}, each item {id, title, order, kind:\"doc\"|\"note\", html?/pdf?, or text? for kind:\"note\"} — same doc-vs-note split as subject items, just without the week/special distinction. Both trees start empty — publish from /admin.html and entries land here automatically. order controls sidebar/library sort order in both trees. Nothing in script.js needs to change when subjects, items, or reference categories are added — manual editing works too.",
   "years": [
     {
       "year": 1,
       "label": "Year 1",
       "semesters": [
-        {
-          "sem": 1,
-          "label": "Semester 1",
-          "subjects": [
-            {
-              "id": "y1-s1-pathfit",
-              "code": "PATHFIT",
-              "title": "Physical Activities Towards Health and Fitness",
-              "items": [
-                {
-                  "id": "week-1",
-                  "kind": "week",
-                  "label": "Week 1 — Components of Physical Fitness",
-                  "order": 1,
-                  "week": 1,
-                  "html": "assets/guides/year-1/sem-1/pathfit/week-1.html"
-                },
-                {
-                  "id": "week-2",
-                  "kind": "week",
-                  "label": "Week 2 — Anatomical Directions & Major Muscle Groups",
-                  "order": 2,
-                  "week": 2,
-                  "html": "assets/guides/year-1/sem-1/pathfit/week-2.html"
-                },
-                {
-                  "id": "quiz-1-components-of-physical-fitness",
-                  "kind": "special",
-                  "label": "Quiz 1 : Components of Physical Fitness",
-                  "order": 1000,
-                  "html": "assets/guides/year-1/sem-1/pathfit/quiz-1-components-of-physical-fitness.html"
-                }
-              ]
-            },
-            {
-              "id": "y1-s1-rizal",
-              "code": "RIZAL",
-              "title": "The Life and Works of RIZAL",
-              "items": [
-                {
-                  "id": "full-reviewer",
-                  "kind": "special",
-                  "label": "Full Reviewer",
-                  "order": 1000,
-                  "html": "assets/guides/year-1/sem-1/rizal/full-reviewer.html"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "sem": 2,
-          "label": "Semester 2",
-          "subjects": []
-        }
+        { "sem": 1, "label": "Semester 1", "subjects": [] },
+        { "sem": 2, "label": "Semester 2", "subjects": [] }
       ]
     },
     {
       "year": 2,
       "label": "Year 2",
       "semesters": [
-        {
-          "sem": 1,
-          "label": "Semester 1",
-          "subjects": []
-        },
-        {
-          "sem": 2,
-          "label": "Semester 2",
-          "subjects": []
-        }
+        { "sem": 1, "label": "Semester 1", "subjects": [] },
+        { "sem": 2, "label": "Semester 2", "subjects": [] }
       ]
     },
     {
       "year": 3,
       "label": "Year 3",
       "semesters": [
-        {
-          "sem": 1,
-          "label": "Semester 1",
-          "subjects": []
-        },
-        {
-          "sem": 2,
-          "label": "Semester 2",
-          "subjects": []
-        }
+        { "sem": 1, "label": "Semester 1", "subjects": [] },
+        { "sem": 2, "label": "Semester 2", "subjects": [] }
       ]
     },
     {
       "year": 4,
       "label": "Year 4",
       "semesters": [
-        {
-          "sem": 1,
-          "label": "Semester 1",
-          "subjects": []
-        },
-        {
-          "sem": 2,
-          "label": "Semester 2",
-          "subjects": []
-        }
+        { "sem": 1, "label": "Semester 1", "subjects": [] },
+        { "sem": 2, "label": "Semester 2", "subjects": [] }
       ]
     }
   ],

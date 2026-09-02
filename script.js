@@ -175,8 +175,13 @@
   }
 
   function itemRowHTML(it) {
+    // A tiny kind marker keeps a mixed list scannable without a full
+    // badge system — notes have no file behind them at all, worth
+    // flagging at a glance before you click one expecting a document.
+    const marker = it.kind === "note" ? '<span class="gl-item-kind" aria-hidden="true">note</span>' : "";
     return (
       '<button class="gl-item sub" data-uid="' + escapeHtml(it.uid) + '" type="button">' +
+      marker +
       '<span class="gl-item-title">' + escapeHtml(it.label) + "</span>" +
       "</button>"
     );
@@ -260,7 +265,14 @@
 
   async function loadLibrary() {
     try {
-      const res = await fetch("manifest.json");
+      // manifest.json is the one file in this app that changes constantly
+      // (every publish/delete touches it) yet was being fetched with zero
+      // cache-busting — a plain fetch() is subject to normal HTTP caching,
+      // and GitHub Pages serves through a CDN that can hold an old copy
+      // for a while after a push. A timestamped query string plus
+      // cache:"no-store" forces a genuinely fresh request every load, so
+      // the sidebar can't ever show a stale library after a publish.
+      const res = await fetch("manifest.json?t=" + Date.now(), { cache: "no-store" });
       if (!res.ok) throw new Error("HTTP " + res.status);
       const data = await res.json();
       allItems = [];
@@ -320,18 +332,29 @@
   const viewerEmpty = document.getElementById("viewerEmpty");
   const viewerActive = document.getElementById("viewerActive");
   const viewerFrame = document.getElementById("viewerFrame");
+  const viewerNote = document.getElementById("viewerNote");
   const vhCode = document.getElementById("vhCode");
   const vhTitle = document.getElementById("vhTitle");
+  const formatToggle = document.getElementById("formatToggle");
   const formatHtmlBtn = document.getElementById("formatHtmlBtn");
   const formatPdfBtn = document.getElementById("formatPdfBtn");
   const openNewTabBtn = document.getElementById("openNewTabBtn");
 
-  let currentGuide = null;    // the flattened item object (badgeText/displayTitle/uid/html/pdf), or null
-  let currentFormat = "html"; // "html" | "pdf" — which version is showing
+  let currentGuide = null;    // the flattened item object (badgeText/displayTitle/uid/html/pdf/kind/text), or null
+  let currentFormat = "html"; // "html" | "pdf" — which version is showing (meaningless for a note)
 
   function renderViewerHeader() {
     vhCode.textContent = currentGuide.badgeText;
     vhTitle.textContent = currentGuide.displayTitle;
+    if (currentGuide.kind === "note") {
+      // A note has no file behind it — no format to toggle, nowhere to
+      // "open in a new tab", so those controls just don't apply here.
+      formatToggle.hidden = true;
+      openNewTabBtn.hidden = true;
+      return;
+    }
+    formatToggle.hidden = false;
+    openNewTabBtn.hidden = false;
     formatHtmlBtn.disabled = !currentGuide.html;
     formatPdfBtn.disabled = !currentGuide.pdf;
     formatHtmlBtn.classList.toggle("act", currentFormat === "html");
@@ -342,10 +365,24 @@
 
   function openGuide(item, format) {
     currentGuide = item;
-    currentFormat = format || (item.html ? "html" : "pdf");
     viewerEmpty.hidden = true;
     viewerActive.hidden = false;
-    viewerFrame.src = currentFormat === "html" ? item.html : item.pdf;
+
+    if (item.kind === "note") {
+      viewerFrame.hidden = true;
+      viewerFrame.src = "about:blank";
+      viewerNote.hidden = false;
+      // Reuses the exact same Markdown-to-HTML renderer Ask AI's answers
+      // go through — a note is just markdown text, same as an answer is.
+      viewerNote.innerHTML = formatAiAnswer(item.text || "");
+    } else {
+      viewerNote.hidden = true;
+      viewerNote.innerHTML = "";
+      viewerFrame.hidden = false;
+      currentFormat = format || (item.html ? "html" : "pdf");
+      viewerFrame.src = currentFormat === "html" ? item.html : item.pdf;
+    }
+
     renderViewerHeader();
     updateAiContextBanner();
     aiHistory = []; // new item = new context; old turns would reference the wrong one
@@ -464,7 +501,9 @@
       return;
     }
     const label = currentGuide.badgeText + " — " + currentGuide.displayTitle;
-    if (currentFormat === "pdf") {
+    if (currentGuide.kind === "note") {
+      aiContextBanner.textContent = "Reading: " + label;
+    } else if (currentFormat === "pdf") {
       aiContextBanner.textContent = "Reading: " + label + " (PDF mode — switch to HTML to let Ask AI read the page content).";
     } else {
       aiContextBanner.textContent = "Reading: " + label;
@@ -480,7 +519,14 @@
   // pdf.js bundled in) — that's a known gap, not a silent failure.
   const MAX_CONTEXT_CHARS = 15000;
   function extractGuideText() {
-    if (!currentGuide || currentFormat !== "html") return null;
+    if (!currentGuide) return null;
+    if (currentGuide.kind === "note") {
+      // No iframe involved at all for a note — its text already IS the
+      // context, straight from the manifest entry.
+      const text = currentGuide.text || "";
+      return text.length > MAX_CONTEXT_CHARS ? text.slice(0, MAX_CONTEXT_CHARS) + "\n…(truncated)" : text;
+    }
+    if (currentFormat !== "html") return null;
     try {
       const doc = viewerFrame.contentDocument;
       if (!doc || !doc.body) return null;
