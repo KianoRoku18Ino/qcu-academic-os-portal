@@ -29,6 +29,13 @@
                   "order": 2,
                   "week": 2,
                   "html": "assets/guides/year-1/sem-1/pathfit/week-2.html"
+                },
+                {
+                  "id": "quiz-1-components-of-physical-fitness",
+                  "kind": "special",
+                  "label": "Quiz 1 : Components of Physical Fitness",
+                  "order": 1000,
+                  "html": "assets/guides/year-1/sem-1/pathfit/quiz-1-components-of-physical-fitness.html"
                 }
               ]
             }
