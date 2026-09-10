@@ -22,6 +22,21 @@
                   "html": "assets/guides/year-1/sem-1/rizal/midterm-lecture.html"
                 }
               ]
+            },
+            {
+              "id": "y1-s1-hum2",
+              "code": "HUM2",
+              "title": "Ethics",
+              "items": [
+                {
+                  "id": "week-1",
+                  "kind": "week",
+                  "label": "Week 1 — Basic Concepts",
+                  "order": 1,
+                  "week": 1,
+                  "html": "assets/guides/year-1/sem-1/hum2/week-1.html"
+                }
+              ]
             }
           ]
         },
