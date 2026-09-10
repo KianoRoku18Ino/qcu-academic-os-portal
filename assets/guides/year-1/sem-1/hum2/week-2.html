@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HUM2 — Morality and Other Normative Systems | Complete Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--bgcode:#060D18;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--purple:#8B5CF6;--violet:#8B5CF6;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(139,92,246,.15);--sw:285px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvs{padding:9px 17px 3px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t3)}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover,.nvi a.act{color:var(--t1);background:rgba(139,92,246,.08);border-left-color:var(--purple)}
+.nvi a.act{color:var(--purple);font-weight:500}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:20px}
+.main{margin-left:var(--sw)}
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:52px 52px 42px;position:relative;overflow:hidden}
+.hero::before{content:'01001000';position:absolute;top:-10px;right:15px;font-family:'JetBrains Mono',monospace;font-size:115px;font-weight:900;color:rgba(139,92,246,.05);letter-spacing:-5px;user-select:none;line-height:1}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--purple);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--purple)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:700;line-height:1.05;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#8B5CF6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:18px;color:var(--t2);margin-bottom:19px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+.chapter{padding:44px 52px;border-bottom:1px solid var(--bdr);max-width:970px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--purple);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:19.5px;font-weight:600;margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--purple);border-radius:2px;flex-shrink:0}
+h3{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--purple);margin:22px 0 9px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+.box{border-radius:8px;padding:13px 17px;margin:15px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}.red .btt{color:var(--red)}
+.purple{background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2)}.purple .btt{color:var(--purple)}
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--purple);font-size:12px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(139,92,246,.04)}
+tbody td{padding:9px 13px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}.tp{background:rgba(139,92,246,.15);color:var(--purple)}
+.steps{margin:15px 0}
+.step{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+.snum{background:var(--purple);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace}
+.sc{flex:1}
+.sl{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:3px}
+.sd{color:var(--t2);font-size:13px;line-height:1.7}
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.gc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;position:relative;overflow:hidden}
+.gc::before{content:attr(data-g);position:absolute;top:-10px;right:7px;font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:900;color:rgba(139,92,246,.06);line-height:1}
+.gera{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.gtit{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:7px}
+.gsp{font-size:12.5px;color:var(--t2);margin:0;line-height:1.7}
+.gsp strong{color:var(--purple)}
+.isg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.isc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;border-top:3px solid var(--purple)}
+.isc.a{border-top-color:var(--amber)}.isc.g{border-top-color:var(--green)}.isc.r{border-top-color:var(--red)}
+.ico{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-bottom:3px}
+.inm{font-weight:700;font-size:14px;color:var(--t1);margin-bottom:6px}
+.idc{font-size:12.5px;color:var(--t2);line-height:1.7}
+.mlst{margin:11px 0}
+.mitem{display:flex;gap:11px;padding:10px 0;border-bottom:1px solid var(--bdr);align-items:flex-start}
+.mitem:last-child{border-bottom:none}
+.mnm{font-weight:700;color:var(--red);min-width:150px;font-size:13px}
+.mdc{font-size:13px;color:var(--t2);line-height:1.65}
+.law{background:var(--bgc);border:1px solid var(--bdr);border-left:4px solid var(--purple);border-radius:8px;padding:15px 17px;margin:11px 0}
+.lra{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--purple);font-weight:700;margin-bottom:3px}
+.ltit{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:4px}
+.lyr{font-size:11px;color:var(--t3);margin-bottom:7px}
+.ldc{font-size:13px;color:var(--t2);line-height:1.75;font-style:italic}
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:4px;font-size:13px;line-height:1.75}
+li strong{color:var(--t1)}
+.addbadge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--green);background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);border-radius:4px;padding:2px 7px;letter-spacing:.5px;margin-bottom:8px}
+.footer{padding:34px 52px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--purple)}
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.gg,.isg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+<div class="sbh"><div class="sbb">HUM2 · QCU BSIT</div><div class="sbt">Ethics — Module 2</div><div class="sbs">Morality &amp; Other Normative Systems</div></div>
+<ul class="nvl">
+<li class="nvs">Introduction</li>
+<li class="nvi"><a href="#overview"><span class="nn">00</span>Overview &amp; Priority Map</a></li>
+<li class="nvs">Chapters</li>
+<li class="nvi"><a href="#ch1"><span class="nn">01</span>Law, Religion &amp; Morality</a></li>
+<li class="nvi"><a href="#ch2"><span class="nn">02</span>Cultural Relativism</a></li>
+<li class="nvi"><a href="#ch3"><span class="nn">03</span>Moral Subjectivism</a></li>
+<li class="nvi"><a href="#ch4"><span class="nn">04</span>Psych. &amp; Ethical Egoism</a></li>
+<li class="nvi"><a href="#ch5"><span class="nn">05</span>The Myth of Gyges</a></li>
+<li class="nvi"><a href="#ch6"><span class="nn">06</span>Does Ethics Make Sense?</a></li>
+<li class="nvs">Reference</li>
+<li class="nvi"><a href="#ch7"><span class="nn">07</span>Professor's Quiz (Module 2)</a></li>
+<li class="nvi"><a href="#ch8"><span class="nn">08</span>Glossary &amp; Abbreviations</a></li>
+<li class="nvi"><a href="#ch9"><span class="nn">09</span>Source Verification Notes</a></li>
+</ul></nav>
+
+<main class="main">
+<div class="hero">
+<div class="he">QCU Academic OS · AY 2026-2027</div>
+<div class="ht">HUM2</div>
+<div class="hs">Morality and Other Normative Systems — Module 2 Reviewer</div>
+<div class="hm">
+<div class="mp">Course: <span>HUM2 (Ethics)</span></div>
+<div class="mp">Units: <span>General Education</span></div>
+<div class="mp">Year Level: <span>1st Year</span></div>
+<div class="mp">Type: <span>Humanities / Values Education</span></div>
+</div></div>
+
+<section class="chapter" id="overview">
+<div class="cn">CHAPTER 00</div><div class="ct">Overview &amp; Study Priority Map</div>
+<p class="ci">This module asks a single organizing question: <strong>what actually makes something moral</strong> — and how is that different from what makes something legal, religiously required, culturally normal, or personally preferred? The lesson works through five candidate answers in sequence — law, religion, culture (cultural relativism), personal opinion (subjectivism), and self-interest (psychological/ethical egoism) — showing a problem with each, before closing with Plato's <em>Myth of Gyges</em> and Socrates' own answer in <em>Republic</em> Book IV: that being ethical is a matter of inner harmony, not outer reward.</p>
+
+<div class="box purple"><div class="bico">🧭</div><div class="bbd"><div class="btt">Added — Organizing Framework for This Guide</div>
+<p class="btx">The professor's slides don't name this structure explicitly, but the deck's own ordering forms a clear "five candidates, five problems" progression: <strong>Law → Religion → Culture → Subjectivism → Egoism</strong>, each eliminated as a complete account of morality, followed by Socrates' positive answer. This guide's chapters follow that same order and refer back to it — use it as your mental map of the whole module, not just chapter titles in isolation.</p></div></div>
+
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Quiz Terms Without a Dedicated Slide</div>
+<p class="btx">The professor's own Quiz A (Ch. 07) tests three terms — <strong>Normative System</strong>, <strong>Moral Judgment</strong>, and <strong>Social Norms</strong> — that don't get a standalone explanation slide anywhere in this deck (unlike Morality, Religion, Culture, Cultural Relativism, Subjectivism, and both Egoisms, which each get their own slide). Their definitions below are pulled directly from the Quiz A answer bank itself — that bank <em>is</em> lesson material — but flagged so you know they were reconstructed from the quiz key rather than lifted from a lecture slide.</p></div></div>
+
+<h2>Exam Priority Map</h2>
+<div class="tw"><table>
+<thead><tr><th>Topic</th><th>Chapter</th><th>Assessment Weight</th><th>Difficulty</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td>Cultural Relativism (+ examples)</td><td>02</td><td><span class="tag tr2">🔴 Very High</span></td><td><span class="tag ta">Medium</span></td><td>Quiz A items 3–4 <strong>and</strong> Quiz B Essay 1 — the single most heavily assessed topic in the module.</td></tr>
+<tr><td>Psychological vs. Ethical Egoism</td><td>04</td><td><span class="tag tr2">🔴 Very High</span></td><td><span class="tag ta">Medium</span></td><td>Quiz A items 6–7 <strong>and</strong> Quiz B Essay 2 — the second essay topic; requires the is/ought distinction, not just recall.</td></tr>
+<tr><td>Morality, Law &amp; Religion contrasts</td><td>01</td><td><span class="tag ta">Medium-High</span></td><td><span class="tag tg">Easy</span></td><td>Quiz A items 1–2; low conceptual difficulty once the contrast tables are memorized.</td></tr>
+<tr><td>Moral Subjectivism</td><td>03</td><td><span class="tag ta">Medium-High</span></td><td><span class="tag tg">Easy</span></td><td>Quiz A item 5 only; four claim/counter pairs are easy to recall as a set.</td></tr>
+<tr><td>Normative System / Moral Judgment / Social Norms</td><td>00 &amp; 08</td><td><span class="tag tb">Medium</span></td><td><span class="tag tg">Easy</span></td><td>Quiz A items 8–10; pure recall, but not separately lectured — memorize the definitions directly.</td></tr>
+<tr><td>Myth of Gyges &amp; Republic Bk. IV</td><td>05–06</td><td><span class="tag tb">Medium</span></td><td><span class="tag ta">Medium</span></td><td>Not in the provided quiz, but supplies the reasoning (self-interest vs. justice) that Essay 2 depends on — high recitation value.</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="chapter" id="ch1">
+<div class="cn">CHAPTER 01</div><div class="ct">Morality, Law &amp; Religion</div>
+<p class="ci">The module opens by separating morality from two systems people often confuse it with: law and religion. Both regulate behavior, but neither is identical to morality.</p>
+
+<h2>Morality vs. Law</h2>
+<div class="tw"><table>
+<thead><tr><th>Morality</th><th>Law</th></tr></thead>
+<tbody>
+<tr><td>About what to do in a certain situation.</td><td>Does not tell us what to do, only what to avoid.</td></tr>
+<tr><td>What is moral could be legal.</td><td>What is legal is not necessarily moral.</td></tr>
+</tbody></table></div>
+
+<h2>Morality vs. Religion — the Euthyphro Exchange</h2>
+<div class="law"><div class="lra">PRIMARY SOURCE</div><div class="ltit">Socrates vs. Religion, on the source of "holy"</div><div class="lyr">Plato, <em>Euthyphro</em></div>
+<div class="ldc">Socrates: "Is it holy in itself and that is why it is loved by the gods?"<br>Religion's answer (Euthyphro): "What is holy is loved by the gods."</div></div>
+
+<div class="box purple"><div class="bico">✚</div><div class="bbd"><div class="btt addbadge">ADDED</div>
+<p class="btx">"Euthyphro" here is both the name of the person Socrates is questioning <em>and</em> the title of the Platonic dialogue this exchange comes from. This exact contrast — is something good because a god commands it, or does a god command it because it's already good? — is famous enough in philosophy to have its own name: the <strong>Euthyphro Dilemma</strong>. The slide doesn't use that term, but it's worth knowing if a professor asks "what is this argument usually called?"</p></div></div>
+
+<p>A second slide pairs two visuals with no accompanying text: a "Concrete vs. Abstract Nouns" diagram (apple/tree/book vs. love/peace/idea) next to a "Top-Down" diagram (God → King → People). No claim sentence connects them in the source file.</p>
+<div class="box amber"><div class="bico">❓</div><div class="bbd"><div class="btt">Under-Narrated Slide — Ask Your Professor</div>
+<p class="btx">Because this slide has visuals only and no supporting text, this guide is not guessing at the intended point (per your instructions, nothing is being invented here). If this pairing shows up in recitation, ask your professor directly what conclusion the two images are meant to support — likely something about morality dealing in abstract, self-justifying concepts versus religion's top-down, authority-derived structure, but that's a reasonable guess, not something stated in the material.</p></div></div>
+
+<h3>Recitation Drill — Chapter 01</h3>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Q: Give one sentence that separates morality from law.</div><div class="sd">A: Law only tells you what to avoid (prohibitions with penalties); morality tells you what to do — and something can be legal without being moral, or moral without being codified into law.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Q: What is the Euthyphro Dilemma asking?</div><div class="sd">A: Whether something is good because God commands it (making morality dependent on divine will), or whether God commands it because it is already good (making morality independent of, and prior to, religious authority).</div></div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch2">
+<div class="cn">CHAPTER 02</div><div class="ct">Morality and Culture: Cultural Relativism</div>
+<p class="ci">This is the most heavily assessed chapter in the module — it is tested directly in the matching quiz <strong>and</strong> is the subject of Quiz B's first essay question.</p>
+
+<h2>Definition</h2>
+<div class="law"><div class="lra">DEFINITION · SOURCE</div><div class="ltit">Cultural Relativism</div><div class="lyr">Rachels, James (2012). <em>Elements of Moral Philosophy</em>. 7th Edition. Boston, McGraw-Hill, 16. <a href="#ch9">(citation flagged — see Ch. 09)</a></div>
+<div class="ldc">"Cultural Relativism says, in effect, that there is no such thing as universal truth in ethics; there are only the various cultural codes, and nothing more. Cultural Relativism challenges our belief in the objectivity and universality of moral truth."</div></div>
+
+<h2>Case Study 1 — Darius and the Callatians</h2>
+<p>Darius <em>(c. 550 BCE – d. October 486 BCE <a href="#ch9">— precise date verified, see Ch. 09</a>)</em>, a king of ancient Persia, was intrigued by the variety of cultures he encountered in his travels. The Callatians, a tribe of Indians, traditionally ate the bodies of their deceased fathers, out of respect and a desire for their father's spirit to live on in them — whereas the Greeks cremated their dead.</p>
+<div class="law"><div class="lra">PRIMARY SOURCE</div><div class="ltit">Rachels on "correct" vs. "incorrect" customs</div><div class="lyr">Illustrated with the Hadzabe Tribe, East Africa</div>
+<div class="ldc">"These customs cannot be said to be 'correct' or 'incorrect,' for that implies that we have an independent standard of right and wrong by which they may be judged."</div></div>
+
+<h2>Case Study 2 — Infanticide Among Eskimos</h2>
+<p>Until recently, certain Eskimo groups were reported to practice female infanticide in the belief that the time spent nursing a girl would delay the mother's next opportunity to bear a son — males being preferred for their future role as providers in a hunting economy.</p>
+
+<h2>Case Study 3 — Female Genital Mutilation (FGM)</h2>
+<p>FGM (or Excision) involves the partial or total removal of external female genitalia, or other injury to the female genital organs, for non-medical reasons. It is known to be practiced among certain communities in <strong>29 African countries</strong> <a href="#ch9">(figure verified — see Ch. 09 for an important update note)</a>: Benin, Burkina Faso, Cameroon, Central African Republic, Chad, Côte d'Ivoire, DR Congo, Djibouti, Egypt, Eritrea, Ethiopia, Gambia, Ghana, Guinea, Guinea-Bissau, Kenya, Liberia, Mali, Mauritania, Niger, Nigeria, Senegal, Sierra Leone, Somalia, Sudan, Tanzania, Togo, Uganda, and Zambia.</p>
+<p>Rationalizations offered within some practicing communities, per the lesson material:</p>
+<ul>
+<li>Women incapable of sexual pleasure are seen as less likely to be promiscuous — fewer unwanted pregnancies among unmarried women.</li>
+<li>Wives for whom sex is only a duty are seen as less likely to cheat, and more attentive to husbands and children.</li>
+<li>Unexcised women are, in the view described, considered unclean and immature by the men in these communities.</li>
+</ul>
+<p>The lesson also documents organized resistance to the practice — including the "Alale Alternative Rite of Passage" campaign (World Vision, Alale community, 2022) promoting an end to FGM and child marriage.</p>
+
+<h2>The Appeal of Cultural Relativism</h2>
+<div class="isg">
+<div class="isc"><div class="ico">01</div><div class="inm">Conforms to Experience</div><div class="idc">Different societies visibly do have different moral codes — relativism matches what we actually observe.</div></div>
+<div class="isc"><div class="ico">02</div><div class="inm">Gives a Basis for Valuation</div><div class="idc">As a standard, it provides a working basis for making value judgments at all.</div></div>
+<div class="isc"><div class="ico">03</div><div class="inm">Promotes Tolerance</div><div class="idc">Tolerance of other cultures follows naturally if no single code can claim superiority.</div></div>
+<div class="isc"><div class="ico">04</div><div class="inm">Denies "Universal Truth"</div><div class="idc">There are no moral truths that hold for all peoples at all times — a strong, clean philosophical claim.</div></div>
+</div>
+
+<h2>Criticisms Against Cultural Relativism</h2>
+<div class="isg">
+<div class="isc r"><div class="ico">01</div><div class="inm">Can't Criticize Other Cultures</div><div class="idc">If relativism is true, no one can ever call another culture's practice wrong anymore — including practices like FGM above.</div></div>
+<div class="isc r"><div class="ico">02</div><div class="inm">No Right Answers</div><div class="idc">Different moral codes conflict directly — relativism offers no way to say which, if either, is correct.</div></div>
+<div class="isc r"><div class="ico">03</div><div class="inm">"My Culture" Is Unclear</div><div class="idc">What exactly counts as "my culture" for someone who belongs to more than one, or none cleanly?</div></div>
+</div>
+
+<h3>Recitation Drill — Chapter 02</h3>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Q: In one sentence, define Cultural Relativism.</div><div class="sd">A: The view that there is no universal moral truth — only the various cultural codes, so a practice's morality must be judged relative to the culture it occurs in.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Q: Give the Darius/Callatian example in one sentence and say what it's meant to show.</div><div class="sd">A: Callatians ate their dead fathers out of respect while Greeks cremated theirs — used to show that even something as basic as respect for the dead is expressed through opposite customs, seemingly with no external standard to rank one as more correct.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Q: What is the strongest criticism of Cultural Relativism, and why does it matter for cases like FGM?</div><div class="sd">A: That it removes our ability to call any cultural practice wrong — which becomes uncomfortable fast once the practice in question causes serious, documented harm, as with FGM.</div></div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch3">
+<div class="cn">CHAPTER 03</div><div class="ct">Morality and Subjectivism</div>
+<p class="ci">Subjectivism relocates the standard of morality from culture (an external group) to the individual: <strong>"The individual thinking person (the subject) is at the heart of all valuations."</strong> The lesson presents four subjectivist claims, each immediately paired with a counter-argument.</p>
+
+<div class="gg">
+<div class="gc" data-g="01"><div class="gera">CLAIM 1</div><div class="gtit">"No one can tell me what is right and wrong."</div><p class="gsp"><strong>Counter:</strong> We can be mistaken, and we can be corrected by others.</p></div>
+<div class="gc" data-g="02"><div class="gera">CLAIM 2</div><div class="gtit">"No one knows my situation better than myself."</div><p class="gsp"><strong>Counter:</strong> Many human experiences are common, and others may have something useful to suggest.</p></div>
+<div class="gc" data-g="03"><div class="gera">CLAIM 3</div><div class="gtit">"I am entitled to my own opinion."</div><p class="gsp"><strong>Counter:</strong> Closed-mindedness rightly invites censure from someone trying to think more critically about values.</p></div>
+<div class="gc" data-g="04"><div class="gera">CLAIM 4</div><div class="gtit">"It is good if I say that it is good."</div><p class="gsp"><strong>Counter:</strong> What is my basis for saying that it is good?</p></div>
+</div>
+
+<h3>Recitation Drill — Chapter 03</h3>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Q: Define Moral Subjectivism.</div><div class="sd">A: The belief that moral judgments depend entirely on the individual's own feelings, opinions, or attitudes — the person is the final standard.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Q: Give the strongest single counter-argument to subjectivism as a whole.</div><div class="sd">A: If morality is purely a matter of personal opinion with no outside standard, we could never say anyone is mistaken — but we clearly do correct people's moral views and expect them to reconsider, which subjectivism can't easily account for.</div></div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch4">
+<div class="cn">CHAPTER 04</div><div class="ct">Psychological Egoism vs. Ethical Egoism</div>
+<p class="ci">This chapter is the second essay topic in Quiz B. The core distinction the essay tests is <strong>descriptive vs. normative</strong> — what people <em>do</em> versus what people <em>ought</em> to do.</p>
+
+<div class="isg">
+<div class="isc"><div class="ico">DESCRIPTIVE — AN "IS" CLAIM</div><div class="inm">Psychological Egoism</div><div class="idc">"The ego or self has its desires and interests, and all our actions are geared toward satisfying these interests." A claim about what people actually, factually do.</div></div>
+<div class="isc a"><div class="ico">NORMATIVE — AN "OUGHT" CLAIM</div><div class="inm">Ethical Egoism</div><div class="idc">"We should make our own ends, our own interests, as the single overriding concern." A claim about what people should do, regardless of what they currently do.</div></div>
+</div>
+
+<h2>Counterexamples the Lesson Offers</h2>
+<p>Against pure self-interest, the material presents three examples of apparently other-directed action: <strong>Generosity</strong> ("we do things that are directed toward the other" — illustrated with a child sharing ice cream with a dog), <strong>Charity</strong> (giving food to needy people), and <strong>Hospitality</strong> (a Papua New Guinea community welcoming a visitor).</p>
+
+<div class="box purple"><div class="bico">✚</div><div class="bbd"><div class="btt addbadge">ADDED — USEFUL FOR ESSAY 2</div>
+<p class="btx">A committed psychological egoist has a standard reply the slides don't spell out: that even generosity secretly serves the giver's self-interest (it feels good, builds reputation, relieves guilt). This is exactly the tension Quiz B's Essay 2 asks you to untangle — a student helping a classmate because it makes them feel good does <em>not</em> automatically prove either that psychological egoism is true, or that the act is "morally selfish" in the everyday sense. Feeling good as a <em>side effect</em> of helping is different from feeling good being the <em>only</em> reason for helping — that distinction is the heart of a strong Essay 2 answer.</p></div></div>
+
+<h3>Recitation Drill — Chapter 04</h3>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Q: In one line, what's the difference between psychological and ethical egoism?</div><div class="sd">A: Psychological egoism describes what people actually do (act from self-interest); ethical egoism prescribes what people ought to do (act from self-interest) — descriptive vs. normative.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Q: Name the three "other-directed" counterexamples from the lesson.</div><div class="sd">A: Generosity, Charity, and Hospitality.</div></div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch5">
+<div class="cn">CHAPTER 05</div><div class="ct">The Myth of Gyges</div>
+<p class="ci">Plato's <em>Republic</em> <span class="tag tp">Bk. II, 359c–360d</span> — Plato's friend Glaucon tells a story about a magical ring that grants invisibility, arguing this thought experiment reveals people's true nature once the fear of getting caught is removed.</p>
+
+<div class="law"><div class="lra">THE STORY</div><div class="ltit">Gyges the Shepherd</div><div class="lyr">Plato, <em>Republic</em>, Book II</div>
+<div class="ldc">Given a ring, a shepherd named Gyges becomes invisible and anonymous. Through his invisibility he seduces a queen, kills her king, and takes over the kingdom. Plato argues that the Ring of Gyges — invisibility and anonymity — is the only barrier between a just and an unjust person.</div></div>
+
+<h2>Three Reading Quotes to Know</h2>
+<div class="law"><div class="lra">QUOTE 1</div><div class="ltit">On why people practice justice</div><div class="lyr"></div>
+<div class="ldc">"...those who practice justice do so involuntarily and because they have not the power to be unjust..."</div></div>
+<div class="law"><div class="lra">QUOTE 2</div><div class="ltit">On what people believe in their hearts</div><div class="lyr"></div>
+<div class="ldc">"For all men believe in their hearts that injustice is far more profitable to the individual than justice..."</div></div>
+<div class="law"><div class="lra">QUOTE 3</div><div class="ltit">On unchecked power</div><div class="lyr"></div>
+<div class="ldc">"No man would keep his hands off what was not his own when he could safely take what he liked out of the market or go into houses and lie with any one at his pleasure, or kill or release from prison whom he would, and in all respects be like a God among men."</div></div>
+
+<h2>Discussion Prompts From the Lesson</h2>
+<ul>
+<li>Are you a decent person? What if you suddenly gained incredible power?</li>
+<li>Are humans inherently selfish? Are we inherently compassionate?</li>
+<li>If you had the ring of Gyges, what would you like to do?</li>
+<li>What "immoral" acts might you commit if you knew you would not be caught?</li>
+<li>Are there any things you still would not do even if you would get away with it? What are they, and why not?</li>
+</ul>
+<div class="box amber"><div class="bico">🗣️</div><div class="bbd"><div class="btt">Reflection Prompts, Not Graded Items</div>
+<p class="btx">Nothing in the uploaded material shows these discussion questions attached to a written grade — they read as class-discussion/recitation prompts. They're kept here in full because they are genuinely useful for oral recitation, but don't mistake them for a graded assignment; the only graded items in this module are Quiz A and Quiz B in Chapter 07.</p></div></div>
+
+<p>Glaucon's challenge closes with a provocative claim, worth remembering as the <em>position being tested</em> — not the module's final answer: <em>"If we are to be honest with ourselves, we would admit that what we really care for is our self-interest rather than some notion of justice or moral goodness."</em> Chapter 06 gives Socrates' reply to exactly this challenge.</p>
+
+<h3>Recitation Drill — Chapter 05</h3>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Q: What does the ring of Gyges do, and what does Glaucon use it to argue?</div><div class="sd">A: It makes the wearer invisible. Glaucon argues that if anyone had it and could act with total impunity, they would behave unjustly — meaning people are just only because they lack the power to get away with injustice, not because justice is good in itself.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Q: Where in Plato's Republic does this story appear?</div><div class="sd">A: Book II, around Stephanus sections 359–360 (cited on the slide as 359c–360d; see Ch. 09 for a note on citation variation).</div></div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch6">
+<div class="cn">CHAPTER 06</div><div class="ct">Does It Make Sense to Be Ethical?</div>
+<p class="ci">This is Socrates' direct reply to Glaucon's challenge from Chapter 05, drawn from Book IV of Plato's <em>Republic</em>.</p>
+
+<div class="law"><div class="lra">SOCRATES' ANSWER</div><div class="ltit">Harmony of the Soul</div><div class="lyr">Socrates <span class="tag tp">c. 470 BCE – 399 BCE</span> · Plato's <em>Republic</em>, Book IV</div>
+<div class="ldc">The good human life stems from a proper harmony of the parts of the soul. Harmony requires a certain ordering — a hierarchical system in which reason, as the "highest" part, is in charge, dutifully followed by the "lower" parts of the soul: will and appetite.</div></div>
+
+<div class="isg">
+<div class="isc g"><div class="ico">PROPER ORDER = JUSTICE</div><div class="inm">Reason on top, appetites at the base</div><div class="idc">"The presence of such an internal ordering that one consciously strives to accomplish is what it means for justice to be present in the individual."</div></div>
+<div class="isc r"><div class="ico">REVERSED ORDER = INJUSTICE</div><div class="inm">Appetites on top, reason at the base</div><div class="idc">"The absence of order or the lack of harmony, with desires and appetites running rampant, results in acts of injustice."</div></div>
+</div>
+
+<div class="box purple"><div class="bico">✚</div><div class="bbd"><div class="btt addbadge">ADDED — WORTH KNOWING FOR FULL MARKS</div>
+<p class="btx">The text on this slide correctly names <em>three</em> parts of the soul — reason, will, and appetite — which matches the standard Platonic "tripartite soul" (reason, spirit/thymos, and appetite). The two triangle diagrams, however, only visually label two of the three ("reason" and "appetites") — the middle "will/spirit" part isn't shown in the diagram itself. This is a visual simplification, not a factual error in the lesson; if asked to name all the parts of the soul, give <strong>three</strong>, not two.</p></div></div>
+
+<h2>The Module's Final Answer</h2>
+<p><strong>Does it make sense to be ethical? Yes.</strong> Why? Because <strong>to be ethical means doing justice to oneself</strong> — an internally ordered, reason-led soul is what justice in the individual actually is, independent of whether anyone is watching (directly answering Glaucon's ring-of-Gyges challenge from Chapter 05).</p>
+
+<h3>Recitation Drill — Chapter 06</h3>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Q: What is Socrates' answer to "does it make sense to be ethical"?</div><div class="sd">A: Yes — because being ethical means doing justice to oneself: keeping reason in charge over one's own will and appetites, producing an internally harmonious soul, regardless of external reward or punishment.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Q: How does this directly answer Glaucon's Ring of Gyges challenge?</div><div class="sd">A: Glaucon argued justice is only kept up out of fear of consequences; Socrates counters that justice is a state of one's own soul, valuable in itself — so it still "makes sense" even for someone who could act unjustly and get away with it.</div></div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch7">
+<div class="cn">CHAPTER 07</div><div class="ct">Professor's Quiz — Module 2 (Reproduced As Given)</div>
+<p class="ci">This is the actual assessment from the uploaded lesson file, reproduced faithfully. Instructions and wording are unchanged from the source.</p>
+
+<h2>Quiz A — Matching Type</h2>
+<p><em>Instructions: Match each concept in Column A with the most appropriate description in Column B. Write the letter of the correct answer on your answer sheet. Each answer may be used only once.</em></p>
+<div class="tw"><table>
+<thead><tr><th>Column A</th><th>Column B</th></tr></thead>
+<tbody>
+<tr><td>1. Morality</td><td rowspan="10" style="color:var(--t2)">A. The view that all human actions are ultimately motivated by self-interest.<br>B. A system of beliefs and practices concerning the sacred, faith, and religious obligations.<br>C. Standards or rules that guide behavior within a particular society or group.<br>D. The belief that moral judgments depend on the individual's personal feelings, opinions, or attitudes.<br>E. Principles and standards used to determine what is right or wrong and what people ought to do.<br>F. The idea that moral practices and standards should be understood in relation to the culture in which they occur.<br>G. A system of rules, values, or principles that tells people how they ought to behave.<br>H. The process of determining whether an action is morally right or wrong.<br>I. The view that a person ought to act primarily in ways that promote their own self-interest.<br>J. The shared beliefs, customs, traditions, values, and practices of a particular group or society.</td></tr>
+<tr><td>2. Religion</td></tr>
+<tr><td>3. Culture</td></tr>
+<tr><td>4. Cultural Relativism</td></tr>
+<tr><td>5. Moral Subjectivism</td></tr>
+<tr><td>6. Psychological Egoism</td></tr>
+<tr><td>7. Ethical Egoism</td></tr>
+<tr><td>8. Normative System</td></tr>
+<tr><td>9. Moral Judgment</td></tr>
+<tr><td>10. Social Norms</td></tr>
+</tbody></table></div>
+
+<h2>Quiz B — Essay Questions</h2>
+<p><em>Instructions: Answer each question in one to two well-developed paragraphs. Use specific examples to support your position. Your answer should demonstrate analysis, evaluation, and critical thinking, rather than merely defining the concepts.</em></p>
+<div class="mlst">
+<div class="mitem"><div class="mnm">1. Cultural Relativism</div><div class="mdc">A practice may be considered acceptable in one culture but unacceptable in another. Does this mean that we should never criticize a cultural practice as morally wrong? Explain your position using the concept of cultural relativism. Discuss both the value and the possible limitation of using culture as the basis for moral judgment.</div></div>
+<div class="mitem"><div class="mnm">2. Psych. vs. Ethical Egoism</div><div class="mdc">Suppose a student helps a struggling classmate because helping others also makes the student feel good about himself or herself. Does this necessarily mean that the student's action is morally selfish? Analyze the situation using psychological egoism and ethical egoism. Explain the difference between claiming that people do act out of self-interest and claiming that people ought to act out of self-interest.</div></div>
+</div>
+
+<div class="box green"><div class="bico">✅</div><div class="bbd"><div class="btt addbadge">ADDED — VERIFIED ANSWER KEY (Quiz A)</div>
+<p class="btx">Not printed on the original slide. Worked out and double-checked against Column B's own wording for this guide:</p></div></div>
+<div class="tw"><table>
+<thead><tr><th>#</th><th>Answer</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td>1. Morality</td><td>E</td><td>"Principles and standards... right or wrong... ought to do" is the direct definition of morality itself.</td></tr>
+<tr><td>2. Religion</td><td>B</td><td>Only option mentioning "the sacred, faith, and religious obligations."</td></tr>
+<tr><td>3. Culture</td><td>J</td><td>"Shared beliefs, customs, traditions" is the standard general definition of culture.</td></tr>
+<tr><td>4. Cultural Relativism</td><td>F</td><td>Matches "understood in relation to the culture in which they occur" almost word-for-word.</td></tr>
+<tr><td>5. Moral Subjectivism</td><td>D</td><td>"Depend on the individual's personal feelings, opinions" = the subjective standard.</td></tr>
+<tr><td>6. Psychological Egoism</td><td>A</td><td>Descriptive claim: "all human actions <em>are</em> ultimately motivated by self-interest."</td></tr>
+<tr><td>7. Ethical Egoism</td><td>I</td><td>Normative claim: person "<em>ought</em> to act" from self-interest.</td></tr>
+<tr><td>8. Normative System</td><td>G</td><td>"Tells people how they <em>ought</em> to behave" — a broader category than morality alone.</td></tr>
+<tr><td>9. Moral Judgment</td><td>H</td><td>"The <em>process</em> of determining" — an act of judging, not the standard itself.</td></tr>
+<tr><td>10. Social Norms</td><td>C</td><td>General "standards or rules that guide behavior within a... society or group," broader than moral norms specifically.</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="chapter" id="ch8">
+<div class="cn">CHAPTER 08</div><div class="ct">Glossary &amp; Abbreviations</div>
+<div class="box green"><div class="bico">📖</div><div class="bbd"><div class="btt addbadge">ADDED — NOT IN THE ORIGINAL SLIDES</div></div></div>
+<div class="tw"><table>
+<thead><tr><th>Term</th><th>Stands For / Means</th></tr></thead>
+<tbody>
+<tr><td>FGM</td><td>Female Genital Mutilation (also referred to as "Excision" in the lesson material).</td></tr>
+<tr><td>BCE</td><td>Before Common Era — used for all ancient dates in this module (Darius, Socrates).</td></tr>
+<tr><td>UNFPA</td><td>United Nations Population Fund — the organization cited as the source of the FGM country-list statistic.</td></tr>
+<tr><td>Republic</td><td>Shorthand for Plato's dialogue <em>The Republic</em>, the source of both the Myth of Gyges (Book II) and the harmony-of-the-soul argument (Book IV).</td></tr>
+<tr><td>Stephanus numbers</td><td>The standard universal page-reference system for citing Plato (e.g., "359c–360d"), based on the 1578 Henri Estienne edition — every modern translation of Plato includes these numbers in the margin so citations work across editions.</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="chapter" id="ch9">
+<div class="cn">CHAPTER 09</div><div class="ct">Source Verification &amp; Discrepancy Notes</div>
+<p class="ci">Every date, statistic, and citation above was checked against independent sources. Nothing in the earlier chapters was altered to match these findings — the lesson content stays exactly as your professor presented it. This chapter is where any discrepancy is flagged separately, as requested.</p>
+
+<div class="mlst">
+<div class="mitem"><div class="mnm">Rachels citation</div><div class="mdc">The slide cites the publisher location as <strong>"Boston"</strong>. The actual copyright page of the 7th edition lists <strong>McGraw-Hill, New York, NY</strong> as the publisher's address (copyright dated 2012, matching the slide's year exactly). The year is correct; the city is the only discrepancy, and it's a minor citation detail that doesn't affect the content.</div></div>
+<div class="mitem"><div class="mnm">Darius's dates</div><div class="mdc">The slide's range "550–486 BCE" is correct. Independently verified: Darius I ("Darius the Great") was born <em>c.</em> 550 BCE (no more precise date exists in the historical record) and died specifically in <strong>October 486 BCE</strong> — a more precise death date than the slide gives, safe to cite if asked for exact figures.</div></div>
+<div class="mitem"><div class="mnm">James Rachels's dates</div><div class="mdc">The slide's "(1941–2003)" is correct. Full precise dates, independently verified: <strong>May 30, 1941 – September 5, 2003</strong> (Columbus, Georgia – Birmingham, Alabama).</div></div>
+<div class="mitem"><div class="mnm">FGM "29 countries" figure</div><div class="mdc">This exact count and list is a verified, word-for-word match to an official UNFPA FAQ page as written. However, UNFPA's current published data (checked live) has since been revised upward — recent UNFPA/UN Women figures cite <strong>33 African countries</strong> and up to <strong>94–92 countries worldwide</strong> (including regions in Asia, the Middle East, and Europe not on the original slide). This is not an error in your professor's slide — it accurately reflects the source at the time it was written — but if a professor or exam asks for "current" figures, the numbers have moved.</div></div>
+<div class="mitem"><div class="mnm">Tripartite soul diagram</div><div class="mdc">Covered in Chapter 06 — the accompanying text correctly names three parts of the soul (reason, will, appetite), but the triangle diagrams only visually label two. A simplification, not an error.</div></div>
+<div class="mitem"><div class="mnm">Myth of Gyges citation</div><div class="mdc">The slide cites "Republic (359c–360d)." Independently verified: scholarly sources cite this passage across a range of very similar but not identical Stephanus spans (359b–360b, 359d–360c, 359d–360d, among others, depending on translation/edition). The slide's citation falls within normal variation and is not considered an error.</div></div>
+</div>
+</section>
+
+<div class="footer"><p>QCU Academic OS · AY 2026-2027 · Compiled by <strong>KianoRoku18Ino</strong> · github.com/KianoRoku18Ino</p></div>
+</main>
+
+</body>
+</html>
