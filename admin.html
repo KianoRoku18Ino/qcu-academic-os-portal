@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=6">
+<link rel="stylesheet" href="style.css?v=8">
 </head>
 <body class="admin-body">
 
@@ -114,6 +114,7 @@
       <button class="tab-btn act" id="itemTypeWeekTab" type="button" data-item-type="week">Numbered week</button>
       <button class="tab-btn" id="itemTypeSpecialTab" type="button" data-item-type="special">Special item</button>
       <button class="tab-btn" id="itemTypeNoteTab" type="button" data-item-type="note">Note</button>
+      <button class="tab-btn" id="itemTypeLinkTab" type="button" data-item-type="link">Link</button>
     </div>
 
     <div class="admin-grid" id="pubWeekPanel">
@@ -143,6 +144,17 @@
       </label>
       <p class="hint">Notes are just text — no file upload, no size limit worth worrying about. Stored directly in manifest.json and published in one step.</p>
     </div>
+    <div id="pubLinkPanel" hidden>
+      <label class="field">
+        <span>Link title</span>
+        <input type="text" id="pubLinkLabel" placeholder="e.g. freeCodeCamp — JS Basics" spellcheck="false" autocomplete="off">
+      </label>
+      <label class="field">
+        <span>URL</span>
+        <input type="url" id="pubLinkUrl" placeholder="https://…" spellcheck="false" autocomplete="off">
+      </label>
+      <p class="hint">Embeds the URL directly in the viewer — no file, no upload. Whether a given site actually allows being embedded like this is entirely up to that site (some block it); test the URL yourself first. "Open in new tab" always works as a fallback either way.</p>
+    </div>
 
     <div id="pubFileFields">
       <div class="admin-source-tabs">
@@ -167,8 +179,23 @@
         <span>Paired PDF (optional)</span>
         <input type="file" id="pubPdfFile" accept=".pdf,application/pdf">
       </label>
-      <p class="hint">Works well for typical guide sizes. The GitHub Contents API this page uses caps out around 1&nbsp;MB per file — for anything larger, push it with git normally instead.</p>
-      <p class="hint">To add or replace just the PDF on an item you already published, leave the HTML paste box empty (or don't choose an HTML file), keep the same Year/Semester/Code/item, attach the PDF, and publish — the existing HTML is left untouched. Same the other way around for an HTML-only update.</p>
+      <button class="more-formats-toggle" id="pubMoreFormatsToggle" type="button" aria-expanded="false">+ Add PPTX / DOCX / XLSX</button>
+      <div class="admin-grid" id="pubMoreFormatsPanel" hidden>
+        <label class="field">
+          <span>Paired PPTX (optional)</span>
+          <input type="file" id="pubPptxFile" accept=".pptx,application/vnd.openxmlformats-officedocument.presentationml.presentation">
+        </label>
+        <label class="field">
+          <span>Paired DOCX (optional)</span>
+          <input type="file" id="pubDocxFile" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+        </label>
+        <label class="field field-full">
+          <span>Paired XLSX (optional)</span>
+          <input type="file" id="pubXlsxFile" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+        </label>
+      </div>
+      <p class="hint">PPTX/DOCX/XLSX are viewed through Microsoft's free Office Online viewer (needs the file to stay publicly reachable, which it already is once GitHub Pages serves it) and are always downloadable directly regardless. Files over ~1&nbsp;MB automatically publish through a few extra API calls instead of one — same Publish button, works up to ~100&nbsp;MB, just takes a bit longer for anything large.</p>
+      <p class="hint">To add or replace just one file on an item you already published — say, attach a PPTX to a week that only had HTML before — leave the others empty, keep the same Year/Semester/Code/item, attach only the one you're adding, and publish. Anything you don't resupply is left untouched.</p>
     </div>
 
     <label class="field">
@@ -211,6 +238,7 @@
     <div class="admin-source-tabs" id="refItemTypeTabs">
       <button class="tab-btn act" id="refItemTypeFileTab" type="button" data-item-type="file">HTML/PDF file</button>
       <button class="tab-btn" id="refItemTypeNoteTab" type="button" data-item-type="note">Note</button>
+      <button class="tab-btn" id="refItemTypeLinkTab" type="button" data-item-type="link">Link</button>
     </div>
 
     <div id="refNotePanel" hidden>
@@ -219,6 +247,13 @@
         <textarea id="refNoteText" rows="8" placeholder="Whatever you want to jot down…"></textarea>
       </label>
       <p class="hint">Notes are just text — no file upload, no size limit worth worrying about. Stored directly in manifest.json and published in one step.</p>
+    </div>
+    <div id="refLinkPanel" hidden>
+      <label class="field">
+        <span>URL</span>
+        <input type="url" id="refLinkUrl" placeholder="https://…" spellcheck="false" autocomplete="off">
+      </label>
+      <p class="hint">Embeds the URL directly in the viewer — no file, no upload. Whether a given site actually allows being embedded like this is entirely up to that site (some block it); test the URL yourself first. "Open in new tab" always works as a fallback either way.</p>
     </div>
 
     <div id="refFileFields">
@@ -244,7 +279,22 @@
         <span>Paired PDF (optional)</span>
         <input type="file" id="refPdfFile" accept=".pdf,application/pdf">
       </label>
-      <p class="hint">To add or replace just the PDF on a reference you already published, leave the HTML paste box empty (or don't choose an HTML file), keep the same Category/Title, attach the PDF, and publish — the existing HTML is left untouched. Same the other way around for an HTML-only update.</p>
+      <button class="more-formats-toggle" id="refMoreFormatsToggle" type="button" aria-expanded="false">+ Add PPTX / DOCX / XLSX</button>
+      <div class="admin-grid" id="refMoreFormatsPanel" hidden>
+        <label class="field">
+          <span>Paired PPTX (optional)</span>
+          <input type="file" id="refPptxFile" accept=".pptx,application/vnd.openxmlformats-officedocument.presentationml.presentation">
+        </label>
+        <label class="field">
+          <span>Paired DOCX (optional)</span>
+          <input type="file" id="refDocxFile" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+        </label>
+        <label class="field field-full">
+          <span>Paired XLSX (optional)</span>
+          <input type="file" id="refXlsxFile" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+        </label>
+      </div>
+      <p class="hint">To add or replace just one file on a reference you already published, leave the others empty, keep the same Category/Title, attach only the one you're adding, and publish. Anything you don't resupply is left untouched.</p>
     </div>
 
     <label class="field">
@@ -277,6 +327,6 @@
 
 </main>
 
-<script src="admin.js?v=4"></script>
+<script src="admin.js?v=7"></script>
 </body>
 </html>

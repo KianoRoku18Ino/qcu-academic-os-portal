@@ -122,7 +122,28 @@
     return ghJson(res);
   }
 
+  // Decoded byte length of a base64 string (ignoring any newlines the
+  // API might have wrapped it with) — used to decide whether a file
+  // needs the Git Data API path instead of the simple one below.
+  function base64ByteLength(base64) {
+    const clean = base64.replace(/[\r\n]/g, "");
+    const padding = clean.endsWith("==") ? 2 : clean.endsWith("=") ? 1 : 0;
+    return Math.floor((clean.length / 4) * 3) - padding;
+  }
+
+  // The simple Contents API PUT below has a practical ceiling around
+  // 1MB — past that it gets unreliable. putFile() checks size and
+  // transparently routes anything larger through the lower-level Git
+  // Data API instead (putFileViaGitDataApi, further down), which
+  // handles files up to ~100MB. Every caller just calls putFile() the
+  // same way either way — which path actually ran is an implementation
+  // detail, not something the publish flows need to know about.
+  const LARGE_FILE_THRESHOLD_BYTES = 1000000;
+
   async function putFile(owner, repo, branch, token, path, base64Content, message, existingSha) {
+    if (base64ByteLength(base64Content) > LARGE_FILE_THRESHOLD_BYTES) {
+      return putFileViaGitDataApi(owner, repo, branch, token, path, base64Content, message);
+    }
     const body = { message: message, content: base64Content, branch: branch };
     if (existingSha) body.sha = existingSha;
     const res = await fetch(API + "/repos/" + owner + "/" + repo + "/contents/" + encodePath(path), {
@@ -131,6 +152,63 @@
       body: JSON.stringify(body),
     });
     return ghJson(res);
+  }
+
+  // Same end result as the simple PUT above (the file exists at `path`
+  // on `branch`) — assembled a level lower, the way `git add && git
+  // commit` actually works under the hood: create a blob (the file's
+  // content), graft it into a new tree built on top of the branch's
+  // current tree, commit that tree, then move the branch ref to point
+  // at the new commit. Four requests instead of one, but no ~1MB
+  // ceiling — blobs support up to ~100MB.
+  //
+  // Note the endpoint asymmetry: reading the current ref uses the
+  // singular /git/ref/{ref}, updating it uses the plural /git/refs/{ref}
+  // — easy to get backwards, confirmed against GitHub's docs.
+  async function putFileViaGitDataApi(owner, repo, branch, token, path, base64Content, message) {
+    const headers = Object.assign({ "Content-Type": "application/json" }, authHeaders(token));
+    const base = API + "/repos/" + owner + "/" + repo;
+
+    const blob = await ghJson(await fetch(base + "/git/blobs", {
+      method: "POST",
+      headers,
+      body: JSON.stringify({ content: base64Content, encoding: "base64" }),
+    }));
+
+    const ref = await ghJson(await fetch(base + "/git/ref/heads/" + encodeURIComponent(branch), {
+      headers: authHeaders(token),
+    }));
+    const parentCommitSha = ref.object.sha;
+
+    const parentCommit = await ghJson(await fetch(base + "/git/commits/" + parentCommitSha, {
+      headers: authHeaders(token),
+    }));
+
+    const tree = await ghJson(await fetch(base + "/git/trees", {
+      method: "POST",
+      headers,
+      body: JSON.stringify({
+        base_tree: parentCommit.tree.sha,
+        tree: [{ path: path, mode: "100644", type: "blob", sha: blob.sha }],
+      }),
+    }));
+
+    const newCommit = await ghJson(await fetch(base + "/git/commits", {
+      method: "POST",
+      headers,
+      body: JSON.stringify({ message: message, tree: tree.sha, parents: [parentCommitSha] }),
+    }));
+
+    await ghJson(await fetch(base + "/git/refs/heads/" + encodeURIComponent(branch), {
+      method: "PATCH",
+      headers,
+      body: JSON.stringify({ sha: newCommit.sha }),
+    }));
+
+    // Shape-compatible with what the simple Contents API PUT returns,
+    // for the handful of callers that peek at .content.path — nothing
+    // currently reads more than that off a putFile() result.
+    return { content: { path: path, sha: blob.sha } };
   }
 
   async function deleteFile(owner, repo, branch, token, path, sha, message) {
@@ -277,6 +355,10 @@
   const pubSpecialLabel = document.getElementById("pubSpecialLabel");
   const pubNoteLabel = document.getElementById("pubNoteLabel");
   const pubNoteText = document.getElementById("pubNoteText");
+  const itemTypeLinkTab = document.getElementById("itemTypeLinkTab");
+  const pubLinkPanel = document.getElementById("pubLinkPanel");
+  const pubLinkLabel = document.getElementById("pubLinkLabel");
+  const pubLinkUrl = document.getElementById("pubLinkUrl");
 
   const srcPasteTab = document.getElementById("srcPasteTab");
   const srcUploadTab = document.getElementById("srcUploadTab");
@@ -285,26 +367,40 @@
   const pubHtmlPaste = document.getElementById("pubHtmlPaste");
   const pubHtmlFile = document.getElementById("pubHtmlFile");
   const pubPdfFile = document.getElementById("pubPdfFile");
+  const pubPptxFile = document.getElementById("pubPptxFile");
+  const pubDocxFile = document.getElementById("pubDocxFile");
+  const pubXlsxFile = document.getElementById("pubXlsxFile");
+  const pubMoreFormatsToggle = document.getElementById("pubMoreFormatsToggle");
+  const pubMoreFormatsPanel = document.getElementById("pubMoreFormatsPanel");
+  pubMoreFormatsToggle.addEventListener("click", () => {
+    const willOpen = pubMoreFormatsPanel.hidden;
+    pubMoreFormatsPanel.hidden = !willOpen;
+    pubMoreFormatsToggle.setAttribute("aria-expanded", String(willOpen));
+    pubMoreFormatsToggle.textContent = willOpen ? "− Hide PPTX / DOCX / XLSX" : "+ Add PPTX / DOCX / XLSX";
+  });
   const pubMessage = document.getElementById("pubMessage");
   const pubPublishBtn = document.getElementById("pubPublishBtn");
   const publishStatus = document.getElementById("publishStatus");
   const publishResult = document.getElementById("publishResult");
 
-  let itemType = "week"; // "week" | "special" | "note"
+  let itemType = "week"; // "week" | "special" | "note" | "link"
   function setItemType(t) {
     itemType = t;
     itemTypeWeekTab.classList.toggle("act", t === "week");
     itemTypeSpecialTab.classList.toggle("act", t === "special");
     itemTypeNoteTab.classList.toggle("act", t === "note");
+    itemTypeLinkTab.classList.toggle("act", t === "link");
     pubWeekPanel.hidden = t !== "week";
     pubSpecialPanel.hidden = t !== "special";
     pubNotePanel.hidden = t !== "note";
-    // A note is just text — no file, no upload UI, no PDF, none of it applies.
-    pubFileFields.hidden = t === "note";
+    pubLinkPanel.hidden = t !== "link";
+    // Neither a note nor a link has a file behind it — no upload UI applies to either.
+    pubFileFields.hidden = t === "note" || t === "link";
   }
   itemTypeWeekTab.addEventListener("click", () => setItemType("week"));
   itemTypeSpecialTab.addEventListener("click", () => setItemType("special"));
   itemTypeNoteTab.addEventListener("click", () => setItemType("note"));
+  itemTypeLinkTab.addEventListener("click", () => setItemType("link"));
 
   let htmlSource = "paste";
   function setHtmlSource(src) {
@@ -324,6 +420,39 @@
       reader.onerror = () => reject(reader.error || new Error("Couldn't read the file."));
       reader.readAsArrayBuffer(file);
     });
+  }
+
+  // Shared by every "paired file" slot (PDF/PPTX/DOCX/XLSX, in both the
+  // subject-item and reference publish flows) — uploads the file if one
+  // was actually chosen this time and returns its new path, or null if
+  // nothing was chosen (the caller then keeps whatever the existing
+  // manifest entry already had, same carry-forward rule as everywhere
+  // else in this app).
+  async function uploadPairedFile(owner, repo, branch, token, file, ext, basePath, itemId, message, statusElRef) {
+    if (!file) return null;
+    const path = basePath + itemId + "." + ext;
+    statusEl(statusElRef, "Uploading " + itemId + "." + ext + "…", "");
+    const buf = await readFileAsArrayBuffer(file);
+    const base64 = arrayBufferToBase64(buf);
+    const existingFile = await getFile(owner, repo, branch, token, path);
+    await putFile(owner, repo, branch, token, path, base64, message, existingFile ? existingFile.sha : null);
+    return path;
+  }
+
+  // Companion to uploadPairedFile above — deletes whichever of an
+  // item's file fields are actually set (html/pdf/pptx/docx/xlsx; a
+  // note/link item has none of these and this is simply a no-op for
+  // it). Missing one of these off an item's delete would leave its
+  // file orphaned in the repo forever, counted nowhere and cleaned up
+  // by nothing.
+  const ITEM_FILE_FIELDS = ["html", "pdf", "pptx", "docx", "xlsx"];
+  async function deleteItemFiles(owner, repo, branch, token, item, message) {
+    for (const field of ITEM_FILE_FIELDS) {
+      const path = item[field];
+      if (!path) continue;
+      const file = await getFile(owner, repo, branch, token, path);
+      if (file) await deleteFile(owner, repo, branch, token, path, file.sha, message);
+    }
   }
 
   // HTML is only required when creating an item for the first time.
@@ -352,7 +481,7 @@
       return;
     }
 
-    let itemKind, itemId, itemLabel, weekNum = null, noteText = null;
+    let itemKind, itemId, itemLabel, weekNum = null, noteText = null, linkUrl = null;
     if (itemType === "week") {
       weekNum = parseInt(pubWeekNumber.value, 10);
       if (!weekNum || weekNum < 1) {
@@ -372,7 +501,7 @@
       itemKind = "special";
       itemLabel = label;
       itemId = slugify(label);
-    } else {
+    } else if (itemType === "note") {
       const label = pubNoteLabel.value.trim();
       noteText = pubNoteText.value.trim();
       if (!label || !noteText) {
@@ -382,13 +511,26 @@
       itemKind = "note";
       itemLabel = label;
       itemId = slugify(label);
+    } else {
+      const label = pubLinkLabel.value.trim();
+      linkUrl = pubLinkUrl.value.trim();
+      if (!label || !linkUrl) {
+        statusEl(publishStatus, "A link needs both a title and a URL.", "error");
+        return;
+      }
+      itemKind = "link";
+      itemLabel = label;
+      itemId = slugify(label);
     }
+
+    // Neither a note nor a link has a file behind it at all.
+    const isFileless = itemKind === "note" || itemKind === "link";
 
     // Read whatever HTML input was actually given this time — may be
     // nothing at all, if this call is only meant to attach/replace the
-    // PDF on an item that's already published. Doesn't apply to notes.
+    // PDF on an item that's already published. Doesn't apply to notes/links.
     let newHtmlBase64 = null;
-    if (itemKind !== "note") {
+    if (!isFileless) {
       if (htmlSource === "paste" && pubHtmlPaste.value.trim()) {
         newHtmlBase64 = textToBase64(pubHtmlPaste.value);
       } else if (htmlSource === "upload" && pubHtmlFile.files[0]) {
@@ -397,9 +539,12 @@
       }
     }
 
-    const pdfFile = itemKind !== "note" ? (pubPdfFile.files[0] || null) : null;
-    if (itemKind !== "note" && !newHtmlBase64 && !pdfFile) {
-      statusEl(publishStatus, "Provide new HTML content/file, a PDF, or both.", "error");
+    const pdfFile = !isFileless ? (pubPdfFile.files[0] || null) : null;
+    const pptxFile = !isFileless ? (pubPptxFile.files[0] || null) : null;
+    const docxFile = !isFileless ? (pubDocxFile.files[0] || null) : null;
+    const xlsxFile = !isFileless ? (pubXlsxFile.files[0] || null) : null;
+    if (!isFileless && !newHtmlBase64 && !pdfFile && !pptxFile && !docxFile && !xlsxFile) {
+      statusEl(publishStatus, "Provide new HTML content/file or at least one paired file.", "error");
       return;
     }
 
@@ -421,7 +566,7 @@
       const subjectSnapshot = (semSnapshot.subjects || []).find((s) => s.id === subjectId) || null;
       const existingItem = subjectSnapshot ? (subjectSnapshot.items || []).find((it) => it.id === itemId) || null : null;
 
-      if (itemKind !== "note" && !existingItem && !newHtmlBase64 && !pdfFile) {
+      if (!isFileless && !existingItem && !newHtmlBase64 && !pdfFile && !pptxFile && !docxFile && !xlsxFile) {
         throw new Error("No existing item at this Year/Semester/Subject/Item — provide at least one file to create it.");
       }
 
@@ -435,16 +580,17 @@
         await putFile(owner, repo, branch, token, htmlPath, newHtmlBase64, message, existingHtmlFile ? existingHtmlFile.sha : null);
       }
 
-      // PDF: same carry-forward rule. Skipped for notes.
-      let pdfPath = existingItem ? existingItem.pdf || null : null;
-      if (pdfFile) {
-        pdfPath = basePath + itemId + ".pdf";
-        statusEl(publishStatus, "Uploading " + itemId + ".pdf…", "");
-        const pdfBuf = await readFileAsArrayBuffer(pdfFile);
-        const pdfBase64 = arrayBufferToBase64(pdfBuf);
-        const existingPdfFile = await getFile(owner, repo, branch, token, pdfPath);
-        await putFile(owner, repo, branch, token, pdfPath, pdfBase64, message, existingPdfFile ? existingPdfFile.sha : null);
-      }
+      // Every other paired slot follows the exact same carry-forward
+      // rule via the shared helper: upload if a new file was chosen,
+      // otherwise keep whatever path (if any) the item already had.
+      const pdfPath = (await uploadPairedFile(owner, repo, branch, token, pdfFile, "pdf", basePath, itemId, message, publishStatus))
+        || (existingItem ? existingItem.pdf || null : null);
+      const pptxPath = (await uploadPairedFile(owner, repo, branch, token, pptxFile, "pptx", basePath, itemId, message, publishStatus))
+        || (existingItem ? existingItem.pptx || null : null);
+      const docxPath = (await uploadPairedFile(owner, repo, branch, token, docxFile, "docx", basePath, itemId, message, publishStatus))
+        || (existingItem ? existingItem.docx || null : null);
+      const xlsxPath = (await uploadPairedFile(owner, repo, branch, token, xlsxFile, "xlsx", basePath, itemId, message, publishStatus))
+        || (existingItem ? existingItem.xlsx || null : null);
 
       // Order: weeks sort by week number; specials and notes both sort
       // after every week, interleaved in the order they were first
@@ -471,8 +617,12 @@
         const entry = { id: itemId, kind: itemKind, label: itemLabel, order: itemOrder };
         if (itemKind === "week") entry.week = weekNum;
         if (itemKind === "note") entry.text = noteText;
+        if (itemKind === "link") entry.url = linkUrl;
         if (htmlPath) entry.html = htmlPath;
         if (pdfPath) entry.pdf = pdfPath;
+        if (pptxPath) entry.pptx = pptxPath;
+        if (docxPath) entry.docx = docxPath;
+        if (xlsxPath) entry.xlsx = xlsxPath;
         const idx = subject.items.findIndex((it) => it.id === itemId);
         if (idx >= 0) subject.items[idx] = entry;
         else subject.items.push(entry);
@@ -485,10 +635,17 @@
         // No file, no URL — there's nothing to feed into Gizmo here,
         // it's just live in the sidebar the next time the page loads.
         publishResult.innerHTML = '<div class="admin-result-label">Note published — it\'ll show up in the sidebar on next load.</div>';
+      } else if (itemKind === "link") {
+        publishResult.innerHTML =
+          '<div class="admin-result-label">Link published — embeds this URL in the viewer:</div>' +
+          '<div class="admin-result-url"><code>' + escapeHtml(linkUrl) + "</code></div>" +
+          '<p class="hint">If the target site blocks embedding, "Open in new tab" in the viewer still works regardless.</p>';
       } else {
-        const primaryPath = htmlPath || pdfPath;
+        // Prefer HTML for the headline URL (it's what Gizmo/site-chrome
+        // -free consumers want), then whatever else actually got set.
+        const primaryPath = htmlPath || pdfPath || pptxPath || docxPath || xlsxPath;
         const pagesUrl = "https://" + owner + ".github.io/" + repo + "/" + primaryPath;
-        const urlLabel = htmlPath ? "Gizmo-ready URL (this file only, no site chrome):" : "Direct PDF URL:";
+        const urlLabel = htmlPath ? "Gizmo-ready URL (this file only, no site chrome):" : "Direct file URL:";
         publishResult.innerHTML =
           '<div class="admin-result-label">' + escapeHtml(urlLabel) + "</div>" +
           '<div class="admin-result-url"><code>' + escapeHtml(pagesUrl) + "</code>" +
@@ -499,8 +656,13 @@
       pubHtmlPaste.value = "";
       pubHtmlFile.value = "";
       pubPdfFile.value = "";
+      pubPptxFile.value = "";
+      pubDocxFile.value = "";
+      pubXlsxFile.value = "";
       pubNoteLabel.value = "";
       pubNoteText.value = "";
+      pubLinkLabel.value = "";
+      pubLinkUrl.value = "";
       loadLibraryTree();
     } catch (err) {
       statusEl(publishStatus, "Publish failed: " + err.message, "error");
@@ -531,6 +693,70 @@
      ================================================================ */
   const libraryTree = document.getElementById("libraryTree");
 
+  // Manually expanded subject groups in the admin tree, keyed by
+  // subject id — same idea as the sidebar's expandedGroups, kept
+  // separate since this is a different script/DOM entirely (no
+  // shared module system in this project, by design — no build step).
+  // Cached separately from the fetch so toggling doesn't re-hit the
+  // GitHub API just to expand/collapse something already in hand.
+  const expandedAdminSubjects = new Set();
+  let libraryManifestCache = null;
+
+  function renderLibraryTree(manifest, owner, repo) {
+    const years = manifest.years || [];
+    let html = "";
+    let any = false;
+    years.forEach((y) => {
+      (y.semesters || []).forEach((s) => {
+        const subjects = (s.subjects || []).filter((subj) => subj.items && subj.items.length > 0);
+        if (subjects.length === 0) return;
+        any = true;
+        html += '<div class="gl-section-title">' + escapeHtml(y.label || "Year " + y.year) + " · " + escapeHtml(s.label || "Semester " + s.sem) + "</div>";
+        subjects.forEach((subj) => {
+          const items = (subj.items || []).slice().sort((a, b) => (a.order || 0) - (b.order || 0));
+          const isOpen = expandedAdminSubjects.has(subj.id);
+          html +=
+            '<button class="admin-tree-subject-head' + (isOpen ? " open" : "") + '" data-admin-toggle="' +
+            escapeHtml(subj.id) + '" type="button" aria-expanded="' + isOpen + '">' +
+            '<span class="gl-group-chevron">' + (isOpen ? "▾" : "▸") + "</span>" +
+            '<span class="gl-item-code">' + escapeHtml(subj.code) + "</span>" +
+            '<span class="gl-item-title">' + escapeHtml(subj.title) + "</span>" +
+            '<span class="gl-item-count">' + items.length + "</span>" +
+            "</button>";
+          if (!isOpen) return;
+          items.forEach((it) => {
+            const kindTag = it.kind && it.kind !== "week" && it.kind !== "special"
+              ? '<span class="gl-item-kind" aria-hidden="true">' + escapeHtml(it.kind) + "</span>" : "";
+            html += '<div class="admin-tree-item admin-tree-item-sub">';
+            if (it.kind === "note") {
+              const preview = (it.text || "").slice(0, 140) + ((it.text || "").length > 140 ? "…" : "");
+              html +=
+                '<div class="admin-tree-item-main">' + kindTag + '<span class="gl-item-title">' + escapeHtml(it.label) + "</span></div>" +
+                '<div class="admin-tree-item-url"><code>' + escapeHtml(preview) + "</code></div>";
+            } else if (it.kind === "link") {
+              html +=
+                '<div class="admin-tree-item-main">' + kindTag + '<span class="gl-item-title">' + escapeHtml(it.label) + "</span></div>" +
+                '<div class="admin-tree-item-url"><code>' + escapeHtml(it.url || "") + "</code>" +
+                '<button class="copy-btn" type="button" data-copy="' + escapeHtml(it.url || "") + '">Copy</button></div>';
+            } else {
+              const primaryPath = it.html || it.pdf || it.pptx || it.docx || it.xlsx || "";
+              const url = "https://" + owner + ".github.io/" + repo + "/" + primaryPath;
+              html +=
+                '<div class="admin-tree-item-main">' + kindTag + '<span class="gl-item-title">' + escapeHtml(it.label) + "</span></div>" +
+                '<div class="admin-tree-item-url"><code>' + escapeHtml(url) + "</code>" +
+                '<button class="copy-btn" type="button" data-copy="' + escapeHtml(url) + '">Copy</button></div>';
+            }
+            html +=
+              '<button class="delete-btn" type="button" data-delete-subject-id="' + escapeHtml(subj.id) +
+              '" data-delete-item-id="' + escapeHtml(it.id) + '" data-year="' + y.year + '" data-sem="' + s.sem + '">Delete</button>' +
+              "</div>";
+          });
+        });
+      });
+    });
+    libraryTree.innerHTML = any ? html : '<div class="gl-empty">Nothing published yet.</div>';
+  }
+
   async function loadLibraryTree() {
     if (!activeConn) return;
     const { owner, repo, branch, token } = activeConn;
@@ -539,51 +765,21 @@
       const file = await getFile(owner, repo, branch, token, "manifest.json");
       if (!file) throw new Error("manifest.json not found.");
       const manifest = JSON.parse(base64ToText(file.content));
-      const years = manifest.years || [];
-      let html = "";
-      let any = false;
-      years.forEach((y) => {
-        (y.semesters || []).forEach((s) => {
-          const subjects = (s.subjects || []).filter((subj) => subj.items && subj.items.length > 0);
-          if (subjects.length === 0) return;
-          any = true;
-          html += '<div class="gl-section-title">' + escapeHtml(y.label || "Year " + y.year) + " · " + escapeHtml(s.label || "Semester " + s.sem) + "</div>";
-          subjects.forEach((subj) => {
-            html +=
-              '<div class="admin-tree-subject">' +
-              '<span class="gl-item-code">' + escapeHtml(subj.code) + "</span>" +
-              '<span class="gl-item-title">' + escapeHtml(subj.title) + "</span>" +
-              "</div>";
-            const items = (subj.items || []).slice().sort((a, b) => (a.order || 0) - (b.order || 0));
-            items.forEach((it) => {
-              const kindTag = it.kind === "note" ? '<span class="gl-item-kind" aria-hidden="true">note</span>' : "";
-              html += '<div class="admin-tree-item admin-tree-item-sub">';
-              if (it.kind === "note") {
-                const preview = (it.text || "").slice(0, 140) + ((it.text || "").length > 140 ? "…" : "");
-                html +=
-                  '<div class="admin-tree-item-main">' + kindTag + '<span class="gl-item-title">' + escapeHtml(it.label) + "</span></div>" +
-                  '<div class="admin-tree-item-url"><code>' + escapeHtml(preview) + "</code></div>";
-              } else {
-                const primaryPath = it.html || it.pdf || "";
-                const url = "https://" + owner + ".github.io/" + repo + "/" + primaryPath;
-                html +=
-                  '<div class="admin-tree-item-main">' + kindTag + '<span class="gl-item-title">' + escapeHtml(it.label) + "</span></div>" +
-                  '<div class="admin-tree-item-url"><code>' + escapeHtml(url) + "</code>" +
-                  '<button class="copy-btn" type="button" data-copy="' + escapeHtml(url) + '">Copy</button></div>';
-              }
-              html +=
-                '<button class="delete-btn" type="button" data-delete-subject-id="' + escapeHtml(subj.id) +
-                '" data-delete-item-id="' + escapeHtml(it.id) + '" data-year="' + y.year + '" data-sem="' + s.sem + '">Delete</button>' +
-                "</div>";
-            });
-          });
-        });
-      });
-      libraryTree.innerHTML = any ? html : '<div class="gl-empty">Nothing published yet.</div>';
+      libraryManifestCache = manifest;
+      renderLibraryTree(manifest, owner, repo);
     } catch (err) {
       libraryTree.innerHTML = '<div class="gl-error">Couldn\'t load: ' + escapeHtml(err.message) + "</div>";
     }
   }
+
+  libraryTree.addEventListener("click", (e) => {
+    const toggleBtn = e.target.closest("[data-admin-toggle]");
+    if (!toggleBtn || !activeConn) return;
+    const id = toggleBtn.dataset.adminToggle;
+    if (expandedAdminSubjects.has(id)) expandedAdminSubjects.delete(id);
+    else expandedAdminSubjects.add(id);
+    if (libraryManifestCache) renderLibraryTree(libraryManifestCache, activeConn.owner, activeConn.repo);
+  });
 
   libraryTree.addEventListener("click", async (e) => {
     const btn = e.target.closest(".delete-btn");
@@ -608,14 +804,7 @@
       if (!item) throw new Error("Already gone from manifest.json.");
 
       const message = "Remove " + subject.code + " — " + item.label;
-      if (item.html) {
-        const htmlFile = await getFile(owner, repo, branch, token, item.html);
-        if (htmlFile) await deleteFile(owner, repo, branch, token, item.html, htmlFile.sha, message);
-      }
-      if (item.pdf) {
-        const pdfFile = await getFile(owner, repo, branch, token, item.pdf);
-        if (pdfFile) await deleteFile(owner, repo, branch, token, item.pdf, pdfFile.sha, message);
-      }
+      await deleteItemFiles(owner, repo, branch, token, item, message);
 
       await updateManifest(owner, repo, branch, token, (m) => {
         const s2 = findSemester(m, year, sem);
@@ -649,7 +838,10 @@
   const refTitle = document.getElementById("refTitle");
   const refItemTypeFileTab = document.getElementById("refItemTypeFileTab");
   const refItemTypeNoteTab = document.getElementById("refItemTypeNoteTab");
+  const refItemTypeLinkTab = document.getElementById("refItemTypeLinkTab");
   const refNotePanel = document.getElementById("refNotePanel");
+  const refLinkPanel = document.getElementById("refLinkPanel");
+  const refLinkUrl = document.getElementById("refLinkUrl");
   const refFileFields = document.getElementById("refFileFields");
   const refNoteText = document.getElementById("refNoteText");
   const refSrcPasteTab = document.getElementById("refSrcPasteTab");
@@ -659,21 +851,35 @@
   const refHtmlPaste = document.getElementById("refHtmlPaste");
   const refHtmlFile = document.getElementById("refHtmlFile");
   const refPdfFile = document.getElementById("refPdfFile");
+  const refPptxFile = document.getElementById("refPptxFile");
+  const refDocxFile = document.getElementById("refDocxFile");
+  const refXlsxFile = document.getElementById("refXlsxFile");
+  const refMoreFormatsToggle = document.getElementById("refMoreFormatsToggle");
+  const refMoreFormatsPanel = document.getElementById("refMoreFormatsPanel");
+  refMoreFormatsToggle.addEventListener("click", () => {
+    const willOpen = refMoreFormatsPanel.hidden;
+    refMoreFormatsPanel.hidden = !willOpen;
+    refMoreFormatsToggle.setAttribute("aria-expanded", String(willOpen));
+    refMoreFormatsToggle.textContent = willOpen ? "− Hide PPTX / DOCX / XLSX" : "+ Add PPTX / DOCX / XLSX";
+  });
   const refMessage = document.getElementById("refMessage");
   const refPublishBtn = document.getElementById("refPublishBtn");
   const refPublishStatus = document.getElementById("refPublishStatus");
   const refPublishResult = document.getElementById("refPublishResult");
 
-  let refItemType = "file"; // "file" | "note"
+  let refItemType = "file"; // "file" | "note" | "link"
   function setRefItemType(t) {
     refItemType = t;
     refItemTypeFileTab.classList.toggle("act", t === "file");
     refItemTypeNoteTab.classList.toggle("act", t === "note");
+    refItemTypeLinkTab.classList.toggle("act", t === "link");
     refNotePanel.hidden = t !== "note";
-    refFileFields.hidden = t === "note";
+    refLinkPanel.hidden = t !== "link";
+    refFileFields.hidden = t === "note" || t === "link";
   }
   refItemTypeFileTab.addEventListener("click", () => setRefItemType("file"));
   refItemTypeNoteTab.addEventListener("click", () => setRefItemType("note"));
+  refItemTypeLinkTab.addEventListener("click", () => setRefItemType("link"));
 
   let refHtmlSource = "paste";
   function setRefHtmlSource(src) {
@@ -707,6 +913,15 @@
       }
     }
 
+    let linkUrl = null;
+    if (refItemType === "link") {
+      linkUrl = refLinkUrl.value.trim();
+      if (!linkUrl) {
+        statusEl(refPublishStatus, "Enter a URL for the link.", "error");
+        return;
+      }
+    }
+
     let newHtmlBase64 = null;
     if (refItemType === "file") {
       if (refHtmlSource === "paste" && refHtmlPaste.value.trim()) {
@@ -718,8 +933,11 @@
     }
 
     const pdfFile = refItemType === "file" ? (refPdfFile.files[0] || null) : null;
-    if (refItemType === "file" && !newHtmlBase64 && !pdfFile) {
-      statusEl(refPublishStatus, "Provide new HTML content/file, a PDF, or both.", "error");
+    const pptxFile = refItemType === "file" ? (refPptxFile.files[0] || null) : null;
+    const docxFile = refItemType === "file" ? (refDocxFile.files[0] || null) : null;
+    const xlsxFile = refItemType === "file" ? (refXlsxFile.files[0] || null) : null;
+    if (refItemType === "file" && !newHtmlBase64 && !pdfFile && !pptxFile && !docxFile && !xlsxFile) {
+      statusEl(refPublishStatus, "Provide new HTML content/file or at least one paired file.", "error");
       return;
     }
 
@@ -740,7 +958,7 @@
       const categorySnapshot = (manifestSnapshot.references || []).find((c) => c.id === categoryId) || null;
       const existingItem = categorySnapshot ? (categorySnapshot.items || []).find((it) => it.id === itemId) || null : null;
 
-      if (refItemType === "file" && !existingItem && !newHtmlBase64 && !pdfFile) {
+      if (refItemType === "file" && !existingItem && !newHtmlBase64 && !pdfFile && !pptxFile && !docxFile && !xlsxFile) {
         throw new Error("No existing reference at this Category/Title — provide at least one file to create it.");
       }
 
@@ -752,15 +970,14 @@
         await putFile(owner, repo, branch, token, htmlPath, newHtmlBase64, message, existingHtmlFile ? existingHtmlFile.sha : null);
       }
 
-      let pdfPath = existingItem ? existingItem.pdf || null : null;
-      if (pdfFile) {
-        pdfPath = basePath + itemId + ".pdf";
-        statusEl(refPublishStatus, "Uploading " + itemId + ".pdf…", "");
-        const pdfBuf = await readFileAsArrayBuffer(pdfFile);
-        const pdfBase64 = arrayBufferToBase64(pdfBuf);
-        const existingPdfFile = await getFile(owner, repo, branch, token, pdfPath);
-        await putFile(owner, repo, branch, token, pdfPath, pdfBase64, message, existingPdfFile ? existingPdfFile.sha : null);
-      }
+      const pdfPath = (await uploadPairedFile(owner, repo, branch, token, pdfFile, "pdf", basePath, itemId, message, refPublishStatus))
+        || (existingItem ? existingItem.pdf || null : null);
+      const pptxPath = (await uploadPairedFile(owner, repo, branch, token, pptxFile, "pptx", basePath, itemId, message, refPublishStatus))
+        || (existingItem ? existingItem.pptx || null : null);
+      const docxPath = (await uploadPairedFile(owner, repo, branch, token, docxFile, "docx", basePath, itemId, message, refPublishStatus))
+        || (existingItem ? existingItem.docx || null : null);
+      const xlsxPath = (await uploadPairedFile(owner, repo, branch, token, xlsxFile, "xlsx", basePath, itemId, message, refPublishStatus))
+        || (existingItem ? existingItem.xlsx || null : null);
 
       // No inherent ordering concept like week numbers — new items just
       // append after whatever's already in the category. Republishing
@@ -780,10 +997,17 @@
           category.label = categoryLabel;
           if (!category.items) category.items = [];
         }
-        const entry = { id: itemId, title: itemTitle, order: itemOrder, kind: refItemType === "note" ? "note" : "doc" };
+        const entry = {
+          id: itemId, title: itemTitle, order: itemOrder,
+          kind: refItemType === "note" ? "note" : refItemType === "link" ? "link" : "doc",
+        };
         if (refItemType === "note") entry.text = noteText;
+        if (refItemType === "link") entry.url = linkUrl;
         if (htmlPath) entry.html = htmlPath;
         if (pdfPath) entry.pdf = pdfPath;
+        if (pptxPath) entry.pptx = pptxPath;
+        if (docxPath) entry.docx = docxPath;
+        if (xlsxPath) entry.xlsx = xlsxPath;
         const idx = category.items.findIndex((it) => it.id === itemId);
         if (idx >= 0) category.items[idx] = entry;
         else category.items.push(entry);
@@ -794,10 +1018,15 @@
       refPublishResult.hidden = false;
       if (refItemType === "note") {
         refPublishResult.innerHTML = '<div class="admin-result-label">Note published — it\'ll show up in the sidebar on next load.</div>';
+      } else if (refItemType === "link") {
+        refPublishResult.innerHTML =
+          '<div class="admin-result-label">Link published — embeds this URL in the viewer:</div>' +
+          '<div class="admin-result-url"><code>' + escapeHtml(linkUrl) + "</code></div>" +
+          '<p class="hint">If the target site blocks embedding, "Open in new tab" in the viewer still works regardless.</p>';
       } else {
-        const primaryPath = htmlPath || pdfPath;
+        const primaryPath = htmlPath || pdfPath || pptxPath || docxPath || xlsxPath;
         const pagesUrl = "https://" + owner + ".github.io/" + repo + "/" + primaryPath;
-        const urlLabel = htmlPath ? "Gizmo-ready URL (this file only, no site chrome):" : "Direct PDF URL:";
+        const urlLabel = htmlPath ? "Gizmo-ready URL (this file only, no site chrome):" : "Direct file URL:";
         refPublishResult.innerHTML =
           '<div class="admin-result-label">' + escapeHtml(urlLabel) + "</div>" +
           '<div class="admin-result-url"><code>' + escapeHtml(pagesUrl) + "</code>" +
@@ -808,7 +1037,11 @@
       refHtmlPaste.value = "";
       refHtmlFile.value = "";
       refPdfFile.value = "";
+      refPptxFile.value = "";
+      refDocxFile.value = "";
+      refXlsxFile.value = "";
       refNoteText.value = "";
+      refLinkUrl.value = "";
       loadReferenceLibraryTree();
     } catch (err) {
       statusEl(refPublishStatus, "Publish failed: " + err.message, "error");
@@ -826,6 +1059,56 @@
      ================================================================ */
   const refLibraryTree = document.getElementById("refLibraryTree");
 
+  const expandedAdminCategories = new Set();
+  let referenceManifestCache = null;
+
+  function renderReferenceLibraryTree(manifest, owner, repo) {
+    const categories = (manifest.references || []).filter((cat) => cat.items && cat.items.length > 0);
+    let html = "";
+    categories.forEach((cat) => {
+      const items = (cat.items || []).slice().sort((a, b) => (a.order || 0) - (b.order || 0));
+      const isOpen = expandedAdminCategories.has(cat.id);
+      html +=
+        '<button class="admin-tree-subject-head' + (isOpen ? " open" : "") + '" data-admin-toggle-ref="' +
+        escapeHtml(cat.id) + '" type="button" aria-expanded="' + isOpen + '">' +
+        '<span class="gl-group-chevron">' + (isOpen ? "▾" : "▸") + "</span>" +
+        '<span class="gl-item-title">' + escapeHtml(cat.label) + "</span>" +
+        '<span class="gl-item-count">' + items.length + "</span>" +
+        "</button>";
+      if (!isOpen) return;
+      items.forEach((it) => {
+        const kindTag = it.kind && it.kind !== "doc"
+          ? '<span class="gl-item-kind" aria-hidden="true">' + escapeHtml(it.kind) + "</span>" : "";
+        html += '<div class="admin-tree-item admin-tree-item-sub">';
+        if (it.kind === "note") {
+          // A note has no file/URL — show a text preview instead of a
+          // broken link with an empty path.
+          const preview = (it.text || "").slice(0, 140) + ((it.text || "").length > 140 ? "…" : "");
+          html +=
+            '<div class="admin-tree-item-main">' + kindTag + '<span class="gl-item-title">' + escapeHtml(it.title) + "</span></div>" +
+            '<div class="admin-tree-item-url"><code>' + escapeHtml(preview) + "</code></div>";
+        } else if (it.kind === "link") {
+          html +=
+            '<div class="admin-tree-item-main">' + kindTag + '<span class="gl-item-title">' + escapeHtml(it.title) + "</span></div>" +
+            '<div class="admin-tree-item-url"><code>' + escapeHtml(it.url || "") + "</code>" +
+            '<button class="copy-btn" type="button" data-copy="' + escapeHtml(it.url || "") + '">Copy</button></div>';
+        } else {
+          const primaryPath = it.html || it.pdf || it.pptx || it.docx || it.xlsx || "";
+          const url = "https://" + owner + ".github.io/" + repo + "/" + primaryPath;
+          html +=
+            '<div class="admin-tree-item-main">' + kindTag + '<span class="gl-item-title">' + escapeHtml(it.title) + "</span></div>" +
+            '<div class="admin-tree-item-url"><code>' + escapeHtml(url) + "</code>" +
+            '<button class="copy-btn" type="button" data-copy="' + escapeHtml(url) + '">Copy</button></div>';
+        }
+        html +=
+          '<button class="delete-btn" type="button" data-delete-category-id="' + escapeHtml(cat.id) +
+          '" data-delete-item-id="' + escapeHtml(it.id) + '">Delete</button>' +
+          "</div>";
+      });
+    });
+    refLibraryTree.innerHTML = categories.length > 0 ? html : '<div class="gl-empty">Nothing published yet.</div>';
+  }
+
   async function loadReferenceLibraryTree() {
     if (!activeConn) return;
     const { owner, repo, branch, token } = activeConn;
@@ -834,40 +1117,21 @@
       const file = await getFile(owner, repo, branch, token, "manifest.json");
       if (!file) throw new Error("manifest.json not found.");
       const manifest = JSON.parse(base64ToText(file.content));
-      const categories = (manifest.references || []).filter((cat) => cat.items && cat.items.length > 0);
-      let html = "";
-      categories.forEach((cat) => {
-        html += '<div class="gl-section-title">' + escapeHtml(cat.label) + "</div>";
-        const items = (cat.items || []).slice().sort((a, b) => (a.order || 0) - (b.order || 0));
-        items.forEach((it) => {
-          const kindTag = it.kind === "note" ? '<span class="gl-item-kind" aria-hidden="true">note</span>' : "";
-          html += '<div class="admin-tree-item">';
-          if (it.kind === "note") {
-            // A note has no file/URL — show a text preview instead of a
-            // broken link with an empty path.
-            const preview = (it.text || "").slice(0, 140) + ((it.text || "").length > 140 ? "…" : "");
-            html +=
-              '<div class="admin-tree-item-main">' + kindTag + '<span class="gl-item-title">' + escapeHtml(it.title) + "</span></div>" +
-              '<div class="admin-tree-item-url"><code>' + escapeHtml(preview) + "</code></div>";
-          } else {
-            const primaryPath = it.html || it.pdf || "";
-            const url = "https://" + owner + ".github.io/" + repo + "/" + primaryPath;
-            html +=
-              '<div class="admin-tree-item-main">' + kindTag + '<span class="gl-item-title">' + escapeHtml(it.title) + "</span></div>" +
-              '<div class="admin-tree-item-url"><code>' + escapeHtml(url) + "</code>" +
-              '<button class="copy-btn" type="button" data-copy="' + escapeHtml(url) + '">Copy</button></div>';
-          }
-          html +=
-            '<button class="delete-btn" type="button" data-delete-category-id="' + escapeHtml(cat.id) +
-            '" data-delete-item-id="' + escapeHtml(it.id) + '">Delete</button>' +
-            "</div>";
-        });
-      });
-      refLibraryTree.innerHTML = categories.length > 0 ? html : '<div class="gl-empty">Nothing published yet.</div>';
+      referenceManifestCache = manifest;
+      renderReferenceLibraryTree(manifest, owner, repo);
     } catch (err) {
       refLibraryTree.innerHTML = '<div class="gl-error">Couldn\'t load: ' + escapeHtml(err.message) + "</div>";
     }
   }
+
+  refLibraryTree.addEventListener("click", (e) => {
+    const toggleBtn = e.target.closest("[data-admin-toggle-ref]");
+    if (!toggleBtn || !activeConn) return;
+    const id = toggleBtn.dataset.adminToggleRef;
+    if (expandedAdminCategories.has(id)) expandedAdminCategories.delete(id);
+    else expandedAdminCategories.add(id);
+    if (referenceManifestCache) renderReferenceLibraryTree(referenceManifestCache, activeConn.owner, activeConn.repo);
+  });
 
   refLibraryTree.addEventListener("click", async (e) => {
     const btn = e.target.closest(".delete-btn");
@@ -889,14 +1153,7 @@
       if (!item) throw new Error("Already gone from manifest.json.");
 
       const message = "Remove reference: " + item.title;
-      if (item.html) {
-        const htmlFile = await getFile(owner, repo, branch, token, item.html);
-        if (htmlFile) await deleteFile(owner, repo, branch, token, item.html, htmlFile.sha, message);
-      }
-      if (item.pdf) {
-        const pdfFile = await getFile(owner, repo, branch, token, item.pdf);
-        if (pdfFile) await deleteFile(owner, repo, branch, token, item.pdf, pdfFile.sha, message);
-      }
+      await deleteItemFiles(owner, repo, branch, token, item, message);
 
       await updateManifest(owner, repo, branch, token, (m) => {
         const cat2 = (m.references || []).find((c) => c.id === categoryId);

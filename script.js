@@ -116,6 +116,7 @@
   window.addEventListener("keydown", (e) => {
     if (e.key !== "Escape") return;
     if (videoLightbox.classList.contains("open")) { closeVideoLightbox(); return; }
+    if (requestModal.classList.contains("open")) { closeRequestModal(); return; }
     if (!aiSettings.hidden) { aiSettings.hidden = true; gearBtn.classList.remove("open"); return; }
     if (!msSettings.hidden) { msSettings.hidden = true; gearBtn.classList.remove("open"); return; }
     if (toolPanel.classList.contains("open")) { closePanel(); return; }
@@ -170,15 +171,17 @@
       '<span class="gl-group-chevron">' + (isOpen ? "▾" : "▸") + "</span>" +
       (group.code ? '<span class="gl-item-code">' + escapeHtml(group.code) + "</span>" : "") +
       '<span class="gl-item-title">' + escapeHtml(group.title) + "</span>" +
+      '<span class="gl-item-count">' + group.items.length + "</span>" +
       "</button>"
     );
   }
 
   function itemRowHTML(it) {
     // A tiny kind marker keeps a mixed list scannable without a full
-    // badge system — notes have no file behind them at all, worth
-    // flagging at a glance before you click one expecting a document.
-    const marker = it.kind === "note" ? '<span class="gl-item-kind" aria-hidden="true">note</span>' : "";
+    // badge system — notes and links have no file behind them at all,
+    // worth flagging at a glance before you click one expecting a document.
+    const KIND_MARKERS = { note: "note", link: "link" };
+    const marker = KIND_MARKERS[it.kind] ? '<span class="gl-item-kind" aria-hidden="true">' + KIND_MARKERS[it.kind] + "</span>" : "";
     return (
       '<button class="gl-item sub" data-uid="' + escapeHtml(it.uid) + '" type="button">' +
       marker +
@@ -327,7 +330,11 @@
   }
 
   /* ================================================================
-     PART 3 — VIEWER: open an item, toggle HTML/PDF
+     PART 3 — VIEWER: open an item, toggle between whichever formats
+     it has (HTML/PDF render natively in the iframe; PPTX/DOCX/XLSX
+     don't — those route through Microsoft's free Office Online
+     viewer, which just needs a public URL to the file, and GitHub
+     Pages already gives every published file exactly that).
      ================================================================ */
   const viewerEmpty = document.getElementById("viewerEmpty");
   const viewerActive = document.getElementById("viewerActive");
@@ -336,32 +343,69 @@
   const vhCode = document.getElementById("vhCode");
   const vhTitle = document.getElementById("vhTitle");
   const formatToggle = document.getElementById("formatToggle");
-  const formatHtmlBtn = document.getElementById("formatHtmlBtn");
-  const formatPdfBtn = document.getElementById("formatPdfBtn");
   const openNewTabBtn = document.getElementById("openNewTabBtn");
+  const downloadBtn = document.getElementById("downloadBtn");
 
-  let currentGuide = null;    // the flattened item object (badgeText/displayTitle/uid/html/pdf/kind/text), or null
-  let currentFormat = "html"; // "html" | "pdf" — which version is showing (meaningless for a note)
+  const FORMAT_KEYS = ["html", "pdf", "pptx", "docx", "xlsx"];
+  const FORMAT_LABELS = { html: "HTML", pdf: "PDF", pptx: "PPT", docx: "DOC", xlsx: "XLS" };
+  // Formats the iframe can render directly, unassisted — everything
+  // else needs Office Online to turn it into something a browser can
+  // actually display.
+  const NATIVE_FORMATS = new Set(["html", "pdf"]);
+
+  function absoluteUrl(relativePath) {
+    return new URL(relativePath, window.location.href).href;
+  }
+  function officeEmbedUrl(relativePath) {
+    return "https://view.officeapps.live.com/op/embed.aspx?src=" + encodeURIComponent(absoluteUrl(relativePath));
+  }
+
+  let currentGuide = null;    // the flattened item object (badgeText/displayTitle/uid/html/pdf/pptx/docx/xlsx/kind/text), or null
+  let currentFormat = "html"; // one of FORMAT_KEYS — meaningless for a note
 
   function renderViewerHeader() {
     vhCode.textContent = currentGuide.badgeText;
     vhTitle.textContent = currentGuide.displayTitle;
     if (currentGuide.kind === "note") {
-      // A note has no file behind it — no format to toggle, nowhere to
-      // "open in a new tab", so those controls just don't apply here.
+      // A note has no file behind it at all — none of these controls apply.
       formatToggle.hidden = true;
       openNewTabBtn.hidden = true;
+      downloadBtn.hidden = true;
+      return;
+    }
+    if (currentGuide.kind === "link") {
+      // A link is just a URL — no format to toggle, nothing of ours to
+      // download. "Open in new tab" stays on, though: whether the target
+      // site actually allows being framed is entirely up to that site,
+      // and there's no reliable way to detect a silent embed failure —
+      // this is the fallback that always works regardless.
+      formatToggle.hidden = true;
+      downloadBtn.hidden = true;
+      openNewTabBtn.hidden = false;
+      openNewTabBtn.href = currentGuide.url;
       return;
     }
     formatToggle.hidden = false;
     openNewTabBtn.hidden = false;
-    formatHtmlBtn.disabled = !currentGuide.html;
-    formatPdfBtn.disabled = !currentGuide.pdf;
-    formatHtmlBtn.classList.toggle("act", currentFormat === "html");
-    formatPdfBtn.classList.toggle("act", currentFormat === "pdf");
-    const src = currentFormat === "html" ? currentGuide.html : currentGuide.pdf;
-    openNewTabBtn.href = src;
+    downloadBtn.hidden = false;
+    formatToggle.innerHTML = FORMAT_KEYS.filter((k) => currentGuide[k])
+      .map((k) => '<button class="ft-btn' + (k === currentFormat ? " act" : "") + '" type="button" data-format="' + k + '">' + FORMAT_LABELS[k] + "</button>")
+      .join("");
+    const rawSrc = currentGuide[currentFormat];
+    openNewTabBtn.href = NATIVE_FORMATS.has(currentFormat) ? rawSrc : officeEmbedUrl(rawSrc);
+    downloadBtn.href = rawSrc; // always the actual file, never the Office Online wrapper
   }
+
+  // Delegated — formatToggle's buttons are rebuilt fresh on every
+  // openGuide() call, so one listener on the container beats trying to
+  // keep individual per-button listeners in sync with what's rendered.
+  formatToggle.addEventListener("click", (e) => {
+    const btn = e.target.closest(".ft-btn");
+    if (!btn || !currentGuide) return;
+    const format = btn.dataset.format;
+    if (format === currentFormat) return;
+    openGuide(currentGuide, format);
+  });
 
   function openGuide(item, format) {
     currentGuide = item;
@@ -375,12 +419,18 @@
       // Reuses the exact same Markdown-to-HTML renderer Ask AI's answers
       // go through — a note is just markdown text, same as an answer is.
       viewerNote.innerHTML = formatAiAnswer(item.text || "");
+    } else if (item.kind === "link") {
+      viewerNote.hidden = true;
+      viewerNote.innerHTML = "";
+      viewerFrame.hidden = false;
+      viewerFrame.src = item.url;
     } else {
       viewerNote.hidden = true;
       viewerNote.innerHTML = "";
       viewerFrame.hidden = false;
-      currentFormat = format || (item.html ? "html" : "pdf");
-      viewerFrame.src = currentFormat === "html" ? item.html : item.pdf;
+      currentFormat = format || FORMAT_KEYS.find((k) => item[k]) || "html";
+      const rawSrc = item[currentFormat];
+      viewerFrame.src = NATIVE_FORMATS.has(currentFormat) ? rawSrc : officeEmbedUrl(rawSrc);
     }
 
     renderViewerHeader();
@@ -394,15 +444,6 @@
 
     closeSidebar(); // mobile: picking a guide should return focus to the reading pane
   }
-
-  formatHtmlBtn.addEventListener("click", () => {
-    if (!currentGuide || !currentGuide.html || currentFormat === "html") return;
-    openGuide(currentGuide, "html");
-  });
-  formatPdfBtn.addEventListener("click", () => {
-    if (!currentGuide || !currentGuide.pdf || currentFormat === "pdf") return;
-    openGuide(currentGuide, "pdf");
-  });
 
   /* ================================================================
      PART 4 — ASK AI
@@ -503,8 +544,12 @@
     const label = currentGuide.badgeText + " — " + currentGuide.displayTitle;
     if (currentGuide.kind === "note") {
       aiContextBanner.textContent = "Reading: " + label;
-    } else if (currentFormat === "pdf") {
-      aiContextBanner.textContent = "Reading: " + label + " (PDF mode — switch to HTML to let Ask AI read the page content).";
+    } else if (currentGuide.kind === "link") {
+      aiContextBanner.textContent = "Reading: " + label + " (external site — Ask AI can't read pages outside this portal).";
+    } else if (currentFormat !== "html" && currentGuide.html) {
+      aiContextBanner.textContent = "Reading: " + label + " (" + FORMAT_LABELS[currentFormat] + " mode — switch to HTML to let Ask AI read the page content).";
+    } else if (currentFormat !== "html") {
+      aiContextBanner.textContent = "Reading: " + label + " (" + FORMAT_LABELS[currentFormat] + " — Ask AI can't read this format yet, only HTML).";
     } else {
       aiContextBanner.textContent = "Reading: " + label;
     }
@@ -525,6 +570,16 @@
       // context, straight from the manifest entry.
       const text = currentGuide.text || "";
       return text.length > MAX_CONTEXT_CHARS ? text.slice(0, MAX_CONTEXT_CHARS) + "\n…(truncated)" : text;
+    }
+    if (currentGuide.kind === "link") {
+      // Explicit rather than falling through to the cross-origin catch
+      // below — an external site is essentially never same-origin, so
+      // this would always end up returning null anyway, but relying on
+      // that instead of stating it plainly would leave the "why" for
+      // this specific case sitting entirely inside a stale currentFormat
+      // value left over from whatever was open before, rather than here
+      // where the reasoning about link items actually belongs.
+      return null;
     }
     if (currentFormat !== "html") return null;
     try {
@@ -904,7 +959,99 @@
   msQuery.addEventListener("keydown", (e) => { if (e.key === "Enter") handleMsSearch(); });
 
   /* ================================================================
-     PART 6 — BOOT
+     PART 6 — SUGGEST A GUIDE
+     No backend, so "submitting" a request means handing the person
+     off somewhere that already accepts one: a pre-filled GitHub Issue
+     (works immediately, needs zero setup — owner/repo are read straight
+     off the page's own URL) or, for anyone without a GitHub account, a
+     pre-filled email instead.
+     ================================================================ */
+  const suggestBtn = document.getElementById("suggestBtn");
+  const requestModalBackdrop = document.getElementById("requestModalBackdrop");
+  const requestModal = document.getElementById("requestModal");
+  const requestModalClose = document.getElementById("requestModalClose");
+  const reqType = document.getElementById("reqType");
+  const reqSubject = document.getElementById("reqSubject");
+  const reqDescription = document.getElementById("reqDescription");
+  const reqSubmitBtn = document.getElementById("reqSubmitBtn");
+  const reqGithubHint = document.getElementById("reqGithubHint");
+  const reqEmailFallback = document.getElementById("reqEmailFallback");
+  const reqEmailLink = document.getElementById("reqEmailLink");
+
+  // Change this if a different inbox should receive requests from
+  // people without a GitHub account.
+  const REQUEST_FALLBACK_EMAIL = "galaridokarlian7@gmail.com";
+
+  // GitHub Pages URLs are always https://{owner}.github.io/{repo}/... —
+  // reading owner/repo off the page's own location means this needs no
+  // configuration at all, and keeps working even if the repo is renamed
+  // or forked. Returns nulls (rather than throwing) if the page isn't
+  // being served from that shape, e.g. testing locally.
+  function repoOwnerAndName() {
+    const host = window.location.hostname;
+    const owner = host.endsWith(".github.io") ? host.slice(0, -".github.io".length) : null;
+    const repo = window.location.pathname.split("/").filter(Boolean)[0] || null;
+    return { owner, repo };
+  }
+
+  function buildRequestText() {
+    const type = reqType.value;
+    const subject = reqSubject.value.trim() || "(not specified)";
+    const description = reqDescription.value.trim();
+    const title = "[Request] " + type + " — " + subject;
+    const body = "**Type:** " + type + "\n**Subject/Category:** " + subject + "\n\n**Description:**\n" +
+      (description || "(no description given)");
+    return { title, body };
+  }
+
+  function openRequestModal() {
+    const { owner, repo } = repoOwnerAndName();
+    if (owner && repo) {
+      reqSubmitBtn.hidden = false;
+      reqGithubHint.hidden = false;
+    } else {
+      // Running somewhere that doesn't match the GitHub Pages URL shape
+      // (e.g. a local http.server during testing) — nothing to build a
+      // GitHub Issue link out of, so lead with the email option instead.
+      reqSubmitBtn.hidden = true;
+      reqGithubHint.hidden = true;
+    }
+    requestModalBackdrop.classList.add("open");
+    requestModal.classList.add("open");
+  }
+
+  function closeRequestModal() {
+    requestModalBackdrop.classList.remove("open");
+    requestModal.classList.remove("open");
+  }
+
+  suggestBtn.addEventListener("click", openRequestModal);
+  requestModalClose.addEventListener("click", closeRequestModal);
+  requestModalBackdrop.addEventListener("click", closeRequestModal);
+
+  reqSubmitBtn.addEventListener("click", () => {
+    const { owner, repo } = repoOwnerAndName();
+    if (!owner || !repo) return;
+    const { title, body } = buildRequestText();
+    const url = "https://github.com/" + owner + "/" + repo + "/issues/new?title=" +
+      encodeURIComponent(title) + "&body=" + encodeURIComponent(body) + "&labels=" + encodeURIComponent("guide-request");
+    window.open(url, "_blank", "noopener");
+    closeRequestModal();
+  });
+
+  // Rebuilt on every keystroke so the mailto: link is always current —
+  // cheap enough, and means there's no separate "prepare" step to forget.
+  function syncEmailFallbackLink() {
+    const { title, body } = buildRequestText();
+    reqEmailLink.href = "mailto:" + REQUEST_FALLBACK_EMAIL +
+      "?subject=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(body);
+  }
+  [reqType, reqSubject, reqDescription].forEach((el) => el.addEventListener("input", syncEmailFallbackLink));
+  reqType.addEventListener("change", syncEmailFallbackLink);
+  syncEmailFallbackLink();
+
+  /* ================================================================
+     PART 7 — BOOT
      ================================================================ */
   loadAiSettings();
   loadMsSettings();

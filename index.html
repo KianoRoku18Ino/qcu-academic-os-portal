@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=6">
+<link rel="stylesheet" href="style.css?v=8">
 </head>
 <body>
 
@@ -56,7 +56,51 @@
          expand/collapse), then a .gl-item row per item inside it -->
     <div class="gl-loading" id="guideListLoading">Loading library…</div>
   </div>
+  <div class="sidebar-footer">
+    <button class="suggest-btn" id="suggestBtn" type="button">💡 Suggest a guide</button>
+  </div>
 </nav>
+
+<!-- ============================================================
+     SUGGEST-A-GUIDE MODAL — anyone browsing the library can ask
+     for something that isn't here yet. No backend: submitting just
+     opens a pre-filled GitHub Issue (owner/repo are read straight
+     off the page's own URL, so this needs no configuration and
+     keeps working even if the repo gets renamed or forked), with a
+     plain-email fallback for anyone without a GitHub account.
+     ============================================================ -->
+<div class="request-modal-backdrop" id="requestModalBackdrop"></div>
+<div class="request-modal" id="requestModal">
+  <div class="request-modal-card">
+    <div class="request-modal-head">
+      <span class="request-modal-title">Suggest a guide</span>
+      <button class="icon-btn" id="requestModalClose" type="button" aria-label="Close">✕</button>
+    </div>
+    <p class="hint">Know a resource that should be here? Describe it below — submitting opens it as a GitHub Issue, pre-filled, ready to send.</p>
+
+    <label class="field">
+      <span>What kind of resource</span>
+      <select id="reqType">
+        <option value="Study guide / notes">Study guide / notes</option>
+        <option value="Video">Video</option>
+        <option value="Website / tool">Website / tool</option>
+        <option value="Other">Other</option>
+      </select>
+    </label>
+    <label class="field">
+      <span>Subject or category</span>
+      <input type="text" id="reqSubject" placeholder="e.g. CC104, or &quot;General&quot;" spellcheck="false" autocomplete="off">
+    </label>
+    <label class="field">
+      <span>Description (and a link, if you have one)</span>
+      <textarea id="reqDescription" rows="5" placeholder="What is it, and why should it be added?"></textarea>
+    </label>
+
+    <button class="save-btn" id="reqSubmitBtn" type="button">Open as GitHub Issue</button>
+    <p class="hint" id="reqGithubHint">Opens in a new tab — needs a free GitHub account to actually submit it there.</p>
+    <p class="hint" id="reqEmailFallback">Don't have GitHub? <a class="hint-link" id="reqEmailLink" href="#">Email the request instead</a>.</p>
+  </div>
+</div>
 
 <!-- ================================================================
      MAIN VIEWER — the "open window"
@@ -80,10 +124,11 @@
       </div>
       <div class="vh-controls">
         <div class="format-toggle" id="formatToggle">
-          <button class="ft-btn act" id="formatHtmlBtn" type="button">HTML</button>
-          <button class="ft-btn" id="formatPdfBtn" type="button">PDF</button>
+          <!-- script.js rebuilds this per item — however many of
+               html/pdf/pptx/docx/xlsx that item actually has -->
         </div>
         <a class="icon-btn" id="openNewTabBtn" href="#" target="_blank" rel="noopener" aria-label="Open in new tab">⤢</a>
+        <a class="icon-btn" id="downloadBtn" href="#" download aria-label="Download this file">⬇</a>
       </div>
     </div>
     <iframe class="viewer-frame" id="viewerFrame" title="Study guide content"></iframe>
@@ -193,6 +238,6 @@
   <div class="video-lightbox-frame" id="videoLightboxFrame"></div>
 </div>
 
-<script src="script.js?v=7"></script>
+<script src="script.js?v=9"></script>
 </body>
 </html>
