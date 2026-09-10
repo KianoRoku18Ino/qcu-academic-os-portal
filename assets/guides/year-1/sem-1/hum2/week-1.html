@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HUM2 — Ethics Module 1: Basic Concepts | Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--bgcode:#060D18;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--purple:#8B5CF6;--violet:#8B5CF6;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(139,92,246,.15);--sw:270px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--violet);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvs{padding:9px 17px 3px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t3)}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover,.nvi a.act{color:var(--t1);background:rgba(139,92,246,.08);border-left-color:var(--violet)}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:20px}
+
+.main{margin-left:var(--sw)}
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:52px 52px 42px;position:relative;overflow:hidden}
+.hero::before{content:'ΗΘΟΣ';position:absolute;top:-10px;right:15px;font-family:'JetBrains Mono',monospace;font-size:115px;font-weight:900;color:rgba(139,92,246,.05);letter-spacing:-5px;user-select:none;line-height:1}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--violet);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--violet)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:38px;font-weight:700;line-height:1.1;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#8B5CF6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:17px;color:var(--t2);margin-bottom:19px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+
+.chapter{padding:44px 52px;border-bottom:1px solid var(--bdr);max-width:980px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--violet);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:27px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:600;margin:28px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--violet);border-radius:2px;flex-shrink:0}
+h3{font-family:'Space Grotesk',sans-serif;font-size:15.5px;font-weight:600;color:var(--violet);margin:20px 0 8px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+em.src{color:var(--t3);font-style:italic;font-size:12.5px}
+
+.box{border-radius:8px;padding:13px 17px;margin:15px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}.red .btt{color:var(--red)}
+.violetbox{background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2)}.violetbox .btt{color:var(--violet)}
+
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--violet);font-size:12px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(139,92,246,.04)}
+tbody td{padding:9px 13px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}.tv{background:rgba(139,92,246,.15);color:var(--violet)}
+
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.gc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;position:relative;overflow:hidden}
+.gc::before{content:attr(data-g);position:absolute;top:-10px;right:7px;font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:900;color:rgba(139,92,246,.06);line-height:1}
+.gera{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.gtit{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:7px}
+.gsp{font-size:12.5px;color:var(--t2);margin:0;line-height:1.7}
+.gsp strong{color:var(--violet)}
+
+.isg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.isc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;border-top:3px solid var(--blue)}
+.isc.a{border-top-color:var(--amber)}.isc.g{border-top-color:var(--green)}.isc.p{border-top-color:var(--purple)}
+.ico{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-bottom:3px}
+.inm{font-weight:700;font-size:14px;color:var(--t1);margin-bottom:6px}
+.idc{font-size:12.5px;color:var(--t2);line-height:1.7}
+
+.steps{margin:15px 0}
+.step{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.snum{background:var(--violet);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace}
+.sc{flex:1}
+.sl{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:2px}
+.sd{color:var(--t2);font-size:13px;line-height:1.7}
+
+/* Recitation-ready card */
+.rblk{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:16px 18px;margin:16px 0}
+.rhd{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.rtitle{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;color:var(--t1)}
+.rflag{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--violet);background:rgba(139,92,246,.12);padding:2px 8px;border-radius:10px;text-transform:uppercase;letter-spacing:1px}
+.rrow{margin-bottom:9px;font-size:13px}
+.rrow b{color:var(--amber);font-family:'JetBrains Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:2px}
+.rrow span{color:var(--t2);line-height:1.65}
+
+/* QA recitation drill */
+.qa-block{margin:15px 0}
+.qa-item{margin-bottom:11px;padding:11px 14px;background:var(--bgc);border-left:3px solid var(--violet);border-radius:6px}
+.qa-q{font-weight:600;color:var(--t1);margin-bottom:4px;font-size:13px}
+.qa-q b{color:var(--violet);font-family:'JetBrains Mono',monospace;font-size:11px;margin-right:4px}
+.qa-a{font-size:12.5px;color:var(--t2);line-height:1.7}
+.qa-a b{color:var(--green);font-family:'JetBrains Mono',monospace;font-size:11px;margin-right:4px}
+
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:4px;font-size:13px;line-height:1.75}
+li strong{color:var(--t1)}
+
+.diagram{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:20px;margin:15px 0;text-align:center}
+.dtier{padding:12px;margin:6px auto;border-radius:8px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;max-width:280px}
+.dtier.divine{background:rgba(59,130,246,.15);color:var(--blue);border:1px solid rgba(59,130,246,.3)}
+.dtier.human{background:rgba(16,185,129,.15);color:var(--green);border:1px solid rgba(16,185,129,.3)}
+.dtier.animal{background:rgba(245,158,11,.15);color:var(--amber);border:1px solid rgba(245,158,11,.3)}
+.darrow{color:var(--t3);font-size:16px;margin:2px 0}
+.dcap{font-size:11.5px;color:var(--t3);margin-top:8px}
+
+.footer{padding:34px 52px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--violet)}
+
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.gg,.isg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+<div class="sbh"><div class="sbb">HUM2 · QCU</div><div class="sbt">Ethics Module 1</div><div class="sbs">Basic Concepts · Dr. J. Legaspi</div></div>
+<ul class="nvl">
+<li class="nvs">Introduction</li>
+<li class="nvi"><a href="#ch00"><span class="nn">00</span>Overview &amp; Framework</a></li>
+<li class="nvi"><a href="#ch01"><span class="nn">01</span>Verification Notes</a></li>
+<li class="nvs">Basic Concepts</li>
+<li class="nvi"><a href="#ch02"><span class="nn">02</span>What Is Ethics?</a></li>
+<li class="nvi"><a href="#ch03"><span class="nn">03</span>Four Main Areas of Ethics</a></li>
+<li class="nvi"><a href="#ch04"><span class="nn">04</span>Ethics vs. Morals</a></li>
+<li class="nvi"><a href="#ch05"><span class="nn">05</span>Kinds of Valuation</a></li>
+<li class="nvi"><a href="#ch06"><span class="nn">06</span>Ethical Levels of Existence</a></li>
+<li class="nvi"><a href="#ch07"><span class="nn">07</span>Issue, Judgment, Decision, Dilemma</a></li>
+<li class="nvi"><a href="#ch08"><span class="nn">08</span>Ethics and Reasoning</a></li>
+<li class="nvs">Practice</li>
+<li class="nvi"><a href="#ch09"><span class="nn">09</span>Agree or Disagree (10)</a></li>
+<li class="nvi"><a href="#ch10"><span class="nn">10</span>Assessment Bank</a></li>
+<li class="nvi"><a href="#ch11"><span class="nn">11</span>Glossary</a></li>
+</ul></nav>
+
+<main class="main">
+<div class="hero">
+<div class="he">QCU Academic OS · Humanities</div>
+<div class="ht">HUM2 — Ethics</div>
+<div class="hs">Module 1: Basic Concepts — Study Guide</div>
+<div class="hm">
+<div class="mp">Course: <span>HUM2</span></div>
+<div class="mp">Module: <span>1 — Basic Concepts</span></div>
+<div class="mp">Professor: <span>Dr. Jackelyn L. Legaspi</span></div>
+<div class="mp">Source: <span>Module-1-Basic-Concepts.pptx</span></div>
+</div></div>
+
+<section class="chapter" id="ch00">
+<div class="cn">CHAPTER 00</div><div class="ct">Overview &amp; Course Framework</div>
+<p class="ci">This guide is built entirely from Dr. Legaspi's Module 1 slide deck. Every definition, example, and quiz item you'll see in Chapters 02–10 is what she actually presented — nothing is invented or pulled from outside sources. Where something is genuinely missing from the slides (a plain-English gloss, a comparison, a Q&amp;A drill, a glossary term), it's added and clearly labeled so you always know what's hers and what's a study aid.</p>
+
+<h2>The Course's Recurring 3-Part Framework</h2>
+<p>The deck's own Table of Contents lays out the whole HUM2 Ethics course in three parts. Module 1 (this guide) is <strong>Part 1</strong> only — Parts 2 and 3 are future modules, but this structure is worth memorizing now because every later topic slots into it:</p>
+<div class="tw"><table>
+<thead><tr><th>Part</th><th>Focus</th><th>Topics</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>Part 1</td><td>Basic Concepts</td><td>What is Ethics?, Morality &amp; Other Normative Systems, Ethical Levels of Human Existence, Moral Agent</td><td><span class="tag tg">This module (mostly)</span></td></tr>
+<tr><td>Part 2</td><td>Ethical Theories</td><td>Utilitarianism, Natural Law, Deontology, Virtue Ethics, Justice as Fairness</td><td><span class="tag tb">Future module</span></td></tr>
+<tr><td>Part 3</td><td>Making Informed Decisions</td><td>Moral Deliberation</td><td><span class="tag tb">Future module</span></td></tr>
+</tbody></table></div>
+<div class="box violetbox"><div class="bico">🔗</div><div class="bbd"><div class="btt">Why This Matters Now</div>
+<p class="btx">The "Normative Ethics" section in Chapter 03 splits moral standards into <strong>deontological</strong> and <strong>teleological/consequentialist</strong> categories — that split is the seed of Part 2. Deontology and Utilitarianism (teleological) will come back as full theories later; you're meeting their names for the first time here.</p></div></div>
+
+<h2>Exam Priority Map</h2>
+<div class="tw"><table>
+<thead><tr><th>Topic</th><th>Chapter</th><th>Priority</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td>Four Main Areas of Ethics</td><td>03</td><td><span class="tag tr2">🔴 High</span></td><td>Core classification, essay- and recitation-tested</td></tr>
+<tr><td>Ethics vs. Morals</td><td>04</td><td><span class="tag tr2">🔴 High</span></td><td>Foundational distinction, appears in T/F items</td></tr>
+<tr><td>Kinds of Valuation</td><td>05</td><td><span class="tag tr2">🔴 High</span></td><td>Classic exam differentiator (ethics vs. etiquette/aesthetics/technique)</td></tr>
+<tr><td>Agree/Disagree Statements</td><td>09</td><td><span class="tag tr2">🔴 High</span></td><td>Fully worked, reasoning-based — high recitation value</td></tr>
+<tr><td>Essay Prompts</td><td>10</td><td><span class="tag tr2">🔴 High</span></td><td>Explicitly graded written assessment</td></tr>
+<tr><td>True/False Quiz</td><td>10</td><td><span class="tag tr2">🔴 High</span></td><td>Explicitly graded, direct recall</td></tr>
+<tr><td>Issue/Judgment/Decision/Dilemma</td><td>07</td><td><span class="tag ta">🟡 Medium</span></td><td>Terminology recall, likely short-answer</td></tr>
+<tr><td>Etymology (ethos, philosophy)</td><td>02</td><td><span class="tag ta">🟡 Medium</span></td><td>Definitional recall, common opening recitation question</td></tr>
+<tr><td>Ethical Levels of Human Existence</td><td>06</td><td><span class="tag ta">🟡 Medium</span></td><td>Conceptual; slide gives no caption text, so depth is limited</td></tr>
+<tr><td>Ethics and Reasoning (bridge)</td><td>08</td><td><span class="tag tb">🔵 Lower</span></td><td>Transition list into Part 2, not elaborated yet</td></tr>
+<tr><td>Group Performance Activities</td><td>10</td><td><span class="tag tb">🔵 Lower</span></td><td>Rubric-graded in class, not written-exam material</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="chapter" id="ch01">
+<div class="cn">CHAPTER 01</div><div class="ct">Verification Notes — Read This First</div>
+<p class="ci">Before using this guide, know exactly where the source material was incomplete, cut off, or silent — so you don't mistake a study aid for something the professor said, and so you know what to double-check with her directly.</p>
+
+<div class="box amber"><div class="bico">✂️</div><div class="bbd"><div class="btt">1. Two truncated lines in the original slides</div>
+<p class="btx">The PDF export cuts off text in two places: (a) the answer to Agree/Disagree Statement 10 ends mid-sentence at "...emphasize putting"; (b) True/False Quiz item 5 ends mid-sentence at "...the welfare of the." Both are reproduced exactly as cut off in Chapters 09 and 10, with a bracketed <em>[likely completion — not verified, my own reasonable guess]</em> added so you're not left with a dangling sentence. Confirm the actual full wording with Dr. Legaspi or the original PPTX file.</p></div></div>
+
+<div class="box amber"><div class="bico">❓</div><div class="bbd"><div class="btt">2. No answer key for the True/False quiz</div>
+<p class="btx">The 20-item True/False quiz in Chapter 10 has no answers in the source slides at all. I've supplied my own reasoned suggested answers for practice, clearly marked as <strong>not the professor's official key</strong> — verify against her actual answer key before treating them as final.</p></div></div>
+
+<div class="box blue"><div class="bico">📋</div><div class="bbd"><div class="btt">3. "Moral Agent" is named but not taught in this file</div>
+<p class="btx">The Course Contents slide lists "Moral Agent: The Role in Building a Moral Society" as a Part 1 topic, but no slide in this deck actually covers it — it's likely reserved for a later session. This guide does not invent content for it; it stays absent here, matching the source.</p></div></div>
+
+<div class="box blue"><div class="bico">🖼️</div><div class="bbd"><div class="btt">4. The "Ethical Levels" diagram has no caption text</div>
+<p class="btx">The animal → human → divine diagram (Chapter 06) is presented with only tier labels and stock images — no explanatory sentence. What this guide adds under "Recitation-Ready" for that chapter is a reasonable plain-English gloss of what the tiers likely represent, clearly marked as added interpretation, not a quote from the professor.</p></div></div>
+
+<div class="box green"><div class="bico">✅</div><div class="bbd"><div class="btt">5. Verified: the Plato attribution is accurate</div>
+<p class="btx">Chapter 02 quotes the slide's line "It begins with wondering. – (Plato)." This checks out: the line "wonder is the feeling of a philosopher, and philosophy begins in wonder" appears in Plato's dialogue <em>Theaetetus</em> (155d), spoken by the character Socrates. Aristotle expresses a very similar idea in the <em>Metaphysics</em>, which is why you'll sometimes see the same idea credited to him elsewhere — but the professor's attribution to Plato is correct for this specific line. Plato's own exact birth/death dates aren't known with day-level precision even by classical scholars (commonly cited as c. 428/427–348/347 BCE) — no fully precise date exists to substitute, so none is presented here.</p></div></div>
+
+<div class="box green"><div class="bico">✅</div><div class="bbd"><div class="btt">6. No factual errors found</div>
+<p class="btx">Everything else — the ethos/mos-mores etymology, the Four Main Areas of Ethics classification, the deontological/teleological split, and every definition given — matches standard, widely-used philosophy references. Nothing else in the deck needed correction.</p></div></div>
+</section>
+
+<section class="chapter" id="ch02">
+<div class="cn">CHAPTER 02 · PART 1</div><div class="ct">What Is Ethics?</div>
+<p class="ci"><em class="src">From the lesson.</em></p>
+
+<h2>Etymology</h2>
+<p><strong>Ethos</strong> (Greek) — "characteristic way of acting." Its Latin equivalent is <strong>mos, mores</strong>, meaning tradition or custom.</p>
+
+<h2>Ethics and Philosophy</h2>
+<p><strong>Philosophy</strong>, derived from the Greek <em>'philo'</em> (love) and <em>'sophia'</em> (wisdom), is literally defined as "the love of wisdom." More broadly, it is the study of the most basic and profound matters of human existence — fundamental questions of human existence, the love of wisdom asking "Why?" It begins with wondering. — (Plato)</p>
+<p><strong>Ethics:</strong> the wrongness and correctness of our actions.</p>
+
+<div class="rblk"><div class="rhd"><div class="rtitle">Ethos / Mores</div><span class="rflag">Recitation-ready</span></div>
+<div class="rrow"><b>Plain-English</b><span>"Ethos" is the Greek word for a person's or group's characteristic way of acting — their habitual character. Its Latin cousin "mos/mores" gives us the word "moral" and means custom or tradition.</span></div>
+<div class="rrow"><b>Compare</b><span>Same root idea in two languages: ethos (Greek) → "ethics"; mos/mores (Latin) → "morals." That's why "ethics" and "morals" feel so close in everyday speech.</span></div>
+<div class="rrow"><b>Example</b><span>A community's mores (its established customs around honesty in trade) is the Latin-rooted way of describing what the Greek-rooted word "ethos" points at.</span></div>
+</div>
+
+<div class="rblk"><div class="rhd"><div class="rtitle">Philosophy vs. Ethics</div><span class="rflag">Recitation-ready</span></div>
+<div class="rrow"><b>Plain-English</b><span>Philosophy is the broad "love of wisdom" — asking fundamental questions about existence in general. Ethics is one branch of that: specifically the study of what makes an action right or wrong.</span></div>
+<div class="rrow"><b>Compare</b><span>Philosophy is the whole tree; ethics is one branch of it (alongside branches like metaphysics or epistemology).</span></div>
+<div class="rrow"><b>Example</b><span>"Does free will exist?" is a philosophy question in general; "Is it right to lie to protect someone?" is specifically an ethics question.</span></div>
+</div>
+
+<h3>Recitation Drill</h3>
+<div class="qa-block">
+<div class="qa-item"><div class="qa-q"><b>Q:</b>What does "ethos" literally mean, and what is its Latin equivalent?</div><div class="qa-a"><b>A:</b>"Ethos" is Greek for "characteristic way of acting." Its Latin equivalent is mos/mores, meaning tradition or custom.</div></div>
+<div class="qa-item"><div class="qa-q"><b>Q:</b>How does the professor define ethics, in one line?</div><div class="qa-a"><b>A:</b>The wrongness and correctness of our actions.</div></div>
+<div class="qa-item"><div class="qa-q"><b>Q:</b>Who is quoted as saying philosophy "begins with wondering," and is that attribution accurate?</div><div class="qa-a"><b>A:</b>Plato — and yes, verified: the line traces to Plato's dialogue Theaetetus (155d).</div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch03">
+<div class="cn">CHAPTER 03 · PART 1</div><div class="ct">The Four Main Areas of Ethics</div>
+<p class="ci"><em class="src">From the lesson.</em></p>
+
+<div class="gg">
+<div class="gc" data-g="1"><div class="gera">AREA 1</div><div class="gtit">Descriptive Ethics</div><p class="gsp">Empirical research into the <strong>attitudes</strong> of individuals or groups of people. Aims to uncover people's <strong>beliefs</strong> about values, which actions are right and wrong, and which characteristics of moral agents are virtuous.<br><strong>Focus:</strong> what people actually believe to be right/wrong, the moral values they hold, how they behave, what ethical rules guide their reasoning.<br><strong>Example:</strong> surveys of ethical attitudes among employees and managers — e.g. whether individuals feel pressure to compromise moral principles to achieve organizational goals.</p></div>
+<div class="gc" data-g="2"><div class="gera">AREA 2</div><div class="gtit">Normative Ethics</div><p class="gsp">Concerned with criteria of what is <strong>morally right and wrong</strong>. Central question: how are basic moral standards arrived at and justified? Answers fall into two broad categories — <strong>deontological</strong> and <strong>teleological/consequentialist</strong>.<br><strong>Examples:</strong> "It is wrong to kill people just because they make you angry." · "We should fight to free slaves when necessary, even when doing so is illegal." · "Pain is intrinsically bad — we ought not cause pain without a good reason to do so."</p></div>
+<div class="gc" data-g="3"><div class="gera">AREA 3</div><div class="gtit">Metaethics</div><p class="gsp">Seeks to understand the <strong>nature</strong> of ethical properties, principles, judgments, and attitudes. Attempts to answer questions like "What is morality?", "What is goodness?", "How to identify if something is good or bad?"<br><strong>Sample questions:</strong> "What is goodness?" and "How can we tell what is good from what is bad?"</p></div>
+<div class="gc" data-g="4"><div class="gera">AREA 4</div><div class="gtit">Applied Ethics</div><p class="gsp">Deals with ethical questions specific to a professional, disciplinary, or practical field. Subsets include medical ethics, bioethics, business ethics, legal ethics, and others.</p></div>
+</div>
+
+<h2>Applied Ethics — The Full Subset List</h2>
+<div class="tw"><table>
+<thead><tr><th>Subfield</th><th>Sample Question</th></tr></thead>
+<tbody>
+<tr><td>Animal Ethics</td><td>Is it permissible to eat meat?</td></tr>
+<tr><td>Biomedical Ethics</td><td>On whom are we allowed to perform medical tests?</td></tr>
+<tr><td>Business Ethics</td><td>Do corporations have moral status?</td></tr>
+<tr><td>Environmental Ethics</td><td>Ought we curb climate change for the sake of future generations?</td></tr>
+<tr><td>Information Ethics</td><td>May I pirate music?</td></tr>
+<tr><td>Law</td><td>Should personal, recreational drug use be illegal?</td></tr>
+<tr><td>Philosophy of the Family</td><td>What do children owe their parents?</td></tr>
+<tr><td>Practical Distributive Justice</td><td>To what extent ought we give to charity?</td></tr>
+<tr><td>Procreative Ethics</td><td>Is it permissible to abort a fetus?</td></tr>
+<tr><td>Sexual Ethics</td><td>Should prostitution be legal?</td></tr>
+</tbody></table></div>
+
+<div class="rblk"><div class="rhd"><div class="rtitle">Descriptive vs. Normative Ethics</div><span class="rflag">Recitation-ready</span></div>
+<div class="rrow"><b>Plain-English</b><span>Descriptive ethics reports what people <em>do</em> believe is right or wrong (like a survey). Normative ethics argues for what <em>actually is</em> right or wrong (like a standard).</span></div>
+<div class="rrow"><b>Compare</b><span>Descriptive = "is" (observing beliefs); Normative = "ought" (setting standards).</span></div>
+<div class="rrow"><b>Example</b><span>"Most Filipino employees say it's okay to accept small gifts from clients" is descriptive. "Employees ought not accept gifts that could bias their decisions" is normative.</span></div>
+</div>
+
+<div class="rblk"><div class="rhd"><div class="rtitle">Metaethics vs. Normative Ethics</div><span class="rflag">Recitation-ready</span></div>
+<div class="rrow"><b>Plain-English</b><span>Normative ethics gives the rules ("don't lie"). Metaethics steps back and asks what "right" and "wrong" even mean in the first place, and where moral knowledge comes from.</span></div>
+<div class="rrow"><b>Compare</b><span>Normative ethics is one level "in the game" (making moral claims); metaethics is one level "above the game" (analyzing what moral claims are and mean).</span></div>
+<div class="rrow"><b>Example</b><span>"Stealing is wrong" is a normative claim. "What does it even mean for something to be 'wrong,' and can moral claims be true or false?" is a metaethical question.</span></div>
+</div>
+
+<h3>Recitation Drill</h3>
+<div class="qa-block">
+<div class="qa-item"><div class="qa-q"><b>Q:</b>Name the four main areas of ethics.</div><div class="qa-a"><b>A:</b>Descriptive Ethics, Normative Ethics, Metaethics, and Applied Ethics.</div></div>
+<div class="qa-item"><div class="qa-q"><b>Q:</b>Normative ethics answers fall into which two broad categories?</div><div class="qa-a"><b>A:</b>Deontological and teleological (or consequentialist).</div></div>
+<div class="qa-item"><div class="qa-q"><b>Q:</b>A company surveys employees about whether they'd report a coworker's minor policy violation. What area of ethics is this an example of?</div><div class="qa-a"><b>A:</b>Descriptive ethics — it's empirical research into people's actual attitudes, not a claim about what's right.</div></div>
+<div class="qa-item"><div class="qa-q"><b>Q:</b>"Is it permissible to eat meat?" belongs to which applied-ethics subfield?</div><div class="qa-a"><b>A:</b>Animal Ethics.</div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch04">
+<div class="cn">CHAPTER 04 · PART 1</div><div class="ct">Clarifications and Terminology: Ethics and Morals</div>
+<p class="ci"><em class="src">From the lesson.</em></p>
+
+<div class="isg">
+<div class="isc"><div class="ico">PERSONAL CONDUCT</div><div class="inm">Morals</div><div class="idc">On specific beliefs or attitudes that people have, or to describe acts that people perform — personal conduct.</div></div>
+<div class="isc g"><div class="ico">DISCIPLINE / STUDY</div><div class="inm">Ethics</div><div class="idc">The discipline of studying and understanding ideal human behavior and ideal ways of thinking.</div></div>
+</div>
+
+<div class="rblk"><div class="rhd"><div class="rtitle">Ethics vs. Morals</div><span class="rflag">Recitation-ready</span></div>
+<div class="rrow"><b>Plain-English</b><span>Morals are the actual beliefs and conduct a specific person or group holds. Ethics is the organized, systematic study of what human behavior and thinking ideally should be.</span></div>
+<div class="rrow"><b>Compare</b><span>Morals = the lived thing (what someone actually believes/does). Ethics = the study of the thing (the discipline that examines it).</span></div>
+<div class="rrow"><b>Example</b><span>"I personally believe cheating is wrong" is a moral stance. "Philosophers debate what makes cheating wrong across different ethical theories" is doing ethics.</span></div>
+</div>
+
+<h3>Recitation Drill</h3>
+<div class="qa-block">
+<div class="qa-item"><div class="qa-q"><b>Q:</b>Per the lesson, what is the difference between "morals" and "ethics"?</div><div class="qa-a"><b>A:</b>Morals refer to specific beliefs, attitudes, or acts of personal conduct. Ethics is the discipline of studying and understanding ideal human behavior and ideal ways of thinking.</div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch05">
+<div class="cn">CHAPTER 05 · PART 1</div><div class="ct">Kinds of Valuation</div>
+<p class="ci"><em class="src">From the lesson.</em> This section maps to the Course Contents' "Morality &amp; Other Normative Systems" — it contrasts ethics against three other kinds of value judgment people commonly confuse it with.</p>
+
+<div class="gg">
+<div class="gc" data-g="E"><div class="gera">VALUATION 1</div><div class="gtit">Etiquette</div><p class="gsp">Customary code of polite behavior in society or among members of a particular profession or group.<br><strong>Examples (classroom etiquette):</strong> 1. Turn off your cell phone. 2. Don't pack up before class ends. 3. Do not have private conversations.</p></div>
+<div class="gc" data-g="A"><div class="gera">VALUATION 2</div><div class="gtit">Aesthetics</div><p class="gsp">Judgments of personal approval and disapproval referring to individual tastes and preferences.<br><strong>Examples:</strong> 1. A sunset on the beach is highly beautiful, therefore its aesthetic value is also high for people. 2. A plate of food served with elegance. 3. It is "wrong" to wear a leather vest over a Barong Tagalog.</p></div>
+<div class="gc" data-g="T"><div class="gera">VALUATION 3</div><div class="gtit">Technique / Technical</div><p class="gsp">The proper way or right way of doing things.<br><strong>Examples:</strong> 1. How to bake (it could be "wrong" when it is against the correct way of doing it). 2. How to play basketball. 3. How to shut down a computer.</p></div>
+</div>
+
+<div class="rblk"><div class="rhd"><div class="rtitle">Ethics vs. the Other Three Valuations</div><span class="rflag">Recitation-ready</span></div>
+<div class="rrow"><b>Plain-English</b><span>All four (ethics, etiquette, aesthetics, technique) use words like "right/wrong" or "good/bad" — but they're judging completely different things.</span></div>
+<div class="rrow"><b>Compare</b><span>Ethics judges moral rightness (harm, fairness, duty). Etiquette judges social politeness. Aesthetics judges beauty/taste. Technique judges procedural correctness.</span></div>
+<div class="rrow"><b>Example</b><span>Interrupting someone mid-sentence is rude (etiquette), an ugly painting is a bad aesthetic judgment, baking bread with the wrong ratio of flour to water is a technique error, and lying to a friend to protect yourself is an ethics problem — only the last one is a genuine moral issue.</span></div>
+</div>
+
+<h3>Recitation Drill</h3>
+<div class="qa-block">
+<div class="qa-item"><div class="qa-q"><b>Q:</b>Give the four kinds of valuation covered in the lesson, including ethics itself.</div><div class="qa-a"><b>A:</b>Ethics, Etiquette, Aesthetics, and Technique/Technical.</div></div>
+<div class="qa-item"><div class="qa-q"><b>Q:</b>"It is 'wrong' to wear a leather vest over a Barong Tagalog" — which kind of valuation is this, and why isn't it an ethics example?</div><div class="qa-a"><b>A:</b>Aesthetics — it's a matter of taste/appropriateness in personal style, not a matter of moral right or wrong.</div></div>
+<div class="qa-item"><div class="qa-q"><b>Q:</b>Why is "turn off your cell phone in class" etiquette and not ethics?</div><div class="qa-a"><b>A:</b>It's a customary code of polite behavior specific to a group/setting (a classroom), not a question of moral harm or duty.</div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch06">
+<div class="cn">CHAPTER 06 · PART 1</div><div class="ct">Ethical Levels of Human Existence</div>
+<p class="ci"><em class="src">From the lesson</em> — presented as a diagram only, with tier labels and stock images but no explanatory sentence in the slide itself. Reproduced below as faithfully as the visual allows.</p>
+
+<div class="diagram">
+<div class="dtier divine">DIVINE</div>
+<div class="darrow">↑</div>
+<div class="dtier human">HUMAN</div>
+<div class="darrow">↑</div>
+<div class="dtier animal">ANIMAL</div>
+<div class="dcap">Three ascending tiers connected by upward arrows. Animal tier shown with wildlife/safari imagery; Human tier shown with a family photo; Divine tier shown with religious/saint figures.</div>
+</div>
+
+<div class="rblk"><div class="rhd"><div class="rtitle">Ethical Levels of Human Existence</div><span class="rflag">Added interpretation — not a slide caption</span></div>
+<div class="rrow"><b>Plain-English</b><span>The diagram places human ethical life between two poles: the animal level (instinct, survival, no moral reasoning) below, and the divine level (a higher, ideal standard of goodness) above. Humans occupy the middle — capable of both instinct-driven and morally-reasoned action.</span></div>
+<div class="rrow"><b>Compare</b><span>This isn't the same as the Four Main Areas of Ethics (Ch. 03) — that's a classification of ethics as a field of study; this diagram is about where human moral capacity sits relative to other kinds of existence.</span></div>
+<div class="rrow"><b>Example</b><span>An animal fighting for food acts on pure instinct (animal level); a person choosing to share food even when hungry, guided by a sense of duty or compassion, is acting at the human/moral level.</span></div>
+</div>
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Confirm with your professor</div>
+<p class="btx">Since the slide gives no caption, ask Dr. Legaspi directly for her intended explanation of this diagram before treating the "Recitation-Ready" gloss above as exam-safe — it's a reasonable reading of the visual, not a quote from her.</p></div></div>
+</section>
+
+<section class="chapter" id="ch07">
+<div class="cn">CHAPTER 07 · PART 1</div><div class="ct">Issue, Judgment, Decision, and Dilemma</div>
+<p class="ci"><em class="src">From the lesson.</em></p>
+
+<div class="gg">
+<div class="gc" data-g="1"><div class="gera">TERM 1</div><div class="gtit">Issue</div><p class="gsp">Controversial, and people keep on debating about it.<br><strong>Examples:</strong> a. cigarette smoking · b. anti-terror bill.</p></div>
+<div class="gc" data-g="2"><div class="gera">TERM 2</div><div class="gtit">Judgment</div><p class="gsp">Assessment of the actions or behavior of someone.<br><strong>Examples:</strong> a. A friend chooses to steal from a store, and I make an assessment that it is wrong. b. "Cigarette smoking is dangerous to your health." c. Humility is a virtue.</p></div>
+<div class="gc" data-g="3"><div class="gera">TERM 3</div><div class="gtit">Decision</div><p class="gsp">Choice of what to perform or do.<br><strong>Examples:</strong> a. I choose not to take something I did not pay for. b. I decided to look for both local and remote employees. c. I decided to take a vacation in the province.</p></div>
+<div class="gc" data-g="4"><div class="gera">TERM 4</div><div class="gtit">Dilemma</div><p class="gsp">A situation in which a difficult choice has to be made between two or more alternatives, especially equally undesirable ones.<br><strong>Examples:</strong> a. Should Michael reveal to Roger that Phyllis is married? b. My mother gave me two choices: do the dishes or clean the bathroom. c. Say nothing and just wait to see what happens?</p></div>
+</div>
+
+<div class="rblk"><div class="rhd"><div class="rtitle">Issue vs. Dilemma</div><span class="rflag">Recitation-ready</span></div>
+<div class="rrow"><b>Plain-English</b><span>An issue is a topic society keeps arguing about in general. A dilemma is a specific, personal moment where you must pick between hard options.</span></div>
+<div class="rrow"><b>Compare</b><span>Issue = ongoing public debate (no single decision-maker). Dilemma = one person's hard choice, right now.</span></div>
+<div class="rrow"><b>Example</b><span>"Should the death penalty be legal?" is an issue debated nationally. "Should I turn in my brother, who I know committed a crime?" is a personal dilemma.</span></div>
+</div>
+
+<div class="rblk"><div class="rhd"><div class="rtitle">Judgment vs. Decision</div><span class="rflag">Recitation-ready</span></div>
+<div class="rrow"><b>Plain-English</b><span>Judgment evaluates someone's (often another person's) actions as right or wrong. Decision is choosing your own course of action.</span></div>
+<div class="rrow"><b>Compare</b><span>Judgment looks backward/outward (assessing an act that happened). Decision looks forward/inward (choosing what you will do).</span></div>
+<div class="rrow"><b>Example</b><span>"What she did was dishonest" is a judgment. "I will not do the same thing she did" is a decision.</span></div>
+</div>
+
+<h3>Recitation Drill</h3>
+<div class="qa-block">
+<div class="qa-item"><div class="qa-q"><b>Q:</b>Define "dilemma" as given in the lesson.</div><div class="qa-a"><b>A:</b>A situation in which a difficult choice has to be made between two or more alternatives, especially equally undesirable ones.</div></div>
+<div class="qa-item"><div class="qa-q"><b>Q:</b>"Cigarette smoking is dangerous to your health" — is this an issue, judgment, decision, or dilemma?</div><div class="qa-a"><b>A:</b>Judgment — it's an assessment/claim about smoking, given directly as a judgment example in the lesson.</div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch08">
+<div class="cn">CHAPTER 08 · PART 1 → BRIDGE TO PART 2</div><div class="ct">Ethics and Reasoning</div>
+<p class="ci"><em class="src">From the lesson</em> — presented as a short bullet list with no further elaboration in this deck. It functions as a preview of what full ethical reasoning draws on:</p>
+<ul>
+<li>Reason that we give in the things that we do</li>
+<li>Rewards and punishment</li>
+<li>Principles</li>
+<li>Ethical frameworks or ethical theories</li>
+</ul>
+<div class="box blue"><div class="bico">🔗</div><div class="bbd"><div class="btt">Where This Goes Next</div>
+<p class="btx">"Ethical frameworks or ethical theories" is the direct handoff to <strong>Part 2</strong> of the course (Chapter 00): Utilitarianism, Natural Law, Deontology, Virtue Ethics, and Justice as Fairness. "Rewards and punishment" foreshadows consequentialist/teleological reasoning specifically; "principles" foreshadows deontological reasoning.</p></div></div>
+</section>
+
+<section class="chapter" id="ch09">
+<div class="cn">CHAPTER 09 · PRACTICE</div><div class="ct">Agree or Disagree — 10 Statements</div>
+<p class="ci"><em class="src">From the lesson.</em> The deck presents these statements first without answers, then repeats them with the answer and reasoning — consolidated here into one table so you're not reading the same 10 statements twice.</p>
+
+<div class="tw"><table>
+<thead><tr><th>#</th><th>Statement</th><th>Answer</th><th>Reasoning</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Ethics are universal and apply equally to everyone regardless of culture or background.</td><td><span class="tag tr2">Disagree</span></td><td>Ethics are often influenced by cultural and societal norms, leading to variations in what is considered ethical.</td></tr>
+<tr><td>2</td><td>Ethical behavior is always clear-cut and easy to determine in any situation.</td><td><span class="tag tr2">Disagree</span></td><td>Ethical dilemmas are often complex and require nuanced thinking to resolve.</td></tr>
+<tr><td>3</td><td>It is ethical to prioritize the greater good over individual rights.</td><td><span class="tag tg">Agree</span></td><td>In some cases, prioritizing the collective well-being can outweigh individual concerns, as in public health emergencies.</td></tr>
+<tr><td>4</td><td>Lying is unethical under any circumstances.</td><td><span class="tag tr2">Disagree</span></td><td>Certain situations, like protecting someone's life, may justify lying.</td></tr>
+<tr><td>5</td><td>Ethical principles should be flexible and adapt to the specific context of a situation.</td><td><span class="tag tg">Agree</span></td><td>Context matters, and rigid principles may not account for unique circumstances.</td></tr>
+<tr><td>6</td><td>Companies have a responsibility to act ethically, even if it reduces profits.</td><td><span class="tag tg">Agree</span></td><td>Ethical business practices build trust and contribute to long-term success.</td></tr>
+<tr><td>7</td><td>Personal ethics should take precedence over professional ethics in decision-making.</td><td><span class="tag tr2">Disagree</span></td><td>Balancing both is important, but professional ethics are often tied to larger responsibilities.</td></tr>
+<tr><td>8</td><td>Ethical behavior is primarily influenced by upbringing and education.</td><td><span class="tag tg">Agree</span></td><td>These are foundational in shaping a person's moral compass and ethical framework.</td></tr>
+<tr><td>9</td><td>Businesses should prioritize environmental sustainability as a core ethical obligation.</td><td><span class="tag tg">Agree</span></td><td>Companies have a role in ensuring the planet remains habitable for future generations.</td></tr>
+<tr><td>10</td><td>Ethical behavior requires sacrificing personal interests for the well-being of others.</td><td><span class="tag tg">Agree</span></td><td>Many ethical frameworks, like utilitarianism or altruism, emphasize putting <em>[likely: "others' needs above one's own" — sentence cut off in source, not verified]</em></td></tr>
+</tbody></table></div>
+
+<h3>Recitation Drill</h3>
+<div class="qa-block">
+<div class="qa-item"><div class="qa-q"><b>Q:</b>The lesson disagrees that "ethics are universal." What's the given reason?</div><div class="qa-a"><b>A:</b>Ethics are often influenced by cultural and societal norms, leading to variations in what is considered ethical.</div></div>
+<div class="qa-item"><div class="qa-q"><b>Q:</b>Does the lesson agree or disagree that lying is always unethical, and why?</div><div class="qa-a"><b>A:</b>Disagree — certain situations, like protecting someone's life, may justify lying.</div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch10">
+<div class="cn">CHAPTER 10 · ASSESSMENT BANK</div><div class="ct">Quiz, Essay, Group Activities &amp; Conclusion</div>
+
+<h2>True or False Quiz (20 items)</h2>
+<p><em class="src">From the lesson</em> — reproduced exactly as given, prompts only.</p>
+<div class="box amber"><div class="bico">❓</div><div class="bbd"><div class="btt">No official answer key exists in the source</div>
+<p class="btx">The answers marked below are my own reasoned suggestions for practice only — <strong>not</strong> Dr. Legaspi's official key. Confirm before relying on them for a graded exam.</p></div></div>
+<ol>
+<li>Ethics is the branch of philosophy that studies principles of right and wrong conduct. <span class="tag tg">Suggested: True</span></li>
+<li>Ethics and legality are always the same. <span class="tag tr2">Suggested: False</span></li>
+<li>Ethical behavior promotes trust, fairness, and respect in human interactions. <span class="tag tg">Suggested: True</span></li>
+<li>Ethics is only relevant for religious individuals. <span class="tag tr2">Suggested: False</span></li>
+<li>Ethics often involves balancing individual rights with the welfare of the <em>[cut off in source — likely "greater good" or "community"; not verified]</em>. <span class="tag tg">Suggested: True</span></li>
+<li>Ethical standards remain constant and never evolve over time. <span class="tag tr2">Suggested: False</span></li>
+<li>Personal values and cultural norms influence ethical decision-making. <span class="tag tg">Suggested: True</span></li>
+<li>Ethics applies only to personal behavior, not to organizations or societies. <span class="tag tr2">Suggested: False</span></li>
+<li>Ethics can vary across societies but is rooted in universal principles like honesty and justice. <span class="tag tg">Suggested: True</span></li>
+<li>Following ethical principles guarantees success in life or business. <span class="tag tr2">Suggested: False</span></li>
+<li>Professional ethics provide guidelines for behavior in specific fields, such as medicine, law, and education. <span class="tag tg">Suggested: True</span></li>
+<li>Ethics is purely subjective and has no universal principles. <span class="tag tr2">Suggested: False</span></li>
+<li>Ethical dilemmas arise when there is a conflict between two or more moral principles. <span class="tag tg">Suggested: True</span></li>
+<li>Ethical behavior is optional and not essential for a well-functioning society. <span class="tag tr2">Suggested: False</span></li>
+<li>Acting ethically often requires self-discipline and consideration of long-term consequences. <span class="tag tg">Suggested: True</span></li>
+<li>Ethics has no relevance in modern technology or scientific advancement. <span class="tag tr2">Suggested: False</span></li>
+<li>Integrity is a core aspect of ethics, emphasizing honesty and adherence to moral principles. <span class="tag tg">Suggested: True</span></li>
+<li>A person's ethical values cannot change throughout their life. <span class="tag tr2">Suggested: False</span></li>
+<li>Ethical education aims to develop critical thinking and moral reasoning skills in individuals. <span class="tag tg">Suggested: True</span></li>
+<li>Ethics only focuses on avoiding harm and does not encourage doing good. <span class="tag tr2">Suggested: False</span></li>
+</ol>
+
+<h2>Essay Prompts (5)</h2>
+<p><em class="src">From the lesson</em> — the course's own graded written-assessment prompts, reproduced exactly.</p>
+<div class="tw"><table>
+<thead><tr><th>#</th><th>Skill</th><th>Prompt</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Analysis</td><td>A student discovers that their close friend cheated during an examination. The friend asks them to keep it a secret because failing the subject may affect their scholarship. How would you analyze this situation using the concepts of right and wrong, moral responsibility, and ethical decision-making? Explain and justify your answer.</td></tr>
+<tr><td>2</td><td>Evaluation</td><td>"An action can be legal but still be morally wrong." Do you agree or disagree with this statement? Evaluate the statement using an example from everyday life and explain your reasoning based on ethical principles.</td></tr>
+<tr><td>3</td><td>Application</td><td>Imagine that you are a student leader and you discover that some members of your organization are misusing funds intended for a school project. What would you do, and what ethical principles would guide your decision? Explain the possible consequences of your choices.</td></tr>
+<tr><td>4</td><td>Analysis and Evaluation</td><td>Two students face the same situation: one returns a lost wallet because they believe it is the right thing to do, while the other returns it because they are afraid of being punished. Are their actions equally moral? Why or why not? Analyze their motivations using the concepts of morality, intention, and ethical behavior.</td></tr>
+<tr><td>5</td><td>Synthesis and Critical Thinking</td><td>In today's society, social media can influence people's beliefs about what is right and wrong. How can philosophy and ethics help a person make responsible decisions when faced with conflicting opinions online? Give at least two practical examples and explain your answer.</td></tr>
+</tbody></table></div>
+
+<h2>Group Performance Activities</h2>
+<p><em class="src">From the lesson.</em> These are in-class group activities graded by the rubric below — not written-exam material, so they're summarized rather than expanded into recitation drills.</p>
+<ul>
+<li><strong>1. Ethical Dilemma Role Play</strong> — groups act out an assigned ethical dilemma (e.g. whistleblowing, plagiarism) and debrief as a class.</li>
+<li><strong>2. Debate: What's the Right Choice?</strong> — structured debate on a controversial ethical topic (e.g. AI replacing jobs, animal testing).</li>
+<li><strong>3. Case Study Analysis</strong> — groups analyze a real-world case (corporate scandal, medical ethics, environmental issue) and present findings.</li>
+<li><strong>4. Moral Compass Activity</strong> — groups discuss agree/disagree/unsure on ethical statements and explain their reasoning.</li>
+<li><strong>5. Design an Ethics Code</strong> — groups draft a 5–10 point code of ethics for an assigned profession or organization.</li>
+</ul>
+
+<h3>Rubric (used across all five activities)</h3>
+<div class="tw"><table>
+<thead><tr><th>Criteria</th><th>Excellent (5)</th><th>Good (4)</th><th>Fair (3)</th><th>Needs Improvement (2–1)</th></tr></thead>
+<tbody>
+<tr><td>Ethical Principles</td><td>Comprehensive and thoughtful principles.</td><td>Good principles, minor gaps.</td><td>Basic principles, lacks depth.</td><td>Limited or unclear principles.</td></tr>
+<tr><td>Relevance to Context</td><td>Highly relevant and practical.</td><td>Mostly relevant and practical.</td><td>Some relevance, limited practicality.</td><td>Irrelevant or impractical code.</td></tr>
+<tr><td>Presentation Quality</td><td>Professional and well-organized.</td><td>Clear and organized with minor lapses.</td><td>Basic but lacks polish.</td><td>Unclear or disorganized.</td></tr>
+<tr><td>Teamwork</td><td>Excellent collaboration and contribution.</td><td>Good collaboration with minor gaps.</td><td>Some collaboration but unbalanced.</td><td>Minimal collaboration or effort.</td></tr>
+</tbody></table></div>
+
+<h2>Conclusion</h2>
+<p><em class="src">From the lesson, verbatim:</em></p>
+<div class="box violetbox"><div class="bico">🎓</div><div class="bbd"><div class="btt">Module Conclusion</div>
+<p class="btx">"Ethics is concerned about the serious or grave things that need our actions. It is serious because it is a matter of life and death. Examples are abortion, death penalty, cigarette smoking, genetic engineering. The guide may be there, but the reasoning in relation to our specific situation depends on our own selves."</p></div></div>
+</section>
+
+<section class="chapter" id="ch11">
+<div class="cn">CHAPTER 11 · GLOSSARY</div><div class="ct">Glossary — Added for Clarity</div>
+<p class="ci">This chapter is entirely a study aid — none of it is a slide from the lesson. It spells out abbreviations and defines terms the deck uses without defining, so you're not caught off guard by vocabulary the lesson assumes you already know.</p>
+<div class="tw"><table>
+<thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td>HUM2</td><td>Course code for this Ethics subject in your curriculum.</td></tr>
+<tr><td>e.g.</td><td>Latin <em>exempli gratia</em> — "for example." Used throughout the deck's examples without being spelled out.</td></tr>
+<tr><td>Deontological</td><td>A category of normative ethics judging actions right or wrong based on rules/duties, regardless of outcome. Named in Ch. 03 but not yet explained in this module — full theory covered in Part 2 (Deontology).</td></tr>
+<tr><td>Teleological / Consequentialist</td><td>A category of normative ethics judging actions right or wrong based on their outcomes/consequences. Named in Ch. 03 but not yet explained — full theory covered in Part 2 (Utilitarianism).</td></tr>
+<tr><td>Moral Agent</td><td>A person capable of moral reasoning and held responsible for their actions. Used in the Descriptive Ethics definition (Ch. 03) without being defined there; also the name of an upcoming, not-yet-covered Part 1 topic (Ch. 00).</td></tr>
+<tr><td>Barong Tagalog</td><td>A traditional embroidered formal shirt worn by Filipino men, used in the deck's Aesthetics example (Ch. 05).</td></tr>
+</tbody></table></div>
+</section>
+
+<div class="footer"><p>HUM2 · Ethics Module 1 · QCU Academic OS · Source: Dr. Jackelyn L. Legaspi's Module 1 slide deck · Compiled by <strong>KianoRoku18Ino</strong></p></div>
+</main>
+
+</body>
+</html>
