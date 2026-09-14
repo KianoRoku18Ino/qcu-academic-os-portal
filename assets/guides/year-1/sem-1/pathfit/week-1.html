@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PATHFIT1 — Components of Physical Fitness | Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--bgcode:#060D18;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--purple:#8B5CF6;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(16,185,129,.15);--sw:260px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvs{padding:9px 17px 3px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t3)}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover,.nvi a.act{color:var(--t1);background:rgba(16,185,129,.08);border-left-color:var(--green)}
+.nvi a.act{color:var(--green);font-weight:500}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:20px}
+
+.main{margin-left:var(--sw)}
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:52px 52px 42px;position:relative;overflow:hidden}
+.hero::before{content:'01001000';position:absolute;top:-10px;right:15px;font-family:'JetBrains Mono',monospace;font-size:115px;font-weight:900;color:rgba(16,185,129,.04);letter-spacing:-5px;user-select:none;line-height:1}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--green)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:44px;font-weight:700;line-height:1.05;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#10B981);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:18px;color:var(--t2);margin-bottom:19px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+
+.chapter{padding:44px 52px;border-bottom:1px solid var(--bdr);max-width:970px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:19.5px;font-weight:600;margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--green);border-radius:2px;flex-shrink:0}
+h3{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--green);margin:22px 0 9px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+
+.box{border-radius:8px;padding:13px 17px;margin:15px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}.red .btt{color:var(--red)}
+
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--green);font-size:12px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(16,185,129,.04)}
+tbody td{padding:9px 13px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}
+
+.steps{margin:15px 0}
+.step{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.snum{background:var(--green);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace}
+.sc{flex:1}
+.sl{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:2px}
+.sd{color:var(--t2);font-size:13px;line-height:1.7}
+
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.gc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;position:relative;overflow:hidden}
+.gc::before{content:attr(data-g);position:absolute;top:-10px;right:7px;font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:900;color:rgba(16,185,129,.06);line-height:1}
+.gera{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.gtit{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:7px}
+.gsp{font-size:12.5px;color:var(--t2);margin:0;line-height:1.7}
+.gsp strong{color:var(--green)}
+
+.isg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.isc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;border-top:3px solid var(--blue)}
+.isc.a{border-top-color:var(--amber)}.isc.g{border-top-color:var(--green)}.isc.p{border-top-color:var(--purple)}
+.ico{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-bottom:3px}
+.inm{font-weight:700;font-size:14px;color:var(--t1);margin-bottom:6px}
+.idc{font-size:12.5px;color:var(--t2);line-height:1.7}
+
+.mlst{margin:11px 0}
+.mitem{display:flex;gap:11px;padding:10px 0;border-bottom:1px solid var(--bdr);align-items:flex-start}
+.mitem:last-child{border-bottom:none}
+.mnm{font-weight:700;color:var(--red);min-width:150px;font-size:13px}
+.mdc{font-size:13px;color:var(--t2);line-height:1.65}
+
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:4px;font-size:13px;line-height:1.75}
+li strong{color:var(--t1)}
+
+.footer{padding:34px 52px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--green)}
+
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.gg,.isg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+<div class="sbh"><div class="sbb">PATHFIT1 · QCU BSIT</div><div class="sbt">Components of Physical Fitness</div><div class="sbs">Study Guide · Y1S1</div></div>
+<ul class="nvl">
+<li class="nvs">Introduction</li>
+<li class="nvi"><a href="#overview"><span class="nn">00</span>Overview</a></li>
+<li class="nvs">Chapters</li>
+<li class="nvi"><a href="#ch1"><span class="nn">01</span>Health-Related Components</a></li>
+<li class="nvi"><a href="#ch2"><span class="nn">02</span>Skill-Related Components</a></li>
+<li class="nvi"><a href="#ch3"><span class="nn">03</span>Summary &amp; Application</a></li>
+</ul></nav>
+
+<main class="main">
+<div class="hero">
+<div class="he">QCU Academic OS · Y1S1</div>
+<div class="ht">PATHFIT1</div>
+<div class="hs">Components of Physical Fitness — Study Reference</div>
+<div class="hm">
+<div class="mp">Course: <span>PATHFIT1</span></div>
+<div class="mp">Units: <span>2</span></div>
+<div class="mp">Year Level: <span>1st Year</span></div>
+<div class="mp">Type: <span>PE / Wellness</span></div>
+</div></div>
+
+<section class="chapter" id="overview">
+<div class="cn">CHAPTER 00</div><div class="ct">Overview &amp; Study Priority Map</div>
+<p class="ci">This unit defines <strong>physical fitness</strong> as a state of health and well-being that lets you perform daily activities with energy, reduces disease risk, and supports an active lifestyle. It splits fitness into two families of components — <strong>health-related</strong> (why your body stays healthy) and <strong>skill-related</strong> (how well your body performs in sport/movement) — and ties inactivity directly to a set of preventable illnesses.</p>
+
+<div class="box blue"><div class="bico">🔗</div><div class="bbd"><div class="btt">Critical Path Context</div>
+<p class="btx">The 5 health-related and 6 skill-related components (Ch. 01–02) are the foundation for every fitness test PATHFIT1 will have you perform this semester — memorize the component-to-test pairing, not just the definitions, since practicals grade you on running the actual test correctly.</p></div></div>
+
+<h2>Physical Activity vs. Exercise</h2>
+<p>These terms are often used interchangeably but are tested as distinct concepts.</p>
+<div class="isg">
+<div class="isc"><div class="ico">UNPLANNED · DAILY</div><div class="inm">Physical Activity</div><div class="idc">Any bodily movement produced by skeletal muscles that results in energy expenditure. Examples: <strong>walking, doing household chores, gardening, playing with friends, taking the stairs.</strong></div></div>
+<div class="isc g"><div class="ico">PLANNED · STRUCTURED</div><div class="inm">Exercise</div><div class="idc">Planned, structured, repetitive physical activity done to improve or maintain one or more components of fitness. Examples: <strong>running, weight training, swimming laps, cycling, circuit training.</strong></div></div>
+</div>
+
+<h2>Hypokinetic Diseases</h2>
+<div class="box red"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Diseases &amp; health problems caused by lack of physical activity or prolonged inactivity</div>
+<p class="btx">Obesity · Heart Disease · Type 2 Diabetes · Hypertension (High Blood Pressure) · Osteoporosis · Low Back Pain · Depression and Anxiety — remember the tagline: <strong>"Sit less, move more, live longer."</strong></p></div></div>
+
+<h2>Why Inactivity Causes Disease</h2>
+<div class="mlst">
+<div class="mitem"><div class="mnm">Heart &amp; lungs</div><div class="mdc">Inactivity weakens cardiovascular and respiratory efficiency over time.</div></div>
+<div class="mitem"><div class="mnm">Weight gain</div><div class="mdc">Leads to unhealthy weight gain from unused energy expenditure.</div></div>
+<div class="mitem"><div class="mnm">Blood sugar</div><div class="mdc">Affects blood sugar regulation and insulin function.</div></div>
+<div class="mitem"><div class="mnm">Bone strength</div><div class="mdc">Reduces bone density and structural strength.</div></div>
+<div class="mitem"><div class="mnm">Mental health</div><div class="mdc">Affects mental health and mood regulation.</div></div>
+</div>
+<div class="box green"><div class="bico">💊</div><div class="bbd"><div class="btt">Regular Activity Is Medicine</div>
+<p class="btx">This is the unit's core thesis — every test and habit taught afterward exists to counter this list.</p></div></div>
+
+<h2>Exam Priority Map</h2>
+<div class="tw"><table>
+<thead><tr><th>Topic</th><th>Chapter</th><th>Exam Weight</th><th>Difficulty</th></tr></thead>
+<tbody>
+<tr><td>Health-Related Components (defs + tests)</td><td>01</td><td><span class="tag tr2">🔴 High</span></td><td><span class="tag tg">Easy</span></td></tr>
+<tr><td>Skill-Related Components (defs + tests)</td><td>02</td><td><span class="tag tr2">🔴 High</span></td><td><span class="tag tg">Easy</span></td></tr>
+<tr><td>Physical Activity vs. Exercise</td><td>00</td><td><span class="tag ta">🟡 Medium</span></td><td><span class="tag tg">Easy</span></td></tr>
+<tr><td>Hypokinetic Diseases &amp; causes</td><td>00</td><td><span class="tag ta">🟡 Medium</span></td><td><span class="tag tg">Easy</span></td></tr>
+<tr><td>Fitness Tips &amp; Application</td><td>03</td><td><span class="tag tb">🔵 Lower</span></td><td><span class="tag tg">Easy</span></td></tr>
+</tbody></table></div>
+</section>
+
+<section class="chapter" id="ch1">
+<div class="cn">CHAPTER 01</div><div class="ct">Health-Related Components of Physical Fitness</div>
+<p class="ci">These 5 components are directly important for good health and everyday function — they answer "is your body healthy enough to do what you need it to do?" Each one has a standard field test attached; know both the definition and the test name.</p>
+
+<div class="gg">
+<div class="gc" data-g="01"><div class="gera">HEALTH · 01</div><div class="gtit">Cardiorespiratory Endurance</div><p class="gsp">The ability of the heart, lungs, and blood vessels to deliver oxygen during sustained physical activity.<br><strong>Test:</strong> 20-Meter Paced Run (Beep Test), 3-Minute Step Test.</p></div>
+<div class="gc" data-g="02"><div class="gera">HEALTH · 02</div><div class="gtit">Muscular Strength</div><p class="gsp">The amount of force a muscle or muscle group can exert in a single maximum effort.<br><strong>Test:</strong> Push-Up Test (1RM or Max Reps), Curl-Up Test (1RM or Max Reps).</p></div>
+<div class="gc" data-g="03"><div class="gera">HEALTH · 03</div><div class="gtit">Muscular Endurance</div><p class="gsp">The ability of muscles to sustain repeated contractions over a period of time.<br><strong>Test:</strong> Plank Hold Test (Max Time), Wall Sit Test (Max Time).</p></div>
+<div class="gc" data-g="04"><div class="gera">HEALTH · 04</div><div class="gtit">Flexibility</div><p class="gsp">The ability of a joint or series of joints to move through their full range of motion.<br><strong>Test:</strong> Sit and Reach Test.</p></div>
+<div class="gc" data-g="05"><div class="gera">HEALTH · 05</div><div class="gtit">Body Composition</div><p class="gsp">The ratio of fat mass to lean mass in the body.<br><strong>Test:</strong> Body Mass Index (BMI), Body Fat Percentage (Skinfold Caliper).</p></div>
+</div>
+</section>
+
+<section class="chapter" id="ch2">
+<div class="cn">CHAPTER 02</div><div class="ct">Skill-Related Components of Physical Fitness</div>
+<p class="ci">These 6 components improve performance in sports and physical activities — they answer "how well does your body move, react, and coordinate?" rather than baseline health.</p>
+
+<div class="gg">
+<div class="gc" data-g="01"><div class="gera">SKILL · 01</div><div class="gtit">Power</div><p class="gsp">The ability to exert maximum force in the shortest time.<br><strong>Test:</strong> Vertical Jump Test, Standing Broad Jump, Medicine Ball Throw (Chest Pass).</p></div>
+<div class="gc" data-g="02"><div class="gera">SKILL · 02</div><div class="gtit">Speed</div><p class="gsp">The ability to perform a movement or cover a distance in the shortest time.<br><strong>Test:</strong> 50-Meter Sprint, 20-Yard Sprint.</p></div>
+<div class="gc" data-g="03"><div class="gera">SKILL · 03</div><div class="gtit">Agility</div><p class="gsp">The ability to change direction quickly and with control.<br><strong>Test:</strong> T-Test, Shuttle Run (4x10m).</p></div>
+<div class="gc" data-g="04"><div class="gera">SKILL · 04</div><div class="gtit">Coordination</div><p class="gsp">The ability to use the senses together with body parts to perform movements smoothly and accurately.<br><strong>Test:</strong> Wall Toss Test, Alternate Hand Test.</p></div>
+<div class="gc" data-g="05"><div class="gera">SKILL · 05</div><div class="gtit">Reaction Time</div><p class="gsp">The ability to respond quickly to a stimulus.<br><strong>Test:</strong> Ruler Drop Test, Reaction Time App/Device Test.</p></div>
+<div class="gc" data-g="06"><div class="gera">SKILL · 06</div><div class="gtit">Balance</div><p class="gsp">The ability to maintain the body's center of gravity over its base of support.<br><strong>Test:</strong> Stork Stand Test, Balance Beam Walk.</p></div>
+</div>
+</section>
+
+<section class="chapter" id="ch3">
+<div class="cn">CHAPTER 03</div><div class="ct">Summary &amp; Application</div>
+<p class="ci">All 11 components work together for a genuinely fit and healthy body — health-related components keep you well; skill-related components make movement efficient. Both groups matter for the semester's practical tests.</p>
+
+<h2>Component Summary</h2>
+<div class="tw"><table>
+<thead><tr><th>Health-Related</th><th>Skill-Related</th></tr></thead>
+<tbody>
+<tr><td>Cardiorespiratory Endurance</td><td>Power</td></tr>
+<tr><td>Muscular Strength</td><td>Speed</td></tr>
+<tr><td>Muscular Endurance</td><td>Agility</td></tr>
+<tr><td>Flexibility</td><td>Coordination</td></tr>
+<tr><td>Body Composition</td><td>Reaction Time</td></tr>
+<tr><td></td><td>Balance</td></tr>
+</tbody></table></div>
+
+<h2>Tips to Improve Your Fitness</h2>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Be physically active every day</div><div class="sd">Consistency matters more than intensity for building baseline fitness.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Follow a balanced diet</div><div class="sd">Supports body composition and recovery.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Get enough sleep and rest</div><div class="sd">Essential for muscular recovery and mental health.</div></div></div>
+<div class="step"><div class="snum">4</div><div class="sc"><div class="sl">Stay hydrated</div><div class="sd">Affects endurance and reaction performance.</div></div></div>
+<div class="step"><div class="snum">5</div><div class="sc"><div class="sl">Set goals and be consistent</div><div class="sd">Structured goals drive measurable improvement across components.</div></div></div>
+<div class="step"><div class="snum">6</div><div class="sc"><div class="sl">Track your progress</div><div class="sd">Retesting the same component tests over time shows real gains.</div></div></div>
+<div class="step"><div class="snum">7</div><div class="sc"><div class="sl">Have fun and enjoy your activities</div><div class="sd">Sustainability beats short bursts of intensity.</div></div></div>
+</div>
+
+<div class="box green"><div class="bico">✅</div><div class="bbd"><div class="btt">Key Takeaways</div>
+<p class="btx">Physical fitness improves health, performance, and quality of life · Regular physical activity prevents hypokinetic diseases · Know and be able to explain all 11 components · Get tested, know your fitness level, and keep improving.</p></div></div>
+</section>
+
+<div class="footer"><p>QCU Academic OS · Y1S1 · Compiled by <strong>KianoRoku18Ino</strong> · github.com/KianoRoku18Ino</p></div>
+</main>
+
+</body>
+</html>
