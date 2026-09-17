@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NSTP 1 — ROTC | Drills &amp; Ceremonies + Core Values of Development</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--bgcode:#060D18;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--purple:#8B5CF6;--maroon:#B91C3C;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(59,130,246,.15);--sw:285px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--maroon);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvs{padding:9px 17px 3px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t3)}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover,.nvi a.act{color:var(--t1);background:rgba(185,28,60,.08);border-left-color:var(--maroon)}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:20px}
+.main{margin-left:var(--sw)}
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:52px 52px 42px;position:relative;overflow:hidden}
+.hero::before{content:'01001000';position:absolute;top:-10px;right:15px;font-family:'JetBrains Mono',monospace;font-size:115px;font-weight:900;color:rgba(59,130,246,.05);letter-spacing:-5px;user-select:none;line-height:1}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--maroon);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--maroon)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:40px;font-weight:700;line-height:1.15;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#3B82F6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:17px;color:var(--t2);margin-bottom:19px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+.chapter{padding:44px 52px;border-bottom:1px solid var(--bdr);max-width:970px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--maroon);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:27px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:600;margin:28px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--maroon);border-radius:2px;flex-shrink:0}
+h3{font-family:'Space Grotesk',sans-serif;font-size:15.5px;font-weight:600;color:var(--blue);margin:20px 0 9px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+.box{border-radius:8px;padding:13px 17px;margin:15px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}.red .btt{color:var(--red)}
+.maroonbox{background:rgba(185,28,60,.08);border:1px solid rgba(185,28,60,.2)}.maroonbox .btt{color:var(--maroon)}
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:9px 12px;text-align:left;border-bottom:2px solid var(--maroon);font-size:11.5px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(59,130,246,.04)}
+tbody td{padding:8px 12px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace;white-space:nowrap}
+.tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}
+.steps{margin:15px 0}
+.step{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.snum{background:var(--maroon);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace}
+.sc{flex:1}
+.sl{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:2px}
+.sd{color:var(--t2);font-size:13px;line-height:1.7}
+.sd code,.mono{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--amber);background:rgba(245,158,11,.08);padding:0 4px;border-radius:3px}
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.gc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:14px 16px;position:relative;overflow:hidden}
+.gc::before{content:attr(data-g);position:absolute;top:-10px;right:7px;font-family:'JetBrains Mono',monospace;font-size:50px;font-weight:900;color:rgba(59,130,246,.06);line-height:1}
+.gera{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.gtit{font-family:'Space Grotesk',sans-serif;font-size:13.5px;font-weight:700;color:var(--t1);margin-bottom:6px}
+.gsp{font-size:12.5px;color:var(--t2);margin:0;line-height:1.65}
+.gsp strong{color:var(--maroon)}
+.isg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.isc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:14px 16px;border-top:3px solid var(--maroon)}
+.isc.a{border-top-color:var(--amber)}.isc.g{border-top-color:var(--green)}.isc.b{border-top-color:var(--blue)}
+.ico{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-bottom:3px}
+.inm{font-weight:700;font-size:13.5px;color:var(--t1);margin-bottom:6px}
+.idc{font-size:12.5px;color:var(--t2);line-height:1.7}
+.idc strong{color:var(--t1)}
+.mlst{margin:11px 0}
+.mitem{display:flex;gap:11px;padding:10px 0;border-bottom:1px solid var(--bdr);align-items:flex-start}
+.mitem:last-child{border-bottom:none}
+.mnm{font-weight:700;color:var(--red);min-width:170px;font-size:13px}
+.mdc{font-size:13px;color:var(--t2);line-height:1.65}
+.law{background:var(--bgc);border:1px solid var(--bdr);border-left:4px solid var(--maroon);border-radius:8px;padding:15px 17px;margin:11px 0}
+.lra{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--maroon);font-weight:700;margin-bottom:3px}
+.ltit{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:4px}
+.lyr{font-size:11px;color:var(--t3);margin-bottom:7px}
+.ldc{font-size:13.5px;color:var(--t2);line-height:1.8;font-style:italic}
+.qa{background:var(--bgc);border:1px solid var(--bdr);border-radius:8px;padding:14px 17px;margin:9px 0}
+.qq{font-weight:600;color:var(--t1);font-size:13.5px;margin-bottom:5px}
+.qq::before{content:'Q — ';color:var(--maroon);font-family:'JetBrains Mono',monospace;font-weight:700}
+.qan{color:var(--t2);font-size:13px;line-height:1.7}
+.qan::before{content:'A — ';color:var(--green);font-family:'JetBrains Mono',monospace;font-weight:700}
+.pill{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:.5px;padding:2px 8px;border-radius:10px;text-transform:uppercase;margin-bottom:8px}
+.pill-added{background:rgba(245,158,11,.15);color:var(--amber)}
+.pill-lesson{background:rgba(59,130,246,.15);color:var(--blue)}
+.pill-gap{background:rgba(239,68,68,.15);color:var(--red)}
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:4px;font-size:13px;line-height:1.75}
+li strong{color:var(--t1)}
+.footer{padding:34px 52px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--maroon)}
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.gg,.isg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+<div class="sbh"><div class="sbb">NSTP 1 · ROTC · QCU BSIT</div><div class="sbt">Drills &amp; Ceremonies + Core Values</div><div class="sbs">Full Lesson Study Guide · AY 2026-2027</div></div>
+<ul class="nvl">
+<li class="nvs">Introduction</li>
+<li class="nvi"><a href="#overview"><span class="nn">00</span>Overview &amp; Priority Map</a></li>
+<li class="nvs">Part I — Drills</li>
+<li class="nvi"><a href="#ch1"><span class="nn">01</span>General Drill Information</a></li>
+<li class="nvi"><a href="#ch2"><span class="nn">02</span>Commands &amp; the Command Line</a></li>
+<li class="nvi"><a href="#ch3"><span class="nn">03</span>Individual Movements (Not Under Arms)</a></li>
+<li class="nvs">Part II — Ceremonies</li>
+<li class="nvi"><a href="#ch4"><span class="nn">04</span>Review</a></li>
+<li class="nvi"><a href="#ch5"><span class="nn">05</span>Parade</a></li>
+<li class="nvi"><a href="#ch6"><span class="nn">06</span>Military Honors</a></li>
+<li class="nvi"><a href="#ch7"><span class="nn">07</span>Colors</a></li>
+<li class="nvi"><a href="#ch8"><span class="nn">08</span>Guard Mounting</a></li>
+<li class="nvs">Part III — Core Values</li>
+<li class="nvi"><a href="#ch9"><span class="nn">09</span>Core Values of Development</a></li>
+<li class="nvs">Reference</li>
+<li class="nvi"><a href="#ch10"><span class="nn">10</span>Glossary &amp; Abbreviations</a></li>
+</ul></nav>
+
+<main class="main">
+<div class="hero">
+<div class="he">QCU Academic OS · AY 2026-2027 · Source: HQ NCR Regional Community Defense Group, Army Reserve Command, Fort Andres Bonifacio</div>
+<div class="ht">NSTP 1 — ROTC</div>
+<div class="hs">Drills &amp; Ceremonies, and Core Values of Development — Complete Lesson Study Guide</div>
+<div class="hm">
+<div class="mp">Course: <span>NSTP 1</span></div>
+<div class="mp">Units: <span>3</span></div>
+<div class="mp">Year Level: <span>1st Yr, Sem 1</span></div>
+<div class="mp">Type: <span>NSTP — ROTC</span></div>
+</div></div>
+
+<section class="chapter" id="overview">
+<div class="cn">CHAPTER 00</div><div class="ct">Overview &amp; Study Priority Map</div>
+<p class="ci">This guide is built strictly from two uploaded lesson decks: <strong>"Drill &amp; Ceremonies"</strong> (337 slides, Parts I–II) and <strong>"Core Values of Development"</strong> (16 slides). Every definition, list, table, quote, and procedure inside them is captured below in the same order the material presents it. Nothing has been added beyond what the two "Also" requests call for (recitation aids, a glossary of undefined abbreviations, and a priority table) — and every one of those additions is visibly tagged so you can tell at a glance what the professor's material actually said versus what was added as a study aid.</p>
+
+<div class="box red"><div class="bico">🔍</div><div class="bbd"><div class="btt">Source Verification Notes — read before studying</div>
+<p class="btx"><strong>1. Vegetius epigraph date (Drills, p. 4):</strong> the lesson dates the opening quote "A.D. 378." Scholarly sources are genuinely split on exactly when Vegetius wrote <em>De Re Militari</em> — most place it around <strong>c. 390 AD</strong>, during the reign of Theodosius I (AD 379–395), while a wider range of 383–450 AD is also argued in the literature. 378 AD sits just before that commonly-cited window (it's actually the year of the Battle of Adrianople, a separate event). This isn't clearly wrong, but it isn't the date most classicists would give either — treat it as a contested date, not a settled one.<br><br>
+<strong>2. Archidamus of Sparta attribution (Drills, p. 55):</strong> the exact wording of this quote could not be confidently matched to one of Archidamus's own recorded speeches in Thucydides' <em>History of the Peloponnesian War</em>. At least one detailed page-by-page index of the History's speeches lists this specific passage separately from the (differently-worded, differently-dated) speeches it attributes to Archidamus. This attribution should be treated as unconfirmed rather than assumed correct.<br><br>
+<strong>3. Von Steuben "Blue Book," 1779 (Drills, p. 115):</strong> checked and accurate — Baron Friedrich Wilhelm von Steuben, a former Prussian officer who had served under Frederick the Great, was commissioned by General George Washington and wrote <em>Regulations for the Order and Discipline of the Troops of the United States</em> ("the Blue Book"), published in 1779. No discrepancy found.<br><br>
+<strong>4. B.H. Liddell Hart, "Thoughts on War," 1944 (Drills, p. 26):</strong> checked and accurate — published by Faber and Faber, London, 1944. No discrepancy found.<br><br>
+<strong>5. Scope of verification:</strong> the Drills &amp; Ceremonies deck contains many other embedded historical claims (e.g., the Middle Ages origins of military reviews, the 1892 US infantry drill regulation on band positioning). Given the volume of the material, verification effort was concentrated on the explicitly named, dated epigraph quotes and the one major named historical claim (Von Steuben) — the ones most likely to appear as identification questions — rather than every date buried in the historical-background prose.<br><br>
+<strong>6. Terminology overlap (Drills, p. 10 &amp; p. 17):</strong> the lesson gives the same Filipino gloss, "(Linya)," for two different English drill terms — <strong>ALIGNMENT</strong> and <strong>LINE</strong> — which are defined differently in English. This may just be how the professor's source material renders both, but it's worth knowing in case a recitation question asks you to tell the two apart.<br><br>
+<strong>7. Core Values of Development — incomplete source (see Chapter 09):</strong> the deck's own "Scope of Presentation" slide lists six topics, but only three are actually developed with content. This gap is described in full in Chapter 09 and has <strong>not</strong> been filled in.</p></div></div>
+
+<h2>Exam / Recitation Priority Map</h2>
+<div class="tw"><table>
+<thead><tr><th>Topic</th><th>Chapter</th><th>Priority</th><th>Reason</th></tr></thead>
+<tbody>
+<tr><td>Drill Terms (definitions)</td><td>01</td><td><span class="tag tr2">🔴 High</span></td><td>Dense, testable vocabulary explicitly defined by the professor's material — classic identification-quiz material</td></tr>
+<tr><td>Two-Part Commands &amp; the TA/KAD/TO/RAP/DA/NGA command-syllable rules</td><td>02</td><td><span class="tag tr2">🔴 High</span></td><td>A self-contained rule set (2.3) the material treats as a named topic with clear right/wrong answers</td></tr>
+<tr><td>The Command Voice (voice control, distinctiveness, inflection, cadence)</td><td>02</td><td><span class="tag ta">🟡 Medium</span></td><td>Conceptual/descriptive rather than a command list — good for short-answer, less likely for identification</td></tr>
+<tr><td>Position of Attention &amp; the Rest positions (Parade Rest, At Ease, Rest, Fall Out)</td><td>03</td><td><span class="tag tr2">🔴 High</span></td><td>Core foundational movements every cadet is drilled on first; heavily itemized in the source</td></tr>
+<tr><td>Marching steps (30-inch, half-step, double time, side step, etc.)</td><td>03</td><td><span class="tag ta">🟡 Medium</span></td><td>Important but highly procedural/numeric — more likely tested as short-answer ("how many inches is X step") than full recitation</td></tr>
+<tr><td>Review vs. Parade — definitions &amp; distinguishing features</td><td>04, 05</td><td><span class="tag tr2">🔴 High</span></td><td>The lesson explicitly warns these two ceremonies are "often mistaken" for each other — a natural exam distinction</td></tr>
+<tr><td>Military Honors — Definition of Terms (3.2)</td><td>06</td><td><span class="tag tr2">🔴 High</span></td><td>A clean, self-contained definitions list, the same style as Drill Terms</td></tr>
+<tr><td>Gun salute counts by rank (tables)</td><td>06</td><td><span class="tag ta">🟡 Medium</span></td><td>Specific and testable, but a large table of numbers is more likely tested as reference/matching than full recitation</td></tr>
+<tr><td>Colors vs. Color; Color Guard composition</td><td>07</td><td><span class="tag tr2">🔴 High</span></td><td>Foundational definitions (4.1–4.6) the rest of the chapter builds on</td></tr>
+<tr><td>Detailed Manual-of-the-Colors hand/foot mechanics</td><td>07</td><td><span class="tag tb">🔵 Low</span></td><td>Extremely granular physical instructions — more relevant to a practical drill exam than a written one</td></tr>
+<tr><td>Guard Mounting — Informal vs. Formal vs. Normal (purpose of each)</td><td>08</td><td><span class="tag ta">🟡 Medium</span></td><td>Conceptually testable, but the step-by-step choreography itself is dense procedural detail unlikely to be recited verbatim</td></tr>
+<tr><td>Self Development definitions (Perceived Self, Ideal Self, Self Identities, Self Esteem, Values)</td><td>09</td><td><span class="tag tr2">🔴 High</span></td><td>Short, clean definitions — the most quiz-friendly material in the second deck</td></tr>
+<tr><td>Theories of Values Formation (8 named theorists)</td><td>09</td><td><span class="tag tr2">🔴 High</span></td><td>A named list of theorists and one-line theory summaries — classic matching-type material</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="chapter" id="ch1">
+<div class="cn">PART I · DRILLS · SECTION 1</div><div class="ct">General Drill Information</div>
+
+<div class="law"><div class="lra">VEGETIUS · DE RE MILITARI — DATE AS GIVEN: A.D. 378</div><div class="ltit">Opening Epigraph (Drills, p. 4)</div><div class="lyr">See Source Verification Note 1 in Chapter 00 regarding the date</div>
+<div class="ldc">"Troops who march in an irregular and disorderly manner are always in great danger of being defeated."</div></div>
+
+<h2>Purpose and Scope</h2>
+<p>This portion of the manual provides guidance for AFP-wide uniformity in the conduct of drills. It includes methods of instructing drills, teaching techniques, individual and unit drills, manual of arms for infantry weapons, and various other aspects of basic drill instruction. It is designed for use by soldiers of all military occupational skill, including cadets and recruits in the initial training environment. So as to maintain consistency throughout the AFP, the procedures prescribed are to be adhered to as closely as possible.</p>
+
+<h2>General</h2>
+<p>The AFP prescribes its own drill regulations with the end goal of cultivating full alertness and presence of mind in each military personnel, not only during drills but at all times — attributes essential to AFP members. All movements in the manual are precision movements designed to foster proper coordination among military personnel, with teamwork as the final result. In the military service, teamwork is attained through drill and ceremonies.</p>
+<p>Drills consist of certain movements by which the squad, platoon, company, or battalion is moved in an orderly manner from one formation to another, executed with smartness, order, and precision — each individual doing his part exactly as he is supposed to perform.</p>
+<p>The primary purpose of drill is to teach a precise and orderly way of doing things. As drills increase skill and coordination, they accustom a soldier to respond to commands, and also promote teamwork. A soldier must know and understand a drill, or its value is lost; a drill is conducted with precision, and perfection is the only accepted standard. Drill periods are frequent and of short duration.</p>
+<p>Everyone gets a certain amount of pleasure from doing anything well in joint effort with others — a military ceremony provides the same reaction. After every successful ceremony, every soldier-participant can proudly claim: <strong>"I was there."</strong></p>
+
+<h2>Drill Terms — Full Glossary <span class="pill pill-lesson" style="margin-left:8px">From the Lesson (p. 10–24)</span></h2>
+<div class="tw"><table>
+<thead><tr><th>Term (Filipino)</th><th>Definition</th></tr></thead>
+<tbody>
+<tr><td>ALIGNMENT (Linya)</td><td>A straight line upon which several elements or terms are formed; the dressing of several elements upon a straight line. A unit is aligned when it is dressed.</td></tr>
+<tr><td>ARMS SWING</td><td>The swinging of arms must be 6 inches straight to the front and 3 inches straight to the rear of the trouser seams, knuckles out facing forward, fingers formed into a fist with the thumb over the forefinger.</td></tr>
+<tr><td>BASE</td><td>The element(s) on which a movement is regulated. E.g., in executing right front into line, the leading squad is the base.</td></tr>
+<tr><td>CADENCE</td><td>The uniform rhythm by which a movement is executed, or the number of steps/counts per minute at which a movement is executed. Drill movements are normally executed at the cadence of quick time or double time.</td></tr>
+<tr><td>CENTER (Gitna)</td><td>The middle point or element of a command. In a 3-squad platoon, the 2nd squad from the right is the center; with 4 squads, the 2nd squad from the right is the center squad (the right-center is the center when there is an even number of squads/platoons).</td></tr>
+<tr><td>COLUMN</td><td>A formation in which elements are placed one behind another (e.g., column of files, column of squads, column of platoons).</td></tr>
+<tr><td>DEPTH (Lalim)</td><td>The space from front to rear of any formation or position, including front and rear elements. The depth of a man is assumed to be 12 inches.</td></tr>
+<tr><td>DISTANCE (Layo)</td><td>The space between elements one behind the other. Between units it varies with formation size; between individuals it is an arm's length to the front plus 6 inches (about 40 inches), measured chest-of-one-man to back-of-the-man-in-front.</td></tr>
+<tr><td>DOUBLE TIME (Takbong Hakbang)</td><td>Cadence at a rate of 180 steps per minute.</td></tr>
+<tr><td>ECHELON</td><td>One of a series of elements formed one behind another; a modification of line formation where adjacent elements are disposed one to the rear of the other.</td></tr>
+<tr><td>ELEMENT</td><td>An individual, squad, platoon, company, or larger body forming part of a still larger body.</td></tr>
+<tr><td>EYES RIGHT (Handa, Tingin sa Kanan, Na)</td><td>The direction of the face during eyes right should be 45 degrees to the right side.</td></tr>
+<tr><td>FILE (Tudling)</td><td>Two men — the front-rank man (file leader) and the corresponding rear-rank man. A single man in a single-rank formation is also called a file: a single column of men one behind the other.</td></tr>
+<tr><td>FLANK (Panig)</td><td>The right or left extremity of a unit (in line or column); the element on the extreme right or left; a direction at a right angle to the direction the formation is facing.</td></tr>
+<tr><td>FORMATION (Hanay)</td><td>Arrangement of the elements of a unit in line, in column, or any other prescribed manner.</td></tr>
+<tr><td>FRONT (Harap)</td><td>The direction in which a command faces.</td></tr>
+<tr><td>FRONTAGE (Harapan)</td><td>The space occupied by an element measured from one flank to the opposite flank. A man's frontage is assumed to be 22 inches (right to elbow) and does not include the 12-inch interval between men in line; a squad's frontage includes the intervals between men.</td></tr>
+<tr><td>GUIDE (Gabay)</td><td>The man with whom the command or element regulates its march (e.g., battle or practice marches). In squad drill, private No. 1 (front rank) is often the guide.</td></tr>
+<tr><td>HEAD (Unahan)</td><td>The leading element of a column.</td></tr>
+<tr><td>INTERVAL (Pagitan)</td><td>The lateral space between elements on the same line, measured shoulder-to-shoulder (individuals) or flank-to-flank (formations). Normal interval between individuals is one arm's length; close interval is the horizontal distance between shoulder and elbow with the left hand on the left hip.</td></tr>
+<tr><td>LEFT (Kaliwa)</td><td>The left extremity or element of a body of troops.</td></tr>
+<tr><td>LINE (Linya)</td><td>A formation in which different elements are abreast (on the same line). A section may be an "element" — if leading elements of several sections are on the same line, it becomes a line formation.</td></tr>
+<tr><td>LOOSE PIECES</td><td>Rifles and automatic rifles not used in making stacks.</td></tr>
+<tr><td>OBLIQUE (Lihis)</td><td>An angle between 0 and 45 degrees. (Right/Left oblique march is at an angle of 45 degrees.)</td></tr>
+<tr><td>ORDER CLOSE</td><td>The formation in which units, in double rank, are separated by intervals greater than that in close order.</td></tr>
+<tr><td>PACE</td><td>30 inches is the length of the full step in quick time; the pace at double time is 36 inches.</td></tr>
+<tr><td>PIECE</td><td>The rifle or automatic rifle.</td></tr>
+<tr><td>POINT OF THE REST</td><td>The point at which a formation begins, especially the point toward which units are aligned in successive movements — e.g., in "ON RIGHT INTO LINE," the point of rest is where the leading squad halts.</td></tr>
+<tr><td>QUICK TIME (Siglang Hakbang)</td><td>Cadence at a rate of 120 steps per minute.</td></tr>
+<tr><td>RIGHT</td><td>The right extremity or element of a body of troops.</td></tr>
+<tr><td>SWORD SWING</td><td>The swinging of the sword must be 6 inches to the front and 3 inches to the rear of the trouser seams.</td></tr>
+<tr><td>SLOW TIME</td><td>Cadence at a rate of 60 steps per minute.</td></tr>
+<tr><td>STEP (Hakbang)</td><td>The distance measured heel-to-heel between the feet of a walking man. Half step and back step are 15 inches; right step and left step are 12 inches; quick-time and double-time steps are 30 and 36 inches, respectively.</td></tr>
+<tr><td>SUCCESSIVE MOVEMENT (Sunud-sunurang galaw)</td><td>A maneuver where the various elements of a command execute a movement one after another, as distinguished from a simultaneous movement.</td></tr>
+<tr><td>TO REVOKE A COMMAND (MANUMBALIK)</td><td>To cancel a command not yet carried out, or to correctly restart a movement improperly begun from halt, the command MANUMBALIK is given; troops resume their former position.</td></tr>
+<tr><td>PARTIAL CHANGES OF DIRECTION</td><td>To change a column's direction 45° left/right: LIKO HATING-KANAN (KALIWA), KAD. For a slight change of direction: PAGAWING KANAN (KALIWA). The guide moves in the indicated direction; the rest of the unit follows.</td></tr>
+<tr><td>NUMBERING UNITS</td><td>Platoons within a company are numbered right-to-left (company in line) or front-to-rear (company in column). Squads within a platoon follow the same rule relative to the platoon.</td></tr>
+<tr><td>POST</td><td>The correct place for an officer/NCO to stand (front, behind, or beside a unit). When a formation change involves a change of post, the new post is taken by the most direct route, as soon as practicable after the command of execution.</td></tr>
+<tr><td>COUNTING CADENCE</td><td>Command: BILANG HAKBANG, KAD. Given as the left foot strikes the ground; the group calls cadence for 8 steps: ISA, DALAWA, TATLO, APAT... Not to be executed boisterously; a good instructor holds counting to a minimum.</td></tr>
+</tbody></table></div>
+
+<div class="box amber"><div class="bico">📌</div><div class="bbd"><div class="btt">Additional context from the lesson (p. 21–24)</div>
+<p class="btx">Officers/NCOs maintain military bearing when moving between posts. Guidon bearers and special units keep their position relative to the flank/end of their unit after the first formation. An armed NCO giving commands, reports, or drilling a unit carries the rifle at right shoulder. Instructors go wherever needed to correct mistakes. Instructors use competitive drill exercises so drills don't become monotonous, and mass commands are used to build confidence and a command voice (procedures covered in Section 2).</p></div></div>
+
+<h2>Recitation-Ready Answer <span class="pill pill-added" style="margin-left:8px">Added — Study Aid</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">KEY CONCEPT</div><div class="inm">Drill</div><div class="idc"><strong>Plain English:</strong> a precise, coordinated group movement done the same way every time, so a whole unit moves as one.<br><strong>vs. Ceremony:</strong> a drill is the training/coordination exercise itself; a ceremony (Part II) is the formal event that drill skill is put on display for.<br><strong>Example from the lesson:</strong> moving a squad "from one formation to another" with smartness, order, and precision.</div></div>
+<div class="isc a"><div class="ico">KEY CONCEPT</div><div class="inm">Cadence</div><div class="idc"><strong>Plain English:</strong> the steady beat/rhythm — steps per minute — a unit marches to.<br><strong>vs. Step:</strong> Cadence is the <em>rate</em> (steps/minute); Step is the <em>distance</em> covered per step (inches).<br><strong>Example from the lesson:</strong> Quick Time = 120 steps/min; Double Time = 180 steps/min; Slow Time = 60 steps/min.</div></div>
+</div>
+
+<div class="box maroonbox"><div class="bico">💬</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 01</div>
+<div class="qa"><div class="qq">What is the primary purpose of drill according to the lesson?</div><div class="qan">To teach a precise and orderly way of doing things — increasing skill, coordination, and a soldier's responsiveness to commands, while promoting teamwork.</div></div>
+<div class="qa"><div class="qq">Define CADENCE and give its three named rates.</div><div class="qan">The uniform rhythm/rate of a movement. Slow Time = 60 steps/min, Quick Time = 120 steps/min, Double Time = 180 steps/min.</div></div>
+<div class="qa"><div class="qq">What is the difference between DISTANCE and INTERVAL?</div><div class="qan">Distance is the space between elements one behind another (front-to-back); Interval is the lateral space between elements on the same line (side-to-side).</div></div>
+<div class="qa"><div class="qq">What command is used to cancel an improperly started command?</div><div class="qan">MANUMBALIK.</div></div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch2">
+<div class="cn">PART I · DRILLS · SECTION 2</div><div class="ct">Commands and the Command Line</div>
+
+<div class="law"><div class="lra">B.H. LIDDELL HART · THOUGHTS ON WAR, 1944 — VERIFIED</div><div class="ltit">Opening Epigraph (Drills, p. 26)</div><div class="lyr">London: Faber and Faber, 1944</div>
+<div class="ldc">"The spirit of discipline, as distinct from its outward and visible guises, is the result of association with martial traditions and their living embodiment."</div></div>
+
+<h2>2.1 General</h2>
+<p>A drill command is an oral order of a commander or leader; the precision of a movement is affected by how the command is given. When at halt, the commander faces the troops when giving commands. On commands that set the unit in motion, the commander moves simultaneously with the unit. When marching, the commander turns his head toward the troops to give commands. Exceptions occur during ceremonies.</p>
+<p>When elements drill as part of a larger unit, the rules of supplementary commands apply. To revoke a preparatory command, the commander gives MANUMBALIK (AS YOU WERE) — this must be given prior to the command of execution; the commander cannot cancel the command of execution itself. If an improper command is not revoked, personnel execute the movement in the best manner possible.</p>
+
+<h2>2.2 Two-Part Commands</h2>
+<p>Most drill commands have two parts: the <strong>preparatory command</strong> and the <strong>command of execution</strong>. Neither is a command by itself, but both parts are termed "commands" to simplify instruction. (HANDA (READY), SIPAT (AIM), PUTOK (FIRE) is considered a two-part command even though it contains two pre-commands.)</p>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Preparatory command</div><div class="sd">States the movement to be carried out and mentally prepares the soldier for its execution. Example: in <span class="mono">PASULONG, KAD</span>, the preparatory command is <span class="mono">PASULONG</span>.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Command of execution</div><div class="sd">Tells when the movement is to be carried out. In <span class="mono">PASULONG, KAD</span>, the command of execution is <span class="mono">KAD</span>.</div></div></div>
+</div>
+<p>To change direction while marching, both parts of the command begin and end in the direction of the turn — e.g., <span class="mono">KANANG PANIG, KAD</span> (RIGHT FLANK) is given as the right foot strikes the surface; the left-flank equivalent is given as the left foot strikes. The interval between the preparatory command and the command of execution is normally one step or count.</p>
+
+<h2>2.3 English Version to Filipino Version</h2>
+<p>AFP commands are derived from English and translated to Filipino. This localization attempt has led to varied interpretations of preciseness — words like RAP, NA, KAD, TA, and others are often misused or interchanged, and commanders sometimes use what they personally think is appropriate. To provide uniformity, simplicity, and preciseness suited to voice control, distinctiveness, inflection, and cadence, the following guidelines are set:</p>
+<div class="tw"><table>
+<thead><tr><th>Syllable</th><th>Abbreviated From</th><th>Used For</th></tr></thead>
+<tbody>
+<tr><td>NA</td><td>—</td><td>General rule: signals the command of execution, <em>except</em> for the cases below.</td></tr>
+<tr><td>TA</td><td>SANDATA</td><td>Manual of arms for rifles and pistols — except KALIS and TALIBONG, which fall under the general NA rule.</td></tr>
+<tr><td>KAD</td><td>LAKAD</td><td>From at-rest to motion, and all subsequent commands while in motion (e.g., PASULONG, KAD).</td></tr>
+<tr><td>TO</td><td>HINTO</td><td>From motion to rest.</td></tr>
+<tr><td>RAP</td><td>HARAP</td><td>HANDA HARAP (literal translation of "READY FRONT"); also used in left face, right face, and about face.</td></tr>
+<tr><td>DA</td><td>HUMANDA</td><td>For attention.</td></tr>
+<tr><td>NGA</td><td>PAHINGA</td><td>In TIKAS PAHINGA / PARADE REST.</td></tr>
+</tbody></table></div>
+<p>These combine into four named command categories, covered next: Combined Commands, Supplementary Commands, Mass Commands, and Directives.</p>
+
+<h2>2.4 Combined Commands</h2>
+<p>In some commands, the preparatory command and the command of execution are combined — e.g., <span class="mono">HUMANAY</span> (FALL IN), <span class="mono">PALUWAG</span> (AT EASE), <span class="mono">LUMANSAG</span> (DISMISS). These are given without inflection, at a uniform high pitch and loudness comparable to a normal command of execution.</p>
+
+<h2>2.5 Supplementary Commands</h2>
+<p>Supplementary commands are oral orders given by a subordinate leader to reinforce and complement a commander's orders, ensuring proper understanding and execution of a movement. They extend to the lowest subordinate leader who commands a separate element within the same formation.</p>
+<p>A supplementary command may be a preparatory command, a portion of a pre-command, or a full two-part command. It's normally given between the pre-command and the command of execution, used when an element must execute a movement different from (or at a different time than) other elements in the same formation. Example given: in a platoon in column, the leader commands <span class="mono">DALAWAHANG TUDLING SUNUDSURAN MULA SA KALIWA (pause), KAD</span> — the 1st/2nd squad leaders command PASULONG while the 3rd/4th command MANATILI (STAND FAST); at the appropriate time the nearest squad leader commands LIKO HATING KALIWA, KAD for the remaining squads, who then execute LIKO HATING KANAN to fall in behind.</p>
+<p>A subordinate leader gives supplementary commands over his right shoulder, except when the command concerns an element on his left, or the sub-element executes LIKO SA KALIWA, LIKO HATING KALIWA, or KALIWANG PANIG (then given over the left shoulder — also used when changing a formation's configuration, e.g. forming a file or column of four). Note: when in formation at present arms and the preparatory command for order of arms is given, subordinate leaders terminate their salute before giving supplementary commands.</p>
+<p>Supplementary commands are <strong>not</strong> given for the combined commands HUMANAY, PALUWAG, TIWALAG, or during mass drills when the element is part of a mass formation — but they ARE given when forming a mass, or forming a column from a mass. Except in mass formation, platoon leaders give supplementary commands following the commander's commands; on the preparatory command BALANGAY, platoon leaders come to attention and command PULUTONG. The company commander allows time for all supplementary commands before giving the command of execution.</p>
+<p>When no direction is given, forward is understood. When no rate of march is given, SIGLANG HAKBANG (QUICK TIME) is understood — this normally applies when direction/rate is included in the pre-command or given as a supplementary command.</p>
+
+<h2>2.6 Mass Commands</h2>
+<p>Mass commands develop confidence and promote enthusiasm, and are effective for developing a command voice when instructing a leadership course. To use them, the commander commands <span class="mono">SA AKING PAG-UTOS</span> (AT MY COMMAND), gives the preparatory command for the movement, and the command of execution becomes <span class="mono">RAP (COMMAND)</span> — e.g. HARAP SA KANAN, RAP (COMMAND) executes RIGHT FACE in unison. While marching, KAD (COMMAND) substitutes for the command of execution, e.g. LIKO SA KANAN, KAD (COLUMN RIGHT COMMAND); PABALIK KAD (REAR COMMAND). Manual-of-arms mass commands follow the same pattern. To stop mass commands, the commander again commands SA AKING PAG-UTOS (AT MY COMMAND), and normal drill conduct resumes.</p>
+
+<h2>2.7 Directives</h2>
+<p>Directives are all oral orders given by the commander that direct or cause a subordinate leader to take actions. The commander gives directives rather than commands when it's more appropriate for subordinate elements to execute a movement or task as independent elements of the same formation. Directives are given in sentence form, normally prefixed by "IBUKA ANG TALUDTOD AT ITUNGKOD ANG SANDATA" (example: "ITANGHAL ANG SANDATA"). <span class="mono">"PAMUNUAN ANG INYONG PANGKAT O TILAP, PULUTONG, BALANGAY"</span> is the only directive where a commander relinquishes his command and salutes are exchanged. A subordinate commander, upon receiving a directive, resorts to the normal two-part command.</p>
+
+<h2>The Command Voice</h2>
+<h3>2.8 General</h3>
+<p>Everyone in the unit will easily understand a correctly delivered command. Correct commands have a tone, cadence, and snap that demands willing, correct, and immediate response.</p>
+<h3>2.9 Voice Control</h3>
+<p>Loudness is adjusted to unit size; the commander normally speaks from the front/center facing the unit. Carrying power is necessary, but excessive exertion is unnecessary and harmful — trying too hard tightens the neck muscles, producing strain, hoarseness, sore throat, and indistinct/jumbled sound instead of clear commands. Ease comes from good posture, confidence, proper breathing, and correct throat/mouth adjustment. The best posture for commands is the position of attention (subordinates imitate the leader's posture). The diaphragm is the most important muscle in breathing and controls the breath used in giving commands; the throat, mouth, and nose act as amplifiers giving resonance/projection.</p>
+<h3>2.10 Distinctiveness</h3>
+<p>Depends on correct use of tongue, lips, and teeth forming separate sounds into syllables. Distinct commands are effective; indistinct commands cause confusion. Practice: give commands slowly and carefully, prolonging syllables, then gradually increase delivery rate while still articulating each syllable distinctly.</p>
+<h3>2.11 Inflection</h3>
+<p>Inflection is the rise and fall in pitch and tone. The preparatory command is pronounced with a rising inflection, ideally starting near the natural speaking pitch. The command of execution is given in a sharper tone, slightly higher pitch than the last syllable of the preparatory command, with plenty of snap. Combined commands (HUMANAY, TIWALAG) are given without inflection, at uniform high pitch/loudness.</p>
+<h3>2.12 Cadence (of commands)</h3>
+<p>A uniform, rhythmic flow of words; the interval between commands must be uniform in length for any given unit, so everyone understands the preparatory command and anticipates the command of execution. For a squad/platoon marching (absent supplementary commands), the interval allows one step/count between preparatory command and execution — the same interval applies at halt. Longer commands (e.g., KANANG PANIG, KAD) must start so the preparatory command ends on the proper foot, leaving a full count before execution. When supplementary commands are needed, the commander allows one count before the subordinate's supplementary command, and an additional count after it but before the command of execution.</p>
+
+<h2>Recitation-Ready Answer <span class="pill pill-added" style="margin-left:8px">Added — Study Aid</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">KEY CONCEPT</div><div class="inm">Preparatory Command vs. Command of Execution</div><div class="idc"><strong>Plain English:</strong> the "get ready" half and the "go now" half of a drill order.<br><strong>vs. Combined Command:</strong> most commands keep these two halves separate; a Combined Command (HUMANAY, PALUWAG, LUMANSAG) fuses them into one utterance.<br><strong>Example:</strong> in PASULONG, KAD — PASULONG is preparatory, KAD is execution.</div></div>
+<div class="isc a"><div class="ico">KEY CONCEPT</div><div class="inm">Supplementary Command</div><div class="idc"><strong>Plain English:</strong> a command a subordinate leader adds to make sure their specific part of a larger formation does the right thing at the right time.<br><strong>vs. Mass Command:</strong> Supplementary commands let sub-elements do different things; Mass Commands make an entire unit act in unison on one signal.<br><strong>Example:</strong> a squad leader commanding MANATILI (STAND FAST) while other squads move forward.</div></div>
+</div>
+
+<div class="box maroonbox"><div class="bico">💬</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 02</div>
+<div class="qa"><div class="qq">What are the two parts of most drill commands?</div><div class="qan">The preparatory command and the command of execution.</div></div>
+<div class="qa"><div class="qq">What does the command syllable "TA" stand for, and when is it used?</div><div class="qan">Abbreviated from SANDATA; used for the manual of arms for rifles and pistols (except KALIS and TALIBONG).</div></div>
+<div class="qa"><div class="qq">Name the four categories the lesson organizes commands into after covering TA/KAD/TO/RAP/DA/NGA.</div><div class="qan">Combined Commands, Supplementary Commands, Mass Commands, and Directives.</div></div>
+<div class="qa"><div class="qq">What command starts and stops the use of Mass Commands?</div><div class="qan">SA AKING PAG-UTOS (AT MY COMMAND) — given both to start and to stop.</div></div>
+<div class="qa"><div class="qq">What muscle is most important for controlling a command voice, and why?</div><div class="qan">The diaphragm — it automatically controls normal breathing and is used to control breath output when giving commands.</div></div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch3">
+<div class="cn">PART I · DRILLS · SECTION 3</div><div class="ct">Individual Movements Not Under Arms</div>
+
+<div class="law"><div class="lra">ARCHIDAMUS OF SPARTA — ATTRIBUTION UNCONFIRMED</div><div class="ltit">Opening Epigraph (Drills, p. 55)</div><div class="lyr">See Source Verification Note 2 in Chapter 00</div>
+<div class="ldc">"Maintain discipline and caution above all things, and be on the alert to obey the word of command. It is both the noblest and the safest thing for a great army to be visibly animated by one spirit."</div></div>
+
+<h2>3.1 General</h2>
+<p>This section contains most individual positions and stationary movements required in drills. Positions and their correct execution in every detail should be learned before proceeding to other drill movements. Movements are initiated from the position of attention, though some rest movements may be executed from other rest positions.</p>
+
+<h3>Movements While at Halt</h3>
+<h2>3.2 Position of Attention</h2>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Feet</div><div class="sd">Bring heels together smartly on the same line, as near each other as your build permits. Turn feet out equally, forming a 45-degree angle.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Legs, hips, chest, shoulders</div><div class="sd">Keep knees straight without stiffness; hips level; body erect; chest lifted and arched; shoulders square and even.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Arms and hands</div><div class="sd">Arms hang straight down without stiffness, thumbs along trouser seams; back of hands out, fingers natural, thumbs resting along the forefinger tips.</div></div></div>
+<div class="step"><div class="snum">4</div><div class="sc"><div class="sl">Head</div><div class="sd">Erect and squarely to the front, chin drawn in (axis of head/neck vertical). Look straight to the front, about 30 yards ahead.</div></div></div>
+<div class="step"><div class="snum">5</div><div class="sc"><div class="sl">Weight &amp; conduct</div><div class="sd">Weight rests equally on heels and balls of the feet. Remain silent; do not move unless otherwise directed.</div></div></div>
+</div>
+
+<h2>3.3 Rest Position at the Halt</h2>
+<div class="gg">
+<div class="gc" data-g="1"><div class="gera">REST 1</div><div class="gtit">Parade Rest</div><p class="gsp">Command: <strong>TIKAS, PAHINGA.</strong> On TIKAS, shift weight to the right leg (no noticeable movement). On PAHINGA (count 1), move the left foot smartly 12 inches to the left (measured heel-inside to heel-inside); legs stay straight without stiffness, weight equal on both legs. Simultaneously, hands clasp behind the back: left hand at the small of the back below the belt, right hand inside the left, thumbs interlocked, fingers extended/joined, palms to the rear, elbows in line with the body. Silence and immobility required. To resume attention: command TILAP/PULUTONG or BALANGAY, DA — on DA, bring left heel to right heel, drop arms, assume attention.</p></div>
+<div class="gc" data-g="2"><div class="gera">REST 2</div><div class="gtit">Stand at Ease</div><p class="gsp">Command: <strong>TINDIG PALUWAG.</strong> On PALUWAG, execute Parade Rest but turn head and eyes toward the person in charge of the formation. AT EASE or REST may be executed from this position.</p></div>
+<div class="gc" data-g="3"><div class="gera">REST 3</div><div class="gtit">At Ease</div><p class="gsp">Command: <strong>PALUWAG.</strong> The soldier may move but must remain standing and silent, right foot in place. PAHINGA may be executed from this position.</p></div>
+<div class="gc" data-g="4"><div class="gera">REST 4</div><div class="gtit">Rest</div><p class="gsp">Command: <strong>PAHINGA.</strong> The soldier may move or talk, keeping the right foot in place unless otherwise directed. At Ease may be executed from this position.</p></div>
+</div>
+<p>Fall Out: at <span class="mono">TIWALAG</span>, you may leave the ranks but must remain in the immediate area; you resume your place at attention at the command <span class="mono">HUMANAY</span>. From any rest except TIWALAG, the command to resume attention is TILAP, HUMANDA (TILAP = take parade rest; HUMANDA = take attention). TINDIG PALUWAG, PALUWAG, and PAHINGA can also be executed directly from attention.</p>
+
+<h2>3.4 Dismiss</h2>
+<p>At the command <span class="mono">LUMANSAG</span>, troops execute about face and leave the immediate vicinity, unless instructed otherwise.</p>
+
+<h2>3.5 Eyes Right</h2>
+<p>A courtesy to reviewing officers/dignitaries during parades and ceremonies — a one-count movement, given while halted at attention or marching at quick time. Commands: <span class="mono">HANDA TINGIN SA KANAN (KALIWA), NA</span> and <span class="mono">HANDA, RAP</span>. On NA (count 1), all members smartly turn their heads 45° to the right; shoulders stay square to the front. There is no command to terminate — you follow the reviewing officer with head/eyes until he is straight ahead, at which point the movement terminates and you hold attention until the next command.</p>
+
+<h2>3.6 Facing at the Halt</h2>
+<div class="isg">
+<div class="isc"><div class="ico">TWO-COUNT MOVEMENT</div><div class="inm">Facing to the Flank</div><div class="idc">Command: <strong>HARAP SA KANAN (KALIWA), RAP.</strong> On RAP: slightly raise the right heel and left toe, turn 90° left on the left heel (assisted by pressure on the ball of the right foot); left leg stays straight, right leg bends naturally. On the 2nd count: place the right foot beside the left, resuming attention. Arms stay at the sides throughout.</div></div>
+<div class="isc a"><div class="ico">TWO-COUNT MOVEMENT</div><div class="inm">Facing to the Rear</div><div class="idc">Command: <strong>HARAP SA LIKOD, RAP.</strong> On RAP: move the right toe to a point touching the ground about half a foot-length to the rear and slightly left of the left heel; weight rests mostly on the left heel, right knee bends naturally. On the 2nd count: turn right 180° on the left heel and ball of the right foot, resuming attention. Arms stay at the sides throughout.</div></div>
+</div>
+
+<h2>3.7 Hand Salute</h2>
+<p>A one-count movement. Command: <span class="mono">PUGAY KAMAY, NA</span> (when wearing headgear with a visor, with or without glasses). On NA: raise the right hand sharply, fingers/thumb extended and joined, palm down, tip of the right forefinger on the rim of the visor slightly right of the right eye; outer edge of the hand barely downward (neither back of hand nor palm clearly visible from the front); hand/wrist straight, elbow inclined slightly forward, upper arm horizontal, forearm at 45°.</p>
+<ul>
+<li><strong>Headgear without visor (or uncovered), no glasses:</strong> same manner, touching the forehead at the point where glasses' temple frame would meet the right eyebrow.</li>
+<li><strong>Headgear without visor (or uncovered), with glasses:</strong> same manner, touching the point on the glasses where the temple piece meets the right eyebrow.</li>
+<li><strong>Order Arms from the hand salute:</strong> one-count movement, command <span class="mono">BABA, KAMAY, NA</span> — on NA, return the hand sharply to the side, resuming attention.</li>
+<li><strong>Rifle slung to the right shoulder:</strong> left hand automatically holds the sling across the body, then salute as above.</li>
+<li><strong>Carrying a rifle:</strong> salute can be executed at Attention or at Right Shoulder Arms. Executing Order Arms: raise the rifle at least 3 inches above the ground, then salute by touching the muzzle with the left hand (Attention) or the rear sight knob (Right Shoulder Arms).</li>
+</ul>
+
+<h2>3.8 Remove/Return Headgear</h2>
+<p><strong>Remove (two-count):</strong> Command <span class="mono">ALIS KUPYA, NA</span>. On the last note of ALIS KUPYA, hold the visor with the right hand (left hand if under arms), including the chinstrap if used. On NA, remove the headgear and bring it to your side.</p>
+<p><strong>Return:</strong> Command <span class="mono">BALIK KUPYA, NA</span>. On the last note of BALIK KUPYA, place the headgear on the head (fixing the chinstrap if used, holding the visor). On NA, bring the hand smartly down to Order Arms/Attention.</p>
+
+<h3>Steps and Marching</h3>
+<h2>3.9 General</h2>
+<p>Contains all individual marching steps, to be mastered before unit drill. All marching movements from the halt are initiated from Attention. Except for route-step march and at-ease march, all movements are executed while marching at attention (Attention + prescribed step, simultaneously). When executed from the halt, all steps except the right step begin with the left foot. For short-distance marching, the commander may designate the number of steps: e.g. <span class="mono">ISANG HAKBANG PAKANAN, KAD</span> or <span class="mono">DALAWANG HAKBANG PASULONG (PAURONG), KAD</span> — the soldier halts automatically after the designated number of steps (default 30-inch steps unless specified otherwise).</p>
+<p>All marching movements are executed at quick time (120 steps/min) except the 36-inch step, executable at 180 steps/min on the command <span class="mono">TAKBONG HAKBANG, KAD</span>. A step is the prescribed heel-to-heel distance of a marching soldier; all 15-inch steps are for short distances only. Both parts of a turning command are given as the turning foot strikes the ground; for units larger than a platoon, time is allowed for unit leaders to repeat the preparatory command.</p>
+
+<div class="tw"><table>
+<thead><tr><th>Step / Movement</th><th>Command</th><th>Key Detail</th></tr></thead>
+<tbody>
+<tr><td>3.10 The 30-Inch Step (Quick Time)</td><td>PASULONG, KAD</td><td>Weight shifts to right foot on prep. command; on KAD, 30-inch step forward with left foot, arms swing naturally 6" front/3" rear of trouser seams. Halt: TILAP (PULUTONG), HINTO — two counts.</td></tr>
+<tr><td>Quick Time from Double Time</td><td>SIGLANG HAKBANG, KAD</td><td>Next step is a 30-inch step; cadence drops to 120/min; arms lower to quick-time position.</td></tr>
+<tr><td>3.11 Change Step</td><td>PALIT HAKBANG, KAD</td><td>Given as right foot strikes ground; take one more left-foot step, clip arms to sides, place right toe near left heel (one count), step off again with left foot.</td></tr>
+<tr><td>3.12 March at Rest (At Ease March)</td><td>PALUWAG, KAD</td><td>Cadence no longer required; silence and approximate interval/distance maintained. Only SIGLANG HAKBANG, KAD and LAYANG HAKBANG, KAD may be given while marching at ease.</td></tr>
+<tr><td>3.13 Half Step March (15-inch)</td><td>HATING HAKBANG, KAD</td><td>From halt or from a 30-inch step. Resume 30-inch step: PASULONG, KAD. While at half step, only PATAKDA/PASULONG/PADALANG, KAD and TILAP-PULUTONG-BALANGAY-TALUPAD, TO may be given.</td></tr>
+<tr><td>3.14 Marching in Place</td><td>PATAKDA, KAD</td><td>Only from a 30-inch step forward. Raise each foot alternately 30 inches off the surface (per the lesson's wording); resume marching with PASULONG, KAD.</td></tr>
+<tr><td>3.15 Side Step (Right/Left)</td><td>HAKBANG PAKANAN (PAKALIWA), KAD</td><td>Only from halt. 15-inch step to the side; halt command is TILAP (PULUTONG), TO — two counts.</td></tr>
+<tr><td>3.16 Backward March</td><td>PAURONG, KAD</td><td>Only from halt. 15-inch steps backward; arms clipped to the sides.</td></tr>
+<tr><td>3.17 Double Time March</td><td>TAKBONG HAKBANG, KAD</td><td>180 steps/min, 30-inch step becomes the marching base; forearms raised horizontal, fingers/thumb closed, knuckles out. Resume quick time: SIGLANG HAKBANG, KAD.</td></tr>
+<tr><td>3.18 To Face in Marching</td><td>LIKO SA KANAN (KALIWA), KAD</td><td>Face 90° by pivoting on the ball of the opposite foot while stepping 30 inches in the new direction.</td></tr>
+<tr><td>3.19 To March by the Flank</td><td>KANANG (KALIWANG) PANIG, KAD</td><td>Strike the given foot, advance and plant the other foot, face to the new direction in marching, step off.</td></tr>
+<tr><td>3.20 To March to the Rear</td><td>PABALIK, KAD</td><td>At quick time: place the left foot ~30" in front of the right, then face 180° about by pivoting on the balls of both feet, then a 30-inch step in the new direction. At double time: two 36-inch steps forward, then four 6-inch vertical steps while turning 180°, then a 36-inch step in the new direction.</td></tr>
+<tr><td>3.21 Eyes Right/Left While Marching</td><td>HANDA TINGIN SA KANAN (KALIWA), NA / terminated by HANDA, HARAP</td><td>Given 6 paces from the reviewing officer; all files except the guide file turn heads/eyes 45°; terminates 6 paces beyond the officer.</td></tr>
+<tr><td>3.22 Staff Behind the Commander</td><td>KALUPUNAN, SUMALIKOD KO, KAD</td><td>Executed in 9 counts (2-3 man staff), 11 (4 men), 13 (5 men), or 15 (6 men). All staff execute right face; the first man faces left, marches 4 steps, column left, halts on the prescribed count; others follow the same pivot and halt/face left together.</td></tr>
+</tbody></table></div>
+
+<h2>Recitation-Ready Answer <span class="pill pill-added" style="margin-left:8px">Added — Study Aid</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">KEY CONCEPT</div><div class="inm">Position of Attention</div><div class="idc"><strong>Plain English:</strong> the baseline "ready" stance every other position and movement starts from.<br><strong>vs. Parade Rest:</strong> Attention is rigid and silent with no permitted movement; Parade Rest allows a fixed relaxed stance (feet apart, hands clasped behind the back) but still requires silence and immobility.<br><strong>Example from the lesson:</strong> heels together at 45°, chin drawn in, eyes fixed about 30 yards ahead.</div></div>
+<div class="isc a"><div class="ico">KEY CONCEPT</div><div class="inm">The 30-Inch Step (Quick Time)</div><div class="idc"><strong>Plain English:</strong> the AFP's standard marching step — 30 inches long, 120 steps per minute.<br><strong>vs. Double Time:</strong> Double Time uses a longer 36-inch step at a faster 180 steps/min.<br><strong>Example from the lesson:</strong> command PASULONG, KAD.</div></div>
+</div>
+
+<div class="box maroonbox"><div class="bico">💬</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 03</div>
+<div class="qa"><div class="qq">What command takes a soldier from Attention into Parade Rest, and how many inches does the left foot move?</div><div class="qan">TIKAS, PAHINGA — the left foot moves 12 inches to the left.</div></div>
+<div class="qa"><div class="qq">What is the command for the Hand Salute, and how many counts does it take?</div><div class="qan">PUGAY KAMAY, NA — a one-count movement.</div></div>
+<div class="qa"><div class="qq">What are the two commands used to resume a 30-inch step after marching at half step, and after double time?</div><div class="qan">From half step: PASULONG, KAD. From double time: SIGLANG HAKBANG, KAD.</div></div>
+<div class="qa"><div class="qq">How long is the standard marching step at Quick Time, and at Double Time?</div><div class="qan">30 inches at Quick Time; 36 inches at Double Time.</div></div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch4">
+<div class="cn">PART II · CEREMONIES · SECTION I (labeled "PARADE" in the source, covers Review)</div><div class="ct">Review</div>
+<div class="box amber"><div class="bico">📌</div><div class="bbd"><div class="btt">Heads-up on the source's own labeling</div>
+<p class="btx">The lesson's slide divider literally reads "SECTION I — PARADE," but every topic under it (1.1–1.5) is titled and defined as a <strong>Review</strong>, and Section II is separately titled "Parade." This chapter follows the lesson's actual content (Review), not its section-divider label — worth knowing in case your professor references "Section I" by that label.</p></div></div>
+
+<h2>1.1 Definition</h2>
+<p>A review is an inspection of troops by a high officer or honored guest, as a way of showing the unit's strength, state of discipline, and preparedness.</p>
+
+<h2>1.2 Historical Background</h2>
+<p>Reviews in the AFP were patterned after the United States Army's, due to the Americans' strong influence on the Philippine government's educational system and military during their occupation right after the Spanish regime.</p>
+<p>US military reviews were outlined in the <em>Regulations for the Order and Discipline of the Troops of the United States</em> — commonly known as the <strong>Blue Book</strong> — written in 1779 by Baron Friedrich von Steuben, a former Prussian officer under Frederick the Great, commissioned by General George Washington to develop the revolutionary forces into a well-organized, highly disciplined army. <span class="pill pill-lesson">Verified — see Ch. 00</span></p>
+<p>The origin of military reviews traces back to the Middle Ages, when rulers held military ceremonies to show strength. At the turn of the century (per the lesson's own phrasing), armies worldwide began adopting the regimental system: regiments were assigned a color or number for identification and battlefield positioning. In battle, the color (flag) party marched front-and-center as the unit's dressing point; since victories were measured partly by enemy colors captured, the color party was a priority target and suffered heavy casualties.</p>
+<p>In the US Army, the Colors were historically placed at the center of the formation; the company on the Colors' immediate right is still called the <strong>Color Unit</strong>. Musical elements (drums, fifes, sometimes a band) marched 12–15 paces to the rear of the formation in actual battle. By 1892, US infantry drill regulations posted bands and field music on the right of the formation, or at the head when moving in column. Today, the Colors' central position represents their old forefront battle position, while the band represents music's historic signaling role in camp and battle.</p>
+
+<h2>1.3 Purpose</h2>
+<p>Reviews are often mistaken for parades — features are similar, but they are two distinct ceremonies, though the two are normally combined in practice. A review is used to:</p>
+<ul>
+<li>Honor a visiting high-ranking commander, official, or dignitary and/or let them observe a unit's state of training.</li>
+<li>Present decorations and awards.</li>
+<li>Honor or recognize unit or individual achievements.</li>
+<li>Commemorate events.</li>
+</ul>
+<p>It is more fitting to title a program "A Review in Honor of ________" or "A Review in Commemoration of ________" rather than "parade and review," when what is actually conducted is only a review.</p>
+
+<h2>1.4 General</h2>
+<p>A review is normally conducted with a battalion-size unit or larger, though a composite/representative element of two or more platoons may serve the same purpose. A review consists of these steps in sequence (the review stage may be omitted for decorations, awards, or individual recognition ceremonies):</p>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Formation of Troops</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Presentation of Command and Honors</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Inspection</div></div></div>
+<div class="step"><div class="snum">4</div><div class="sc"><div class="sl">Honors to the Nation</div></div></div>
+<div class="step"><div class="snum">5</div><div class="sc"><div class="sl">Remarks</div></div></div>
+<div class="step"><div class="snum">6</div><div class="sc"><div class="sl">Pass-in-Review</div></div></div>
+<div class="step"><div class="snum">7</div><div class="sc"><div class="sl">Conclusion</div></div></div>
+</div>
+<p>Other ceremonial activities/combinations that may be incorporated within a review's framework: (1) Review with decorations, awards, and individual recognition ceremonies; (2) Review with change of command, activation, or de-activation of units; (3) Review with retreat; (4) Review with retreat and retirement, decorations, and awards; (5) Review with retreat and change of command, activation, or de-activation of units; (6) Review and parade with all of the above combinations.</p>
+<p>A commander normally designates an Officer of his command as <strong>Troop Commander (TC)</strong> to enable himself to review his own command with a visiting <strong>Reviewing Officer (RO)</strong>; the TC prepares the troops for the review. Three recommended formations:</p>
+<ul>
+<li><strong>Battalion Formation with Companies in Line</strong> (Fig. 1) — minimum 2 companies, 3 platoons per company.</li>
+<li><strong>Brigade Formation with Battalions in Line</strong> (Fig. 2) — minimum 2 battalions of 3 companies each (minimum 2 companies/battalion recommended), each company always with 3 platoons.</li>
+<li><strong>Division Formation with Brigades in Line, Battalions in Mass</strong> (Fig. 3) — same composition as Fig. 2; a saluting battery is included in the formation whenever space allows.</li>
+</ul>
+<p>Formation choice depends on available space and the commander's preference; commanders may alter formation or prescribed distances for local situations. Units are sized uniformly (tallest men front and right); leaders should not be moved from position for size reasons — officers and key NCOs (including squad leaders) participate in their deserved positions of dignity.</p>
+<p>The <strong>Distinguished Guest/Reviewing Officer (DG/RO)</strong> should ideally arrive at his post (Fig. 4) after the TC's staff has reversed and the TC has faced the reviewing stand; on arrival he takes his post immediately and refrains from greeting spectators until the review ends. The DG/RO, <strong>Military Host (MH)</strong>, and other distinguished (non-receiving) persons face the troops.</p>
+<p>When honoring someone junior in rank to the MH, the junior stands to the MH's left unless the MH yields the post of honor (normally the right — the DG/RO's post). The MH directs the TC: <span class="mono">IHANDOG ANG PAMUNUAN</span> (PRESENT THE TROOPS) to start the review. (Doesn't apply if guests/host are seated at a grandstand — seating protocol governs instead.)</p>
+<p>A civilian or foreign dignitary receiving the review takes the honor position to the MH's right; the MH returns salutes when appropriate and cues/briefs the dignitary on procedure. The flag position at the rear of the reviewing party corresponds to the individual's position in the front rank. Equivalent honors (salutes) are rendered to a foreign official/dignitary entitled to them. If the dignitary's honors include their national anthem, the order is: four ruffles and flourishes, the foreign anthem, an approximate 3-second drum roll, then the Philippine National Anthem.</p>
+<p>For ceremonies including decorations, awards, or retirements, the MH should be senior in rank/position to the highest-ranking individual honored. An officer from local staff (usually SGS or OG3) is designated to escort and brief the reviewing party.</p>
+<div class="box red"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Rule stated in ALL CAPS in the source (p. 133)</div><p class="btx">Because not every situation can be foreseen across military academies, special honor guards, regular AFP units, reserve components, ROTC, and training commands/centers, commanders may make minor changes to procedure — but, to preserve AFP tradition and consistency: <strong>"THEY SHOULD NOT ALTER NOR MODIFY THE SEQUENCE OF EVENTS OTHER THAN STATED."</strong></p></div></div>
+
+<h2>1.5 Sequence of Events and Individual Actions — Standard Review</h2>
+<div class="steps">
+<div class="step"><div class="snum">A</div><div class="sc"><div class="sl">Formation of Troops</div><div class="sd">Troop Adjutant (TA) directs <span class="mono">IHUDYAT ANG PAGHANDA</span>; band sounds ATTENTION CALL. Battalion Commanders (BCs) face about, come to attention/right shoulder arms, face front. TA directs <span class="mono">IHUDYAT ANG TAWAG ADYUTANTE</span>; band sounds ADJUTANT'S CALL then march music. BCs command <span class="mono">PASULONG, KAD</span> and troops follow the prescribed route (Fig. 5). When companies are perpendicular to their markers, BCs command <span class="mono">KALIWANG PANIG, KAD</span>; platoon guides go to Port Arms and move to their markers in double time, halt, execute Order Arms; BCs then command <span class="mono">TALUPAD, TO</span>. (Troop entrance is optional — the review may start with troops already in position, using ATTENTION CALL and the TA's command <span class="mono">MGA GABAY SUMAHANAY NA</span>.) The TA designates a base company ("A" BALANGAY) and positions himself between the troop line and the TC; BCs align companies with the base company (<span class="mono">TUNTON SA KANAN</span>), then Company Commanders and Platoon Leaders execute a detailed dressing/alignment sequence squad by squad (using the command <span class="mono">TATAG</span>, prolonged down the line, and short reference steps left/right). Once alignment is complete, the TA reports readiness to the TC ("Ginoo, handa na po ang talupad"), and the TC commands <span class="mono">KALUPUNAN SUMALIKOD KO, KAD</span>.</div></div></div>
+<div class="step"><div class="snum">B</div><div class="sc"><div class="sl">Presentation of Command and Honors</div><div class="sd">When the DG/RO halts at his post, the TC faces about and directs <span class="mono">TANGHAL SANDATA</span>; BCs face about, command <span class="mono">TANGHAL, TA</span>, face front, and salute with their staff. The TC then executes <span class="mono">PUGAY KAMAY, NA</span> with his staff. To end: TC commands staff <span class="mono">BABA KAMAY, NA</span>, faces about, directs <span class="mono">BABA SANDATA</span>; BCs terminate salutes, face about, command <span class="mono">BABA, TA</span>, face front.</div></div></div>
+<div class="step"><div class="snum">C</div><div class="sc"><div class="sl">Inspection</div><div class="sd">DG/RO and MH move forward, halt 3 steps in front of the TC (staff/aides/orderlies normally don't accompany, unless the DG/RO is mounted). TC salutes, reports readiness for inspection; the band plays march music throughout. The TC escorts the DG/RO (center) and MH, positioning himself so the DG/RO is nearest the troops. Inspection may be by vehicle (passing between BC/CC lines) or on foot (passing between the front rank and Platoon Leaders). During trooping the line, Platoon Leaders execute eyes-right/eyes-left as the party passes, and BC/CC face about to witness the party (<span class="mono">KALUPUNAN, SUMALIKOD KO, KAD</span> / <span class="mono">MGA GABAY SUMALIKOD KO, KAD</span>). As the party approaches the Colors, the TC inconspicuously commands <span class="mono">GINOO, ANG MGA WATAWAT, PUGAY KAMAY, NA</span> (Sir, the Colors, Present Arms) six steps before, and <span class="mono">BABA KAMAY, NA</span> immediately after.</div></div></div>
+<div class="step"><div class="snum">D</div><div class="sc"><div class="sl">Honors to the Nation</div><div class="sd">TC faces about, directs <span class="mono">TANGHAL SANDATA</span>; BCs face about, command <span class="mono">TANGHAL, TA</span>, face front, salute. TC faces front, commands <span class="mono">PUGAY KAMAY, NA</span> for himself and staff — signaling the band to play the National Anthem. The inspecting party and military spectators salute throughout. To end: TC commands <span class="mono">BABA KAMAY, NA</span>, faces about, directs <span class="mono">BABA SANDATA</span>; BCs terminate salutes, face about, command <span class="mono">BABA, TA</span>.</div></div></div>
+<div class="step"><div class="snum">E</div><div class="sc"><div class="sl">Pass-in-Review</div><div class="sd">TC brings staff behind him (<span class="mono">KALUPUNAN, SUMALIKOD KO, KAD</span>), then directs <span class="mono">PASA MASID</span>; the band moves to march position. The DG/RO moves forward to acknowledge the troops' salutes as they pass. When the Colors pass the reviewing stand, the band interrupts to play four ruffles and flourishes, and spectators salute. The band plays continuously until the last elements leave the parade ground.</div></div></div>
+<div class="step"><div class="snum">F</div><div class="sc"><div class="sl">Conclusion</div><div class="sd">Once all troops and floats have cleared the ground, the TC and staff move forward facing the grandstand and halt 10 steps in front of the honoree; the TC salutes, and the honoree acknowledges (may or may not thank/congratulate the TC and staff).</div></div></div>
+</div>
+
+<h2>Other Types of Review</h2>
+<h3>1) Review with Decorations, Awards, and Individual Retirement</h3>
+<p>If inspection is omitted, the TC (after order arms following presentation/honors) commands: <span class="mono">ANG MGA TAONG PARARANGALAN AT MGA WATAWAT, PUMAGITNA, KAD</span>. The procedures below give latitude for recognizing one or a group of retirees; when only one distinguished individual is retiring, the local commander may let that individual serve as reviewing officer (positioning in front and center of the Colors when marched forward, returning to the RO's post after the host's remarks).</p>
+<ul>
+<li>Formation of troops, presentation/honors, and inspection remain as previously described.</li>
+<li>When the RO completes inspection and returns to post, the TC commands the same PUMAGITNA directive above.</li>
+<li>Persons to be decorated/retirees form at the ready line behind the Color unit's last rank (or 6 steps left, in line with the RO, joining after the Colors are brought forward), lined up by rank of decoration. On <span class="mono">PUMAGITNA</span>: Left Face. On <span class="mono">KAD</span>: march forward, Column Right (6 steps), Column Left, halt centered on the Colors, Right Face.</li>
+<li>Unit Colors/Guidons being decorated are positioned in a single rank 5 steps in front of the persons to be decorated, highest-ranking decoration on the right.</li>
+<li>The TC's staff executes Right Face on <span class="mono">PUMAGITNA</span>, marches forward for clearance on <span class="mono">KAD</span>, then Left Face.</li>
+<li>The TC marches to a post 5 steps in front of the leading element and commands <span class="mono">DESTAKAMENTO PASULONG, KAD</span> — the band plays march music until the detachment halts before the RO. TC commands <span class="mono">DESTAKAMENTO, TO</span> ~6 steps from the RO, salutes, and reports readiness. The host directs <span class="mono">IHANDOG ANG PAMUNUAN</span>.</li>
+<li>The TC returns to his post, directs <span class="mono">TANGHAL SANDATA</span>; unit commanders salute; TC commands <span class="mono">PUGAY KAMAY, NA</span> — Honors to the Nation are rendered. At the anthem's last note, TC commands <span class="mono">BABA KAMAY, NA</span>, then <span class="mono">TIKAS PAHINGA</span> (unit commanders: <span class="mono">TIKAS, NGA</span>).</li>
+<li>The RO and MH advance to the honorees' line; the (command) sergeant major carries the awards, positioned one step to the rear and a 15-inch step left of the MH. A narrator reads each citation; the RO pins medals or fastens streamers (Guidon bearer executes Present Guidon; Color bearer lowers the Color, gathering it around the staff so it doesn't touch the ground).</li>
+<li>After the last award, the RO's party returns to post. TC commands <span class="mono">TALUPAD HUMANDA</span>, then (loud enough for the band) <span class="mono">MGA WATAWAT SUMALUNAN, KAD</span> — honorees execute Right Face then march via two Column Lefts to a position 6 steps left of the RO, Left Face; the Colors execute reverse march back to their original post.</li>
+<li><strong>Retirement Program</strong> (when applicable): (1) Invocation, (2) Reading of Retirement Orders by the Unit Adjutant, (3) Remarks — if the retiree is senior, the host speaks first then introduces the retiree (TC may be asked for <span class="mono">TIKAS PAHINGA</span>), (4) host directs <span class="mono">PASA MASID</span>, (5) procedures continue as previously described.</li>
+</ul>
+
+<h3>2) Review with Change of Command</h3>
+<div class="box red"><div class="bico">🚩</div><div class="bbd"><div class="btt">Genuine gap in the source</div><p class="btx">The lesson's only content for this type is a cross-reference: <em>"(See Section VI: Change of Command)."</em> No "Section VI: Change of Command" exists anywhere in the 337-slide deck as uploaded — the deck's ceremonies sections run I through V (Review, Parade, Military Honors, Colors, Guard Mounting) and then jump to the Summary/End slides. This is a genuine gap in the material as provided, not something this guide has filled in.</p></div></div>
+
+<h3>3) Review with Retreat</h3>
+<ul>
+<li>Formation of Troops, Presentation of Command and Honors, Inspection, and Honors to the Nation proceed as previously described.</li>
+<li>After Honors to the Nation: TC commands staff to Order Arms, faces about, directs <span class="mono">BABA SANDATA</span> (unit commanders: <span class="mono">BABA, TA</span>); TC then directs <span class="mono">TIKAS PAHINGA</span> (unit commanders: <span class="mono">TIKAS, NGA</span>, then Parade Rest). TC directs <span class="mono">IHUDYAT ANG PAGSILONG</span>, commands staff <span class="mono">TIKAS PAHINGA</span> — the band sounds Retreat once TC/staff are at parade rest.</li>
+<li>At Retreat's conclusion: TC commands staff to attention, faces troops, directs <span class="mono">MGA TALUPAD HUMANDA</span> (unit commanders: <span class="mono">TALUPAD, DA</span>). TC then directs <span class="mono">TANGHAL SANDATA</span> (unit commanders: <span class="mono">TANGHAL, TA</span>), faces the RO, commands staff <span class="mono">PUGAY KAMAY, NA</span> — the signal for the band to play <strong>TO THE COLORS</strong>.</li>
+<li>On a military post, the cannon is fired once (if applicable) immediately after <span class="mono">TANGHAL, TA</span>; the flag is lowered during TO THE COLORS. The RO, staff, and military spectators stand at Attention during Retreat, then salute from the first to the last note of TO THE COLORS.</li>
+<li>On the last note: TC commands <span class="mono">BABA, KAMAY, NA</span>, faces about, directs <span class="mono">BABA SANDATA</span>; once troops execute order arms, TC directs <span class="mono">PASA MASID</span>. Procedures continue as previously described.</li>
+</ul>
+
+<h2>Recitation-Ready Answer <span class="pill pill-added" style="margin-left:8px">Added — Study Aid</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">KEY CONCEPT</div><div class="inm">Review</div><div class="idc"><strong>Plain English:</strong> a formal inspection ceremony showing off a unit's discipline and readiness to a high-ranking guest.<br><strong>vs. Parade (Ch. 05):</strong> in a Review the guest of honor IS the reviewing officer inspecting someone else's unit; in a Parade the commander of the troops is also the one being "reviewed" — no separate outside reviewing officer.<br><strong>Example from the lesson:</strong> a "Review in Honor of ________" for a visiting general.</div></div>
+<div class="isc a"><div class="ico">KEY CONCEPT</div><div class="inm">Troop Commander (TC) vs. Reviewing Officer (RO)</div><div class="idc"><strong>Plain English:</strong> the TC runs and presents the troops; the RO is the visiting VIP who inspects them.<br><strong>vs. Military Host (MH):</strong> the MH is the officer who receives/escorts the RO and briefs them — a third distinct role from both TC and RO.<br><strong>Example from the lesson:</strong> the MH directs the TC to "IHANDOG ANG PAMUNUAN" (present the troops) to the RO.</div></div>
+</div>
+
+<div class="box maroonbox"><div class="bico">💬</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 04</div>
+<div class="qa"><div class="qq">Define a Review.</div><div class="qan">An inspection of troops by a high officer or honored guest, showing the unit's strength, discipline, and preparedness.</div></div>
+<div class="qa"><div class="qq">Whose regulations were AFP reviews patterned after, and why?</div><div class="qan">The United States Army's — due to strong American influence on the Philippine government's education system and military after the Spanish regime.</div></div>
+<div class="qa"><div class="qq">List the seven steps of a standard Review in sequence.</div><div class="qan">Formation of Troops, Presentation of Command and Honors, Inspection, Honors to the Nation, Remarks, Pass-in-Review, Conclusion.</div></div>
+<div class="qa"><div class="qq">What is the order of music when honors include a foreign dignitary's national anthem?</div><div class="qan">Four ruffles and flourishes, the foreign anthem, an approximate three-second drum roll, then the Philippine National Anthem.</div></div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch5">
+<div class="cn">PART II · CEREMONIES · SECTION II</div><div class="ct">Parade</div>
+
+<h2>2.1 Definition</h2>
+<p>A parade is a military ceremony wherein a body of troops is formed before its Commanding Officer or other high-ranking officer for the display of its condition, members, equipment, and proficiency. It includes exercise in the manual of arms, the report on members of the various units present or accounted for, the publication of orders, etc., and ends with a pass in review.</p>
+
+<h2>2.2 Distinctive Features</h2>
+<p>Preparation and organization of troops for a parade are similar to a review's. However, since the commander is also the reviewing officer, the distance between the troops and the commander is greater than for a review. Other features: the band conducts sound off; inspection is omitted; reports are rendered; orders are published; and officers and guidons are marched forward and centered on the commander. If retreat is scheduled, it is conducted <strong>in lieu of</strong> Honors to the Nation — i.e., Retreat itself becomes the Honors to the Nation.</p>
+
+<h2>2.3 Types of Parades and Their Sequence</h2>
+<h3>a. Ceremonial Battalion Parade</h3>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Formation of Troops</div><div class="sd">Units move to the ready line in the most convenient manner; the commander prescribes the assembly area, routes, sequence, and arrival time, taking his post with staff prior to Adjutant's Call. Moving from the ready line to the final line follows the same procedure as a review.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Sound Off</div><div class="sd">Once the battalion is formed, aligned, and at parade rest on the final line, the Adjutant directs <span class="mono">IHUDYAT</span> and assumes parade rest facing the formation. The band plays three sound-off chords, then moves forward playing a march, executes a left turn across the front of the troops, countermarches at the left of the line back to the right, executes a right turn, countermarches again, halts at its original position, and plays three sound-off chords once more. (Trooping the line by the band may be skipped indoors, in inclement weather, or when space is limited.) <em>If Retreat is scheduled, it is integrated here:</em> the Adjutant directs <span class="mono">IHUDYAT ANG PAGSILONG</span>, returns to parade rest; the band plays Retreat (trumpet section); the Adjutant comes to Attention, directs <span class="mono">MGA BALANGAY HUMANDA</span> then <span class="mono">TANGHAL SANDATA</span>, faces about and salutes — the band plays TO THE COLOR or the NATIONAL ANTHEM. At the conclusion, the Adjutant comes to order, faces about, directs <span class="mono">BABA SANDATA</span>; the commander and staff mirror PARADE REST/ATTENTION/PRESENT ARMS/ORDER ARMS with the Adjutant.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Honors to the Nation</div><div class="sd">If Retreat was not conducted: the Adjutant (after sound off) comes to attention and directs <span class="mono">MGA BALANGAY HUMANDA</span> at <span class="mono">TANGHAL SANDATA</span>; unit commanders come to attention, face about, command <span class="mono">BALANGAY, DA</span> then <span class="mono">TANGHAL, TA</span>, face front, salute. The Adjutant then salutes and the band plays the NATIONAL ANTHEM; the Battalion Commander and staff execute <span class="mono">PUGAY KAMAY, NA</span> on the first note. Military spectators rise and salute (civilian equivalent).</div></div></div>
+<div class="step"><div class="snum">4</div><div class="sc"><div class="sl">Presentation</div><div class="sd">On completion of the anthem: BC/staff execute <span class="mono">BABA KAMAY, NA</span>; the Adjutant terminates his salute, faces about, directs <span class="mono">BABA SANDATA</span>; unit commanders terminate salutes, command <span class="mono">BABA, TA</span>, face front. The Adjutant faces about, salutes, and reports readiness ("Ginoo, handa na po ang patikas"). The BC returns the salute and commands <span class="mono">SUMALUNAN KA</span> — the Adjutant trots forward, passing the BC's right, taking his post as the right-flank staff member.</div></div></div>
+<div class="step"><div class="snum">5</div><div class="sc"><div class="sl">Manual of Arms</div><div class="sd">The BC commands manual-of-arms movements as desired: <span class="mono">HUMANDA SA PAGSASANAY SA PAGHAWAK NG SANDATA</span>, then in sequence: <span class="mono">SA KANANG BALIKAT, TA; KALIWANG BALIKAT, TA; AGAP, TA; BABA, TA; SIYASAT, TA; BABA, TA</span>.</div></div></div>
+<div class="step"><div class="snum">6</div><div class="sc"><div class="sl">Report</div><div class="sd">The BC directs <span class="mono">TANGGAPIN ANG ULAT</span>. The Adjutant trots forward, halts at the center, directs <span class="mono">MAG-ULAT</span>. Unit commanders, right to left, salute and report ("Ginoo, ___ balangay, narito na po lahat o napag-alaman"); the Adjutant returns each salute, then faces front, salutes, and reports the consolidated status to the BC.</div></div></div>
+<div class="step"><div class="snum">7</div><div class="sc"><div class="sl">Publishing of Orders</div><div class="sd">The BC returns the salute and directs <span class="mono">IPAHAYAG ANG KAUTUSAN</span>. The Adjutant faces about and reads the orders: <span class="mono">MAKINIG SA KAUTUSAN, ANG MGA NAKATALAGA NGAYON, PUNONG PANLARANGAN (name), PUNONG TAGAPANGALAGA (name), SA UTOS NI (name), MGA PINUNO, HUMARAP AT PUMAGITNA, KAD</span>.</div></div></div>
+<div class="step"><div class="snum">8</div><div class="sc"><div class="sl">Officers Center March</div><div class="sd">At the last note of PUMAGITNA, all officers (Company Commanders to Platoon Leaders, including Guidon Bearers) execute Center Face; on <span class="mono">KAD</span> they march to the center and halt at their markers. The senior Company Commander commands <span class="mono">MGA PINUNO, RAP, KAD</span> — officers face the BC's position and shove off. About 12 paces from the BC, the senior CC commands <span class="mono">MGA PINUNO, TO</span>; officers count silently, salute at count 4, hands down at count 7 (Guidon Bearers: salute at 3, return at 6). The BC acknowledges and commands <span class="mono">MGA PINUNO, SUMALUNAN, KAD</span> — the group about-faces and returns; near the line, the senior CC commands <span class="mono">MGA PINUNO, TO, RAP, KAD</span> to halt, face their respective positions, and shove off, halting to occupy their positions and face front.</div></div></div>
+<div class="step"><div class="snum">9</div><div class="sc"><div class="sl">Pass in Review</div><div class="sd">Once all officers have returned and the band has stopped, the BC directs <span class="mono">PASA MASID</span>. The battalion passes in review as in a Review (Ch. 04), except units render honors 6 steps left of the Troop Commander/staff and terminate honors 6 steps to the right; the TC and staff then act as the reviewing party at their field location. Spectators may rise and applaud once the parade is complete.</div></div></div>
+</div>
+
+<h3>b. Ceremonial Brigade Parade</h3>
+<p>The brigade is ordinarily formed in line with battalions in mass formation. The parade is the same as the Ceremonial Battalion Parade, with these exceptions:</p>
+<ul>
+<li>The Brigade Commander is substituted for the Battalion Commander, and "brigade" for "battalion," throughout.</li>
+<li>The band passes in front of the line of Battalion Commanders during sound off, across the front of the brigade.</li>
+<li>Battalions execute present arms, order arms, parade rest, and attention on their own commanders' commands; reports are made by Battalion Commanders instead of Company Commanders.</li>
+<li>On <span class="mono">MGA PINUNO, PUMAGITNA, KAD</span>: Battalion Commanders, staff, and Colors close on the line of Battalion Commanders/staffs; Company Commanders face half right/left in marching and close 4 steps to the rear of the battalion color; Guidon Bearers face half right/left and close 4 steps behind the Company Commanders; other officers face the Guidon Bearers.</li>
+<li>Once closed and faced front, the senior Battalion Commander commands <span class="mono">PASULONG, KAD</span> (the center officer of the leading rank is the guide); the group halts with the leading rank 6 steps from the Brigade Commander, who commands <span class="mono">TANGHAL, TA</span> and <span class="mono">HANDA, RAP</span>.</li>
+<li>The Brigade Commander commands <span class="mono">MGA PINUNO, SUMALUNAN (pause), KAD</span> — Colors reverse march, all others about-face, then march forward; the senior Battalion Commander commands <span class="mono">MGA PINUNO, TO</span> (restoring the original line), then <span class="mono">SUMALUNAN (pause), KAD</span> — Battalion Commanders/staff face outward, the battalion color guard wheels and marches back to its original position, and the other officers/Guidon Bearers return to their original positions.</li>
+</ul>
+
+<h3>c. Street Parade</h3>
+<p>Troops are formed and marched in the most convenient manner; a street parade may include military vehicles. Towed or transported weapons add drama; cargo vehicles are included only to increase the size of the display. Practical formations: columns of threes and fours; two or more columns of threes/fours abreast; mass formation. Vehicles move in a single column of twos, threes, or fours abreast, as street width permits. To keep military units in the same cadence, units should not march between two bands.</p>
+
+<h3>d. Evening Parade</h3>
+<p>Organization — the ceremonial elements are composed of: one brigade of two battalions (two companies of two platoons each); a band of not less than 30 members with a band conductor; two color bearers (for the National and unit colors) and two color guards.</p>
+
+<h2>Recitation-Ready Answer <span class="pill pill-added" style="margin-left:8px">Added — Study Aid</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">KEY CONCEPT</div><div class="inm">Parade</div><div class="idc"><strong>Plain English:</strong> a formal display of a unit's condition, equipment, and skill in front of its own commander, ending in a pass-in-review.<br><strong>vs. Review:</strong> in a Parade the commander of the troops IS the one being shown off to (himself as reviewing officer, greater distance kept); in a Review, an outside dignitary inspects someone else's troops.<br><strong>Example from the lesson:</strong> the Ceremonial Battalion Parade's 9-step sequence, ending in Pass in Review.</div></div>
+<div class="isc a"><div class="ico">KEY CONCEPT</div><div class="inm">Sound Off</div><div class="idc"><strong>Plain English:</strong> the band's ceremonial march across the front of the formation and back, bookended by three chords.<br><strong>vs. Retreat:</strong> Sound Off is a parade-specific musical procedure; Retreat is the end-of-day flag-lowering ceremony that can be folded into the Sound Off step when scheduled.<br><strong>Example from the lesson:</strong> band plays 3 chords, marches left across the front, countermarches right, plays 3 chords again.</div></div>
+</div>
+
+<div class="box maroonbox"><div class="bico">💬</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 05</div>
+<div class="qa"><div class="qq">Define a Parade, and name what it always ends with.</div><div class="qan">A ceremony where troops are formed before their own Commanding Officer to display condition, membership, equipment, and proficiency; it always ends with a pass in review.</div></div>
+<div class="qa"><div class="qq">What replaces Honors to the Nation when Retreat is scheduled in a parade?</div><div class="qan">Retreat itself is conducted in lieu of Honors to the Nation.</div></div>
+<div class="qa"><div class="qq">List the 9 steps of the Ceremonial Battalion Parade.</div><div class="qan">Formation of Troops, Sound Off, Honors to the Nation, Presentation, Manual of Arms, Report, Publishing of Orders, Officers Center March, Pass in Review.</div></div>
+<div class="qa"><div class="qq">What two substitutions turn a Ceremonial Battalion Parade into a Ceremonial Brigade Parade?</div><div class="qan">Brigade Commander for Battalion Commander (and "brigade" for "battalion"), and the band passes in front of the Battalion Commanders' line during sound off instead.</div></div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch6">
+<div class="cn">PART II · CEREMONIES · SECTION III</div><div class="ct">Military Honors</div>
+
+<h2>3.1 General</h2>
+<p>In the Continental Army, honor guards were used as protective measures and as a means of showing the improvement in discipline of the newly formed army — likely selected for size, strength, and proven combat prowess. Today, the honor guard formation is a special courtesy to visiting dignitaries. Members are selected for soldierly appearance and superior discipline. An Honor Guard consists of a band, Colors, salute battery (when available and appropriate), and a formation of troops; it renders personal honors to persons with high military or civilian rank/position upon arrival or departure from a military command. <strong>Honor guards are not a substitute</strong> for the ceremonies appropriate in a review or parade.</p>
+<p>An Honor Guard should not be so large as to compromise the exceptional standards required of honor guards. Minimum size: <strong>company honor guard = 2 platoons</strong>; <strong>battalion honor guard = 2 companies</strong>. Uniforms are those prescribed by the receiving unit's Commander. A designated <strong>Military Host</strong> takes part in the ceremony, briefing the honoree on the sequence of events and actions to take place. Prior to the honoree's arrival, the honor guard commander positions the band, troops, and salute battery from right to left, in that order; troops are formed in line of companies or platoons with the Colors at the center. The salute battery may be located separately when conditions dictate, but its control and purpose must not be impaired.</p>
+
+<h2>3.2 Definition of Terms <span class="pill pill-lesson" style="margin-left:8px">From the Lesson (p. 193–194)</span></h2>
+<div class="tw"><table>
+<thead><tr><th>Term</th><th>Definition</th></tr></thead>
+<tbody>
+<tr><td>Cordon Honors</td><td>A type of honors rendered to a guest in lieu of, or in addition to, full military honors — may take the form of foyer, ramp/plane-side, concourse, or side-boys honors.</td></tr>
+<tr><td>Dais</td><td>An elevated platform where the honoree and the military host stand, for distinction and prominence.</td></tr>
+<tr><td>Honoree</td><td>A high-ranking local/foreign military officer or civilian to whom honors are accorded.</td></tr>
+<tr><td>Honor Guard</td><td>A band, Colors, salute battery (when available/appropriate), and a formation of troops tasked to render personal honors upon arrival/departure from a military command or saluting base/station.</td></tr>
+<tr><td>Honors</td><td>Ceremonies rendered to local/foreign military officers and civilian dignitaries as a gesture of courtesy and tribute to rank and/or position.</td></tr>
+<tr><td>Inspection</td><td>The close examination or observance of the honor guard by the honoree.</td></tr>
+<tr><td>Military Host</td><td>An officer designated to escort and receive the honoree, and advise him of actions during the conduct of honors.</td></tr>
+<tr><td>Ruffle and Flourish</td><td>A ruffling drumbeat and fanfare played in honor of a high official at a ceremonial reception.</td></tr>
+<tr><td>Saluting Station</td><td>Camps, posts, stations, national shrines, and other places where firing of a gun salute is authorized.</td></tr>
+<tr><td>Two-man Guard</td><td>A type of honors, consisting of two soldiers and an officer, given to civilian or military dignitaries for practical purposes.</td></tr>
+</tbody></table></div>
+
+<h2>3.3 Policies</h2>
+<h3>a. Personal Honors — Military Officers</h3>
+<ul>
+<li>Only AFP general or flag-rank officers in active service are entitled to military honors, unless otherwise directed by the CSAFP (Chief of Staff, AFP).</li>
+<li>A retired general/flag officer making an official visit is likewise accorded appropriate honors.</li>
+<li>Newly-promoted generals are rendered full military honors only at GHQ, their respective Major Service camps, and their own headquarters.</li>
+<li>Full military honors are no longer given to commanders going to another place/unit located within their own headquarters in the same camp/station — cordon honors are appropriate instead.</li>
+<li>Civilian dignitaries making official visits are accorded appropriate honors during arrival and departure from a military installation/station.</li>
+<li>When two or more persons entitled to honors arrive/depart at the same time, each is honored in turn if they arrived successively — but once the most senior guest has been accorded honors, no honors are accorded to newly arrived junior guests.</li>
+<li>If a person entitled to honors arrives while honors are already in progress, the ceremony continues, but the senior officer receives the departure honors.</li>
+<li>If the honoree has a personal flag, the flag bearer positions 3 steps behind the honoree, follows during inspection, and returns to his original position after.</li>
+<li>No honors are rendered by troops in trenches, nor by troops directly engaged in war campaigns, exercises, or disaster relief operations.</li>
+<li>Guns are never fired more than once per calendar year for the same person at the same place, except for a President, Head of State, or when International Protocol requires.</li>
+<li>The national flag must be at full staff whenever honors are being accorded.</li>
+<li>No military honors are accorded during a national holiday, except for a President/Head of State or when International Protocol requires.</li>
+<li>No honors are accorded after flag retreat and before flag raising, except for the President or his designated representative.</li>
+<li>The Philippine National Police and Philippine Coast Guard are <strong>not</strong> entitled to military honors.</li>
+</ul>
+<div class="box red"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Likely typo in the source (p. 197)</div><p class="btx">The lesson states: <em>"If the honoree is a President or a Head of State, the honoree must be positioned at least six <strong>inches</strong> right forward of the host dais."</em> Every comparable positioning rule elsewhere in this same lesson is given in steps or paces (3 steps, 6 steps, 10 steps, 18 steps, etc.) — six inches is implausibly close for positioning a person relative to a dais, and reads like a unit typo (most likely "six <strong>steps</strong>" or "six <strong>feet</strong>" was intended). Presented here exactly as written, flagged so you don't take "six inches" as a deliberately precise, verified figure.</p></div></div>
+<div class="box red"><div class="bico">🚩</div><div class="bbd"><div class="btt">Incomplete sentence in the source (p. 207)</div><p class="btx">Under "How Honors Are Rendered — The President," item (e) reads in full: <em>"In case the President will be rendered full military honors in the place of engagement, the President will be given cordon honors at the"</em> — the sentence simply stops there in the source slide. This is reproduced exactly as given; the missing ending has not been completed or guessed at.</p></div></div>
+
+<h3>b. Unit Honors</h3>
+<ul>
+<li><strong>Local Deployment:</strong> a ceremony is conducted to welcome/send off units arriving/departing for deployment outside the unit's AOR (Area of Responsibility) for a period of not less than six months. The Commander or his representative (at least two levels up) is responsible for welcoming/sending off units under his jurisdiction.</li>
+<li><strong>Foreign Deployment:</strong> the Major Service concerned is responsible for the ceremony honoring units arriving/departing for overseas deployment; the Major Service Commander welcomes/sends off his command's units. Spouses/parents of deployed personnel are invited to send off or present leis. The Chief of Staff, AFP, or a civilian dignitary may be invited to welcome/send off units.</li>
+</ul>
+
+<h3>c. Gun Salute</h3>
+<ul>
+<li>Under the direction of a commissioned officer.</li>
+<li>The National Flag is always at full staff when the salute is rendered.</li>
+<li>Fired only during arrival/departure honors, at these saluting stations/bases:</li>
+</ul>
+<div class="tw"><table>
+<thead><tr><th>Category</th><th>Locations</th></tr></thead>
+<tbody>
+<tr><td>Military Camps/Bases</td><td>Camp General Emilio Aguinaldo (GHQ, AFP); Fort Andres Bonifacio (HQ Philippine Army, HQ Philippine Marines); Villamor Air Base (HQ Philippine Air Force, Kalayaan Lounge); Fort Abad (HQ Philippine Navy); AFP Unified Command Headquarters; Fort Del Pilar (HQ PMA)</td></tr>
+<tr><td>National Shrines</td><td>Rizal Park; Libingan ng mga Bayani; Aguinaldo Shrine; Corregidor National Shrine <em>(source spells it "Corrigidor")</em>; Dambana ng Kagitingan; Capas National Shrine; Los Veteranos National Shrine</td></tr>
+<tr><td>Other Places</td><td>Malacañan Palace; Philippine International Airports, as directed by the CSAFP</td></tr>
+</tbody></table></div>
+<p>The <strong>national salute</strong> is 21 guns fired successively, rendered in honor of: the National Flag; the President of the Philippines; Heads of State; and Former Presidents. During National Heroes Day, the National Flag is displayed at half-staff from reveille to midday at all posts, camps, bases, and stations. The band or field music is played prior to the rendering of honors.</p>
+
+<h3>d. How Honors Are Rendered — The President</h3>
+<ul>
+<li>The President is received at the salute base or the building where he will be entertained.</li>
+<li>A 21-gun salute is fired during arrival/departure honors.</li>
+<li>Outside military camps, without military units present: a two-man Honor Guard stands at the bottom of the aircraft steps, led by the most senior military commander in the area. The left man commands <span class="mono">PUGAY KAMAY, NA</span> (without arms) or <span class="mono">TANGHAL, TA</span> (with arms) as the President approaches, and <span class="mono">BABA KAMAY, NA</span> / <span class="mono">BABA, TA</span> after he passes.</li>
+<li>If the President already received full military honors at the point of disembarkation, he is not given full military honors again at the area he is going to.</li>
+<li>If full military honors will be rendered at the President's place of engagement, cordon honors are given at [sentence incomplete in source — see flag above].</li>
+<li>If the President arrives in front of troops already massed for a parade/review in his honor, full military honors are waived to avoid redundancy; cordon honors are appropriate instead. If the parade/review is at another location, military honors are given.</li>
+<li>Unless other honors are given, a two-man honor guard is always present at the bottom of the aircraft, saluting as the President steps down or boards.</li>
+<li>During a presidential official visit to Congress (e.g., State of the Nation Address), the President is accorded cordon honors before entering.</li>
+<li>During Independence Day celebrations, the President is accorded full military honors in front of the grandstand.</li>
+<li>If the President/Head of State exits via the terminal tube, cordon honors are positioned to render honor.</li>
+</ul>
+<p><strong>To certain dignitaries</strong> — a president of a foreign republic or a foreign sovereign is rendered the same honors as the Philippine President, except that his country's national anthem is played first, followed by the Philippine National Anthem.</p>
+<p><strong>To Ex-Presidents and Vice Presidents</strong> — the same honors as the President, except the flourishes are followed by a march instead of the National Anthem; the Vice President receives a 19-gun salute. If no band is present, bugles sound To the Colors after the ruffles and flourishes.</p>
+<p><strong>To Ambassadors</strong> — foreign Ambassadors are given one military honors during their stay, during presentation of credentials at Malacañan Palace.</p>
+
+<h3>e. Salutes and Honors With Music — Civilian Dignitaries</h3>
+<div class="tw"><table>
+<thead><tr><th>Rank</th><th>Gun Salute — Arrival</th><th>Gun Salute — Departure</th><th>Ruffles &amp; Flourishes</th><th>Music</th><th>Size</th></tr></thead>
+<tbody>
+<tr><td>President</td><td>21</td><td>21</td><td>4</td><td>National Anthem</td><td>Bn</td></tr>
+<tr><td>President-elect</td><td>21</td><td>21</td><td>4</td><td>National Anthem</td><td>Bn</td></tr>
+<tr><td>Ex-President</td><td>21</td><td>21</td><td>4</td><td>March</td><td>Bn</td></tr>
+<tr><td>Sovereign / Head of State (foreign country)</td><td>21</td><td>21</td><td>4</td><td>National Anthem</td><td>Bn</td></tr>
+<tr><td>Head of Government</td><td>19</td><td>19</td><td>4</td><td>March</td><td>Bn</td></tr>
+<tr><td>Vice President</td><td>19</td><td>19</td><td>4</td><td>March</td><td>Bn</td></tr>
+<tr><td>Chief Justice</td><td>19</td><td>19</td><td>4</td><td>March</td><td>Bn</td></tr>
+<tr><td>Senate President</td><td>19</td><td>19</td><td>4</td><td>March</td><td>Bn</td></tr>
+<tr><td>Speaker of the House of Representatives</td><td>19</td><td>19</td><td>4</td><td>March</td><td>Bn</td></tr>
+<tr><td>Secretary of National Defense</td><td>19</td><td>19</td><td>4</td><td>March</td><td>Bn</td></tr>
+<tr><td>Undersecretary of National Defense</td><td>17</td><td>17</td><td>4</td><td>March</td><td>Coy</td></tr>
+</tbody></table></div>
+<p style="font-size:12px;color:var(--t3)">Note (source, p. 214): a provincial governor/municipal mayor hosting a military camp will no longer be given arrival/departure honors during his visit to that camp/base by the unit concerned.</p>
+
+<h3>f. Salutes and Honors With Music — Military Officers</h3>
+<div class="tw"><table>
+<thead><tr><th>Rank</th><th>Gun Salute — Arrival</th><th>Gun Salute — Departure</th><th>Ruffles &amp; Flourishes</th><th>Music</th><th>Size</th></tr></thead>
+<tbody>
+<tr><td>Chief of Staff</td><td>19</td><td>19</td><td>4</td><td>Gen. March</td><td>Bn</td></tr>
+<tr><td>Vice Chief of Staff</td><td>19</td><td>19</td><td>4</td><td>Gen. March</td><td>Bn</td></tr>
+<tr><td>General</td><td>17</td><td>17</td><td>4</td><td>Gen. March</td><td>Bn</td></tr>
+<tr><td>Lt. General</td><td>15</td><td>15</td><td>3</td><td>Gen. March</td><td>Bn</td></tr>
+<tr><td>Major Service Commander</td><td>15</td><td>15</td><td>3</td><td>Gen. March</td><td>Bn</td></tr>
+<tr><td>Major General</td><td>13</td><td>—</td><td>2</td><td>Gen. March</td><td>Coy</td></tr>
+<tr><td>Brigadier General</td><td>11</td><td>—</td><td>1</td><td>Gen. March</td><td>Coy</td></tr>
+</tbody></table></div>
+
+<h2>3.4 Procedures</h2>
+<h3>a. Arrival and Departure Honors (Individual) — 1. Full Military Honors</h3>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Reception</div><div class="sd">The honor guard battalion starts at parade rest. The Honor Guard Commander (HGC) brings the unit to attention as the honoree arrives; the military host meets him, escorts him in front of the battalion, and leads him to the dais.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Presenting sword and music</div><div class="sd">The HGC faces about, commands <span class="mono">TANGHAL, TA</span>, faces about again, and presents sword with his staff while the honoree/host salute. Ruffles and flourishes are played, followed by appropriate music (General's March or National Anthem). Any gun salute begins with the first note of the ruffles and is evenly distributed until the music's last note.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Inspection of the Honor Guard</div><div class="sd">After the music, the HGC carries sword with staff, faces about, commands <span class="mono">BABA, TA</span>, faces about, and salutes the honoree ("Handa na po ang tanod pandangal upang libutin"). The honoree acknowledges, and the HGC escorts him and the host for inspection — presenting sword 6 paces before the Colors (<span class="mono">TANGHAL, TA</span>) and carrying sword 3 steps after (<span class="mono">BABA, TA</span>) — continuing to the last elements, then reeling off to his position in front of his staff while the honoree/host return to the dais.</div></div></div>
+<div class="step"><div class="snum">4</div><div class="sc"><div class="sl">Closing honors</div><div class="sd">The HGC faces the battalion, commands <span class="mono">TANGHAL, TA</span>, faces about, presents sword with his staff; the honoree acknowledges and the HGC/staff carry sword. The HGC faces about, commands <span class="mono">BABA, TA</span>, faces about, and salutes the honoree, saying "Tapos na po ang parangal" (the ceremony is finished).</div></div></div>
+</div>
+<p>If there is more than one honoree, the most senior takes the dais (or, if all are the same rank, one occupies the dais and the rest align beside him, joining the inspection behind the main honoree). During inclement weather, arrival/departure honors are waived except for the President/Head of State, who receive cordon honors if practicable.</p>
+
+<h3>a. Arrival and Departure Honors (Individual) — 2. Cordon Honors / Honor Guard</h3>
+<p>Used in addition to a scheduled honor guard ceremony, during arrival/departure of the President and certain dignitaries, welcoming/farewell to distinguished visitors, and visiting military camps — a select group of soldiers honoring and providing security at the immediate site. May also be used for other government/military officials and foreign dignitaries where practicable. The honor cordon normally consists of <strong>two squads</strong>, a cordon commander, and a host; squad size equals the number of gun salutes the honoree is entitled to. The commander may designate a band, Colors, and distinguishing flags when appropriate.</p>
+<div class="isg">
+<div class="isc"><div class="ico">ARRIVAL</div><div class="inm">Honor Cordon — Arrival</div><div class="idc">The cordon marches to a position near the exit in two columns, centered, faced to center, dressed ~3 steps apart. As the guest and greeting party approach within 3 steps of the host, the cordon commander commands <span class="mono">TANGHAL, TA</span> (with arms) or <span class="mono">PUGAY KAMAY, NA</span> (without arms) and the cordon salutes together. Once the party clears the formation, the commander commands <span class="mono">BABA, TA</span> / <span class="mono">BABA KAMAY, NA</span> and the cordon orders arms.</div></div>
+<div class="isc a"><div class="ico">DEPARTURE</div><div class="inm">Honor Cordon — Departure</div><div class="idc">Same formation as arrival. At the guest/host's approach (~3 steps), the commander commands <span class="mono">TANGHAL, TA</span> and the cordon presents arms. When the guest has entered the conveyance, the commander commands <span class="mono">BABA, TA</span> and holds until departure (or, for an aircraft, until the honoree boards). If a band and Colors are present, the organizational color dips in salute when the guest is within 6 steps, returning to carry after he passes.</div></div>
+</div>
+
+<h3>b. Arrival and Departure Honors (Unit)</h3>
+<p>The unit forms in mass in front of the grandstand. When the Guest of Honor/Speaker (GOH) or representative arrives, the Unit Commander (UC) brings the troops to attention; once the GOH is seated, the UC brings the troops to present arms and presents them to the GOH, who acknowledges — the band plays appropriate march music (the grandstand stands). After the music, the UC returns the troops to attention; the Chaplain leads the invocation (everyone is seated afterward).</p>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Awarding</div><div class="sd">The emcee announces the start; the UC and unit colors move forward and halt while the GOH descends the grandstand (assisted by the host) to present the award. The adjutant reads the citation before it's presented. The GOH/host return to the grandstand; the UC and unit color return to their former positions.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Speeches</div><div class="sd">The GOH is introduced by the host before delivering a welcome address. If the troops were previously ordered to parade rest, the UC brings them to attention after the address.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Recessional</div><div class="sd">The UC and troops sing "Pilipinas Kong Mahal"; the band plays appropriate recessional music. Spouses/parents proceed to present leis to the officers and enlisted men, then join their relatives for dismissal.</div></div></div>
+</div>
+<p><em>Note (source):</em> the send-off ceremony for a unit departing for overseas deployment/duty follows the same procedure as the welcome ceremony, except awarding and lei presentation are omitted, and the National Anthem is played (instead of a march) during the presentation of troops.</p>
+
+<h2>Recitation-Ready Answer <span class="pill pill-added" style="margin-left:8px">Added — Study Aid</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">KEY CONCEPT</div><div class="inm">Honors vs. Cordon Honors</div><div class="idc"><strong>Plain English:</strong> "Honors" is the general term for any ceremony given as a tribute to rank/position; "Cordon Honors" is one specific, smaller-scale type given at an arrival/departure point (like an airport), instead of or alongside a full honor guard ceremony.<br><strong>vs. Full Military Honors:</strong> Full Military Honors involves an entire honor guard battalion with sword presentation and inspection; Cordon Honors is just two squads lining an exit route.<br><strong>Example from the lesson:</strong> the President receiving cordon honors before entering Congress for the SONA.</div></div>
+<div class="isc a"><div class="ico">KEY CONCEPT</div><div class="inm">Gun Salute Count by Rank</div><div class="idc"><strong>Plain English:</strong> the number of times a saluting gun fires scales with how senior the honoree is.<br><strong>vs. Ruffles &amp; Flourishes count:</strong> gun-salute counts range widely (11 to 21) by rank, while ruffles-and-flourishes counts are a much smaller range (1 to 4).<br><strong>Example from the lesson:</strong> the President gets 21 guns and 4 ruffles/flourishes; a Brigadier General gets 11 guns and 1 ruffle/flourish.</div></div>
+</div>
+
+<div class="box maroonbox"><div class="bico">💬</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 06</div>
+<div class="qa"><div class="qq">Define Cordon Honors.</div><div class="qan">A type of honors rendered to a guest in lieu of, or in addition to, full military honors — may take the form of foyer, ramp/plane-side, concourse, or side-boys honors.</div></div>
+<div class="qa"><div class="qq">Who is entitled to a 21-gun national salute?</div><div class="qan">The National Flag; the President of the Philippines; Heads of State; and Former Presidents.</div></div>
+<div class="qa"><div class="qq">What is the minimum size of a battalion honor guard, and a company honor guard?</div><div class="qan">Battalion honor guard = 2 companies. Company honor guard = 2 platoons.</div></div>
+<div class="qa"><div class="qq">Which two organizations are explicitly NOT entitled to military honors under this lesson's policies?</div><div class="qan">The Philippine National Police and the Philippine Coast Guard.</div></div>
+<div class="qa"><div class="qq">How many guns and ruffles/flourishes does a Vice President receive, and what music plays instead of the National Anthem?</div><div class="qan">19 guns, 4 ruffles and flourishes, and a march plays instead of the National Anthem.</div></div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch7">
+<div class="cn">PART II · CEREMONIES · SECTION IV</div><div class="ct">Colors</div>
+
+<h2>4.1 Definitions</h2>
+<div class="isg">
+<div class="isc"><div class="ico">PLURAL</div><div class="inm">Colors</div><div class="idc">The national and positional or organizational colors, together.</div></div>
+<div class="isc a"><div class="ico">SINGULAR</div><div class="inm">Color</div><div class="idc">When used singularly, refers to the National Color (National Flag).</div></div>
+</div>
+
+<h2>4.2 The Colors and Color</h2>
+<p>Only the National Color is entitled to a salute by individuals or units. In garrison, the Colors are normally kept at the office/headquarters of the commanding officer, escorted to and from it by the Color Guard. In the field, they are displayed from reveille to retreat in front of the commanding officer's tent/command post; during inclement weather they are cased and placed in the CO's office, headquarters, or tent.</p>
+<p>Individuals or units render honors when passing or being passed by uncased Colors. When not part of a formation, individuals salute at a 6-step distance and hold the salute until 6 steps beyond; the individual in charge of a formation calls it to <span class="mono">HUMANDA</span> and <span class="mono">TANGHAL, TA</span>. The Colors may be carried in any formation with two or more companies, honor guards, or representative elements. Traditionally, the command Sergeant Major is responsible for safeguarding, caring for, and displaying the organizational color, and for selecting, training, and overseeing the performance of Color bearers and guards. The regulation for individual/distinguishing flags of general officers and other dignitaries is the same as for organizational colors.</p>
+<p>During a review, parade, or honor guard ceremony, only one National Color should be present, in the honor position, carried on marching at the right of positional/organizational colors. The organizational color of the senior headquarters sponsoring the ceremony is carried to the left of the Major Service flag; colors belonging to the headquarters conducting the ceremony are positioned in line with and centered on the command. Subordinate color-bearing organizations ordinarily carry only their own organizational colors (4 steps to the rear of their staff). When the Colors form en masse, the National Color is placed front and center of the Color guards, with organizational colors immediately behind, arranged by unit seniority.</p>
+
+<h2>4.3 Salutes</h2>
+<p>The <strong>National Color renders no salute (dip)</strong>. The organizational color salutes (dips) in all military ceremonies while the National Anthem, To the Color, or a foreign national anthem is played, and when rendering honors to the organizational commander, an individual of higher grade (including foreign dignitaries of higher grade), and other specified cases. When marching, organizational colors salute 6 steps before the person entitled to the salute and return to carry 6 steps after.</p>
+
+<h2>4.4 Color Guard</h2>
+<p>The Color Guard consists of two sergeants and two privates; selection is considered an honor. The Senior (Color) Sergeant carries the National Color and commands the Color Guard, giving the necessary commands for movements and honors. When battalions/brigades carry organizational colors as part of a larger command, the color is carried 4 steps to the rear of the staff — a sergeant acts as Color bearer, with two experienced privates (selected by the battalion/brigade command Sergeant Major) as Color Guard members.</p>
+<p>The Color guards form and march in one rank at close interval, bearer in the center; they do not execute Rear March or About Face, marching at Right Shoulder Arms and executing facing movements by wheeling right or left (command: <span class="mono">IKOT SA KANAN (KALIWA), NA</span> — the guard nearest the turn direction pivots in place while others shorten steps and turn in an arc to stay abreast; each then marks time until <span class="mono">TILAP, TO</span> or <span class="mono">PASULONG, KAD</span>).</p>
+<p>Passing in review, the Color guards execute Eyes Right at the prescribed saluting distance on the Color sergeant's command (<span class="mono">HANDA TINGIN SA KANAN, NA</span> / <span class="mono">HANDA RAP</span>); the organizational color salutes at NA and resumes carry at RAP — the guard on the right flank does not execute Eyes Right. During ceremonies, color guards stay at Right Shoulder Arms except when presenting arms. If a salute is warranted outside a ceremony, the Color Sergeant commands <span class="mono">PUGAY, WATAWAT</span> (return to carry: <span class="mono">HANDA DALA, WATAWAT</span>). In formation with the Color Company (not during a ceremony), the color bearers execute at ease/rest with the staff vertical, while color guards execute Right Shoulder, Order Arms, and Present Arms with the Color company; when Colors are not forward and remarks are given, guards/bearers execute Order Arms and Parade Rest on the Color Company Commander's command, and are at Parade Rest whenever the unit is At Ease. Color guard uniform matches that of the participating troops.</p>
+
+<h2>4.5 Receiving or Dismissing the Colors by the Color Guard</h2>
+<p>Receiving uncased Colors on display in the commander's office: the Color Sergeant commands <span class="mono">TANGHAL, TA</span> and <span class="mono">HANDA, RAP</span>. Upon completion of Order Arms, the color bearers (without command) secure the Colors; the Color Guard files outside (guard, National Color, organizational color, guard), reforms in line, guards execute Right Shoulder Arms, bearers assume carry position. Dismissing the Colors follows the same procedure, except the Colors are placed back in their stands before executing Present Arms.</p>
+
+<h2>4.6 Organizational</h2>
+<p>The Color Guard consists of <strong>five men</strong>: the most senior is the Color Sergeant (officer), who commands the guards. The next two senior are the color bearers (unarmed); the two most junior are color guards (armed with pistols or rifles). The senior color bearer carries the National Colors; the junior carries the organizational colors. When only the National Colors are carried, the Color Guard has one color bearer. When organizational colors are carried alongside, extra bearers are added in order of color precedence: <strong>PHIL ARMY, PHIL AIR FORCE, PHIL NAVY, PHIL MARINE CORPS</strong>.</p>
+
+<h2>4.7 Formation</h2>
+<p>Color guards form and march in one rank at close interval; the <strong>National Color bearer is always on the right</strong>, the organizational color bearer to his left, and a color guard on each side. The Color Guard does not execute Rear March, facing movements, flanking, color movement, or fix bayonets — when its attached unit executes such commands (except fix bayonets), the senior color bearer orders an appropriate movement to reposition the guard. The Color Guard executes PALUWAG and PAHINGA with the Color Company (battalion); there is no prescribed At Ease/Rest position for the Color Guard itself — when such commands are given to the Color Company, the Color Guard instead executes <span class="mono">TIKAS, PAHINGA</span>.</p>
+
+<h2>4.8 Manual of the Colors</h2>
+<div class="tw"><table>
+<thead><tr><th>Position/Movement</th><th>Command</th><th>Key Mechanics</th></tr></thead>
+<tbody>
+<tr><td>Order Color</td><td>—</td><td>Lower ferrule rests on the deck, touching the outside edge of the shoe opposite the little toe. Staff grasped in the "V" of the right hand's thumb/fingers, back of hand to the right front; right elbow close to the side supporting the forearm; staff rests in the hollow of the right shoulder, vertical, flat side of the spearhead forward. Armed color guards are at Order Arms.</td></tr>
+<tr><td>Carry Color from Order Color</td><td>HANDA DALA, WATAWAT</td><td>On HANDA DALA, regrasp the staff from the rear. On WATAWAT, raise the staff so the lower ferrule is just above the sling socket, steady with the left hand, seat the ferrule, slide the right hand down to thumb-in-front-of-chin, grasp firmly, return the left hand to the side. Right arm parallel to the deck, staff inclined slightly forward. Armed guards execute Right/Left Shoulder Arms on WATAWAT.</td></tr>
+<tr><td>Order Color from Carry Color</td><td>BABA, WATAWAT</td><td>On BABA, grasp above the sling socket and remove the ferrule. On WATAWAT, lower the ferrule along the outside of the right shoe, release/regrasp with the left hand, let the staff slide down, then return to the Order Color position and smartly return the left hand to the side.</td></tr>
+<tr><td>Present Color from Order Color</td><td>TANGHAL, WATAWAT</td><td>On TANGHAL, the National Color bearer raises the staff as in Carry Color. On TA (execution), the organizational color bearer does the same; both return their left hand to the side. Color guards execute Present Arms (Hand Salute if pistol-armed) on TANGHAL, TA.</td></tr>
+<tr><td>Dipping the Organizational Color at Present Arms</td><td>(during the music itself)</td><td>Dipped during the National Anthem, morning/evening colors, ruffles and flourishes, General's/Admiral's March, and gun salutes. <strong>The National Color does not dip.</strong> Executed on the first note by extending the arm(s) forward and lowering the staff; terminated on the last note (or after the last round of a gun salute) by raising the staff back to the thumb-in-front-of-chin position.</td></tr>
+<tr><td>Order Color from Present Color</td><td>BABA, WATAWAT</td><td>On WATAWAT, come to Order Color; color guards execute arms on the command of Order Arms.</td></tr>
+<tr><td>Rests With the Color</td><td>PAHINGA / HUMANDA</td><td>Given only when at Order Color, by the senior color bearer or Color Company (battalion) commander — one count. On PAHINGA: left foot 12 inches left of right, heels on line, legs straight, weight on both legs; left hand at the small of the back below the belt, fingers extended/joined, palm to the rear. On HUMANDA: resume Order Color (Order Arms for the Color Guard).</td></tr>
+<tr><td>Eyes Right (Left) from Order or Carry Colors</td><td>HANDA KANAN (KALIWA) TINGIN, NA</td><td>Executed only halted at Order Color, or marching at Carry Color. The right (left) flank man / National Color bearer does not execute this command. If the person saluted is entitled to a salute by the organizational color, that bearer also lowers the staff by straightening the right arm.</td></tr>
+<tr><td>Order or Carry Colors from Eyes Right (Left)</td><td>HANDA, RAP (while marching); no command while halted during troop-the-line</td><td>While halted during a review's trooping of the line, HANDA RAP is not given — each member follows the RO with head/eyes until front, ending the movement naturally. While marching, HANDA RAP is given as the left(right) foot strikes the deck; if the color was lowered, the bearer raises it again while turning the head to the front.</td></tr>
+</tbody></table></div>
+
+<h2>4.9 Movement of Color Guard</h2>
+<p>To face right or left: command <span class="mono">PIHIT SA KANAN (KALIWA), KAD</span> — executable halted, marking time, or marching. On KAD, the right (left) flank man acts as a stationary pivot while the Color Guard inclines to the new direction. To face to the rear: command <span class="mono">WATAWAT, PALIT LUNAN, KAD</span> — the Color Guard takes one more step, then each member executes a choreographed sequence of facing turns and half/full steps (right flank guard, senior color bearer, junior color bearer, and left flank guard each have a distinct sequence specified in the lesson) to end up abreast facing the new direction, marking time until the senior color bearer commands <span class="mono">WATAWAT, HINTO</span> or <span class="mono">PASULONG, KAD</span>.</p>
+
+<h2>4.10 Receiving the Colors</h2>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sd">The company marches to the front of Battalion Headquarters in column; the Company Commander (CC) commands <span class="mono">BALANGAY, HINTO; BABA, TA; HARAP SA KALIWA, RAP</span>, then commands the Color Guard <span class="mono">TANGGAPIN ANG MGA WATAWAT</span>.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sd">The Color Guard marches within 3 paces of the Battalion Adjutant and Sergeant Major, halts, and executes Order Arms on the senior color bearer's command. When the Adjutant is ready, the senior color bearer orders <span class="mono">TANGHAL, TA</span> and the bearers salute.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sd">The Adjutant steps left oblique and transfers the National Color to the senior color bearer (who receives it at Carry Color), then steps back and salutes. On that salute, the Sergeant Major steps right oblique, transfers the organizational color to the junior bearer, steps back, and salutes.</div></div></div>
+<div class="step"><div class="snum">4</div><div class="sc"><div class="sd">The senior color bearer commands <span class="mono">BABA, TA</span>; the Adjutant/Sergeant Major terminate their salutes as the Color Guard executes Order Arms, then Carry Colors, marching to the Color Company.</div></div></div>
+<div class="step"><div class="snum">5</div><div class="sc"><div class="sd">The Color Guard halts 10 paces in front of the CC, executes Order Color. The CC faces about, orders <span class="mono">TANGHAL, TA</span>, faces about, salutes; the Color Guard executes TANGHAL, TA with the company; the bearer executes Carry Color. The CC terminates his salute, faces about, commands <span class="mono">BABA, TA</span>; the Color Guard executes Order Color as the company terminates Present Arms.</div></div></div>
+<div class="step"><div class="snum">6</div><div class="sc"><div class="sd">The CC orders <span class="mono">MGA WATAWAT, SUMALUNAN</span>. The Color Guard takes its appropriate post in the battalion (or regimental) formation once the Color Company joins it, executing At Ease and rests with the Color Company thereafter.</div></div></div>
+</div>
+
+<h2>4.11 Returning the Colors</h2>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sd">The company halts in front of Battalion HQ in line. The CC commands <span class="mono">BABA, TA; HARAP SA KALIWA, RAP</span>, then gives the command <span class="mono">IRETIRO ANG MGA WATAWAT</span>.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sd">The guard marches from its post, halts 10 paces in front of the CC, executes Order Arms; the company executes Present Arms as before.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sd">The senior color bearer marches and halts the guard 3 paces in front of the Adjutant and Sergeant Major (positioned near the commander's office/quarters); the guards remain at Carry Colors.</div></div></div>
+<div class="step"><div class="snum">4</div><div class="sc"><div class="sd">The Adjutant and Sergeant Major salute. The Sergeant Major steps right oblique to receive the organizational color from the junior bearer; the Adjutant then steps left oblique to receive the National Color from the senior bearer.</div></div></div>
+<div class="step"><div class="snum">5</div><div class="sc"><div class="sd">The senior color bearer commands <span class="mono">TANGHAL, TA</span>. On TA, the Adjutant and Sergeant Major face about and march to the CO's office/quarters, depositing the colors without further ceremony.</div></div></div>
+<div class="step"><div class="snum">6</div><div class="sc"><div class="sd">Once the colors are out of sight (or 6 paces away), the senior color bearer commands <span class="mono">BABA, TA</span> and marches the guard back to the Color Company, which the CC then marches back to its area.</div></div></div>
+</div>
+
+<h2>Recitation-Ready Answer <span class="pill pill-added" style="margin-left:8px">Added — Study Aid</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">KEY CONCEPT</div><div class="inm">Colors vs. Color</div><div class="idc"><strong>Plain English:</strong> "Colors" (plural) means the national flag together with unit flags; "Color" (singular) means the National Flag specifically.<br><strong>vs. Organizational Color:</strong> the National Color never salutes/dips and is always positioned to the right; the organizational color does dip/salute and sits to its left.<br><strong>Example from the lesson:</strong> "THE NATIONAL COLOR DOES NOT DIP" — stated explicitly in the Manual of the Colors.</div></div>
+<div class="isc a"><div class="ico">KEY CONCEPT</div><div class="inm">Color Guard composition</div><div class="idc"><strong>Plain English:</strong> the 5-person team that carries and protects the Colors.<br><strong>vs. Honor Guard (Ch. 06):</strong> a Color Guard is specifically the 5 people carrying/escorting flags; an Honor Guard is the larger overall formation (band + Colors + troops) that renders honors to a person.<br><strong>Example from the lesson:</strong> 1 Color Sergeant (commands), 2 color bearers (unarmed, carry the flags), 2 color guards (armed, escort).</div></div>
+</div>
+
+<div class="box maroonbox"><div class="bico">💬</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 07</div>
+<div class="qa"><div class="qq">Does the National Color ever salute (dip)?</div><div class="qan">No — the National Color renders no salute. Only the organizational color dips, during specific ceremonies/occasions.</div></div>
+<div class="qa"><div class="qq">How many people make up a Color Guard, and what are their roles?</div><div class="qan">Five: the Color Sergeant (most senior, commands), two color bearers (unarmed, carry the National and organizational colors), and two color guards (armed with pistols or rifles).</div></div>
+<div class="qa"><div class="qq">In what order of precedence are extra color bearers added when organizational colors are carried with the National Colors?</div><div class="qan">PHIL ARMY, PHIL AIR FORCE, PHIL NAVY, PHIL MARINE CORPS.</div></div>
+<div class="qa"><div class="qq">Where is the National Color bearer always positioned relative to the other color bearer?</div><div class="qan">Always on the right.</div></div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch8">
+<div class="cn">PART II · CEREMONIES · SECTION V</div><div class="ct">Guard Mounting</div>
+
+<h2>Objective</h2>
+<p>To orient the students on the basic military knowledge and understanding of what guard mounting is.</p>
+<h2>Scope / Agenda</h2>
+<ul>
+<li><strong>Informal Guard Mounting:</strong> Sequence of Activities</li>
+<li><strong>Formal Guard Mounting:</strong> Sequence of Activities</li>
+<li><strong>Normal Guard Mounting:</strong> General, Organization, Formation, Procedure</li>
+</ul>
+
+<h2>Informal Guard Mounting — Sequence of Activities</h2>
+<div class="steps">
+<div class="step"><div class="snum">a</div><div class="sc"><div class="sd">The Sergeant of the Guard forms the guard: <span class="mono">HUMANAY</span>. The Relief Commander falls in 3 steps front/centered on the Sergeant of the Guard; each relief forms at normal interval to its commander's left, sentinels in order of assigned post; the Sergeant of the Guard orders inspection of arms: <span class="mono">SIYASAT, TA; AGAP, TA; BABA, TA</span>.</div></div></div>
+<div class="step"><div class="snum">b</div><div class="sc"><div class="sd">If an officer has been detailed as Commander of the Guard: the Sergeant of the Guard faces about, reports "Nandito na pong lahat," exchanges salutes, then marches (half-right in marching) to a position behind the Commander of the Third Relief at normal distance.</div></div></div>
+<div class="step"><div class="snum">c</div><div class="sc"><div class="sd">If no officer has been detailed: the Sergeant of the Guard steps 3 steps forward and assumes the Commander of the Guard's position.</div></div></div>
+<div class="step"><div class="snum">d</div><div class="sc"><div class="sd">When the Officer of the Day arrives, the Commander of the Guard reports "Narito na pong lahat" and salutes are exchanged.</div></div></div>
+<div class="step"><div class="snum">e</div><div class="sc"><div class="sl">Marching to Center</div><div class="sd">The Officer of the Day commands <span class="mono">PINUNO AT MGA KAWAL PUMAGITNA, KAD</span>. The rearmost NCO commands the other NCOs <span class="mono">SA KANANG BALIKAT, TA</span>. On KAD, the Commander of the Guard marches forward and halts 3 steps in front of the Officer of the Day; the NCOs march forward, execute column left without command, and are halted/faced right by the rearmost NCO once centered.</div></div></div>
+<div class="step"><div class="snum">f</div><div class="sc"><div class="sd">The Officer of the Day marches to each NCO in turn, designating roles: <span class="mono">PINUNO NG TANOD</span> (Commander of the Guard position, if not already an officer), <span class="mono">SARHENTO NG TANOD</span> (right flank NCO), then <span class="mono">PINUNO PANGATLONG PAMALIT</span>, <span class="mono">PINUNO PANGALAWANG PAMALIT</span>, and <span class="mono">PINUNO UNANG PAMALIT</span> for the remaining NCOs — then returns to his post by the most direct route.</div></div></div>
+<div class="step"><div class="snum">g</div><div class="sc"><div class="sl">Return to Post</div><div class="sd">The Officer of the Day commands <span class="mono">SUMALUNAN</span>. The Commander of the Guard and NCOs face about and march to their posts without further command; the Sergeant of the Guard (or First Relief Commander, if no officer was detailed) commands the relief commander <span class="mono">BABA, TA</span> and <span class="mono">HARAP SA LIKOD, RAP</span>.</div></div></div>
+<div class="step"><div class="snum">h</div><div class="sc"><div class="sl">Inspecting the Guard</div><div class="sd">The Officer of the Day commands <span class="mono">HUMANDA SA PAGSISIYASAT</span>. The Commander of the Guard (without saluting) faces about and commands <span class="mono">PABUKANG TALUDTOD, NA</span> to open and dress ranks, then inspection proceeds; unpresentable sentinels are ordered to fall out (supernumeraries replace them). Afterward, the Officer of the Day commands <span class="mono">DALHIN ANG MGA TANOD SA BAHAY TANURAN</span>; salutes are exchanged, and the Commander of the Guard marches the guard to the guardhouse (<span class="mono">LAPIT TALUDTOD, KAD</span>; <span class="mono">HARAP SA KANAN, RAP; KANANG BALIKAT, TA</span>).</div></div></div>
+<div class="step"><div class="snum">i</div><div class="sc"><div class="sl">Relieving the Old Guard</div><div class="sd">The old guard forms in line before the new guard arrives. When the new guard is 6 steps from the old guard's left flank, the Commander of the New Guard commands <span class="mono">HANDA, TINGIN SA KANAN, NA</span>, salutes are rendered, and once clear of the old guard's right flank, <span class="mono">HANDA, RAP</span> is commanded; the Commander of the Old Guard commands <span class="mono">BABA, TA</span>.</div></div></div>
+<div class="step"><div class="snum">j</div><div class="sc"><div class="sl">Formation at the Guardhouse</div><div class="sd">The Commander of the (new) Guard commands <span class="mono">KANANG PANIG, KAD</span>, positions 6 steps to the rear/centered, halts the new guard in line 6 steps right of the old guard, then <span class="mono">BABA, TA; HARAP SA LIKOD, RAP</span>. The left-flank man of the first relief verifies the 6-step interval and dresses the guard (Fig. 6a).</div></div></div>
+<div class="step"><div class="snum">k</div><div class="sc"><div class="sl">Presenting the New and Old Guard</div><div class="sd">The commanders of both guards face about, command <span class="mono">TANGHAL, TA</span>, face each other and exchange salutes, then face their guards, command <span class="mono">BABA, TA</span>, and face front.</div></div></div>
+<div class="step"><div class="snum">l</div><div class="sc"><div class="sl">Presenting the Guards to the Officer of the Day</div><div class="sd">The new and old Officers of the Day take positions 18 steps in front/centered on their guards. Commanders of both guards face about, command <span class="mono">TANGHAL, TA</span>, salute their respective officers, then command <span class="mono">BABA, TA</span>. The Officers of the Day then face each other and the New Officer of the Day salutes the Old.</div></div></div>
+<div class="step"><div class="snum">m</div><div class="sc"><div class="sl">Disposition of the New and Old Guards</div><div class="sd">The New Officer of the Day commands <span class="mono">ISALUNAN ANG UNANG PAMALIT</span>; the new commander salutes, faces about, and commands <span class="mono">TIWALAG</span> — the guard reports to the guardhouse for relief-posting instructions. The Old Officer of the Day commands <span class="mono">TIWALAG ANG MGA TANOD</span>; the old commander salutes, faces about, and commands <span class="mono">PAHINGA</span>, then briefs the new commander. The old guard is marched back to its company area and dismissed with <span class="mono">SIYASAT, TA; AGAP, TA; TIWALAG</span> (per company, if furnished by more than one). After the third relief is relieved, its Commander reports to the Commander of the Guard, who inspects and dismisses it the same way.</div></div></div>
+</div>
+
+<h2>Formal Guard Mounting — Sequence of Activities</h2>
+<div class="steps">
+<div class="step"><div class="snum">a</div><div class="sc"><div class="sl">Assembly of Band</div><div class="sd">The band takes its place with its left flank 12 steps to the right of where the guard's right flank will be; the Adjutant signals it to sound the Adjutant's Call once the guard is ready.</div></div></div>
+<div class="step"><div class="snum">b</div><div class="sc"><div class="sl">Assembly and Forming the Guard</div><div class="sd">Guard details form as in Informal Guard Mounting (a), assemble into a platoon (split into two if more than 14 men per rank). The Assistant Sergeant of the Guard posts 3 steps in front, centered on the second platoon; remaining NCOs equalize the ranks on the left flank. The Sergeant of the Guard then faces the guard to the right.</div></div></div>
+<div class="step"><div class="snum">c</div><div class="sc"><div class="sl">Marching the Guard to the Parade Ground</div><div class="sd">On the Adjutant's Call, the band plays march music; the Adjutant (Sergeant Major on his left) marches forward on the first note. The Sergeant of the Guard commands <span class="mono">KANANG BALIKAT, TA</span> and marches the guard onto the ground in column, halting it 12 steps from the band's left flank, centered on the Sergeant Major — then <span class="mono">BABA, TA; HARAP SA KALIWA, RAP</span>.</div></div></div>
+<div class="step"><div class="snum">d</div><div class="sc"><div class="sl">Dressing the Guard</div><div class="sd">The Sergeant of the Guard (and Assistant, if two platoons) dresses the guard.</div></div></div>
+<div class="step"><div class="snum">e–f</div><div class="sc"><div class="sl">Sergeant of the Guard &amp; Sergeant Major's Report</div><div class="sd">On <span class="mono">HANDA, HARAP</span>, the Commander(s) of the Guard post 6 steps to the rear of the rear rank's right-flank man. The Sergeant of the Guard reports guard strength to the Sergeant Major ("Lahat po'y narito" or naming absentees); salutes exchanged, Sergeant Major commands <span class="mono">SUMALUNAN</span>. The Sergeant Major then reports the same to the Adjutant, exchanges salutes, and posts left of the first rank of the second platoon. The Commander of the Guard then marches around the guard's right flank to a post 6 steps in front/centered.</div></div></div>
+<div class="step"><div class="snum">g–h</div><div class="sc"><div class="sl">Marching to Center &amp; Return to Post</div><div class="sd">The Adjutant commands <span class="mono">PINUNO (MGA PINUNO) AT PINUNONG HINDI HIRANG, NA</span> — the same procedure as Informal Guard Mounting's "Marching to Center," except with two Commanders of the Guard the senior is "Punong Tanod" and the junior "Pangalawang Punong Tanod" (and with two Sergeants of the Guard, "Tandes ng Tanod" / "Pangalawang Tandes ng Tanod"). The Adjutant then commands <span class="mono">SUMALUNAN</span> and posts are taken as in Informal Guard Mounting.</div></div></div>
+<div class="step"><div class="snum">i</div><div class="sc"><div class="sl">Inspecting the Guard</div><div class="sd">Unlike Informal Guard Mounting, the <strong>Adjutant</strong> (not the Officer of the Day) inspects, commanding <span class="mono">HUMANDA SA PAGSISIYASAT</span>. He selects orderlies and color sentinels and orders unprepared men to fall out. The band plays during inspection.</div></div></div>
+<div class="step"><div class="snum">j</div><div class="sc"><div class="sl">Closing Ranks &amp; Sound Off</div><div class="sd">After inspection, the Commander(s) of the Guard close ranks and return to post; the Adjutant posts 35 steps in front, centered, facing the guard; the New Officer of the Day posts 36 steps to the Adjutant's rear; the Old Officer of the Day, 3 steps to the New's right. The Adjutant commands <span class="mono">TANOD, HANDA; TIKAS PAHINGA; IHUDYAT</span> — the band plays the sound-off, moves forward playing, passes left of the Commanders of the Guard and Adjutant, returns right, and plays sound-off again. The Officers of the Day stand at attention throughout.</div></div></div>
+<div class="step"><div class="snum">l</div><div class="sc"><div class="sl">Adjutant's Report</div><div class="sd">The Adjutant commands <span class="mono">TANGHAL, TA</span>, faces about toward the New Officer of the Day, salutes, and reports: <em>"Ang Tanod Ay Nakahanay Na Po."</em></div></div></div>
+<div class="step"><div class="snum">m</div><div class="sc"><div class="sl">Marching in Review</div><div class="sd">The New Officer of the Day returns the salute and directs the Adjutant <span class="mono">PASA MASID</span>. The Adjutant faces about, commands <span class="mono">BABA, TA; HARAP SA KANAN</span> (executed at RAP); the band repositions ahead of the leading platoon. The Adjutant commands <span class="mono">KANANG BALIKAT, TA; PASULONG, KAD</span>. Six steps from the Officer of the Day, the Adjutant commands <span class="mono">HANDA, TINGIN SA KANAN, NA</span> — salutes are held until 6 steps beyond, then <span class="mono">HANDA, RAP</span> (with two platoons, the Assistant Commander of the Guard repeats this for the second platoon). The Officer of the Day stands at Attention throughout and returns the salutes once the Adjutant and Commander of the Guard have passed. The guard then marches to the guardhouse; the old and new guards are relieved there following the same procedure as Informal Guard Mounting.</div></div></div>
+</div>
+
+<h2>Normal Guard Mounting</h2>
+<h3>General</h3>
+<p>Guard mounting ceremony has been a tradition in military organizations that formalizes the relieving of the outgoing and incoming guards for the day. Proper accounting, punctuality, and inspection of the incoming and outgoing guards are observed to ensure they are ready to take and leave their posts respectively.</p>
+<h3>Organization</h3>
+<p>The ceremony is composed of: the Outgoing Officer of the Day, the Incoming Officer of the Day, the Outgoing Commander of the Guard, the Incoming Commander of the Guard, the Assistant Commanders of the Guard, the Outgoing Sergeant of the Guards, and the Incoming Sergeant of the Guards.</p>
+<h3>Formation</h3>
+<p>Two platoons in line: the first (incoming guards) and the second (outgoing guards, 3 paces from the first's left flank). At each platoon's right flank, the Sergeants of the Guards cover each other. The Assistant Commanders of the Guards stand 3 paces in front of the center of their respective platoons; the Commanders of the Guards stand 6 paces in front of center. The Outgoing Officer of the Day stands 6 paces in front of the Commanders of the Guards, and the Incoming Officer of the Day 3 paces in front of the Outgoing.</p>
+<h3>Procedure</h3>
+<div class="steps">
+<div class="step"><div class="snum">a</div><div class="sc"><div class="sd">Before the ceremony, incoming guards report to their respective relieves for instructions. The Outgoing Officer of the Day then calls the guards to fall in: <span class="mono">HUMANAY</span>.</div></div></div>
+<div class="step"><div class="snum">b</div><div class="sc"><div class="sd">The Assistant Commanders of the Guards face about to account for their platoons, then salute and report to their Commanders ("Pinuno, narito na po lahat," or naming any unaccounted). The Commanders acknowledge and direct <span class="mono">SUMALUNAN KA</span>; the Assistant Commanders position behind the Sergeants of the Guards of each platoon's last squad.</div></div></div>
+<div class="step"><div class="snum">d</div><div class="sc"><div class="sd">The Outgoing Officer of the Day directs the Commanders of the Guards to prepare the platoons for inspection: <span class="mono">HUMANDA SA PAGSISIYASAT</span>, then <span class="mono">PABUKANG TALUDTOD, KAD</span> to open ranks; the commanders take position in front of the first squad's Sergeant of the Guard and await the inspecting officer.</div></div></div>
+<div class="step"><div class="snum">e</div><div class="sc"><div class="sd">The inspecting officer (Incoming or Outgoing Officer of the Day — both may inspect simultaneously to save time) proceeds to each Commander of the Guard, who salutes and reports readiness ("Ginoo tanod pulutong, [name] namumuno, handa na po sa pagsisiyasat"), then assists in inspecting the platoon.</div></div></div>
+<div class="step"><div class="snum">f</div><div class="sc"><div class="sd">After inspection, violations are reported for action; the Commander of the Guard brings the platoon to close ranks (<span class="mono">PASARANG TALUDTOD, KAD</span>) and takes a position 6 paces in front-center.</div></div></div>
+<div class="step"><div class="snum">g</div><div class="sc"><div class="sd">The Outgoing Officer of the Day commands <span class="mono">ANG MGA PINUNO NG TANOD PUMAGITNA, KAD</span>; the Assistant Commanders and Sergeants of the Guards of both platoons march to the center and mark time. The Outgoing Commander of the Guard commands <span class="mono">MGA PINUNO, TO</span>, and all face the Outgoing Officer of the Day.</div></div></div>
+<div class="step"><div class="snum">h</div><div class="sc"><div class="sd">The Outgoing Commander of the Guard salutes: <em>"Ginoo humihingi ng pahintulot para sa palitan."</em> The Outgoing Officer of the Day acknowledges and commands: <span class="mono">MAGPALITAN</span>.</div></div></div>
+<div class="step"><div class="snum">i</div><div class="sc"><div class="sl">The Relief Exchange (challenge and response)</div><div class="sd">The Outgoing Commander commands <span class="mono">MGA PINUNO HARAP SA GITNA, RAP</span>, then <span class="mono">MGA PAPALITANG TANOD PUGAY KAMAY, NA</span> — outgoing guards salute and report readiness to be relieved. Incoming guards challenge whether all orders/instructions from proper authority were passed on ("Iyo bang naisalin ang lahat ng utos na nanggaling sa tamang katungkulan?"); the outgoing guards answer <em>"opo"</em> (yes) or <em>"hindi po"</em> (no) — <strong>relief does not take place if the answer is no</strong>. The incoming guards acknowledge: "Ikaw na ay papalitan." The same challenge-and-response then runs in reverse — the Incoming Commander commands <span class="mono">MGA PAPALIT NA TANOD PUGAY KAMAY, NA</span>, and the outgoing guards challenge whether the incoming guards have received all such orders, with the same opo/hindi po rule. Once both exchanges are confirmed, the Incoming Commander commands <span class="mono">MGA PINUNO NG TANOD PUGAY KAMAY, NA</span> ("Ginoo tapos na po ang palitan"), the Outgoing Officer of the Day commands <span class="mono">SUMALUNAN</span>, and the Incoming Commander marches everyone back to their original positions (<span class="mono">MGA PINUNO NG TANOD SUMALUNAN, KAD</span>) via a detailed facing-and-marching sequence specified in the lesson.</div></div></div>
+<div class="step"><div class="snum">j</div><div class="sc"><div class="sl">Officer of the Day Exchange</div><div class="sd">Once the Commanders, Assistant Commanders, and Sergeants of the Guards are back in position, the Outgoing Officer of the Day faces about and salutes the Incoming Officer of the Day with the same "handed na po upang mapalitan" line and the same opo/hindi po challenge-and-response used by the guards above (in both directions), ending with the Incoming Officer of the Day acknowledged as having taken over ("IKAW NA AY PUMALIT").</div></div></div>
+<div class="step"><div class="snum">k</div><div class="sc"><div class="sd">The Outgoing Officer of the Day executes about face and falls out; the Incoming Officer of the Day takes his position, may give announcements, then directs the Commanders of the Guards to take charge of their platoons and proceed to their respective duties.</div></div></div>
+</div>
+
+<div class="box amber"><div class="bico">📌</div><div class="bbd"><div class="btt">Minor sequencing note in the source</div>
+<p class="btx">The Normal Guard Mounting procedure list jumps directly from step <strong>(b)</strong> to step <strong>(d)</strong> — no step "(c)" appears in the lesson's lettering. Reproduced here exactly as sequenced in the source; nothing has been inserted to "complete" the missing letter.</p></div></div>
+
+<h2>Recitation-Ready Answer <span class="pill pill-added" style="margin-left:8px">Added — Study Aid</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">KEY CONCEPT</div><div class="inm">Guard Mounting</div><div class="idc"><strong>Plain English:</strong> the formal ceremony for handing guard duty from the outgoing shift to the incoming shift.<br><strong>vs. Review/Parade:</strong> Guard Mounting is a functional, recurring duty-relief ceremony (happens every shift change); Review and Parade are occasional formal displays for dignitaries or unit pride.<br><strong>Example from the lesson:</strong> the "opo"/"hindi po" challenge-and-response confirming orders were properly passed between outgoing and incoming guards.</div></div>
+<div class="isc a"><div class="ico">KEY CONCEPT</div><div class="inm">Informal vs. Formal vs. Normal Guard Mounting</div><div class="idc"><strong>Plain English:</strong> three levels of ceremony for the same underlying task (mounting the guard).<br><strong>Distinguishing them:</strong> Informal has no band/parade-ground march; Formal adds the band, sound-off, and march-in-review; Normal is the simpler day-to-day outgoing/incoming relief exchange (with its own Officer-of-the-Day handover script).<br><strong>Example from the lesson:</strong> only Formal Guard Mounting includes "Sound Off" and "Marching in Review" as named steps.</div></div>
+</div>
+
+<div class="box maroonbox"><div class="bico">💬</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 08</div>
+<div class="qa"><div class="qq">Who inspects the guard in Formal Guard Mounting, and how does this differ from Informal Guard Mounting?</div><div class="qan">The Adjutant inspects in Formal Guard Mounting; in Informal Guard Mounting, the Officer of the Day inspects instead.</div></div>
+<div class="qa"><div class="qq">What word confirms a relief exchange may proceed, and what word stops it?</div><div class="qan">"Opo" (yes) allows the relief to proceed; "hindi po" (no) means no relief takes place.</div></div>
+<div class="qa"><div class="qq">In Normal Guard Mounting's formation, how many paces separate the Outgoing and Incoming Officers of the Day?</div><div class="qan">3 paces (the Incoming OD stands 3 paces in front of the Outgoing OD, who stands 6 paces in front of the Commanders of the Guards).</div></div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch9">
+<div class="cn">PART III · CORE VALUES OF DEVELOPMENT</div><div class="ct">Core Values of Development</div>
+<p class="ci">Source: "Core Values of Development" (16 slides), same issuing headquarters as the Drills &amp; Ceremonies deck.</p>
+
+<div class="box red"><div class="bico">🚩</div><div class="bbd"><div class="btt">Genuine gap in this deck — read before studying</div>
+<p class="btx">The deck's own "Scope of Presentation" slide (repeated twice — slide 2 and slide 3 — and again as the closing "Summary" on slide 15) lists <strong>six</strong> topics: Self Development, Values Education, Forces That Shape Contemporary Values, Theories of Values Formation, Ethics and Moral Education, and Morality and Our Conscience. The deck's actual content slides (4–14) only develop <strong>three</strong> of these:</p></div></div>
+<div class="tw"><table>
+<thead><tr><th>Topic (from the Scope slide)</th><th>Status in this deck</th></tr></thead>
+<tbody>
+<tr><td>Self Development</td><td><span class="tag tg">✅ Developed</span> — slides 4–6, in full below</td></tr>
+<tr><td>Values Education</td><td><span class="tag ta">🟡 One line only</span> — a single definition appears folded into the Self Development slide (p. 6); it is never given its own developed section</td></tr>
+<tr><td>Forces That Shapes Contemporary Values</td><td><span class="tag tr2">🔴 No content at all</span> — the phrase appears only in the Scope/Summary list; no slide develops it</td></tr>
+<tr><td>Theories of Values Formation</td><td><span class="tag tg">✅ Developed</span> — slides 7–12, in full below</td></tr>
+<tr><td>Ethics and Moral Education</td><td><span class="tag tg">✅ Developed</span> — slides 13–14, in full below</td></tr>
+<tr><td>Morality and Our Conscience</td><td><span class="tag tr2">🔴 No dedicated section</span> — morality and conscience are briefly mentioned in one sentence at the end of the Ethics and Moral Education slide (p. 14), but there is no standalone "Morality and Our Conscience" section as the Scope slide promises</td></tr>
+</tbody></table></div>
+<p class="ci">Per your instructions, the missing/underdeveloped sections have <strong>not</strong> been filled in or completed — what follows is only what the deck actually contains.</p>
+
+<h2>Self Development <span class="pill pill-lesson" style="margin-left:8px">From the Lesson (p. 4–6)</span></h2>
+<div class="gg">
+<div class="gc" data-g="1"><div class="gera">TERM</div><div class="gtit">Perceived Self</div><p class="gsp">Composed of a set of self-cognitions regarding one's traits, competencies, and values. It is reinforced through feedback.</p></div>
+<div class="gc" data-g="2"><div class="gera">TERM</div><div class="gtit">The Ideal Self</div><p class="gsp">Represents the set of traits, competencies, and values an individual would like to possess.</p></div>
+<div class="gc" data-g="3"><div class="gera">TERM</div><div class="gtit">Self Identities</div><p class="gsp">Those aspects of the individual's self-concept derived from the social categories he/she perceives him/herself as belonging to. Social identities link individuals to reference groups, which establish role expectations and norms guiding the individual's behavior within each social identity.</p></div>
+<div class="gc" data-g="4"><div class="gera">TERM</div><div class="gtit">Self Esteem</div><p class="gsp">The evaluative component of the self-concept — a function of the distance between the ideal self and the perceived self.</p></div>
+<div class="gc" data-g="5"><div class="gera">TERM</div><div class="gtit">Values</div><p class="gsp">The beliefs which we hold to be true — those noble ideals we struggle to attain and implement in our daily lives. Derived from natural and moral laws, not from an individual's opinions or feelings.</p></div>
+<div class="gc" data-g="6"><div class="gera">TERM (one line only — see gap flag above)</div><div class="gtit">Values Education</div><p class="gsp">Based on a rational understanding of the human person — specifically, understanding of the Filipino as a human being in society, and his/her role in shaping society and the environment.</p></div>
+</div>
+
+<h2>Theories of Values Formation <span class="pill pill-lesson" style="margin-left:8px">From the Lesson (p. 7–12)</span></h2>
+<div class="tw"><table>
+<thead><tr><th>#</th><th>Theory</th><th>Key Proponent(s)</th><th>Core Idea (as given in the lesson)</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Psycho-Analytic Theory</td><td>Sigmund Freud</td><td>Unconscious forces act to determine personality and behavior; the unconscious is the part of personality a person is unaware of.</td></tr>
+<tr><td>2</td><td>Behaviorist View</td><td>John B. Watson</td><td>The keys to understanding development are observable behavior and outside environmental stimuli — knowing the stimuli lets you predict the behavior.</td></tr>
+<tr><td>3</td><td>Social-Cognitive Learning Theory</td><td>Albert Bandura</td><td>Seeing a model's behavior being rewarded makes us likely to imitate it; behavior is learned through observation and imitation, not conditioning through reinforcement or punishment.</td></tr>
+<tr><td>4</td><td>Cognitive Theory</td><td>—</td><td>Focuses on the processes that let people know, understand, and think about the world; emphasizes how people internally represent and think about the world.</td></tr>
+<tr><td>5</td><td>Socio-Cultural Theory</td><td>Lev Vygotsky (Russian psychologist)</td><td>Full understanding of development is impossible without accounting for the culture in which children develop.</td></tr>
+<tr><td>6</td><td>Ecological Theory</td><td>Urie Bronfenbrenner (major proponent)</td><td>Explains individual knowledge, development, and competencies through the guidance, support, and structure society provides; explains social change over time through the cumulative effect of individual choices. <em>(Berger, 2000)</em></td></tr>
+<tr><td>7</td><td>Humanism Theory</td><td>—</td><td>People have a natural tendency to make decisions about their lives and control their own behavior.</td></tr>
+<tr><td>8</td><td>Evolutionary Theory</td><td>—</td><td>Behavior is strongly influenced by biology, tied to evolution, and characterized by critical or sensitive periods. <em>(Santrock, 1999)</em></td></tr>
+</tbody></table></div>
+
+<h2>Ethics and Moral Education <span class="pill pill-lesson" style="margin-left:8px">From the Lesson (p. 13–14)</span></h2>
+<p><strong>Ethics</strong> comes from the Greek word <em>ethos</em>, meaning character or custom.</p>
+<p><strong>Morality</strong> can be used either:</p>
+<ol>
+<li><strong>Descriptively</strong> — to refer to a code of conduct put forward by a society, used as a guide to behavior by that society's members.</li>
+<li><strong>Normatively</strong> — to refer to a code of conduct that, given specified conditions, would be put forward by all rational persons for governing the behavior of all moral agents.</li>
+</ol>
+<p>Morality affects our daily choices, and those decisions are guided by our conscience. The purpose of morality is to provide a framework for optimum human survival. The standard of morality, however, is absolute and immutable — long-term optimum human survival.</p>
+
+<h2>Recitation-Ready Answer <span class="pill pill-added" style="margin-left:8px">Added — Study Aid</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">KEY CONCEPT</div><div class="inm">Perceived Self vs. Ideal Self</div><div class="idc"><strong>Plain English:</strong> the Perceived Self is who you think you actually are right now; the Ideal Self is who you wish you were.<br><strong>vs. Self Esteem:</strong> Self Esteem is literally defined in the lesson as the gap between these two selves — the closer they are, the higher the self-esteem.<br><strong>Example from the lesson's own logic:</strong> a large gap between your Ideal Self and Perceived Self would, by the lesson's definition, mean lower self-esteem.</div></div>
+<div class="isc a"><div class="ico">KEY CONCEPT</div><div class="inm">Descriptive vs. Normative Morality</div><div class="idc"><strong>Plain English:</strong> Descriptive morality is "what a society actually does" (its real code of conduct); Normative morality is "what all rational people would agree everyone should do."<br><strong>vs. Ethics:</strong> Ethics is the broader term (from Greek "ethos," character/custom); Morality is specifically about codes of conduct, described in these two senses.<br><strong>Example from the lesson:</strong> a specific society's actual customs (descriptive) vs. a universal rational code for all moral agents (normative).</div></div>
+</div>
+
+<div class="box maroonbox"><div class="bico">💬</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 09</div>
+<div class="qa"><div class="qq">Define Self Esteem as given in the lesson.</div><div class="qan">The evaluative component of the self-concept — a function of the distance between the ideal self and the perceived self.</div></div>
+<div class="qa"><div class="qq">Match the theorist to the theory: Freud, Watson, Bandura, Vygotsky, Bronfenbrenner.</div><div class="qan">Freud = Psycho-Analytic Theory; Watson = Behaviorist View; Bandura = Social-Cognitive Learning Theory; Vygotsky = Socio-Cultural Theory; Bronfenbrenner = Ecological Theory.</div></div>
+<div class="qa"><div class="qq">Where does the word "Ethics" come from, and what does it mean?</div><div class="qan">From the Greek word "ethos," meaning character or custom.</div></div>
+<div class="qa"><div class="qq">Give the two senses in which "morality" can be used, per the lesson.</div><div class="qan">Descriptively (a society's actual code of conduct) and normatively (a code all rational persons would put forward for all moral agents).</div></div>
+<div class="qa"><div class="qq">According to the lesson, what guides our daily choices, and what is the standard of morality?</div><div class="qan">Our conscience guides daily choices; the standard of morality is absolute and immutable — long-term optimum human survival.</div></div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch10">
+<div class="cn">CHAPTER 10</div><div class="ct">Glossary &amp; Abbreviations</div>
+<p class="ci"><span class="pill pill-added">Added — Study Aid</span> Both lessons use a large number of role/rank abbreviations. Most are spelled out by the source the first time they appear (e.g., "Troop Commander (TC)") — those are not repeated here. This glossary covers only the abbreviations the material actually uses <strong>without</strong> ever spelling them out.</p>
+<div class="tw"><table>
+<thead><tr><th>Abbreviation</th><th>Stands For</th><th>Confidence / Note</th></tr></thead>
+<tbody>
+<tr><td>AFP</td><td>Armed Forces of the Philippines</td><td>Used throughout both decks from the first slide onward; never spelled out anywhere in either source file.</td></tr>
+<tr><td>GHQ</td><td>General Headquarters</td><td>Used in the gun-salute saluting-stations list (Ch. 06) and Military Honors policy (newly-promoted generals); not expanded in the source.</td></tr>
+<tr><td>CSAFP</td><td>Chief of Staff, Armed Forces of the Philippines</td><td>Used in Military Honors policy ("unless otherwise directed by the CSAFP"); not expanded in the source.</td></tr>
+<tr><td>PMA</td><td>Philippine Military Academy</td><td>Used in the gun-salute saluting-stations list ("Fort Del Pilar - Headquarters PMA"); not expanded in the source.</td></tr>
+<tr><td>AOR</td><td>Area of Responsibility</td><td>Used in Military Honors' Unit Honors policy ("outside unit AOR"); not expanded in the source.</td></tr>
+<tr><td>SGS</td><td>Likely "Secretary, General Staff" — a staff-officer role</td><td><strong>Lower confidence:</strong> the source only says "an officer from local staff (usually SGS or OG3)" without expanding either term.</td></tr>
+<tr><td>OG3</td><td>Likely the Operations (G3) staff section</td><td><strong>Lower confidence:</strong> same sentence as SGS above; the source does not expand this term either.</td></tr>
+</tbody></table></div>
+
+<div class="box amber"><div class="bico">📌</div><div class="bbd"><div class="btt">One abbreviation with two different meanings in the same lesson</div>
+<p class="btx"><strong>TA</strong> is used two different ways in the Drills &amp; Ceremonies deck: (1) as the command syllable abbreviated from <em>SANDATA</em>, used in manual-of-arms commands (e.g., <span class="mono">TANGHAL, TA</span>) — covered in Chapter 02; and (2) as the abbreviation for <strong>Troop Adjutant (TA)</strong>, a role — covered in Chapter 04. Context (a role name vs. a command word) tells you which meaning applies; the source itself never flags the overlap.</p></div></div>
+
+<div class="box blue"><div class="bico">ℹ️</div><div class="bbd"><div class="btt">A shorthand used in THIS guide, not the source</div>
+<p class="btx">In Chapter 08's step-by-step tables, this guide occasionally writes "OD" for "Officer of the Day" to keep long procedural steps readable. The source material itself always spells out "Officer of the Day" in full — "OD" is a readability shorthand introduced by this guide, not an abbreviation the professor's material uses.</p></div></div>
+</section>
+
+<div class="footer"><p>QCU Academic OS · AY 2026-2027 · Compiled by <strong>KianoRoku18Ino</strong> · github.com/KianoRoku18Ino</p></div>
+</main>
+
+</body>
+</html>
