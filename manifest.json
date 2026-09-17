@@ -89,6 +89,14 @@
                   "order": 1,
                   "week": 1,
                   "html": "assets/guides/year-1/sem-1/nstp1/week-1.html"
+                },
+                {
+                  "id": "week-2",
+                  "kind": "week",
+                  "label": "Week 2 — Code of Citizenship & Ethics · AFP Core Values · Rule of Law",
+                  "order": 2,
+                  "week": 2,
+                  "html": "assets/guides/year-1/sem-1/nstp1/week-2.html"
                 }
               ]
             }
