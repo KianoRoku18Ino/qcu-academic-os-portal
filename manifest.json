@@ -76,6 +76,21 @@
                   "html": "assets/guides/year-1/sem-1/pathfit/week-2.html"
                 }
               ]
+            },
+            {
+              "id": "y1-s1-nstp1",
+              "code": "NSTP1",
+              "title": "ROTC Male-National Service Training Program",
+              "items": [
+                {
+                  "id": "week-1",
+                  "kind": "week",
+                  "label": "Week 1 — Standards of Conduct & AFP Customs and Traditions",
+                  "order": 1,
+                  "week": 1,
+                  "html": "assets/guides/year-1/sem-1/nstp1/week-1.html"
+                }
+              ]
             }
           ]
         },
