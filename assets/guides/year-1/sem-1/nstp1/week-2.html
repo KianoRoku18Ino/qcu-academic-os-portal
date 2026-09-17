@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NSTP1-ROTC — Complete Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--bgcode:#060D18;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--purple:#8B5CF6;--maroon:#B91C3C;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(59,130,246,.15);--sw:285px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvs{padding:9px 17px 3px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t3)}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover,.nvi a.act{color:var(--t1);background:rgba(185,28,60,.08);border-left-color:var(--maroon)}
+.nvi a.act{color:var(--maroon);font-weight:500}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:20px}
+.main{margin-left:var(--sw)}
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:52px 52px 42px;position:relative;overflow:hidden}
+.hero::before{content:'01001000';position:absolute;top:-10px;right:15px;font-family:'JetBrains Mono',monospace;font-size:115px;font-weight:900;color:rgba(185,28,60,.05);letter-spacing:-5px;user-select:none;line-height:1}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--maroon);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--maroon)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:700;line-height:1.05;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#3B82F6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:18px;color:var(--t2);margin-bottom:19px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+.chapter{padding:44px 52px;border-bottom:1px solid var(--bdr);max-width:970px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--maroon);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:19.5px;font-weight:600;margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--maroon);border-radius:2px;flex-shrink:0}
+h3{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--maroon);margin:22px 0 9px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+.box{border-radius:8px;padding:13px 17px;margin:15px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}.red .btt{color:var(--red)}
+.maroon{background:rgba(185,28,60,.08);border:1px solid rgba(185,28,60,.2)}.maroon .btt{color:var(--maroon)}
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--maroon);font-size:12px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(185,28,60,.04)}
+tbody td{padding:9px 13px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}.tm{background:rgba(185,28,60,.15);color:var(--maroon)}
+.steps{margin:15px 0}
+.step{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+.snum{background:var(--maroon);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace}
+.sc{flex:1}
+.sl{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:3px}
+.sd{color:var(--t2);font-size:13px;line-height:1.7}
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.gc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;position:relative;overflow:hidden}
+.gc::before{content:attr(data-g);position:absolute;top:-10px;right:7px;font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:900;color:rgba(185,28,60,.06);line-height:1}
+.gera{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.gtit{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:7px}
+.gsp{font-size:12.5px;color:var(--t2);margin:0;line-height:1.7}
+.gsp strong{color:var(--maroon)}
+.isg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.isc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;border-top:3px solid var(--maroon)}
+.isc.a{border-top-color:var(--amber)}.isc.g{border-top-color:var(--green)}
+.ico{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-bottom:3px}
+.inm{font-weight:700;font-size:14px;color:var(--t1);margin-bottom:6px}
+.idc{font-size:12.5px;color:var(--t2);line-height:1.7}
+.mlst{margin:11px 0}
+.mitem{display:flex;gap:11px;padding:10px 0;border-bottom:1px solid var(--bdr);align-items:flex-start}
+.mitem:last-child{border-bottom:none}
+.mnm{font-weight:700;color:var(--maroon);min-width:170px;font-size:13px}
+.mdc{font-size:13px;color:var(--t2);line-height:1.65}
+.law{background:var(--bgc);border:1px solid var(--bdr);border-left:4px solid var(--maroon);border-radius:8px;padding:15px 17px;margin:11px 0}
+.lra{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--maroon);font-weight:700;margin-bottom:3px}
+.ltit{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:4px}
+.lyr{font-size:11px;color:var(--t3);margin-bottom:7px}
+.ldc{font-size:13px;color:var(--t2);line-height:1.75;font-style:italic}
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:5px;font-size:13px;line-height:1.75}
+li strong{color:var(--t1)}
+.addbadge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--green);background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);border-radius:4px;padding:2px 7px;letter-spacing:.5px;margin-bottom:8px}
+.verbatim{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--blue);background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.3);border-radius:4px;padding:2px 7px;letter-spacing:.5px;margin-bottom:8px}
+.footer{padding:34px 52px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--maroon)}
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.gg,.isg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+<div class="sbh"><div class="sbb">NSTP1 · QCU BSIT</div><div class="sbt">ROTC — Citizenship, Values &amp; Law</div><div class="sbs">Verbatim reviewer, as taught</div></div>
+<ul class="nvl">
+<li class="nvs">Introduction</li>
+<li class="nvi"><a href="#overview"><span class="nn">00</span>Overview &amp; Priority Map</a></li>
+<li class="nvs">Chapters (as presented)</li>
+<li class="nvi"><a href="#ch1"><span class="nn">01</span>Code of Citizenship &amp; Ethics</a></li>
+<li class="nvi"><a href="#ch2"><span class="nn">02</span>AFP Core Values</a></li>
+<li class="nvi"><a href="#ch3"><span class="nn">03</span>Rule of Law</a></li>
+<li class="nvs">Reference</li>
+<li class="nvi"><a href="#ch4"><span class="nn">04</span>Glossary &amp; Abbreviations</a></li>
+<li class="nvi"><a href="#ch5"><span class="nn">05</span>Source Verification Notes</a></li>
+</ul></nav>
+
+<main class="main">
+<div class="hero">
+<div class="he">QCU Academic OS · AY 2026-2027</div>
+<div class="ht">NSTP1</div>
+<div class="hs">ROTC — Code of Citizenship &amp; Ethics · AFP Core Values · Rule of Law</div>
+<div class="hm">
+<div class="mp">Course: <span>NSTP1 (ROTC)</span></div>
+<div class="mp">Source: <span>3 lecture sessions, verbatim</span></div>
+<div class="mp">Year Level: <span>1st Year</span></div>
+<div class="mp">Type: <span>Civics / Military Values</span></div>
+</div></div>
+
+<section class="chapter" id="overview">
+<div class="cn">CHAPTER 00</div><div class="ct">Overview &amp; Study Priority Map</div>
+<div class="box red"><div class="bico">🔒</div><div class="bbd"><div class="btt">Strict-Fidelity Guide</div>
+<p class="btx">Per your request, this guide reflects <strong>only</strong> what was shown in your three uploaded lecture sessions — nothing has been filled in, completed, or supplemented in the main chapters. Where the source material is incomplete, unclear, or internally inconsistent, that is stated explicitly rather than resolved for you. Everything added for recitation purposes (comparisons, examples, Q&amp;A drills, the glossary, this priority table) is clearly tagged <span class="addbadge">ADDED</span> and kept separate from the verbatim lesson content.</p></div></div>
+
+<p class="ci">Your uploaded material covered three distinct topics across three separate class sessions, each ending on its own "END OF PRESENTATION" slide: <strong>(1)</strong> Quezon's 1939 Code of Citizenship and Ethics, <strong>(2)</strong> the AFP's six Core Values, and <strong>(3)</strong> Rule of Law. No syllabus, week-by-week outline, or quiz/assessment was included in what you uploaded — so unlike other guides, the priority table below is <em>inferred from structural cues in the material itself</em> (which topics got explicit "Objective" and "Application" framing versus which didn't), not from a stated exam weighting. This is flagged, not invented as fact.</p>
+
+<h2>Exam Priority Map <span class="addbadge" style="margin-left:6px">ADDED — inferred, not stated</span></h2>
+<div class="tw"><table>
+<thead><tr><th>Topic</th><th>Chapter</th><th>Signal in the Material</th><th>Inferred Priority</th></tr></thead>
+<tbody>
+<tr><td>AFP Core Values (6 values + behaviors)</td><td>02</td><td>Only topic with an explicit <strong>"OBJECTIVE"</strong> slide stating learning outcomes, plus a dedicated closing <strong>"Application"</strong> section.</td><td><span class="tag tr2">🔴 Very High</span></td></tr>
+<tr><td>Code of Citizenship — 16 tenets</td><td>01</td><td>Full enumerated list with a specific title, EO number, and date — classic recitation/memorization material for this kind of course.</td><td><span class="tag tm">High</span></td></tr>
+<tr><td>Rule of Law (Coke/Dicey framework)</td><td>03</td><td>No objectives slide shown; ends abruptly after a case citation with no synthesis or Philippine-context wrap-up in the material provided.</td><td><span class="tag tb">Medium</span></td></tr>
+<tr><td>Rule of Law — Indian case citations</td><td>03</td><td>Presented as illustrative quotes only, with no explanation connecting them back to Philippine law in the material shown.</td><td><span class="tag ta">Lower / context</span></td></tr>
+</tbody></table></div>
+</section>
+
+<section class="chapter" id="ch1">
+<div class="cn">CHAPTER 01</div><div class="ct">Code of Citizenship and Ethics</div>
+<p class="ci">Presented from a slide deck headed "HEADQUARTERS, NCR REGIONAL COMMUNITY DEFENSE GROUP, ARMY RESERVE COMMAND, Fort Andres Bonifacio, Metro Manila." No objectives or scope slide was shown before this list began in your material — it opened directly with a "Review of Related Topics" slide (below), then went straight into the 16 numbered tenets.</p>
+
+<div class="law"><div class="lra">AS SHOWN — REVIEW OF RELATED TOPICS</div><div class="ltit">Constitutional basis for the Code</div><div class="lyr"></div>
+<div class="ldc">"Whereas, section five of Article XIII of the Constitution provides that all schools shall aim to develop moral character, personal discipline, civic conscience, and to teach the duties of citizenship; Whereas, in order to comply with the above constitutional provision, it is necessary that a Code of Citizenship and Ethics be adopted and taught in the schools; Whereas, pending the formulation of such a code by a committee representing the various elements of the community and the adoption thereof, it is essential that the schools should at once take steps in order to effectuate the mandate of the Constitution in this respect;"</div></div>
+
+<p>Each of the 16 tenets below was shown on its own slide, headed "Code of Citizenship and Ethics — President Quezon, Executive Order No. 217, August 19, 1939." Wording is reproduced exactly as shown <a href="#ch5">(verified against the source EO — see Ch. 05 for two flagged discrepancies)</a>.</p>
+
+<div class="mlst">
+<div class="mitem"><div class="mnm">1. Divine Providence</div><div class="mdc">Have Faith in Divine Providence <em>that guides the destinies of men and nations.</em></div></div>
+<div class="mitem"><div class="mnm">2. Love Your Country</div><div class="mdc">for it is the home of your people, the seat of your affections, and the source of your happiness and well-being. Its defense is your primary duty. Be ready at all times to sacrfice and die for it if necessary. <span class="tag ta">typo as shown — see Ch. 05</span></div></div>
+<div class="mitem"><div class="mnm">3. Respect the Constitution</div><div class="mdc">which is the expression of your sovereign will. The government is your government. It has been established for your safety and welfare. Obey the laws and see that they are observed by all and that public officials comply with their duties.</div></div>
+<div class="mitem"><div class="mnm">4. Pay Your Taxes</div><div class="mdc">willingly and promptly. Citizenship implies not only rights but also obligations.</div></div>
+<div class="mitem"><div class="mnm">5. Safeguard the Purity of Suffrage</div><div class="mdc">and abide by the decisions of the majority.</div></div>
+<div class="mitem"><div class="mnm">6. Love and Respect Your Parents</div><div class="mdc">It is your duty to serve them gratefully and well.</div></div>
+<div class="mitem"><div class="mnm">7. Value Your Honor</div><div class="mdc">as you value your life. Poverty with honor is preferable to wealth with dishonor.</div></div>
+<div class="mitem"><div class="mnm">8. Be Truthful and Honest in Thought and Action</div><div class="mdc">Be just and charitable, courteous but dignified, in your dealings with your fellowmen.</div></div>
+<div class="mitem"><div class="mnm">9. Lead a Clean and Frugal Life</div><div class="mdc">Do not indulge in frivolity or pretense. Be simple in your dress and modest in your behavior.</div></div>
+<div class="mitem"><div class="mnm">10. Live Up to the Noble Traditions of Our People</div><div class="mdc">Venerate the memory of our heroes. Their lives point the way to duty and honor.</div></div>
+<div class="mitem"><div class="mnm">11. Be Industrious</div><div class="mdc">Be not afraid or ashamed to do manual labor. Productive toil is conducive to economic security and adds to the wealth of the nation.</div></div>
+<div class="mitem"><div class="mnm">12. Rely on Your Own Efforts</div><div class="mdc">for your progress and happiness. Be not easily discouraged. Persevere in the pursuit of your legitimate ambitions.</div></div>
+<div class="mitem"><div class="mnm">13. Do Your Work Cheerfully, Thoroughly, and Well</div><div class="mdc">Work badly done is worse than work undone. Do not leave for tomorrow what you can do today.</div></div>
+<div class="mitem"><div class="mnm">14. Contribute to the Welfare of Your Community</div><div class="mdc">and promote social justice. You do not live for yourselves and your families alone. You are part of society to which you owe definite responsibilities.</div></div>
+<div class="mitem"><div class="mnm">15. Cultivate the Habit of Using Goods Made in the Philippines</div><div class="mdc">Patronize the products and trades of your countrymen.</div></div>
+<div class="mitem"><div class="mnm">16. Use and Develop Our National Resources</div><div class="mdc">and conserve them for posterity. They are the inalienable heritage of our people. Do not traffic with your citizenship. <span class="tag ta">wording as shown — see Ch. 05</span></div></div>
+</div>
+
+<h2>Recitation-Ready Reference <span class="addbadge" style="margin-left:6px">ADDED</span></h2>
+<div class="tw"><table>
+<thead><tr><th>Tenet</th><th>Plain-English Gist</th><th>Closest Related Tenet</th><th>Concrete Example</th></tr></thead>
+<tbody>
+<tr><td>1. Divine Providence</td><td>Trust that there's a larger purpose guiding nations and people.</td><td>7 (Honor) — both are about inner conviction, not external reward.</td><td>A soldier trusting there's meaning behind a hardship faced in service.</td></tr>
+<tr><td>2. Love Your Country</td><td>Country comes before self; be willing to sacrifice for it.</td><td>6 (Love parents) — love owed to those who shaped you, but nation vs. family.</td><td>Choosing to serve, vote, or pay taxes out of love of country.</td></tr>
+<tr><td>3. Respect the Constitution</td><td>The government is yours — obey its laws, don't undermine it.</td><td>Ch. 03's "Supremacy of Law" — same idea, different vocabulary.</td><td>Obeying traffic laws even when no one is watching.</td></tr>
+<tr><td>4. Pay Your Taxes</td><td>Citizenship is a two-way street: rights come with duties.</td><td>3 (Respect Constitution) — both are formal obligations of citizenship.</td><td>Filing and paying BIR taxes on time.</td></tr>
+<tr><td>5. Safeguard Suffrage</td><td>Vote honestly; accept the majority's decision.</td><td>3 — both are civic/political duties.</td><td>Voting on conscience, not for payment, and accepting the result.</td></tr>
+<tr><td>6. Love/Respect Parents</td><td>Serve your parents gratefully and well.</td><td>2 (Love country) — contrast in scale, same root of duty-through-love.</td><td>Caring for aging parents.</td></tr>
+<tr><td>7. Value Your Honor</td><td>Poverty with honor beats wealth with dishonor.</td><td>Ch. 02's AFP value "Honor" — same word, reinforced later.</td><td>Refusing a bribe despite financial hardship.</td></tr>
+<tr><td>8. Be Truthful/Honest</td><td>Be honest, just, and dignified with everyone.</td><td>7 — honor is self-respect; this is honesty toward others.</td><td>Not cheating on an exam.</td></tr>
+<tr><td>9. Clean/Frugal Life</td><td>Avoid pretense; be simple and modest.</td><td>12 (Rely on own efforts) — both are about self-discipline.</td><td>Avoiding debt for status symbols.</td></tr>
+<tr><td>10. Noble Traditions</td><td>Honor the heroes who came before you.</td><td>2 — both connect you to national identity.</td><td>Observing National Heroes Day meaningfully.</td></tr>
+<tr><td>11. Be Industrious</td><td>Don't be ashamed of manual labor.</td><td>12 — closely linked; 11 is about willingness, 12 is about self-reliance.</td><td>Not looking down on blue-collar work.</td></tr>
+<tr><td>12. Rely on Own Efforts</td><td>Don't be easily discouraged; persevere.</td><td>11 — see above.</td><td>Continuing a small business after early failure.</td></tr>
+<tr><td>13. Work Cheerfully/Well</td><td>Don't procrastinate; do quality work.</td><td>11 — 11 is willingness to work, 13 is quality/attitude of the work itself.</td><td>Finishing an assignment early instead of cramming.</td></tr>
+<tr><td>14. Community Welfare</td><td>You owe responsibilities to society, not just family.</td><td>4 (Pay taxes) — 4 is a specific formal duty, 14 is broader civic participation.</td><td>Volunteering in a community clean-up drive.</td></tr>
+<tr><td>15. Use Local Goods</td><td>Patronize Filipino-made products and trades.</td><td>16 — both are economic-nationalism themed.</td><td>Buying local produce over imported alternatives when possible.</td></tr>
+<tr><td>16. Use/Develop Resources</td><td>Conserve resources; don't exploit citizenship for gain.</td><td>15 — see above.</td><td>Refusing to take part in illegal logging or mining.</td></tr>
+</tbody></table></div>
+
+<h3>Recitation Drill — Chapter 01</h3>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Q: What law created the Code of Citizenship and Ethics, and when?</div><div class="sd">A: Executive Order No. 217, issued by President Manuel L. Quezon, August 19, 1939.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Q: How many tenets does the Code contain, per this material?</div><div class="sd">A: 16.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Q: Which constitutional provision is cited as the basis for creating the Code?</div><div class="sd">A: Section 5, Article XIII of the Constitution (schools must develop moral character, personal discipline, civic conscience, and teach the duties of citizenship).</div></div></div>
+<div class="step"><div class="snum">4</div><div class="sc"><div class="sl">Q: Give the exact wording of Tenet 7.</div><div class="sd">A: "Value your honor as you value your life. Poverty with honor is preferable to wealth with dishonor."</div></div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch2">
+<div class="cn">CHAPTER 02</div><div class="ct">AFP Core Values</div>
+<p class="ci">From the same headquarters' slide deck. This was the only topic in your material with an explicit Objectives slide.</p>
+
+<div class="law"><div class="lra">AS SHOWN — OBJECTIVE</div><div class="ltit">Stated learning outcomes</div><div class="lyr"></div>
+<div class="ldc">To impart the Cadets the knowledge about the core values of the Armed Force of the Philippines. To identify the characteristic of the different core values of the AFP. To enable the students to explain the different core values. To provide the student cadets regarding the general duty or responsibility towards the society. To provide knowledge on the applications of the core values.</div></div>
+
+<p><strong>Scope of the Lesson</strong>, as shown: Core Values · Applications.</p>
+
+<h2>The Six Core Values</h2>
+<p>LOVE OF THE COUNTRY · VALOR · HONOR · LOYALTY · DUTY · SOLIDARITY <a href="#ch5">(verified against multiple independent AFP/Philippine Army sources — see Ch. 05, no discrepancy found)</a>.</p>
+
+<h3>1. Love of the Country</h3>
+<div class="law"><div class="lra">AS SHOWN</div><div class="ltit">Full definition</div><div class="lyr"></div>
+<div class="ldc">It is the dominant nature of an Army soldier to love his country. It is for the nation that a soldier unquestionably commits to a life of service, the highest value that the Filipino soldier acquires. It is not measured by cash, rank nor belonging. The vitality drives the soldier as the protector of national power. He remains by his vow of service with a strong heart, realizing that regardless if he is eventually left standing alone or dying in the war zone, he rests content with the thought that his purpose of existence has been satisfied. It is this love for country that infests each reference of valor for deserving soldiers, valor that further elevates the spirit of the country. <span class="tag ta">wording as shown — see Ch. 05</span></div></div>
+
+<h3>2. Valor</h3>
+<div class="law"><div class="lra">AS SHOWN</div><div class="ltit">Full definition</div><div class="lyr"></div>
+<div class="ldc">Valor streams normally from one's affection for the nation. It is the capacity to conquer fear in doing one's objective. Courage is beyond bravery like going after a mission despite seemingly insurmountable opposition. It is ascertaining yet not self-destructive. With valor you make the wisest decision.</div></div>
+<p><strong>Your valor will allow you to do the following</strong> (as shown): In shaping the Filipino soldier's identity, even beyond valor, one could also see the strong sense of honor that resonated with the call to arms in the past.</p>
+<ul>
+<li>Control your fear in physical and moral context.</li>
+<li>Take responsibility for your actions, mistakes and decisions.</li>
+<li>Confront problems and do what you believe is right.</li>
+<li>Report successes and failure with equal candor.</li>
+</ul>
+
+<h3>3. Honor</h3>
+<div class="law"><div class="lra">AS SHOWN</div><div class="ltit">Full definition</div><div class="lyr"></div>
+<div class="ldc">Honor is the Military crowning value, the hallmark of military conduct, the nature of the soldier's awareness of individual dignity and self-worth. The soldier conveys his honor in meeting the military basic from prelude and crusade to the consequence. Regardless of the field, honor is regarded in one's self as in the other. In outward appearance, honor is found in cleanliness of the individual, courteousness, decency in daily living and reasonability in the utilization of individual or country resources. It appears in the candor, straightforwardness in speech and in action.</div></div>
+<p><strong>An individual soldier with honor does the following</strong> (as shown):</p>
+<ul>
+<li>Develop and maintain a keen sense of ethical conduct.</li>
+<li>Adhere to the public code of professional Philippine Army values.</li>
+<li>Identity with the ideals embodied in the Philippine Army values. <span class="tag ta">wording as shown — see Ch. 05</span></li>
+</ul>
+
+<h3>4. Loyalty</h3>
+<div class="law"><div class="lra">AS SHOWN</div><div class="ltit">Full definition (two slides)</div><div class="lyr"></div>
+<div class="ldc">Loyalty underlies the soldier's Oath of Service. It demands obedience to the lawful privileges of duly constituted authority in the quest for the nation's interest, observance of the Chain of Command and compliance with orders to the best of one's capacity as all orders must be complied. Loyalty while itself a cause, procures the harvest of military solidarity. It foster cohesion, true sympathy toward the welfare of every individual from the Army and those they work with, and is best expressed in every member's adherence to the military value system as clarified, much as he will undoubtedly take after the guideline of law and principles and standards of the nation. <span class="tag ta">grammar as shown — see Ch. 05</span></div></div>
+<p><strong>An individual soldier of loyalty displays the following</strong> (as shown):</p>
+<ul>
+<li>Put obligations in correct order: the Constitution, the Philippine Army, the unit and finally, self.</li>
+<li>Show faithfulness to unit and comrades by finishing all tasks with them.</li>
+<li>Carry out tough orders without expressing personal criticism.</li>
+<li>Defend soldiers against unfair treatment.</li>
+</ul>
+
+<h3>5. Duty</h3>
+<div class="law"><div class="lra">AS SHOWN</div><div class="ltit">Full definition</div><div class="lyr"></div>
+<div class="ldc">Duty is service plain and simple. Actual duty means being always ready, all senses employed and utilized whether in the garrison or in the field. Duty means satisfying your commitment. The demanding standard of duty additionally requires that those in charge positions release their obligations without bounds.</div></div>
+<p><strong>Expressing the value of duty means, at a minimum, doing the following</strong> (as shown):</p>
+<ul>
+<li>Carrying out the requirements of the position to the best of your ability.</li>
+<li>Fulfill legal, civic and moral obligations.</li>
+<li>Sacrifice personal time in pursuit of excellence.</li>
+</ul>
+
+<h3>6. Solidarity</h3>
+<div class="law"><div class="lra">AS SHOWN</div><div class="ltit">Full definition</div><div class="lyr"></div>
+<div class="ldc">Solidarity is fellowship at the visible level and internally being adjusted to the Philippine Army's goals, vision and programs for reform. Solidarity ties the Army to oneness with the yearnings of the rest of the country in the way of a Filipino proud with his nation.</div></div>
+
+<h2>Application (closing section, as shown)</h2>
+<div class="law"><div class="lra">AS SHOWN</div><div class="ltit">Responsibility for instilling values</div><div class="lyr"></div>
+<div class="ldc">The primary responsibility regarding ingraining and strengthening the values and standards of conduct is vested in the military leadership. Officers and NCOs in command and control positions should commit these values to memory and be in a position to clarify the same when inquired.</div></div>
+<div class="law"><div class="lra">AS SHOWN</div><div class="ltit">Values in practice</div><div class="lyr"></div>
+<div class="ldc">The soldier is well aware of the methods for the world and constantly utilizes his knowledge of human nature when confronted with circumstances not particularly met in his training courses. Values are taught by perception and practice over time. Thus, it is normal that steady survey of one's self in the dynamism of daily life will guide the right application of the prior qualities and standards of conduct in military life, for this code to endure and be relevant for the decades ahead.</div></div>
+
+<h2>Recitation-Ready Reference <span class="addbadge" style="margin-left:6px">ADDED</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">VS. DUTY</div><div class="inm">Love of Country</div><div class="idc">The motivational root — <em>why</em> a soldier serves at all. Duty is the active, day-to-day obligation that follows from it. Example: a reservist reporting for duty during a calamity out of love of country, expressed through the specific duty assigned.</div></div>
+<div class="isc a"><div class="ico">VS. HONOR</div><div class="inm">Valor</div><div class="idc">Valor is courage in the face of fear or danger; Honor is the underlying integrity/character that valor serves. Example: a soldier advancing under fire (valor) to keep a promise to protect civilians (honor).</div></div>
+<div class="isc"><div class="ico">VS. LOYALTY</div><div class="inm">Honor</div><div class="idc">Honor is about self-respect and personal dignity; Loyalty is about faithfulness to others (unit, chain of command). Example: refusing a bribe (honor) while still following a lawful order you personally disagree with (loyalty).</div></div>
+<div class="isc a"><div class="ico">VS. SOLIDARITY</div><div class="inm">Loyalty</div><div class="idc">Loyalty is the individual soldier's obedience and faithfulness; Solidarity is the collective cohesion that results when everyone is loyal together. Example: one soldier's loyalty to his unit vs. the whole unit's shared sense of oneness.</div></div>
+</div>
+
+<h3>Recitation Drill — Chapter 02</h3>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Q: Name the six AFP Core Values in the order presented.</div><div class="sd">A: Love of the Country, Valor, Honor, Loyalty, Duty, Solidarity.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Q: Per the Loyalty slide, what is the correct order of a soldier's obligations?</div><div class="sd">A: The Constitution, the Philippine Army, the unit, and finally, self.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Q: Who is primarily responsible for instilling these values, per the Application section?</div><div class="sd">A: The military leadership — specifically Officers and NCOs in command and control positions.</div></div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch3">
+<div class="cn">CHAPTER 03</div><div class="ct">Rule of Law</div>
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">This Chapter Is Incomplete in the Source Material</div>
+<p class="btx">Unlike Chapters 01 and 02, this session had no Objectives or Scope slide, and it ends immediately after a case quotation with no summary, synthesis, or explicit link back to Philippine law. It is reproduced exactly as shown — the abruptness is a property of the material, not something trimmed from this guide.</p></div></div>
+
+<h2>Origin and Definition</h2>
+<div class="law"><div class="lra">AS SHOWN</div><div class="ltit">Origin of the phrase</div><div class="lyr"></div>
+<div class="ldc">The expression 'Rule of Law' has been derived from the French phrase 'la principle de legalite', i.e. a Government based on the principles of law. It was expounded for the first time by Sir Edward Coke, and was developed by Prof. A.V. Dicey in his book 'The law of the Constitution' published in 1885. <span class="verbatim">verified — see Ch. 05</span></div></div>
+
+<div class="law"><div class="lra">AS SHOWN</div><div class="ltit">"According to Edward Coke, 'Rule of Law' means:"</div><div class="lyr"></div>
+<div class="ldc">A. Absence of arbitrary power on the part of the Government.<br>B. No man is punishable or can be made to suffer in body or good except for a distinct breach of law established in the ordinary legal manner before the ordinary courts of the land. <span class="tag tr2">attribution flagged — see Ch. 05</span></div></div>
+
+<div class="law"><div class="lra">AS SHOWN</div><div class="ltit">Prof. A.V. Dicey's definition</div><div class="lyr">"The Law of the Constitution"</div>
+<div class="ldc">"The rule of law means the absolute supremacy or predominance of the regular law as opposed to the influence of arbitrary power and excludes the existence of arbitrariness or even of wide discretionary authority on the part of the government."</div></div>
+
+<div class="law"><div class="lra">AS SHOWN</div><div class="ltit">Dicey regarded rule of law as the bedrock of the British Legal System</div><div class="lyr"></div>
+<div class="ldc">"This doctrine is accepted in the constitutions of U.S.A. and India."</div></div>
+
+<h2>Dicey's Three Meanings</h2>
+<p>As shown: "According to Prof. Diccy [sic], rules of law contains three principles or it has three meanings as stated below:" <span class="tag ta">spelling of "Diccy" as shown</span></p>
+<div class="gg">
+<div class="gc" data-g="1"><div class="gera">MEANING 1</div><div class="gtit">Supremacy of Law</div><p class="gsp">"No man is punishable or can lawfully be made to suffer in body or goods except for a distinct breach of law established in the ordinary legal manner before the ordinary courts of the land."</p></div>
+<div class="gc" data-g="2"><div class="gera">MEANING 2</div><div class="gtit">Equality Before Law</div><p class="gsp">"No man is above law."</p></div>
+<div class="gc" data-g="3"><div class="gera">MEANING 3</div><div class="gtit">Predominance of Legal Spirit</div><p class="gsp">"The general principles of the constitution are the result of juridical decisions determining [the] rights of private persons in particular cases brought before the Court."</p></div>
+</div>
+
+<h2>Modern Restatement (as shown)</h2>
+<div class="law"><div class="lra">AS SHOWN</div><div class="ltit">Basic form</div><div class="lyr"></div>
+<div class="ldc">The Rule of Law, in its most basic form, is the principle that no one is above the law. The rule follows logically from the idea that truth, and therefore law, is based upon fundamental principles which can be discovered, but which cannot be created through an act of will.</div></div>
+<div class="law"><div class="lra">AS SHOWN</div><div class="ltit">Most important application</div><div class="lyr"></div>
+<div class="ldc">The most important application of the rule of law is the principle that governmental authority is legitimately exercised only in accordance with written, publicly disclosed laws adopted and enforced in accordance with established procedural steps that are referred to as due process. The principle is intended to be a safeguard against arbitrary governance, whether by a totalitarian leader or by mob rule. Thus, the rule of law is hostile both to dictatorship and to anarchy.</div></div>
+
+<h2>Rule of Law Under the Indian Constitution <span class="tag tr2" style="margin-left:6px">as shown — foreign law, see Ch. 05</span></h2>
+<div class="law"><div class="lra">AS SHOWN</div><div class="ltit">A. Preamble</div><div class="lyr"></div>
+<div class="ldc">The preamble of our constitution clearly sets out the principle of rule of law when it lays down the objectives of social, economic and political justice, equality of status and opportunity, and fraternity and dignity of individuals in India.</div></div>
+<div class="law"><div class="lra">AS SHOWN</div><div class="ltit">B. Part III — Fundamental Rights</div><div class="lyr"></div>
+<div class="ldc">Part III of the Constitution lays down the fundamental rights guaranteed to every citizen of the country. These rights are justifiable U/A 32 &amp; 226 which ensure them a protection from any legislative or executive encroachments.</div></div>
+
+<h2>Case Citations (as shown)</h2>
+<div class="law"><div class="lra">AS SHOWN</div><div class="ltit">Indira Nehru Gandhi v. Raj Narain</div><div class="lyr">AIR 1975 SC 2299</div>
+<div class="ldc">"The rule of law postulates the pervasiveness of the spirit of law throughout the whole range of government in the sense of excluding arbitrary official action in any sphere.... It is an expression to give reality to something which is not readily expressible."</div></div>
+<div class="law"><div class="lra">AS SHOWN</div><div class="ltit">State of Bihar v. Sonawati Kumari</div><div class="lyr">AIR 1961 SC 221</div>
+<div class="ldc">"It is the essence of the rule of law that every authority within the State including the executive government should consider itself bound by and obey the law."</div></div>
+<div class="law"><div class="lra">AS SHOWN — LAST SLIDE BEFORE "END OF PRESENTATION"</div><div class="ltit">Bachan Singh v. State of Punjab, popularly known as the "Death Penalty Case"</div><div class="lyr"></div>
+<div class="ldc">"The rule of law permeates the entire fabric of the Constitution and indeed forms one of its basic features. The rule of law excludes arbitrariness, its postulate is 'intelligence without passion' and reason free from desire. Wherever we find arbitrariness or unreasonableness, there is denial of the rule of law."</div></div>
+
+<h2>Recitation-Ready Reference <span class="addbadge" style="margin-left:6px">ADDED</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">CORE IDEA</div><div class="inm">Rule of Law</div><div class="idc">No one — not even the government — is above the law. Compare to "Respect the Constitution" (Ch. 01, Tenet 3), which expresses the same idea in citizen-facing language. Example: a public official being prosecuted under the same laws as an ordinary citizen.</div></div>
+<div class="isc a"><div class="ico">VS. EQUALITY BEFORE LAW</div><div class="inm">Supremacy of Law</div><div class="idc">Supremacy of Law is about the <em>absence of arbitrary power</em>; Equality Before Law is about <em>everyone facing the same rules</em>, including officials. Example: Supremacy = a police officer needing a warrant like anyone else; Equality = that same officer being tried in an ordinary court, not a special one.</div></div>
+</div>
+
+<h3>Recitation Drill — Chapter 03</h3>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Q: Who is credited with originating the concept of Rule of Law, and who systematized it?</div><div class="sd">A: Sir Edward Coke originated it; Prof. A.V. Dicey systematized it in "The Law of the Constitution" (1885).</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Q: List Dicey's three meanings of Rule of Law.</div><div class="sd">A: Supremacy of Law, Equality Before Law, Predominance of Legal Spirit.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Q: What is Bachan Singh v. State of Punjab popularly known as?</div><div class="sd">A: The "Death Penalty Case."</div></div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch4">
+<div class="cn">CHAPTER 04</div><div class="ct">Glossary &amp; Abbreviations</div>
+<div class="box green"><div class="bico">📖</div><div class="bbd"><div class="btt addbadge">ADDED — spelling out acronyms used but not defined in the material</div></div></div>
+<div class="tw"><table>
+<thead><tr><th>Term</th><th>Stands For / Means</th></tr></thead>
+<tbody>
+<tr><td>AFP</td><td>Armed Forces of the Philippines. Spelled out once in the Objectives slide ("Armed Force of the Philippines"), then used only as "AFP" afterward.</td></tr>
+<tr><td>NCR</td><td>National Capital Region — appears in the header "NCR Regional Community Defense Group," never expanded on-slide.</td></tr>
+<tr><td>ARESCOM</td><td>Army Reserve Command — the material itself spells this out directly beneath the acronym in the header.</td></tr>
+<tr><td>NCO</td><td>Non-Commissioned Officer — used in the AFP Core Values "Application" section ("Officers and NCOs"), not expanded on-slide.</td></tr>
+<tr><td>AIR</td><td>All India Reporter — the law-report series the Rule of Law case citations are drawn from (e.g. "AIR 1975 SC 2299"). Not expanded in the material.</td></tr>
+<tr><td>SC</td><td>Supreme Court (of India, in this context) — part of the same case citations.</td></tr>
+<tr><td>U/A</td><td>"Under Article" — used in "these rights are justifiable U/A 32 &amp; 226," referring to Articles 32 and 226 of the Indian Constitution.</td></tr>
+<tr><td>A.V. (Dicey)</td><td>Albert Venn (Dicey) — the jurist's given names, never spelled out in the material beyond the initials.</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="chapter" id="ch5">
+<div class="cn">CHAPTER 05</div><div class="ct">Source Verification &amp; Discrepancy Notes</div>
+<p class="ci">Every date, name, title, and quote above was checked against independent sources. Nothing in Chapters 01-03 was corrected to match these findings — your professor's material is reproduced exactly as shown. This chapter is where every discrepancy is reported separately, as requested.</p>
+
+<div class="mlst">
+<div class="mitem"><div class="mnm">EO 217 — date &amp; count</div><div class="mdc">Confirmed accurate. Executive Order No. 217 was indeed issued by President Manuel L. Quezon on August 19, 1939, and does contain exactly 16 tenets, verified against the Official Gazette's archived text and independent historical sources.</div></div>
+<div class="mitem"><div class="mnm">Tenet 2 — "sacrfice"</div><div class="mdc">The slide reads "sacrfice" — a typo missing the second "i." The verified Official Gazette text reads "sacrifice." A spelling error only; the meaning is unaffected.</div></div>
+<div class="mitem"><div class="mnm">Tenet 16 — "National" vs. "Natural" Resources</div><div class="mdc"><strong>This is a meaningful wording discrepancy, not just a typo.</strong> The slide's title reads "Use and Develop Our National Resources." The verified Official Gazette text of EO 217 reads "Use and develop our <em>natural</em> resources" — and the tenet's own body text ("conserve them for posterity... inalienable heritage") only makes sense read as natural resources (forests, minerals, water, etc.), not "national" resources. This looks like a one-word substitution error in the professor's slide that changes the tenet's meaning.</div></div>
+<div class="mitem"><div class="mnm">AFP Core Values — the six values themselves</div><div class="mdc">Confirmed accurate. Love of Country, Valor, Honor, Loyalty, Duty, and Solidarity are verified as the genuine, consistently cited AFP/Philippine Army core values across multiple independent ROTC and Philippine Army sources.</div></div>
+<div class="mitem"><div class="mnm">"Love of Country" — "infests"</div><div class="mdc">The slide reads "...it is this love for country that <strong>infests</strong> each reference of valor..." This is an unusual word choice — "infests" ordinarily carries a negative, pest-like connotation, which doesn't fit the sentence's positive meaning. It reads as though it may be a typo for a word like "infuses" or "invests," but this guide is not correcting it — presented exactly as shown, flagged for your awareness.</div></div>
+<div class="mitem"><div class="mnm">Honor — "Identity with the ideals"</div><div class="mdc">The slide's bullet reads "Identity with the ideals embodied in the Philippine Army values." Grammatically, this likely should be the verb "Identify" rather than the noun "Identity" — flagged as a probable typo, not corrected in Ch. 02.</div></div>
+<div class="mitem"><div class="mnm">Loyalty — "It foster cohesion"</div><div class="mdc">Subject-verb agreement error as shown ("It foster" instead of "It fosters"). Flagged only; not corrected in Ch. 02.</div></div>
+<div class="mitem"><div class="mnm">Rule of Law — Coke/Dicey attribution</div><div class="mdc"><strong>This is the most significant discrepancy found.</strong> One slide states "According to Edward Coke, 'Rule of Law' means: A. Absence of arbitrary power... B. No man is punishable..." However, a later slide in the same lesson presents this exact same two-point content as Dicey's own "first and second meanings" of Rule of Law (Supremacy of Law and Equality Before Law). Independent verification confirms: Sir Edward Coke is historically credited only with originating the general <em>concept</em> of rule of law (17th century, under James I); the specific, detailed two/three-part formulation shown is Dicey's own systematic articulation from "Introduction to the Study of the Law of the Constitution" (1885). The material appears to misattribute Dicey's specific wording to Coke on one slide, then correctly credits Dicey with the same content a few slides later — an internal inconsistency worth raising with your instructor if it comes up in recitation.</div></div>
+<div class="mitem"><div class="mnm">"la principle de legalite"</div><div class="mdc">Minor: the French is misspelled/mis-grammared as shown. Correct French would be "le principe de légalité" (masculine article "le," not "la"; "principe" not "principle"; accent on "légalité"). Very likely inherited boilerplate rather than an error specific to your professor — see next note.</div></div>
+<div class="mitem"><div class="mnm">A.V. Dicey's book title</div><div class="mdc">The slide cites the book as "The Law of the Constitution," published 1885. Verified: Dicey's actual title is <em>"Introduction to the Study of the Law of the Constitution"</em> (1885 first edition). "The Law of the Constitution" is commonly used as an informal short title (and appears that way in many other sources too), so this isn't necessarily wrong, but the full formal title is longer than what's shown.</div></div>
+<div class="mitem"><div class="mnm">Indian case citations</div><div class="mdc">All three case citations were independently verified as accurate, real Indian Supreme Court cases with matching quotes: <em>Indira Nehru Gandhi v. Raj Narain</em> (AIR 1975 SC 2299, decided Nov. 7, 1975), <em>State of Bihar v. Sonawati Kumari</em> (AIR 1961 SC 221), and <em>Bachan Singh v. State of Punjab</em> ("Death Penalty Case"). No factual errors found in these citations themselves.</div></div>
+<div class="mitem"><div class="mnm">Entire Rule of Law section is Indian law, not Philippine law</div><div class="mdc"><strong>Important context, not exactly an "error."</strong> Every constitutional provision (Preamble, Part III, Articles 32 &amp; 226) and every court case in this lesson is Indian, not Philippine. This is a widely-recycled ROTC/CWTS teaching resource — the identical content (word-for-word, including the same three case citations) was independently found circulating in study materials from at least one other Philippine university, so this isn't unique to your class or an invention of your instructor. It does mean, though, that if your exam expects Philippine constitutional provisions or Philippine case law on Rule of Law, none of that appears anywhere in the material you uploaded — worth confirming with your instructor whether Philippine-specific content was covered separately.</div></div>
+</div>
+</section>
+
+<div class="footer"><p>QCU Academic OS · AY 2026-2027 · Compiled by <strong>KianoRoku18Ino</strong> · github.com/KianoRoku18Ino</p></div>
+</main>
+
+</body>
+</html>
