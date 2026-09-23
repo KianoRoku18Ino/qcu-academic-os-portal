@@ -138,6 +138,21 @@
                   "html": "assets/guides/year-1/sem-1/socsci3/week-3.html"
                 }
               ]
+            },
+            {
+              "id": "y1-s1-cc101",
+              "code": "CC101",
+              "title": "Introduction to Computing",
+              "items": [
+                {
+                  "id": "week-1",
+                  "kind": "week",
+                  "label": "Week 1 — IT Industries and Professions",
+                  "order": 1,
+                  "week": 1,
+                  "html": "assets/guides/year-1/sem-1/cc101/week-1.html"
+                }
+              ]
             }
           ]
         },
