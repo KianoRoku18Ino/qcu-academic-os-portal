@@ -159,6 +159,14 @@
                   "order": 2,
                   "week": 2,
                   "html": "assets/guides/year-1/sem-1/cc101/week-2.html"
+                },
+                {
+                  "id": "week-3",
+                  "kind": "week",
+                  "label": "Week 3 — Computer Systems",
+                  "order": 3,
+                  "week": 3,
+                  "html": "assets/guides/year-1/sem-1/cc101/week-3.html"
                 }
               ]
             }
