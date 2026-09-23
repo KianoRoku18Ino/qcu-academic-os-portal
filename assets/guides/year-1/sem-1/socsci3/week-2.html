@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOCSCI3 — Structure of Globalization & the 4IR | Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--purple:#8B5CF6;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(59,130,246,.15);--sw:285px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvs{padding:9px 17px 3px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t3)}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover,.nvi a.act{color:var(--t1);background:rgba(59,130,246,.08);border-left-color:var(--blue)}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:20px}
+.main{margin-left:var(--sw)}
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:52px 52px 42px;position:relative;overflow:hidden}
+.hero::before{content:'01001000';position:absolute;top:-10px;right:15px;font-family:'JetBrains Mono',monospace;font-size:115px;font-weight:900;color:rgba(59,130,246,.04);letter-spacing:-5px;user-select:none;line-height:1}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--blue)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:40px;font-weight:700;line-height:1.08;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#3B82F6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:17px;color:var(--t2);margin-bottom:19px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+.chapter{padding:44px 52px;border-bottom:1px solid var(--bdr);max-width:970px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:600;margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--blue);border-radius:2px;flex-shrink:0}
+h3{font-family:'Space Grotesk',sans-serif;font-size:15.5px;font-weight:600;color:var(--blue);margin:22px 0 9px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+.box{border-radius:8px;padding:13px 17px;margin:15px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}.red .btt{color:var(--red)}
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--blue);font-size:12px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(59,130,246,.04)}
+tbody td{padding:9px 13px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}
+.steps{margin:15px 0}
+.step{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.snum{background:var(--blue);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace}
+.sc{flex:1}
+.sl{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:2px}
+.sd{color:var(--t2);font-size:13px;line-height:1.7}
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.gc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;position:relative;overflow:hidden}
+.gc::before{content:attr(data-g);position:absolute;top:-10px;right:7px;font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:900;color:rgba(59,130,246,.05);line-height:1}
+.gera{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.gtit{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:7px}
+.gsp{font-size:12.5px;color:var(--t2);margin:0;line-height:1.7}
+.gsp strong{color:var(--blue)}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:15px 0}
+.pcrd{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:13px 15px}
+.pnm{font-weight:700;color:var(--t1);font-size:13px;margin-bottom:2px}
+.pdt{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.pttl{font-size:11px;color:var(--blue);font-weight:600;margin-bottom:4px}
+.pdsc{font-size:12px;color:var(--t2);line-height:1.6}
+.isg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.isc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;border-top:3px solid var(--blue)}
+.isc.a{border-top-color:var(--amber)}.isc.g{border-top-color:var(--green)}.isc.p{border-top-color:var(--purple)}.isc.r{border-top-color:var(--red)}
+.ico{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-bottom:3px}
+.inm{font-weight:700;font-size:14px;color:var(--t1);margin-bottom:6px}
+.idc{font-size:12.5px;color:var(--t2);line-height:1.7}
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:4px;font-size:13px;line-height:1.75}
+li strong{color:var(--t1)}
+.footer{padding:34px 52px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--blue)}
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.gg,.pg,.isg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+<div class="sbh"><div class="sbb">SOCSCI3 · QCU BSIT</div><div class="sbt">Structure of Globalization & the 4IR</div><div class="sbs">Week 2 Study Guide</div></div>
+<ul class="nvl">
+<li class="nvs">Introduction</li>
+<li class="nvi"><a href="#overview"><span class="nn">00</span>Lesson Overview</a></li>
+<li class="nvs">Chapters</li>
+<li class="nvi"><a href="#ch1"><span class="nn">01</span>Dimensions & Components of Globalization</a></li>
+<li class="nvi"><a href="#ch2"><span class="nn">02</span>History of the Modern Global Economy</a></li>
+<li class="nvi"><a href="#ch3"><span class="nn">03</span>The Fourth Industrial Revolution</a></li>
+<li class="nvi"><a href="#ch4"><span class="nn">04</span>4IR × Globalization</a></li>
+<li class="nvi"><a href="#ch5"><span class="nn">05</span>Big Picture & Discussion Prep</a></li>
+<li class="nvi"><a href="#ch6"><span class="nn">06</span>Glossary & Abbreviations</a></li>
+</ul></nav>
+
+<main class="main">
+<div class="hero">
+<div class="he">QCU Academic OS · Lesson-Grounded Guide</div>
+<div class="ht">Structure of Globalization & the 4IR</div>
+<div class="hs">The Structure of Globalization, History of the Modern-Day Global Economy, and the Fourth Industrial Revolution</div>
+<div class="hm">
+<div class="mp">Course: <span>SOCSCI3 - The Contemporary World</span></div>
+<div class="mp">Source: <span>Prof-provided lesson document</span></div>
+<div class="mp">Units: <span>3u</span></div>
+</div></div>
+
+<section class="chapter" id="overview">
+<div class="cn">CHAPTER 00</div><div class="ct">Lesson Overview</div>
+<p class="ci">Nothing from the source lesson document has been cut here — this guide reorganizes it into a study-friendly structure and adds an abbreviations glossary at the end. It picks up right where the Nation-States & Globalization guide (Week 1) leaves off: that guide covered <em>what</em> globalization is and the forces behind it; this one covers <em>how</em> the global economy actually got built, piece by piece, and where it's headed with the Fourth Industrial Revolution.</p>
+
+<div class="box blue"><div class="bico">🧭</div><div class="bbd"><div class="btt">Three Interconnected Ideas</div>
+<p class="btx"><strong>1. The Structure of Globalization</strong> — how countries, institutions, businesses, technologies, and people are interconnected. <strong>2. The History of the Modern Global Economy</strong> — how international trade and economic institutions developed from the postwar period to today. <strong>3. The Fourth Industrial Revolution (4IR)</strong> — how AI, automation, robotics, biotechnology, and IoT are reshaping globalization.</p></div></div>
+
+<h2>Recitation Priority Map</h2>
+<div class="tw"><table>
+<thead><tr><th>Topic</th><th>Chapter</th><th>Recitation Weight</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td>Timeline: GATT → WTO, Bretton Woods, Industrial Revolutions</td><td>02</td><td><span class="tag tr2">🔴 High</span></td><td>Date/sequence-heavy — the classic exam trap</td></tr>
+<tr><td>7 Major 4IR Technologies</td><td>03</td><td><span class="tag tr2">🔴 High</span></td><td>Enumeration with a concrete example each</td></tr>
+<tr><td>8 Components of Globalization's Structure</td><td>01</td><td><span class="tag ta">🟡 Medium</span></td><td>Long list, but each has a clear one-line definition</td></tr>
+<tr><td>Benefits vs. Challenges of the 4IR</td><td>04</td><td><span class="tag ta">🟡 Medium</span></td><td>Good essay-question material, occasional recitation pairing question</td></tr>
+<tr><td>Philippine Examples (BPO, online selling, etc.)</td><td>04</td><td><span class="tag tb">🔵 Lower</span></td><td>Concrete and intuitive — least likely to trip you up</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="chapter" id="ch1">
+<div class="cn">CHAPTER 01</div><div class="ct">Dimensions & Components of Globalization</div>
+<p class="ci">Globalization is more than goods moving between countries — it's a complex system of economic, political, technological, social, cultural, and institutional connections linking societies across borders. Classic example from the lesson: a smartphone designed in one country, built from parts made in several others, assembled elsewhere, sold on a global digital platform, and bought by a Filipino consumer.</p>
+
+<h2>The Six Dimensions</h2>
+<div class="tw"><table>
+<thead><tr><th>Dimension</th><th>Covers</th></tr></thead>
+<tbody>
+<tr><td>Economic</td><td>International trade, foreign investment, global production, multinational corporations.</td></tr>
+<tr><td>Political</td><td>International organizations, treaties, diplomatic cooperation.</td></tr>
+<tr><td>Technological</td><td>Internet, telecommunications, digital platforms, AI.</td></tr>
+<tr><td>Cultural</td><td>Global spread of music, films, food, fashion, languages, lifestyles.</td></tr>
+<tr><td>Social</td><td>Migration, international education, tourism, social networks.</td></tr>
+<tr><td>Environmental</td><td>Climate change, pollution, biodiversity, and other cross-border problems.</td></tr>
+</tbody></table></div>
+
+<h2>The 8 Major Components of Globalization's Structure</h2>
+
+<h3>1. Global Markets</h3>
+<p>Businesses can sell internationally, buy from foreign suppliers, employ workers abroad, receive foreign investment, and advertise on global platforms. <strong>Example:</strong> a small Filipino clothing business reaching customers worldwide through Facebook, TikTok, Shopee, Lazada, or its own site — technology erases the old geographic limits.</p>
+
+<h3>2. International Trade</h3>
+<p>Countries trade because they differ in natural resources, labor costs, technology, climate, production capability, and consumer preferences. The <strong>Philippines exports</strong> agricultural products, electronics, and BPO services, and <strong>imports</strong> petroleum, machinery, electronic components, and food. The WTO traces international economic integration back to networks like the Silk Road, through GATT, to the modern WTO.</p>
+
+<h3>3. Global Supply Chains</h3>
+<p>A production process split across countries: <strong>Design (US) → Components (South Korea/Japan/Taiwan/China) → Assembly (China/Vietnam) → Shipping (international logistics) → Marketing (global platforms) → Consumer (Philippines).</strong> Advantage: cheaper materials, specialized labor, advanced tech, bigger markets. Disadvantage: a disruption in one country can ripple out to affect everyone downstream.</p>
+
+<h3>4. Multinational Corporations (MNCs)</h3>
+<p>Companies operating in multiple countries, moving capital, technology, management, products, and knowledge across borders. <strong>Example structure:</strong> HQ in the US, R&D in Europe, manufacturing in Asia, customer service in the Philippines, customers worldwide.</p>
+
+<h3>5. Global Financial System</h3>
+<p>The cross-border movement of money: foreign direct investment, international banking, stock markets, remittances, foreign exchange, international loans, portfolio investments. <strong>Example:</strong> a major economy raising interest rates can ripple into currency values, investment flows, borrowing costs, stock markets, and developing economies elsewhere.</p>
+
+<h3>6. International Institutions</h3>
+<div class="pg">
+<div class="pcrd"><div class="pnm">WTO</div><div class="pdt">TRADE RULES</div><div class="pttl">World Trade Organization</div><div class="pdsc">Established January 1, 1995, succeeding GATT. Unlike GATT (goods only), WTO agreements also cover services and intellectual property.</div></div>
+<div class="pcrd"><div class="pnm">IMF</div><div class="pdt">MONETARY STABILITY</div><div class="pttl">International Monetary Fund</div><div class="pdsc">Promotes international monetary cooperation and financial stability.</div></div>
+<div class="pcrd"><div class="pnm">World Bank</div><div class="pdt">DEVELOPMENT FINANCE</div><div class="pttl">Financing & development support</div><div class="pdsc">Provides financing and development support to countries.</div></div>
+<div class="pcrd"><div class="pnm">UN</div><div class="pdt">GLOBAL COOPERATION</div><div class="pttl">United Nations</div><div class="pdsc">Facilitates international cooperation on peace, development, human rights, and other global concerns.</div></div>
+</div>
+
+<h3>7. Technology & Communication</h3>
+<p>The transformation chain: <strong>Letters → Telephone → Radio → Television → Internet → Smartphone → AI.</strong> <strong>Example:</strong> a Filipino student attending an online class with an international professor, watching foreign educational content, collaborating with overseas students, or working remotely for an international company. Digital technology has reduced the importance of physical distance.</p>
+
+<h3>8. Global Migration</h3>
+<p>People cross borders for employment, education, family, business, tourism, or humanitarian reasons. For the Philippines, <strong>OFWs</strong> are the prime example of globalization connecting labor markets.</p>
+<div class="gg">
+<div class="gc" data-g="+"><div class="gera">MIGRATION</div><div class="gtit">Benefits</div><p class="gsp">Employment opportunities · remittances · skills transfer · international networks.</p></div>
+<div class="gc" data-g="−"><div class="gera">MIGRATION</div><div class="gtit">Challenges</div><p class="gsp">Family separation · brain drain · labor exploitation · cultural adjustment.</p></div>
+</div>
+
+<div class="box green"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation-Ready Answer</div>
+<p class="btx"><em>"Globalization's structure has eight moving parts: global markets, international trade, global supply chains, multinational corporations, the global financial system, international institutions like the WTO and IMF, technology and communication, and global migration."</em> If pressed for the sharpest Philippine example: <strong>OFWs</strong> for migration, and the smartphone supply chain (design in the US, parts from Asia, assembly in China/Vietnam, sold to a Filipino consumer) for supply chains.</p></div></div>
+</section>
+
+<section class="chapter" id="ch2">
+<div class="cn">CHAPTER 02</div><div class="ct">History of the Modern Global Economy</div>
+<p class="ci">The modern global economy didn't appear overnight — it developed through several historical stages, and globalization isn't a straight line: it can expand, and it can reverse.</p>
+
+<div class="tw"><table>
+<thead><tr><th>Stage</th><th>Period</th><th>What Happened</th></tr></thead>
+<tbody>
+<tr><td>1. Early Global Trade</td><td>Ancient era</td><td>The Silk Road connected Asia, the Middle East, Europe, exchanging silk, spices, precious metals, textiles, agricultural goods — and transmitting religions, technologies, languages, and science along with them.</td></tr>
+<tr><td>2. Age of Exploration</td><td>~15th century onward</td><td>European maritime exploration expanded trade routes and colonies across Asia, Africa, the Americas — but also brought colonialism, exploitation, slavery, and unequal economic relationships.</td></tr>
+<tr><td>3. First Industrial Revolution</td><td>Late 18th century, began in Britain</td><td>Steam power, mechanized production, factories, railways, steamships — dramatically cutting the time/cost of moving goods and people. Chain: factories → more production → more trade → bigger markets → stronger international ties.</td></tr>
+<tr><td>4. Second Industrial Revolution</td><td>Late 19th–early 20th century</td><td>Electricity, telecommunications, steel, automobiles, modern chemicals — mass production became possible, creating mass markets and mass consumption.</td></tr>
+<tr><td>5. World Wars & the Great Depression</td><td>Interwar period</td><td>WWI, the Great Depression, protectionism, and WWII disrupted economic integration — proof that global integration can reverse, not just expand. Protectionist and retaliatory trade policies sharply contracted world trade during the Depression.</td></tr>
+<tr><td>6. Bretton Woods System</td><td>1944</td><td>Representatives met in Bretton Woods, New Hampshire to build a postwar framework for economic cooperation — leading to the <strong>IMF</strong> and the <strong>International Bank for Reconstruction and Development</strong> (which became part of the World Bank Group).</td></tr>
+<tr><td>7. GATT</td><td>1947/1948</td><td>23 countries concluded the initial tariff negotiations in 1947; GATT came into effect provisionally in 1948, aiming for lower tariffs, more trade, predictable rules, and cooperation. It governed most of world trade from 1948–1994.</td></tr>
+<tr><td>8. Expansion of Trade</td><td>Postwar era onward</td><td>Lower trade barriers, better transport, containerization, international agreements, MNCs, and better communication all fueled trade growth. The shipping container (from the 1950s) standardized how goods moved between ships, trains, and trucks.</td></tr>
+<tr><td>9. Third Industrial Revolution</td><td>Mid-20th century onward</td><td>Computers, semiconductors, telecommunications, automation, the internet, information systems — enabling information processing and transmission at unprecedented speed.</td></tr>
+<tr><td>10. Creation of the WTO</td><td>1995</td><td>The Uruguay Round of GATT negotiations (1986–94) produced the Marrakesh Agreement, signed April 15, 1994; the WTO began operating January 1, 1995, expanding coverage to goods, services, intellectual property, and dispute settlement.</td></tr>
+<tr><td>11. 21st-Century Globalization</td><td>2000s–present</td><td>Globalization becomes increasingly <strong>digital, networked, knowledge-based, data-driven,</strong> and <strong>technology-intensive.</strong></td></tr>
+</tbody></table></div>
+
+<div class="box amber"><div class="bico">📌</div><div class="bbd"><div class="btt">GATT → WTO in one line</div>
+<p class="btx">GATT (1947–1994) was a provisional agreement focused mainly on goods trade with limited dispute resolution. The WTO (1995–present) is a permanent institution with an expanded mandate covering goods (GATT 1994), services (<strong>GATS</strong>), and intellectual property (<strong>TRIPS</strong>) — plus a stronger, binding dispute-settlement system.</p></div></div>
+
+<div class="box green"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation-Ready Answer</div>
+<p class="btx">If asked to sequence the key milestones: <em>"Silk Road → Age of Exploration → First and Second Industrial Revolutions → World Wars/Depression → Bretton Woods (1944) → GATT (1947/48) → Third Industrial Revolution → WTO (1995) → 21st-century digital globalization."</em> The one non-negotiable date pair to memorize: <strong>GATT 1947/48, WTO 1995.</strong></p></div></div>
+</section>
+
+<section class="chapter" id="ch3">
+<div class="cn">CHAPTER 03</div><div class="ct">The Fourth Industrial Revolution</div>
+<p class="ci">The <strong>Fourth Industrial Revolution (4IR)</strong> is the current wave of technological transformation defined by the integration of <strong>digital, physical, and biological technologies</strong>. The World Economic Forum describes it as building on the digital revolution, fusing technologies that blur the boundaries between physical, digital, and biological systems.</p>
+
+<div class="box blue"><div class="bico">🔁</div><div class="bbd"><div class="btt">In Simple Terms</div>
+<p class="btx"><strong>3rd Industrial Revolution</strong> = Computers + Internet + Automation. <strong>4th Industrial Revolution</strong> = AI + Robotics + IoT + Big Data + Biotechnology + Advanced Computing + Automation.</p></div></div>
+
+<h2>The Four Industrial Revolutions at a Glance</h2>
+<div class="tw"><table>
+<thead><tr><th>Revolution</th><th>Approx. Period</th><th>Major Technology</th><th>Main Economic Effect</th></tr></thead>
+<tbody>
+<tr><td>1st</td><td>Late 18th–19th century</td><td>Steam, mechanization</td><td>Factory production</td></tr>
+<tr><td>2nd</td><td>Late 19th–early 20th century</td><td>Electricity, assembly line</td><td>Mass production</td></tr>
+<tr><td>3rd</td><td>20th century</td><td>Computers, electronics, Internet</td><td>Automation and digitalization</td></tr>
+<tr><td>4th</td><td>21st century</td><td>AI, robotics, IoT, biotechnology</td><td>Intelligent and interconnected systems</td></tr>
+</tbody></table></div>
+
+<h2>7 Major Technologies of the 4IR</h2>
+<div class="pg">
+<div class="pcrd"><div class="pnm">Artificial Intelligence</div><div class="pdt">4IR TECH 1</div><div class="pttl">Systems that do human-like tasks</div><div class="pdsc">ChatGPT/generative AI, image & speech recognition, recommendation systems, predictive analytics, autonomous systems. <strong>Business example:</strong> a restaurant using AI to forecast demand, analyze preferences, automate inquiries, personalize marketing, and optimize inventory.</div></div>
+<div class="pcrd"><div class="pnm">Internet of Things (IoT)</div><div class="pdt">4IR TECH 2</div><div class="pttl">Physical objects that talk to the internet</div><div class="pdsc">Smart watches, smart homes, connected vehicles, industrial sensors, smart factories. <strong>Example:</strong> a factory machine reporting "Temperature is increasing — maintenance may be required" for predictive maintenance.</div></div>
+<div class="pcrd"><div class="pnm">Robotics & Automation</div><div class="pdt">4IR TECH 3</div><div class="pttl">Machines doing the repetitive or risky work</div><div class="pdsc">Industrial robots, warehouse robots, surgical robots, autonomous vehicles, agricultural robots. Increases productivity but changes what skills workers need.</div></div>
+<div class="pcrd"><div class="pnm">Big Data & Analytics</div><div class="pdt">4IR TECH 4</div><div class="pttl">Turning huge datasets into decisions</div><div class="pdsc">Understanding customer behavior, purchase patterns, market trends, operations, risk. <strong>Example:</strong> an online retailer spotting "customers who buy Product A also buy Product B" to power recommendations.</div></div>
+<div class="pcrd"><div class="pnm">Cloud Computing</div><div class="pdt">4IR TECH 5</div><div class="pttl">Infrastructure without owning the hardware</div><div class="pdsc">Access to storage, applications, computing power, and databases over the internet instead of maintaining everything locally.</div></div>
+<div class="pcrd"><div class="pnm">Blockchain</div><div class="pdt">4IR TECH 6</div><div class="pttl">A transparent, hard-to-tamper-with ledger</div><div class="pdsc">A distributed digital ledger designed for transparency and resistance to unauthorized alteration. Potential uses: financial transactions, supply-chain tracking, digital identity, smart contracts, records management.</div></div>
+<div class="pcrd"><div class="pnm">Biotechnology</div><div class="pdt">4IR TECH 7</div><div class="pttl">The 4IR's biological side</div><div class="pdsc">Genetic engineering, genome editing, personalized medicine, synthetic biology — identified by the World Economic Forum among core 4IR-associated technologies.</div></div>
+</div>
+
+<div class="box green"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation-Ready Answer</div>
+<p class="btx"><em>"The 4IR runs on seven core technologies: AI, IoT, robotics and automation, big data, cloud computing, blockchain, and biotechnology — and what makes it different from the 3rd Industrial Revolution is that these technologies increasingly converge and interact with each other, not just operate side by side."</em></p></div></div>
+</section>
+
+<section class="chapter" id="ch4">
+<div class="cn">CHAPTER 04</div><div class="ct">4IR × Globalization</div>
+<div class="box blue"><div class="bico">➡️</div><div class="bbd"><div class="btt">The Chain Reaction</div>
+<p class="btx">Technology → Faster Communication → Lower Transaction Costs → Global Business Networks → Greater International Economic Integration.</p></div></div>
+
+<h2>5 Ways the 4IR Changes Globalization</h2>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Globalization becomes more digital</div><div class="sd">Traditional globalization moved Goods + Capital + People. Digital globalization adds Data + Algorithms + Digital Services + Knowledge — a software company can sell internationally without ever shipping a physical product.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Remote work</div><div class="sd">A Filipino professional in Quezon City can work for an American, Australian, Singaporean, or European employer they may never meet in person.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Global e-commerce</div><div class="sd">Digital platforms let a small entrepreneur reach international customers without opening physical stores abroad — opportunity for MSMEs, freelancers, content creators, online sellers, digital entrepreneurs.</div></div></div>
+<div class="step"><div class="snum">4</div><div class="sc"><div class="sl">Smart manufacturing</div><div class="sd">Traditional factory: Human workers → machines → production. Smart factory (Industry 4.0): Sensors → Data → AI → Automated machines → Real-time decisions.</div></div></div>
+<div class="step"><div class="snum">5</div><div class="sc"><div class="sl">Changing nature of employment</div><div class="sd">Some jobs get automated, redesigned, or AI-augmented — but new roles emerge in AI, cybersecurity, data analytics, robotics, cloud computing, digital marketing, and software development. The real question isn't "will tech eliminate jobs" but "what skills will workers need."</div></div></div>
+</div>
+
+<h2>Benefits vs. Challenges</h2>
+<div class="gg">
+<div class="gc" data-g="+"><div class="gera">7 BENEFITS</div><div class="gtit">What the 4IR Gets Right</div><p class="gsp">Higher productivity · improved innovation · better real-time decision-making · improved customer experience/personalization · greater global connectivity/collaboration · new business opportunities (lower barriers to global markets) · potential quality-of-life gains in healthcare, education, transportation, agriculture, communication, public services.</p></div>
+<div class="gc" data-g="−"><div class="gera">6 CHALLENGES</div><div class="gtit">Where It Gets Risky</div><p class="gsp"><strong>Job displacement</strong> (routine tasks most at risk) · <strong>digital divide</strong> (unequal access to internet/devices/education) · <strong>cybersecurity</strong> threats · <strong>data privacy</strong> (who owns/accesses/protects your data) · <strong>ethical problems in AI</strong> (bias, discrimination, misinformation, accountability) · <strong>inequality</strong> (advanced economies and skilled workers can capture more of the gains).</p></div>
+</div>
+
+<h2>Globalization 4.0</h2>
+<p>A useful lens for the relationship between globalization and the 4IR — four eras building on each other:</p>
+<div class="tw"><table>
+<thead><tr><th>Era</th><th>Defined By</th></tr></thead>
+<tbody>
+<tr><td>Globalization 1.0</td><td>Countries and physical exploration.</td></tr>
+<tr><td>Globalization 2.0</td><td>Industrialization and mass production.</td></tr>
+<tr><td>Globalization 3.0</td><td>Digitalization and global networks.</td></tr>
+<tr><td>Globalization 4.0</td><td>AI + automation + data + biotechnology + interconnected intelligent systems.</td></tr>
+</tbody></table></div>
+<p style="font-size:12.5px;color:var(--t3)">The World Economic Forum frames the 4IR as driving this new phase of globalization, where technological change, global systems, standards, and institutions interact in new ways.</p>
+
+<h2>Philippine Examples</h2>
+<div class="pg">
+<div class="pcrd"><div class="pnm">Business Process Outsourcing</div><div class="pdt">PH EXAMPLE 1</div><div class="pttl">Deep integration into the global services economy</div><div class="pdsc">A Filipino employee provides customer service, accounting, tech support, digital marketing, or virtual assistance to an international client.</div></div>
+<div class="pcrd"><div class="pnm">Online Selling</div><div class="pdt">PH EXAMPLE 2</div><div class="pttl">Local entrepreneur → digital platform → global customer</div><div class="pdsc">Shows how technology connects Filipino MSMEs directly to larger markets.</div></div>
+<div class="pcrd"><div class="pnm">Digital Banking</div><div class="pdt">PH EXAMPLE 3</div><div class="pttl">Banking without visiting a bank</div><div class="pdsc">Mobile banking and digital payments let consumers transfer money, pay bills, buy products, and receive payments remotely.</div></div>
+<div class="pcrd"><div class="pnm">Online Education</div><div class="pdt">PH EXAMPLE 4</div><div class="pttl">Learning plugged into the global knowledge economy</div><div class="pdsc">Access to international lectures, online courses, digital libraries, AI learning tools, and global academic communities.</div></div>
+</div>
+
+<div class="box green"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation-Ready Answer</div>
+<p class="btx"><em>"The 4IR changes globalization in five ways: it makes it more digital, enables remote work, powers global e-commerce, drives smart manufacturing, and reshapes what jobs even look like. It brings real benefits — productivity, innovation, connectivity — but also real risks: job displacement, the digital divide, and growing inequality between who can access the technology and who can't."</em></p></div></div>
+</section>
+
+<section class="chapter" id="ch5">
+<div class="cn">CHAPTER 05</div><div class="ct">Big Picture & Discussion Prep</div>
+<h2>The Seven-Step Story</h2>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Trade</div><div class="sd">People and countries exchange goods.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Industrialization</div><div class="sd">Machines increase production.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">International Markets</div><div class="sd">Businesses begin selling to larger markets.</div></div></div>
+<div class="step"><div class="snum">4</div><div class="sc"><div class="sl">Global Institutions</div><div class="sd">Countries establish rules for international economic cooperation.</div></div></div>
+<div class="step"><div class="snum">5</div><div class="sc"><div class="sl">Digitalization</div><div class="sd">Computers and the Internet connect economies.</div></div></div>
+<div class="step"><div class="snum">6</div><div class="sc"><div class="sl">Fourth Industrial Revolution</div><div class="sd">AI, robotics, IoT, biotechnology, and advanced digital systems transform production and society.</div></div></div>
+<div class="step"><div class="snum">7</div><div class="sc"><div class="sl">Globalization 4.0</div><div class="sd">The global economy becomes increasingly digital, intelligent, interconnected, and data-driven.</div></div></div>
+</div>
+
+<h2>5 Key Takeaways</h2>
+<ol>
+<li><strong>Globalization connects economies</strong> — countries increasingly depend on each other for goods, services, capital, technology, information, and labor.</li>
+<li><strong>The modern global economy developed historically</strong> — shaped by industrialization, the world wars, the Great Depression, Bretton Woods, GATT, technology, and the WTO.</li>
+<li><strong>Technology accelerates globalization</strong> — transportation and communication tech have continually shrunk the barrier of distance.</li>
+<li><strong>The 4IR is different because of technological convergence</strong> — AI, robotics, IoT, big data, and biotechnology increasingly interact with each other.</li>
+<li><strong>Globalization creates both opportunities and challenges</strong> — the goal isn't just to embrace technology, but to make its benefits inclusive, ethical, sustainable, and accessible.</li>
+</ol>
+
+<h2>Classroom Discussion Questions (as given)</h2>
+<ol>
+<li>How does globalization affect your daily life as a Filipino student?</li>
+<li>Can a country become economically successful without participating in the global economy?</li>
+<li>How has the Internet changed the structure of globalization?</li>
+<li>What jobs in the Philippines might be affected by AI and automation?</li>
+<li>What new jobs might be created by the Fourth Industrial Revolution?</li>
+<li>Does globalization reduce or increase inequality? Why?</li>
+<li>How can the Philippines prepare its workforce for Industry 4.0?</li>
+<li>Should governments regulate artificial intelligence? Why or why not?</li>
+<li>How can Philippine businesses benefit from Globalization 4.0?</li>
+<li>As a Gen-Z student, what skills should you develop to remain competitive in a globalized, AI-driven economy?</li>
+</ol>
+</section>
+
+<section class="chapter" id="ch6">
+<div class="cn">CHAPTER 06</div><div class="ct">Glossary & Abbreviations</div>
+<p class="ci">Acronyms the lesson uses without always spelling out, plus a few terms worth having pinned down cold.</p>
+<div class="tw"><table>
+<thead><tr><th>Term</th><th>Stands For / Means</th></tr></thead>
+<tbody>
+<tr><td>WTO</td><td>World Trade Organization — permanent institution since 1995, succeeding GATT.</td></tr>
+<tr><td>GATT</td><td>General Agreement on Tariffs and Trade — the 1947/48 precursor framework to the WTO, focused mainly on goods.</td></tr>
+<tr><td>GATS</td><td>General Agreement on Trade in Services — the WTO's services-trade rules.</td></tr>
+<tr><td>TRIPS</td><td>Trade-Related Aspects of Intellectual Property Rights — the WTO's IP rules.</td></tr>
+<tr><td>IMF</td><td>International Monetary Fund — monetary cooperation and financial stability.</td></tr>
+<tr><td>MNC / TNC</td><td>Multinational Corporation / Transnational Corporation — a company operating in multiple countries.</td></tr>
+<tr><td>MSME</td><td>Micro, Small, and Medium Enterprises.</td></tr>
+<tr><td>OFW</td><td>Overseas Filipino Worker.</td></tr>
+<tr><td>4IR</td><td>Fourth Industrial Revolution.</td></tr>
+<tr><td>IoT</td><td>Internet of Things — physical devices connected to the internet that collect/exchange data.</td></tr>
+<tr><td>AI</td><td>Artificial Intelligence.</td></tr>
+<tr><td>FDI</td><td>Foreign Direct Investment.</td></tr>
+<tr><td>GDP</td><td>Gross Domestic Product.</td></tr>
+<tr><td>BPO</td><td>Business Process Outsourcing.</td></tr>
+<tr><td>WEF</td><td>World Economic Forum — the organization behind much of the 4IR framing used in this lesson.</td></tr>
+<tr><td>Industry 4.0</td><td>The manufacturing-specific application of 4IR technologies — smart, sensor-and-data-driven factories.</td></tr>
+<tr><td>Digital Divide</td><td>The gap between people/countries with reliable internet & device access and those without it.</td></tr>
+</tbody></table></div>
+</section>
+
+<div class="footer"><p>QCU Academic OS · Grounded in the prof-provided Structure of Globalization lesson · Compiled by <strong>KianoRoku18Ino</strong> · github.com/KianoRoku18Ino</p></div>
+</main>
+
+</body>
+</html>
