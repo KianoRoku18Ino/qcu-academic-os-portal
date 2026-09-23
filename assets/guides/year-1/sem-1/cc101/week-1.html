@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CC101 — IT Industries and Professions (Week 2) | Mastery Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--bgcode:#060D18;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--purple:#8B5CF6;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(59,130,246,.15);--sw:285px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvs{padding:9px 17px 3px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t3)}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover,.nvi a.act{color:var(--t1);background:rgba(59,130,246,.08);border-left-color:var(--blue)}
+.nvi a.act{color:var(--blue);font-weight:500}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:20px}
+.main{margin-left:var(--sw)}
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:52px 52px 42px;position:relative;overflow:hidden}
+.hero::before{content:'01001000';position:absolute;top:-10px;right:15px;font-family:'JetBrains Mono',monospace;font-size:115px;font-weight:900;color:rgba(59,130,246,.04);letter-spacing:-5px;user-select:none;line-height:1}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--blue)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:48px;font-weight:700;line-height:1.05;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#3B82F6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:18px;color:var(--t2);margin-bottom:19px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+.chapter{padding:44px 52px;border-bottom:1px solid var(--bdr);max-width:970px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:19.5px;font-weight:600;margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--blue);border-radius:2px;flex-shrink:0}
+h3{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--blue);margin:22px 0 9px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+.box{border-radius:8px;padding:13px 17px;margin:15px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}.red .btt{color:var(--red)}
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--blue);font-size:12px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(59,130,246,.04)}
+tbody td{padding:9px 13px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}
+.steps{margin:15px 0}
+.step{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.snum{background:var(--blue);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace}
+.sc{flex:1}
+.sl{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:2px}
+.sd{color:var(--t2);font-size:13px;line-height:1.7}
+.sd code{font-family:'JetBrains Mono',monospace;background:var(--bgr);padding:1px 5px;border-radius:3px;font-size:11.5px;color:var(--amber)}
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.gc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;position:relative;overflow:hidden}
+.gc::before{content:attr(data-g);position:absolute;top:-10px;right:7px;font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:900;color:rgba(59,130,246,.05);line-height:1}
+.gera{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.gtit{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:7px}
+.gsp{font-size:12.5px;color:var(--t2);margin:0;line-height:1.7}
+.gsp strong{color:var(--blue)}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:15px 0}
+.pcrd{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:13px 15px}
+.pnm{font-weight:700;color:var(--t1);font-size:13px;margin-bottom:2px}
+.pdt{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.pttl{font-size:11px;color:var(--blue);font-weight:600;margin-bottom:4px}
+.pdsc{font-size:12px;color:var(--t2);line-height:1.6}
+.isg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.isc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;border-top:3px solid var(--blue)}
+.isc.a{border-top-color:var(--amber)}.isc.g{border-top-color:var(--green)}.isc.p{border-top-color:var(--purple)}
+.ico{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-bottom:3px}
+.inm{font-weight:700;font-size:14px;color:var(--t1);margin-bottom:6px}
+.idc{font-size:12.5px;color:var(--t2);line-height:1.7}
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:4px;font-size:13px;line-height:1.75}
+li strong{color:var(--t1)}
+.footer{padding:34px 52px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--blue)}
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.gg,.pg,.isg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+<div class="sbh"><div class="sbb">CC101 · QCU BSIT</div><div class="sbt">IT Industries and Professions</div><div class="sbs">Week 2 Study Guide · AY 2026-2027</div></div>
+<ul class="nvl">
+<li class="nvs">Introduction</li>
+<li class="nvi"><a href="#overview"><span class="nn">00</span>Lesson Overview</a></li>
+<li class="nvs">Chapters</li>
+<li class="nvi"><a href="#ch1"><span class="nn">01</span>Job vs. Profession & IT Roles</a></li>
+<li class="nvi"><a href="#ch2"><span class="nn">02</span>The 4 Categories of IT Careers</a></li>
+<li class="nvi"><a href="#ch3"><span class="nn">03</span>Computers Across Industries</a></li>
+<li class="nvi"><a href="#ch4"><span class="nn">04</span>Glossary &amp; Abbreviations</a></li>
+</ul></nav>
+
+<main class="main">
+<div class="hero">
+<div class="he">QCU Academic OS · AY 2026-2027</div>
+<div class="ht">CC101</div>
+<div class="hs">Week 2: IT Industries and Professions — Mastery Reference (Verified &amp; Recitation-Ready)</div>
+<div class="hm">
+<div class="mp">Course: <span>CC101 - Introduction to Computing</span></div>
+<div class="mp">Units: <span>3u</span></div>
+<div class="mp">Year Level: <span>1st Year</span></div>
+<div class="mp">Type: <span>Gateway / Technical-Core</span></div>
+</div></div>
+
+<section class="chapter" id="overview">
+<div class="cn">CHAPTER 00</div><div class="ct">Lesson Overview &amp; Study Priority Map</div>
+
+<h2>Verification Notes — Read This First</h2>
+<p class="ci">This upgrade pass works from the previously-compiled Week 2 guide content, since the original slide deck wasn't re-uploaded this session — noted here so this stays honest about sourcing rather than implying a fresh slide-by-slide re-check happened. What follows is a fact and internal-consistency pass over that existing content.</p>
+<div class="mlst">
+<div class="mitem"><div class="mnm">1. Fastest-growing roles list — source not re-verifiable this pass</div><div class="mdc">The "Top Fastest-Growing IT Positions" list (software developers, support specialists, network/systems administrators, network/data-communications analysts, database administrators) reads as a plausible, standard set of in-demand IT roles and matches the shape of rankings from sources like the U.S. Bureau of Labor Statistics' Occupational Outlook. However, without the original lecture slide's own citation on hand, the specific ranking/source behind "per the lecture" can't be independently re-confirmed this pass — treat it as your professor's stated list, not an externally sourced claim, unless you check your own notes for a citation.</div></div>
+<div class="mitem"><div class="mnm">2. No dates or named historical events in this lesson</div><div class="mdc">Unlike Week 3, this week's content (job vs. profession, career categories, industries) is conceptual and current-state, not historical — there was nothing date-sensitive to fact-check.</div></div>
+</div>
+<div class="box green"><div class="bico">✅</div><div class="bbd"><div class="btt">Everything else checked out</div><p class="btx">The Job vs. Profession distinction, all eight named traditional/emerging IT roles, the four career categories and their sub-roles, and all nine industries in Chapter 03 are standard, current, and internally consistent industry terminology — no corrections needed.</p></div></div>
+
+<p class="ci">This week moves CC101 away from "what is a computer" and into "what does the IT industry actually look like once you graduate." The lesson has two jobs: first, it draws a clean line between a <strong>job</strong> and a <strong>profession</strong> so you understand why a BSIT degree matters at all — and second, it maps out the actual career landscape you'll be choosing a lane in later, grouped into four practical categories instead of a random list of job titles.</p>
+
+<div class="box blue"><div class="bico">🔗</div><div class="bbd"><div class="btt">Where This Fits in Your Roadmap</div>
+<p class="btx">This is a foundations/awareness lesson, not a skills lesson — but every category you'll read below previews a real future course. <strong>Software Development</strong> careers preview CC102/CC103/CC104 and PF101 (OOP). <strong>Application Development</strong> careers preview WS101/WS102, PT101, and later IPT101/IM101. <strong>Networking</strong>-flavored roles preview NET101/NET102. Some of those downstream courses (Y1S2, Y2S1) are already COR-confirmed; anything past Y2S1 is still ⚠️ projected until a real COR confirms it — see your roadmap check for the live status.</p></div></div>
+
+<h2>Exam / Recitation Priority Map</h2>
+<div class="tw"><table>
+<thead><tr><th>Topic</th><th>Chapter</th><th>Recitation Weight</th><th>Difficulty</th></tr></thead>
+<tbody>
+<tr><td>Job vs. Profession</td><td>01</td><td><span class="tag ta">🟡 Medium</span></td><td><span class="tag tg">Easy</span></td></tr>
+<tr><td>Traditional & Emerging IT Roles</td><td>01</td><td><span class="tag tr2">🔴 High</span></td><td><span class="tag ta">Medium</span></td></tr>
+<tr><td>The 4 IT Career Categories + sub-roles</td><td>02</td><td><span class="tag tr2">🔴 High</span></td><td><span class="tag ta">Medium</span></td></tr>
+<tr><td>Computers Across Industries</td><td>03</td><td><span class="tag tb">🔵 Lower</span></td><td><span class="tag tg">Easy</span></td></tr>
+</tbody></table></div>
+<p class="ci">This is pure recall-and-explain content — nothing computational. The professor is far more likely to call names for recitation on this material than give a written exam item, so every section below is written the way you'd actually want to say it out loud, not just define it on paper.</p>
+</section>
+
+<section class="chapter" id="ch1">
+<div class="cn">CHAPTER 01</div><div class="ct">Job vs. Profession & IT Roles</div>
+<p class="ci">Everything else in this lesson depends on this one distinction. If you get called on for nothing else this week, get called on for this.</p>
+
+<h2>Job vs. Profession</h2>
+<div class="gg">
+<div class="gc" data-g="J"><div class="gera">NARROWER CONCEPT</div><div class="gtit">Job</div><p class="gsp">A <strong>job</strong> is just a specific task or position you're paid to do. It's narrow — it's the actual seat you sit in. A profession creates the space for a job to exist, not the other way around.</p></div>
+<div class="gc" data-g="P"><div class="gera">BROADER FIELD</div><div class="gtit">Profession</div><p class="gsp">A <strong>profession</strong> is the broad field itself — something you had to study for, with real educational qualifications and training behind it, like "Software Engineering" or "Nursing."</p></div>
+</div>
+
+<div class="box green"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation-Ready Answer</div>
+<p class="btx">If asked "what's the difference between a job and a profession?" — say it like this: <em>"A job is narrower — it's the specific position you hold. A profession is the broader field that had to be studied for and requires training. The profession creates the room for the job to exist."</em> Example: <strong>"Software Developer"</strong> at a specific company is your <strong>job</strong>; <strong>"Software Engineering"</strong> as a whole — the degree, the skillset, the standards — is the <strong>profession</strong> behind it.</p></div></div>
+
+<h2>Traditional Professions in the IT Industry</h2>
+<p>These four are the "classic" roles the industry was already built around before newer specializations branched out.</p>
+<div class="pg">
+<div class="pcrd"><div class="pnm">Network Engineer</div><div class="pdt">TRADITIONAL</div><div class="pttl">The person who builds and keeps the network alive</div><div class="pdsc">Sets up computer networks, maintains them, and gives technical support when things break. <strong>Example:</strong> the IT staff who configured QCU's campus WiFi and the lab network in IK503/IL602.</div></div>
+<div class="pcrd"><div class="pnm">Software Engineer</div><div class="pdt">TRADITIONAL</div><div class="pttl">Builds the software itself, start to finish</div><div class="pdsc">Develops the core concepts and code that exist across the entire software life cycle — not just writing code, but designing how it's built. <strong>Example:</strong> the engineers behind an app like GCash.</div></div>
+<div class="pcrd"><div class="pnm">Quality Assurance Engineer</div><div class="pdt">TRADITIONAL</div><div class="pttl">Makes sure the software actually works before release</div><div class="pdsc">Monitors every phase of development to confirm the design and software match company standards. <strong>Example:</strong> the tester who clicks through a food-delivery app for bugs before it goes live.</div></div>
+<div class="pcrd"><div class="pnm">IT Project Manager</div><div class="pdt">TRADITIONAL</div><div class="pttl">Leads the project, not the code</div><div class="pdsc">Responsible for leading a project from its inception all the way through execution — timelines, people, and deliverables. <strong>Example:</strong> the person coordinating a bank's new mobile-app rollout.</div></div>
+</div>
+
+<h2>Emerging & Developing IT Careers</h2>
+<p>These are newer specializations the industry has introduced as technology and user expectations evolved.</p>
+<div class="pg">
+<div class="pcrd"><div class="pnm">Electronic Engineer</div><div class="pdt">EMERGING</div><div class="pttl">Designs the physical device</div><div class="pdsc">Creates, designs, and develops everyday devices — mobile phones, portable music devices, computers. <strong>Example:</strong> the engineers who designed the circuitry inside your Infinix phone.</div></div>
+<div class="pcrd"><div class="pnm">UI Designer</div><div class="pdt">EMERGING</div><div class="pttl">Concerned with how you navigate the product</div><div class="pdsc">Primarily focused on how a user moves through a digital product — the buttons, layout, and visuals. <strong>Example:</strong> whoever decided where the "Checkout" button sits in the Shopee app.</div></div>
+<div class="pcrd"><div class="pnm">UX Designer</div><div class="pdt">EMERGING</div><div class="pttl">Concerned with how the product feels to use</div><div class="pdsc">Responsible for creating an optimal overall experience when a user interacts with a digital or physical product. <strong>Example:</strong> the person who tested whether Shopee's checkout flow is actually easy or frustrating.</div></div>
+<div class="pcrd"><div class="pnm">Business Analyst</div><div class="pdt">EMERGING</div><div class="pttl">Bridges IT and the business side</div><div class="pdsc">Bridges the gap between IT and the business using data to assess processes, determine requirements, and deliver data-driven recommendations to executives. <strong>Example:</strong> the analyst who figures out why a bank's loan-approval app is losing customers.</div></div>
+<div class="pcrd"><div class="pnm">Software/QA Architect</div><div class="pdt">EMERGING</div><div class="pttl">Senior-level lead over the whole QA team</div><div class="pdsc">A senior position leading the QA team — driving test methods, risk analysis, resource planning, and estimating for client projects. <strong>Example:</strong> the senior tester who decides how an entire company tests every product it ships.</div></div>
+</div>
+
+<div class="box amber"><div class="bico">💡</div><div class="bbd"><div class="btt">UI vs. UX — the pairing that trips people up</div>
+<p class="btx">Recitation-ready line: <em>"UI is about how it looks and how you navigate it — the interface. UX is about how it feels to use — the overall experience."</em> Same app, two different jobs: UI picked the colors and button placement; UX made sure the whole journey (browsing → cart → payment) doesn't frustrate you.</p></div></div>
+
+<h2>Top Fastest-Growing IT Positions</h2>
+<p>Per the lecture, these are among the fastest-growing positions industry-wide:</p>
+<ul>
+<li><strong>Computer software developers</strong> — build the applications people use daily</li>
+<li><strong>Computer support specialists</strong> — the frontline help-desk / troubleshooting role</li>
+<li><strong>Network and computer systems administrators</strong> — keep an organization's systems running</li>
+<li><strong>Network systems and data communications analysts</strong> — study and optimize how data moves</li>
+<li><strong>Database administrators</strong> — manage and protect an organization's stored data</li>
+</ul>
+
+<div class="box green"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 01</div>
+<div class="steps" style="margin-top:8px">
+<div class="step"><div class="snum">Q1</div><div class="sc"><div class="sl">"Differentiate a job from a profession."</div><div class="sd">A job is narrower — a specific paid position. A profession is the broader studied field that creates room for that job to exist. Example: "Web Developer" (job) sits inside "Software Engineering" (profession).</div></div></div>
+<div class="step"><div class="snum">Q2</div><div class="sc"><div class="sl">"Give one traditional and one emerging IT role."</div><div class="sd">Traditional: Network Engineer — sets up and maintains networks. Emerging: UX Designer — makes sure the whole product experience feels good to use.</div></div></div>
+<div class="step"><div class="snum">Q3</div><div class="sc"><div class="sl">"What's the difference between UI and UX?"</div><div class="sd">UI is the interface — how the user navigates it. UX is the overall experience — how using it actually feels, end to end.</div></div></div>
+</div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch2">
+<div class="cn">CHAPTER 02</div><div class="ct">The 4 Categories of IT Careers</div>
+<p class="ci">Instead of memorizing dozens of unrelated job titles, the lecture groups every IT career into four categories based on the <strong>main focus of the job</strong>. Learn the category first — the specific roles fall into place underneath it.</p>
+
+<div class="isg">
+<div class="isc"><div class="ico">CATEGORY 1</div><div class="inm">Sales and Support Careers</div><div class="idc">People-facing roles: installing, fixing, explaining, teaching, and documenting technology for other people.</div></div>
+<div class="isc a"><div class="ico">CATEGORY 2</div><div class="inm">Software Development Careers</div><div class="idc">Building the software itself — from low-level system code to full commercial products.</div></div>
+<div class="isc g"><div class="ico">CATEGORY 3</div><div class="inm">Application Development Careers</div><div class="idc">Adapting and running software for a specific organization — the "make it work for this company" roles.</div></div>
+<div class="isc p"><div class="ico">CATEGORY 4</div><div class="inm">Hardware Design Careers</div><div class="idc">Designing the physical components — CPUs, video cards, memory — usually by electrical or computer engineers.</div></div>
+</div>
+
+<h3>1. Sales and Support Careers</h3>
+<p>The common thread: every role here exists to serve a person, not just a machine.</p>
+<div class="tw"><table>
+<thead><tr><th>Role</th><th>Simple Definition (say it like this)</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td>Technical servicing</td><td>Installing and maintaining hardware and software.</td><td>A technician fixing a printer or setting up a new office PC.</td></tr>
+<tr><td>Technical support</td><td>Responding to phone/email requests for help from customers.</td><td>A Globe or PLDT hotline agent walking you through a router reset.</td></tr>
+<tr><td>Technical sales</td><td>Educating potential customers about a product so they want to buy it.</td><td>A sales rep at PC Express explaining laptop specs to a buyer.</td></tr>
+<tr><td>Technical training</td><td>Teaching individuals how to use a system.</td><td>An in-house trainer teaching office staff how to use MS Excel or a new POS system.</td></tr>
+<tr><td>Technical writing</td><td>Turning an engineer's technical knowledge into written documentation.</td><td>Whoever wrote the user manual that came with your router.</td></tr>
+</tbody></table></div>
+
+<h3>2. Software Development Careers</h3>
+<p>The common thread: creating the actual software product, at varying levels of depth.</p>
+<div class="tw"><table>
+<thead><tr><th>Role</th><th>Simple Definition (say it like this)</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td>Software development</td><td>Creating new software products meant for commercial sale.</td><td>A team building a mobile banking app from scratch.</td></tr>
+<tr><td>Systems programming</td><td>Highly specialized coding — writing low-level instructions (e.g. in C++) to accomplish a task.</td><td>Writing the driver software that lets Windows talk to your printer.</td></tr>
+<tr><td>Application programming</td><td>Needs similar skills to systems programming, but focused on end-user apps.</td><td>Building the grading system a school uses internally.</td></tr>
+<tr><td>Multimedia development</td><td>Using computers to create images, sounds, and movies.</td><td>The animation/graphics team behind a mobile game's cutscenes.</td></tr>
+<tr><td>Quality assurance (QA)</td><td>Testing new products before they're released to the public.</td><td>Testers running a food-delivery app through dozens of scenarios before launch.</td></tr>
+</tbody></table></div>
+
+<h3>3. Application Development Careers</h3>
+<p>The common thread: taking commercial software and making it work for one specific organization.</p>
+<div class="tw"><table>
+<thead><tr><th>Role</th><th>Simple Definition (say it like this)</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td>Application development</td><td>Uses commercial software to build a system for a specific organization.</td><td>Customizing an ERP platform for a local retail chain.</td></tr>
+<tr><td>Systems analysis</td><td>Gathering requirements and designing a system before it's built.</td><td>Interviewing a hospital's staff to figure out what a new records system needs to do.</td></tr>
+<tr><td>Database administration</td><td>Managing the database — the core of a company's information systems.</td><td>Managing a bank's customer-account database.</td></tr>
+<tr><td>Network administration</td><td>Operating and maintaining a company's network.</td><td>Keeping an office's internal LAN and WiFi running day to day.</td></tr>
+<tr><td>Web administration</td><td>Keeping a website working and up to date.</td><td>Making sure an online shop's site stays online and updated.</td></tr>
+</tbody></table></div>
+
+<h3>4. Hardware Design Careers</h3>
+<p>The common thread: the physical side of computing, closer to engineering than programming.</p>
+<div class="tw"><table>
+<thead><tr><th>Role</th><th>Simple Definition (say it like this)</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td>Hardware design</td><td>Specifying computer hardware — CPUs, video cards, memory chips. Many hardware designers are electrical engineers or computer engineers, not IT graduates.</td><td>The engineers who design a new graphics card's chipset.</td></tr>
+</tbody></table></div>
+
+<div class="box green"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 02</div>
+<div class="steps" style="margin-top:8px">
+<div class="step"><div class="snum">Q1</div><div class="sc"><div class="sl">"Name the four categories of IT careers."</div><div class="sd">Sales and Support, Software Development, Application Development, and Hardware Design — grouped by the main focus of the job.</div></div></div>
+<div class="step"><div class="snum">Q2</div><div class="sc"><div class="sl">"What's the difference between software development and application development?"</div><div class="sd">Software development builds a commercial product from scratch to sell. Application development uses existing commercial software and customizes it to fit one specific organization.</div></div></div>
+<div class="step"><div class="snum">Q3</div><div class="sc"><div class="sl">"Where does database administration belong, and why?"</div><div class="sd">Under Application Development Careers — because the database sits at the core of a company's information systems, and admins keep that specific organization's data running.</div></div></div>
+</div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch3">
+<div class="cn">CHAPTER 03</div><div class="ct">Computers Across Industries</div>
+<p class="ci">The last part of the lesson zooms out from "IT jobs" to "where computers show up in every other industry" — proof that IT isn't a silo, it's the backbone underneath almost everything else.</p>
+
+<div class="pg">
+<div class="pcrd"><div class="pnm">Education</div><div class="pdt">INDUSTRY</div><div class="pttl">Computers aid teaching and learning</div><div class="pdsc">Used for lectures, research, and computer-aided instruction. <strong>Example:</strong> a QCU computer lab session or an online LMS.</div></div>
+<div class="pcrd"><div class="pnm">Health & Medicine</div><div class="pdt">INDUSTRY</div><div class="pttl">Computers support diagnosis and treatment</div><div class="pdsc">Used in imaging, monitoring, and hospital records. <strong>Example:</strong> the CT-scan monitors and displays used during a scan.</div></div>
+<div class="pcrd"><div class="pnm">Financial Institutions</div><div class="pdt">INDUSTRY</div><div class="pttl">Computers move and track money</div><div class="pdsc">Used for online banking, transfers, and account management. <strong>Example:</strong> checking your balance and paying bills through a bank's app.</div></div>
+<div class="pcrd"><div class="pnm">Pastime / Entertainment</div><div class="pdt">INDUSTRY</div><div class="pttl">Computers power how we relax</div><div class="pdsc">Used for gaming, streaming, and leisure. <strong>Example:</strong> playing an online multiplayer game with a headset on.</div></div>
+<div class="pcrd"><div class="pnm">Transport System</div><div class="pdt">INDUSTRY</div><div class="pttl">Computers run the vehicles and the routes</div><div class="pdsc">Used in train control systems and vehicle dashboards. <strong>Example:</strong> the onboard computer/control panel of an MRT/LRT train.</div></div>
+<div class="pcrd"><div class="pnm">Business & Corporate</div><div class="pdt">INDUSTRY</div><div class="pttl">Computers are now unavoidable in business</div><div class="pdsc">Used for meetings, reporting, and decision-making. <strong>Example:</strong> a team reviewing sales numbers on a laptop in a client meeting.</div></div>
+<div class="pcrd"><div class="pnm">E-Commerce</div><div class="pdt">INDUSTRY</div><div class="pttl">Computers make buying and selling online possible</div><div class="pdsc">Used for online ordering and delivery. <strong>Example:</strong> ordering food delivery from your phone in bed.</div></div>
+<div class="pcrd"><div class="pnm">Defense</div><div class="pdt">INDUSTRY</div><div class="pttl">Computers support monitoring and control systems</div><div class="pdsc">Used in control rooms with real-time monitoring displays. <strong>Example:</strong> a defense control room tracking a launch on multiple screens.</div></div>
+<div class="pcrd"><div class="pnm">Design</div><div class="pdt">INDUSTRY</div><div class="pttl">Computers are today's design tool</div><div class="pdsc">Used to create and edit visual work digitally. <strong>Example:</strong> a designer editing fashion illustrations in Photoshop.</div></div>
+</div>
+
+<div class="box green"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 03</div>
+<div class="steps" style="margin-top:8px">
+<div class="step"><div class="snum">Q1</div><div class="sc"><div class="sl">"Give three industries that rely on computers and one example each."</div><div class="sd">Health & Medicine — CT-scan imaging systems. Financial Institutions — online banking apps. E-Commerce — online food delivery ordering.</div></div></div>
+<div class="step"><div class="snum">Q2</div><div class="sc"><div class="sl">"Why does the lecture cover industries outside of 'IT jobs'?"</div><div class="sd">To show that computing isn't just its own industry — it's embedded inside nearly every other industry, which is exactly why IT graduates have career options far beyond software companies.</div></div></div>
+</div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch4">
+<div class="cn">CHAPTER 04</div><div class="ct">Glossary &amp; Abbreviations</div>
+<p class="ci">Every abbreviation used across this week's material, spelled out in full.</p>
+
+<div class="isg">
+<div class="isc"><div class="ico">ACRONYM</div><div class="inm">IT</div><div class="idc"><strong>Information Technology</strong> — the industry and degree this entire lesson is mapping out.</div></div>
+<div class="isc a"><div class="ico">ACRONYM</div><div class="inm">UI</div><div class="idc"><strong>User Interface</strong> — how a user navigates a product; the buttons, layout, and visuals a UI Designer owns.</div></div>
+<div class="isc g"><div class="ico">ACRONYM</div><div class="inm">UX</div><div class="idc"><strong>User Experience</strong> — how a product feels to use end-to-end; the overall journey a UX Designer owns.</div></div>
+<div class="isc p"><div class="ico">ACRONYM</div><div class="inm">QA</div><div class="idc"><strong>Quality Assurance</strong> — testing new products before public release; also a full career track (QA Engineer, Software/QA Architect).</div></div>
+</div>
+<div class="isg">
+<div class="isc"><div class="ico">ACRONYM</div><div class="inm">ERP</div><div class="idc"><strong>Enterprise Resource Planning</strong> — the kind of commercial software platform an Application Development role might customize for a specific organization (e.g. a retail chain).</div></div>
+<div class="isc a"><div class="ico">ACRONYM</div><div class="inm">LAN</div><div class="idc"><strong>Local Area Network</strong> — the network a Workstation or office's internal systems run on; kept alive and maintained by network administration roles.</div></div>
+<div class="isc g"><div class="ico">ACRONYM</div><div class="inm">POS</div><div class="idc"><strong>Point of Sale</strong> — the kind of system referenced in the Technical Training example (an in-house trainer teaching staff a new POS system).</div></div>
+<div class="isc p"><div class="ico">ACRONYM</div><div class="inm">MRT / LRT</div><div class="idc"><strong>Metro Rail Transit / Light Rail Transit</strong> — the Manila rail systems used as the Transport System industry example (onboard computers/control panels).</div></div>
+</div>
+<div class="isg">
+<div class="isc"><div class="ico">ACRONYM</div><div class="inm">CT (scan)</div><div class="idc"><strong>Computed Tomography</strong> — the imaging technology behind the CT-scan monitors used as the Health &amp; Medicine industry example.</div></div>
+<div class="isc a"><div class="ico">TERM</div><div class="inm">COR</div><div class="idc"><strong>Certificate of Registration</strong> — the official QCU enrollment document referenced in the roadmap box; a course is "COR-confirmed" once it actually appears on an issued COR, as opposed to just being projected on a curriculum map.</div></div>
+</div>
+</section>
+
+<div class="footer"><p>QCU Academic OS · AY 2026-2027 · Compiled by <strong>KianoRoku18Ino</strong> · github.com/KianoRoku18Ino</p></div>
+</main>
+
+</body>
+</html>
