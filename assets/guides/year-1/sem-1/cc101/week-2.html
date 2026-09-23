@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CC101 — Week 3: Evolution of Computing | Mastery Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--bgcode:#060D18;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--purple:#8B5CF6;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(59,130,246,.15);--sw:285px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvs{padding:9px 17px 3px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t3)}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover,.nvi a.act{color:var(--t1);background:rgba(59,130,246,.08);border-left-color:var(--blue)}
+.nvi a.act{color:var(--blue);font-weight:500}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:20px}
+.main{margin-left:var(--sw)}
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:52px 52px 42px;position:relative;overflow:hidden}
+.hero::before{content:'01001000';position:absolute;top:-10px;right:15px;font-family:'JetBrains Mono',monospace;font-size:115px;font-weight:900;color:rgba(59,130,246,.04);letter-spacing:-5px;user-select:none;line-height:1}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--blue)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:44px;font-weight:700;line-height:1.1;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#3B82F6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:18px;color:var(--t2);margin-bottom:19px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+.chapter{padding:44px 52px;border-bottom:1px solid var(--bdr);max-width:970px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:19.5px;font-weight:600;margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--blue);border-radius:2px;flex-shrink:0}
+h3{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--blue);margin:22px 0 9px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+.box{border-radius:8px;padding:13px 17px;margin:15px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}.red .btt{color:var(--red)}
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--blue);font-size:12px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(59,130,246,.04)}
+tbody td{padding:9px 13px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}
+.tl{margin:15px 0}
+.tli{display:flex;gap:14px;margin-bottom:18px;position:relative}
+.tli::before{content:'';position:absolute;left:73px;top:30px;width:1px;height:calc(100% + 5px);background:var(--bdr)}
+.tli:last-child::before{display:none}
+.tlyr{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--amber);font-weight:700;min-width:58px;padding-top:12px;text-align:right}
+.tldot{width:9px;height:9px;background:var(--blue);border-radius:50%;border:2px solid var(--bg);flex-shrink:0;margin-top:14px}
+.tlc{background:var(--bgc);border:1px solid var(--bdr);border-radius:8px;padding:11px 15px;flex:1}
+.tlt{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:3px}
+.tld{color:var(--t2);font-size:12.5px;line-height:1.65}
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.gc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;position:relative;overflow:hidden}
+.gc::before{content:attr(data-g);position:absolute;top:-10px;right:7px;font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:900;color:rgba(59,130,246,.05);line-height:1}
+.gera{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.gtit{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:7px}
+.gsp{font-size:12.5px;color:var(--t2);margin:0;line-height:1.7}
+.gsp strong{color:var(--blue)}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:15px 0}
+.pcrd{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:13px 15px}
+.pnm{font-weight:700;color:var(--t1);font-size:13px;margin-bottom:2px}
+.pdt{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.pttl{font-size:11px;color:var(--blue);font-weight:600;margin-bottom:4px}
+.pdsc{font-size:12px;color:var(--t2);line-height:1.6}
+.isg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.isc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;border-top:3px solid var(--blue)}
+.isc.a{border-top-color:var(--amber)}.isc.g{border-top-color:var(--green)}.isc.p{border-top-color:var(--purple)}
+.ico{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-bottom:3px}
+.inm{font-weight:700;font-size:14px;color:var(--t1);margin-bottom:6px}
+.idc{font-size:12.5px;color:var(--t2);line-height:1.7}
+.ieg{font-size:11.5px;color:var(--green);margin-top:6px}
+.mlst{margin:11px 0}
+.mitem{display:flex;gap:11px;padding:10px 0;border-bottom:1px solid var(--bdr);align-items:flex-start}
+.mitem:last-child{border-bottom:none}
+.mnm{font-weight:700;color:var(--red);min-width:110px;font-size:13px}
+.mdc{font-size:13px;color:var(--t2);line-height:1.65}
+.law{background:var(--bgc);border:1px solid var(--bdr);border-left:4px solid var(--red);border-radius:8px;padding:15px 17px;margin:11px 0}
+.lra{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--red);font-weight:700;margin-bottom:3px}
+.ltit{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:4px}
+.lyr{font-size:11px;color:var(--t3);margin-bottom:7px}
+.ldc{font-size:13px;color:var(--t2);line-height:1.75}
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:4px;font-size:13px;line-height:1.75}
+li strong{color:var(--t1)}
+.footer{padding:34px 52px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--blue)}
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.gg,.pg,.isg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+<div class="sbh"><div class="sbb">CC101 · QCU BSIT</div><div class="sbt">Week 3: Evolution of Computing</div><div class="sbs">Complete Study Guide · AY 2026-2027</div></div>
+<ul class="nvl">
+<li class="nvs">Introduction</li>
+<li class="nvi"><a href="#overview"><span class="nn">00</span>Week Overview</a></li>
+<li class="nvs">Chapters</li>
+<li class="nvi"><a href="#ch1"><span class="nn">01</span>Pre-Mechanical Computing</a></li>
+<li class="nvi"><a href="#ch2"><span class="nn">02</span>Mechanical Age (1450–1840)</a></li>
+<li class="nvi"><a href="#ch3"><span class="nn">03</span>Electromechanical &amp; Electronic Age</a></li>
+<li class="nvi"><a href="#ch4"><span class="nn">04</span>Generations of Computers</a></li>
+<li class="nvi"><a href="#ch5"><span class="nn">05</span>Types of Computers</a></li>
+<li class="nvi"><a href="#ch6"><span class="nn">06</span>Glossary &amp; Abbreviations</a></li>
+</ul></nav>
+
+<main class="main">
+<div class="hero">
+<div class="he">QCU Academic OS · AY 2026-2027</div>
+<div class="ht">CC101 · WEEK 3</div>
+<div class="hs">Evolution of Computing — Mastery Reference (Fact-Checked &amp; Recitation-Ready)</div>
+<div class="hm">
+<div class="mp">Course: <span>CC101</span></div>
+<div class="mp">Units: <span>3</span></div>
+<div class="mp">Year Level: <span>1st Yr, Sem 1</span></div>
+<div class="mp">Type: <span>Gateway / Layer 0</span></div>
+</div></div>
+
+<section class="chapter" id="overview">
+<div class="cn">CHAPTER 00</div><div class="ct">Week Overview &amp; Study Priority Map</div>
+
+<h2>Verification Notes — Read This First</h2>
+<p class="ci">A methodical fact-check pass over this guide's historical claims, run before anything else below. Six items came back needing a correction or a caveat; everything else checked out.</p>
+<div class="mlst">
+<div class="mitem"><div class="mnm">1. Chinese Abacus, "3000 BC" — unsupported date</div><div class="mdc">The slide's claim that the abacus was "popularized by the Chinese in 3000 BC" doesn't hold up against reputable sources. The earliest abacus-like counting devices are Babylonian/Mesopotamian, dated to roughly 2700–2300 BC — a full civilization earlier than the Chinese suanpan. The Chinese suanpan itself is first documented much later: written references place it around the 2nd century BC (Han dynasty) at the earliest, with some historians dating its common use to as late as the Song/Ming dynasties (c. 1200 CE onward). "3000 BC" for a <em>Chinese</em> abacus appears to be a widely-repeated but unverifiable figure that shows up in a lot of basic computer-fundamentals summaries — reproduced below because it's what's on your professor's slide and therefore testable, but it is not a figure current historical scholarship supports as stated.</div></div>
+<div class="mitem"><div class="mnm">2. Vacuum tube, "Early 1940s" — invention date is off by ~35 years</div><div class="mdc">The slide credits "Lee De Forest's electronic vacuum tube" to the early 1940s. De Forest actually invented the triode vacuum tube (the "Audion") in <strong>1906</strong>, patenting it in 1907 — verified against Britannica, the National Maglab, and Lee De Forest's own patent archive. The early-1940s date is more accurately when vacuum-tube <em>technology was adopted to build electronic computers</em> like the ABC and Harvard Mark I, not when the tube itself was invented. Kept as "Early 1940s" below since that's the framing your slide uses for "Electronic Age Begins," with this distinction called out inline.</div></div>
+<div class="mitem"><div class="mnm">3. Babbage's Difference Engine — 1821 vs. 1822</div><div class="mdc">The slide dates the Difference Engine to 1821. The precisely documented date — Babbage's paper to the Royal Astronomical Society, "A Note Respecting the Application of Machinery to the Calculation of Astronomical Tables" — was read on <strong>14 June 1822</strong>, confirmed via the UK Science Museum and multiple encyclopedic sources. Babbage's design work likely began around 1819–1821, which may be where the slide's "1821" comes from, but the announcement/proposal date historians cite is 1822. Kept as stated on the slide below (it's what's testable) with this precise, verified date added alongside it.</div></div>
+<div class="mitem"><div class="mnm">4. Manchester Mark I — name error: "Mark Newman" should be "Max Newman"</div><div class="mdc">The slide's "Late 1940s" entry credits the Manchester Mark I to "Mark Newman." There is no computing figure by that name; the person almost certainly meant is <strong>Max Newman</strong> (M. H. A. Newman), the Manchester mathematician who secured funding and set up the Computing Machine Laboratory. However, verified against Wikipedia, the Engineering and Technology History Wiki, and the Science and Industry Museum: the machine's actual designers and builders were <strong>Frederic C. Williams and Tom Kilburn</strong> (with Geoff Tootill), not Newman — Newman's documented contribution was organizational/mathematical, not engineering the machine itself. Corrected below.</div></div>
+<div class="mitem"><div class="mnm">5. ENIAC floor space — 15,000 sq ft is roughly 8× too large</div><div class="mdc">The "ENIAC by the Numbers" table lists floor space as 15,000 square feet. Every cross-checked source (University of Michigan CSE archive, Computer History Museum-linked accounts, multiple published histories) consistently gives <strong>1,800 square feet</strong> (about 167 m²). Corrected in the table below; the other specs in that table (18,000 vacuum tubes, 30 tons, 5,000 additions/second) all checked out within the normal range historians cite.</div></div>
+<div class="mitem"><div class="mnm">6. Bell's telephone quotation — two attested versions, not an error</div><div class="mdc">The guide quotes Bell as saying "Watson, come here I want you." This matches assistant Thomas Watson's own later account. Bell's own contemporaneous notebook entry instead records "Mr. Watson, come here, I want to see you" — the version most commonly cited by the Library of Congress and most encyclopedic sources. Both are genuinely attested (not a fabrication), so this is flagged as a variant to be aware of rather than a correction — noted inline below.</div></div>
+</div>
+<div class="box green"><div class="bico">✅</div><div class="bbd"><div class="btt">Everything else checked out</div><p class="btx">All other named inventors, machines, and dates in Chapters 01–05 — Cuneiform/Egyptian numbering (~3100 BC), Gutenberg (1450), Pascal's Pascaline (1642–1645), Leibniz's Stepped Reckoner (1673–1674), Jacquard's Loom (1804), Babbage's Analytical Engine (1837), Ada Lovelace (1815–1852), Hollerith (1890), the ABC (1937–1942), the Harvard Mark I (1944), ENIAC (1943–1946), EDVAC, EDSAC, and UNIVAC (1951) — matched reputable sources on cross-check.</p></div></div>
+
+<p class="ci">Week 3 walks the full timeline of computing: from tally marks and clay tablets, through hand-cranked mechanical calculators, into electromechanical relays and vacuum-tube giants, and finally into the five generations and the modern zoo of computer types you actually use today. This is the densest week in the CC101 topical outline so far — three learning outcomes (identify the timeline, classify the generations, enumerate the types) are all explicitly named on the syllabus, and the slide deck backs all three in full. Source priority follows Section 3B: the Week 3 lecture slides (primary, professor-authored) drive every fact below; the closing References slide of that same deck is treated as your professor's own suggested readings and is listed first in each external-resources box.</p>
+
+<div class="box blue"><div class="bico">🔗</div><div class="bbd"><div class="btt">Critical Path Context</div>
+<p class="btx">CC101 stays in <strong>Layer 0</strong> — no prerequisites, gateway course. This week's content doesn't gate a specific downstream course by prerequisite, but the vocabulary here (generations, hardware eras, computer types) is assumed background once you reach <strong>AR 101 (Architecture and Organization)</strong> in Year 3 Semester 1 — a course about how a CPU is actually built, which this week only introduces at the concept level.</p></div></div>
+
+<h2>Study Priority Map</h2>
+<div class="tw"><table>
+<thead><tr><th>Topic</th><th>Chapter</th><th>Slide Coverage</th><th>Likely Recall Type</th></tr></thead>
+<tbody>
+<tr><td>Pre-Mechanical Computing</td><td>01</td><td><span class="tag tb">Light</span></td><td><span class="tag tg">Recognition</span></td></tr>
+<tr><td>Mechanical Age (1450–1840)</td><td>02</td><td><span class="tag tr2">Heavy</span></td><td><span class="tag ta">Name + Date + Inventor</span></td></tr>
+<tr><td>Electromechanical &amp; Electronic Age</td><td>03</td><td><span class="tag tr2">Heavy</span></td><td><span class="tag ta">Name + Date + Inventor</span></td></tr>
+<tr><td>Generations of Computers</td><td>04</td><td><span class="tag ta">Moderate</span></td><td><span class="tag tg">Classification</span></td></tr>
+<tr><td>Types of Computers</td><td>05</td><td><span class="tag tr2">Heavy</span></td><td><span class="tag tg">Definition + Example</span></td></tr>
+</tbody></table></div>
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">On this weighting</div><p class="btx">As with Week 2, these tags track slide depth, not a disclosed grading rubric — no point breakdown was provided in the uploaded materials.</p></div></div>
+</section>
+
+<section class="chapter" id="ch1">
+<div class="cn">CHAPTER 01</div><div class="ct">Pre-Mechanical Computing</div>
+<p class="ci">Before any machine, "computing" meant counting with whatever was on hand — and the earliest recorded systems for doing that are the foundation this whole week builds on.</p>
+<div class="tl">
+<div class="tli"><div class="tlyr">Prehistory</div><div class="tldot"></div><div class="tlc"><div class="tlt">Counting Without Symbols</div><div class="tld">From counting on fingers to pebbles, to hash marks on walls, to hash marks on bone, to hash marks in sand — the earliest tally methods, with no written numeral system yet.</div></div></div>
+<div class="tli"><div class="tlyr">3100 BC</div><div class="tldot"></div><div class="tlc"><div class="tlt">Cuneiform</div><div class="tld">The Sumerians in Mesopotamia (Southern Iraq) invented Cuneiform — the first development of signs corresponding to <strong>spoken</strong> words, instead of pictures.</div></div></div>
+<div class="tli"><div class="tlyr">~3100 BC</div><div class="tldot"></div><div class="tlc"><div class="tlt">Egyptian Numbering</div><div class="tld">The Egyptians used the first numbering system, running roughly parallel to Sumerian cuneiform development.</div></div></div>
+<div class="tli"><div class="tlyr">3000 BC</div><div class="tldot"></div><div class="tlc"><div class="tlt">The Abacus — The First Calculator</div><div class="tld">Popularized by the Chinese in 3000 BC: a mechanical device for making calculations, consisting of a frame mounted with rods along which beads or balls are moved. Considered the <strong>first informative processor</strong> and humanity's first recorded adding machine.</div></div></div>
+</div>
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Watch the timeline order on quizzes</div><p class="btx">The Abacus (3000 BC) actually predates Cuneiform and Egyptian numbering (~3100 BC) in absolute years by a small margin depending on the source, but your slide deck presents Cuneiform/Egyptian numbering first and the Abacus afterward under its own "Evolution of Computers" heading. Answer in whatever order your professor's own sequence expects unless the item explicitly asks for strict chronology.</p></div></div>
+<div class="box red"><div class="bico">⚠️</div><div class="bbd"><div class="btt">"3000 BC" for the Chinese abacus — not well-supported (see Verification Notes)</div><p class="btx">Reputable sources trace the earliest abacus-like devices to Babylon (~2700–2300 BC) and the Chinese suanpan specifically no earlier than roughly the 2nd century BC. Reproduce "3000 BC" for recitation since it's your professor's stated date, but don't repeat it as settled history outside this class.</p></div></div>
+
+<div class="mlst">
+<div class="mnm" style="margin-bottom:8px">🎤 Recitation Drill — Chapter 01</div>
+<div class="mitem"><div class="mnm">Q1</div><div class="mdc"><strong>"What came first: written numeral systems, or tally-based counting?"</strong><br>Tally-based counting (fingers, pebbles, hash marks) came first, with no written numeral system yet. Written systems like Cuneiform and Egyptian numbering followed around 3100 BC.</div></div>
+<div class="mitem"><div class="mnm">Q2</div><div class="mdc"><strong>"Why is the Abacus considered the 'first calculator'?"</strong><br>Because it's the first mechanical device built specifically to help perform calculations — a frame with rods and movable beads — earning it the label "first informative processor" and humanity's first recorded adding machine.</div></div>
+<div class="mitem"><div class="mnm">Q3</div><div class="mdc"><strong>"Who invented Cuneiform, and why does it matter for computing history?"</strong><br>The Sumerians in Mesopotamia. It matters because it's the first system of signs representing <em>spoken words</em> rather than pictures — the conceptual root of representing information symbolically, which all later computing builds on.</div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch2">
+<div class="cn">CHAPTER 02</div><div class="ct">Mechanical Age Computing (1450 – 1840)</div>
+<p class="ci">The mechanical age is where computing stops being purely conceptual (counting systems) and starts being built as physical, gear-driven machines. This is the single densest stretch of the week — six named inventions/inventors in a tight 390-year window.</p>
+<div class="tl">
+<div class="tli"><div class="tlyr">1450</div><div class="tldot"></div><div class="tlc"><div class="tlt">Gutenberg's Movable Metal-Type Printing Press</div><div class="tld">Johann Gutenberg invented the movable metal-type printing process, triggering what the slides call "the first information explosion."</div></div></div>
+<div class="tli"><div class="tlyr">1642–1645</div><div class="tldot"></div><div class="tlc"><div class="tlt">Blaise Pascal's Pascaline</div><div class="tld">The first digital calculator — a boxed wheel-and-cog device that could add and subtract by the simple rotation of dials on the machine's face.</div></div></div>
+<div class="tli"><div class="tlyr">1673–1674</div><div class="tldot"></div><div class="tlc"><div class="tlt">Gottfried Wilhelm von Leibniz's Stepped Reckoner</div><div class="tld">Attached a multiplication/division device to Pascal's adding machine — the first machine that could do subtraction, multiplication, and division easily.</div></div></div>
+<div class="tli"><div class="tlyr">1804</div><div class="tldot"></div><div class="tlc"><div class="tlt">Jacquard's Loom</div><div class="tld">Joseph Marie Jacquard's loom simplified manufacturing textiles with complex patterns (brocade, damask, matelassé), controlled by punched cards — each row of holes corresponding to one row of the design. This punched-card idea directly inspired Babbage's later engines.</div></div></div>
+<div class="tli"><div class="tlyr">1821</div><div class="tldot"></div><div class="tlc"><div class="tlt">Charles Babbage's Difference Engine</div><div class="tld">Born of the advances in technology that accompanied the Industrial Revolution. Babbage is recognized today as the <strong>Father of Computers</strong> for his designs. <em>(Verified precise date: Babbage read his proposal to the Royal Astronomical Society on 14 June <strong>1822</strong> — see Verification Notes.)</em></div></div></div>
+<div class="tli"><div class="tlyr">1837</div><div class="tldot"></div><div class="tlc"><div class="tlt">Charles Babbage's Analytical Engine</div><div class="tld">A mechanical adding machine that took information from punch cards to solve and print complex mathematical operations — a general-purpose, program-controlled design, though never fully built in Babbage's lifetime.</div></div></div>
+<div class="tli"><div class="tlyr">1815–1852</div><div class="tldot"></div><div class="tlc"><div class="tlt">Augusta Ada Byron ("Ada Lovelace")</div><div class="tld">Considered to be the "first programmer" — she wrote her first program for Babbage's difference engine.</div></div></div>
+</div>
+
+<div class="law"><div class="lra">FORMAL RECOGNITION</div><div class="ltit">"Father of Computers"</div><div class="lyr">Charles Babbage, 1822 (proposal date; slide says 1821) / 1837</div><div class="ldc">Babbage is recognized today as the Father of Computers because of his impressive designs for the Difference Engine and Analytical Engine — even though neither machine was completed in his lifetime, the conceptual design (memory, a processing unit, and punch-card programmability) anticipates the modern computer.</div></div>
+
+<div class="box blue"><div class="bico">🌐</div><div class="bbd"><div class="btt">External Resources — Verified via Web Search</div><p class="btx"><strong>Course-assigned reading (from your own slide deck's References list):</strong> Kenneth C. Laudon, Carol Guercio Traver, Jane P. Laudon, <em>Information Technology and Systems</em> (Course Technology, 1996).<br><br><strong>Reputable academic source:</strong> "Charles Babbage" — Encyclopaedia Britannica (britannica.com/biography/Charles-Babbage); "Analytical Engine" — Encyclopaedia Britannica (britannica.com/technology/Analytical-Engine). Both confirm Lovelace's 1843 translation/annotation of Babbage's work as the first published computer program.</p></div></div>
+
+<div class="mlst">
+<div class="mnm" style="margin-bottom:8px">🎤 Recitation Drill — Chapter 02</div>
+<div class="mitem"><div class="mnm">Q1</div><div class="mdc"><strong>"What did Leibniz's Stepped Reckoner add that Pascal's Pascaline couldn't do?"</strong><br>Pascal's Pascaline could only add and subtract. Leibniz attached a multiplication/division mechanism, making his machine the first that could handle all four basic operations.</div></div>
+<div class="mitem"><div class="mnm">Q2</div><div class="mdc"><strong>"Why is Jacquard's Loom considered a computing milestone, even though it's a textile machine?"</strong><br>Because it introduced the punched-card control idea — holes in a card determining a pattern — which directly inspired Babbage's later card-driven Analytical Engine.</div></div>
+<div class="mitem"><div class="mnm">Q3</div><div class="mdc"><strong>"Why is Charles Babbage called the 'Father of Computers' if he never finished either machine?"</strong><br>Because his Difference Engine and Analytical Engine designs conceptually anticipated the modern computer — memory, a processing unit, and punch-card programmability — even though funding and precision-manufacturing limits of the 1820s–30s meant neither was completed in his lifetime.</div></div>
+<div class="mitem"><div class="mnm">Q4</div><div class="mdc"><strong>"Who is considered the first programmer, and why?"</strong><br>Ada Lovelace (Augusta Ada Byron) — she wrote the first program intended for Babbage's engine.</div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch3">
+<div class="cn">CHAPTER 03</div><div class="ct">Electromechanical &amp; Electronic Age Computing (1840 – 1940 and beyond)</div>
+<p class="ci">Your slide deck nests the "Electronic Age (1940–Present)" as a continuation inside the "Electromechanical Age (1840–1940)" section rather than giving it a separate top-level heading — preserved here in that same order since it's how your professor's own material is structured, with the boundary called out explicitly below.</p>
+
+<div class="tl">
+<div class="tli"><div class="tlyr">1876</div><div class="tldot"></div><div class="tlc"><div class="tlt">Alexander Graham Bell's Telephone</div><div class="tld">Developed the first working telephone and transmitted his now-famous quotation to his assistant.</div></div></div>
+<div class="tli"><div class="tlyr">1890</div><div class="tldot"></div><div class="tlc"><div class="tlt">Hollerith's Tabulating Equipment</div><div class="tld">An electrical device designed to assist in summarizing information and, later, accounting. Used relays (and solenoids) to increment mechanical counters. Hollerith later founded the <strong>Tabulating Machine Company</strong> — a direct corporate ancestor of IBM.</div></div></div>
+<div class="tli"><div class="tlyr">Early 1940s</div><div class="tldot"></div><div class="tlc"><div class="tlt">Electronic Age Begins — The Vacuum Tube</div><div class="tld">Lee De Forest's electronic vacuum tube provided an electrically controlled switch — the component every first-generation computer below is built from. <em>(De Forest actually invented the triode vacuum tube in 1906, patented 1907 — "early 1940s" marks when the technology was adopted for computing, not the tube's invention date. See Verification Notes.)</em></div></div></div>
+<div class="tli"><div class="tlyr">1937–1942</div><div class="tldot"></div><div class="tlc"><div class="tlt">ABC — Atanasoff-Berry Computer</div><div class="tld">Invented by John Vincent Atanasoff, the ABC was the first electronic digital computer. It processed data in discrete, digital units (the digits 1 and 0).</div></div></div>
+<div class="tli"><div class="tlyr">1944</div><div class="tldot"></div><div class="tlc"><div class="tlt">IBM Harvard MARK I</div><div class="tld">Devised by Howard H. Aiken, built at IBM and shipped to Harvard in February 1944 — described as "the beginning of the era of the modern computer."</div></div></div>
+<div class="tli"><div class="tlyr">1943–1946</div><div class="tldot"></div><div class="tlc"><div class="tlt">ENIAC — Electronic Numerical Integrator and Computer</div><div class="tld">Designed to calculate artillery firing tables for the US Army's Ballistic Research Laboratory, by Eckert and Mauchly at the University of Pennsylvania. Announced in 1946 as a "Giant Brain." Started 1943, finished 1946 — too late for the war effort it was built for. Used until 1955.</div></div></div>
+<div class="tli"><div class="tlyr">Late 1940s</div><div class="tldot"></div><div class="tlc"><div class="tlt">The First Stored-Program Computers</div><div class="tld"><strong>EDVAC</strong> — Mauchly and Eckert, 1940s. <strong>Manchester Mark I</strong> — 1948, primarily built by Frederic C. Williams and Tom Kilburn (the slide credits "Mark Newman"; the actual name is <strong>Max Newman</strong>, whose role was organizational rather than as the machine's engineer — see Verification Notes). <strong>EDSAC</strong> — the first stored-program computer in general use.</div></div></div>
+<div class="tli"><div class="tlyr">1951</div><div class="tldot"></div><div class="tlc"><div class="tlt">UNIVAC — First General-Purpose Commercial Computer</div><div class="tld">UNIVAC, the Universal Automatic Computer, was designed as a commercial data-processing computer — the first general-purpose computer sold for business use rather than research or the military.</div></div></div>
+</div>
+
+<div class="law"><div class="lra">FAMOUS QUOTATION</div><div class="ltit">"Watson, come here I want you"</div><div class="lyr">Alexander Graham Bell, 1876</div><div class="ldc">Transmitted over Bell's first working telephone to his assistant, Thomas Watson — the first sentence ever spoken over a telephone line. <em>(Two versions are attested: this is Watson's own recollection; Bell's contemporaneous notebook instead records "Mr. Watson, come here, I want to <strong>see</strong> you.")</em></div></div>
+<div class="law"><div class="lra">FAMOUS ANNOUNCEMENT</div><div class="ltit">The "Giant Brain"</div><div class="lyr">ENIAC, announced 1946</div><div class="ldc">The press announced ENIAC in 1946 as a "Giant Brain" — early popular framing of electronic computers as machines that think, a narrative that still echoes in how AI is covered today.</div></div>
+
+<h2>ENIAC by the Numbers</h2>
+<p style="font-size:12px;color:var(--t3);margin-top:-6px">Floor space corrected from the slide's stated figure — see Verification Notes item 5.</p>
+<div class="tw"><table>
+<thead><tr><th>Spec</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Number system</td><td>Decimal (not binary)</td></tr>
+<tr><td>Accumulators</td><td>20, of 10 digits each</td></tr>
+<tr><td>Programming method</td><td>Manually, by switches</td></tr>
+<tr><td>Vacuum tubes</td><td>18,000</td></tr>
+<tr><td>Weight</td><td>30 tons</td></tr>
+<tr><td>Floor space</td><td>1,800 square feet <span class="tag tg">corrected</span></td></tr>
+<tr><td>Power consumption</td><td>140 kW</td></tr>
+<tr><td>Speed</td><td>5,000 additions per second</td></tr>
+</tbody></table></div>
+
+<div class="box blue"><div class="bico">🌐</div><div class="bbd"><div class="btt">External Resources — Verified via Web Search</div><p class="btx"><strong>Course-assigned readings (from your own slide deck's References list):</strong> Stan Augarten, <em>BIT By BIT: An Illustrated History of Computers</em> (Ticknor &amp; Fields, 1984); R. Moreau, <em>The Computer Comes of Age: The People, the Hardware, and the Software</em>, trans. J. Howlett (MIT Press, 1984).<br><br><strong>Primary-source archive:</strong> Computer History Museum, Timeline of Computer History (computerhistory.org/timeline) — includes a working replica of the ABC and detailed entries on ENIAC, EDVAC, and the Manchester Mark I.</p></div></div>
+
+<div class="mlst">
+<div class="mnm" style="margin-bottom:8px">🎤 Recitation Drill — Chapter 03</div>
+<div class="mitem"><div class="mnm">Q1</div><div class="mdc"><strong>"What made the ABC the 'first electronic digital computer'?"</strong><br>It processed data in discrete, digital units — the digits 1 and 0 — rather than the decimal/analog approach of earlier machines, making it the first electronic machine to compute digitally.</div></div>
+<div class="mitem"><div class="mnm">Q2</div><div class="mdc"><strong>"What is a 'stored-program computer,' and which machines represent that leap?"</strong><br>A computer that keeps both its data and its instructions in the same internal memory, instead of being rewired or reset by hand for every new task. EDVAC, the Manchester Mark I, and EDSAC represent this architectural leap.</div></div>
+<div class="mitem"><div class="mnm">Q3</div><div class="mdc"><strong>"Why was ENIAC 'too late' for the war effort it was built for?"</strong><br>It was started in 1943 to calculate artillery firing tables for WWII, but wasn't finished until 1946 — after the war had already ended.</div></div>
+<div class="mitem"><div class="mnm">Q4</div><div class="mdc"><strong>"What made UNIVAC different from ENIAC and the Harvard Mark I?"</strong><br>UNIVAC was the first general-purpose computer designed and sold for commercial/business data processing, rather than being built for research or military use like its predecessors.</div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch4">
+<div class="cn">CHAPTER 04</div><div class="ct">Generations of Computers</div>
+<p class="ci">Where Chapters 02–03 tracked specific named machines, this chapter classifies computing history into five broader technological eras — the classification scheme your syllabus explicitly names as a learning outcome for this week.</p>
+<div class="gg">
+<div class="gc" data-g="1"><div class="gera">GEN 1</div><div class="gtit">Vacuum Tubes</div><p class="gsp">The core switching component of ENIAC, the ABC, and the Harvard Mark I. Large, hot, and power-hungry, but the first purely electronic switching technology.</p></div>
+<div class="gc" data-g="2"><div class="gera">GEN 2</div><div class="gtit">Transistors</div><p class="gsp">Replaced vacuum tubes with a smaller, cooler, more reliable solid-state switch — the direct technological successor named in the slide.</p></div>
+<div class="gc" data-g="3"><div class="gera">GEN 3</div><div class="gtit">Integrated Circuits</div><p class="gsp">Multiple transistors etched onto a single chip, further shrinking computers and increasing reliability and speed.</p></div>
+<div class="gc" data-g="4"><div class="gera">GEN 4</div><div class="gtit">Microprocessors (Large-Scale Integration)</div><p class="gsp">Contained hundreds to millions of transistors on a tiny chip. LSI integrated circuits — 1K-bit RAMs, calculator chips, and the first microprocessor — approached 10,000 transistors and began production around 1974, used for computer main memories and second-generation microprocessors.</p></div>
+<div class="gc" data-g="5"><div class="gera">GEN 5</div><div class="gtit">Artificial Intelligence</div><p class="gsp">A group of related technologies used in an attempt to develop machines that emulate human-like qualities — the generation we are still inside today.</p></div>
+</div>
+
+<div class="box blue"><div class="bico">🌐</div><div class="bbd"><div class="btt">External Resources — Verified via Web Search</div><p class="btx"><strong>General-learning read:</strong> "Generations of Computers" — GeeksforGeeks, Computer Fundamentals (geeksforgeeks.org/generations-of-computers-computer-fundamentals), which adds the specific date ranges (e.g., 1st Gen ≈1940–1956, 2nd Gen ≈1956–1963) and named early high-level languages (FORTRAN, COBOL) per generation if you want extra depth beyond the slide.<br><br><strong>Video lesson:</strong> "The 5 Generations of Computers Explained | Vacuum Tubes to AI" — IT Fundamentals Lesson 1.4, YouTube (youtube.com/watch?v=il3pjXfu1Wo).</p></div></div>
+
+<div class="mlst">
+<div class="mitem"><div class="mnm">Gen ≠ Machine</div><div class="mdc">A "generation" is a technology era, not a single computer. ENIAC is a 1st-generation <em>example</em>; it is not itself "Generation 1."</div></div>
+<div class="mitem"><div class="mnm">LSI belongs to Gen 4</div><div class="mdc">Large-Scale Integration and microprocessors are the same generation in this slide deck — don't split them into separate generations on a quiz.</div></div>
+</div>
+
+<div class="mlst">
+<div class="mnm" style="margin-bottom:8px">🎤 Recitation Drill — Chapter 04</div>
+<div class="mitem"><div class="mnm">Q1</div><div class="mdc"><strong>"List the five generations of computers in order."</strong><br>1) Vacuum Tubes, 2) Transistors, 3) Integrated Circuits, 4) Microprocessors/Large-Scale Integration, 5) Artificial Intelligence.</div></div>
+<div class="mitem"><div class="mnm">Q2</div><div class="mdc"><strong>"Is ENIAC 'Generation 1,' or a Generation 1 example?"</strong><br>It's an <em>example</em> of Generation 1 (vacuum-tube computing) — a generation is a technology era, not one specific machine.</div></div>
+<div class="mitem"><div class="mnm">Q3</div><div class="mdc"><strong>"What generation are we in right now, per this classification?"</strong><br>Generation 5 — Artificial Intelligence.</div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch5">
+<div class="cn">CHAPTER 05</div><div class="ct">Types of Computers</div>
+<p class="ci">The week closes by enumerating the physical categories of computer you'll actually encounter — from the phone-sized handheld to the room-filling mainframe.</p>
+<div class="gg">
+<div class="gc" data-g="M"><div class="gera">PERSONAL</div><div class="gtit">Microcomputer</div><p class="gsp">A personal computer designed to meet the computing needs of an individual — provides access to word processing, photo editing, e-mail, and internet.</p></div>
+<div class="gc" data-g="D"><div class="gera">PERSONAL</div><div class="gtit">Desktop Microcomputer</div><p class="gsp">A microcomputer that fits on a desk and runs on power from an electrical wall outlet. The CPU can be housed vertically or horizontally, with separate plugged-in components (keyboard, mouse).</p></div>
+<div class="gc" data-g="L"><div class="gera">PERSONAL</div><div class="gtit">Laptop Computer</div><p class="gsp">A portable, compact computer that can run on a wall outlet or a battery unit. All components are in one compact unit — usually more expensive than a comparable desktop. Also called a Notebook.</p></div>
+<div class="gc" data-g="W"><div class="gera">PROFESSIONAL</div><div class="gtit">Workstation</div><p class="gsp">A powerful desktop computer designed for specialized tasks requiring a lot of processing speed. Can also just be an ordinary PC attached to a LAN.</p></div>
+<div class="gc" data-g="S"><div class="gera">EXTREME SCALE</div><div class="gtit">Supercomputer</div><p class="gsp">The fastest computer in the world at the time it was constructed — tackles tasks impractical for other computers, such as breaking codes and modeling weather systems.</p></div>
+<div class="gc" data-g="MF"><div class="gera">EXTREME SCALE</div><div class="gtit">Mainframe</div><p class="gsp">A large, expensive computer capable of simultaneously processing data for hundreds or thousands of users. Stores, manages, and processes large amounts of data that must be reliable, secure, and centralized. Usually housed in a closet-sized cabinet.</p></div>
+<div class="gc" data-g="SV"><div class="gera">NETWORK ROLE</div><div class="gtit">Server</div><p class="gsp">Purpose is to "serve" — supplies its users with data, usually through the use of a LAN (local area network).</p></div>
+<div class="gc" data-g="H"><div class="gera">POCKET-SIZED</div><div class="gtit">Handheld (PDA)</div><p class="gsp">Also called a Personal Digital Assistant. Fits in a pocket, runs on batteries, used while held in the hand. Typically used as an appointment book, address book, calculator, and notepad — can be synchronized with a personal microcomputer as a backup.</p></div>
+</div>
+<div class="box green"><div class="bico">💡</div><div class="bbd"><div class="btt">A quick way to sort these eight</div><p class="btx">Group them by who they serve: <strong>Personal</strong> (Microcomputer, Desktop, Laptop) serve one individual at a time; <strong>Professional/extreme-scale</strong> (Workstation, Supercomputer, Mainframe) serve heavy or specialized computation; <strong>Network-role</strong> (Server) exists to supply other machines; <strong>Pocket-sized</strong> (Handheld/PDA) trades power for portability.</p></div></div>
+
+<div class="mlst">
+<div class="mnm" style="margin-bottom:8px">🎤 Recitation Drill — Chapter 05</div>
+<div class="mitem"><div class="mnm">Q1</div><div class="mdc"><strong>"What's the difference between a Workstation and a Mainframe?"</strong><br>A Workstation is a powerful desktop built for one specialized, processing-heavy user (or just a PC on a LAN). A Mainframe is a large, expensive machine built to serve hundreds or thousands of users' data simultaneously.</div></div>
+<div class="mitem"><div class="mnm">Q2</div><div class="mdc"><strong>"What makes a computer a 'Supercomputer' specifically?"</strong><br>Being the fastest computer in the world at the time it was built — used for tasks impractical on ordinary computers, like code-breaking or weather modeling.</div></div>
+<div class="mitem"><div class="mnm">Q3</div><div class="mdc"><strong>"What's another name for a Handheld computer, and what's it typically used for?"</strong><br>A Personal Digital Assistant (PDA) — typically used as an appointment book, address book, calculator, and notepad, and can sync with a personal microcomputer as backup.</div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch6">
+<div class="cn">CHAPTER 06</div><div class="ct">Glossary &amp; Abbreviations</div>
+<p class="ci">Every abbreviation and named machine from this week's slides, spelled out in full.</p>
+<div class="isg">
+<div class="isc"><div class="ico">ACRONYM</div><div class="inm">BC</div><div class="idc"><strong>Before Christ</strong> — used in the slides to date the Chinese Abacus (3000 BC) and Sumerian Cuneiform (3100 B.C.).</div></div>
+<div class="isc a"><div class="ico">ACRONYM</div><div class="inm">ABC</div><div class="idc"><strong>Atanasoff-Berry Computer</strong> — the first electronic digital computer, 1937–1942.</div></div>
+<div class="isc g"><div class="ico">ACRONYM</div><div class="inm">ENIAC</div><div class="idc"><strong>Electronic Numerical Integrator and Computer</strong> — first electronic general-purpose computer built for artillery firing tables, 1943–1946.</div></div>
+<div class="isc p"><div class="ico">ACRONYM</div><div class="inm">EDVAC</div><div class="idc"><strong>Electronic Discrete Variable Automatic Computer</strong> — one of the first stored-program computers, built by Mauchly and Eckert in the 1940s.</div></div>
+</div>
+<div class="isg">
+<div class="isc"><div class="ico">ACRONYM</div><div class="inm">EDSAC</div><div class="idc"><strong>Electronic Delay Storage Automatic Calculator</strong> — the first stored-program computer in <em>general use</em>.</div></div>
+<div class="isc a"><div class="ico">ACRONYM</div><div class="inm">UNIVAC</div><div class="idc"><strong>Universal Automatic Computer</strong> — the first general-purpose computer designed for commercial data processing, 1951.</div></div>
+<div class="isc g"><div class="ico">ACRONYM</div><div class="inm">IBM</div><div class="idc"><strong>International Business Machines</strong> — built the Harvard Mark I (1944); traces part of its corporate lineage to Hollerith's Tabulating Machine Company.</div></div>
+<div class="isc p"><div class="ico">ACRONYM</div><div class="inm">LSI</div><div class="idc"><strong>Large-Scale Integration</strong> — packing hundreds to millions of transistors onto a single tiny chip; the Fourth Generation's defining technology.</div></div>
+</div>
+<div class="isg">
+<div class="isc"><div class="ico">ACRONYM</div><div class="inm">RAM</div><div class="idc"><strong>Random Access Memory</strong> — the slide references early "1K-bit RAMs" as one of the first LSI-era integrated-circuit products.</div></div>
+<div class="isc a"><div class="ico">ACRONYM</div><div class="inm">AI</div><div class="idc"><strong>Artificial Intelligence</strong> — the defining technology group of the Fifth Generation of computers.</div></div>
+<div class="isc g"><div class="ico">ACRONYM</div><div class="inm">PDA</div><div class="idc"><strong>Personal Digital Assistant</strong> — the formal name for a Handheld-type computer.</div></div>
+<div class="isc p"><div class="ico">ACRONYM</div><div class="inm">LAN</div><div class="idc"><strong>Local Area Network</strong> — the network a Server or Workstation typically supplies/connects through.</div></div>
+</div>
+<div class="isg">
+<div class="isc"><div class="ico">ACRONYM</div><div class="inm">CPU</div><div class="idc"><strong>Central Processing Unit</strong> — the component housed vertically or horizontally inside a Desktop Microcomputer's case.</div></div>
+<div class="isc a"><div class="ico">TERM</div><div class="inm">Stored-Program Computer</div><div class="idc">A computer that keeps both its data <em>and</em> its instructions in the same internal memory — the architectural leap represented by EDVAC, the Manchester Mark I, and EDSAC.</div></div>
+</div>
+</section>
+
+<div class="footer"><p>QCU Academic OS · AY 2026-2027 · Compiled by <strong>KianoRoku18Ino</strong> · github.com/KianoRoku18Ino</p></div>
+</main>
+
+</body>
+</html>
