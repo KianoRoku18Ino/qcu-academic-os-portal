@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CC101 — Week 4-5: Computer System | Complete Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--bgcode:#060D18;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--purple:#8B5CF6;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(59,130,246,.15);--sw:285px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvs{padding:9px 17px 3px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t3)}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover,.nvi a.act{color:var(--t1);background:rgba(59,130,246,.08);border-left-color:var(--blue)}
+.nvi a.act{color:var(--blue);font-weight:500}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:20px}
+.main{margin-left:var(--sw)}
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:52px 52px 42px;position:relative;overflow:hidden}
+.hero::before{content:'01001000';position:absolute;top:-10px;right:15px;font-family:'JetBrains Mono',monospace;font-size:115px;font-weight:900;color:rgba(59,130,246,.04);letter-spacing:-5px;user-select:none;line-height:1}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--blue)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:44px;font-weight:700;line-height:1.1;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#3B82F6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:18px;color:var(--t2);margin-bottom:19px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+.chapter{padding:44px 52px;border-bottom:1px solid var(--bdr);max-width:970px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:19.5px;font-weight:600;margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--blue);border-radius:2px;flex-shrink:0}
+h3{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--blue);margin:22px 0 9px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+.box{border-radius:8px;padding:13px 17px;margin:15px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}.red .btt{color:var(--red)}
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--blue);font-size:12px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(59,130,246,.04)}
+tbody td{padding:9px 13px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}
+.tl{margin:15px 0}
+.tli{display:flex;gap:14px;margin-bottom:18px;position:relative}
+.tli::before{content:'';position:absolute;left:73px;top:30px;width:1px;height:calc(100% + 5px);background:var(--bdr)}
+.tli:last-child::before{display:none}
+.tlyr{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--amber);font-weight:700;min-width:58px;padding-top:12px;text-align:right}
+.tldot{width:9px;height:9px;background:var(--blue);border-radius:50%;border:2px solid var(--bg);flex-shrink:0;margin-top:14px}
+.tlc{background:var(--bgc);border:1px solid var(--bdr);border-radius:8px;padding:11px 15px;flex:1}
+.tlt{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:3px}
+.tld{color:var(--t2);font-size:12.5px;line-height:1.65}
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.gc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;position:relative;overflow:hidden}
+.gc::before{content:attr(data-g);position:absolute;top:-10px;right:7px;font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:900;color:rgba(59,130,246,.05);line-height:1}
+.gera{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.gtit{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:7px}
+.gsp{font-size:12.5px;color:var(--t2);margin:0;line-height:1.7}
+.gsp strong{color:var(--blue)}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:15px 0}
+.pcrd{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:13px 15px}
+.pnm{font-weight:700;color:var(--t1);font-size:13px;margin-bottom:2px}
+.pdt{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.pttl{font-size:11px;color:var(--blue);font-weight:600;margin-bottom:4px}
+.pdsc{font-size:12px;color:var(--t2);line-height:1.6}
+.isg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.isc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;border-top:3px solid var(--blue)}
+.isc.a{border-top-color:var(--amber)}.isc.g{border-top-color:var(--green)}.isc.p{border-top-color:var(--purple)}
+.ico{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-bottom:3px}
+.inm{font-weight:700;font-size:14px;color:var(--t1);margin-bottom:6px}
+.idc{font-size:12.5px;color:var(--t2);line-height:1.7}
+.ieg{font-size:11.5px;color:var(--green);margin-top:6px}
+.mlst{margin:11px 0}
+.mitem{display:flex;gap:11px;padding:10px 0;border-bottom:1px solid var(--bdr);align-items:flex-start}
+.mitem:last-child{border-bottom:none}
+.mnm{font-weight:700;color:var(--red);min-width:110px;font-size:13px}
+.mdc{font-size:13px;color:var(--t2);line-height:1.65}
+.law{background:var(--bgc);border:1px solid var(--bdr);border-left:4px solid var(--red);border-radius:8px;padding:15px 17px;margin:11px 0}
+.lra{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--red);font-weight:700;margin-bottom:3px}
+.ltit{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:4px}
+.lyr{font-size:11px;color:var(--t3);margin-bottom:7px}
+.ldc{font-size:13px;color:var(--t2);line-height:1.75}
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:4px;font-size:13px;line-height:1.75}
+li strong{color:var(--t1)}
+.footer{padding:34px 52px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--blue)}
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.gg,.pg,.isg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+<div class="sbh">
+<div class="sbb">CC101 · QCU BSIT</div>
+<div class="sbt">Computer System</div>
+<div class="sbs">Week 4-5 Mastery Guide · AY 2026-2027</div>
+</div>
+<ul class="nvl">
+<li class="nvs">Introduction</li>
+<li class="nvi"><a href="#ch0"><span class="nn">00</span> Verification &amp; Overview</a></li>
+<li class="nvs">Chapters</li>
+<li class="nvi"><a href="#ch1"><span class="nn">01</span> The Computer System</a></li>
+<li class="nvi"><a href="#ch2"><span class="nn">02</span> Hardware &amp; Storage</a></li>
+<li class="nvi"><a href="#ch3"><span class="nn">03</span> Inside the Motherboard</a></li>
+<li class="nvi"><a href="#ch4"><span class="nn">04</span> Software</a></li>
+<li class="nvi"><a href="#ch5"><span class="nn">05</span> Peopleware &amp; Users</a></li>
+<li class="nvi"><a href="#ch6"><span class="nn">06</span> Glossary &amp; Abbreviations</a></li>
+</ul>
+</nav>
+
+<main class="main">
+<header class="hero">
+<div class="he">CC101 · WEEK 4-5</div>
+<div class="ht">Computer System</div>
+<div class="hs">Mastery Study Guide — Hardware, Motherboard, Software &amp; Peopleware</div>
+<div class="hm">
+<div class="mp">Course: <span>CC101 - Introduction to Computing</span></div>
+<div class="mp">Units: <span>3u</span></div>
+<div class="mp">Year Level: <span>1st Year</span></div>
+<div class="mp">Type: <span>Gateway / Layer 0</span></div>
+</div>
+</header>
+<section class="chapter" id="ch0">
+<div class="cn">CHAPTER 00</div><div class="ct">Verification Notes — Read This First</div>
+<p class="ci">Before the content itself: a methodical pass over the uploaded Week 4-5 slide deck (<em>CC101 - Introduction to Computing, Week 4-5: Computer System</em>) flagging anything truncated, anything promised but not delivered, anything under-explained, and every factual claim worth double-checking. Read this section first so a smoothed-over study aid never gets mistaken for something your professor actually said.</p>
+
+<div class="mlst">
+<div class="mitem"><div class="mnm">1. Leftover slide label</div><div class="mdc">Slide 2 (Learning Outcomes) is captioned "<strong>WEEK 2</strong>" in small text even though the deck's title slide and every other slide header say "Week 4-5." This is almost certainly a copy-paste leftover from an earlier week's template and not a real claim about content — reproduced as-is on the source slide, not treated as a fact.</div></div>
+
+<div class="mitem"><div class="mnm">2. Primary storage volatility — INCORRECT as written</div><div class="mdc">Slide 8 states Primary Storage Devices are <strong>"a non-volatile, temporary type of storage."</strong> This is internally contradictory and factually backwards for the lead example given (RAM): RAM is <strong>volatile</strong> (loses its contents when power is cut) and temporary. The other three examples on the same slide — ROM, PROM, EEPROM — are actually non-volatile <em>and permanent</em> (or semi-permanent), not temporary. So the single label "non-volatile, temporary" does not cleanly describe any of the four items listed under it. Kept exactly as the slide states it below (since that's what's testable if your professor asks it verbatim), but flagged here: if asked to explain <em>why</em>, the accurate breakdown is RAM = volatile/temporary, while ROM/PROM/EEPROM = non-volatile/permanent.</div></div>
+
+<div class="mitem"><div class="mnm">3. Secondary storage volatility — INCORRECT as written</div><div class="mdc">Slide 9 states Secondary Storage Devices are <strong>"a volatile, permanent type of storage."</strong> This is backwards: every example listed (Hard Disk Drive, Floppy Disk Drive, Optical Disk, Flash Drive, Memory Card) is <strong>non-volatile</strong> — that's the entire point of secondary storage, it keeps data with the power off. The correct pairing is non-volatile + permanent. Taken together with note 2, it looks like "volatile" and "non-volatile" were simply swapped between the two slides. Reproduced as stated below, corrected here.</div></div>
+
+<div class="mitem"><div class="mnm">4. Duplicate slide</div><div class="mdc">Slides 35 and 36 are identical, word-for-word "PEOPLEWARE" content. Treated as one topic below, not two — the repetition doesn't introduce new information.</div></div>
+
+<div class="mitem"><div class="mnm">5. IDE alternate name — needs a caveat</div><div class="mdc">Slide 18 says IDE is "also known as Advanced Technology Attachment (ATA) or <strong>intelligent</strong> drive electronics (IDE)." The standard, dominant expansion of the acronym in nearly every technical source is <strong>Integrated</strong> Drive Electronics — "intelligent drive electronics" does appear as a secondary/informal expansion in a handful of technical glossaries, but it is not the expansion you should lead with if asked directly. Verified via web search against TechTarget, ComputerHope, and patent-filing glossaries. Both the 16-bit interface claim and the "single-ribbon cable, two devices" claim on the same slide check out.</div></div>
+
+<div class="mitem"><div class="mnm">6. No dates given for most Week 4-5 hardware — not an error</div><div class="mdc">Unlike Week 3 (Evolution of Computing), this lecture doesn't attach invention years to the Motherboard/Socket/DIMM/IDE/Northbridge/Southbridge/AGP/PCI slides, so there's nothing to fact-check there beyond the technical claims already covered above. Historically-minded context that the slides themselves don't provide (e.g., when IDE was introduced) is added separately below and clearly marked as outside the lecture.</div></div>
+</div>
+
+<div class="box green"><div class="bico">✅</div><div class="bbd"><div class="btt">Everything else checked out</div><p class="btx">The Hardware/Software/Peopleware three-way split, the Input/Output/Storage device categorization and examples, the Motherboard/Socket/ATX-connector/Memory-slot/DIMM descriptions, the Northbridge/Southbridge/AGP/PCI functional descriptions, the System vs. Application software split, and the Casual/SOHO/Power-User categories all matched standard, current technical usage on cross-check — no further corrections needed beyond items 1–5 above.</p></div></div>
+
+<h2>Lesson Overview</h2>
+<p>Week 4-5 answers the question CC101 has been building toward: <strong>what is actually inside "a computer"?</strong> It breaks a computer down into its three basic components — Hardware, Software, and Peopleware — then goes one level deeper into each: Hardware splits into Input/Output/Storage devices and gets a dedicated tour of what's physically on the motherboard; Software splits into System Software (what runs the machine) and Application Software (what you actually use); and Peopleware closes the loop by naming the human side of the system, including the three practical categories of computer user.</p>
+
+<div class="box blue"><div class="bico">🔗</div><div class="bbd"><div class="btt">Where This Fits in Your Roadmap</div><p class="btx">This is foundational hardware/software vocabulary that gets assumed background once you reach dedicated hardware or OS-level courses later in the program (e.g. a computer architecture or operating systems course). CC101 itself stays Layer 0 — no prerequisites, gateway course.</p></div></div>
+
+<h2>Study Priority Map</h2>
+<div class="tw"><table>
+<thead><tr><th>Topic</th><th>Chapter</th><th>Recitation Weight</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td>Hardware / Software / Peopleware split</td><td>01</td><td class="tag ta">Medium</td><td>Foundational framing — expect a definition-recall question, low trickiness.</td></tr>
+<tr><td>Input / Output / Storage Devices + examples</td><td>02</td><td class="tag tr2">High</td><td>Heavy on named examples; professor likely to ask "give an example of an input device," etc.</td></tr>
+<tr><td>Primary vs. Secondary Storage (volatility)</td><td>02</td><td class="tag tr2">High</td><td>The exact spot where the slide's own wording is backwards — high risk of a trick question either way it's asked.</td></tr>
+<tr><td>Motherboard components (Socket, ATX, DIMM, IDE, Northbridge/Southbridge, AGP, PCI)</td><td>03</td><td class="tag tr2">High</td><td>Named-part-plus-function is the most exam-friendly question shape in this whole unit.</td></tr>
+<tr><td>System vs. Application Software</td><td>04</td><td class="tag ta">Medium</td><td>Clean two-way split, easy to state, but the sub-categories under each need to be memorized.</td></tr>
+<tr><td>Peopleware &amp; Types of Users</td><td>05</td><td class="tag tb">Lower</td><td>Short, single-slide-depth content; most likely a quick recall item, not a full exam question.</td></tr>
+</tbody>
+</table></div>
+<p style="font-size:12px;color:var(--t3);margin-top:-6px">These weight tags are inferred from how much slide depth and named detail each topic gets — no disclosed point breakdown was provided in the uploaded material.</p>
+</section>
+<section class="chapter" id="ch1">
+<div class="cn">CHAPTER 01</div><div class="ct">The Computer System</div>
+<p class="ci">Everything else this week is a deeper look inside one of these three boxes. Get this split first — it's the skeleton the rest of the lesson hangs on.</p>
+
+<div class="isg">
+<div class="isc"><div class="ico">DEFINITION</div><div class="inm">Computer System</div><div class="idc">A <strong>complete, working computer</strong>. It includes not just the computer itself, but also any software and peripheral devices necessary to make it function.</div></div>
+</div>
+
+<h2>The Three Basic Components</h2>
+<div class="gg">
+<div class="gc" data-g="H"><div class="gera">PHYSICAL</div><div class="gtit">Hardware</div><p class="gsp">Anything physically connected to the computer, or something you can physically touch. Splits into Input, Output, and Storage Devices.</p></div>
+<div class="gc" data-g="S"><div class="gera">INSTRUCTIONS</div><div class="gtit">Software</div><p class="gsp">The set of instructions/programs that tell the computer what to do. Splits into System Software and Application Software.</p></div>
+<div class="gc" data-g="P"><div class="gera">HUMAN</div><div class="gtit">Peopleware</div><p class="gsp">The human role inside an IT system — the people who use, plan, and manage the technology.</p></div>
+</div>
+
+<div class="box blue"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation-Ready Answer</div><p class="btx">If asked "what are the components of a computer system?" — say it like this: <em>"A computer system is a complete working computer — that's hardware, software, and peopleware together. Hardware is the physical parts, software is the instructions that run on the hardware, and peopleware is the people who actually use and manage the system. Take any one of the three away and you don't have a working computer system anymore."</em></p></div></div>
+
+<div class="box amber"><div class="bico">💡</div><div class="bbd"><div class="btt">Comparison: Computer vs. Computer System</div><p class="btx">The closest related — and most confusable — term is just "computer" on its own. A <strong>computer</strong> is the physical box/device; a <strong>computer system</strong> is that device <em>plus</em> the software and peripherals needed to actually make it functional. A brand-new PC with no operating system installed and no keyboard/monitor attached is a computer, but not yet a working computer system.</p></div></div>
+
+<div class="box green"><div class="bico">📌</div><div class="bbd"><div class="btt">Concrete Example</div><p class="btx">A QCU computer-lab PC counts as a computer system: the case and its internal parts (hardware), Windows plus your typing/browser software (software), and the lab technician or the student using it (peopleware) — all three together, not any one piece alone.</p></div></div>
+
+<div class="mlst">
+<div class="mnm" style="margin-bottom:8px">🎤 Recitation Drill — Chapter 01</div>
+<div class="mitem"><div class="mnm">Q1</div><div class="mdc"><strong>"What is a computer system, and what are its three basic components?"</strong><br>A complete, working computer — including the software and peripherals needed to function. Its three components are Hardware (physical parts), Software (the instructions), and Peopleware (the human role).</div></div>
+<div class="mitem"><div class="mnm">Q2</div><div class="mdc"><strong>"How is a computer system different from just 'a computer'?"</strong><br>"Computer" usually refers to just the physical device. "Computer system" is broader — it includes the software and peripheral devices that make that device actually usable.</div></div>
+</div>
+</section>
+<section class="chapter" id="ch2">
+<div class="cn">CHAPTER 02</div><div class="ct">Hardware &amp; Storage Devices</div>
+<p class="ci">Hardware is the physical layer — anything you can touch. The lesson splits it into three categories by what direction the data moves.</p>
+
+<div class="isg">
+<div class="isc"><div class="ico">DEFINITION</div><div class="inm">Hardware</div><div class="idc">Best described as a device that is <strong>physically connected</strong> to your computer, or something that can be <strong>physically touched</strong>.</div></div>
+</div>
+
+<h2>The Three Categories</h2>
+
+<div class="gg">
+<div class="gc" data-g="I"><div class="gera">DATA IN</div><div class="gtit">Input Devices</div><p class="gsp">Any device that lets a person communicate information <em>to</em> the computer, so it can perform its tasks.<br><strong>Examples:</strong> Digital Camera, Digitizing Tablet, Keyboard, Microphone, Mouse.</p></div>
+<div class="gc" data-g="O"><div class="gera">DATA OUT</div><div class="gtit">Output Devices</div><p class="gsp">A device that receives data from another device and generates output with it, but cannot send data back to another device.<br><strong>Examples:</strong> Monitor, Printer, Speaker, Projector.</p></div>
+<div class="gc" data-g="S"><div class="gera">DATA HELD</div><div class="gtit">Storage Devices</div><p class="gsp">Hardware used for storing, porting, and extracting data files and objects — can hold data both temporarily and permanently, and can be internal or external.</p></div>
+</div>
+
+<div class="box blue"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation-Ready Answer — Input vs. Output</div><p class="btx"><em>"Input devices bring information into the computer — think keyboard, mouse, microphone. Output devices take information the computer already processed and present it back to you — think monitor, printer, speaker. The direction of data flow is the whole difference: in vs. out."</em></p></div></div>
+
+<h2>Primary vs. Secondary Storage</h2>
+<p>Storage Devices split into two types — and this is exactly the spot flagged in the Verification Notes above, so the correction is repeated here where it matters most for recitation.</p>
+
+<div class="isg">
+<div class="isc"><div class="ico">AS STATED ON SLIDE</div><div class="inm">Primary Storage Devices</div><div class="idc">Also called <strong>main memory</strong>; the slide labels it "a non-volatile, temporary type of storage." <strong>Examples:</strong> RAM, ROM, PROM, EEPROM.</div></div>
+<div class="isc a"><div class="ico">AS STATED ON SLIDE</div><div class="inm">Secondary Storage Devices</div><div class="idc">Also called <strong>auxiliary memory</strong>; the slide labels it "a volatile, permanent type of storage." <strong>Examples:</strong> Hard Disk Drive, Floppy Disk Drive, Optical Disk, Flash Drive, Memory Card.</div></div>
+</div>
+
+<div class="box red"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Corrected — say it this way in recitation</div><p class="btx">The slide's "volatile/non-volatile" labels are swapped. The technically accurate statement is: <strong>Primary storage (RAM specifically) is volatile and temporary</strong> — it loses its contents the instant power is cut, which is exactly why it's called "temporary." <strong>Secondary storage is non-volatile and permanent</strong> — a flash drive or hard disk keeps its data with no power at all, which is the entire reason it's used for long-term storage. (ROM, PROM, and EEPROM, also listed under Primary, are actually non-volatile themselves — they're grouped under "Primary/main memory" because of where they sit in the system, not because they share RAM's volatility.)</p></div></div>
+
+<div class="box amber"><div class="bico">💡</div><div class="bbd"><div class="btt">Comparison: RAM vs. ROM (the pair that trips people up)</div><p class="btx"><strong>RAM</strong> (Random Access Memory) is volatile, temporary, and read-<em>and-write</em> — it's your computer's short-term working space. <strong>ROM</strong> (Read-Only Memory) is non-volatile and, as the name says, generally read-only — it holds instructions (like startup firmware) that need to survive a power-off. Same "Primary Storage" category, opposite behavior.</p></div></div>
+
+<div class="mlst">
+<div class="mnm" style="margin-bottom:8px">🎤 Recitation Drill — Chapter 02</div>
+<div class="mitem"><div class="mnm">Q1</div><div class="mdc"><strong>"Give one example each of an input, output, and storage device."</strong><br>Input: keyboard. Output: monitor. Storage: flash drive (secondary) or RAM (primary).</div></div>
+<div class="mitem"><div class="mnm">Q2</div><div class="mdc"><strong>"What's the difference between primary and secondary storage, in terms of volatility?"</strong><br>Primary storage (RAM) is volatile and temporary — it clears when power is lost. Secondary storage (hard disks, flash drives) is non-volatile and permanent — it keeps data with the power off.</div></div>
+<div class="mitem"><div class="mnm">Q3</div><div class="mdc"><strong>"Name the four examples of Primary Storage Devices."</strong><br>RAM, ROM, PROM, and EEPROM.</div></div>
+</div>
+</section>
+<section class="chapter" id="ch3">
+<div class="cn">CHAPTER 03</div><div class="ct">Inside the Motherboard</div>
+<p class="ci">The lesson's "How Does a Computer Work" segment opens the case and names every major part sitting on or plugging into the motherboard. This is the single densest, most named-part-heavy stretch of the week.</p>
+
+<div class="isg">
+<div class="isc"><div class="ico">DEFINITION</div><div class="inm">Motherboard</div><div class="idc">One of the most essential parts of a computer system. It holds together many of the crucial components of a computer, including the <strong>CPU</strong>, memory, and connectors for input and output devices.</div></div>
+</div>
+
+<h2>Named Components</h2>
+
+<div class="isg">
+<div class="isc"><div class="ico">COMPONENT</div><div class="inm">Socket</div><div class="idc">A connection that allows a computer processor to be connected to a motherboard. <span class="ieg">Example on slide: Socket 370 / PGA370.</span></div></div>
+<div class="isc a"><div class="ico">COMPONENT</div><div class="inm">ATX Power Connector</div><div class="idc">Connectors inside your computer that connect the computer's power supply to an ATX-style motherboard. The slide shows both an older-style connector cable and the <strong>24-pin ATX</strong> power supply connector.</div></div>
+<div class="isc g"><div class="ico">COMPONENT</div><div class="inm">Memory Slot</div><div class="idc">Also called a memory socket or RAM slot — what allows computer memory (RAM) to be inserted into the computer. A motherboard may have 2 to 4 memory slots (sometimes more on high-end boards); the slots determine which type of RAM the board can use.</div></div>
+<div class="isc p"><div class="ico">COMPONENT</div><div class="inm">DIMM</div><div class="idc"><strong>Dual In-line Memory Module</strong> — a circuit board that holds memory chips. DIMMs have a 64-bit data path because of Pentium-processor requirements, which means they can be installed one at a time — unlike the older SIMMs on a Pentium, which had to be added in pairs.</div></div>
+</div>
+
+<h2>Types of RAM</h2>
+<ul>
+<li><strong>DRAM</strong> — Dynamic Random Access Memory</li>
+<li><strong>SRAM</strong> — Static Random Access Memory</li>
+<li><strong>DDR</strong> — Double Data Rate, used for desktop computers; <strong>SODIMM</strong> (Small Outline Dual Inline Memory Module) is the laptop-computer equivalent</li>
+<li><strong>SDRAM</strong> — Synchronous Dynamic Random Access Memory</li>
+</ul>
+
+<h2>Storage &amp; Expansion Interfaces</h2>
+
+<div class="isg">
+<div class="isc"><div class="ico">COMPONENT</div><div class="inm">IDE</div><div class="idc"><strong>Integrated Drive Electronics</strong> — a standard interface for connecting a motherboard to storage devices such as hard drives and CD-ROM/DVD drives. The original IDE had a 16-bit interface connecting two devices to a single ribbon cable.</div></div>
+<div class="isc a"><div class="ico">COMPONENT</div><div class="inm">Northbridge</div><div class="idc">An integrated circuit responsible for communications between the CPU interface, AGP, and memory — directly connected to those components and acting like a "bridge" so the Southbridge chip can reach the CPU, RAM, and graphics controller.</div></div>
+<div class="isc g"><div class="ico">COMPONENT</div><div class="inm">Southbridge</div><div class="idc">An integrated circuit on the motherboard responsible for the hard-drive controller, I/O controller, and integrated hardware such as the sound card and video card (if present), plus USB, PCI, ISA IDE, BIOS, and Ethernet.</div></div>
+<div class="isc p"><div class="ico">COMPONENT</div><div class="inm">AGP</div><div class="idc"><strong>Accelerated Graphics Port</strong> — an advanced port designed for video cards and 3D accelerators. Introduces a dedicated point-to-point channel that lets the graphics controller access system memory directly.</div></div>
+</div>
+
+<div class="isg">
+<div class="isc"><div class="ico">COMPONENT</div><div class="inm">PCI</div><div class="idc"><strong>Peripheral Component Interconnect</strong> — used to add peripherals to your computer, such as a graphics card, modem, or additional USB ports.</div></div>
+</div>
+
+<div class="box red"><div class="bico">⚠️</div><div class="bbd"><div class="btt">IDE's alternate name — say "Integrated," not "intelligent"</div><p class="btx">The slide lists "intelligent drive electronics" as an alternate expansion of IDE alongside ATA. If your professor asks you to spell out the acronym, lead with <strong>Integrated</strong> Drive Electronics — that's the expansion used by virtually every standards body and technical reference. "Intelligent" shows up in a few informal glossaries but isn't the one to give first.</p></div></div>
+
+<div class="box blue"><div class="bico">🌐</div><div class="bbd"><div class="btt">Context Not on the Slide — Verified via Web Search</div><p class="btx">The slides don't date IDE's introduction. For extra context (not testable from this lecture, but useful background): IDE/ATA was introduced in <strong>1986</strong> by Western Digital and Compaq, and was formally standardized by ANSI as "AT Attachment" (ATA) in November 1990. Source: TechTarget's IDE/ATA glossary entry.</p></div></div>
+
+<div class="mlst">
+<div class="mnm" style="margin-bottom:8px">🎤 Recitation Drill — Chapter 03</div>
+<div class="mitem"><div class="mnm">Q1</div><div class="mdc"><strong>"What connects the CPU to the motherboard?"</strong><br>The Socket — a connection that allows a computer processor to be attached to the motherboard.</div></div>
+<div class="mitem"><div class="mnm">Q2</div><div class="mdc"><strong>"What's the difference between Northbridge and Southbridge?"</strong><br>Northbridge handles communication between the CPU, AGP, and memory — the "faster," more performance-critical connections. Southbridge handles the hard-drive controller, I/O controller, USB, PCI, BIOS, and Ethernet — generally the slower peripheral-facing side, and it talks to the CPU/RAM/graphics through the Northbridge.</div></div>
+<div class="mitem"><div class="mnm">Q3</div><div class="mdc"><strong>"Why can DIMMs be installed one at a time, unlike older SIMMs?"</strong><br>Because DIMMs have a full 64-bit data path (matching what the Pentium processor requires on its own), so a single DIMM already satisfies the bus width. Older SIMMs were narrower, so a Pentium-era board needed two installed together to reach the same 64-bit width.</div></div>
+</div>
+</section>
+<section class="chapter" id="ch4">
+<div class="cn">CHAPTER 04</div><div class="ct">Software</div>
+<p class="ci">If Hardware is what you can touch, Software is what tells it what to do. The lesson splits Software into two categories by <em>who it's for</em>: the machine itself, or the end user.</p>
+
+<div class="isg">
+<div class="isc"><div class="ico">DEFINITION</div><div class="inm">Software</div><div class="idc">In its most general sense, a set of instructions or programs instructing a computer to do specific tasks — a generic term used to describe computer programs.</div></div>
+</div>
+
+<h2>1. System Software</h2>
+<p>Consists of programs designed to facilitate the use of the computer by the user — software required to support the production or execution of application programs, but which is not specific to any particular application.</p>
+
+<div class="gg">
+<div class="gc" data-g="OS"><div class="gera">SYSTEM SOFTWARE</div><div class="gtit">Operating System</div><p class="gsp">The most important software that runs on a computer. Manages the computer's memory and processes, as well as all of its software and hardware. <strong>Most common:</strong> Microsoft Windows, MacOS, Linux.</p></div>
+<div class="gc" data-g="DD"><div class="gera">SYSTEM SOFTWARE</div><div class="gtit">Device Drivers</div><p class="gsp">A program that controls a particular type of device attached to your computer — there are device drivers for printers, displays, and so on.</p></div>
+<div class="gc" data-g="UP"><div class="gera">SYSTEM SOFTWARE</div><div class="gtit">Utility Programs</div><p class="gsp">A type of system software that lets a user perform maintenance-type tasks, usually related to managing the computer, its devices, or its programs. <strong>Examples:</strong> File Manager, Disk Defragmenter.</p></div>
+</div>
+
+<h2>2. Application Software</h2>
+<p>A term used for software created for a specific purpose — generally a program or collection of programs used by end users.</p>
+
+<div class="tw"><table>
+<thead><tr><th>Type</th><th>Examples (per slide)</th></tr></thead>
+<tbody>
+<tr><td>Word processing software</td><td>MS Word, WordPad, Notepad</td></tr>
+<tr><td>Database software</td><td>Oracle, MS Access</td></tr>
+<tr><td>Spreadsheet software</td><td>Apple Numbers, Microsoft Excel</td></tr>
+<tr><td>Multimedia software</td><td>Real Player, Media Player</td></tr>
+<tr><td>Presentation software</td><td>Microsoft PowerPoint, Keynote</td></tr>
+<tr><td>Enterprise software</td><td>Customer relationship management (CRM) system</td></tr>
+</tbody>
+</table></div>
+
+<div class="isg">
+<div class="isc"><div class="ico">APPLICATION TYPE</div><div class="inm">Word Processing</div><div class="idc">Creating and editing documents on a computer, mimicking the format/style of a typewriter. Requires a computer and word-processing software; a printer can create a physical copy.</div></div>
+<div class="isc a"><div class="ico">APPLICATION TYPE</div><div class="inm">Database Software</div><div class="idc">Used for creating, editing, and maintaining database files/records — storing data as structured fields, tables, and columns retrievable directly or programmatically. Also called database management software (DBMS), though the terms aren't exact synonyms.</div></div>
+<div class="isc g"><div class="ico">APPLICATION TYPE</div><div class="inm">Spreadsheet Software</div><div class="idc">Organizes, stores, and analyzes data in tabular form — a digital simulation of paper accounting worksheets, with multiple interacting sheets and text/numeric/graphic data.</div></div>
+<div class="isc p"><div class="ico">APPLICATION TYPE</div><div class="inm">Multimedia Software</div><div class="idc">Capable of playing or recording audio files, or playing or recording video files.</div></div>
+</div>
+<div class="isg">
+<div class="isc"><div class="ico">APPLICATION TYPE</div><div class="inm">Presentation Software</div><div class="idc">Designed to let users create a presentation of ideas by stringing together text, images, and audio/video — tells a story or supports a speech.</div></div>
+<div class="isc a"><div class="ico">APPLICATION TYPE</div><div class="inm">Enterprise Software</div><div class="idc">An over-arching term for any software used in large organizations (business or government) — an essential part of a computer-based information system, providing tools like online payment processing and automated billing.</div></div>
+</div>
+
+<div class="box amber"><div class="bico">💡</div><div class="bbd"><div class="btt">Comparison: System vs. Application Software</div><p class="btx"><em>"System software keeps the computer itself running — the OS, drivers, utilities. Application software is what a person actually opens to get work done — Word, Excel, PowerPoint. System software supports every application; application software is what you, the end user, actually see and use."</em></p></div></div>
+
+<div class="mlst">
+<div class="mnm" style="margin-bottom:8px">🎤 Recitation Drill — Chapter 04</div>
+<div class="mitem"><div class="mnm">Q1</div><div class="mdc"><strong>"Give the two categories of computer software and one example of each."</strong><br>System Software — e.g., an Operating System like Windows. Application Software — e.g., word processing software like MS Word.</div></div>
+<div class="mitem"><div class="mnm">Q2</div><div class="mdc"><strong>"What does an operating system manage?"</strong><br>The computer's memory and processes, as well as all of its software and hardware.</div></div>
+<div class="mitem"><div class="mnm">Q3</div><div class="mdc"><strong>"Name three of the six application software types on the slide."</strong><br>Any three of: word processing, database, spreadsheet, multimedia, presentation, enterprise.</div></div>
+</div>
+</section>
+<section class="chapter" id="ch5">
+<div class="cn">CHAPTER 05</div><div class="ct">Peopleware &amp; Types of Users</div>
+<p class="ci">The last piece of the Hardware/Software/Peopleware split — the human side of a computer system. The slide covering this topic is presented twice, back to back, with identical wording; both copies are treated as one topic here.</p>
+
+<div class="isg">
+<div class="isc"><div class="ico">DEFINITION</div><div class="inm">Peopleware</div><div class="idc">Refers to the <strong>human role</strong> in an IT system. The term treats human talent as a kind of commodified piece of an IT process — a key part of providing various technical business models and other planning resources.</div></div>
+</div>
+
+<h2>Types of Computer User</h2>
+<div class="gg">
+<div class="gc" data-g="C"><div class="gera">TYPE 1</div><div class="gtit">Casual / Regular User</div><p class="gsp">Uses a computer for everyday, general-purpose tasks — the baseline user category on the slide.</p></div>
+<div class="gc" data-g="SO"><div class="gera">TYPE 2</div><div class="gtit">Small Office/Home Office (SOHO)</div><p class="gsp">A user working out of a small office or home-office setup — a category between casual home use and full enterprise/business use.</p></div>
+<div class="gc" data-g="PU"><div class="gera">TYPE 3</div><div class="gtit">Power User</div><p class="gsp">A more advanced user with heavier computing needs than a casual user — typically pushing hardware/software further than default use cases.</p></div>
+</div>
+
+<div class="box amber"><div class="bico">💡</div><div class="bbd"><div class="btt">Comparison: Peopleware vs. Users</div><p class="btx">"Peopleware" is the broader concept — the human role in the system generally (this covers IT staff, planners, and technical talent, not just end users). "Types of computer user" is a narrower classification specifically about how a person uses the machine day to day. Every "type of user" is an instance of peopleware, but peopleware also includes people who never personally sit at the keyboard (e.g., the planners the slide references).</p></div></div>
+
+<div class="mlst">
+<div class="mnm" style="margin-bottom:8px">🎤 Recitation Drill — Chapter 05</div>
+<div class="mitem"><div class="mnm">Q1</div><div class="mdc"><strong>"What does 'peopleware' refer to?"</strong><br>The human role in an IT system — human talent as part of the IT process and technical business planning.</div></div>
+<div class="mitem"><div class="mnm">Q2</div><div class="mdc"><strong>"Name the three types of computer user from the lecture."</strong><br>Casual/regular user, Small Office/Home Office (SOHO), and Power User.</div></div>
+</div>
+</section>
+<section class="chapter" id="ch6">
+<div class="cn">CHAPTER 06</div><div class="ct">Glossary &amp; Abbreviations</div>
+<p class="ci">Every abbreviation used in this week's slides, spelled out in full.</p>
+
+<div class="isg">
+<div class="isc"><div class="ico">ACRONYM</div><div class="inm">CPU</div><div class="idc"><strong>Central Processing Unit</strong> — the processor connected to the motherboard via the Socket.</div></div>
+<div class="isc a"><div class="ico">ACRONYM</div><div class="inm">RAM</div><div class="idc"><strong>Random Access Memory</strong> — volatile, temporary Primary Storage; inserted via a Memory Slot as a DIMM/SIMM.</div></div>
+<div class="isc g"><div class="ico">ACRONYM</div><div class="inm">ROM</div><div class="idc"><strong>Read-Only Memory</strong> — non-volatile Primary Storage, generally not writable during normal use.</div></div>
+<div class="isc p"><div class="ico">ACRONYM</div><div class="inm">PROM</div><div class="idc"><strong>Programmable Read-Only Memory</strong> — a type of ROM that can be written to once after manufacture.</div></div>
+</div>
+<div class="isg">
+<div class="isc"><div class="ico">ACRONYM</div><div class="inm">EEPROM</div><div class="idc"><strong>Electrically Erasable Programmable Read-Only Memory</strong> — a type of ROM that can be erased and reprogrammed electrically.</div></div>
+<div class="isc a"><div class="ico">ACRONYM</div><div class="inm">DIMM</div><div class="idc"><strong>Dual In-line Memory Module</strong> — the 64-bit-path circuit board format that holds RAM chips.</div></div>
+<div class="isc g"><div class="ico">ACRONYM</div><div class="inm">SIMM</div><div class="idc"><strong>Single In-line Memory Module</strong> — the older, narrower memory-module format that required two modules on a Pentium-era board.</div></div>
+<div class="isc p"><div class="ico">ACRONYM</div><div class="inm">DRAM</div><div class="idc"><strong>Dynamic Random Access Memory</strong> — one of the four RAM types listed on the slide.</div></div>
+</div>
+<div class="isg">
+<div class="isc"><div class="ico">ACRONYM</div><div class="inm">SRAM</div><div class="idc"><strong>Static Random Access Memory</strong> — one of the four RAM types listed on the slide.</div></div>
+<div class="isc a"><div class="ico">ACRONYM</div><div class="inm">DDR</div><div class="idc"><strong>Double Data Rate</strong> — RAM type used for desktop computers, per the slide.</div></div>
+<div class="isc g"><div class="ico">ACRONYM</div><div class="inm">SODIMM</div><div class="idc"><strong>Small Outline Dual Inline Memory Module</strong> — the laptop-computer equivalent of a DIMM.</div></div>
+<div class="isc p"><div class="ico">ACRONYM</div><div class="inm">SDRAM</div><div class="idc"><strong>Synchronous Dynamic Random Access Memory</strong> — one of the four RAM types listed on the slide.</div></div>
+</div>
+<div class="isg">
+<div class="isc"><div class="ico">ACRONYM</div><div class="inm">IDE</div><div class="idc"><strong>Integrated Drive Electronics</strong> — the standard interface for connecting a motherboard to storage devices; also called ATA.</div></div>
+<div class="isc a"><div class="ico">ACRONYM</div><div class="inm">ATA</div><div class="idc"><strong>Advanced Technology Attachment</strong> — the slide's alternate name for IDE.</div></div>
+<div class="isc g"><div class="ico">ACRONYM</div><div class="inm">AGP</div><div class="idc"><strong>Accelerated Graphics Port</strong> — advanced port for video cards and 3D accelerators.</div></div>
+<div class="isc p"><div class="ico">ACRONYM</div><div class="inm">PCI</div><div class="idc"><strong>Peripheral Component Interconnect</strong> — used to add peripherals like a graphics card or modem.</div></div>
+</div>
+<div class="isg">
+<div class="isc"><div class="ico">ACRONYM</div><div class="inm">ATX</div><div class="idc"><strong>Advanced Technology eXtended</strong> — the motherboard/power-supply form-factor standard referenced by the ATX Power Connector.</div></div>
+<div class="isc a"><div class="ico">ACRONYM</div><div class="inm">PGA</div><div class="idc"><strong>Pin Grid Array</strong> — the socket type in the slide's Socket 370/PGA370 example.</div></div>
+<div class="isc g"><div class="ico">ACRONYM</div><div class="inm">USB</div><div class="idc"><strong>Universal Serial Bus</strong> — one of the interfaces the Southbridge chip is responsible for.</div></div>
+<div class="isc p"><div class="ico">ACRONYM</div><div class="inm">ISA</div><div class="idc"><strong>Industry Standard Architecture</strong> — one of the interfaces the Southbridge chip is responsible for (listed on the slide as "ISA IDE").</div></div>
+</div>
+<div class="isg">
+<div class="isc"><div class="ico">ACRONYM</div><div class="inm">BIOS</div><div class="idc"><strong>Basic Input/Output System</strong> — one of the components the Southbridge chip is responsible for.</div></div>
+<div class="isc a"><div class="ico">ACRONYM</div><div class="inm">DBMS</div><div class="idc"><strong>Database Management Software/System</strong> — the slide's alternate name for database software (noted as not an exact synonym).</div></div>
+<div class="isc g"><div class="ico">ACRONYM</div><div class="inm">CRM</div><div class="idc"><strong>Customer Relationship Management</strong> — the slide's example of an Enterprise Software system.</div></div>
+<div class="isc p"><div class="ico">ACRONYM</div><div class="inm">SOHO</div><div class="idc"><strong>Small Office/Home Office</strong> — one of the three computer-user types.</div></div>
+</div>
+<div class="isg">
+<div class="isc"><div class="ico">ACRONYM</div><div class="inm">I/O</div><div class="idc"><strong>Input/Output</strong> — the general term for the two data-direction device categories, and the controller type the Southbridge manages.</div></div>
+</div>
+</section>
+
+<div class="footer"><p>QCU Academic OS · AY 2026-2027 · Compiled by <strong>KianoRoku18Ino</strong> · github.com/KianoRoku18Ino</p></div>
+</main>
+
+</body>
+</html>
