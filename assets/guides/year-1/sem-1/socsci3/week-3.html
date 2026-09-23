@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOCSCI3 — Facilitators &amp; Theories of Globalization | Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--bgcode:#060D18;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--purple:#8B5CF6;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(59,130,246,.15);--sw:285px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvs{padding:9px 17px 3px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t3)}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover,.nvi a.act{color:var(--t1);background:rgba(59,130,246,.08);border-left-color:var(--blue)}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:20px}
+.main{margin-left:var(--sw)}
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:52px 52px 42px;position:relative;overflow:hidden}
+.hero::before{content:'01001000';position:absolute;top:-10px;right:15px;font-family:'JetBrains Mono',monospace;font-size:115px;font-weight:900;color:rgba(59,130,246,.04);letter-spacing:-5px;user-select:none;line-height:1}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--blue)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:700;line-height:1.08;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#3B82F6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:17px;color:var(--t2);margin-bottom:19px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+.chapter{padding:44px 52px;border-bottom:1px solid var(--bdr);max-width:970px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:600;margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--blue);border-radius:2px;flex-shrink:0}
+h3{font-family:'Space Grotesk',sans-serif;font-size:15.5px;font-weight:600;color:var(--blue);margin:22px 0 9px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+.box{border-radius:8px;padding:13px 17px;margin:15px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}.red .btt{color:var(--red)}
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--blue);font-size:12px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(59,130,246,.04)}
+tbody td{padding:9px 13px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}
+.steps{margin:15px 0}
+.step{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.snum{background:var(--blue);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace}
+.sc{flex:1}
+.sl{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:2px}
+.sd{color:var(--t2);font-size:13px;line-height:1.7}
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.gc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;position:relative;overflow:hidden}
+.gc::before{content:attr(data-g);position:absolute;top:-10px;right:7px;font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:900;color:rgba(59,130,246,.05);line-height:1}
+.gera{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.gtit{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:7px}
+.gsp{font-size:12.5px;color:var(--t2);margin:0;line-height:1.7}
+.gsp strong{color:var(--blue)}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:15px 0}
+.pcrd{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:13px 15px}
+.pnm{font-weight:700;color:var(--t1);font-size:13px;margin-bottom:2px}
+.pdt{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.pttl{font-size:11px;color:var(--blue);font-weight:600;margin-bottom:4px}
+.pdsc{font-size:12px;color:var(--t2);line-height:1.6}
+.isg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.isc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;border-top:3px solid var(--blue)}
+.isc.a{border-top-color:var(--amber)}.isc.g{border-top-color:var(--green)}.isc.p{border-top-color:var(--purple)}.isc.r{border-top-color:var(--red)}
+.ico{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-bottom:3px}
+.inm{font-weight:700;font-size:14px;color:var(--t1);margin-bottom:6px}
+.idc{font-size:12.5px;color:var(--t2);line-height:1.7}
+.mlst{margin:11px 0}
+.mitem{display:flex;gap:11px;padding:10px 0;border-bottom:1px solid var(--bdr);align-items:flex-start}
+.mitem:last-child{border-bottom:none}
+.mnm{font-weight:700;color:var(--red);min-width:110px;font-size:13px}
+.mdc{font-size:13px;color:var(--t2);line-height:1.65}
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:4px;font-size:13px;line-height:1.75}
+li strong{color:var(--t1)}
+.footer{padding:34px 52px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--blue)}
+.vnitem{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+.vnum{background:var(--bgr);border:1px solid var(--bdr);color:var(--amber);width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px;font-family:'JetBrains Mono',monospace}
+.vnc{flex:1}
+.vnt{font-weight:600;color:var(--t1);font-size:13.5px;margin-bottom:3px}
+.vnd{color:var(--t2);font-size:13px;line-height:1.75}
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.gg,.pg,.isg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+<div class="sbh"><div class="sbb">SOCSCI3 · QCU BSIT</div><div class="sbt">Facilitators &amp; Theories of Globalization</div><div class="sbs">Week 3 Study Guide</div></div>
+<ul class="nvl">
+<li class="nvs">Introduction</li>
+<li class="nvi"><a href="#verify"><span class="nn">VN</span>Verification Notes</a></li>
+<li class="nvi"><a href="#overview"><span class="nn">00</span>Lesson Overview</a></li>
+<li class="nvs">Chapters</li>
+<li class="nvi"><a href="#ch1"><span class="nn">01</span>Meaning &amp; Scope</a></li>
+<li class="nvi"><a href="#ch2"><span class="nn">02</span>Tech, Internet &amp; Social Media</a></li>
+<li class="nvi"><a href="#ch3"><span class="nn">03</span>Transportation &amp; Trade</a></li>
+<li class="nvi"><a href="#ch4"><span class="nn">04</span>MNCs &amp; Financial Institutions</a></li>
+<li class="nvi"><a href="#ch5"><span class="nn">05</span>Liberalization &amp; Agreements</a></li>
+<li class="nvi"><a href="#ch6"><span class="nn">06</span>Migration, Tourism &amp; Culture</a></li>
+<li class="nvi"><a href="#ch7"><span class="nn">07</span>Development &amp; Structural Theories</a></li>
+<li class="nvi"><a href="#ch8"><span class="nn">08</span>State-Centered Perspectives</a></li>
+<li class="nvi"><a href="#ch9"><span class="nn">09</span>Cultural &amp; Network Theories</a></li>
+<li class="nvi"><a href="#ch10"><span class="nn">10</span>Comparing the Theories</a></li>
+<li class="nvi"><a href="#ch11"><span class="nn">11</span>Philippine Context</a></li>
+<li class="nvi"><a href="#ch12"><span class="nn">12</span>Positive &amp; Negative Effects</a></li>
+<li class="nvi"><a href="#ch13"><span class="nn">13</span>Synthesis &amp; Key Takeaway</a></li>
+<li class="nvi"><a href="#ch14"><span class="nn">14</span>Glossary &amp; Abbreviations</a></li>
+</ul></nav>
+
+<main class="main">
+<div class="hero">
+<div class="he">QCU Academic OS · Module-Grounded Guide</div>
+<div class="ht">Facilitators &amp; Theories of Globalization</div>
+<div class="hs">Week 3 — built directly from Prof. Villaseñor's module, nothing added without a flag</div>
+<div class="hm">
+<div class="mp">Course: <span>SOCSCI3 - The Contemporary World</span></div>
+<div class="mp">Source: <span>Villaseñor module (file: Weeks 5-6)</span></div>
+<div class="mp">Units: <span>3u</span></div>
+</div></div>
+
+<section class="chapter" id="verify">
+<div class="cn">READ THIS FIRST</div><div class="ct">Verification Notes</div>
+<p class="ci">A methodical pass through the source file before the actual content — what's cut off, what's promised but never delivered, what needed a plain-language gloss, and what got fact-checked against outside sources. Read this once so you never mistake this guide's smoothing-over for something your professor actually said.</p>
+
+<div class="vnitem"><div class="vnum">1</div><div class="vnc"><div class="vnt">Truncation check</div><div class="vnd">No truncated or cut-off passages were found anywhere in the source file — it reads as complete from the title slide through the closing "central question" that ends Section X.</div></div></div>
+
+<div class="vnitem"><div class="vnum">2</div><div class="vnc"><div class="vnt">Filename vs. requested week number</div><div class="vnd">The source file is literally named <strong>WEEK-5-6_THE-CONTEMPORARY-WORLD.pdf</strong>, but you asked for this as "Week 3." This guide follows your instruction and labels itself Week 3 throughout — but double-check your class's actual week numbering before relying on that label for scheduling, since the file's own name suggests it might correspond to Weeks 5–6 instead.</div></div></div>
+
+<div class="vnitem"><div class="vnum">3</div><div class="vnc"><div class="vnt">Promised but not delivered — a missing row in the module's own comparison table</div><div class="vnd">Section III enumerates <strong>12</strong> named theories/perspectives (Modernization through Network Society Theory), each with its own write-up. Section IV's comparison table only lists <strong>11</strong> of them — Theory #4, "Globalization Theory" (the general one, distinct from the eight specific perspectives that follow it), gets a full section in III but never gets a row in the Section IV table. Chapter 10 below reproduces the table exactly as given, rather than inventing a row to patch the gap.</div></div></div>
+
+<div class="vnitem"><div class="vnum">4</div><div class="vnc"><div class="vnt">Ambiguous or under-explained items — glossed, and clearly marked as this guide's own gloss</div><div class="vnd">
+(a) Two neighboring facilitators — <strong>"Liberalization of Trade and Investment"</strong> (#7) and <strong>"Global Economic Policies and Trade Agreements"</strong> (#8) — cover closely related ground without the module drawing a line between them. Added gloss (Chapter 05): liberalization is the general policy stance of loosening restrictions; trade agreements/policies are the actual signed instruments governments use to carry that stance out.<br><br>
+(b) Two embedded diagrams don't caption which company or dataset they represent: a "Worldwide Offices" world map (Germany, Italy, US, Japan, South Korea, China, Peru, "Regional Offices") and a Vietnamese-labeled "Global Supply Chain" map showing office/company counts by region (Bắc Mỹ, Châu Âu, Trung Đông, and others). Neither names a source company, and the Vietnamese figures aren't legible or independently verifiable from the extracted file. Both read as generic stock graphics illustrating "MNCs operate worldwide" rather than professor-authored content, so this guide doesn't reproduce their numbers — only the general point they illustrate (Chapter 04).</div></div></div>
+
+<div class="vnitem"><div class="vnum">5</div><div class="vnc"><div class="vnt">Facts, dates, and figures checked against outside sources</div><div class="vnd">
+<strong>Immanuel Wallerstein's World-Systems Theory</strong> — the module gives no date. Verified: introduced in his 1974 book <em>The Modern World-System, Vol. I</em>. Added to Chapter 07 as context, clearly marked.<br><br>
+<strong>Manuel Castells' Network Society Theory</strong> — module gives no date. Verified: introduced in his 1996 book <em>The Rise of the Network Society</em>, the first volume of his <em>Information Age</em> trilogy. Added to Chapter 09.<br><br>
+<strong>ASEAN</strong> — module gives no founding date. Verified: founded 8 August 1967 in Bangkok via the ASEAN Declaration (Bangkok Declaration), signed by Indonesia, Malaysia, the Philippines, Singapore, and Thailand. Added to Chapter 05.<br><br>
+<strong>IMF and World Bank</strong> — module gives no founding dates. Verified: both trace to the Bretton Woods Conference (1–22 July 1944); the IMF formally came into existence 27 December 1945, alongside what became the World Bank. Added to Chapter 04.<br><br>
+<strong>WTO</strong> — module gives no founding date. Verified: established 1 January 1995, succeeding the General Agreement on Tariffs and Trade (GATT, 1947). Added to Chapter 04.<br><br>
+<strong>2023 Philippine tourist-arrivals graphic (5,450,557 arrivals)</strong> — the number is correct and matches the Department of Tourism's actual year-end report. But the graphic is internally inconsistent: its headline reads "AS OF JANUARY 1, 2024" while its own caption text says the count covers "January 1 to December 31, 2023." The correct framing: 5,450,557 is the full calendar-year 2023 total, first publicly announced by DOT in the first days of January 2024 — "January 1, 2024" is when the tally was released, not the period it covers. This is a mistake in the slide itself, reproduced faithfully in Chapter 06 with this note attached.<br><br>
+<strong>"10.6% of GDP in 2015"</strong> (travel &amp; tourism sector) — verified correct (World Travel &amp; Tourism Council figure, widely reported in Philippine business press).<br><br>
+<strong>"1,226,500 jobs in 2013"</strong> — independent coverage of the same WTTC dataset cites "1.2 million jobs (3.2% of total employment)" for 2013, consistent with the slide's more precise figure. The exact digit-for-digit number couldn't be re-verified from a public primary source, but the order of magnitude and year check out.<br><br>
+<strong>"8,260,913 international arrivals in 2019, up 15.24% over 2018"</strong> — verified correct against the Department of Tourism's own year-end report (2018 baseline: 7.16 million).</div></div></div>
+
+<div class="box green"><div class="bico">✅</div><div class="bbd"><div class="btt">Bottom line</div>
+<p class="btx">Aside from the missing comparison-table row (Chapter 10) and the tourism graphic's internal date inconsistency (Chapter 06), nothing else in the module needed correction — the facts, figures, and attributions as written check out.</p></div></div>
+</section>
+
+<section class="chapter" id="overview">
+<div class="cn">CHAPTER 00</div><div class="ct">Lesson Overview</div>
+<p class="ci">This module (prepared by <strong>Randy Calaus Villaseñor, PhD, DPA</strong>) answers two different questions about globalization, and it's worth keeping them separate from the start:</p>
+
+<div class="box blue"><div class="bico">🧭</div><div class="bbd"><div class="btt">The Framework This Module Keeps Returning To</div>
+<p class="btx"><strong>Facilitators</strong> (Section II) are the mechanisms and enablers — technology, trade, transportation, institutions, people — that make globalization physically and practically possible. <strong>Theories</strong> (Section III) are the interpretations of what all that connectivity means and who actually benefits from it. The module makes this link explicit in its own Section V, using social media as a worked example: one facilitator, read through five different theoretical lenses. Chapters 02–06 below cover the facilitators, Chapters 07–09 cover the theories, and Chapter 10 reproduces the module's own facilitator-to-theory link.</p></div></div>
+
+<p>Nothing from the module has been cut — all 13 facilitators and all 12 theories/perspectives get full treatment below, along with the Philippine-context section, the positive/negative effects, and the closing synthesis. Recitation-ready answers, comparison tables, and short Q&amp;A drills have been added per chapter and are visually separated from the module's own content.</p>
+
+<h2>Recitation Priority Map</h2>
+<div class="tw"><table>
+<thead><tr><th>Topic</th><th>Chapter</th><th>Weight</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td>Meaning of Globalization</td><td>01</td><td><span class="tag ta">🟡 Medium</span></td><td>Foundational definition — easy short-answer, unlikely to anchor a full exam question alone</td></tr>
+<tr><td>13 Facilitators of Globalization</td><td>02–06</td><td><span class="tag tr2">🔴 High</span></td><td>Classic enumeration format with a named example per item — a very likely recitation and quiz structure</td></tr>
+<tr><td>12 Theories/Perspectives</td><td>07–09</td><td><span class="tag tr2">🔴 High</span></td><td>The module's core analytical content — expect this to anchor both recitation and essay questions</td></tr>
+<tr><td>Comparison Table &amp; Facilitator-Theory Link</td><td>10</td><td><span class="tag ta">🟡 Medium</span></td><td>Useful for synthesis-style essay prompts; watch the missing-row flag</td></tr>
+<tr><td>Philippine Context Examples</td><td>11</td><td><span class="tag tr2">🔴 High</span></td><td>Concrete, locally-grounded examples — a favorite target for recitation and short exam items</td></tr>
+<tr><td>Positive &amp; Negative Effects</td><td>12</td><td><span class="tag ta">🟡 Medium</span></td><td>Common short-answer or essay prompt; pairs well with the Higher-Order discussion questions</td></tr>
+<tr><td>5Ts Synthesis &amp; Discussion Questions</td><td>13</td><td><span class="tag tb">🔵 Lower</span></td><td>Self-test / review material — the "Higher-Order Thinking" set is essay material, not straight recall</td></tr>
+<tr><td>Glossary &amp; Abbreviations</td><td>14</td><td><span class="tag tb">🔵 Lower</span></td><td>Reference material, but IMF/WTO/ASEAN-type abbreviations are classic recitation traps</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="chapter" id="ch1">
+<div class="cn">CHAPTER 01</div><div class="ct">Meaning &amp; Scope of Globalization</div>
+<p class="ci">Before naming what makes globalization happen, the module first pins down what the word itself covers.</p>
+
+<div class="box blue"><div class="bico">📖</div><div class="bbd"><div class="btt">Definition (as given)</div>
+<p class="btx">Globalization refers to the increasing interconnectedness and interdependence of countries, economies, societies, cultures, institutions, and individuals across geographical boundaries. It makes events in one part of the world increasingly capable of affecting people and organizations in another.</p></div></div>
+
+<h2>What Moves Across Borders</h2>
+<p>The module names seven distinct things that globalization moves across borders:</p>
+<ul>
+<li><strong>Goods and services</strong></li>
+<li><strong>Capital and investments</strong></li>
+<li><strong>People and labor</strong></li>
+<li><strong>Technology</strong></li>
+<li><strong>Information and knowledge</strong></li>
+<li><strong>Ideas and culture</strong></li>
+<li><strong>Political and social practices</strong></li>
+</ul>
+
+<h2>The Smartphone Example</h2>
+<p>The module's own illustration: a smartphone used in the Philippines may involve <strong>design</strong> from the United States, <strong>components</strong> from South Korea, Taiwan, Japan, and other countries, <strong>manufacturing</strong> in China, Vietnam, India, or elsewhere, <strong>software</strong> from international teams, <strong>marketing</strong> through global advertising campaigns, and <strong>consumers</strong> around the world. This demonstrates how production, technology, investment, communication, and consumption have all become globally interconnected.</p>
+
+<h3>Two Supply-Chain Diagrams the Module Includes</h3>
+<p>Two sourced diagrams back up the smartphone example with real supply-chain data:</p>
+
+<div class="gg">
+<div class="gc" data-g="📱"><div class="gera">SUPPLY CHAIN FOR APPLE'S IPHONE</div><div class="gtit">Assembled in China from Global Parts</div><p class="gsp">Design (US) → Wi-Fi chips &amp; touch-screen controller (US) → Phone chips → Flash memory, processor &amp; display → Camera &amp; other parts → Final Assembly (China). <span style="color:var(--t3);font-size:11px">Source: <em>IS Today</em> (Valacich &amp; Schneider, 5th ed.), Pearson Education, 2012.</span></p></div>
+<div class="gc" data-g="💻"><div class="gera">GLOBAL SUPPLY CHAIN OF A SMARTPHONE PROCESSOR</div><div class="gtit">Four Stages, Four Regions</div><p class="gsp"><strong>1. Design</strong> — US firms provide chip-design software, relying partly on IP licenses from Europe. <strong>2. Equipment</strong> — manufacturing equipment developed in the US, Japan, and Europe. <strong>3. Materials</strong> — silicon mined/refined in the US, then processed into wafers in Japan and South Korea. <strong>4. Manufacturing</strong> — chips manufactured and packaged in Taiwan and Malaysia, then assembled into smartphones in mainland China. <span style="color:var(--t3);font-size:11px">Source: Boston Consulting Group, via Reuters (C. Canipe, Dec. 2021).</span></p></div>
+</div>
+
+<div class="box green"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation-Ready Answer</div>
+<p class="btx"><em>"Globalization is the growing interconnectedness of countries, economies, societies, and people across borders — it moves goods, capital, people, technology, information, ideas, and political/social practices."</em> Closest related idea: <strong>internationalization</strong> just means more cross-border activity between separate national economies; globalization goes further by treating the world as one integrated system where a single product (like a smartphone) can be designed, sourced, built, and sold across a dozen countries at once. Example: a Filipino-bought smartphone is designed in the US, built from Korean/Taiwanese/Japanese parts, assembled in China, and sold through global marketing.</p></div></div>
+
+<div class="box amber"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation Drill</div>
+<div class="steps" style="margin-top:8px">
+<div class="step"><div class="snum">Q1</div><div class="sc"><div class="sl">"Name the seven things globalization moves across borders."</div><div class="sd">Goods/services, capital/investments, people/labor, technology, information/knowledge, ideas/culture, and political/social practices.</div></div></div>
+<div class="step"><div class="snum">Q2</div><div class="sc"><div class="sl">"Use the smartphone example to explain interconnectedness."</div><div class="sd">A single phone ties together US design, East Asian components, Chinese/Vietnamese/Indian manufacturing, international software teams, global marketing, and worldwide consumers — no single country does it all.</div></div></div>
+<div class="step"><div class="snum">Q3</div><div class="sc"><div class="sl">"According to the module, what does globalization make events capable of doing?"</div><div class="sd">Making events in one part of the world increasingly capable of affecting people and organizations in another.</div></div></div>
+</div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch2">
+<div class="cn">CHAPTER 02</div><div class="ct">Technology, Internet &amp; Social Media</div>
+<p class="ci">Facilitators of globalization are the forces, technologies, institutions, policies, and developments that make global interconnectedness possible and accelerate the movement of people, goods, capital, information, and ideas — the module's own definition, which applies to all 13 facilitators across this and the next four chapters. This chapter covers Facilitators 1, 2, and 13: the technology cluster.</p>
+
+<h2>Facilitator 1 — Technological Advancement</h2>
+<p>Technology is one of the most important facilitators of globalization. The module names nine specific developments: <strong>information technology, artificial intelligence, cloud computing, smartphones, digital platforms, robotics, automation, satellites,</strong> and <strong>internet infrastructure</strong> — all of which have dramatically reduced the time and cost of communicating and conducting business across borders.</p>
+<div class="box blue"><div class="bico">💡</div><div class="bbd"><div class="btt">Example</div>
+<p class="btx">A Filipino employee can work remotely for a company based in Australia while communicating through Zoom, Microsoft Teams, Google Meet, Slack, email, and cloud-based systems — worker and employer never need to be in the same country.</p></div></div>
+<div class="box green"><div class="bico">🇵🇭</div><div class="bbd"><div class="btt">Philippine Example</div>
+<p class="btx">The Philippine BPO (Business Process Outsourcing) industry demonstrates this directly — Filipino workers provide customer service, technical support, accounting, animation, software development, and other services to international clients.</p></div></div>
+<p style="font-size:12.5px;color:var(--t3)">Key idea (as stated): Technology reduces the importance of geographical distance.</p>
+
+<h2>Facilitator 2 — Internet and Digital Communication</h2>
+<p>Before widespread internet access, international communication depended heavily on <strong>letters, telegrams, telephone calls, fax machines,</strong> and <strong>physical documents</strong>. Today, people communicate internationally within seconds.</p>
+<div class="isg">
+<div class="isc"><div class="ico">A STUDENT IN THE PHILIPPINES CAN</div><div class="inm">Access &amp; Collaborate</div><div class="idc">Attend an online lecture by a professor abroad · access international journals · watch educational videos from another country · collaborate with foreign students · participate in international conferences.</div></div>
+<div class="isc a"><div class="ico">A BUSINESS CAN</div><div class="inm">Trade &amp; Transact</div><div class="idc">Advertise internationally · sell products online · communicate with suppliers · receive international payments · provide online services.</div></div>
+</div>
+
+<h2>Facilitator 13 — Social Media</h2>
+<p>Social media has accelerated globalization by allowing ordinary individuals — not only governments and corporations — to participate in global communication. Platforms let people share ideas, create international communities, promote products, discuss global issues, build international careers, and participate in social movements.</p>
+<div class="box amber"><div class="bico">🌐</div><div class="bbd"><div class="btt">Important Concept (as stated)</div>
+<p class="btx">Globalization is no longer driven exclusively by governments and corporations. Individuals are now active participants in globalization.</p></div></div>
+<div class="box red"><div class="bico">➕</div><div class="bbd"><div class="btt">Added Illustrative Example — Not in the Original Slides</div>
+<p class="btx">The module describes this concept but doesn't attach a worked example the way it does for most other facilitators. A concrete illustration: a Filipino content creator building an international following on YouTube or TikTok, monetizing through global ad revenue and brand partnerships — participating in globalization with no government or corporate backing required.</p></div></div>
+
+<h2>Recitation Table — Facilitators 1, 2 &amp; 13</h2>
+<div class="tw"><table>
+<thead><tr><th>Facilitator</th><th>Plain-English Definition</th><th>Closest Related Term — How It Differs</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td>Technological Advancement</td><td>Innovations in IT, AI, robotics, and infrastructure that shrink the cost/time of doing things across borders.</td><td>vs. Internet &amp; Digital Communication: broader — covers the hardware/systems layer, not just the communication use-case.</td><td>Filipino BPO workers serving international clients.</td></tr>
+<tr><td>Internet &amp; Digital Communication</td><td>The specific shift from slow physical communication (mail, fax) to near-instant global exchange.</td><td>vs. Social Media: internet/digital communication is the infrastructure; social media is one type of platform built on top of it.</td><td>A PH business selling online and receiving international payments.</td></tr>
+<tr><td>Social Media</td><td>Platforms that let individual people — not just states or companies — participate directly in global exchange.</td><td>vs. Media &amp; Popular Culture (Ch. 06): social media is user-driven and interactive; traditional/popular media is produced and broadcast to an audience.</td><td>An individual creator building an international audience and income.</td></tr>
+</tbody></table></div>
+
+<div class="box amber"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation Drill</div>
+<div class="steps" style="margin-top:8px">
+<div class="step"><div class="snum">Q1</div><div class="sc"><div class="sl">"List the nine technological developments named as facilitators."</div><div class="sd">IT, AI, cloud computing, smartphones, digital platforms, robotics, automation, satellites, and internet infrastructure.</div></div></div>
+<div class="step"><div class="snum">Q2</div><div class="sc"><div class="sl">"How did international communication work before the internet?"</div><div class="sd">Through letters, telegrams, telephone calls, fax machines, and physical documents.</div></div></div>
+<div class="step"><div class="snum">Q3</div><div class="sc"><div class="sl">"Why does the module treat social media as its own facilitator, separate from 'internet and digital communication'?"</div><div class="sd">Because it marks a shift in who drives globalization — ordinary individuals can now participate directly, not just governments and corporations.</div></div></div>
+</div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch3">
+<div class="cn">CHAPTER 03</div><div class="ct">Transportation &amp; International Trade</div>
+<p class="ci">Facilitators 3 and 4 — the physical movement of goods, and the trade relationships that movement makes possible.</p>
+
+<h2>Facilitator 3 — Transportation</h2>
+<p>Modern transportation facilitates the physical movement of people and products across countries. The module names seven developments: <strong>container ships, cargo aircraft, high-speed rail, modern highways, international airports, logistics networks,</strong> and <strong>automated warehouses</strong>.</p>
+<div class="box blue"><div class="bico">🚢</div><div class="bbd"><div class="btt">Example &amp; Global Supply Chain</div>
+<p class="btx">A product manufactured in China can be shipped to the Philippines and distributed via local logistics companies. The module's general supply-chain flow: <strong>Raw materials → Manufacturing → Assembly → Shipping → Distribution → Retail → Consumer</strong> — an international production network.</p></div></div>
+<p>Importance of transportation (as listed): reduces delivery time · lowers transportation costs · expands international trade · facilitates tourism · supports migration · connects producers and consumers.</p>
+
+<h2>Facilitator 4 — International Trade</h2>
+<p>International trade is a major driver of globalization: countries exchange goods and services because no country can efficiently produce everything its population needs.</p>
+<div class="isg">
+<div class="isc"><div class="ico">THE PHILIPPINES EXPORTS</div><div class="inm">Outbound</div><div class="idc">Electronics · semiconductors · agricultural products · business services · garments · machinery and equipment.</div></div>
+<div class="isc a"><div class="ico">THE PHILIPPINES IMPORTS</div><div class="inm">Inbound</div><div class="idc">Petroleum products · machinery · vehicles · electronics · industrial materials · food products.</div></div>
+</div>
+<div class="box amber"><div class="bico">🔗</div><div class="bbd"><div class="btt">Trade Creates Interdependence</div>
+<p class="btx">When countries increasingly depend on one another for goods and services, their economies become interconnected. Example given: a disruption in semiconductor production in one country can affect automobile and electronics production in many other countries.</p></div></div>
+
+<h2>Recitation Table — Facilitators 3 &amp; 4</h2>
+<div class="tw"><table>
+<thead><tr><th>Facilitator</th><th>Plain-English Definition</th><th>Closest Related Term — How It Differs</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td>Transportation</td><td>The physical infrastructure (ships, planes, rail, warehouses) that actually moves goods and people across borders.</td><td>vs. International Trade: transportation is the "how" (moving the box); trade is the "why/what" (the exchange itself).</td><td>A Chinese-made product shipped to the PH and distributed by local logistics firms.</td></tr>
+<tr><td>International Trade</td><td>The cross-border exchange of goods/services because no country can produce everything it needs alone.</td><td>vs. Multinational Corporations (Ch. 04): trade is the exchange system; MNCs are private actors that operate within and drive that system.</td><td>PH exports electronics/garments while importing petroleum/vehicles.</td></tr>
+</tbody></table></div>
+
+<div class="box amber"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation Drill</div>
+<div class="steps" style="margin-top:8px">
+<div class="step"><div class="snum">Q1</div><div class="sc"><div class="sl">"Walk through the module's global supply chain flow."</div><div class="sd">Raw materials → Manufacturing → Assembly → Shipping → Distribution → Retail → Consumer.</div></div></div>
+<div class="step"><div class="snum">Q2</div><div class="sc"><div class="sl">"Name three things the Philippines exports and three it imports."</div><div class="sd">Exports: electronics, semiconductors, garments (also agricultural products, business services, machinery). Imports: petroleum products, vehicles, food products (also machinery, electronics, industrial materials).</div></div></div>
+<div class="step"><div class="snum">Q3</div><div class="sc"><div class="sl">"Give the module's example of trade-created interdependence."</div><div class="sd">A semiconductor production disruption in one country can ripple into automobile and electronics production in many other countries.</div></div></div>
+</div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch4">
+<div class="cn">CHAPTER 04</div><div class="ct">Multinational Corporations &amp; International Financial Institutions</div>
+<p class="ci">Facilitators 5 and 6 — the corporate and institutional actors that operate the global economy.</p>
+
+<h2>Facilitator 5 — Multinational Corporations</h2>
+<p>Multinational corporations (MNCs) are companies that operate in more than one country. The module names five: <strong>Toyota, Samsung Electronics, McDonald's, Apple,</strong> and <strong>Coca-Cola</strong>.</p>
+<p>MNCs facilitate globalization by: establishing international branches · investing abroad · creating global supply chains · employing workers in different countries · introducing products to new markets · transferring technology · connecting suppliers across borders.</p>
+<div class="box amber"><div class="bico">🏢</div><div class="bbd"><div class="btt">Slide Detail — Brand Logo Collage</div>
+<p class="btx">The module includes a large collage of well-known global brand logos illustrating how many household names operate as MNCs — among them Nestlé, Adidas, FIFA, Honda, Visa, Starbucks, Google, Amazon, Levi's, Cisco, and Mastercard. This is a visual example, not an exhaustive named list — it isn't reproduced logo-by-logo here.</p></div></div>
+<div class="box red"><div class="bico">➕</div><div class="bbd"><div class="btt">Ambiguous Diagrams — Not Reproduced (see Verification Notes #4b)</div>
+<p class="btx">Two other diagrams in this section (a "Worldwide Offices" world map and a Vietnamese-labeled regional office-count map) don't name a source company and aren't legible/verifiable — they're skipped here beyond the general point they illustrate: MNCs maintain offices and operations across many countries at once.</p></div></div>
+
+<h2>Facilitator 6 — International Financial Institutions</h2>
+<p>Globalization is also facilitated by institutions that support international economic cooperation and financial transactions.</p>
+<div class="isg">
+<div class="isc"><div class="ico">IMF</div><div class="inm">International Monetary Fund</div><div class="idc">Promotes international monetary cooperation and provides financial assistance to countries experiencing balance-of-payments problems.</div></div>
+<div class="isc a"><div class="ico">WORLD BANK</div><div class="inm">World Bank</div><div class="idc">Provides financing and development assistance to developing countries.</div></div>
+<div class="isc g"><div class="ico">WTO</div><div class="inm">World Trade Organization</div><div class="idc">Provides a framework for international trade rules and negotiations among member economies.</div></div>
+</div>
+<div class="box red"><div class="bico">➕</div><div class="bbd"><div class="btt">Added for Context — Not in the Original Slides (verified separately)</div>
+<p class="btx">The module doesn't date these institutions. The IMF and World Bank both trace to the <strong>Bretton Woods Conference (1–22 July 1944)</strong>; the IMF formally came into existence on <strong>27 December 1945</strong>. The WTO was established on <strong>1 January 1995</strong>, succeeding the earlier General Agreement on Tariffs and Trade (GATT, 1947).</p></div></div>
+
+<h2>Recitation Table — Facilitators 5 &amp; 6</h2>
+<div class="tw"><table>
+<thead><tr><th>Facilitator</th><th>Plain-English Definition</th><th>Closest Related Term — How It Differs</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td>Multinational Corporations</td><td>Private, for-profit companies that operate across more than one country's borders.</td><td>vs. International Financial Institutions: MNCs are private, profit-driven actors; IFIs are public/intergovernmental bodies.</td><td>Toyota, Samsung, McDonald's, Apple, Coca-Cola.</td></tr>
+<tr><td>International Financial Institutions</td><td>Intergovernmental bodies that manage monetary cooperation, development financing, and trade rules.</td><td>vs. Global Economic Policies &amp; Trade Agreements (Ch. 05): IFIs are permanent institutions; agreements are specific negotiated instruments.</td><td>IMF (monetary stability), World Bank (development loans), WTO (trade rules).</td></tr>
+</tbody></table></div>
+
+<div class="box amber"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation Drill</div>
+<div class="steps" style="margin-top:8px">
+<div class="step"><div class="snum">Q1</div><div class="sc"><div class="sl">"Name the five MNCs the module lists by name."</div><div class="sd">Toyota, Samsung Electronics, McDonald's, Apple, and Coca-Cola.</div></div></div>
+<div class="step"><div class="snum">Q2</div><div class="sc"><div class="sl">"Match each institution to its function: IMF, World Bank, WTO."</div><div class="sd">IMF = monetary cooperation/balance-of-payments assistance. World Bank = development financing. WTO = framework for trade rules and negotiations.</div></div></div>
+<div class="step"><div class="snum">Q3</div><div class="sc"><div class="sl">"What's the key difference between an MNC and an international financial institution?"</div><div class="sd">MNCs are private companies pursuing profit across borders; IFIs are intergovernmental bodies set up to manage the global economic system itself.</div></div></div>
+</div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch5">
+<div class="cn">CHAPTER 05</div><div class="ct">Liberalization &amp; Trade Agreements</div>
+<p class="ci">Facilitators 7 and 8 — the policy side of globalization: loosening restrictions, and the formal agreements that carry that loosening out.</p>
+
+<div class="box red"><div class="bico">➕</div><div class="bbd"><div class="btt">Added Gloss — Distinguishing Facilitators 7 &amp; 8 (see Verification Notes #4a)</div>
+<p class="btx">The module doesn't explicitly separate these two, but they're not the same thing: <strong>liberalization</strong> is the general policy stance of reducing restrictions; <strong>trade agreements/policies</strong> are the actual signed instruments governments use to carry that stance out. Liberalization is the goal; agreements are the mechanism.</p></div></div>
+
+<h2>Facilitator 7 — Liberalization of Trade and Investment</h2>
+<p>Liberalization refers to reducing restrictions on international trade and investment. Examples of what gets reduced: <strong>tariffs, import restrictions, investment restrictions, trade barriers,</strong> and <strong>foreign ownership restrictions</strong> in certain sectors.</p>
+<div class="box blue"><div class="bico">⚙️</div><div class="bbd"><div class="btt">Example</div>
+<p class="btx">If a country lowers tariffs on imported machinery, businesses may obtain foreign equipment at lower prices. This can increase international trade, encourage foreign investment, increase competition, and provide consumers with more choices. The module also notes the flip side: liberalization can create challenges for local businesses that must now compete with large international companies.</p></div></div>
+
+<h2>Facilitator 8 — Global Economic Policies and Trade Agreements</h2>
+<p>Governments facilitate globalization through agreements that promote international economic cooperation: <strong>free trade agreements, regional economic partnerships, bilateral trade agreements,</strong> and <strong>multilateral trade agreements</strong>.</p>
+<div class="box green"><div class="bico">🌏</div><div class="bbd"><div class="btt">ASEAN Example</div>
+<p class="btx">The Association of Southeast Asian Nations (ASEAN) promotes regional economic cooperation and integration. Its initiatives encourage trade, investment, tourism, regional production, labor cooperation, and economic integration. Philippine Context: the Philippines participates in ASEAN economic cooperation, connecting Filipino businesses and workers to broader regional markets.</p></div></div>
+<div class="box red"><div class="bico">➕</div><div class="bbd"><div class="btt">Added for Context — Not in the Original Slides (verified separately)</div>
+<p class="btx">The module doesn't give ASEAN's founding date. Verified: ASEAN was founded on <strong>8 August 1967 in Bangkok</strong> via the ASEAN Declaration (Bangkok Declaration), signed by five founding members — Indonesia, Malaysia, the Philippines, Singapore, and Thailand.</p></div></div>
+
+<h2>Recitation Table — Facilitators 7 &amp; 8</h2>
+<div class="tw"><table>
+<thead><tr><th>Facilitator</th><th>Plain-English Definition</th><th>Closest Related Term — How It Differs</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td>Liberalization of Trade &amp; Investment</td><td>The general policy of reducing government-imposed barriers to cross-border trade and investment.</td><td>vs. Trade Agreements: liberalization is the stance/goal; agreements are the actual instruments that implement it.</td><td>Lowering tariffs on imported machinery to cut equipment costs for local businesses.</td></tr>
+<tr><td>Global Economic Policies &amp; Trade Agreements</td><td>The formal, negotiated instruments (treaties, pacts, blocs) governments sign to carry out liberalization.</td><td>vs. International Financial Institutions (Ch. 04): agreements are specific and negotiated; IFIs are permanent standing bodies.</td><td>ASEAN — a regional bloc promoting trade, investment, and labor cooperation among Southeast Asian states.</td></tr>
+</tbody></table></div>
+
+<div class="box amber"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation Drill</div>
+<div class="steps" style="margin-top:8px">
+<div class="step"><div class="snum">Q1</div><div class="sc"><div class="sl">"What is liberalization, and name three things it typically reduces."</div><div class="sd">Reducing restrictions on international trade/investment — e.g. tariffs, import restrictions, and foreign ownership restrictions.</div></div></div>
+<div class="step"><div class="snum">Q2</div><div class="sc"><div class="sl">"What does ASEAN promote, according to the module?"</div><div class="sd">Trade, investment, tourism, regional production, labor cooperation, and economic integration among Southeast Asian states.</div></div></div>
+<div class="step"><div class="snum">Q3</div><div class="sc"><div class="sl">"What's the downside of liberalization that the module itself flags?"</div><div class="sd">It can create challenges for local businesses that must compete with large international companies.</div></div></div>
+</div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch6">
+<div class="cn">CHAPTER 06</div><div class="ct">Migration, Tourism, Media &amp; Education</div>
+<p class="ci">Facilitators 9 through 12 — the people-and-culture side of globalization: who moves, who visits, what gets watched, and who studies with whom.</p>
+
+<h2>Facilitator 9 — Migration and International Labor Mobility</h2>
+<p>People are important facilitators of globalization. Workers migrate for: <strong>employment, education, professional opportunities, higher income,</strong> and <strong>career advancement</strong>.</p>
+<div class="box green"><div class="bico">🇵🇭</div><div class="bbd"><div class="btt">Philippine Example — OFWs</div>
+<p class="btx">Overseas Filipino Workers (OFWs) contribute significantly to the internationalization of the Philippine labor force. Filipino workers can be found in: healthcare, construction, hospitality, maritime industries, education, engineering, domestic services, and information technology. Migration creates connections between countries through remittances, knowledge transfer, cultural exchange, professional networks, and family relationships.</p></div></div>
+
+<h2>Facilitator 10 — Tourism</h2>
+<p>International tourism connects people from different societies. Tourists cross borders to experience: culture, food, history, nature, entertainment, education, and business opportunities.</p>
+<div class="box blue"><div class="bico">🧳</div><div class="bbd"><div class="btt">Example</div>
+<p class="btx">A tourist from South Korea visiting the Philippines contributes to globalization by interacting with Filipino hotels, restaurants, tour operators, transportation providers, and local communities. Tourism also promotes cultural exchange.</p></div></div>
+
+<h3>Tourism by the Numbers (as given in the module)</h3>
+<div class="tw"><table>
+<thead><tr><th>Metric</th><th>Figure</th></tr></thead>
+<tbody>
+<tr><td>Travel &amp; tourism's share of GDP, 2015</td><td>10.6% of the country's GDP</td></tr>
+<tr><td>Jobs provided by the sector, 2013</td><td>1,226,500 jobs</td></tr>
+<tr><td>International visitors, Jan–Dec 2019</td><td>8,260,913 — up 15.24% over the same period in 2018</td></tr>
+<tr><td>2019 arrivals by origin</td><td>58.62% (4,842,774) East Asia · 15.84% (1,308,444) North America · 6.38% (526,832) other ASEAN countries</td></tr>
+<tr class="nt"><td>2023 arrivals graphic</td><td>5,450,557 international tourist arrivals, surpassing the year-end target of 4.8 million</td></tr>
+</tbody></table></div>
+
+<div class="box red"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Flagged Inconsistency in the Source Slide (see Verification Notes #5)</div>
+<p class="btx">The 5,450,557 figure is correct, but the slide's own headline ("AS OF JANUARY 1, 2024") contradicts its own caption text, which says the count covers "January 1 to December 31, 2023." Correct framing: this is the <strong>full calendar-year 2023</strong> total, first announced by the Department of Tourism in early January 2024 — the January date is when it was <em>announced</em>, not the period it covers. Reproduced here exactly as given, with this correction attached.</p></div></div>
+
+<h2>Facilitator 11 — Media and Popular Culture</h2>
+<p>Mass media facilitates the spread of cultural products across national boundaries, through platforms including: Netflix, YouTube, TikTok, Facebook, Instagram, international television, streaming music, and online gaming. A cultural product can become popular internationally within a very short period.</p>
+<div class="box green"><div class="bico">🇰🇷</div><div class="bbd"><div class="btt">Example — K-Culture</div>
+<p class="btx">Korean popular culture ("K-culture") has gained international audiences through K-pop, Korean dramas, Korean films, Korean food, and Korean fashion. Similarly, Filipino music, food, entertainment, and content creators can reach audiences outside the Philippines.</p></div></div>
+<div class="box amber"><div class="bico">🗺️</div><div class="bbd"><div class="btt">Slide Detail — K-Pop Global Reach Map</div>
+<p class="btx">The module's own map shows specific reach by group: <strong>BTS</strong> — France, UK, Germany, USA, Peru. <strong>Super Junior</strong> — Mexico. <strong>BLACKPINK</strong> — Indonesia, Thailand, Philippines. <strong>MOMOLAND</strong> — Vietnam.</p></div></div>
+
+<h2>Facilitator 12 — Education and Knowledge Exchange</h2>
+<p>Education facilitates globalization through international cooperation and knowledge sharing: student exchange programs, international scholarships, online education, international research, academic conferences, joint research projects, and international publications.</p>
+<div class="box blue"><div class="bico">🎓</div><div class="bbd"><div class="btt">Example</div>
+<p class="btx">A Filipino university professor can collaborate with researchers from Japan, Singapore, Australia, or the United States without physically traveling to those countries.</p></div></div>
+
+<h2>Recitation Table — Facilitators 9–12</h2>
+<div class="tw"><table>
+<thead><tr><th>Facilitator</th><th>Plain-English Definition</th><th>Closest Related Term — How It Differs</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td>Migration &amp; Labor Mobility</td><td>People permanently or long-term relocating across borders for work, study, or opportunity.</td><td>vs. Tourism: migration is long-term/work-driven; tourism is short-term/leisure-driven.</td><td>OFWs working in healthcare, construction, IT, and other sectors abroad.</td></tr>
+<tr><td>Tourism</td><td>Short-term cross-border travel to experience another society's culture, food, or nature.</td><td>vs. Media &amp; Popular Culture: tourism requires physically crossing a border; media consumption doesn't.</td><td>A South Korean tourist interacting with PH hotels, tours, and local communities.</td></tr>
+<tr><td>Media &amp; Popular Culture</td><td>Cultural content (film, music, food trends) distributed across borders through mass platforms.</td><td>vs. Social Media (Ch. 02): media/pop culture is often produced/broadcast content; social media is individually driven and interactive.</td><td>K-pop groups (BTS, BLACKPINK) reaching named international markets.</td></tr>
+<tr><td>Education &amp; Knowledge Exchange</td><td>Formal academic cooperation — research, scholarships, and exchange — across national institutions.</td><td>vs. Media &amp; Popular Culture: education is formal/institutional; pop culture consumption is informal.</td><td>A PH professor co-researching with counterparts in Japan, Singapore, Australia, or the US.</td></tr>
+</tbody></table></div>
+
+<div class="box amber"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation Drill</div>
+<div class="steps" style="margin-top:8px">
+<div class="step"><div class="snum">Q1</div><div class="sc"><div class="sl">"Name four sectors where OFWs work, per the module."</div><div class="sd">Any four of: healthcare, construction, hospitality, maritime, education, engineering, domestic services, information technology.</div></div></div>
+<div class="step"><div class="snum">Q2</div><div class="sc"><div class="sl">"What was the Philippines' 2019 international visitor count, and how did it compare to 2018?"</div><div class="sd">8,260,913 visitors — a 15.24% increase over 2018.</div></div></div>
+<div class="step"><div class="snum">Q3</div><div class="sc"><div class="sl">"Which countries does the module's map show as reached by BLACKPINK?"</div><div class="sd">Indonesia, Thailand, and the Philippines.</div></div></div>
+</div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch7">
+<div class="cn">CHAPTER 07</div><div class="ct">Development &amp; Structural Theories</div>
+<p class="ci">The first three theories all ask a version of the same question — does global integration lift countries up, or lock some of them into a disadvantaged position? Theories, remember, are the module's interpretations layered on top of the facilitators covered in Chapters 02–06.</p>
+
+<h2>Theory 1 — Modernization Theory</h2>
+<p>Modernization theory argues that societies develop through a process of transformation from traditional societies toward modern, industrial, technologically advanced societies. Main idea: <strong>Traditional society → Industrialization → Urbanization → Technological development → Modern society.</strong> Technology, education, industrialization, and economic development are viewed as the key forces of modernization.</p>
+<div class="box blue"><div class="bico">🌾</div><div class="bbd"><div class="btt">Example</div>
+<p class="btx">A rural community gradually adopts internet access, digital banking, modern agriculture, e-commerce, and online education — increasing its integration with the broader national and global economy.</p></div></div>
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Criticism (as stated)</div>
+<p class="btx">Critics argue that modernization theory may assume that Western countries represent the ideal model of development.</p></div></div>
+
+<h2>Theory 2 — Dependency Theory</h2>
+<p>Dependency theory provides a more critical explanation: poorer countries may remain economically dependent on wealthier countries because of unequal international economic relationships. Basic structure: <strong>Core countries → Periphery countries.</strong> Core countries tend to possess capital, technology, powerful corporations, and financial institutions. Peripheral countries may provide raw materials, labor, agricultural products, and low-cost manufacturing.</p>
+<div class="box blue"><div class="bico">🌍</div><div class="bbd"><div class="btt">Example &amp; Philippine Example</div>
+<p class="btx">A developing country may export raw materials at relatively low prices while importing high-value manufactured products — creating an unequal economic relationship. Philippine Example: the Philippines may export labor and certain raw materials while importing technologically advanced products.</p></div></div>
+<div class="box amber"><div class="bico">❓</div><div class="bbd"><div class="btt">Key Question (as stated)</div>
+<p class="btx">Does globalization create equal opportunities for all countries, or does it reproduce existing inequalities?</p></div></div>
+
+<h2>Theory 3 — World-Systems Theory</h2>
+<p>World-systems theory, associated particularly with <strong>Immanuel Wallerstein</strong>, views the global economy as a single interconnected system, divided into three categories:</p>
+<div class="isg">
+<div class="isc"><div class="ico">CORE</div><div class="inm">Advanced &amp; Capital-Rich</div><div class="idc">Advanced industries · strong financial systems · high levels of capital · technological advantages.</div></div>
+<div class="isc a"><div class="ico">SEMI-PERIPHERY</div><div class="inm">Intermediate Position</div><div class="idc">Developing industries · growing economies · significant manufacturing · increasing international influence.</div></div>
+<div class="isc g"><div class="ico">PERIPHERY</div><div class="inm">Resource-Dependent</div><div class="idc">Depends heavily on raw-material exports, low-cost labor, and external investment.</div></div>
+</div>
+<p style="font-size:12.5px;color:var(--t3)">Simplified model: CORE ↔ SEMI-PERIPHERY ↔ PERIPHERY. The categories are not necessarily permanent — countries can change their position over time. Comparison-table example (Ch. 10): "international division of labor."</p>
+<div class="box red"><div class="bico">➕</div><div class="bbd"><div class="btt">Added Illustrative Scenario — Not in the Original Slides</div>
+<p class="btx">The module gives the three-tier structure but no single narrative example the way it does for Modernization or Dependency theory. A concrete illustration: Vietnam assembling smartphones and garments for global brands places it in a <strong>semi-periphery</strong> role — more industrialized than a purely raw-material exporter, but still importing high-end components and technology from <strong>core</strong> countries like the US, Japan, and South Korea.</p></div></div>
+<div class="box red"><div class="bico">➕</div><div class="bbd"><div class="btt">Added for Context — Not in the Original Slides (verified separately)</div>
+<p class="btx">The module gives no date. Wallerstein introduced world-systems theory in his <strong>1974</strong> book <em>The Modern World-System, Vol. I</em>.</p></div></div>
+
+<h2>Recitation Table — Theories 1–3</h2>
+<div class="tw"><table>
+<thead><tr><th>Theory</th><th>Plain-English Definition</th><th>Closest Related Term — How It Differs</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td>Modernization Theory</td><td>Societies naturally progress from traditional to modern through industrialization and tech adoption.</td><td>vs. Dependency Theory: modernization is optimistic/linear; dependency is critical and stresses inequality instead of automatic progress.</td><td>A rural community adopting internet, digital banking, and e-commerce.</td></tr>
+<tr><td>Dependency Theory</td><td>Poorer countries stay economically dependent on richer ones due to unequal trade relationships.</td><td>vs. World-Systems Theory: dependency describes a two-way (core-periphery) relationship; world-systems adds a full three-tier global structure.</td><td>PH exporting labor/raw materials while importing advanced manufactured goods.</td></tr>
+<tr><td>World-Systems Theory</td><td>The entire global economy is one interconnected system split into core, semi-periphery, and periphery tiers.</td><td>vs. Globalization Theory (Ch. 08): world-systems is a specific tiered economic structure; globalization theory is a broader, more general "interconnectedness across many domains" framing.</td><td>Vietnam's semi-periphery role in global electronics assembly (added example).</td></tr>
+</tbody></table></div>
+
+<div class="box amber"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation Drill</div>
+<div class="steps" style="margin-top:8px">
+<div class="step"><div class="snum">Q1</div><div class="sc"><div class="sl">"Walk through modernization theory's development sequence."</div><div class="sd">Traditional society → Industrialization → Urbanization → Technological development → Modern society.</div></div></div>
+<div class="step"><div class="snum">Q2</div><div class="sc"><div class="sl">"What do core countries have that periphery countries don't, per Dependency and World-Systems theory?"</div><div class="sd">Capital, technology, powerful corporations, and financial institutions — periphery countries instead supply raw materials and low-cost labor.</div></div></div>
+<div class="step"><div class="snum">Q3</div><div class="sc"><div class="sl">"Who is world-systems theory associated with, and are the core/periphery categories permanent?"</div><div class="sd">Immanuel Wallerstein — and no, countries can change position over time.</div></div></div>
+</div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch8">
+<div class="cn">CHAPTER 08</div><div class="ct">State-Centered Perspectives</div>
+<p class="ci">Theories 4–7 all argue about the same question from different angles: is the nation-state losing power to globalization, holding steady, or just changing shape?</p>
+
+<h2>Theory 4 — Globalization Theory (General)</h2>
+<p>Globalization theory focuses on the increasing interconnectedness of societies through: <strong>technology, markets, communication, migration, culture, politics,</strong> and <strong>international institutions</strong>. It views globalization as a process that increasingly connects local activities to global processes.</p>
+<div class="box blue"><div class="bico">🛍️</div><div class="bbd"><div class="btt">Example</div>
+<p class="btx">A local Filipino business selling handmade products through an international e-commerce platform can reach customers in Japan, the United States, Australia, Singapore, and Europe — a local economic activity becoming connected to a global market.</p></div></div>
+
+<h2>Theory 5 — Hyperglobalist Perspective</h2>
+<p>The hyperglobalist perspective argues that globalization is fundamentally transforming the world: national borders are becoming less important, global markets are becoming increasingly powerful, multinational corporations have significant influence, technology is creating a highly integrated global economy, and states may lose some traditional economic control.</p>
+<div class="box blue"><div class="bico">🏭</div><div class="bbd"><div class="btt">Example</div>
+<p class="btx">A company can design a product in one country, manufacture it in another, market it globally, sell it through an international platform, and receive digital payments from customers worldwide.</p></div></div>
+<div class="box amber"><div class="bico">❓</div><div class="bbd"><div class="btt">Key Question (as stated)</div>
+<p class="btx">Is globalization creating a world where national economies are becoming increasingly integrated into one global market?</p></div></div>
+
+<h2>Theory 6 — Skeptical Perspective</h2>
+<p>The skeptical perspective questions the idea that globalization is completely new or that national borders have become irrelevant. Skeptics argue: states remain powerful, regional economies remain important, international trade has existed for centuries, globalization may be exaggerated, and economic integration is uneven.</p>
+<div class="box blue"><div class="bico">🏛️</div><div class="bbd"><div class="btt">Example</div>
+<p class="btx">Even when international companies operate in a country, the government still controls laws, taxes, immigration, regulation, public policy, and national security. Therefore, nation-states continue to have substantial power.</p></div></div>
+
+<h2>Theory 7 — Transformationalist Perspective</h2>
+<p>The transformationalist perspective sits in the middle: globalization is real and powerful, but it does not simply eliminate the nation-state. Instead, globalization transforms government, business, society, culture, institutions, and political authority.</p>
+<div class="box blue"><div class="bico">🌐</div><div class="bbd"><div class="btt">Example</div>
+<p class="btx">Governments today must consider international trade, cybersecurity, climate change, migration, financial markets, public health, and technology. The state remains important, but its role changes.</p></div></div>
+<p style="font-size:12.5px;color:var(--t3)">Simple formula (as stated): Globalization does not necessarily eliminate the state; it transforms the way the state operates.</p>
+
+<h2>Recitation Table — Theories 4–7</h2>
+<div class="tw"><table>
+<thead><tr><th>Theory</th><th>Plain-English Definition</th><th>Closest Related Term — How It Differs</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td>Globalization Theory (general)</td><td>A neutral, broad description of growing interconnectedness across tech, markets, culture, and politics.</td><td>vs. Hyperglobalist: this is the neutral baseline description; hyperglobalism is the strong claim built on top of it.</td><td>A local PH business selling handmade goods to Japan, the US, Australia, Singapore, and Europe via e-commerce.</td></tr>
+<tr><td>Hyperglobalist</td><td>Globalization is transforming everything — borders and state economic control are fading fast.</td><td>vs. Skeptical: exact opposite pole — hyperglobalists say everything has changed; skeptics say little fundamentally has.</td><td>A company designing, manufacturing, marketing, selling, and getting paid across five different countries.</td></tr>
+<tr><td>Skeptical</td><td>Globalization is exaggerated — states and regional economies still hold real power.</td><td>vs. Transformationalist: skeptics say the state is basically unchanged; transformationalists say it's real but adapting.</td><td>Governments still set laws, taxes, immigration rules, and national security policy despite foreign companies operating locally.</td></tr>
+<tr><td>Transformationalist</td><td>Globalization is real and powerful, but it reshapes states and institutions rather than erasing them.</td><td>vs. Cultural Globalization Theory (Ch. 09): transformationalism focuses on institutions/politics; cultural theories focus on values, media, and lifestyle.</td><td>Governments now must factor in cybersecurity, climate change, and global public health in their policymaking.</td></tr>
+</tbody></table></div>
+
+<div class="box amber"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation Drill</div>
+<div class="steps" style="margin-top:8px">
+<div class="step"><div class="snum">Q1</div><div class="sc"><div class="sl">"A classmate says 'the nation-state is basically dead because of globalization.' Which perspective are they arguing, and which one would push back hardest?"</div><div class="sd">That's the hyperglobalist view. The skeptical perspective pushes back hardest, insisting states still control laws, taxes, immigration, and national security.</div></div></div>
+<div class="step"><div class="snum">Q2</div><div class="sc"><div class="sl">"What's the transformationalist's 'simple formula'?"</div><div class="sd">Globalization doesn't eliminate the state — it transforms how the state operates.</div></div></div>
+<div class="step"><div class="snum">Q3</div><div class="sc"><div class="sl">"List the six/seven areas the Transformationalist example says governments must now consider."</div><div class="sd">International trade, cybersecurity, climate change, migration, financial markets, public health, and technology.</div></div></div>
+</div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch9">
+<div class="cn">CHAPTER 09</div><div class="ct">Cultural &amp; Network Theories</div>
+<p class="ci">Theories 8–12 turn to culture and information networks — what happens to identity, taste, and social organization once everything is connected.</p>
+
+<h2>Theory 8 — Cultural Globalization Theory</h2>
+<p>Cultural globalization focuses on the worldwide movement and interaction of: values, beliefs, languages, food, fashion, music, films, entertainment, and lifestyles.</p>
+<div class="box blue"><div class="bico">📱</div><div class="bbd"><div class="btt">Example</div>
+<p class="btx">A Filipino teenager may simultaneously consume American films, Korean dramas, Japanese anime, Filipino music, European football, and global social media trends — creating a cultural environment where local and foreign influences interact.</p></div></div>
+
+<h2>Theory 9 — Homogenization Theory</h2>
+<p>Cultural homogenization suggests that globalization may cause cultures to become increasingly similar. Global brands, entertainment, consumer products, and lifestyles can create common patterns of consumption.</p>
+<div class="box blue"><div class="bico">🍔</div><div class="bbd"><div class="btt">Example</div>
+<p class="btx">People in different countries may consume the same fast food, clothing brands, smartphones, movies, music, and social media platforms.</p></div></div>
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Concern (as stated)</div>
+<p class="btx">Critics argue that excessive cultural homogenization could weaken local traditions, indigenous cultures, local languages, and traditional practices.</p></div></div>
+
+<h2>Theory 10 — Glocalization Theory</h2>
+<p>Glocalization combines Global + Local: global products, services, or ideas are adapted to local cultures and preferences.</p>
+<div class="box blue"><div class="bico">🍚</div><div class="bbd"><div class="btt">Example</div>
+<p class="btx">An international fast-food company may modify its menu for Filipino preferences — introducing rice meals, local flavors, and regionally appropriate products. The global company remains global, but its products are adapted locally.</p></div></div>
+<p style="font-size:12.5px;color:var(--t3)">Key concept (as stated): Think globally, act locally.</p>
+
+<h2>Theory 11 — Hybridization Theory</h2>
+<p>Cultural hybridization argues that globalization does not simply replace local cultures with global cultures — instead, different cultural elements combine to create something new.</p>
+<div class="box blue"><div class="bico">🇵🇭</div><div class="bbd"><div class="btt">Example</div>
+<p class="btx">Filipino culture may combine Filipino + American + Korean + Japanese + Spanish influences, producing new forms of music, fashion, food, language, entertainment, and lifestyle. For instance, Filipino social media content may combine local humor with global memes and international trends.</p></div></div>
+
+<h2>Theory 12 — Network Society Theory</h2>
+<p>Associated with sociologist <strong>Manuel Castells</strong>, network society theory emphasizes the importance of information and communication networks. Modern societies increasingly operate through networks involving digital communication, information, technology, organizations, markets, and individuals.</p>
+<div class="box blue"><div class="bico">🔗</div><div class="bbd"><div class="btt">Example</div>
+<p class="btx">A business may operate through a network: Supplier → Digital platform → Logistics provider → Payment system → Consumer. None of these participants necessarily needs to be located in the same country.</p></div></div>
+<div class="box red"><div class="bico">➕</div><div class="bbd"><div class="btt">Added for Context — Not in the Original Slides (verified separately)</div>
+<p class="btx">The module gives no date. Castells introduced network society theory in his <strong>1996</strong> book <em>The Rise of the Network Society</em>, the first volume of his <em>Information Age</em> trilogy.</p></div></div>
+
+<h2>Recitation Table — Theories 8–12</h2>
+<div class="tw"><table>
+<thead><tr><th>Theory</th><th>Plain-English Definition</th><th>Closest Related Term — How It Differs</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td>Cultural Globalization</td><td>Values, food, fashion, and media moving and mixing across borders.</td><td>vs. Homogenization: cultural globalization is neutral interaction; homogenization is the specific worry that interaction erases difference.</td><td>A Filipino teen consuming American, Korean, Japanese, and local media at once.</td></tr>
+<tr><td>Homogenization</td><td>The concern that global exchange makes cultures more alike, not just more connected.</td><td>vs. Glocalization: homogenization predicts sameness; glocalization describes products adapting to stay locally distinct.</td><td>The same fast-food chains, phones, and social platforms used worldwide.</td></tr>
+<tr><td>Glocalization</td><td>Global products or brands adjusted to fit local tastes and culture.</td><td>vs. Hybridization: glocalization adapts one existing global product; hybridization creates an entirely new fused cultural form.</td><td>A global fast-food chain adding rice meals for the Philippine market.</td></tr>
+<tr><td>Hybridization</td><td>Cultural elements from multiple countries fuse into genuinely new forms.</td><td>vs. Network Society: hybridization is about cultural content; network society is about the technological/organizational structure connecting people.</td><td>Filipino social media content blending local humor with global meme formats.</td></tr>
+<tr><td>Network Society</td><td>Modern society organizes itself around digital information networks rather than fixed physical hierarchies.</td><td>vs. Globalization Theory (Ch. 08): network society is specifically about tech/info infrastructure; globalization theory is broader (covers culture, politics, markets too).</td><td>A supplier-to-consumer digital business chain spanning several countries at once.</td></tr>
+</tbody></table></div>
+
+<div class="box amber"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation Drill</div>
+<div class="steps" style="margin-top:8px">
+<div class="step"><div class="snum">Q1</div><div class="sc"><div class="sl">"Distinguish glocalization from hybridization using the module's own examples."</div><div class="sd">Glocalization: a global fast-food brand adds rice meals for the PH market (adapting one product). Hybridization: Filipino social media content fuses local humor with global memes (creating something new, not just adapting one thing).</div></div></div>
+<div class="step"><div class="snum">Q2</div><div class="sc"><div class="sl">"What's the homogenization theory's core concern?"</div><div class="sd">That global brands and media could weaken local traditions, indigenous cultures, local languages, and traditional practices.</div></div></div>
+<div class="step"><div class="snum">Q3</div><div class="sc"><div class="sl">"Who is network society theory associated with, and what's the module's business-chain example?"</div><div class="sd">Manuel Castells. Example: Supplier → Digital platform → Logistics provider → Payment system → Consumer, with no participant needing to share a country.</div></div></div>
+</div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch10">
+<div class="cn">CHAPTER 10</div><div class="ct">Comparing the Theories &amp; How Facilitators Connect</div>
+<p class="ci">The module closes its theory section with its own side-by-side comparison table, then explicitly shows how one facilitator can be read through several different theoretical lenses at once.</p>
+
+<h2>Comparison Table (reproduced exactly as given)</h2>
+<div class="tw"><table>
+<thead><tr><th>Theory/Perspective</th><th>Central Idea</th><th>Main Focus</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td>Modernization Theory</td><td>Societies develop toward modernity</td><td>Development</td><td>Industrialization and technology</td></tr>
+<tr><td>Dependency Theory</td><td>Poorer countries may depend on richer countries</td><td>Inequality</td><td>Raw materials vs. manufactured goods</td></tr>
+<tr><td>World-Systems Theory</td><td>Global economy consists of core, semi-periphery, and periphery</td><td>Global economic structure</td><td>International division of labor</td></tr>
+<tr><td>Hyperglobalist</td><td>Globalization is transforming national economies</td><td>Global markets</td><td>Global corporations</td></tr>
+<tr><td>Skeptical</td><td>Globalization is not as complete as claimed</td><td>State power</td><td>Governments still regulate economies</td></tr>
+<tr><td>Transformationalist</td><td>Globalization transforms rather than eliminates states</td><td>Changing institutions</td><td>Governments adapting to global markets</td></tr>
+<tr><td>Cultural Globalization</td><td>Cultures increasingly interact</td><td>Culture</td><td>K-pop, international food</td></tr>
+<tr><td>Homogenization</td><td>Cultures may become more similar</td><td>Cultural similarity</td><td>Global brands</td></tr>
+<tr><td>Glocalization</td><td>Global products are adapted locally</td><td>Global-local interaction</td><td>Localized fast-food menus</td></tr>
+<tr><td>Hybridization</td><td>Cultures combine to form new cultural expressions</td><td>Cultural mixing</td><td>Filipino-global music and media</td></tr>
+<tr><td>Network Society</td><td>Digital networks organize modern society</td><td>Information and technology</td><td>Global online business</td></tr>
+</tbody></table></div>
+<div class="box red"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Flagged Gap (see Verification Notes #3)</div>
+<p class="btx">"Globalization Theory" (the general theory covered in Chapter 08) has a full write-up in Section III but never gets its own row in this table — the module's own comparison table simply omits it. No row has been invented to patch this; see Chapter 08 above for its full content instead.</p></div></div>
+
+<h2>How Facilitators &amp; Theories Connect — the Module's Own Worked Example</h2>
+<p>The module states this directly: <strong>the facilitators provide the mechanisms, while theories provide different explanations of what those mechanisms mean and what consequences they produce.</strong> It then walks through one facilitator — social media — across five different theoretical readings:</p>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Facilitator</div><div class="sd">Internet and social media.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Process</div><div class="sd">People communicate across borders.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Result</div><div class="sd">Ideas and cultures spread internationally.</div></div></div>
+</div>
+<div class="isg">
+<div class="isc"><div class="ico">READING 1</div><div class="inm">Hyperglobalist</div><div class="idc">Borders are becoming less significant.</div></div>
+<div class="isc a"><div class="ico">READING 2</div><div class="inm">Cultural Globalization</div><div class="idc">Cultures interact more frequently.</div></div>
+<div class="isc g"><div class="ico">READING 3</div><div class="inm">Homogenization</div><div class="idc">Global cultural similarities may increase.</div></div>
+<div class="isc p"><div class="ico">READING 4</div><div class="inm">Hybridization</div><div class="idc">Local and global cultures combine.</div></div>
+<div class="isc r"><div class="ico">READING 5</div><div class="inm">Transformationalist</div><div class="idc">Society and institutions are being transformed.</div></div>
+</div>
+
+<div class="box amber"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation Drill</div>
+<div class="steps" style="margin-top:8px">
+<div class="step"><div class="snum">Q1</div><div class="sc"><div class="sl">"Which theory in Section III never made it into the module's own comparison table?"</div><div class="sd">Globalization Theory (the general one) — it has a full write-up but no row in Section IV's table.</div></div></div>
+<div class="step"><div class="snum">Q2</div><div class="sc"><div class="sl">"Take the facilitator 'international education' and give one theoretical reading of it, the way the module does with social media."</div><div class="sd">Any defensible reading works — e.g. a Transformationalist reading: joint international research forces universities and governments to adapt funding and accreditation policy without losing control of their own education systems.</div></div></div>
+<div class="step"><div class="snum">Q3</div><div class="sc"><div class="sl">"In one sentence, what's the difference between a facilitator and a theory?"</div><div class="sd">A facilitator is a mechanism that makes global connection possible; a theory is an interpretation of what that connection means and who benefits from it.</div></div></div>
+</div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch11">
+<div class="cn">CHAPTER 11</div><div class="ct">Globalization in the Philippine Context</div>
+<p class="ci">The module closes its main content by tying five concrete Philippine examples back to specific named facilitators — this is likely to be the most directly testable "apply the concept" material in the whole module.</p>
+
+<div class="tw"><table>
+<thead><tr><th>Philippine Example</th><th>What It Shows</th><th>Facilitators Behind It</th></tr></thead>
+<tbody>
+<tr><td>BPO Industry</td><td>Technology connects Filipino workers to international clients.</td><td>Internet · telecommunications · education · English-language skills · foreign investment</td></tr>
+<tr><td>OFWs</td><td>Filipino workers become part of the international labor market.</td><td>Transportation · migration policies · recruitment networks · international labor demand</td></tr>
+<tr><td>E-Commerce</td><td>Filipino sellers can reach international consumers.</td><td>Internet · digital payment · logistics · social media</td></tr>
+<tr><td>Popular Culture</td><td>Filipinos consume and produce global cultural content.</td><td>Streaming platforms · social media · smartphones · internet connectivity</td></tr>
+<tr><td>International Education</td><td>Filipino students and academics participate in global knowledge networks.</td><td>Online learning · scholarships · research collaboration · international conferences</td></tr>
+</tbody></table></div>
+
+<div class="box green"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation-Ready Answer</div>
+<p class="btx">If asked "how does the Philippine BPO industry demonstrate globalization?" — the fastest complete answer: it shows technology-driven service delivery (Facilitator 1) connecting Filipino labor (Facilitator 9) to international markets, made possible by internet infrastructure, English-language education, and foreign investment — all five named PH examples work the same way: pick the underlying facilitators, then name the connection they enable.</p></div></div>
+
+<div class="box amber"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation Drill</div>
+<div class="steps" style="margin-top:8px">
+<div class="step"><div class="snum">Q1</div><div class="sc"><div class="sl">"Name the five Philippine examples of globalization the module gives."</div><div class="sd">BPO industry, OFWs, e-commerce, popular culture, and international education.</div></div></div>
+<div class="step"><div class="snum">Q2</div><div class="sc"><div class="sl">"What facilitators make Philippine e-commerce possible, per the module?"</div><div class="sd">Internet, digital payment, logistics, and social media.</div></div></div>
+<div class="step"><div class="snum">Q3</div><div class="sc"><div class="sl">"Which facilitators does the module credit for the BPO industry specifically?"</div><div class="sd">Internet, telecommunications, education, English-language skills, and foreign investment.</div></div></div>
+</div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch12">
+<div class="cn">CHAPTER 12</div><div class="ct">Positive &amp; Negative Effects of Globalization</div>
+<p class="ci">A balance-sheet section — good material for essay prompts and for the "opportunity or threat" question that recurs across this module's discussion questions.</p>
+
+<h2>Positive Effects</h2>
+<div class="isg">
+<div class="isc g"><div class="ico">ECONOMIC</div><div class="inm">Growth &amp; Access</div><div class="idc">Increased international trade · foreign investment · employment opportunities · access to global markets.</div></div>
+<div class="isc g"><div class="ico">TECHNOLOGICAL</div><div class="inm">Speed &amp; Transfer</div><div class="idc">Faster communication · technology transfer · digital innovation.</div></div>
+<div class="isc g"><div class="ico">EDUCATIONAL</div><div class="inm">Shared Knowledge</div><div class="idc">International knowledge exchange · online learning · research collaboration.</div></div>
+<div class="isc g"><div class="ico">CULTURAL</div><div class="inm">Exposure &amp; Awareness</div><div class="idc">Greater cultural awareness · international cultural exchange · exposure to different perspectives.</div></div>
+</div>
+
+<h2>Negative Effects</h2>
+<div class="isg">
+<div class="isc r"><div class="ico">ECONOMIC INEQUALITY</div><div class="inm">Uneven Benefits</div><div class="idc">The benefits of globalization may not be distributed equally.</div></div>
+<div class="isc r"><div class="ico">CULTURAL EROSION</div><div class="inm">Pressure on Local Culture</div><div class="idc">Local cultures may face pressure from dominant global cultures.</div></div>
+<div class="isc r"><div class="ico">LABOR EXPLOITATION</div><div class="inm">Worker Vulnerability</div><div class="idc">Low wages · poor working conditions · job insecurity.</div></div>
+<div class="isc r"><div class="ico">ENVIRONMENTAL PROBLEMS</div><div class="inm">Production Costs</div><div class="idc">Pollution · resource depletion · carbon emissions from global production and transport.</div></div>
+</div>
+<div class="box red"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Economic Vulnerability (as stated)</div>
+<p class="btx">Countries may become vulnerable to global crises. Example given (same one used in Chapter 03): a disruption in one major economy can affect supply chains, employment, prices, and investment elsewhere.</p></div></div>
+
+<div class="box amber"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation Drill</div>
+<div class="steps" style="margin-top:8px">
+<div class="step"><div class="snum">Q1</div><div class="sc"><div class="sl">"Give one positive and one negative economic effect of globalization."</div><div class="sd">Positive: increased international trade and foreign investment. Negative: unequal distribution of benefits (economic inequality).</div></div></div>
+<div class="step"><div class="snum">Q2</div><div class="sc"><div class="sl">"What three problems does the module list under 'Labor Exploitation'?"</div><div class="sd">Low wages, poor working conditions, and job insecurity.</div></div></div>
+<div class="step"><div class="snum">Q3</div><div class="sc"><div class="sl">"How does economic vulnerability connect back to the semiconductor example from Chapter 03?"</div><div class="sd">It's the same underlying point — a disruption in one country's production can ripple into employment, prices, and investment in others, showing how interdependence cuts both ways.</div></div></div>
+</div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch13">
+<div class="cn">CHAPTER 13</div><div class="ct">Classroom Synthesis, Discussion Questions &amp; Key Takeaway</div>
+<p class="ci">The module's own closing sections — a memory device, a full discussion-question bank tiered by difficulty, and the central question it wants students left with.</p>
+
+<h2>The "5Ts of Globalization"</h2>
+<div class="steps">
+<div class="step"><div class="snum">T</div><div class="sc"><div class="sl">Technology</div><div class="sd">Connects people.</div></div></div>
+<div class="step"><div class="snum">T</div><div class="sc"><div class="sl">Trade</div><div class="sd">Connects economies.</div></div></div>
+<div class="step"><div class="snum">T</div><div class="sc"><div class="sl">Transportation</div><div class="sd">Moves people and products.</div></div></div>
+<div class="step"><div class="snum">T</div><div class="sc"><div class="sl">Transnational corporations</div><div class="sd">Connect businesses and markets.</div></div></div>
+<div class="step"><div class="snum">T</div><div class="sc"><div class="sl">Telecommunication</div><div class="sd">Moves information across borders.</div></div></div>
+</div>
+<p style="font-size:12.5px;color:var(--t3)">Together, these forces make globalization faster, deeper, and more complex (as stated).</p>
+
+<h2>Discussion Questions (reproduced in full)</h2>
+<h3>Knowledge and Understanding</h3>
+<ol>
+<li>What is globalization?</li>
+<li>What are the major facilitators of globalization?</li>
+<li>How does technology facilitate globalization?</li>
+<li>Why is transportation important to international trade?</li>
+<li>What is the role of multinational corporations?</li>
+</ol>
+<h3>Critical Thinking</h3>
+<ol start="6">
+<li>Does globalization benefit all countries equally? Explain.</li>
+<li>Does globalization weaken or strengthen national governments?</li>
+<li>How has social media changed globalization?</li>
+<li>Can globalization threaten local culture?</li>
+<li>How does the Philippine BPO industry demonstrate globalization?</li>
+</ol>
+<h3>Higher-Order Thinking</h3>
+<ol start="11">
+<li>Which facilitator of globalization has had the greatest impact on Philippine society? Defend your answer.</li>
+<li>Is globalization primarily an opportunity or a threat to developing countries?</li>
+<li>Does glocalization protect local culture from globalization?</li>
+<li>Which theory of globalization best explains the Philippines' position in the global economy?</li>
+<li>If you were a policymaker, what policies would you introduce to maximize the benefits of globalization while minimizing its negative effects?</li>
+</ol>
+<div class="box amber"><div class="bico">✍️</div><div class="bbd"><div class="btt">Note on the Higher-Order Set</div>
+<p class="btx">Questions 11–15 don't have single "correct" recall answers — they're essay/defend-your-position prompts. Use Chapters 07–10 (theories) and Chapter 12 (effects) as your evidence bank when answering these rather than looking for one memorized line.</p></div></div>
+
+<h2>Key Takeaway (as stated)</h2>
+<p>Globalization does not happen by itself. It is facilitated by technology, transportation, trade, communication, multinational corporations, migration, international institutions, education, finance, and cultural exchange. At the same time, globalization can be understood differently depending on the theoretical perspective used:</p>
+<ul>
+<li><strong>Modernization theory</strong> emphasizes development.</li>
+<li><strong>Dependency theory</strong> emphasizes inequality.</li>
+<li><strong>World-systems theory</strong> emphasizes the structure of the global economy.</li>
+<li><strong>Hyperglobalism</strong> emphasizes increasing global integration.</li>
+<li><strong>Skepticism</strong> emphasizes the continuing power of states.</li>
+<li><strong>Transformationalism</strong> emphasizes how globalization changes institutions and societies.</li>
+<li><strong>Cultural theories</strong> explain how global and local cultures interact through homogenization, glocalization, and hybridization.</li>
+</ul>
+
+<div class="box blue"><div class="bico">🎯</div><div class="bbd"><div class="btt">The Central Question (as stated)</div>
+<p class="btx"><em>"Does globalization create a more interconnected and equal world, or does it simply create new forms of economic, political, and cultural inequality?"</em></p></div></div>
+
+<div class="box amber"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation Drill</div>
+<div class="steps" style="margin-top:8px">
+<div class="step"><div class="snum">Q1</div><div class="sc"><div class="sl">"Recite the 5Ts and what each one connects."</div><div class="sd">Technology (people), Trade (economies), Transportation (people/products), Transnational corporations (businesses/markets), Telecommunication (information).</div></div></div>
+<div class="step"><div class="snum">Q2</div><div class="sc"><div class="sl">"Which theory would you cite if asked to emphasize 'the continuing power of states'?"</div><div class="sd">The Skeptical perspective.</div></div></div>
+<div class="step"><div class="snum">Q3</div><div class="sc"><div class="sl">"State the module's central closing question from memory."</div><div class="sd">Does globalization create a more interconnected and equal world, or does it simply create new forms of economic, political, and cultural inequality?</div></div></div>
+</div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch14">
+<div class="cn">CHAPTER 14</div><div class="ct">Glossary &amp; Abbreviations</div>
+<p class="ci">Terms and acronyms the module uses without always spelling out, plus a few added reference terms — added entries are marked so nothing here gets mistaken for something the professor said.</p>
+<div class="tw"><table>
+<thead><tr><th>Term</th><th>Stands For / Means</th></tr></thead>
+<tbody>
+<tr><td>BPO</td><td>Business Process Outsourcing — the industry of providing back-office/client services (customer support, accounting, IT) to companies abroad.</td></tr>
+<tr><td>MNC</td><td>Multinational Corporation — a company operating in more than one country.</td></tr>
+<tr><td>IMF</td><td>International Monetary Fund — promotes international monetary cooperation and financial stability.</td></tr>
+<tr><td>WTO</td><td>World Trade Organization — sets the framework for international trade rules and negotiations.</td></tr>
+<tr><td>World Bank</td><td>Formally the International Bank for Reconstruction and Development (IBRD) — provides financing and development assistance to developing countries. <span style="color:var(--amber)">(Full formal name added — not in the original slides.)</span></td></tr>
+<tr><td>GATT</td><td>General Agreement on Tariffs and Trade (1947) — the predecessor treaty the WTO replaced in 1995. <span style="color:var(--amber)">(Added for context — not in the original slides.)</span></td></tr>
+<tr><td>ASEAN</td><td>Association of Southeast Asian Nations — regional bloc promoting trade, investment, and cooperation; includes the Philippines.</td></tr>
+<tr><td>OFW</td><td>Overseas Filipino Worker.</td></tr>
+<tr><td>GDP</td><td>Gross Domestic Product — total value of goods/services a country produces.</td></tr>
+<tr><td>IT</td><td>Information Technology.</td></tr>
+<tr><td>AI</td><td>Artificial Intelligence.</td></tr>
+<tr><td>K-culture</td><td>Korean popular culture — K-pop, Korean dramas, Korean films, food, and fashion, as a globally exported cultural product.</td></tr>
+<tr><td>Glocalization</td><td>A coined blend of "global" + "local" — describes global products adapted for local markets.</td></tr>
+<tr><td>Core / Semi-Periphery / Periphery</td><td>The three tiers of Wallerstein's World-Systems Theory — capital-rich industrial powers, transitional economies, and resource/labor-exporting economies, respectively.</td></tr>
+<tr><td>Bretton Woods Conference</td><td>The July 1944 meeting where the IMF and World Bank were agreed upon. <span style="color:var(--amber)">(Added for context — not in the original slides.)</span></td></tr>
+</tbody></table></div>
+</section>
+
+<div class="footer"><p>QCU Academic OS · Grounded in Week 3 Module — <em>Facilitators and Theories of Globalization</em> (Prof. Randy Calaus Villaseñor, PhD, DPA) · Compiled by <strong>KianoRoku18Ino</strong> · github.com/KianoRoku18Ino</p></div>
+</main>
+
+</body>
+</html>
