@@ -167,6 +167,13 @@
                   "order": 3,
                   "week": 3,
                   "html": "assets/guides/year-1/sem-1/cc101/week-3.html"
+                },
+                {
+                  "id": "pirates-of-the-silicon-valley",
+                  "kind": "special",
+                  "label": "Pirates of the Silicon Valley",
+                  "order": 1000,
+                  "html": "assets/guides/year-1/sem-1/cc101/pirates-of-the-silicon-valley.html"
                 }
               ]
             }
