@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CC101 — Pirates of Silicon Valley | Film Analysis Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--bgcode:#060D18;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--purple:#8B5CF6;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(59,130,246,.15);--sw:285px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvs{padding:9px 17px 3px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t3)}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover,.nvi a.act{color:var(--t1);background:rgba(59,130,246,.08);border-left-color:var(--blue)}
+.nvi a.act{color:var(--blue);font-weight:500}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:20px}
+
+.main{margin-left:var(--sw)}
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:52px 52px 42px;position:relative;overflow:hidden}
+.hero::before{content:'01001000';position:absolute;top:-10px;right:15px;font-family:'JetBrains Mono',monospace;font-size:115px;font-weight:900;color:rgba(59,130,246,.04);letter-spacing:-5px;user-select:none;line-height:1}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--blue)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:44px;font-weight:700;line-height:1.08;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#3B82F6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:18px;color:var(--t2);margin-bottom:19px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+
+.chapter{padding:44px 52px;border-bottom:1px solid var(--bdr);max-width:970px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:19.5px;font-weight:600;margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--blue);border-radius:2px;flex-shrink:0}
+h3{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--blue);margin:22px 0 9px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+
+.box{border-radius:8px;padding:13px 17px;margin:15px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}.red .btt{color:var(--red)}
+
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--blue);font-size:12px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(59,130,246,.04)}
+tbody td{padding:9px 13px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}
+
+.steps{margin:15px 0}
+.step{display:flex;gap:12px;margin-bottom:16px;align-items:flex-start}
+.snum{background:var(--blue);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace}
+.sc{flex:1}
+.sl{font-weight:600;color:var(--t1);font-size:13.5px;margin-bottom:3px}
+.sd{color:var(--t2);font-size:13px;line-height:1.75}
+
+.tl{margin:15px 0}
+.tli{display:flex;gap:14px;margin-bottom:18px;position:relative}
+.tli::before{content:'';position:absolute;left:73px;top:30px;width:1px;height:calc(100% + 5px);background:var(--bdr)}
+.tli:last-child::before{display:none}
+.tlyr{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--amber);font-weight:700;min-width:58px;padding-top:12px;text-align:right}
+.tldot{width:9px;height:9px;background:var(--blue);border-radius:50%;border:2px solid var(--bg);flex-shrink:0;margin-top:14px}
+.tlc{background:var(--bgc);border:1px solid var(--bdr);border-radius:8px;padding:11px 15px;flex:1}
+.tlt{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:3px}
+.tld{color:var(--t2);font-size:12.5px;line-height:1.65}
+
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:15px 0}
+.pcrd{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:13px 15px}
+.pnm{font-weight:700;color:var(--t1);font-size:13px;margin-bottom:2px}
+.prole{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:7px}
+.pdc{font-size:12px;color:var(--t2);line-height:1.65;margin:0}
+
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.gc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;position:relative;overflow:hidden}
+.gc::before{content:attr(data-g);position:absolute;top:-10px;right:7px;font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:900;color:rgba(59,130,246,.05);line-height:1}
+.gera{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.gtit{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:7px}
+.gsp{font-size:12.5px;color:var(--t2);margin:0;line-height:1.7}
+.gsp strong{color:var(--blue)}
+
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:4px;font-size:13px;line-height:1.75}
+li strong{color:var(--t1)}
+
+.footer{padding:34px 52px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--blue)}
+
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.gg,.pg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+<div class="sbh"><div class="sbb">CC101 · QCU BSIT</div><div class="sbt">Pirates of Silicon Valley</div><div class="sbs">Film Analysis Guide · Y1S1</div></div>
+<ul class="nvl">
+<li class="nvs">Introduction</li>
+<li class="nvi"><a href="#overview"><span class="nn">00</span>Overview</a></li>
+<li class="nvs">Chapters</li>
+<li class="nvi"><a href="#ch1"><span class="nn">01</span>Full Story Timeline</a></li>
+<li class="nvi"><a href="#ch2"><span class="nn">02</span>Who's Who — Character Guide</a></li>
+<li class="nvi"><a href="#ch3"><span class="nn">03</span>Key Concepts for CC101</a></li>
+<li class="nvi"><a href="#ch4"><span class="nn">04</span>Reflection Q&amp;A</a></li>
+</ul></nav>
+
+<main class="main">
+<div class="hero">
+<div class="he">QCU Academic OS · Y1S1</div>
+<div class="ht">CC101</div>
+<div class="hs">Pirates of Silicon Valley (1999) — Film Analysis &amp; Reviewer</div>
+<div class="hm">
+<div class="mp">Course: <span>CC101</span></div>
+<div class="mp">Year Level: <span>1st Year</span></div>
+<div class="mp">Type: <span>Film Analysis / History of Computing</span></div>
+<div class="mp">Source: <span>Personal viewing notes</span></div>
+</div></div>
+
+<section class="chapter" id="overview">
+<div class="cn">CHAPTER 00</div><div class="ct">Overview &amp; Study Priority Map</div>
+<p class="ci"><strong>Pirates of Silicon Valley</strong> is a 1999 dramatized film about how Steve Jobs and Bill Gates each built Apple and Microsoft from the ground up in the 1970s-80s, both borrowing the graphical interface idea from Xerox, competing and even betraying each other along the way, until they eventually needed each other to survive decades later. It was assigned for CC101 as a fast, human way to understand the real origin story behind the personal computer industry — the people, decisions, and rivalries that shaped the tools you'll be studying all semester.</p>
+
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Dramatization, Not a Documentary</div>
+<p class="btx">The film compresses timelines and invents specific dialogue for drama. Treat the broad strokes — who did what, roughly when, and why it mattered — as accurate. Don't treat every line of dialogue or exact date as verified historical fact.</p></div></div>
+
+<h2>Exam Priority Map</h2>
+<div class="tw"><table>
+<thead><tr><th>Topic</th><th>Chapter</th><th>Exam Weight</th><th>Difficulty</th></tr></thead>
+<tbody>
+<tr><td>Full Story / Sequence of Events</td><td>01</td><td><span class="tag tr2">🔴 High</span></td><td><span class="tag ta">Medium</span></td></tr>
+<tr><td>Character Identification (real people)</td><td>02</td><td><span class="tag tr2">🔴 High</span></td><td><span class="tag tg">Easy</span></td></tr>
+<tr><td>Xerox PARC / GUI &amp; Mouse Origin</td><td>03</td><td><span class="tag tr2">🔴 High</span></td><td><span class="tag ta">Medium</span></td></tr>
+<tr><td>IBM–Microsoft DOS Deal</td><td>03</td><td><span class="tag ta">🟡 Medium</span></td><td><span class="tag ta">Medium</span></td></tr>
+<tr><td>Themes &amp; Reflection Questions</td><td>04</td><td><span class="tag tr2">🔴 High</span></td><td><span class="tag tg">Easy</span></td></tr>
+</tbody></table></div>
+</section>
+
+<section class="chapter" id="ch1">
+<div class="cn">CHAPTER 01</div><div class="ct">Full Story Timeline</div>
+<p class="ci">The events below follow the film roughly in the order they happen on screen. The film itself opens with the 1984 Super Bowl commercial shoot, then flashes back — this timeline follows the actual chronological order of events instead, which is usually easier to study from.</p>
+
+<div class="tl">
+
+<div class="tli"><div class="tlyr">1971</div><div class="tldot"></div><div class="tlc"><div class="tlt">Berkeley — Blue Boxes</div><div class="tld">Steve Jobs and Steve Wozniak build and sell "blue boxes," illegal devices that hack the phone system for free long-distance calls. Both Jobs and his girlfriend are broke at this point.</div></div></div>
+
+<div class="tli"><div class="tlyr">1974</div><div class="tldot"></div><div class="tlc"><div class="tlt">Harvard — Bill Gates &amp; Paul Allen</div><div class="tld">Gates and Allen see a magazine ad for the Altair 8800, one of the first personal computer kits, and commit to writing a programming language for it before it's even finished. Gates forgets to prepare the loader program needed to actually run it on the real machine; Allen scrambles to fix it just before their demo.</div></div></div>
+
+<div class="tli"><div class="tlyr">1976</div><div class="tldot"></div><div class="tlc"><div class="tlt">Homebrew Computer Club, Berkeley</div><div class="tld">Jobs and Wozniak meet fellow hobbyists building homemade computers. At this point, established companies like IBM don't know they exist. Investor Mike Markkula later offers to back them, pushing them from a hobby project into a real company: Apple.</div></div></div>
+
+<div class="tli"><div class="tlyr">1976</div><div class="tldot"></div><div class="tlc"><div class="tlt">Albuquerque — First Microsoft Office</div><div class="tld">Gates and Allen relocate to Albuquerque, close to the Altair's manufacturer, and license their BASIC language to the company. This becomes Microsoft's very first office.</div></div></div>
+
+<div class="tli"><div class="tlyr">1977</div><div class="tldot"></div><div class="tlc"><div class="tlt">San Francisco Computer Faire</div><div class="tld">A large crowd shows up specifically to see Jobs and Wozniak's machine. Gates and Allen also attend but are largely ignored, since Apple is the one drawing attention. Around this time, Jobs is also shown avoiding responsibility for his girlfriend's pregnancy.</div></div></div>
+
+<div class="tli"><div class="tlyr">~1980</div><div class="tldot"></div><div class="tlc"><div class="tlt">Microsoft Grows, IBM Approaches</div><div class="tld">IBM decides to build its own personal computer to compete with Apple and needs an operating system. Microsoft offers to supply it, calling it DOS (Disk Operating System) — while Microsoft doesn't have a finished OS yet, they insist on keeping ownership rights so they can license it to other computer makers too, not just IBM.</div></div></div>
+
+<div class="tli"><div class="tlyr">1980</div><div class="tldot"></div><div class="tlc"><div class="tlt">The Seattle Computer Products Deal</div><div class="tld">Allen buys an existing operating system from a small Seattle company for a relatively small amount. This purchase becomes the foundation of DOS, and ends up worth far more once IBM's deal goes through.</div></div></div>
+
+<div class="tli"><div class="tlyr">~1980</div><div class="tldot"></div><div class="tlc"><div class="tlt">Jobs Meets His Daughter, Names Her Lisa</div><div class="tld">Jobs visits his newborn daughter, seemingly more concerned about how the situation affects his public image than about being a father. He eventually agrees to name her Lisa, then later names Apple's new computer project "Lisa" too, without publicly admitting the personal connection.</div></div></div>
+
+<div class="tli"><div class="tlyr">Early 1980s</div><div class="tldot"></div><div class="tlc"><div class="tlt">The Xerox PARC Visit — the Turning Point</div><div class="tld">Jobs negotiates a visit to Xerox's Palo Alto Research Center and sees their graphical user interface (GUI) and computer mouse — technology Xerox itself never turned into a real product. He immediately grasps its potential and starts building it into what becomes the Macintosh.</div></div></div>
+
+<div class="tli"><div class="tlyr">Early 1980s</div><div class="tldot"></div><div class="tlc"><div class="tlt">Microsoft Sees the Macintosh</div><div class="tld">Gates takes interest in what Apple is building and visits to see it firsthand. Jobs demonstrates the Macintosh's graphical interface to Microsoft's team, trusting them as a software partner — not realizing Gates already knows how useful the idea is, partly because he understands how much Jobs distrusts IBM and can use that to get closer to Apple.</div></div></div>
+
+<div class="tli"><div class="tlyr">Early-mid 1980s</div><div class="tldot"></div><div class="tlc"><div class="tlt">Wozniak Leaves Apple</div><div class="tld">Increasingly unhappy with Jobs's abrasive, arrogant management style, Wozniak decides to quit Apple.</div></div></div>
+
+<div class="tli"><div class="tlyr">Mid 1980s</div><div class="tldot"></div><div class="tlc"><div class="tlt">Windows Development &amp; the Confrontation</div><div class="tld">While dating Ann, Gates continues developing Microsoft's own operating system, Windows. Jobs confronts him, accusing Microsoft of copying the Macintosh interface; Gates denies it and convinces Jobs it's different, even though it wasn't. Both eventually argue over the fact that they each got the underlying idea from the same place: Xerox.</div></div></div>
+
+<div class="tli"><div class="tlyr">Mid 1980s</div><div class="tldot"></div><div class="tlc"><div class="tlt">Jobs's 30th Birthday, St. Francis Hotel, San Francisco</div><div class="tld">A large celebration marking Jobs's 30th birthday, held not long after the Macintosh launch and the growing internal tension at Apple.</div></div></div>
+
+<div class="tli"><div class="tlyr">1997</div><div class="tldot"></div><div class="tlc"><div class="tlt">Microsoft Invests in Apple</div><div class="tld">Years later, Apple is struggling and Jobs is back at the company. Microsoft announces a surprise investment to keep Apple alive, with Gates appearing on a massive screen above a stunned, partly booing crowd — the two rivals who spent decades accusing each other of theft ending up needing one another to survive. Wozniak, by this point, has moved on to teaching computers to schoolchildren.</div></div></div>
+
+</div>
+</section>
+
+<section class="chapter" id="ch2">
+<div class="cn">CHAPTER 02</div><div class="ct">Who's Who — Character Guide</div>
+<p class="ci">All major characters are dramatized versions of real people. Knowing who's who is usually the easiest, highest-value thing to get right on an exam or recitation.</p>
+
+<div class="pg">
+<div class="pcrd"><div class="pnm">Steve Jobs</div><div class="prole">APPLE CO-FOUNDER</div><p class="pdc">Intense, visionary, and difficult. Obsessed with design and "changing the world." Shown as brilliant but arrogant and harsh toward employees, and initially avoidant with his daughter.</p></div>
+
+<div class="pcrd"><div class="pnm">Steve Wozniak ("Woz")</div><div class="prole">APPLE CO-FOUNDER</div><p class="pdc">The actual engineer of the pair — built the first working Apple computer. More laid-back and people-focused than Jobs; eventually leaves Apple over Jobs's management style.</p></div>
+
+<div class="pcrd"><div class="pnm">Bill Gates</div><div class="prole">MICROSOFT CO-FOUNDER</div><p class="pdc">Calculating and business-minded. Plays the long game — most notably by keeping licensing rights to DOS instead of selling it outright to IBM.</p></div>
+
+<div class="pcrd"><div class="pnm">Paul Allen</div><div class="prole">MICROSOFT CO-FOUNDER</div><p class="pdc">Gates's childhood friend and early technical partner. Handles the last-minute fix that saves their first Altair demo, and later secures the OS purchase that becomes DOS.</p></div>
+
+<div class="pcrd"><div class="pnm">Steve Ballmer</div><div class="prole">MICROSOFT EXECUTIVE</div><p class="pdc">Gates's college friend, later Microsoft's aggressive second-in-command, pushing hard on shipping Windows.</p></div>
+
+<div class="pcrd"><div class="pnm">John Sculley</div><div class="prole">APPLE CEO</div><p class="pdc">Former Pepsi executive recruited by Jobs to run Apple. Eventually sides with Apple's board against Jobs, contributing to Jobs being pushed out of the company he co-founded.</p></div>
+</div>
+</section>
+
+<section class="chapter" id="ch3">
+<div class="cn">CHAPTER 03</div><div class="ct">Key Concepts for CC101</div>
+<p class="ci">These are the ideas from the film that connect most directly to the history of computing — the part CC101 actually cares about.</p>
+
+<div class="gg">
+<div class="gc" data-g="01"><div class="gera">CONCEPT · 01</div><div class="gtit">Xerox PARC &amp; the GUI/Mouse</div><p class="gsp">Xerox's research lab developed the graphical user interface and mouse first, but never commercialized it. Both the Macintosh and, indirectly, Windows trace back to that single demo — the film treats it as the shared origin point both companies borrowed from rather than invented.</p></div>
+
+<div class="gc" data-g="02"><div class="gera">CONCEPT · 02</div><div class="gtit">The IBM–Microsoft DOS Deal</div><p class="gsp">Microsoft's key business decision wasn't writing DOS — it was insisting on keeping the rights to license it to other computer makers, not just IBM. That single licensing decision is why Microsoft, not IBM, ended up dominating the industry long-term.</p></div>
+
+<div class="gc" data-g="03"><div class="gera">CONCEPT · 03</div><div class="gtit">Hobbyist Origins</div><p class="gsp">Both companies started from hobbyist, almost accidental beginnings — blue boxes and homemade computers for Apple, a magazine ad and an unfinished language for Microsoft — not from formal corporate research.</p></div>
+
+<div class="gc" data-g="04"><div class="gera">CONCEPT · 04</div><div class="gtit">Rivalry &amp; Interdependence</div><p class="gsp">Jobs and Gates spent years competing and accusing each other of theft, yet by 1997 Microsoft's investment was what helped keep Apple alive — showing that competitors in an industry can still end up needing each other.</p></div>
+</div>
+</section>
+
+<section class="chapter" id="ch4">
+<div class="cn">CHAPTER 04</div><div class="ct">Reflection Q&amp;A</div>
+<p class="ci">Common questions a professor might ask about this film, answered directly — useful for recitation or a written reflection paper.</p>
+
+<div class="steps">
+
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">What is the movie about?</div><div class="sd">It's about how Steve Jobs and Bill Gates each built Apple and Microsoft from nothing, and how their rivalry and even their mistakes shaped the entire personal computer industry we still use today.</div></div></div>
+
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">What did you learn from the movie?</div><div class="sd">A lot of the technology we use now, like graphical interfaces and the mouse, didn't originally come from Apple or Microsoft but from Xerox — neither company invented it first, they just knew how to use it before Xerox did.</div></div></div>
+
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">What values or traits helped Jobs and Gates succeed?</div><div class="sd">Both showed persistence, risk-taking, and the ability to convince other people to believe in their vision even before they had anything finished or proven.</div></div></div>
+
+<div class="step"><div class="snum">4</div><div class="sc"><div class="sl">What negative traits did the movie show in both men?</div><div class="sd">Jobs was shown as arrogant, harsh toward employees, and avoidant of personal responsibility, especially with his daughter at first. Gates was shown as calculating and willing to bend the truth to protect his business interests.</div></div></div>
+
+<div class="step"><div class="snum">5</div><div class="sc"><div class="sl">Why is the Xerox visit an important part of the story?</div><div class="sd">It's the turning point where both Apple and Microsoft got the idea for the graphical interface that became the foundation of modern computers, even though Xerox, the company that actually invented it, never took advantage of it themselves.</div></div></div>
+
+<div class="step"><div class="snum">6</div><div class="sc"><div class="sl">Why did Wozniak eventually leave Apple?</div><div class="sd">He no longer agreed with how Jobs was treating people and running the company, and wanted to move on to a simpler life — later teaching computers to schoolchildren.</div></div></div>
+
+<div class="step"><div class="snum">7</div><div class="sc"><div class="sl">What is the significance of Microsoft investing in Apple at the end?</div><div class="sd">It shows the irony that after years of competing and accusing each other of stealing ideas, both companies still ended up depending on each other — business rivalry doesn't always mean permanent enemies.</div></div></div>
+
+<div class="step"><div class="snum">8</div><div class="sc"><div class="sl">What can IT/CS students learn from this movie?</div><div class="sd">The industry we study today was built through real human decisions, mistakes, rivalries, and personal flaws, not just clean technical breakthroughs — and that innovation often comes from borrowing and improving on other people's ideas rather than pure original invention.</div></div></div>
+
+</div>
+
+<div class="box green"><div class="bico">✅</div><div class="bbd"><div class="btt">Key Takeaways</div>
+<p class="btx">Apple and Microsoft both started from hobbyist, almost accidental beginnings · The graphical interface both companies built on came from Xerox, not either of them · Microsoft's real advantage was the DOS licensing deal, not the software itself · Jobs and Gates were rivals who still ended up needing each other by the late 1990s.</p></div></div>
+</section>
+
+<div class="footer"><p>QCU Academic OS · Y1S1 · Compiled by <strong>KianoRoku18Ino</strong> · github.com/KianoRoku18Ino</p></div>
+</main>
+
+</body>
+</html>
