@@ -128,6 +128,14 @@
                   "order": 2,
                   "week": 2,
                   "html": "assets/guides/year-1/sem-1/socsci3/week-2.html"
+                },
+                {
+                  "id": "week-3",
+                  "kind": "week",
+                  "label": "Week 3 — Facilitators & Theories of Globalization",
+                  "order": 3,
+                  "week": 3,
+                  "html": "assets/guides/year-1/sem-1/socsci3/week-3.html"
                 }
               ]
             }
