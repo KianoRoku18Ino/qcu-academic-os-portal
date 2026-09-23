@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOCSCI3 — Nation-States & the Six Metaphors of Globalization | Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--purple:#8B5CF6;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(59,130,246,.15);--sw:285px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvs{padding:9px 17px 3px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t3)}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover,.nvi a.act{color:var(--t1);background:rgba(59,130,246,.08);border-left-color:var(--blue)}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:20px}
+.main{margin-left:var(--sw)}
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:52px 52px 42px;position:relative;overflow:hidden}
+.hero::before{content:'01001000';position:absolute;top:-10px;right:15px;font-family:'JetBrains Mono',monospace;font-size:115px;font-weight:900;color:rgba(59,130,246,.04);letter-spacing:-5px;user-select:none;line-height:1}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--blue)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:44px;font-weight:700;line-height:1.08;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#3B82F6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:17px;color:var(--t2);margin-bottom:19px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+.chapter{padding:44px 52px;border-bottom:1px solid var(--bdr);max-width:970px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:600;margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--blue);border-radius:2px;flex-shrink:0}
+h3{font-family:'Space Grotesk',sans-serif;font-size:15.5px;font-weight:600;color:var(--blue);margin:22px 0 9px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+.box{border-radius:8px;padding:13px 17px;margin:15px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}.red .btt{color:var(--red)}
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--blue);font-size:12px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(59,130,246,.04)}
+tbody td{padding:9px 13px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}
+.steps{margin:15px 0}
+.step{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.snum{background:var(--blue);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace}
+.sc{flex:1}
+.sl{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:2px}
+.sd{color:var(--t2);font-size:13px;line-height:1.7}
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.gc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;position:relative;overflow:hidden}
+.gc::before{content:attr(data-g);position:absolute;top:-10px;right:7px;font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:900;color:rgba(59,130,246,.05);line-height:1}
+.gera{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.gtit{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:7px}
+.gsp{font-size:12.5px;color:var(--t2);margin:0;line-height:1.7}
+.gsp strong{color:var(--blue)}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:15px 0}
+.pcrd{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:13px 15px}
+.pnm{font-weight:700;color:var(--t1);font-size:13px;margin-bottom:2px}
+.pdt{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.pttl{font-size:11px;color:var(--blue);font-weight:600;margin-bottom:4px}
+.pdsc{font-size:12px;color:var(--t2);line-height:1.6}
+.isg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.isc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;border-top:3px solid var(--blue)}
+.isc.a{border-top-color:var(--amber)}.isc.g{border-top-color:var(--green)}.isc.p{border-top-color:var(--purple)}.isc.r{border-top-color:var(--red)}
+.ico{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-bottom:3px}
+.inm{font-weight:700;font-size:14px;color:var(--t1);margin-bottom:6px}
+.idc{font-size:12.5px;color:var(--t2);line-height:1.7}
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:4px;font-size:13px;line-height:1.75}
+li strong{color:var(--t1)}
+.footer{padding:34px 52px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--blue)}
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.gg,.pg,.isg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+<div class="sbh"><div class="sbb">SOCSCI3 · QCU BSIT</div><div class="sbt">Nation-States & Globalization</div><div class="sbs">Module I · Week 1 Study Guide</div></div>
+<ul class="nvl">
+<li class="nvs">Introduction</li>
+<li class="nvi"><a href="#overview"><span class="nn">00</span>Lesson Overview</a></li>
+<li class="nvs">Chapters</li>
+<li class="nvi"><a href="#ch1"><span class="nn">01</span>Nation vs. State</a></li>
+<li class="nvi"><a href="#ch2"><span class="nn">02</span>Essential Elements of a State</a></li>
+<li class="nvi"><a href="#ch3"><span class="nn">03</span>North-South Divide, East-West Collision</a></li>
+<li class="nvi"><a href="#ch4"><span class="nn">04</span>Nation-States in the Age of Globalization</a></li>
+<li class="nvi"><a href="#ch5"><span class="nn">05</span>Defining Globalization</a></li>
+<li class="nvi"><a href="#ch6"><span class="nn">06</span>Typologies of Globalization</a></li>
+<li class="nvi"><a href="#ch7"><span class="nn">07</span>The Six Metaphors of Globalization</a></li>
+<li class="nvi"><a href="#ch8"><span class="nn">08</span>Glossary & Abbreviations</a></li>
+</ul></nav>
+
+<main class="main">
+<div class="hero">
+<div class="he">QCU Academic OS · Module-Grounded Guide</div>
+<div class="ht">Nation, State & Globalization</div>
+<div class="hs">Module I: Introduction to Globalization — built directly from your professors' module text</div>
+<div class="hm">
+<div class="mp">Course: <span>SOCSCI3 - The Contemporary World</span></div>
+<div class="mp">Source: <span>Module I (Decena, Gamelo, Suyat)</span></div>
+<div class="mp">Units: <span>3u</span></div>
+</div></div>
+
+<section class="chapter" id="overview">
+<div class="cn">CHAPTER 00</div><div class="ct">Lesson Overview</div>
+<p class="ci">This guide is built directly from your <strong>Module I: Introduction to Globalization</strong> text — nothing from that module has been cut. It just reorganizes the module's own material into a study-friendly structure and adds a glossary of abbreviations the module uses without spelling out (NIC, BRICS, IMF, and so on). This is a different, more primary-source-grounded companion to your existing full-course Mastery Guide, not a replacement for it.</p>
+
+<div class="box blue"><div class="bico">🎯</div><div class="bbd"><div class="btt">Module I — Learning Objectives (as written)</div>
+<p class="btx">Differentiate the concept of state from nation · Understand the elements of state and their importance as requisites for statehood · Illustrate the division of the global community in terms of North-South and East-West relationships · State the nature and scope of globalization · Enumerate and explain the typologies of globalization · Distinguish the six metaphors of globalization.</p></div></div>
+
+<h2>Recitation Priority Map</h2>
+<div class="tw"><table>
+<thead><tr><th>Topic</th><th>Chapter</th><th>Recitation Weight</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td>Nation vs. State</td><td>01</td><td><span class="tag tr2">🔴 High</span></td><td>The definitional distinction your professor built the whole module around</td></tr>
+<tr><td>Elements of a State</td><td>02</td><td><span class="tag tr2">🔴 High</span></td><td>Fixed 4-item enumeration — classic recitation format</td></tr>
+<tr><td>Typologies of Globalization</td><td>06</td><td><span class="tag tr2">🔴 High</span></td><td>6-item enumeration with examples per type</td></tr>
+<tr><td>Six Metaphors of Globalization</td><td>07</td><td><span class="tag tr2">🔴 High</span></td><td>The module's core original framework — expect this to anchor the exam</td></tr>
+<tr><td>Definitions of Globalization (scholars)</td><td>05</td><td><span class="tag ta">🟡 Medium</span></td><td>Attribution-matching risk — know who said what</td></tr>
+<tr><td>North-South / East-West, Historical Drivers</td><td>03-04</td><td><span class="tag tb">🔵 Lower</span></td><td>Narrative/context — useful for essay questions, less likely a direct recitation drill</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="chapter" id="ch1">
+<div class="cn">CHAPTER 01</div><div class="ct">Nation vs. State</div>
+<p class="ci">These two words get used interchangeably in everyday speech, but the module draws a hard line between them — and that line is the foundation for everything else in this module.</p>
+
+<div class="gg">
+<div class="gc" data-g="S"><div class="gera">POLITICAL ENTITY</div><div class="gtit">State</div><p class="gsp">A political entity established to fulfill security and ensure the common welfare of its people. A <strong>defined territory is essential</strong> to a state's existence, and a state's legal existence cannot operate without <strong>sovereignty</strong>. <strong>Example:</strong> Russia — the biggest state in the world by geographical size.</p></div>
+<div class="gc" data-g="N"><div class="gera">CULTURAL/EMOTIONAL UNIT</div><div class="gtit">Nation</div><p class="gsp">A solidified unit of people tied together by common history and cultural heritage, full of emotional, psychological, and spiritual bonds. A nation does <strong>not</strong> need an occupied territory, and does not need to possess sovereignty. <strong>Example:</strong> the Kurdish people — a nation with no official homeland, residing across Iraq, Iran, Turkey, Syria, and Armenia.</p></div>
+</div>
+
+<div class="box green"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation-Ready Answer</div>
+<p class="btx"><em>"A state is political — it needs territory and sovereignty. A nation is cultural — it's people bound by shared history and identity, and it doesn't need either territory or sovereignty to exist."</em> Example pairing: Russia is a <strong>state</strong> (huge, defined territory, sovereign); the Kurds are a <strong>nation</strong> without a state of their own.</p></div></div>
+
+<h2>How Today's Map of States Came to Be</h2>
+<p>The module traces this through the collapse of empires. The <strong>Ottoman Empire</strong> controlled much of the Middle East for roughly 500 years before a long, slow decline despite efforts to modernize — and sealed its fate by siding with Germany in World War I, which ended in defeat to Britain. The <strong>Tsarist Russian Empire</strong> met a similar fate. The vacuum the Ottomans left let Britain and France redraw the Middle East's map, giving rise to kingdoms like Saudi Arabia, Bahrain, Oman, Kuwait, and Jordan. The birth of Israel added to regional friction.</p>
+<p>Today the Middle East has <strong>18 states</strong> (13 of them part of the Arab world), while the Kurds and Palestinians still aspire to a fully legitimate state of their own.</p>
+
+<div class="box amber"><div class="bico">📊</div><div class="bbd"><div class="btt">The World in Numbers</div>
+<p class="btx">The world today has <strong>195 states</strong>, of which <strong>193 are UN member states</strong>. Only <strong>2 are non-members</strong>: the Holy See (Vatican) and Palestine. Modern statehood was often born from bloody struggle — the Philippines' flag was raised in Kawit, Cavite in 1898, partly influenced by the Spanish-American War (rooted in Cuba); India's independence came through Mahatma Gandhi's non-violent movement against the British Raj.</p></div></div>
+</section>
+
+<section class="chapter" id="ch2">
+<div class="cn">CHAPTER 02</div><div class="ct">Essential Elements of a State</div>
+<p class="ci">Per the <strong>Montevideo Convention on the Rights and Duties of States (1933)</strong>, a state as a person of international law must have: <strong>(a)</strong> a permanent population, <strong>(b)</strong> a defined territory, <strong>(c)</strong> government, and <strong>(d)</strong> the capacity to enter into relations with other states. The module breaks this into four essential elements.</p>
+
+<div class="pg">
+<div class="pcrd"><div class="pnm">Population</div><div class="pdt">ELEMENT 1</div><div class="pttl">Not about size — it's about having people</div><div class="pdsc">Over 7 billion people, half in Asia. China and India are the most populous. Population size is <strong>not</strong> a criterion of statehood — Vatican and Nauru are states with very small populations. Historical note: Hitler's Germany and Mussolini's Italy incentivized having more babies; China once used the One-Child Policy for economic modernization.</div></div>
+<div class="pcrd"><div class="pnm">Territory</div><div class="pdt">ELEMENT 2</div><div class="pttl">Land, water, and air space — fixed and defined</div><div class="pdsc">No state can exist without fixed territory, divided into administrative regions that mark its geographical limits. Giant examples: Russia, Canada, China, USA. Small-territory examples: Seychelles, Vanuatu, Tuvalu.</div></div>
+<div class="pcrd"><div class="pnm">Government</div><div class="pdt">ELEMENT 3</div><div class="pttl">The institution that enforces the rules</div><div class="pdsc">People living together need organization and accepted rules — government is the institution mandated to enforce those rules and ensure obedience. Every state's government system has its own advantages/disadvantages. <strong>Example:</strong> Singapore — an authoritarian state ruled by a single dominant party for decades.</div></div>
+<div class="pcrd"><div class="pnm">Sovereignty</div><div class="pdt">ELEMENT 4</div><div class="pttl">The right to make and enforce law within your own borders</div><div class="pdsc">Exercised when a state makes/enforces laws and collects taxes over its territory. Traditionally means no state may interfere in another's internal matters — but globalization has reshaped this view. <strong>Examples where sovereignty was challenged:</strong> the treatment of Rohingya Muslims in Myanmar, and international criticism of Brazil's handling of Amazon deforestation.</div></div>
+</div>
+
+<div class="box green"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation-Ready Answer</div>
+<p class="btx"><em>"Per the Montevideo Convention of 1933, a state needs four things: a permanent population, a defined territory, a government, and the capacity to enter relations with other states."</em> If asked for a tricky example: Vatican City proves population size doesn't matter, and Singapore shows government doesn't have to be democratic to count.</p></div></div>
+</section>
+
+<section class="chapter" id="ch3">
+<div class="cn">CHAPTER 03</div><div class="ct">North-South Divide, East-West Collision</div>
+<p class="ci">The module frames global division along two overlapping fault lines: one economic (North-South) and one cultural (East-West).</p>
+
+<h2>North-South: The Economic Divide</h2>
+<p>Much of the industrialized world sits in the <strong>Northern Hemisphere</strong>; developing economies are more often in the <strong>Southern Hemisphere</strong>. "The South" is often used interchangeably with the older term <strong>Third World</strong>. Some Southern countries have since broken into the industrialized tier:</p>
+<div class="gg">
+<div class="gc" data-g="NIC"><div class="gera">NEWLY INDUSTRIALIZED COUNTRIES</div><div class="gtit">NIC</div><p class="gsp">Japan, Taiwan, South Korea, and Singapore achieved an "economic miracle" that put their socioeconomic standing on par with the industrialized world.</p></div>
+<div class="gc" data-g="B"><div class="gera">EMERGING MARKET BLOC</div><div class="gtit">BRICS</div><p class="gsp"><strong>B</strong>razil, <strong>R</strong>ussia, <strong>I</strong>ndia, <strong>C</strong>hina, <strong>S</strong>outh Africa — globalization electrified these economies enough that they now mount a strong challenge to the status quo.</p></div>
+</div>
+
+<h2>East-West: The Cultural Collision</h2>
+<p>The foundations of <strong>democratic governance and liberalism</strong> were enriched in the West, while <strong>autocracy</strong> took a strong foothold in the East. Modernization was first achieved in the West — which is why "modernization" is often (mistakenly) equated with "westernization." The module is explicit that Eastern countries pursued modernization <strong>without</strong> following the West's path.</p>
+
+<div class="box amber"><div class="bico">💡</div><div class="bbd"><div class="btt">Common trap to avoid</div>
+<p class="btx">Modernization ≠ Westernization. The module explicitly separates these — Eastern states modernized on their own terms, not by copying Western political models.</p></div></div>
+</section>
+
+<section class="chapter" id="ch4">
+<div class="cn">CHAPTER 04</div><div class="ct">Nation-States in the Age of Globalization</div>
+<p class="ci">The module frames globalization's relationships among nation-states through three lenses: <strong>cultural, political, and economic</strong> — with economic self-interest as the earliest and most persistent driver.</p>
+
+<h2>A Very Condensed History of Globalization's Drivers</h2>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Bartering</div><div class="sd">Since the dawn of civilization, early peoples traded to access food, weapons, and spices.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Ancient empires</div><div class="sd">Alexander the Great's empire fused Greco-Macedonian culture with Asia. The Silk Road linked the Roman Empire (west) and the Chinese Empire (east) in flourishing trade.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Colonization</div><div class="sd">European empires (Spanish, Portuguese, Dutch, British) combined evangelization with capitalist expansion, extracting wealth from colonized "weaker" civilizations — from Mesoamerican gold to the Spice Islands (Moluccas) — to fund their own territorial growth.</div></div></div>
+<div class="step"><div class="snum">4</div><div class="sc"><div class="sl">The world wars & the rise of sovereign states</div><div class="sd">Two brutal global wars ended the age of empires. More sovereign states emerged and agreed to build a global order meant to be humane and prosperous.</div></div></div>
+<div class="step"><div class="snum">5</div><div class="sc"><div class="sl">Multinational corporations take the stage</div><div class="sd">State sovereignty as the sole agent of globalization was challenged by huge businesses whose capital, technology, and influence couldn't be ignored — Coca-Cola and McDonald's are the module's named examples, entrenching capitalism as the system nation-states needed to modernize.</div></div></div>
+<div class="step"><div class="snum">6</div><div class="sc"><div class="sl">The fall of the USSR</div><div class="sd">The collapse of the Communist regime in Moscow and the disintegration of the USSR marked capitalism's historic triumph in the ideological struggle between economic systems.</div></div></div>
+<div class="step"><div class="snum">7</div><div class="sc"><div class="sl">Technology tears down the remaining barriers</div><div class="sd">Innovation continues to erode barriers, especially in communication and information access.</div></div></div>
+</div>
+
+<div class="box blue"><div class="bico">📖</div><div class="bbd"><div class="btt">Al Gore's Six Drivers of Global Change</div>
+<p class="btx">From <em>The Future</em> (2007 Nobel Peace Prize winner, former US Vice President): <strong>(1)</strong> a deeply interconnected global economy, <strong>(2)</strong> planet-wide electronic communication, <strong>(3)</strong> a completely new balance of political, economic, and military power, <strong>(4)</strong> rapid unsustainable growth, <strong>(5)</strong> a revolutionary new set of biological/biochemical/genetic/materials-science technologies, and <strong>(6)</strong> a radically new ecological relationship between humans and Earth's ecosystem.</p></div></div>
+</section>
+
+<section class="chapter" id="ch5">
+<div class="cn">CHAPTER 05</div><div class="ct">Defining Globalization</div>
+<p class="ci">The module notes that defining globalization is genuinely hard — supporters like <strong>Thomas Friedman</strong> and <strong>Jeffrey Sachs</strong> call it a flattener and game-changer, while critics like <strong>Joseph Stiglitz</strong> have voiced sharp criticism of it. Four definitions are given as reference points.</p>
+
+<div class="tw"><table>
+<thead><tr><th>Scholar / Source</th><th>Definition (in their framing)</th></tr></thead>
+<tbody>
+<tr><td>Thomas Friedman<br><span style="color:var(--t3);font-size:11px">author, <em>The World is Flat</em></span></td><td>The interweaving of markets, technology, information, and telecommunications in a way that shrinks the world from size medium to size small — letting everyone reach around the world farther, faster, deeper, and cheaper than ever before.</td></tr>
+<tr><td>Manfred Steger</td><td>The expansion and intensification of social relations and consciousness across world time and world space — a multidimensional phenomenon spanning economics, politics, culture, ideology, environment, and technology.</td></tr>
+<tr><td>Anthony Giddens</td><td>The intensification of worldwide social relations linking distant localities, such that local happenings are shaped by events occurring thousands of miles away, and vice versa. Giddens also names <strong>4 dimensions</strong>: the world capitalist economy, the nation-state system, the world military order, and industrial development.</td></tr>
+<tr><td>International Monetary Fund (IMF)</td><td>The increasing integration of economies around the world, mainly through the movement of goods, services, and capital across borders — sometimes also referring to the movement of people and knowledge.</td></tr>
+</tbody></table></div>
+
+<div class="box green"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation-Ready Answer</div>
+<p class="btx">If your professor asks "who said the world is flat?" — that's <strong>Thomas Friedman</strong>. If asked for the definition with 4 named dimensions, that's <strong>Giddens</strong> (capitalist economy, nation-state system, military order, industrial development). If asked for the institutional/economic definition, that's the <strong>IMF</strong>.</p></div></div>
+</section>
+
+<section class="chapter" id="ch6">
+<div class="cn">CHAPTER 06</div><div class="ct">Typologies of Globalization</div>
+<p class="ci">Because of growing trade and international exchange, the module splits globalization into six typologies.</p>
+
+<div class="tw"><table>
+<thead><tr><th>Typology</th><th>Definition</th><th>Example (from module)</th></tr></thead>
+<tbody>
+<tr><td>Economic</td><td>Growing interdependence of global economies from cross-border exchange of goods/services, investment flow, and rapid tech diffusion.</td><td>Trade agreements pursued by nation-states with regional or global implications.</td></tr>
+<tr><td>Political</td><td>Enlargement of the global governance system and international organizations in influence, power, size, and complexity.</td><td>The constant evolution of the United Nations.</td></tr>
+<tr><td>Cultural</td><td>A dominant culture penetrating a unique, localized culture, possibly fusing the two.</td><td>Globalization of sports; globalization of food culture.</td></tr>
+<tr><td>Financial</td><td>Interconnection of the global financial system — investment, monetary exchange, equity markets.</td><td>A local stock market collapse triggering a global meltdown, e.g. the 1997 Asian Financial Crisis.</td></tr>
+<tr><td>Technological</td><td>Made possible by innovation and popularization of tech devices and digital social platforms.</td><td>Facebook, Twitter, Instagram, etc.</td></tr>
+<tr><td>Ecological</td><td>Concerted efforts by states and non-state actors to address global environmental crises.</td><td>The Paris Climate Agreement of 2015.</td></tr>
+</tbody></table></div>
+
+<div class="box green"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation-Ready Answer</div>
+<p class="btx"><em>"There are six typologies: economic, political, cultural, financial, technological, and ecological — each describing a different channel through which countries become interconnected."</em> Fastest way to remember an example per type: <strong>trade deals</strong> (economic), <strong>the UN</strong> (political), <strong>K-pop/fast food</strong> (cultural), <strong>the 1997 Asian crisis</strong> (financial), <strong>social media</strong> (technological), <strong>the Paris Agreement</strong> (ecological).</p></div></div>
+</section>
+
+<section class="chapter" id="ch7">
+<div class="cn">CHAPTER 07</div><div class="ct">The Six Metaphors of Globalization</div>
+<p class="ci">This is the module's signature framework (drawn from Manfred Steger's work) — six metaphors that each capture a different "feel" of what globalization does to the world. Every argument listed under each metaphor is preserved from the module below.</p>
+
+<div class="isg">
+<div class="isc"><div class="ico">METAPHOR 1</div><div class="inm">Flow</div><div class="idc">The lifting of barriers and easing of rules governing interstate commerce, human movement, and access to communication/information.</div></div>
+<div class="isc a"><div class="ico">METAPHOR 2</div><div class="inm">Friction</div><div class="idc">The conflict, disparity, and crisis generated by the open-market system.</div></div>
+<div class="isc g"><div class="ico">METAPHOR 3</div><div class="inm">Acceleration</div><div class="idc">The exponential growth of technological capacity, pushing globalization to a new height — humans co-existing with intelligent machines.</div></div>
+<div class="isc p"><div class="ico">METAPHOR 4</div><div class="inm">Disruption</div><div class="idc">Startup innovations outperforming branded products in markets they once dominated.</div></div>
+<div class="isc r"><div class="ico">METAPHOR 5</div><div class="inm">Dislocation</div><div class="idc">Individuals, businesses, and economies that can't keep pace with global change get displaced.</div></div>
+<div class="isc"><div class="ico">METAPHOR 6</div><div class="inm">Connectivity</div><div class="idc">Infrastructure that boosts global competitiveness amid the expanding international market system.</div></div>
+</div>
+
+<h3>1. Flow — full argument list</h3>
+<ul>
+<li>The worth of global trade has grown several-fold compared to half a century ago.</li>
+<li>Many people were lifted from poverty in developing economies like China and India through the open-market system.</li>
+<li>Advanced industrialized economies welcomed immigrants and migrant workers, which hugely contributed to their GDP growth.</li>
+<li>Regionally significant, globally impactful trade agreements were pursued — the <strong>EU</strong> in Europe, <strong>ASEAN</strong> in Southeast Asia, <strong>NAFTA</strong> in North America, <strong>APEC</strong> in the Asia-Pacific.</li>
+<li>More democratized, cheaper access to communication and information — specifically credited to the birth of the Internet.</li>
+</ul>
+
+<h3>2. Friction — full argument list</h3>
+<ul>
+<li>Job markets in advanced economies weakened as capital moved to developing economies with cheaper labor, hurting First World middle-class income.</li>
+<li>The trade war between the US and China.</li>
+<li>Terrorist groups like Al-Qaeda and ISIS exploited the borderless world using available technology to sow public fear.</li>
+<li>The scandalous income gap between the rich and the middle class (the "1% vs. the 99%").</li>
+<li>Non-white people receiving racial slurs and harassment from white people in America.</li>
+<li>Cyberwar as the "fifth domain of war."</li>
+</ul>
+
+<h3>3. Acceleration — full argument list</h3>
+<ul>
+<li>The increasing evolution of technology, such as Artificial Intelligence (AI).</li>
+<li>The creation of new jobs requiring new sets of competencies and skills.</li>
+<li>The open question: can intelligent machines outperform human beings?</li>
+<li>New technologies will require less dependence on petroleum-based energy.</li>
+<li>Data security is the main risk.</li>
+<li>Global warming is a clear and present danger requiring extraordinary global cooperation, especially between the USA and China.</li>
+</ul>
+<p style="font-size:12.5px;color:var(--t3)">Note: acceleration also covers the problem of global population growth and global warming — both threaten human and species extinction as their pace speeds up.</p>
+
+<h3>4. Disruption — examples given</h3>
+<p>Startup innovations outperforming long-dominant branded products: <strong>Uber, Netflix, Airbnb, driverless cars.</strong> The module singles out <strong>China</strong> as the biggest disruption in the global economic system — a communist political ideology paired with a market-capitalist economic operation.</p>
+
+<h3>5. Dislocation — full argument list</h3>
+<ul>
+<li>Jobs created during the First, Second, and Third Industrial Revolutions will be replaced by automation unless workers gain the new skills the Fourth Industrial Revolution demands.</li>
+<li>Small firms will be absorbed by big businesses.</li>
+<li>Local markets suffer from the influx of cheap foreign goods resulting from bilateral or multilateral trade agreements.</li>
+</ul>
+
+<h3>6. Connectivity — full argument list</h3>
+<p>Connectivity has two dimensions: <strong>Hard Infrastructure</strong> (world-class airports, bridges, harbors, roads) and <strong>Soft Infrastructure</strong> (education systems, efficient internet access).</p>
+<ul>
+<li>Singapore has the best airport in the world (Changi Airport).</li>
+<li>China's One Belt, One Road revives the ancient Silk Road.</li>
+<li>Countries with the most innovative, competitive economies also tend to have the best education systems.</li>
+</ul>
+
+<div class="box green"><div class="bico">🎤</div><div class="bbd"><div class="btt">Recitation Drill — The Six Metaphors</div>
+<div class="steps" style="margin-top:8px">
+<div class="step"><div class="snum">Q1</div><div class="sc"><div class="sl">"Give one example each of Flow and Friction."</div><div class="sd">Flow: the birth of the Internet made communication cheaper and more democratic. Friction: the US-China trade war shows the conflict the open market can generate.</div></div></div>
+<div class="step"><div class="snum">Q2</div><div class="sc"><div class="sl">"How is Disruption different from Dislocation?"</div><div class="sd">Disruption is about new players (like Uber or Netflix) outperforming old dominant ones. Dislocation is about who gets left behind entirely — workers, small firms, or whole markets that can't keep up.</div></div></div>
+<div class="step"><div class="snum">Q3</div><div class="sc"><div class="sl">"What are the two dimensions of Connectivity?"</div><div class="sd">Hard Infrastructure (physical — airports, roads, harbors) and Soft Infrastructure (systemic — education, internet access).</div></div></div>
+</div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch8">
+<div class="cn">CHAPTER 08</div><div class="ct">Glossary & Abbreviations</div>
+<p class="ci">Terms and acronyms the module uses without always spelling out — added here so nothing trips you up in recitation.</p>
+<div class="tw"><table>
+<thead><tr><th>Term</th><th>Stands For / Means</th></tr></thead>
+<tbody>
+<tr><td>NIC</td><td>Newly Industrialized Countries — Japan, Taiwan, South Korea, Singapore.</td></tr>
+<tr><td>BRICS</td><td>Brazil, Russia, India, China, South Africa — major emerging-market economies.</td></tr>
+<tr><td>UN</td><td>United Nations — global forum for peace, diplomacy, and international law.</td></tr>
+<tr><td>IMF</td><td>International Monetary Fund — promotes international monetary cooperation and financial stability.</td></tr>
+<tr><td>EU</td><td>European Union — regional political/economic union of European states.</td></tr>
+<tr><td>ASEAN</td><td>Association of Southeast Asian Nations — regional bloc including the Philippines.</td></tr>
+<tr><td>NAFTA</td><td>North American Free Trade Agreement (US, Canada, Mexico).</td></tr>
+<tr><td>APEC</td><td>Asia-Pacific Economic Cooperation — forum for Pacific Rim economies.</td></tr>
+<tr><td>GDP</td><td>Gross Domestic Product — total value of goods/services a country produces.</td></tr>
+<tr><td>AI</td><td>Artificial Intelligence — computer systems performing tasks associated with human intelligence.</td></tr>
+<tr><td>USSR</td><td>Union of Soviet Socialist Republics — the former Soviet Union, dissolved 1991.</td></tr>
+<tr><td>Sovereignty</td><td>A state's exclusive right to govern itself and make/enforce its own laws within its territory.</td></tr>
+<tr><td>Statehood</td><td>The formal, legal status of being a recognized state under international law.</td></tr>
+<tr><td>Third World</td><td>Older Cold War-era term roughly overlapping with "the Global South" — developing, non-aligned economies.</td></tr>
+<tr><td>Westernization</td><td>Adoption of Western political/cultural/economic models — the module stresses this is <strong>not</strong> the same as modernization.</td></tr>
+</tbody></table></div>
+</section>
+
+<div class="footer"><p>QCU Academic OS · Grounded in Module I (Prof. Decena, Dr. Gamelo, Prof. Suyat) · Compiled by <strong>KianoRoku18Ino</strong> · github.com/KianoRoku18Ino</p></div>
+</main>
+
+</body>
+</html>
