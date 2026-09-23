@@ -120,6 +120,14 @@
                   "order": 1,
                   "week": 1,
                   "html": "assets/guides/year-1/sem-1/socsci3/week-1.html"
+                },
+                {
+                  "id": "week-2",
+                  "kind": "week",
+                  "label": "Week 2 — The Structure of Globalization",
+                  "order": 2,
+                  "week": 2,
+                  "html": "assets/guides/year-1/sem-1/socsci3/week-2.html"
                 }
               ]
             }
