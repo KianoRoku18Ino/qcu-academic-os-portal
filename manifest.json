@@ -107,6 +107,21 @@
                   "html": "assets/guides/year-1/sem-1/nstp1/week-3.html"
                 }
               ]
+            },
+            {
+              "id": "y1-s1-socsci3",
+              "code": "SOCSCI3",
+              "title": "The Contemporary World",
+              "items": [
+                {
+                  "id": "week-1",
+                  "kind": "week",
+                  "label": "Week 1 — Introduction to Globalization",
+                  "order": 1,
+                  "week": 1,
+                  "html": "assets/guides/year-1/sem-1/socsci3/week-1.html"
+                }
+              ]
             }
           ]
         },
