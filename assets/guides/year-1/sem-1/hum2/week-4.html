@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HUM 2 — Ethics | Module 4: The Moral Agent</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--bgcode:#060D18;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--purple:#8B5CF6;--violet:#8B5CF6;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(139,92,246,.15);--sw:285px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvs{padding:9px 17px 3px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t3)}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover,.nvi a.act{color:var(--t1);background:rgba(139,92,246,.08);border-left-color:var(--violet)}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:20px}
+.main{margin-left:var(--sw)}
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:52px 52px 42px;position:relative;overflow:hidden}
+.hero::before{content:'01001000';position:absolute;top:-10px;right:15px;font-family:'JetBrains Mono',monospace;font-size:115px;font-weight:900;color:rgba(139,92,246,.05);letter-spacing:-5px;user-select:none;line-height:1}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--violet);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--violet)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:44px;font-weight:700;line-height:1.1;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#8B5CF6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:18px;color:var(--t2);margin-bottom:19px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+.chapter{padding:44px 52px;border-bottom:1px solid var(--bdr);max-width:970px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--violet);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:19.5px;font-weight:600;margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--violet);border-radius:2px;flex-shrink:0}
+h3{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--violet);margin:22px 0 9px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+.box{border-radius:8px;padding:13px 17px;margin:15px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}.red .btt{color:var(--red)}
+.violet{background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2)}.violet .btt{color:var(--violet)}
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--violet);font-size:12px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(139,92,246,.04)}
+tbody td{padding:9px 13px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace;white-space:nowrap}
+.tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}
+.steps{margin:15px 0}
+.step{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.snum{background:var(--violet);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace}
+.sc{flex:1}
+.sl{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:2px}
+.sd{color:var(--t2);font-size:13px;line-height:1.7}
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.gc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;position:relative;overflow:hidden}
+.gc::before{content:attr(data-g);position:absolute;top:-10px;right:7px;font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:900;color:rgba(139,92,246,.06);line-height:1}
+.gera{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.gtit{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:7px}
+.gsp{font-size:12.5px;color:var(--t2);margin:0;line-height:1.7}
+.gsp strong{color:var(--violet)}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:15px 0}
+.pcrd{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:13px 15px}
+.pnm{font-weight:700;color:var(--t1);font-size:13px;margin-bottom:2px}
+.pdt{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.pttl{font-size:11px;color:var(--violet);font-weight:600;margin-bottom:4px}
+.pdsc{font-size:12px;color:var(--t2);line-height:1.6}
+.isg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.isc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;border-top:3px solid var(--violet)}
+.isc.a{border-top-color:var(--amber)}.isc.g{border-top-color:var(--green)}.isc.p{border-top-color:var(--purple)}
+.ico{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-bottom:3px}
+.inm{font-weight:700;font-size:14px;color:var(--t1);margin-bottom:6px}
+.idc{font-size:12.5px;color:var(--t2);line-height:1.7}
+.idc strong{color:var(--t1)}
+.mlst{margin:11px 0}
+.mitem{display:flex;gap:11px;padding:10px 0;border-bottom:1px solid var(--bdr);align-items:flex-start}
+.mitem:last-child{border-bottom:none}
+.mnm{font-weight:700;color:var(--red);min-width:170px;font-size:13px}
+.mdc{font-size:13px;color:var(--t2);line-height:1.65}
+.law{background:var(--bgc);border:1px solid var(--bdr);border-left:4px solid var(--violet);border-radius:8px;padding:15px 17px;margin:11px 0}
+.lra{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--violet);font-weight:700;margin-bottom:3px}
+.ltit{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:4px}
+.lyr{font-size:11px;color:var(--t3);margin-bottom:7px}
+.ldc{font-size:13.5px;color:var(--t2);line-height:1.8;font-style:italic}
+.qa{background:var(--bgc);border:1px solid var(--bdr);border-radius:8px;padding:14px 17px;margin:9px 0}
+.qq{font-weight:600;color:var(--t1);font-size:13.5px;margin-bottom:5px}
+.qq::before{content:'Q — ';color:var(--violet);font-family:'JetBrains Mono',monospace;font-weight:700}
+.qan{color:var(--t2);font-size:13px;line-height:1.7}
+.qan::before{content:'A — ';color:var(--green);font-family:'JetBrains Mono',monospace;font-weight:700}
+.pill{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:.5px;padding:2px 8px;border-radius:10px;text-transform:uppercase;margin-bottom:8px}
+.pill-added{background:rgba(245,158,11,.15);color:var(--amber)}
+.pill-lesson{background:rgba(139,92,246,.15);color:var(--violet)}
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:4px;font-size:13px;line-height:1.75}
+li strong{color:var(--t1)}
+.footer{padding:34px 52px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--violet)}
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.gg,.pg,.isg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+<div class="sbh"><div class="sbb">HUM 2 · QCU BSIT</div><div class="sbt">Ethics</div><div class="sbs">Module 4 Study Guide · AY 2026-2027</div></div>
+<ul class="nvl">
+<li class="nvs">Introduction</li>
+<li class="nvi"><a href="#overview"><span class="nn">00</span>Course Overview</a></li>
+<li class="nvs">Chapters</li>
+<li class="nvi"><a href="#ch1"><span class="nn">01</span>What Is a Moral Agent?</a></li>
+<li class="nvi"><a href="#ch2"><span class="nn">02</span>The Four Crosspoints</a></li>
+<li class="nvi"><a href="#ch3"><span class="nn">03</span>Kohlberg's Six Stages</a></li>
+<li class="nvi"><a href="#ch4"><span class="nn">04</span>The Heinz Dilemma</a></li>
+<li class="nvi"><a href="#ch5"><span class="nn">05</span>Rights, Duties &amp; Moral Agency</a></li>
+<li class="nvi"><a href="#ch6"><span class="nn">06</span>Reason, Freedom &amp; Responsibility</a></li>
+<li class="nvi"><a href="#ch7"><span class="nn">07</span>Comprehensive Assessment</a></li>
+<li class="nvi"><a href="#ch8"><span class="nn">08</span>Glossary &amp; Key Terms</a></li>
+<li class="nvi"><a href="#ch9"><span class="nn">09</span>Source Verification Notes</a></li>
+</ul></nav>
+
+<main class="main">
+<div class="hero">
+<div class="he">QCU Academic OS · AY 2026-2027</div>
+<div class="ht">HUM 2 — Ethics</div>
+<div class="hs">Module 4: The Moral Agent — Complete Study Reference</div>
+<div class="hm">
+<div class="mp">Course: <span>HUM 2</span></div>
+<div class="mp">Units: <span>3</span></div>
+<div class="mp">Year Level: <span>1st Yr, Sem 1</span></div>
+<div class="mp">Type: <span>GE — Humanities/Ethics</span></div>
+</div></div>
+
+<section class="chapter" id="overview">
+<div class="cn">CHAPTER 00</div><div class="ct">Course Overview &amp; Study Priority Map</div>
+<p class="ci">This module (source file: <em>"Moral Agent: The Role in Building a Moral Society"</em>) picks up where Module 3 left off. Module 3 mapped ethics onto three expanding levels (Personal → Societal → Environmental) and explained the Personal Level's two accountability mechanisms, Sanctions and Conscience. Module 4 asks the prior question those mechanisms assume an answer to: <strong>who, exactly, can be held morally accountable at all?</strong> It defines the <strong>moral agent</strong>, distinguishes agents from mere <strong>moral patients</strong>, introduces Dr. Ramon C. Reyes's four "crosspoints" that shape a person's identity outside their own choosing, walks through Lawrence Kohlberg's six stages of moral development (tested against the classic Heinz Dilemma), and closes by grounding accountability in rights, duties, reason, and freedom.</p>
+
+<div class="box violet"><div class="bico">🧭</div><div class="bbd"><div class="btt">Recurring Framework — The Four Crosspoints</div>
+<p class="btx">The lesson names one structure and returns to it across Chapter 02: identity is shaped by four "crosspoints" outside a person's choosing — <strong>Physical, Interpersonal, Societal, and Historical.</strong> Essay Question 2 in Chapter 07 ("how do family, education, and government shape individuals into moral agents") is really asking about this same framework from a different angle — keep the four names and their order in mind.</p></div></div>
+
+<div class="box violet"><div class="bico">🧭</div><div class="bbd"><div class="btt">Recurring Framework — Kohlberg's Three Levels, Six Stages</div>
+<p class="btx">The module's largest section (Chapter 03) organizes moral reasoning into three levels of two stages each: <strong>Preconventional (Stages 1–2) → Conventional (Stages 3–4) → Postconventional (Stages 5–6).</strong> Chapter 04's Heinz Dilemma then re-applies this exact same three-level structure to one concrete case — the two chapters are meant to be studied together, not separately.</p></div></div>
+
+<h2>Moral Person, Patient, and Agent at a Glance <span class="pill pill-added">Added — Study Aid</span></h2>
+<div class="pg">
+<div class="pcrd"><div class="pnm">Moral Person</div><div class="pdt">UMBRELLA TERM</div><div class="pttl">Anyone morality applies to</div><div class="pdsc">Any human person who can be a receiver and/or source of morally evaluable action.</div></div>
+<div class="pcrd"><div class="pnm">Moral Patient</div><div class="pdt">RECIPIENT ONLY</div><div class="pttl">Has rights, not duties</div><div class="pdsc">Can be helped or harmed by others' actions (e.g. an infant), but isn't yet a source of moral action.</div></div>
+<div class="pcrd"><div class="pnm">Moral Agent</div><div class="pdt">RECIPIENT + SOURCE</div><div class="pttl">Has rights AND duties</div><div class="pdsc">Capable of informed decisions; can be held responsible and accountable for their own actions.</div></div>
+</div>
+
+<div class="box amber"><div class="bico">🔍</div><div class="bbd"><div class="btt">Source Verification Heads-Up — full detail in Chapter 09</div>
+<p class="btx">Four things worth knowing before you study this deck: (1) Kohlberg's death date is given differently across otherwise-reliable sources — the lesson's "1927–1987" isn't wrong either way. (2) The lesson's own two Kohlberg age-bracket graphics (Ch. 03) don't agree with each other. (3) Stage 2 is named "Instrumental-Relativist" in one part of the lesson and "Self-Interest Orientation" in another — same stage, two labels. (4) A slide footer's book-title citation has a one-word mismatch against the actual published title. None of these affect the substance you need to recite — see Chapter 09 for the full write-up.</p></div></div>
+
+<h2>Exam / Recitation Priority Map</h2>
+<p>This module's own slide deck contains its graded assessment inline — the 5 essay prompts and 15-item identification exercise in Chapter 07 — so priority below is graded against <em>those</em>, not a separate professor-issued quiz.</p>
+<div class="tw"><table>
+<thead><tr><th>Topic</th><th>Chapter</th><th>Priority</th><th>Reason</th></tr></thead>
+<tbody>
+<tr><td>Moral Agent / Moral Patient — definitions &amp; the rights-vs-duties split</td><td>01</td><td><span class="tag tr2">🔴 High</span></td><td>Essay Q1; Identification Item 14</td></tr>
+<tr><td>The Four Crosspoints (Physical/Interpersonal/Societal/Historical)</td><td>02</td><td><span class="tag ta">🟡 Medium</span></td><td>Not a direct identification item, but Essay Q2 asks about it indirectly</td></tr>
+<tr><td>Kohlberg's Six Stages &amp; Three Levels</td><td>03</td><td><span class="tag tr2">🔴 High</span></td><td>Dominates the identification exercise — 10 of 15 items</td></tr>
+<tr><td>The Heinz Dilemma (level-by-level reasoning)</td><td>04</td><td><span class="tag ta">🟡 Medium</span></td><td>Not itself quizzed, but the deck's own worked example of Ch. 03 — likely recitation/discussion material</td></tr>
+<tr><td>Rights, Duties &amp; Moral Agency</td><td>05</td><td><span class="tag tr2">🔴 High</span></td><td>Identification Items 13–14; reinforces Essay Q1</td></tr>
+<tr><td>Reason, Freedom &amp; Responsibility (incl. the Will)</td><td>06</td><td><span class="tag tr2">🔴 High</span></td><td>Identification Items 11–13, 15</td></tr>
+</tbody></table></div>
+
+<div class="box blue"><div class="bico">📎</div><div class="bbd"><div class="btt">Companion File</div>
+<p class="btx">A separate, standalone practice file — <strong>HUM2-Module4-Quiz-and-Practice.html</strong> — includes a suggested answer key for Chapter 07's identification exercise (with the two genuinely ambiguous items flagged as unconfirmed) plus new practice questions and worked examples. It's not embedded here on purpose, so you can attempt Chapter 07 cold first.</p></div></div>
+</section>
+
+<section class="chapter" id="ch1">
+<div class="cn">CHAPTER 01</div><div class="ct">What Is a Moral Agent?</div>
+<p class="ci">The lesson opens by anchoring moral agency in an everyday example before defining it formally (lesson opening slides).</p>
+
+<h2>Moral Agents in Practice</h2>
+<p>A moral society depends on individuals acting as moral agents. By making ethical decisions, influencing others, and upholding justice, moral agents shape a community where fairness, respect, and responsibility thrive — everyone has the potential to be a moral agent, contributing to a better and more just world.</p>
+<div class="box blue"><div class="bico">🏫</div><div class="bbd"><div class="btt">Example — Students as Moral Agents</div>
+<p class="btx">In education, teachers, students, and school administrators act as moral agents by promoting ethical behavior, integrity, and social responsibility, shaping a moral society by influencing future generations. <strong>Practicing Honesty:</strong> a student submits original work and does not copy from classmates during exams.</p></div></div>
+
+<h2>Defining Moral Agency</h2>
+<p>There will be no moral society without its agents — moral agents are the implementors of moral concepts.</p>
+<div class="law"><div class="lra">DEFINITION — FROM THE LESSON</div><div class="ltit">Moral Agency</div><div class="lyr">as given in the lesson</div>
+<div class="ldc">Moral agency means "the capacity to make moral decision based on the perception of right and wrong." Therefore, a moral agent is "being who is conscious of the concepts of right and wrong."</div></div>
+
+<h2>Moral Agents vs. Moral Patients</h2>
+<p>While all moral persons are moral patients (recipients), only some are or can be moral agents. All human persons can be receivers of morally evaluable actions; but only some of them can be sources of such actions. Normal human adults and infants, being moral persons, are moral patients; but only human adults, or humans already capable of making informed decisions, can be moral agents.</p>
+<div class="law"><div class="lra">EVANGELISTA &amp; MABAQUIAO JR., 2020 — PP. 24–38</div><div class="ltit">Rights Without Duties</div><div class="lyr">Ethics: Theories and Applications. Mandaluyong City: Anvil Publishing, Inc.</div>
+<div class="ldc">Another way of saying this is that all moral persons have moral rights, but not all have moral duties as well.</div></div>
+
+<h2>Recitation-Ready Answers <span class="pill pill-added" style="margin-left:8px">Added — Study Aid</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">KEY TERM</div><div class="inm">Moral Agent</div><div class="idc"><strong>Plain English:</strong> someone capable enough (informed, rational) to be a <em>source</em> of right/wrong actions, not just a receiver of them.<br><strong>vs. Moral Patient:</strong> a patient can only be helped or harmed; an agent can also do the helping or harming, and answer for it.<br><strong>Example:</strong> the honest student who chooses not to copy during an exam — a decision only a moral agent can be credited (or blamed) for making.</div></div>
+<div class="isc a"><div class="ico">KEY TERM</div><div class="inm">Moral Patient</div><div class="idc"><strong>Plain English:</strong> a moral person who can be affected by moral actions but isn't (yet, or ever) a source of them.<br><strong>vs. Moral Agent:</strong> has rights but not duties — a one-way relationship to morality instead of a two-way one.<br><strong>Example:</strong> an infant — it would be wrong to harm one, but an infant cannot itself be held morally responsible for anything.</div></div>
+</div>
+
+<div class="box amber"><div class="bico">💬</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 01</div>
+<div class="qa"><div class="qq">What does moral agency mean, in the lesson's own words?</div><div class="qan">"The capacity to make moral decision based on the perception of right and wrong" — a moral agent is "being who is conscious of the concepts of right and wrong."</div></div>
+<div class="qa"><div class="qq">Why is an infant a moral patient but not a moral agent?</div><div class="qan">An infant can be helped or harmed (so it has moral rights), but it isn't yet capable of making informed decisions, so it can't be held responsible for actions — it lacks moral duties.</div></div>
+<div class="qa"><div class="qq">Give the lesson's own example of a student acting as a moral agent.</div><div class="qan">Practicing Honesty — a student submits original work and does not copy from classmates during exams.</div></div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch2">
+<div class="cn">CHAPTER 02 · Recurring Framework: The Four Crosspoints</div><div class="ct">Moral Agent and Its Context</div>
+<p class="ci">Having defined the moral agent, the lesson turns to what shapes one's identity before any moral choice is ever made.</p>
+
+<div class="law"><div class="lra">DR. RAMON C. REYES — CITED IN THE LESSON</div><div class="ltit">Identity as a Product of Crosspoints</div><div class="lyr">Dr. Ramon Castillo Reyes, Ateneo de Manila University philosophy professor ("Doc Reyes"), d. January 17, 2014 — biographical detail added, not in the original slide; see Chapter 09</div>
+<div class="ldc">One's identity, who one is or who I am, is a product of many forces and events that happened outside of one's choosing.</div></div>
+
+<h2>The Four Crosspoints</h2>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Physical</div><div class="sd">Physical events or material factors such as our physical attributes, genes, or nationality.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Interpersonal</div><div class="sd">How our parents, relatives, peers, classmates, or workmates made an impact on our personality and characteristics.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Societal</div><div class="sd">The impact of our society on us, including cultural beliefs, customs, and societal practices that we do not choose.</div></div></div>
+<div class="step"><div class="snum">4</div><div class="sc"><div class="sl">Historical</div><div class="sd">Your history shapes "who one is" right now — your history is your past, and it is beyond your control.</div></div></div>
+</div>
+
+<h2>Crosspoint Examples From the Lesson <span class="pill pill-lesson" style="margin-left:8px">From the Lesson</span></h2>
+<div class="box blue"><div class="bico">🌍</div><div class="bbd"><div class="btt">Physical — Place of Birth and Living Conditions</div>
+<p class="btx">A person does not choose the country, city, or socioeconomic status they are born into. Example: a child born into poverty faces different ethical struggles than someone born into wealth, such as access to education and healthcare.</p></div></div>
+<div class="box blue"><div class="bico">👨‍👩‍👧</div><div class="bbd"><div class="btt">Interpersonal — Birth and Upbringing (Family and Environment)</div>
+<p class="btx">A person has no control over where, when, or in what circumstances they are born. Family values, cultural traditions, and early experiences influence moral perspectives. Example: a child raised in a strict religious household may develop different ethical views than someone raised in a more secular or liberal environment.</p></div></div>
+<div class="box blue"><div class="bico">⚖️</div><div class="bbd"><div class="btt">Societal — Legal and Social Justice Systems</div>
+<p class="btx">Individuals must follow the laws and justice systems of the society they are born into, even if they disagree with them. Example: someone living in a country with strict laws on personal freedoms may face ethical dilemmas about following or resisting those laws.</p></div></div>
+<div class="box blue"><div class="bico">📜</div><div class="bbd"><div class="btt">Historical — Wars and Conflicts</div>
+<p class="btx">People are born into or live through wars they did not start, yet they must navigate the moral challenges of survival, loyalty, and justice. Example: a young soldier drafted into a war must decide whether to follow orders or question the morality of war crimes.</p></div></div>
+
+<h2>Recitation-Ready Answers <span class="pill pill-added" style="margin-left:8px">Added — Study Aid</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">CROSSPOINT 1</div><div class="inm">Physical</div><div class="idc"><strong>Plain English:</strong> the body and material circumstances you were born with or into.<br><strong>vs. Interpersonal:</strong> Physical is about material/biological facts (genes, nationality); Interpersonal is about the people around you.<br><strong>Example:</strong> being born into a poor household vs. a wealthy one.</div></div>
+<div class="isc a"><div class="ico">CROSSPOINT 2</div><div class="inm">Interpersonal</div><div class="idc"><strong>Plain English:</strong> the people who raised and surrounded you shaped your values before you could choose your own.<br><strong>vs. Societal:</strong> Interpersonal is your specific family/peers; Societal is the wider culture everyone in your country shares.<br><strong>Example:</strong> a child's ethics shaped by a strict religious upbringing.</div></div>
+<div class="isc g"><div class="ico">CROSSPOINT 3</div><div class="inm">Societal</div><div class="idc"><strong>Plain English:</strong> the laws, customs, and culture of the society you happen to live in.<br><strong>vs. Historical:</strong> Societal is about the present-day rules around you; Historical is about the past events that came before you.<br><strong>Example:</strong> having to live under a country's strict laws on personal freedom.</div></div>
+<div class="isc"><div class="ico">CROSSPOINT 4</div><div class="inm">Historical</div><div class="idc"><strong>Plain English:</strong> events from the past — including ones before you were born — that still shape who you are now.<br><strong>vs. Physical:</strong> Physical is about your body/material facts; Historical is about your timeline and the events you were born into.<br><strong>Example:</strong> a soldier drafted into a war he didn't start.</div></div>
+</div>
+
+<div class="box amber"><div class="bico">💬</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 02</div>
+<div class="qa"><div class="qq">Name the four crosspoints, in the lesson's order.</div><div class="qan">Physical, Interpersonal, Societal, Historical.</div></div>
+<div class="qa"><div class="qq">Which crosspoint covers a person's genes, physical attributes, and nationality?</div><div class="qan">The Physical crosspoint.</div></div>
+<div class="qa"><div class="qq">According to Dr. Reyes, what is identity a product of?</div><div class="qan">Many forces and events that happened outside of one's own choosing.</div></div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch3">
+<div class="cn">CHAPTER 03 · Recurring Framework: Three Levels, Six Stages</div><div class="ct">Kohlberg's Six Stages of Moral Development</div>
+<p class="ci">The lesson's largest section reorganizes moral reasoning itself into a developmental sequence, grouped into three levels of two stages each.</p>
+
+<div class="isg">
+<div class="isc"><div class="ico">PSYCHOLOGIST</div><div class="inm">Lawrence Kohlberg</div><div class="idc">American developmental psychologist. The lesson gives only "(1927–1987)." <strong>Verified:</strong> born October 25, 1927 (Bronxville, New York); died — most commonly cited as January 17, 1987, though a few otherwise-reliable sources give January 19, 1987. See Chapter 09.</div></div>
+</div>
+
+<h2>The Six Stages, Level by Level <span class="pill pill-lesson" style="margin-left:8px">From the Lesson</span></h2>
+<div class="gg">
+<div class="gc" data-g="1"><div class="gera">STAGE 1 · PRECONVENTIONAL</div><div class="gtit">Obedience and Punishment Orientation</div><p class="gsp">The child assumes powerful authorities hand down a fixed set of rules to be unquestioningly obeyed. "It's bad to steal" — because "you'll get punished" (Kohlberg, 1958b). <strong>Example:</strong> a child does not steal candy because they fear getting spanked.</p></div>
+<div class="gc" data-g="2"><div class="gera">STAGE 2 · PRECONVENTIONAL</div><div class="gtit">Instrumental-Relativist</div><p class="gsp">Children recognize there isn't just one right view; different people have different viewpoints, and each is free to pursue their own interests. Morality is based on personal rewards and benefits. <strong>Example:</strong> a child shares their toy because they expect a reward in return.</p></div>
+<div class="gc" data-g="3"><div class="gera">STAGE 3 · CONVENTIONAL</div><div class="gtit">Good Interpersonal Relationships</div><p class="gsp">Entering their teens, people see morality as more than deals — they should live up to family/community expectations and behave in "good" ways, with love, empathy, trust, and concern for others. <strong>Example:</strong> a teenager follows school rules to gain approval from teachers and friends.</p></div>
+<div class="gc" data-g="4"><div class="gera">STAGE 4 · CONVENTIONAL</div><div class="gtit">Maintaining the Social Order</div><p class="gsp">Concern broadens to society as a whole: obeying laws, respecting authority, and performing one's duties so the social order is maintained (Colby &amp; Kohlberg, 1983, p. 27). <strong>Example:</strong> an employee doesn't steal from work because it's against the law, even if no one would find out.</p></div>
+<div class="gc" data-g="5"><div class="gera">STAGE 5 · POSTCONVENTIONAL</div><div class="gtit">Social Contract and Individual Rights</div><p class="gsp">People step back and ask "what makes for a good society?", evaluating existing societies against the rights and values a society <em>ought</em> to uphold — a "prior-to-society" perspective (Colby &amp; Kohlberg, 1983, p. 22). <strong>Example:</strong> a citizen protests an unfair law because they believe it violates human rights.</p></div>
+<div class="gc" data-g="6"><div class="gera">STAGE 6 · POSTCONVENTIONAL</div><div class="gtit">Universal Principles</div><p class="gsp">Justice requires treating all parties impartially and respecting everyone's basic dignity — even against laws or society, guided by self-chosen ethical principles. <strong>Example:</strong> a person hides a refugee in their home, even though it's illegal, believing in the moral duty to protect human life.</p></div>
+</div>
+
+<h2>Recitation-Ready Answers, Stage by Stage <span class="pill pill-added" style="margin-left:8px">Added — Study Aid</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">STAGE 1</div><div class="inm">Obedience &amp; Punishment</div><div class="idc"><strong>Plain English:</strong> right and wrong = whatever avoids getting punished.<br><strong>vs. Stage 2:</strong> Stage 1 obeys out of fear; Stage 2 acts for personal gain, not just to dodge punishment.<br><strong>Example:</strong> not stealing candy purely to avoid a spanking.</div></div>
+<div class="isc a"><div class="ico">STAGE 2</div><div class="inm">Instrumental-Relativist / Self-Interest</div><div class="idc"><strong>Plain English:</strong> "what's in it for me?" morality — do good if it gets you something back.<br><strong>vs. Stage 1:</strong> Stage 2 recognizes different viewpoints exist; Stage 1 still thinks there's one fixed rulebook.<br><strong>Example:</strong> sharing a toy expecting praise or a toy in return.</div></div>
+<div class="isc g"><div class="ico">STAGE 3</div><div class="inm">Good Interpersonal Relationships</div><div class="idc"><strong>Plain English:</strong> be "good" to keep relationships and win approval.<br><strong>vs. Stage 4:</strong> Stage 3 cares about pleasing people close to you; Stage 4 cares about the rules of society at large.<br><strong>Example:</strong> a teen follows school rules to stay in their teachers' and friends' good graces.</div></div>
+<div class="isc"><div class="ico">STAGE 4</div><div class="inm">Maintaining the Social Order</div><div class="idc"><strong>Plain English:</strong> follow the law and do your duty, because society needs order.<br><strong>vs. Stage 5:</strong> Stage 4 asks "is it legal?"; Stage 5 asks "is the law itself just?"<br><strong>Example:</strong> not stealing from work purely because it's illegal, not because anyone's watching.</div></div>
+<div class="isc a"><div class="ico">STAGE 5</div><div class="inm">Social Contract &amp; Individual Rights</div><div class="idc"><strong>Plain English:</strong> laws are only good if they actually serve a good, rights-respecting society — and can be changed if they don't.<br><strong>vs. Stage 6:</strong> Stage 5 still works through democratic/legal processes; Stage 6 will act against them if justice demands it.<br><strong>Example:</strong> protesting a law believed to violate human rights.</div></div>
+<div class="isc g"><div class="ico">STAGE 6</div><div class="inm">Universal Principles</div><div class="idc"><strong>Plain English:</strong> self-chosen ethical principles come before any law or social approval.<br><strong>vs. Stage 5:</strong> Stage 6 will break an unjust law directly, not just work to change it.<br><strong>Example:</strong> hiding a refugee illegally, believing it's a moral duty to protect a human life.</div></div>
+</div>
+
+<h2>Kohlberg's Moral Stages — Levels &amp; Ages <span class="pill pill-lesson" style="margin-left:8px">From the Lesson</span></h2>
+<div class="tw"><table>
+<thead><tr><th>Level &amp; Age</th><th>Stage</th><th>What determines right and wrong?</th></tr></thead>
+<tbody>
+<tr><td>Preconventional: Up to the Age of 9</td><td>Punishment &amp; Obedience</td><td>Right and wrong defined by what you get punished for. If you get told off for stealing, then obviously stealing is wrong.</td></tr>
+<tr><td>Preconventional: Up to the Age of 9</td><td>Instrumental - Relativist</td><td>Similar, but right and wrong is now determined by what we are rewarded for, and by doing what others want. Any concern for others is motivated by selfishness.</td></tr>
+<tr><td>Conventional: Most adolescents and adults</td><td>Interpersonal concordance</td><td>Being good is whatever pleases others. The child adopts a conformist attitude to morality; right and wrong are determined by the majority.</td></tr>
+<tr><td>Conventional: Most adolescents and adults</td><td>Law and order</td><td>Being good now means doing your duty to society. To this end we obey laws without question and show respect for authority. Most adults do not progress past this stage.</td></tr>
+<tr><td>Postconventional: 10 to 15% of the over 20s</td><td>Social contract</td><td>Right and wrong now determined by personal values, although these can be over-ridden by democratically agreed laws. When laws infringe our own sense of justice, we can choose to ignore them.</td></tr>
+<tr><td>Postconventional: 10 to 15% of the over 20s</td><td>Universal ethical principle</td><td>We now live in accordance with deeply held moral principles which are seen as more important than the laws of the land.</td></tr>
+</tbody></table></div>
+
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Second Age-Bracket Graphic — Doesn't Fully Match the Table Above</div>
+<p class="btx">The lesson also includes a step-style diagram labeling the same six stages with <em>different</em> age cutoffs: Level One Preconventional = "younger than six," Level Two Conventional = "7 to 11 years," Level Three Postconventional = "11 years on." This conflicts with the table above ("up to the age of 9" for Preconventional). Both are reproduced faithfully because both appear in the lesson — don't treat either age bracket as the one precise cutoff. Full note in Chapter 09.</p></div></div>
+
+<div class="box amber"><div class="bico">💬</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 03</div>
+<div class="qa"><div class="qq">List the three levels of Kohlberg's theory, in order.</div><div class="qan">Preconventional, Conventional, Postconventional.</div></div>
+<div class="qa"><div class="qq">Which stage has a person obeying purely to avoid punishment?</div><div class="qan">Stage 1 — Obedience and Punishment Orientation.</div></div>
+<div class="qa"><div class="qq">What's the key difference between Stage 4 and Stage 5?</div><div class="qan">Stage 4 asks whether an action is legal/orderly; Stage 5 asks whether the law itself is just, and is willing to see it changed.</div></div>
+<div class="qa"><div class="qq">Give the lesson's example for Stage 6.</div><div class="qan">A person hides a refugee in their home, even though it is illegal, because they believe in the moral duty to protect human life.</div></div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch4">
+<div class="cn">CHAPTER 04 · Applying Kohlberg's Three Levels</div><div class="ct">The Heinz Dilemma</div>
+<p class="ci">The classic case Kohlberg used to probe which stage of reasoning a person applies — the point isn't which choice someone makes, but the reasoning behind it.</p>
+
+<div class="box violet"><div class="bico">💊</div><div class="bbd"><div class="btt">The Dilemma — From the Lesson</div>
+<p class="btx">A woman was on her deathbed. There was one drug that doctors thought might save her — a form of radium a druggist in the same town had recently discovered. The drug was expensive to make, but the druggist charged ten times what it cost him: he paid $200 for the radium and charged $2,000 for a small dose. The woman's husband, Heinz, went to everyone he knew to borrow the money, but could only get about $1,000 — half of what it cost. He told the druggist his wife was dying and asked him to sell it cheaper or let him pay later. The druggist refused: "No, I discovered the drug and I'm going to make money from it." Desperate, Heinz broke into the man's laboratory to steal the drug for his wife.<br><br>Should Heinz have broken into the laboratory to steal the drug for his wife? Why or why not? (Source: <a href="https://en.wikipedia.org/wiki/Heinz_dilemma" style="color:var(--blue)">en.wikipedia.org/wiki/Heinz_dilemma</a>, as linked in the lesson.)</p></div></div>
+
+<div class="box amber"><div class="bico">💭</div><div class="bbd"><div class="btt">There's No Single "Correct" Answer</div>
+<p class="btx">Kohlberg's method scores the <em>reasoning</em> behind a person's choice, not whether they said "steal" or "don't steal." The table below shows how each of the three levels can justify either choice.</p></div></div>
+
+<h2>Reasoning by Level and Stage <span class="pill pill-lesson" style="margin-left:8px">From the Lesson</span></h2>
+<div class="tw"><table>
+<thead><tr><th>Level</th><th>Stage</th><th>Heinz should steal, because...</th><th>Heinz should NOT steal, because...</th></tr></thead>
+<tbody>
+<tr><td>Pre-Conventional</td><td>Obedience</td><td>It is only worth $200, not what the druggist wanted; Heinz had even offered to pay for it and wasn't stealing anything else.</td><td>He will be put in prison, which will mean he is a bad person.</td></tr>
+<tr><td>Pre-Conventional</td><td>Self-interest</td><td>He will be much happier if he saves his wife, even if he has to serve a prison sentence.</td><td>Prison is an awful place — he would more likely languish in a jail cell than mourn his wife's death.</td></tr>
+<tr><td>Conventional</td><td>Conformity</td><td>His wife expects it; he wants to be a good husband.</td><td>Stealing is bad and he is not a criminal; he tried everything he could without breaking the law — you cannot blame him.</td></tr>
+<tr><td>Conventional</td><td>Law-and-order</td><td>His wife will benefit, but he should also take the prescribed punishment for the crime, as well as paying the druggist what he is owed.</td><td>Criminals cannot run around without regard for the law; actions have consequences, and the law prohibits stealing.</td></tr>
+<tr><td>Post-Conventional</td><td>Social contract orientation</td><td>Everyone has a right to choose life, regardless of the law.</td><td>The scientist has a right to fair compensation — even if his wife is sick, that doesn't make Heinz's actions right.</td></tr>
+<tr><td>Post-Conventional</td><td>Universal human ethics</td><td>Saving a human life is a more fundamental value than another person's property rights.</td><td>Others may need the medicine just as badly, and their lives are equally significant.</td></tr>
+</tbody></table></div>
+
+<h2>Recitation-Ready Answer <span class="pill pill-added" style="margin-left:8px">Added — Study Aid</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">CASE</div><div class="inm">The Heinz Dilemma</div><div class="idc"><strong>Plain English:</strong> a man must decide whether to steal an overpriced drug to save his dying wife.<br><strong>Why it's used:</strong> the same "should he steal it?" question can be justified from every one of Kohlberg's six stages — it isolates <em>how</em> someone reasons, not <em>what</em> they decide.<br><strong>Example use:</strong> comparing a Stage 1 answer ("he'll go to prison") against a Stage 6 answer ("a life outweighs property rights") for the same final choice.</div></div>
+</div>
+
+<div class="box amber"><div class="bico">💬</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 04</div>
+<div class="qa"><div class="qq">Why did Heinz break into the laboratory?</div><div class="qan">To steal a drug he couldn't afford, to save his dying wife, after the druggist refused to lower the price or let him pay later.</div></div>
+<div class="qa"><div class="qq">What does the Heinz Dilemma actually measure?</div><div class="qan">The stage/level of moral reasoning behind a person's answer — not whether they say Heinz should or shouldn't have stolen the drug.</div></div>
+<div class="qa"><div class="qq">Give a Postconventional (Stage 6) reason Heinz should steal the drug.</div><div class="qan">Saving a human life is a more fundamental value than another person's property rights.</div></div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch5">
+<div class="cn">CHAPTER 05</div><div class="ct">Rights, Duties, and Moral Agency</div>
+<p class="ci">Heading from the lesson: "Moral Agent: Characteristics and Role in Building Moral Society."</p>
+
+<div class="law"><div class="lra">EVANGELISTA &amp; MABAQUIAO JR., 2020 — PP. 24–38</div><div class="ltit">To Be a Person Is to Be a Bearer of Rights</div><div class="lyr">Ethics: Theories and Applications. Mandaluyong City: Anvil Publishing, Inc.</div>
+<div class="ldc">"To be a person is to be a bearer of rights." When we speak of moral rights, we refer to the moral rights of humans that are over and above, or better yet, higher than their legal rights. Moral rights are identical to "human rights."</div></div>
+
+<p>Rights correlate duties — therefore, to protect and promote another person's rights, there is a need for duties and responsibilities.</p>
+
+<div class="box green"><div class="bico">✅</div><div class="bbd"><div class="btt">Core Principle — From the Lesson</div>
+<p class="btx">Every moral person has rights, but not all moral persons can do their duties. Moral agency means moral persons in duty — only moral agents have both rights and duties. Therefore, if a moral agent possesses duties, only a moral agent can be responsible and accountable for his/her actions.</p></div></div>
+
+<h2>Recitation-Ready Answers <span class="pill pill-added" style="margin-left:8px">Added — Study Aid</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">KEY TERM</div><div class="inm">Moral Rights</div><div class="idc"><strong>Plain English:</strong> rights that sit above and beyond a person's legal rights — identical to "human rights."<br><strong>vs. Legal Rights:</strong> legal rights come from a country's laws and can vary or be revoked; moral rights don't depend on any government granting them.<br><strong>Example:</strong> the right to life is treated as a moral right regardless of what any single country's law says.</div></div>
+<div class="isc a"><div class="ico">KEY TERM</div><div class="inm">Rights-Duties Correlation</div><div class="idc"><strong>Plain English:</strong> having a right implies someone else has a duty to respect it.<br><strong>vs. Ch. 01's Moral Patient/Agent split:</strong> this is the same idea restated as a relationship — a moral patient's rights create duties for the moral agents around them.<br><strong>Example:</strong> a citizen's right to a fair trial creates a duty on the state to actually provide one.</div></div>
+</div>
+
+<div class="box amber"><div class="bico">💬</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 05</div>
+<div class="qa"><div class="qq">What does it mean to say moral rights are "identical to human rights"?</div><div class="qan">Moral rights aren't granted by any government — they belong to a person simply for being human, and rank higher than whatever a country's legal rights happen to say.</div></div>
+<div class="qa"><div class="qq">Why do only moral agents — not all moral persons — have duties?</div><div class="qan">Because duties require the capacity to be held responsible and accountable, which is exactly what separates a moral agent from a moral patient.</div></div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch6">
+<div class="cn">CHAPTER 06</div><div class="ct">Man the Moral Agent: Reason, Freedom, and Responsibility</div>
+<p class="ci">Heading from the lesson, closing out the module's theory before its assessment section.</p>
+
+<div class="box violet"><div class="bico">🧠</div><div class="bbd"><div class="btt">Accountability's Source — From the Lesson</div>
+<p class="btx">Accountability is a natural product of our rationality, which consists of our reason (or intelligence) and free will (or freedom).</p></div></div>
+
+<h2>Being "Tao": Human Limitation and the Power of the Will</h2>
+<div class="law"><div class="lra">FROM THE LESSON — AS WRITTEN</div><div class="ltit">"Sapagkat ako'y tao lamang"</div><div class="lyr">reproduced exactly as given in the source slide</div>
+<div class="ldc">"Sapagkat ako'y tao lamang," may point out to human limitations but being human also possesses the power. Being "tao," does not simply point out our limitations, but it has also implications in the realm of morality.</div></div>
+<div class="box blue"><div class="bico">🇵🇭</div><div class="bbd"><div class="btt">Added — Plain-English Reading</div>
+<p class="btx"><strong>"Sapagkat ako'y tao lamang"</strong> is Filipino for <strong>"because I am only human."</strong> The source sentence's own English phrasing is a little garbled — the likely intended point: being merely "tao" (human) names our limitations, but it also names our power — the same limited condition that makes us fallible is what gives humans the moral capacity to choose at all.</p></div></div>
+
+<h2>The Will</h2>
+<div class="law"><div class="lra">OCAMPO, 2018 — P. 19</div><div class="ltit">The Will as the Power of the Soul</div><div class="lyr">Ethics Primer: A Young Person's Guide to Moral Reasoning. Quezon City: Vibal Group, Inc.</div>
+<div class="ldc">The will is the power of the soul that starts the dynamics of what it takes human beings to act…the will, broadly considered, may be understood simply as that power of the soul by which a human being is in control of his actions…To have control means that as a person acts, it is possible to act otherwise or not to act at all.</div></div>
+
+<h2>Recitation-Ready Answers <span class="pill pill-added" style="margin-left:8px">Added — Study Aid</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">KEY TERM</div><div class="inm">Reason</div><div class="idc"><strong>Plain English:</strong> the intelligence that lets a person figure out right from wrong in the first place.<br><strong>vs. Freedom:</strong> Reason is the "figuring out" half of rationality; Freedom (the will) is the "choosing to act on it" half.<br><strong>Example:</strong> working out that lying to a friend is wrong, before ever deciding whether to actually lie.</div></div>
+<div class="isc a"><div class="ico">KEY TERM</div><div class="inm">Freedom / The Will</div><div class="idc"><strong>Plain English:</strong> the power of the soul that lets a person control their own actions — including the power to act otherwise or not act at all.<br><strong>vs. Reason:</strong> Freedom is what makes an action genuinely yours to be praised or blamed for, once Reason has judged it.<br><strong>Example:</strong> choosing not to cheat, even when you could easily get away with it.</div></div>
+<div class="isc g"><div class="ico">KEY TERM</div><div class="inm">Responsibility / Accountability</div><div class="idc"><strong>Plain English:</strong> being answerable for actions that came from your own reason and free will.<br><strong>vs. Ch. 05's Rights-Duties Correlation:</strong> this is the "duties" half in practice — you can only be held accountable for what you were free and rational enough to choose.<br><strong>Example:</strong> a moral agent facing consequences for a decision they made with full knowledge of right and wrong.</div></div>
+</div>
+
+<div class="box amber"><div class="bico">💬</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 06</div>
+<div class="qa"><div class="qq">What two things make up rationality, according to the lesson?</div><div class="qan">Reason (intelligence) and free will (freedom).</div></div>
+<div class="qa"><div class="qq">Translate "Sapagkat ako'y tao lamang."</div><div class="qan">"Because I am only human."</div></div>
+<div class="qa"><div class="qq">According to Ocampo, what does it mean to have control over one's actions?</div><div class="qan">That as a person acts, it is possible to act otherwise, or not to act at all — control means the action could genuinely have gone a different way.</div></div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch7">
+<div class="cn">CHAPTER 07</div><div class="ct">Comprehensive Assessment (From the Lesson)</div>
+<p class="ci"><span class="pill pill-lesson">From the Lesson</span> This chapter reproduces the module's own embedded assessment items exactly as given — no answers included here on purpose. A suggested answer key (with genuinely ambiguous items flagged) lives in the companion practice file, referenced in Chapter 00.</p>
+
+<h2>Give Your Comprehensive Answer — 5 Essay Questions</h2>
+<ol>
+<li>What does it mean to be a moral agent, and how does individual moral responsibility contribute to the development of a just and ethical society?</li>
+<li>How do different social institutions (such as family, education, and government) shape individuals into moral agents, and what responsibilities do they have in fostering moral values in society?</li>
+<li>Can a society thrive without a strong moral foundation? Discuss the consequences of a morally weak society and the role of moral agents in preventing societal decay.</li>
+<li>In an increasingly globalized and digital world, how can moral agents adapt to new ethical challenges while maintaining their responsibility in building a moral society?</li>
+<li>Compare and contrast different philosophical perspectives on moral agency (e.g., virtue ethics, utilitarianism, deontology) and their implications for creating a morally responsible community.</li>
+</ol>
+
+<h2>Recitation-Ready Outlines <span class="pill pill-added" style="margin-left:8px">Added — Study Aid, not full answers</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">ESSAY Q1</div><div class="inm">Moral Agent → Just Society</div><div class="idc">Define moral agent (Ch. 01) → link to "no moral society without its agents" → tie individual responsibility to the rights-duties correlation (Ch. 05).</div></div>
+<div class="isc a"><div class="ico">ESSAY Q2</div><div class="inm">Institutions Shape Agents</div><div class="idc">Map family/education/government onto the Interpersonal and Societal crosspoints (Ch. 02) → each institution is a "force outside one's choosing" that builds moral character.</div></div>
+<div class="isc g"><div class="ico">ESSAY Q3</div><div class="inm">Society Without Morals</div><div class="idc">Recall Ch. 01's "no moral society without its agents" → argue decay follows if agents stop exercising rights/duties (Ch. 05) or reasoned freedom (Ch. 06).</div></div>
+<div class="isc"><div class="ico">ESSAY Q4</div><div class="inm">Digital-Age Ethics</div><div class="idc">Apply Kohlberg's postconventional stages (Ch. 03) to new dilemmas (e.g., online harm) — argue mature moral agents reason from principle, not just rules-as-written.</div></div>
+<div class="isc a"><div class="ico">ESSAY Q5</div><div class="inm">Comparing Ethical Theories</div><div class="idc">Not covered by name in this module — this question draws on general ethics theory (virtue ethics, utilitarianism, deontology) rather than Module 4's own content; revisit earlier modules or your professor's lecture on ethical theories for this one.</div></div>
+</div>
+
+<h2>Word Bank — CHOICES <span class="pill pill-lesson" style="margin-left:8px">From the Lesson</span></h2>
+<p>Fifteen terms for the fifteen blanks below. "Stage 6: Universal Ethical Principles" is intentionally listed twice — it's the correct answer for two separate blanks.</p>
+<div class="tw"><table>
+<thead><tr><th>Word Bank</th><th>Word Bank</th><th>Word Bank</th></tr></thead>
+<tbody>
+<tr><td>Conventional Level</td><td>Stage 6: Universal Ethical Principles</td><td>Moral Reasoning</td></tr>
+<tr><td>Stage 4: Law and Order Orientation</td><td>Stage 6: Universal Ethical Principles</td><td>Freedom</td></tr>
+<tr><td>Responsibility</td><td>Kohlberg's Theory of Moral Development</td><td>Stage 5: Social Contract and Individual Rights</td></tr>
+<tr><td>Stage 1: Obedience and Punishment Orientation</td><td>Stage 2: Self-Interest Orientation</td><td>Moral Agent</td></tr>
+<tr><td>Ethical Judgment</td><td>Pre-Conventional Level</td><td>Stage 3: Interpersonal Accord and Conformity</td></tr>
+</tbody></table></div>
+
+<h2>Identification Exercise (15 Items) <span class="pill pill-lesson" style="margin-left:8px">From the Lesson</span></h2>
+<p><em>Direction: Identify the correct answer based on the given description.</em></p>
+<ol>
+<li>What is the theory developed by Lawrence Kohlberg that explains how people progress in moral reasoning?</li>
+<li>In which level of moral development do individuals base their decisions on avoiding punishment and seeking personal gain?</li>
+<li>At which stage do individuals make moral decisions based on laws and maintaining social order?</li>
+<li>What is the highest stage of moral development, where people follow self-chosen ethical principles, even if they go against societal norms?</li>
+<li>Which stage emphasizes moral decisions based on gaining approval from others and being seen as "good"?</li>
+<li>In the Post-Conventional Level, which stage recognizes that laws should be based on justice and can be changed if they are unfair?</li>
+<li>What is the first stage of moral development, where children obey rules to avoid punishment?</li>
+<li>In the Pre-Conventional Level, which stage focuses on moral decisions based on personal rewards or benefits?</li>
+<li>What level of moral development do most adults operate within, where morality is based on societal rules and laws?</li>
+<li>In which stage do individuals recognize universal human rights and apply ethical reasoning to all situations, even above laws?</li>
+<li>The ability of humans to distinguish right from wrong using rational thinking.</li>
+<li>The ethical principle that allows individuals to make their own moral choices without external coercion.</li>
+<li>The concept that humans are accountable for their actions and the consequences that follow.</li>
+<li>The philosophical term referring to humans as beings capable of making ethical decisions.</li>
+<li>The moral capacity that enables a person to justify their choices based on principles of right and wrong.</li>
+</ol>
+
+<div class="box blue"><div class="bico">📎</div><div class="bbd"><div class="btt">Companion File</div>
+<p class="btx">The suggested answer key for all 15 items — including a flagged, unconfirmed call between "Ethical Judgment" and "Moral Reasoning" for items 11 and 15 — is in <strong>HUM2-Module4-Quiz-and-Practice.html</strong>, along with new practice items covering the same material.</p></div></div>
+</section>
+
+<section class="chapter" id="ch8">
+<div class="cn">CHAPTER 08</div><div class="ct">Glossary &amp; Key Terms</div>
+<p class="ci">This module's own text doesn't use any undefined abbreviations or acronyms. In their place, here's a plain-language glossary of the module's core terminology, gathered in one spot for quick review.</p>
+<div class="box blue"><div class="bico">ℹ️</div><div class="bbd"><div class="btt">No Undefined Abbreviations Found</div>
+<p class="btx">Unlike some other modules in this course, Module 4's slide deck spells out every term it uses in full — there was nothing to expand here.</p></div></div>
+
+<h2>Key Terms Glossary <span class="pill pill-added">Added — Study Aid</span></h2>
+<div class="tw"><table>
+<thead><tr><th>Term</th><th>Plain-Language Definition</th></tr></thead>
+<tbody>
+<tr><td>Moral Agent</td><td>A person capable of making informed decisions, who can be held responsible and accountable for their actions — has both moral rights and moral duties.</td></tr>
+<tr><td>Moral Patient</td><td>A moral person who can be helped or harmed by others' actions but is not (yet, or ever) a source of moral action themselves — has moral rights but not duties.</td></tr>
+<tr><td>Moral Agency</td><td>The capacity to make a moral decision based on the perception of right and wrong.</td></tr>
+<tr><td>Crosspoint</td><td>Reyes's term for a force or circumstance that shapes a person's identity from outside their own choosing (Physical, Interpersonal, Societal, or Historical).</td></tr>
+<tr><td>Preconventional Level</td><td>Kohlberg's earliest level of moral reasoning — decisions driven by avoiding punishment or seeking personal reward (Stages 1–2).</td></tr>
+<tr><td>Conventional Level</td><td>Reasoning driven by social approval and obeying laws/social order (Stages 3–4) — where most adolescents and adults operate.</td></tr>
+<tr><td>Postconventional Level</td><td>Reasoning based on self-chosen ethical principles or a "prior-to-society" evaluation of justice (Stages 5–6) — reached by a minority of adults.</td></tr>
+<tr><td>Heinz Dilemma</td><td>Kohlberg's classic case study (a man deciding whether to steal medicine to save his wife) used to reveal a person's stage of moral reasoning.</td></tr>
+<tr><td>Moral Rights</td><td>Rights higher than and independent of legal rights — treated in the lesson as identical to "human rights."</td></tr>
+<tr><td>Duties</td><td>Obligations that correlate with rights — the flip side of another person's moral rights, owed by moral agents.</td></tr>
+<tr><td>Accountability</td><td>Being answerable for one's actions — described in the lesson as a natural product of reason and free will together.</td></tr>
+<tr><td>The Will</td><td>The power of the soul by which a person controls their own actions, such that they could always have acted otherwise or not acted at all.</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="chapter" id="ch9">
+<div class="cn">CHAPTER 09</div><div class="ct">Source Verification &amp; Discrepancy Notes</div>
+<p class="ci">Everything below was checked against outside sources or against the lesson's own internal consistency. None of it changes what to recite — it's here so nothing catches you off guard.</p>
+
+<div class="mlst">
+<div class="box amber"><div class="bico">1</div><div class="bbd"><div class="btt">Kohlberg's death date — two figures circulate</div>
+<p class="btx">The lesson gives only "(1927 – 1987)." Verified birth date: October 25, 1927 (unanimous across sources). His death date is given as <strong>January 17, 1987</strong> by Wikipedia and Encyclopaedia Britannica, but as <strong>January 19, 1987</strong> by New World Encyclopedia and a peer-reviewed psychology profile (IJIP). Both fall within 1987, so the lesson's year-only claim isn't contradicted either way — just don't cite a specific day with more confidence than the sources themselves agree on.</p></div></div>
+
+<div class="box amber"><div class="bico">2</div><div class="bbd"><div class="btt">The lesson's two Kohlberg age-bracket graphics disagree with each other</div>
+<p class="btx">Slide with the "Kohlberg's Moral Stages" table gives Preconventional as "up to the Age of 9." The separate step-diagram slide gives Level One Preconventional as "younger than six," Level Two Conventional as "7 to 11 years," and Level Three Postconventional as "11 years on." These don't match. This exact pairing of two conflicting Kohlberg summary graphics circulates widely online — it isn't specific to this professor's material, but both are reproduced in Chapter 03 faithfully since both appear in the source. Treat the stage <em>content</em> as reliable; don't treat either age bracket as the single correct cutoff.</p></div></div>
+
+<div class="box blue"><div class="bico">3</div><div class="bbd"><div class="btt">Stage 2 has two different names in the same lesson</div>
+<p class="btx">Introduced as "Instrumental - Relativist" (Chapter 03's stage-by-stage section), but labeled "Self-Interest Orientation" in the CHOICES word bank and identification exercise (Chapter 07). Both refer to the same Kohlberg stage — this reads as the professor's own alternate shorthand for the identification exercise, not an error, but it's worth knowing so the two names aren't mistaken for two different stages.</p></div></div>
+
+<div class="box amber"><div class="bico">4</div><div class="bbd"><div class="btt">A slide-footer citation has a one-word title mismatch</div>
+<p class="btx">The footer on the "Four Crosspoints" slide reads "Ethics: Foundation of Moral Valuation: 102." The actual published book is titled <strong>"Ethics: Foundations of Moral Valuation"</strong> (plural "Foundations"), by Oscar G. Bulaong Jr., Mark Joseph T. Calano, Albert M. Lagliva, Michael Ner E. Mariano, and Jesus Deogracias Z. Principe (Quezon City: Rex Book Store, 2018). The book and its five authors are confirmed to exist; the specific page (102) couldn't be independently checked since only this slide excerpt was available.</p></div></div>
+
+<div class="box green"><div class="bico">5</div><div class="bbd"><div class="btt">Two citations verified as accurate, with no discrepancies</div>
+<p class="btx">Both independently confirmed as real, correctly attributed published works: <strong>Evangelista, Francis Julius N. &amp; Mabaquiao Jr., Napoleon M. (2020). Ethics: Theories and Applications.</strong> Mandaluyong City: Anvil Publishing, Inc. (ISBN 978-971-27-3575-2) — and <strong>Ocampo, Ma. Liza Ruth A. (2018). Ethics Primer: A Young Person's Guide to Moral Reasoning.</strong> Quezon City: Vibal Group, Inc.</p></div></div>
+
+<div class="box blue"><div class="bico">6</div><div class="bbd"><div class="btt">Added biographical detail — Dr. Ramon C. Reyes</div>
+<p class="btx">The lesson names him but gives no dates to check. Added for context: Ramon Castillo Reyes was a longtime Ateneo de Manila University philosophy professor known as "Doc Reyes," credited with introducing existential-phenomenological philosophy there; he died January 17, 2014, at age 79. This is supplementary identification, not a correction.</p></div></div>
+
+<div class="box green"><div class="bico">7</div><div class="bbd"><div class="btt">The duplicate "Stage 6" word-bank entry is intentional, not a typo</div>
+<p class="btx">"Stage 6: Universal Ethical Principles" appears twice in the CHOICES list (Chapter 07). This is correct as given — the identification exercise uses this exact term as the answer to two separate blanks (items 4 and 10), so the word bank lists it twice on purpose.</p></div></div>
+
+<div class="box red"><div class="bico">8</div><div class="bbd"><div class="btt">Unconfirmed items in the companion answer key</div>
+<p class="btx">The lesson provides no official answer key for the 15-item identification exercise. Fourteen of the fifteen items map to one word-bank term with high confidence; items 11 and 15 could each plausibly be "Ethical Judgment" or "Moral Reasoning." The companion practice file flags this pairing explicitly as an unconfirmed guess rather than presenting one arbitrary pick as certain — confirm with your professor before treating either as final.</p></div></div>
+</div>
+</section>
+
+<div class="footer"><p>QCU Academic OS · AY 2026-2027 · Compiled by <strong>KianoRoku18Ino</strong> · github.com/KianoRoku18Ino</p></div>
+</main>
+
+</body>
+</html>
