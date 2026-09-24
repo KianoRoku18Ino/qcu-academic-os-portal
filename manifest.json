@@ -51,6 +51,14 @@
                   "order": 3,
                   "week": 3,
                   "html": "assets/guides/year-1/sem-1/hum2/week-3.html"
+                },
+                {
+                  "id": "week-4",
+                  "kind": "week",
+                  "label": "Week 4 — The Moral Agents",
+                  "order": 4,
+                  "week": 4,
+                  "html": "assets/guides/year-1/sem-1/hum2/week-4.html"
                 }
               ]
             },
