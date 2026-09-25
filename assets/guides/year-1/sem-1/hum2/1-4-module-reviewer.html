@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HUM2 Ethics: Modules 1 to 4 Quiz Reviewer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+/* --- CORE PALETTE (shared across every subject, do not change) --- */
+/* --- ACCENT SWAP: add ONE extra variable per subject, matched to the subject's identity ---
+   RIZAL    -> --maroon:#B91C3C   (border tint stays blue, maroon used sparingly for RIZAL-specific tags)
+   HUM2     -> --violet:#8B5CF6  and --bdr becomes rgba(139,92,246,.15)  (violet-tinted borders)
+   SOCSCI3  -> --cyan:#06B6D4    (border tint stays blue)
+   PATHFIT1 -> no new hue; --bdr becomes rgba(16,185,129,.15) (green-tinted borders), --sw:260px (shorter subject name)
+   CC101/CC102/WS101 (technical/core) -> keep default blue border tint, no extra hue needed
+   Default rule: only shift --bdr's tint (and add one named hue var) when the subject's identity calls for it
+   (humanities/ethics -> violet, history/law -> maroon, social science -> cyan, PE/health -> green).
+   Otherwise leave the palette exactly as below. */
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--bgcode:#060D18;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--purple:#8B5CF6;--violet:#8B5CF6;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(139,92,246,.15);--sw:285px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+
+/* Sidebar */
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvs{padding:9px 17px 3px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t3)}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover,.nvi a.act{color:var(--t1);background:rgba(59,130,246,.08);border-left-color:var(--blue)}
+.nvi a.act{color:var(--blue);font-weight:500}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:20px}
+
+/* Main / Hero */
+.main{margin-left:var(--sw)}
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:52px 52px 42px;position:relative;overflow:hidden}
+.hero::before{content:'01001000';position:absolute;top:-10px;right:15px;font-family:'JetBrains Mono',monospace;font-size:115px;font-weight:900;color:rgba(59,130,246,.04);letter-spacing:-5px;user-select:none;line-height:1}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--blue)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:48px;font-weight:700;line-height:1.05;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#3B82F6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:18px;color:var(--t2);margin-bottom:19px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+
+/* Chapter shell */
+.chapter{padding:44px 52px;border-bottom:1px solid var(--bdr);max-width:970px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:19.5px;font-weight:600;margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--blue);border-radius:2px;flex-shrink:0}
+h3{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--blue);margin:22px 0 9px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+
+/* Callout boxes (blue=info/link, amber=caution, green=confirmed/tip, red=warning) */
+.box{border-radius:8px;padding:13px 17px;margin:15px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}.red .btt{color:var(--red)}
+
+/* Tables */
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--blue);font-size:12px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(59,130,246,.04)}
+tbody td{padding:9px 13px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}
+.nt td:not(:first-child){color:var(--amber);font-family:'JetBrains Mono',monospace}
+
+/* Code blocks */
+.codeblock{background:var(--bgcode);border:1px solid var(--bdr);border-radius:8px;margin:15px 0;overflow:hidden}
+.cbhd{display:flex;align-items:center;justify-content:space-between;padding:8px 13px;background:var(--bgr);border-bottom:1px solid var(--bdr)}
+.cbhl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:1px}
+.dots{display:flex;gap:4px}.dot{width:9px;height:9px;border-radius:50%}.dr{background:#EF4444}.dy{background:#F59E0B}.dg{background:#10B981}
+pre{padding:16px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.75;color:#C4D4E8}
+
+/* Numbered steps */
+.steps{margin:15px 0}
+.step{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.snum{background:var(--blue);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace}
+.sc{flex:1}
+.sl{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:2px}
+.sd{color:var(--t2);font-size:13px;line-height:1.7}
+.sd code{font-family:'JetBrains Mono',monospace;background:var(--bgr);padding:1px 5px;border-radius:3px;font-size:11.5px;color:var(--amber)}
+
+/* Timeline */
+.tl{margin:15px 0}
+.tli{display:flex;gap:14px;margin-bottom:18px;position:relative}
+.tli::before{content:'';position:absolute;left:73px;top:30px;width:1px;height:calc(100% + 5px);background:var(--bdr)}
+.tli:last-child::before{display:none}
+.tlyr{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--amber);font-weight:700;min-width:58px;padding-top:12px;text-align:right}
+.tldot{width:9px;height:9px;background:var(--blue);border-radius:50%;border:2px solid var(--bg);flex-shrink:0;margin-top:14px}
+.tlc{background:var(--bgc);border:1px solid var(--bdr);border-radius:8px;padding:11px 15px;flex:1}
+.tlt{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:3px}
+.tld{color:var(--t2);font-size:12.5px;line-height:1.65}
+
+/* 2-up feature grid cards (with faint background watermark letter/number via data-g) */
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.gc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;position:relative;overflow:hidden}
+.gc::before{content:attr(data-g);position:absolute;top:-10px;right:7px;font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:900;color:rgba(59,130,246,.05);line-height:1}
+.gera{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.gtit{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:7px}
+.gsp{font-size:12.5px;color:var(--t2);margin:0;line-height:1.7}
+.gsp strong{color:var(--blue)}
+
+/* 3-up compact profile cards */
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:15px 0}
+.pcrd{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:13px 15px}
+.pnm{font-weight:700;color:var(--t1);font-size:13px;margin-bottom:2px}
+.pdt{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.pttl{font-size:11px;color:var(--blue);font-weight:600;margin-bottom:4px}
+.pdsc{font-size:12px;color:var(--t2);line-height:1.6}
+
+/* Layer/list rows (e.g. OSI model, protocol stacks) */
+.osi{margin:15px 0}
+.osil{display:flex;align-items:center;gap:12px;padding:10px 15px;border:1px solid var(--bdr);margin-bottom:-1px;transition:background .15s}
+.osil:hover{background:rgba(59,130,246,.04)}
+.osil:first-child{border-radius:8px 8px 0 0}
+.osil:last-child{border-radius:0 0 8px 8px}
+.osin{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;min-width:22px;color:var(--amber)}
+.osnm{font-weight:600;color:var(--t1);min-width:115px;font-size:13px}
+.osip{font-size:11px;color:var(--blue);font-family:'JetBrains Mono',monospace;min-width:155px}
+.osid{font-size:12.5px;color:var(--t2);flex:1}
+
+/* 2-up top-accent info cards (.a=amber .g=green .p=purple, default=blue) */
+.isg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.isc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;border-top:3px solid var(--blue)}
+.isc.a{border-top-color:var(--amber)}.isc.g{border-top-color:var(--green)}.isc.p{border-top-color:var(--purple)}
+.ico{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-bottom:3px}
+.inm{font-weight:700;font-size:14px;color:var(--t1);margin-bottom:6px}
+.idc{font-size:12.5px;color:var(--t2);line-height:1.7}
+.ieg{font-size:11.5px;color:var(--green);margin-top:6px}
+
+/* Mistake/pitfall list */
+.mlst{margin:11px 0}
+.mitem{display:flex;gap:11px;padding:10px 0;border-bottom:1px solid var(--bdr);align-items:flex-start}
+.mitem:last-child{border-bottom:none}
+.mnm{font-weight:700;color:var(--red);min-width:110px;font-size:13px}
+.mdc{font-size:13px;color:var(--t2);line-height:1.65}
+
+/* ASCII/file-tree block */
+.tree{font-family:'JetBrains Mono',monospace;font-size:12.5px;background:var(--bgcode);border:1px solid var(--bdr);border-radius:8px;padding:15px 19px;color:var(--t2);line-height:2;margin:12px 0;overflow-x:auto;white-space:pre}
+
+/* Law/citation callout (RA numbers, formal definitions, primary-source quotes) */
+.law{background:var(--bgc);border:1px solid var(--bdr);border-left:4px solid var(--red);border-radius:8px;padding:15px 17px;margin:11px 0}
+.lra{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--red);font-weight:700;margin-bottom:3px}
+.ltit{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:4px}
+.lyr{font-size:11px;color:var(--t3);margin-bottom:7px}
+.ldc{font-size:13px;color:var(--t2);line-height:1.75}
+
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:4px;font-size:13px;line-height:1.75}
+li strong{color:var(--t1)}
+
+.footer{padding:34px 52px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--blue)}
+
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.gg,.pg,.isg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="sidebar">
+<div class="sbh"><div class="sbb">HUM2 · QCU BSIT</div><div class="sbt">Ethics: Modules 1 to 4</div><div class="sbs">Quiz Reviewer · AY 2026-2027</div></div>
+<ul class="nvl"><li class="nvs">Reviewer</li><li class="nvi"><a href="#overview"><span class="nn">00</span>Overview and Quick Identify Map</a></li><li class="nvi"><a href="#ch1"><span class="nn">01</span>Module 1: Basic Concepts</a></li><li class="nvi"><a href="#ch2"><span class="nn">02</span>Module 2: Morality and Other Normative Systems</a></li><li class="nvi"><a href="#ch3"><span class="nn">03</span>Module 3: Ethical Levels and Conscience</a></li><li class="nvi"><a href="#ch4"><span class="nn">04</span>Module 4: The Moral Agent</a></li><li class="nvi"><a href="#ch5"><span class="nn">05</span>Practice: Which Is Which?</a></li><li class="nvi"><a href="#ch6"><span class="nn">06</span>Essay Prompts and What to Use</a></li></ul></nav>
+<main class="main">
+<div class="hero">
+<div class="he">QCU Academic OS · AY 2026-2027</div>
+<div class="ht">HUM2</div>
+<div class="hs">Ethics: Modules 1 to 4 Quiz Reviewer</div>
+<div class="hm"><div class="mp">Course: <span>HUM2</span></div><div class="mp">Coverage: <span>Modules 1 to 4</span></div><div class="mp">Type: <span>Humanities / Ethics</span></div><div class="mp">Source: <span>Lectures only</span></div></div>
+</div>
+<section class="chapter" id="overview"><div class="cn">CHAPTER 00</div><div class="ct">Overview and Quick Identify Map</div><p class="ci">Start here. This shows how the four modules connect and how to spot which term a clue points to.</p>
+<div class="box blue"><div class="bico">i</div><div class="bbd"><div class="btt">What this reviewer is</div><p class="btx">A quiz reviewer for Modules 1 to 4, built only from your four module guides (which follow the lectures). Every "Lecture" line is the module's own definition or example. Every "Scenario" line is a simple everyday example I wrote so you can recognize the term. Left out on purpose: verification notes, glossaries, added biographies and dates, companion-file references, group activities, and rubrics.</p></div></div>
+<h2>How the four modules connect</h2><div class="tw"><table><thead><tr><th>Module</th><th>Main question</th><th>Big terms</th></tr></thead><tbody>
+<tr><td>1. Basic Concepts</td><td>What is ethics, and how is it different from look-alikes?</td><td>Ethics, 4 areas, morals, etiquette, aesthetics, technique, issue, judgment, decision, dilemma</td></tr>
+<tr><td>2. Morality and Other Normative Systems</td><td>What actually makes something moral?</td><td>Law, religion, cultural relativism, subjectivism, psychological and ethical egoism, Gyges, Socrates</td></tr>
+<tr><td>3. Ethical Levels of Human Existence</td><td>At what level does ethics operate, and what keeps a person accountable?</td><td>Personal, societal, environmental; sanctions; conscience and its six kinds</td></tr>
+<tr><td>4. The Moral Agent</td><td>Who can be held accountable, and how does moral reasoning develop?</td><td>Moral agent, moral patient, crosspoints, Kohlberg stages, rights and duties, reason and freedom</td></tr>
+</tbody></table></div>
+<h2>Quick Identify Map: what is the question focused on?</h2><p>Read the clue, find the focus, and the term usually follows.</p><div class="tw"><table><thead><tr><th>If the clue is about...</th><th>Think...</th><th>Where</th></tr></thead><tbody>
+<tr><td>The REASON behind an action (why did they do it?)</td><td>Kohlberg: punishment = Stage 1, reward = Stage 2, approval = Stage 3, law = Stage 4, rights or unjust law = Stage 5, own principles = Stage 6</td><td>M4</td></tr>
+<tr><td>Whether an act is RIGHT or WRONG</td><td>Ethics, normative ethics, moral judgment, conscience</td><td>M1, M2, M3</td></tr>
+<tr><td>DOUBTING, cannot decide yet</td><td>Doubtful conscience (unsure about an action). If it is a hard choice between alternatives, Dilemma</td><td>M3, M1</td></tr>
+<tr><td>Too afraid of doing evil / too relaxed about it / gets it backwards / fully sure / gets it right</td><td>Scrupulous / Lax / Erroneous / Certain / Correct conscience</td><td>M3</td></tr>
+<tr><td>Self-interest as the motive</td><td>Psychological egoism (people DO act for self-interest) or Ethical egoism (people OUGHT to)</td><td>M2</td></tr>
+<tr><td>Acting when nobody could catch you</td><td>Myth of Gyges (Glaucon); Socrates answers with harmony of the soul</td><td>M2</td></tr>
+<tr><td>The standard of right is the CULTURE / the INDIVIDUAL</td><td>Cultural relativism / Moral subjectivism</td><td>M2</td></tr>
+<tr><td>Law vs morality; religion vs morality</td><td>What is legal is not necessarily moral; Euthyphro exchange</td><td>M2</td></tr>
+<tr><td>Who can be held responsible</td><td>Moral agent (rights and duties). Only helped or harmed: moral patient (rights only)</td><td>M4</td></tr>
+<tr><td>Things about you that you did not choose</td><td>Crosspoints: physical, interpersonal, societal, historical</td><td>M4</td></tr>
+<tr><td>Person, community, or nature</td><td>Personal / Societal / Environmental level</td><td>M3</td></tr>
+<tr><td>Polite / taste / the proper way of doing</td><td>Etiquette / Aesthetics / Technique (not ethics)</td><td>M1</td></tr>
+<tr><td>Debated by everyone / assessing an act / choosing what to do / hard choice</td><td>Issue / Judgment / Decision / Dilemma</td><td>M1</td></tr>
+<tr><td>What people believe / what is right / what "good" means / a professional field</td><td>Descriptive / Normative / Metaethics / Applied ethics</td><td>M1</td></tr>
+<tr><td>Study of behavior vs the behavior itself</td><td>Ethics (the discipline) vs Morals (personal conduct)</td><td>M1</td></tr>
+</tbody></table></div>
+</section>
+<section class="chapter" id="ch1"><div class="cn">CHAPTER 01</div><div class="ct">Module 1: Basic Concepts</div><p class="ci">Focus: what ethics is (the wrongness and correctness of our actions) and how it differs from look-alike ideas.</p>
+<h2>What Is Ethics?</h2><div class="law"><div class="lra">KEYWORDS: wrongness, correctness, actions</div><div class="ltit">Ethics</div><div class="lyr">Focus: right and wrong of what we do</div><div class="ldc"><strong>Lecture:</strong> The wrongness and correctness of our actions.<br><strong>Scenario:</strong> Asking "Is it right to copy a classmate's exam answers?" is an ethics question.</div></div>
+<div class="law"><div class="lra">KEYWORDS: Greek, characteristic way of acting, Latin, tradition, custom</div><div class="ltit">Ethos and Mores</div><div class="lyr">Focus: word origin</div><div class="ldc"><strong>Lecture:</strong> Ethos (Greek) means "characteristic way of acting." Its Latin equivalent is mos, mores, meaning tradition or custom.</div></div>
+<div class="law"><div class="lra">KEYWORDS: philo = love, sophia = wisdom, "Why?", wondering, Plato</div><div class="ltit">Philosophy</div><div class="lyr">Focus: the bigger field that ethics belongs to</div><div class="ldc"><strong>Lecture:</strong> From the Greek philo (love) and sophia (wisdom), literally "the love of wisdom." It is the study of the most basic and profound matters of human existence, fundamental questions that ask "Why?" "It begins with wondering." (Plato)</div></div>
+<h2>The Four Main Areas of Ethics</h2><div class="law"><div class="lra">KEYWORDS: empirical research, attitudes, beliefs, what people think</div><div class="ltit">Descriptive Ethics</div><div class="lyr">Focus: what people actually believe</div><div class="ldc"><strong>Lecture:</strong> Empirical research into the attitudes of individuals or groups of people. It aims to uncover people's beliefs about values, which actions are right and wrong, and which characteristics of moral agents are virtuous.<br><strong>Lecture example:</strong> Surveys of ethical attitudes among employees and managers, such as whether they feel pressure to compromise moral principles to achieve organizational goals.<br><strong>Scenario:</strong> A school surveys 300 students on whether copying homework is okay. It only reports what they believe.</div></div>
+<div class="law"><div class="lra">KEYWORDS: criteria, morally right and wrong, standards justified, deontological, teleological or consequentialist</div><div class="ltit">Normative Ethics</div><div class="lyr">Focus: what is right, and why the standard is justified</div><div class="ldc"><strong>Lecture:</strong> Concerned with criteria of what is morally right and wrong. Central question: how are basic moral standards arrived at and justified? Answers fall into two broad categories: deontological and teleological/consequentialist.<br><strong>Lecture example:</strong> "It is wrong to kill people just because they make you angry." / "Pain is intrinsically bad, so we ought not cause pain without a good reason."<br><strong>Scenario:</strong> "Employees ought not to accept gifts that could bias their decisions." This sets a standard.</div></div>
+<div class="law"><div class="lra">KEYWORDS: nature, "What is goodness?", "What is morality?", how to identify good or bad</div><div class="ltit">Metaethics</div><div class="lyr">Focus: the meaning and nature of moral ideas</div><div class="ldc"><strong>Lecture:</strong> Seeks to understand the nature of ethical properties, principles, judgments, and attitudes. It tries to answer "What is morality?", "What is goodness?", and "How to identify if something is good or bad?"<br><strong>Scenario:</strong> A group is not arguing whether one act is wrong. They are asking what the word "good" itself means.</div></div>
+<div class="law"><div class="lra">KEYWORDS: professional, disciplinary, practical field, medical, business, legal</div><div class="ltit">Applied Ethics</div><div class="lyr">Focus: ethics inside a specific field</div><div class="ldc"><strong>Lecture:</strong> Deals with ethical questions specific to a professional, disciplinary, or practical field. Subsets include medical ethics, bioethics, business ethics, legal ethics, and others.<br><strong>Scenario:</strong> A hospital asks whether patients may be used for medical tests. That is a field question (biomedical).</div></div>
+<div class="tw"><table><thead><tr><th>Applied ethics subfield</th><th>Sample question from the lecture</th></tr></thead><tbody>
+<tr><td>Animal Ethics</td><td>Is it permissible to eat meat?</td></tr>
+<tr><td>Biomedical Ethics</td><td>On whom are we allowed to perform medical tests?</td></tr>
+<tr><td>Business Ethics</td><td>Do corporations have moral status?</td></tr>
+<tr><td>Environmental Ethics</td><td>Ought we curb climate change for the sake of future generations?</td></tr>
+<tr><td>Information Ethics</td><td>May I pirate music?</td></tr>
+<tr><td>Law</td><td>Should personal, recreational drug use be illegal?</td></tr>
+<tr><td>Philosophy of the Family</td><td>What do children owe their parents?</td></tr>
+<tr><td>Practical Distributive Justice</td><td>To what extent ought we give to charity?</td></tr>
+<tr><td>Procreative Ethics</td><td>Is it permissible to abort a fetus?</td></tr>
+<tr><td>Sexual Ethics</td><td>Should prostitution be legal?</td></tr>
+</tbody></table></div>
+<div class="box green"><div class="bico">✓</div><div class="bbd"><div class="btt">Memory trick</div><p class="btx">Descriptive = what people BELIEVE. Normative = what is RIGHT. Metaethics = what does "right" MEAN. Applied = ethics in a FIELD.</p></div></div>
+<h2>Ethics vs Morals</h2><div class="law"><div class="lra">KEYWORDS: specific beliefs or attitudes, acts people perform, personal conduct</div><div class="ltit">Morals</div><div class="lyr">Focus: the actual belief or act</div><div class="ldc"><strong>Lecture:</strong> On specific beliefs or attitudes that people have, or to describe acts that people perform: personal conduct.<br><strong>Scenario:</strong> "I personally believe cheating is wrong." That is a moral stance.</div></div>
+<div class="law"><div class="lra">KEYWORDS: discipline, studying, understanding, ideal human behavior, ideal ways of thinking</div><div class="ltit">Ethics (as a discipline)</div><div class="lyr">Focus: the study of behavior</div><div class="ldc"><strong>Lecture:</strong> The discipline of studying and understanding ideal human behavior and ideal ways of thinking.<br><strong>Scenario:</strong> A class that examines why cheating is wrong is doing ethics.</div></div>
+<h2>Kinds of Valuation (Ethics vs Etiquette, Aesthetics, Technique)</h2><div class="law"><div class="lra">KEYWORDS: customary code, polite behavior, group or profession</div><div class="ltit">Etiquette</div><div class="lyr">Focus: politeness</div><div class="ldc"><strong>Lecture:</strong> Customary code of polite behavior in society or among members of a particular profession or group.<br><strong>Lecture example:</strong> Classroom etiquette: turn off your cell phone, do not pack up before class ends, do not have private conversations.<br><strong>Scenario:</strong> Chewing with your mouth open at a formal dinner is rude, not a moral crime.</div></div>
+<div class="law"><div class="lra">KEYWORDS: personal approval, disapproval, individual tastes, preferences</div><div class="ltit">Aesthetics</div><div class="lyr">Focus: taste and beauty</div><div class="ldc"><strong>Lecture:</strong> Judgments of personal approval and disapproval referring to individual tastes and preferences.<br><strong>Lecture example:</strong> A sunset on the beach is highly beautiful; a plate of food served with elegance; it is "wrong" to wear a leather vest over a Barong Tagalog.<br><strong>Scenario:</strong> Saying a red and neon green outfit "looks wrong" is taste.</div></div>
+<div class="law"><div class="lra">KEYWORDS: proper way, right way of doing things</div><div class="ltit">Technique / Technical</div><div class="lyr">Focus: correct procedure</div><div class="ldc"><strong>Lecture:</strong> The proper way or right way of doing things.<br><strong>Lecture example:</strong> How to bake (it can be "wrong" when it goes against the correct way); how to play basketball; how to shut down a computer.<br><strong>Scenario:</strong> Bread that does not rise because you used the wrong flour to water ratio is a technique error.</div></div>
+<div class="box amber"><div class="bico">!</div><div class="bbd"><div class="btt">Only one of the four is a moral matter</div><p class="btx">All four use the words "right/wrong" or "good/bad." Ethics is about the wrongness and correctness of our actions. Etiquette = polite, Aesthetics = taste, Technique = proper procedure.</p></div></div>
+<h2>Issue, Judgment, Decision, Dilemma</h2><div class="law"><div class="lra">KEYWORDS: controversial, people keep debating</div><div class="ltit">Issue</div><div class="lyr">Focus: a public debate</div><div class="ldc"><strong>Lecture:</strong> Controversial, and people keep on debating about it.<br><strong>Lecture example:</strong> Cigarette smoking; the anti-terror bill.<br><strong>Scenario:</strong> The country keeps debating whether the death penalty should return.</div></div>
+<div class="law"><div class="lra">KEYWORDS: assessment, actions or behavior of someone</div><div class="ltit">Judgment</div><div class="lyr">Focus: evaluating an act (right or wrong)</div><div class="ldc"><strong>Lecture:</strong> Assessment of the actions or behavior of someone.<br><strong>Lecture example:</strong> A friend chooses to steal from a store and I make an assessment that it is wrong; "Cigarette smoking is dangerous to your health"; "Humility is a virtue."<br><strong>Scenario:</strong> "What she did was dishonest."</div></div>
+<div class="law"><div class="lra">KEYWORDS: choice, what to perform or do</div><div class="ltit">Decision</div><div class="lyr">Focus: your own choice of action</div><div class="ldc"><strong>Lecture:</strong> Choice of what to perform or do.<br><strong>Lecture example:</strong> I choose not to take something I did not pay for; I decided to look for both local and remote employees; I decided to take a vacation in the province.<br><strong>Scenario:</strong> "I will not copy anyone's answers."</div></div>
+<div class="law"><div class="lra">KEYWORDS: difficult choice, two or more alternatives, equally undesirable</div><div class="ltit">Dilemma</div><div class="lyr">Focus: stuck between hard options</div><div class="ldc"><strong>Lecture:</strong> A situation in which a difficult choice has to be made between two or more alternatives, especially equally undesirable ones.<br><strong>Lecture example:</strong> Should Michael reveal to Roger that Phyllis is married? / My mother gave me two choices: do the dishes or clean the bathroom. / Say nothing and just wait to see what happens?<br><strong>Scenario:</strong> You can report your close friend's cheating or keep the secret and let an unfair grade stand. Both choices hurt.</div></div>
+<h2>Ethical Levels of Human Existence (Module 1 diagram) and Ethics and Reasoning</h2><p>The Module 1 diagram shows three ascending tiers: <strong>Animal, Human, Divine</strong>. The lecture gives no caption for it. Do not mix it up with Module 3's three levels (Personal, Societal, Environmental).</p><p>The lecture's "Ethics and Reasoning" list: <strong>reason that we give in the things that we do; rewards and punishment; principles; ethical frameworks or ethical theories.</strong> Notice that Module 4's Kohlberg stages use these same ideas (punishment, rewards, principles).</p><h2>Agree or Disagree (the professor's answers and reasons)</h2><div class="tw"><table><thead><tr><th>#</th><th>Statement</th><th>Answer</th><th>Reason given</th></tr></thead><tbody>
+<tr><td>1</td><td>Ethics are universal and apply equally to everyone regardless of culture or background.</td><td>Disagree</td><td>Ethics are often influenced by cultural and societal norms, leading to variations in what is considered ethical.</td></tr>
+<tr><td>2</td><td>Ethical behavior is always clear-cut and easy to determine in any situation.</td><td>Disagree</td><td>Ethical dilemmas are often complex and require nuanced thinking to resolve.</td></tr>
+<tr><td>3</td><td>It is ethical to prioritize the greater good over individual rights.</td><td>Agree</td><td>In some cases, collective well-being can outweigh individual concerns, as in public health emergencies.</td></tr>
+<tr><td>4</td><td>Lying is unethical under any circumstances.</td><td>Disagree</td><td>Certain situations, like protecting someone's life, may justify lying.</td></tr>
+<tr><td>5</td><td>Ethical principles should be flexible and adapt to the specific context of a situation.</td><td>Agree</td><td>Context matters, and rigid principles may not account for unique circumstances.</td></tr>
+<tr><td>6</td><td>Companies have a responsibility to act ethically, even if it reduces profits.</td><td>Agree</td><td>Ethical business practices build trust and contribute to long-term success.</td></tr>
+<tr><td>7</td><td>Personal ethics should take precedence over professional ethics in decision-making.</td><td>Disagree</td><td>Balancing both is important, but professional ethics are often tied to larger responsibilities.</td></tr>
+<tr><td>8</td><td>Ethical behavior is primarily influenced by upbringing and education.</td><td>Agree</td><td>These are foundational in shaping a person's moral compass and ethical framework.</td></tr>
+<tr><td>9</td><td>Businesses should prioritize environmental sustainability as a core ethical obligation.</td><td>Agree</td><td>Companies have a role in ensuring the planet remains habitable for future generations.</td></tr>
+<tr><td>10</td><td>Ethical behavior requires sacrificing personal interests for the well-being of others.</td><td>Agree</td><td>Many ethical frameworks, like utilitarianism or altruism, emphasize putting... (the sentence is cut off in the slide)</td></tr>
+</tbody></table></div>
+<div class="box blue"><div class="bico">i</div><div class="bbd"><div class="btt">Module conclusion (lecture)</div><p class="btx">"Ethics is concerned about the serious or grave things that need our actions. It is serious because it is a matter of life and death. Examples are abortion, death penalty, cigarette smoking, genetic engineering. The guide may be there, but the reasoning in relation to our specific situation depends on our own selves."</p></div></div>
+<h2>Look-alikes to avoid mixing up</h2><div class="mlst"><div class="mitem"><div class="mnm">Descriptive vs Normative</div><div class="mdc">Descriptive reports what people believe. Normative says what is right and how the standard is justified.</div></div><div class="mitem"><div class="mnm">Ethics vs Morals</div><div class="mdc">Ethics is the discipline of studying ideal behavior. Morals are the specific beliefs or acts of personal conduct.</div></div><div class="mitem"><div class="mnm">Issue vs Dilemma</div><div class="mdc">An issue is a topic many people keep debating. A dilemma is a difficult choice between alternatives.</div></div><div class="mitem"><div class="mnm">Judgment vs Decision</div><div class="mdc">Judgment assesses someone's action. Decision is the choice of what to perform or do.</div></div></div>
+</section>
+<section class="chapter" id="ch2"><div class="cn">CHAPTER 02</div><div class="ct">Module 2: Morality and Other Normative Systems</div><p class="ci">Focus: what makes something moral, compared with law, religion, culture, personal opinion, and self-interest.</p>
+<p>Order of the module: Law, Religion, Culture, Subjectivism, Egoism, then Plato's Myth of Gyges and Socrates' answer. Each candidate is shown with its problem.</p><h2>The ten terms in the professor's matching quiz (Quiz A)</h2><div class="tw"><table><thead><tr><th>Term</th><th>Definition (Column B wording)</th><th>Keywords</th></tr></thead><tbody>
+<tr><td>Morality</td><td>Principles and standards used to determine what is right or wrong and what people ought to do.</td><td>principles, standards, right or wrong, ought</td></tr>
+<tr><td>Religion</td><td>A system of beliefs and practices concerning the sacred, faith, and religious obligations.</td><td>sacred, faith, obligations</td></tr>
+<tr><td>Culture</td><td>The shared beliefs, customs, traditions, values, and practices of a particular group or society.</td><td>shared, customs, traditions</td></tr>
+<tr><td>Cultural Relativism</td><td>The idea that moral practices and standards should be understood in relation to the culture in which they occur.</td><td>in relation to the culture</td></tr>
+<tr><td>Moral Subjectivism</td><td>The belief that moral judgments depend on the individual's personal feelings, opinions, or attitudes.</td><td>individual, personal feelings, opinions</td></tr>
+<tr><td>Psychological Egoism</td><td>The view that all human actions are ultimately motivated by self-interest.</td><td>all actions, motivated, self-interest (IS)</td></tr>
+<tr><td>Ethical Egoism</td><td>The view that a person ought to act primarily in ways that promote their own self-interest.</td><td>ought, promote own self-interest (OUGHT)</td></tr>
+<tr><td>Normative System</td><td>A system of rules, values, or principles that tells people how they ought to behave.</td><td>rules, values, principles, how they ought to behave</td></tr>
+<tr><td>Moral Judgment</td><td>The process of determining whether an action is morally right or wrong.</td><td>process, determining right or wrong</td></tr>
+<tr><td>Social Norms</td><td>Standards or rules that guide behavior within a particular society or group.</td><td>standards or rules, within a society or group</td></tr>
+</tbody></table></div>
+<h2>Morality vs Law and Religion</h2><div class="tw"><table><thead><tr><th>Morality</th><th>Law</th></tr></thead><tbody>
+<tr><td>About what to do in a certain situation.</td><td>Does not tell us what to do, only what to avoid.</td></tr>
+<tr><td>What is moral could be legal.</td><td>What is legal is not necessarily moral.</td></tr>
+</tbody></table></div>
+<div class="law"><div class="lra">KEYWORDS: holy in itself, loved by the gods</div><div class="ltit">Morality vs Religion (Euthyphro exchange)</div><div class="lyr">Focus: is something holy because the gods love it, or loved because it is holy?</div><div class="ldc"><strong>Lecture:</strong> Plato's Euthyphro. Socrates: "Is it holy in itself and that is why it is loved by the gods?" Religion's answer (Euthyphro): "What is holy is loved by the gods."<br><strong>Scenario:</strong> Is honesty good because a religion commands it, or does the religion command it because honesty is good in itself?</div></div>
+<h2>Cultural Relativism</h2><div class="law"><div class="lra">KEYWORDS: no universal truth, cultural codes, nothing more, objectivity and universality challenged</div><div class="ltit">Cultural Relativism (Rachels)</div><div class="lyr">Focus: the CULTURE is the standard</div><div class="ldc"><strong>Lecture:</strong> It says there is no such thing as universal truth in ethics; there are only the various cultural codes, and nothing more. It challenges our belief in the objectivity and universality of moral truth. Customs cannot be called "correct" or "incorrect" because that implies an independent standard of right and wrong.<br><strong>Lecture example:</strong> Darius and the Callatians (they ate their deceased fathers out of respect, while the Greeks cremated their dead); infanticide among Eskimo groups (lecture wording); female genital mutilation (FGM) in certain communities.<br><strong>Scenario:</strong> A greeting or custom that is respectful in one country is rude in another, and the theory says neither can be called the right one.</div></div>
+<div class="gg"><div class="gc" data-g="1"><div class="gera">APPEAL</div><div class="gtit">Why people like it</div><p class="gsp"><ul><li>Conforms to experience: societies really do differ</li><li>Gives a basis for valuation</li><li>Promotes tolerance</li><li>Denies "universal truth": no moral truths for all peoples at all times</li></ul></p></div><div class="gc" data-g="2"><div class="gera">CRITICISMS</div><div class="gtit">Problems with it</div><p class="gsp"><ul><li>Cannot criticize other cultures (even practices like FGM)</li><li>No right answers when moral codes conflict</li><li>"My culture" is unclear (for someone in more than one culture)</li></ul></p></div></div>
+<h2>Moral Subjectivism</h2><div class="law"><div class="lra">KEYWORDS: individual thinking person, the subject, at the heart of all valuations</div><div class="ltit">Moral Subjectivism</div><div class="lyr">Focus: the INDIVIDUAL is the standard</div><div class="ldc"><strong>Lecture:</strong> "The individual thinking person (the subject) is at the heart of all valuations." Moral judgments depend on the individual's personal feelings, opinions, or attitudes.<br><strong>Scenario:</strong> "It is good because I say it is good, and nobody can tell me otherwise."</div></div>
+<div class="tw"><table><thead><tr><th>Subjectivist claim</th><th>Counter-argument (lecture)</th></tr></thead><tbody>
+<tr><td>"No one can tell me what is right and wrong."</td><td>We can be mistaken, and we can be corrected by others.</td></tr>
+<tr><td>"No one knows my situation better than myself."</td><td>Many human experiences are common, and others may have something useful to suggest.</td></tr>
+<tr><td>"I am entitled to my own opinion."</td><td>Closed-mindedness rightly invites censure from someone trying to think more critically about values.</td></tr>
+<tr><td>"It is good if I say that it is good."</td><td>What is my basis for saying that it is good?</td></tr>
+</tbody></table></div>
+<h2>Psychological vs Ethical Egoism</h2><div class="law"><div class="lra">KEYWORDS: IS claim, descriptive, ego has desires and interests, all actions geared to satisfy</div><div class="ltit">Psychological Egoism</div><div class="lyr">Focus: what people DO</div><div class="ldc"><strong>Lecture:</strong> "The ego or self has its desires and interests, and all our actions are geared toward satisfying these interests."<br><strong>Scenario:</strong> "Everyone who helps others is secretly doing it for themselves." It states a fact about how people behave.</div></div>
+<div class="law"><div class="lra">KEYWORDS: OUGHT claim, normative, own interests, single overriding concern</div><div class="ltit">Ethical Egoism</div><div class="lyr">Focus: what people SHOULD do</div><div class="ldc"><strong>Lecture:</strong> "We should make our own ends, our own interests, as the single overriding concern."<br><strong>Scenario:</strong> "You should always put your own interest first." It states what people should do.</div></div>
+<div class="box amber"><div class="bico">!</div><div class="bbd"><div class="btt">Counterexamples the lecture offers against pure self-interest</div><p class="btx">Generosity (a child sharing ice cream with a dog), Charity (giving food to needy people), and Hospitality (a Papua New Guinea community welcoming a visitor): things done toward the other.</p></div></div>
+<h2>The Myth of Gyges and Socrates' Answer</h2><div class="law"><div class="lra">KEYWORDS: ring, invisible, anonymous, shepherd, Glaucon, Plato's Republic, not being caught</div><div class="ltit">Myth of Gyges (Ring of Gyges)</div><div class="lyr">Focus: would you still be just if you could never be caught?</div><div class="ldc"><strong>Lecture:</strong> Plato's Republic (Book II). Glaucon tells the story of Gyges the shepherd, who is given a ring that makes him invisible and anonymous. He seduces a queen, kills the king, and takes over the kingdom. Plato argues that the ring (invisibility and anonymity) is the only barrier between a just and an unjust person. Glaucon's challenge: what we really care for is our self-interest rather than justice or moral goodness. One of the reading quotes says those who practice justice do so involuntarily, because they lack the power to be unjust.<br><strong>Scenario:</strong> Would you still return a found wallet if you were 100% sure nobody would ever know?</div></div>
+<div class="law"><div class="lra">KEYWORDS: harmony, reason on top, will, appetite, justice to oneself</div><div class="ltit">Socrates: Harmony of the Soul</div><div class="lyr">Focus: the REASON for being ethical</div><div class="ldc"><strong>Lecture:</strong> The good human life stems from a proper harmony of the parts of the soul. Reason, the "highest" part, is in charge, followed by the "lower" parts: will and appetite. Proper order = justice. Reversed order (appetites on top, reason at the base, desires running rampant) = injustice. Does it make sense to be ethical? Yes, because to be ethical means doing justice to oneself.<br><strong>Scenario:</strong> You return the extra change a cashier gave you even though nobody noticed, because keeping your own inner order matters more than the extra money.</div></div>
+<h2>Look-alikes to avoid mixing up</h2><div class="mlst"><div class="mitem"><div class="mnm">Relativism vs Subjectivism</div><div class="mdc">Relativism: the standard is the culture. Subjectivism: the standard is the individual.</div></div><div class="mitem"><div class="mnm">Psych vs Ethical Egoism</div><div class="mdc">Psychological = what people do (IS). Ethical = what people ought to do (OUGHT).</div></div><div class="mitem"><div class="mnm">Normative System vs Social Norms</div><div class="mdc">Normative system tells people how they ought to behave (rules, values, principles). Social norms are standards or rules that guide behavior within a society or group.</div></div><div class="mitem"><div class="mnm">Morality vs Moral Judgment</div><div class="mdc">Morality is the principles and standards. Moral judgment is the process of deciding whether an action is right or wrong.</div></div><div class="mitem"><div class="mnm">Morality vs Law</div><div class="mdc">Law tells what to avoid. What is legal is not necessarily moral.</div></div></div>
+</section>
+<section class="chapter" id="ch3"><div class="cn">CHAPTER 03</div><div class="ct">Module 3: Ethical Levels and Conscience</div><p class="ci">Focus: three levels of ethics, then the internal judge (conscience) and its six kinds, including doubtful, scrupulous, lax, and erroneous.</p>
+<h2>The Three Ethical Levels</h2><div class="gg"><div class="gc" data-g="1"><div class="gera">LEVEL 1: INDIVIDUAL</div><div class="gtit">Personal Level</div><p class="gsp">Can the person tell good from evil, and do they feel obligated and accountable for their own actions?</p></div><div class="gc" data-g="2"><div class="gera">LEVEL 2: COMMUNITY</div><div class="gtit">Societal Level</div><p class="gsp">Ethical concerns that affect society at large: corruption, poverty, violence, and similar issues.</p></div><div class="gc" data-g="3"><div class="gera">LEVEL 3: ECOSYSTEM</div><div class="gtit">Environmental Level</div><p class="gsp">Ethical concerns about humanity's impact on the natural world: pollution, deforestation, and similar issues.</p></div></div>
+<h2>Personal Level</h2><div class="law"><div class="lra">KEYWORDS: distinguishes good from evil, feels obligated, feels accountable</div><div class="ltit">The Ethos of Man: 3 traits</div><div class="lyr">Focus: the person's own moral sense</div><div class="ldc"><strong>Lecture:</strong> (1) He/she is able to distinguish between good and evil, right and wrong, moral and immoral. (2) He/she feels within himself/herself an obligation to do what is good and to avoid what is evil. (3) He/she feels accountable for his/her actions, expecting reward or punishment for them.<br><strong>Scenario:</strong> You know on your own that copying answers is wrong, you feel you should not do it, and you expect consequences if you do.</div></div>
+<div class="law"><div class="lra">KEYWORDS: endowed by nature, moral sense, dignity, dictates of reason</div><div class="ltit">Moral sense and "dictates of reason" (Agapay)</div><div class="lyr">Focus: conduct guided by reason</div><div class="ldc"><strong>Lecture:</strong> "Man is endowed by nature with a moral sense. He/She is self-conscious of his dignity and submits to the duty of doing what is good and avoiding what is wrong. This much is expected of man: that he/she conducts himself/herself according to the dictates of reason."</div></div>
+<h2>Sanctions and Penalties (external)</h2><div class="tw"><table><thead><tr><th>#</th><th>The four sanctions in the lecture</th></tr></thead><tbody>
+<tr><td>1</td><td>The penal laws of our country</td></tr>
+<tr><td>2</td><td>Death as punishment for sin (Bible, Old Testament)</td></tr>
+<tr><td>3</td><td>Physical and mental diseases</td></tr>
+<tr><td>4</td><td>Human suffering</td></tr>
+</tbody></table></div>
+<h2>Conscience (internal)</h2><div class="law"><div class="lra">KEYWORDS: Latin conscientia, trial of oneself, accusation and defense, practical judgment of reason</div><div class="ltit">Conscience: two definitions</div><div class="lyr">Focus: the internal judge</div><div class="ldc"><strong>Lecture:</strong> Tillich: from the Latin "conscientia," meaning "trial of oneself," both in accusation and in defense. Panizo: an act of the practical judgment of reason deciding upon an individual action as good and to be performed, or as evil and to be avoided.<br><strong>Scenario:</strong> Feeling guilty about something you did, even though nobody caught you.</div></div>
+<h2>The Six Kinds of Conscience</h2><div class="law"><div class="lra">KEYWORDS: judges good as good, evil as evil</div><div class="ltit">1. Correct / True Conscience</div><div class="lyr">Focus: gets the call RIGHT</div><div class="ldc"><strong>Lecture:</strong> It judges what is good as good and what is evil as evil.<br><strong>Lecture example:</strong> It is correct when it tells that getting the property of another without consent is stealing.<br><strong>Scenario:</strong> You know that taking someone's phone without asking is stealing.</div></div>
+<div class="law"><div class="lra">KEYWORDS: judges good as evil and evil as good, mistaken</div><div class="ltit">2. Erroneous / False Conscience</div><div class="lyr">Focus: gets the call BACKWARDS</div><div class="ldc"><strong>Lecture:</strong> Judges incorrectly that what is good is evil and what is evil is good.<br><strong>Lecture example:</strong> Erroneous conscience is what tells the husband to have a mistress.<br><strong>Scenario:</strong> A student believes that helping a friend cheat is "loyal and good."</div></div>
+<div class="law"><div class="lra">KEYWORDS: subjective assurance, lawfulness or unlawfulness, sure of decision</div><div class="ltit">3. Certain Conscience</div><div class="lyr">Focus: fully SURE</div><div class="ldc"><strong>Lecture:</strong> A subjective assurance of the lawfulness or unlawfulness of a certain act. The person is sure of his/her decision.<br><strong>Scenario:</strong> You are completely sure cheating on an exam is wrong, with no hesitation.</div></div>
+<div class="law"><div class="lra">KEYWORDS: unable to form a definite judgment, settle doubts first</div><div class="ltit">4. Doubtful Conscience</div><div class="lyr">Focus: DOUBTING, not yet decided</div><div class="ldc"><strong>Lecture:</strong> Unable to form a definite judgment on a certain action. It must first be allowed to settle its doubts before an action is performed.<br><strong>Scenario:</strong> You find money on the street and pause, unsure whether it is okay to keep it.</div></div>
+<div class="law"><div class="lra">KEYWORDS: rigorous, extremely afraid of committing evil, meticulous, incontrovertible proofs</div><div class="ltit">5. Scrupulous Conscience</div><div class="lyr">Focus: TOO afraid of evil</div><div class="ldc"><strong>Lecture:</strong> Rigorous conscience, extremely afraid of committing evil. It is meticulous and wants incontrovertible proofs before it acts.<br><strong>Scenario:</strong> Someone agonizes for days over whether an innocent joke was secretly a lie and keeps asking for proof it was fine.</div></div>
+<div class="law"><div class="lra">KEYWORDS: refuses to be bothered, rushes on, quick to justify itself</div><div class="ltit">6. Lax Conscience</div><div class="lyr">Focus: TOO relaxed about good and evil</div><div class="ldc"><strong>Lecture:</strong> Refuses to be bothered about the distinction of good and evil. It rushes on and is quick to justify itself.<br><strong>Scenario:</strong> Someone shrugs off cheating with "everyone does it anyway."</div></div>
+<div class="box blue"><div class="bico">i</div><div class="bbd"><div class="btt">Closing principle (lecture)</div><p class="btx">"Insofar as conscience operates within the realm of truth and sound reason, it is compulsory."</p></div></div>
+<h2>Why a Conscience Becomes Erroneous (4 causes)</h2><div class="tw"><table><thead><tr><th>#</th><th>Cause</th><th>Scenario</th></tr></thead><tbody>
+<tr><td>1</td><td>Mistake in inferential thinking (wrong conclusion from given principles)</td><td>Reasoning "stealing is bad, but this is just borrowing forever, so it is fine."</td></tr>
+<tr><td>2</td><td>Ignorance of the law</td><td>Not knowing that an act is prohibited.</td></tr>
+<tr><td>3</td><td>Ignorance of the fact and other circumstances modifying human actions</td><td>Not knowing the medicine you gave is harmful for that person.</td></tr>
+<tr><td>4</td><td>Ignorance of future consequences, especially those dependent on the free will of others</td><td>Not seeing how your act will lead others to react and be hurt.</td></tr>
+</tbody></table></div>
+<h2>Societal Level concerns listed in the lecture</h2><p>Corruption, poverty, alcoholism, violence, terrorism, prostitution, gambling, vagrancy, vandalism, public scandal, murder, divorce, euthanasia, child abuse, drug addiction, environmental pollution, hoarding of commodities, capital punishment, overpricing of basic needs.</p><h2>Environmental Level concerns listed in the lecture</h2><p>Global warming, deforestation, urbanization, villagization, industrialization, pollution, modern farming, modern fishing, treatment of animals, forest fires.</p><p><strong>Note:</strong> the lecture lists "environmental pollution" under Societal and "pollution" under Environmental. If asked to choose, follow the emphasis in the question (people and policy vs the natural world).</p><h2>Look-alikes to avoid mixing up</h2><div class="mlst"><div class="mitem"><div class="mnm">Sanction vs Conscience</div><div class="mdc">Sanction is external (laws, suffering). Conscience is internal (your own judgment).</div></div><div class="mitem"><div class="mnm">Erroneous vs Doubtful</div><div class="mdc">Erroneous has already decided, wrongly. Doubtful has not decided yet.</div></div><div class="mitem"><div class="mnm">Scrupulous vs Lax</div><div class="mdc">Scrupulous is extremely afraid of evil. Lax refuses to be bothered.</div></div><div class="mitem"><div class="mnm">Correct vs Certain</div><div class="mdc">Correct is about being right. Certain is about being sure.</div></div><div class="mitem"><div class="mnm">Societal vs Environmental</div><div class="mdc">Societal: concerns affecting the community. Environmental: humanity's impact on the natural world.</div></div></div>
+</section>
+<section class="chapter" id="ch4"><div class="cn">CHAPTER 04</div><div class="ct">Module 4: The Moral Agent</div><p class="ci">Focus: who can be held accountable, what shapes a person, and the reasons behind moral choices (Kohlberg).</p>
+<h2>Moral Person, Moral Patient, Moral Agent</h2><div class="law"><div class="lra">KEYWORDS: capacity, moral decision, perception of right and wrong, conscious of right and wrong</div><div class="ltit">Moral Agency and Moral Agent</div><div class="lyr">Focus: who can be held responsible</div><div class="ldc"><strong>Lecture:</strong> Moral agency means "the capacity to make moral decision based on the perception of right and wrong." A moral agent is a "being who is conscious of the concepts of right and wrong." There is no moral society without its agents: moral agents are the implementors of moral concepts. Only human adults, or humans already capable of making informed decisions, can be moral agents. Only a moral agent can be responsible and accountable.<br><strong>Lecture example:</strong> Students, teachers, and school administrators act as moral agents. Example given: practicing honesty by not copying.<br><strong>Scenario:</strong> A student who submits original work and does not copy during exams is acting as a moral agent.</div></div>
+<div class="law"><div class="lra">KEYWORDS: recipient, receiver of moral actions, rights but no duties</div><div class="ltit">Moral Patient</div><div class="lyr">Focus: can be helped or harmed, but not a source of moral action</div><div class="ldc"><strong>Lecture:</strong> All moral persons are moral patients (recipients). All human persons can be receivers of morally evaluable actions, but only some can be sources of them. Normal human adults and infants, being moral persons, are moral patients. All moral persons have moral rights, but not all have moral duties.<br><strong>Scenario:</strong> An infant can be harmed or cared for, but cannot be held responsible for actions.</div></div>
+<div class="box green"><div class="bico">✓</div><div class="bbd"><div class="btt">Quick rule</div><p class="btx">Moral patient = rights only. Moral agent = rights AND duties (so accountable).</p></div></div>
+<h2>The Four Crosspoints (Dr. Ramon C. Reyes)</h2><p>Identity, "who one is or who I am," is a product of many forces and events that happened <strong>outside of one's choosing</strong>.</p><div class="gg"><div class="gc" data-g="1"><div class="gera">CROSSPOINT 1</div><div class="gtit">Physical</div><p class="gsp">Physical events or material factors such as physical attributes, genes, or nationality. Example: place of birth and socioeconomic status; a child born into poverty faces different ethical struggles (education, healthcare) than one born into wealth.</p></div><div class="gc" data-g="2"><div class="gera">CROSSPOINT 2</div><div class="gtit">Interpersonal</div><p class="gsp">How parents, relatives, peers, classmates, or workmates made an impact on your personality. Example: a child raised in a strict religious household may develop different ethical views than one raised in a more secular home.</p></div><div class="gc" data-g="3"><div class="gera">CROSSPOINT 3</div><div class="gtit">Societal</div><p class="gsp">The impact of society, including cultural beliefs, customs, and practices you did not choose. Example: living under strict laws on personal freedoms and facing dilemmas about following or resisting them.</p></div><div class="gc" data-g="4"><div class="gera">CROSSPOINT 4</div><div class="gtit">Historical</div><p class="gsp">Your history shapes who you are now; your past is beyond your control. Example: a young soldier drafted into a war he did not start must decide whether to follow orders or question war crimes.</p></div></div>
+<h2>Kohlberg's Six Stages: the REASON behind the act</h2><p>The lecture says the point is the reasoning behind a choice, not whether someone says "steal" or "don't steal."</p><div class="tw"><table><thead><tr><th>Level</th><th>Stage</th><th>Reason for being good (keywords)</th><th>Lecture example</th></tr></thead><tbody>
+<tr><td>Preconventional</td><td>1. Obedience and Punishment Orientation</td><td>Authorities give fixed rules to be obeyed; "you'll get punished."</td><td>A child does not steal candy because they fear getting spanked.</td></tr>
+<tr><td>Preconventional</td><td>2. Instrumental-Relativist (also: Self-Interest Orientation)</td><td>Different viewpoints; each free to pursue own interests; personal rewards and benefits.</td><td>A child shares their toy because they expect a reward in return.</td></tr>
+<tr><td>Conventional</td><td>3. Good Interpersonal Relationships (also: Interpersonal Concordance / Accord and Conformity)</td><td>Live up to family and community expectations; love, empathy, trust, concern; approval; pleasing others.</td><td>A teenager follows school rules to gain approval from teachers and friends.</td></tr>
+<tr><td>Conventional</td><td>4. Maintaining the Social Order (also: Law and Order)</td><td>Obey laws, respect authority, perform duties so social order is maintained.</td><td>An employee does not steal because it is against the law, even if no one would find out.</td></tr>
+<tr><td>Postconventional</td><td>5. Social Contract and Individual Rights</td><td>Ask "what makes for a good society?"; laws should be based on justice and can be changed if unfair.</td><td>A citizen protests an unfair law because it violates human rights.</td></tr>
+<tr><td>Postconventional</td><td>6. Universal (Ethical) Principles</td><td>Justice means treating all impartially and respecting everyone's dignity, even against laws; self-chosen principles.</td><td>A person hides a refugee in their home, though illegal, believing in the moral duty to protect human life.</td></tr>
+</tbody></table></div>
+<div class="tw"><table><thead><tr><th>Level</th><th>Who (lecture table)</th></tr></thead><tbody>
+<tr><td>Preconventional</td><td>Up to the age of 9</td></tr>
+<tr><td>Conventional</td><td>Most adolescents and adults (most adults do not progress past Stage 4)</td></tr>
+<tr><td>Postconventional</td><td>10 to 15% of the over 20s</td></tr>
+</tbody></table></div>
+<div class="box amber"><div class="bico">!</div><div class="bbd"><div class="btt">Caution on ages</div><p class="btx">A second slide in the lecture uses different age cutoffs (younger than six, 7 to 11, 11 on). Focus on the stage content, not the ages.</p></div></div>
+<div class="box green"><div class="bico">✓</div><div class="bbd"><div class="btt">Memory trick: ask "what is the reason?"</div><p class="btx">Punishment (1), reward (2), approval (3), law (4), rights or a just law (5), own principles (6).</p></div></div>
+<h2>The Heinz Dilemma</h2><p>Heinz's wife is dying. A druggist charges $2,000 for a drug that cost $200 to make. Heinz can raise only about $1,000. The druggist refuses to lower the price or accept later payment, so Heinz breaks in and steals it. Should he have? There is no single correct answer: the reasoning is what is scored.</p><div class="tw"><table><thead><tr><th>Stage</th><th>Heinz should steal because...</th><th>Heinz should NOT steal because...</th></tr></thead><tbody>
+<tr><td>1. Obedience</td><td>It is only worth $200; he offered to pay and was not stealing anything else.</td><td>He will be put in prison, which will mean he is a bad person.</td></tr>
+<tr><td>2. Self-interest</td><td>He will be much happier if he saves his wife, even with a prison sentence.</td><td>Prison is an awful place; he would more likely languish in a cell than mourn his wife.</td></tr>
+<tr><td>3. Conformity</td><td>His wife expects it; he wants to be a good husband.</td><td>Stealing is bad and he is not a criminal; he tried everything without breaking the law.</td></tr>
+<tr><td>4. Law and order</td><td>He should take the prescribed punishment and pay the druggist what he is owed.</td><td>Criminals cannot run around without regard for the law; actions have consequences.</td></tr>
+<tr><td>5. Social contract</td><td>Everyone has a right to choose life, regardless of the law.</td><td>The scientist has a right to fair compensation; his wife's sickness does not make it right.</td></tr>
+<tr><td>6. Universal ethics</td><td>Saving a human life is a more fundamental value than another person's property rights.</td><td>Others may need the medicine just as badly, and their lives are equally significant.</td></tr>
+</tbody></table></div>
+<h2>Rights, Duties, and Moral Agency</h2><div class="law"><div class="lra">KEYWORDS: bearer of rights, higher than legal rights, identical to human rights</div><div class="ltit">Moral Rights</div><div class="lyr">Focus: rights every person has</div><div class="ldc"><strong>Lecture:</strong> "To be a person is to be a bearer of rights." Moral rights are the rights of humans that are over and above, or higher than, their legal rights. Moral rights are identical to "human rights."<br><strong>Scenario:</strong> A person has the right to life, whether or not a particular country's law states it.</div></div>
+<div class="law"><div class="lra">KEYWORDS: rights correlate duties, only moral agents have both, responsible and accountable</div><div class="ltit">Rights and Duties</div><div class="lyr">Focus: why only agents are accountable</div><div class="ldc"><strong>Lecture:</strong> Rights correlate duties. To protect and promote another person's rights, there is a need for duties and responsibilities. Every moral person has rights, but not all moral persons can do their duties. Only moral agents have both rights and duties, so only a moral agent can be responsible and accountable for his/her actions.<br><strong>Scenario:</strong> Your classmates' right to fair grades is protected because everyone has the duty not to cheat.</div></div>
+<h2>Reason, Freedom, and Responsibility</h2><div class="law"><div class="lra">KEYWORDS: accountability, rationality = reason (intelligence) + free will (freedom)</div><div class="ltit">Rationality, Reason and Freedom</div><div class="lyr">Focus: the source of accountability</div><div class="ldc"><strong>Lecture:</strong> Accountability is a natural product of our rationality, which consists of our reason (or intelligence) and free will (or freedom).<br><strong>Scenario:</strong> You work out that lying is wrong (reason), then choose not to lie (freedom), so you own the result (responsibility).</div></div>
+<div class="law"><div class="lra">KEYWORDS: power of the soul, in control of one's actions, act otherwise or not act at all</div><div class="ltit">The Will (Ocampo)</div><div class="lyr">Focus: real control over your actions</div><div class="ldc"><strong>Lecture:</strong> The will is the power of the soul that starts the dynamics of what it takes human beings to act. It is that power by which a human being is in control of his actions. To have control means that as a person acts, it is possible to act otherwise or not to act at all.<br><strong>Scenario:</strong> You could easily cheat and get away with it, but you choose not to.</div></div>
+<div class="law"><div class="lra">KEYWORDS: human limitation, also power, implications in morality</div><div class="ltit">"Sapagkat ako'y tao lamang"</div><div class="lyr">Focus: being human is a limit AND a power</div><div class="ldc"><strong>Lecture:</strong> Being "tao" (only human) points out human limitations, but being human also possesses the power. It has implications in the realm of morality.</div></div>
+<h2>Identification Bank (from the lecture's 15-item exercise)</h2><div class="tw"><table><thead><tr><th>#</th><th>Description</th><th>Answer</th></tr></thead><tbody>
+<tr><td>1</td><td>Theory that explains how people progress in moral reasoning</td><td>Kohlberg's Theory of Moral Development</td></tr>
+<tr><td>2</td><td>Level where decisions rest on avoiding punishment and seeking personal gain</td><td>Pre-Conventional Level</td></tr>
+<tr><td>3</td><td>Stage: decisions based on laws and maintaining social order</td><td>Stage 4: Law and Order Orientation</td></tr>
+<tr><td>4</td><td>Highest stage: self-chosen principles, even against societal norms</td><td>Stage 6: Universal Ethical Principles</td></tr>
+<tr><td>5</td><td>Stage: approval from others, being seen as "good"</td><td>Stage 3: Interpersonal Accord and Conformity</td></tr>
+<tr><td>6</td><td>Post-Conventional stage: laws based on justice and can be changed if unfair</td><td>Stage 5: Social Contract and Individual Rights</td></tr>
+<tr><td>7</td><td>First stage: children obey rules to avoid punishment</td><td>Stage 1: Obedience and Punishment Orientation</td></tr>
+<tr><td>8</td><td>Pre-Conventional stage: personal rewards or benefits</td><td>Stage 2: Self-Interest Orientation</td></tr>
+<tr><td>9</td><td>Level most adults operate in: societal rules and laws</td><td>Conventional Level</td></tr>
+<tr><td>10</td><td>Stage: recognizes universal human rights, even above laws</td><td>Stage 6: Universal Ethical Principles</td></tr>
+<tr><td>11</td><td>Ability to distinguish right from wrong using rational thinking</td><td>Moral Reasoning (or Ethical Judgment, unconfirmed)</td></tr>
+<tr><td>12</td><td>Principle allowing people to make their own moral choices without external coercion</td><td>Freedom</td></tr>
+<tr><td>13</td><td>Humans are accountable for their actions and the consequences that follow</td><td>Responsibility</td></tr>
+<tr><td>14</td><td>Humans as beings capable of making ethical decisions</td><td>Moral Agent</td></tr>
+<tr><td>15</td><td>Moral capacity that lets a person justify choices based on principles of right and wrong</td><td>Ethical Judgment (or Moral Reasoning, unconfirmed)</td></tr>
+</tbody></table></div>
+<p>The lecture gives no answer key. Items 11 and 15 could each be Moral Reasoning or Ethical Judgment (the word bank has one of each), so confirm those two with your professor.</p><h2>Look-alikes to avoid mixing up</h2><div class="mlst"><div class="mitem"><div class="mnm">Agent vs Patient</div><div class="mdc">Agent: rights and duties, accountable. Patient: rights only, can be helped or harmed.</div></div><div class="mitem"><div class="mnm">Stage 3 vs 4</div><div class="mdc">Stage 3 pleases the people close to you. Stage 4 obeys the law for social order.</div></div><div class="mitem"><div class="mnm">Stage 4 vs 5</div><div class="mdc">Stage 4: the law is the law. Stage 5: laws must be just and can be changed.</div></div><div class="mitem"><div class="mnm">Stage 5 vs 6</div><div class="mdc">Stage 5 works within a social contract. Stage 6 follows self-chosen universal principles even against laws.</div></div><div class="mitem"><div class="mnm">Stage 1 vs 2</div><div class="mdc">Stage 1 avoids punishment. Stage 2 seeks personal reward.</div></div></div>
+</section>
+<section class="chapter" id="ch5"><div class="cn">CHAPTER 05</div><div class="ct">Practice: Which Is Which?</div><p class="ci">Identify the term from a simple scenario.</p>
+<p>Cover the Answer column and try to name the term from the clue words. These scenarios are mine, built only from the lecture terms.</p><div class="tw"><table><thead><tr><th>#</th><th>Scenario</th><th>Answer</th><th>Clue words</th></tr></thead><tbody>
+<tr><td>1</td><td>A company surveys employees about whether they would report a coworker's violation.</td><td>Descriptive ethics (M1)</td><td>surveys, attitudes</td></tr>
+<tr><td>2</td><td>"Employees ought not to accept gifts that could bias their decisions."</td><td>Normative ethics (M1)</td><td>ought, standard</td></tr>
+<tr><td>3</td><td>"What does it even mean to call something good?"</td><td>Metaethics (M1)</td><td>nature, meaning of good</td></tr>
+<tr><td>4</td><td>Do corporations have moral status?</td><td>Applied ethics (business) (M1)</td><td>field, professional</td></tr>
+<tr><td>5</td><td>Turning off your phone in class.</td><td>Etiquette (M1)</td><td>polite behavior</td></tr>
+<tr><td>6</td><td>Saying a leather vest over a Barong Tagalog is "wrong."</td><td>Aesthetics (M1)</td><td>taste, preference</td></tr>
+<tr><td>7</td><td>Shutting down a computer properly.</td><td>Technique (M1)</td><td>proper way</td></tr>
+<tr><td>8</td><td>The country keeps debating the death penalty.</td><td>Issue (M1)</td><td>debating</td></tr>
+<tr><td>9</td><td>"What my friend did was dishonest."</td><td>Judgment (M1)</td><td>assessment of an act</td></tr>
+<tr><td>10</td><td>"I have decided not to copy."</td><td>Decision (M1)</td><td>choice of what to do</td></tr>
+<tr><td>11</td><td>Choosing between two equally bad options.</td><td>Dilemma (M1)</td><td>difficult choice, undesirable</td></tr>
+<tr><td>12</td><td>"There is no universal truth; only cultural codes."</td><td>Cultural relativism (M2)</td><td>culture, no universal</td></tr>
+<tr><td>13</td><td>"It is good because I say it is."</td><td>Moral subjectivism (M2)</td><td>individual, my opinion</td></tr>
+<tr><td>14</td><td>"Everyone always acts out of self-interest."</td><td>Psychological egoism (M2)</td><td>IS, all actions</td></tr>
+<tr><td>15</td><td>"People should put their own interests first."</td><td>Ethical egoism (M2)</td><td>OUGHT</td></tr>
+<tr><td>16</td><td>A ring makes you invisible so nobody can catch you.</td><td>Myth of Gyges (M2)</td><td>invisible, anonymous</td></tr>
+<tr><td>17</td><td>Reason rules over will and appetite, so the person is just.</td><td>Socrates: harmony of the soul (M2)</td><td>reason on top</td></tr>
+<tr><td>18</td><td>Jailed for theft vs privately feeling guilty.</td><td>Sanction (external) vs Conscience (internal) (M3)</td><td>external vs internal</td></tr>
+<tr><td>19</td><td>Fully sure that cheating is wrong.</td><td>Certain conscience (M3)</td><td>sure</td></tr>
+<tr><td>20</td><td>Cannot decide if it is okay to keep found money, so waits.</td><td>Doubtful conscience (M3)</td><td>unable to judge</td></tr>
+<tr><td>21</td><td>Agonizes over whether a harmless joke was a lie and wants proof.</td><td>Scrupulous conscience (M3)</td><td>afraid, proof</td></tr>
+<tr><td>22</td><td>Shrugs off cheating: "everyone does it."</td><td>Lax conscience (M3)</td><td>not bothered, justifies</td></tr>
+<tr><td>23</td><td>Believes a wrong act is good.</td><td>Erroneous conscience (M3)</td><td>evil as good</td></tr>
+<tr><td>24</td><td>Wrong judgment because he did not know the law.</td><td>Cause of erroneous conscience: ignorance of the law (M3)</td><td>ignorance</td></tr>
+<tr><td>25</td><td>Corruption and poverty in the community.</td><td>Societal level (M3)</td><td>community</td></tr>
+<tr><td>26</td><td>Deforestation and global warming.</td><td>Environmental level (M3)</td><td>natural world</td></tr>
+<tr><td>27</td><td>An infant.</td><td>Moral patient (M4)</td><td>rights, no duties</td></tr>
+<tr><td>28</td><td>A student who can make informed decisions and answers for them.</td><td>Moral agent (M4)</td><td>accountable</td></tr>
+<tr><td>29</td><td>Being born into a poor family.</td><td>Physical crosspoint (M4)</td><td>material, genes, nationality</td></tr>
+<tr><td>30</td><td>A strict religious upbringing.</td><td>Interpersonal crosspoint (M4)</td><td>family, peers</td></tr>
+<tr><td>31</td><td>Laws of the country you were born into.</td><td>Societal crosspoint (M4)</td><td>society, customs</td></tr>
+<tr><td>32</td><td>Being drafted into a war you did not start.</td><td>Historical crosspoint (M4)</td><td>past, beyond control</td></tr>
+<tr><td>33</td><td>Does not steal because he will be spanked.</td><td>Kohlberg Stage 1 (M4)</td><td>punishment</td></tr>
+<tr><td>34</td><td>Shares a toy expecting one in return.</td><td>Kohlberg Stage 2 (M4)</td><td>reward</td></tr>
+<tr><td>35</td><td>Follows rules to be liked by teachers and friends.</td><td>Kohlberg Stage 3 (M4)</td><td>approval</td></tr>
+<tr><td>36</td><td>Does not steal because it is illegal, even if unseen.</td><td>Kohlberg Stage 4 (M4)</td><td>law, duty</td></tr>
+<tr><td>37</td><td>Protests a law that violates human rights.</td><td>Kohlberg Stage 5 (M4)</td><td>unjust law, changeable</td></tr>
+<tr><td>38</td><td>Hides a refugee illegally to protect life.</td><td>Kohlberg Stage 6 (M4)</td><td>self-chosen principle</td></tr>
+</tbody></table></div>
+</section>
+<section class="chapter" id="ch6"><div class="cn">CHAPTER 06</div><div class="ct">Essay Prompts and What to Use</div><p class="ci">For long quizzes and recitation.</p>
+<p>The lectures include essay prompts. Here is which of their own terms to bring into each answer. Prompts are shortened.</p><div class="tw"><table><thead><tr><th>Prompt (short)</th><th>Bring in these lecture terms</th></tr></thead><tbody>
+<tr><td>M1-1: Friend cheated and asks you to keep it secret (right and wrong, moral responsibility, ethical decision-making)</td><td>Dilemma, Judgment, Decision, conscience (M3), moral agent (M4), Kohlberg reasons</td></tr>
+<tr><td>M1-2: "An action can be legal but still morally wrong."</td><td>Morality vs law (what is legal is not necessarily moral); Stage 4 vs Stage 5</td></tr>
+<tr><td>M1-3: Student leader finds members misusing funds</td><td>Societal level (corruption), moral agent duties, normative ethics, decision and consequences</td></tr>
+<tr><td>M1-4: Two students return a wallet, one from belief and one from fear of punishment (morality, intention, ethical behavior)</td><td>Kohlberg Stage 1 vs higher stages; reason behind the act. "Intention" is not defined as a term in the lecture, so tie it to the reason</td></tr>
+<tr><td>M1-5: Social media and conflicting opinions online</td><td>Philosophy asks "Why?", cultural relativism and subjectivism (basis for saying it is good), conscience, reasoning</td></tr>
+<tr><td>M2-1: Should we never criticize a cultural practice? (value and limitation of culture as a basis)</td><td>Value: conforms to experience, tolerance. Limitation: cannot criticize other cultures (FGM), no right answers</td></tr>
+<tr><td>M2-2: Student helps a classmate because it feels good; is it morally selfish?</td><td>Psychological egoism (IS) vs ethical egoism (OUGHT); counterexamples: generosity, charity, hospitality</td></tr>
+<tr><td>M4-1: What is a moral agent, and how does responsibility build a just society?</td><td>Moral agency definition, no moral society without agents, rights and duties</td></tr>
+<tr><td>M4-2: How do family, education, and government shape moral agents?</td><td>Crosspoints: interpersonal and societal (also physical and historical)</td></tr>
+<tr><td>M4-3: Can a society thrive without a moral foundation?</td><td>Moral agents as implementors of moral concepts, rights and duties, reason and freedom</td></tr>
+<tr><td>M4-4: Moral agents in a digital, globalized world</td><td>Kohlberg postconventional stages (5 and 6), responsibility, freedom</td></tr>
+<tr><td>M4-5: Compare perspectives on moral agency (virtue ethics, utilitarianism, deontology)</td><td>Not taught by name in Module 4; the lecture only names deontological and teleological in Module 1. Ask your professor what to cover</td></tr>
+</tbody></table></div>
+</section>
+<div class="footer"><p>QCU Academic OS · AY 2026-2027 · Compiled by <strong>KianoRoku18Ino</strong> · github.com/KianoRoku18Ino</p></div>
+</main>
+<script>
+const links=[...document.querySelectorAll('.nvi a')];const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+addEventListener('scroll',()=>{let k=0;secs.forEach((s,i)=>{if(s.getBoundingClientRect().top<140)k=i});links.forEach((a,i)=>a.classList.toggle('act',i===k))});
+</script>
+</body>
+</html>
