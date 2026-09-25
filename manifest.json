@@ -59,6 +59,13 @@
                   "order": 4,
                   "week": 4,
                   "html": "assets/guides/year-1/sem-1/hum2/week-4.html"
+                },
+                {
+                  "id": "1-4-module-reviewer",
+                  "kind": "special",
+                  "label": "1-4 Module Reviewer",
+                  "order": 1000,
+                  "html": "assets/guides/year-1/sem-1/hum2/1-4-module-reviewer.html"
                 }
               ]
             },
