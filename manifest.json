@@ -95,7 +95,7 @@
             {
               "id": "y1-s1-nstp1",
               "code": "NSTP1",
-              "title": "ROTC Male-National Service Training Program",
+              "title": "ROTC - Male National Service Training Program",
               "items": [
                 {
                   "id": "week-1",
@@ -120,6 +120,14 @@
                   "order": 3,
                   "week": 3,
                   "html": "assets/guides/year-1/sem-1/nstp1/week-3.html"
+                },
+                {
+                  "id": "week-4",
+                  "kind": "week",
+                  "label": "Week 4 — Fellowship",
+                  "order": 4,
+                  "week": 4,
+                  "html": "assets/guides/year-1/sem-1/nstp1/week-4.html"
                 }
               ]
             },
