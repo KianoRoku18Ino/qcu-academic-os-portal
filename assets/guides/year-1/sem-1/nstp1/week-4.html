@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NSTP 1 — ROTC | Followership</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--maroon:#B91C3C;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(59,130,246,.15);--sw:275px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--maroon);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover{color:var(--t1);background:rgba(185,28,60,.08);border-left-color:var(--maroon)}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:20px}
+.main{margin-left:var(--sw)}
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:48px 48px 38px;position:relative;overflow:hidden}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--maroon);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--maroon)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:38px;font-weight:700;line-height:1.15;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#3B82F6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:16.5px;color:var(--t2);margin-bottom:17px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+.chapter{padding:40px 48px;border-bottom:1px solid var(--bdr);max-width:960px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--maroon);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:18.5px;font-weight:600;margin:27px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--maroon);border-radius:2px;flex-shrink:0}
+h3{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;color:var(--blue);margin:19px 0 9px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+.box{border-radius:8px;padding:13px 17px;margin:15px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}.red .btt{color:var(--red)}
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:9px 12px;text-align:left;border-bottom:2px solid var(--maroon);font-size:11.5px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(59,130,246,.04)}
+tbody td{padding:8px 12px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace;white-space:nowrap}
+.tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.gc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:14px 16px;position:relative;overflow:hidden}
+.gc::before{content:attr(data-g);position:absolute;top:-10px;right:7px;font-family:'JetBrains Mono',monospace;font-size:50px;font-weight:900;color:rgba(59,130,246,.06);line-height:1}
+.gera{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.gtit{font-family:'Space Grotesk',sans-serif;font-size:13.5px;font-weight:700;color:var(--t1);margin-bottom:6px}
+.gsp{font-size:12.5px;color:var(--t2);margin:0;line-height:1.65}
+.gsp strong{color:var(--maroon)}
+.isg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.isc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:14px 16px;border-top:3px solid var(--maroon)}
+.isc.a{border-top-color:var(--amber)}.isc.g{border-top-color:var(--green)}.isc.b{border-top-color:var(--blue)}
+.ico{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-bottom:3px}
+.inm{font-weight:700;font-size:13.5px;color:var(--t1);margin-bottom:6px}
+.idc{font-size:12.5px;color:var(--t2);line-height:1.7}
+.idc strong{color:var(--t1)}
+.law{background:var(--bgc);border:1px solid var(--bdr);border-left:4px solid var(--maroon);border-radius:8px;padding:15px 17px;margin:11px 0}
+.lra{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--maroon);font-weight:700;margin-bottom:3px}
+.ltit{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:4px}
+.lyr{font-size:11px;color:var(--t3);margin-bottom:7px}
+.ldc{font-size:13.5px;color:var(--t2);line-height:1.8;font-style:italic}
+.qa{background:var(--bgc);border:1px solid var(--bdr);border-radius:8px;padding:14px 17px;margin:9px 0}
+.qq{font-weight:600;color:var(--t1);font-size:13.5px;margin-bottom:5px}
+.qq::before{content:'Q — ';color:var(--maroon);font-family:'JetBrains Mono',monospace;font-weight:700}
+.qan{color:var(--t2);font-size:13px;line-height:1.7}
+.qan::before{content:'A — ';color:var(--green);font-family:'JetBrains Mono',monospace;font-weight:700}
+.pill{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:.5px;padding:2px 8px;border-radius:10px;text-transform:uppercase;margin-bottom:8px}
+.pill-added{background:rgba(245,158,11,.15);color:var(--amber)}
+.pill-lesson{background:rgba(59,130,246,.15);color:var(--blue)}
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:4px;font-size:13px;line-height:1.75}
+li strong{color:var(--t1)}
+.diagram{background:#fff;border-radius:10px;padding:20px;margin:15px 0;color:#111}
+.dgrid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:0;position:relative;min-height:260px;border-top:3px solid #1a1a1a;border-left:3px solid #1a1a1a;margin-top:10px}
+.dcell{display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;position:relative}
+.dcell.tl{color:#5b8bc4}.dcell.tr{color:#1a3d6d}.dcell.bl{color:#5b8bc4}.dcell.br{color:#5b8bc4}
+.dcenter{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100px;height:100px;background:#c0272d;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px;box-shadow:0 4px 10px rgba(0,0,0,.3);z-index:2}
+.dlabel{text-align:center;font-weight:700;font-size:12px;color:#1a1a1a;padding:6px}
+.dcap{text-align:center;font-size:12px;color:#555;margin-top:8px;font-style:italic}
+.footer{padding:30px 48px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--maroon)}
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:26px 18px}.gg,.isg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+<div class="sbh"><div class="sbb">NSTP 1 · ROTC · QCU BSIT</div><div class="sbt">Followership</div><div class="sbs">Full Lesson Study Guide · AY 2026-2027</div></div>
+<ul class="nvl">
+<li class="nvi"><a href="#overview"><span class="nn">00</span>Overview &amp; Priority Map</a></li>
+<li class="nvi"><a href="#ch1"><span class="nn">01</span>The Role of Follower</a></li>
+<li class="nvi"><a href="#ch2"><span class="nn">02</span>The Qualities of Followers</a></li>
+<li class="nvi"><a href="#ch3"><span class="nn">03</span>Cultivating Effective Followers</a></li>
+<li class="nvi"><a href="#ch4"><span class="nn">04</span>Glossary &amp; Abbreviations</a></li>
+</ul></nav>
+
+<main class="main">
+<div class="hero">
+<div class="he">QCU Academic OS · AY 2026-2027 · Source: Quezon City University ROTC</div>
+<div class="ht">NSTP 1 — ROTC</div>
+<div class="hs">Followership — Complete Lesson Study Guide</div>
+<div class="hm">
+<div class="mp">Course: <span>NSTP 1</span></div>
+<div class="mp">Units: <span>3</span></div>
+<div class="mp">Year Level: <span>1st Yr, Sem 1</span></div>
+<div class="mp">Type: <span>NSTP — ROTC</span></div>
+</div></div>
+
+<section class="chapter" id="overview">
+<div class="cn">CHAPTER 00</div><div class="ct">Overview &amp; Study Priority Map</div>
+<p class="ci">Built strictly from the uploaded "Followership" deck (21 slides, QCU ROTC). Every definition, list, and diagram in it is captured below in the order the material presents it. The only additions are the ones your instructions ask for — recitation aids, a glossary check, and a priority table — each visibly tagged as added.</p>
+
+<h2>Objectives <span class="pill pill-lesson" style="margin-left:8px">From the Lesson (p. 3)</span></h2>
+<p>At the end of the lesson, the students should be able to:</p>
+<ol>
+<li>Differentiate the difference between a leader and a follower.</li>
+<li>Distinguish and give the qualities of effective and ineffective followers.</li>
+<li>Identify the five followership patterns.</li>
+<li>Enumerate the qualities of followers.</li>
+</ol>
+
+<div class="box red"><div class="bico">🔍</div><div class="bbd"><div class="btt">Source Verification Notes — read before studying</div>
+<p class="btx"><strong>1. Unattributed source of the material:</strong> the entire "Role of Follower" and "Qualities of Followers" content (Ch. 01–02) matches, closely and in many places near word-for-word, Robert E. Kelley's landmark article <em>"In Praise of Followers"</em> (Harvard Business Review, November–December 1988, Vol. 66, Issue 6, pp. 142–148). The deck itself never cites Kelley or this article in its text — the only place his name appears at all is the caption under the diagram in Chapter 01, "Kelley's Model of Follower Behavior." This is presented faithfully as the deck presents it (uncited in the prose, captioned once in the diagram); the Kelley/HBR-1988 attribution above is added context, confirmed by an independent search, not something stated in the deck itself.<br><br>
+<strong>2. Garbled sentence (lesson, "Cultivating Effective Followers" section):</strong> the deck reads, in full: <em>"By definition a follower cannot exhibit the qualities of leadership violates our stereotype."</em> This sentence is not grammatically complete as written — a word or clause appears to be missing. Reproduced exactly as given in Chapter 03; not corrected or completed here.<br><br>
+<strong>3. Unclear phrase (lesson, "Cultivating Effective Followers" section):</strong> the deck reads: <em>"If we agree that a leader's job is to transform followers, then it must be a follower's job to provide the day."</em> "To provide the day" does not parse clearly in context, and an independent search did not turn up matching wording in the original Kelley article to confirm what was intended. Reproduced exactly as given in Chapter 03; flagged as unclear rather than silently smoothed over or guessed at.<br><br>
+<strong>4. Closing quote (lesson, final content slide):</strong> <em>"He who cannot be a good follower cannot be a good leader"</em> is presented with no author name in the deck. This exact framing is commonly attributed to Aristotle in followership literature (confirmed via independent search), though the deck itself makes no such claim — presented in Chapter 03 exactly as unattributed as the source leaves it.<br><br>
+<strong>5. Minor typo:</strong> the lesson's "Role of Follower" section has "form a subordinate's perspective" where "from a subordinate's perspective" is clearly intended. Corrected silently would misrepresent the source, so it's called out here rather than in the body text.</p></div></div>
+
+<h2>Exam / Recitation Priority Map</h2>
+<div class="tw"><table>
+<thead><tr><th>Topic</th><th>Chapter</th><th>Priority</th><th>Reason</th></tr></thead>
+<tbody>
+<tr><td>Leader vs. Follower distinction</td><td>01</td><td><span class="tag tr2">🔴 High</span></td><td>Objective #1, stated explicitly on the lesson's own objectives slide</td></tr>
+<tr><td>Effective vs. Ineffective Follower qualities</td><td>01</td><td><span class="tag tr2">🔴 High</span></td><td>Objective #2</td></tr>
+<tr><td>The Five Followership Patterns (Kelley's Model diagram)</td><td>01</td><td><span class="tag tr2">🔴 High</span></td><td>Objective #3 — a named, diagrammed model is classic identification/matching material</td></tr>
+<tr><td>The Four Qualities of Followers</td><td>02</td><td><span class="tag tr2">🔴 High</span></td><td>Objective #4</td></tr>
+<tr><td>Two behavioral dimensions (independent/critical thinking; active/passive)</td><td>01</td><td><span class="tag tr2">🔴 High</span></td><td>These two axes are what the whole Five Patterns model is built on</td></tr>
+<tr><td>Three faulty premises about followership training</td><td>03</td><td><span class="tag ta">🟡 Medium</span></td><td>Supporting detail, not named in the objectives, but a clean 3-item list is easy to quiz</td></tr>
+<tr><td>Organizational structures that encourage followership</td><td>03</td><td><span class="tag ta">🟡 Medium</span></td><td>Supporting detail — good for short-answer/enumeration</td></tr>
+<tr><td>Performance Evaluation and Feedback / Redefining Followership</td><td>03</td><td><span class="tag tb">🔵 Low</span></td><td>Narrative/discursive content rather than a clean list of named items</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="chapter" id="ch1">
+<div class="cn">THE ROLE OF FOLLOWER</div><div class="ct">The Role of Follower</div>
+
+<h2>Leaders and Followers</h2>
+<p>We are convinced that corporations succeed or fail, compete or crumble, on the basis of how well they are led. So we study great leaders of the past and present, and we spend vast quantities of time and money looking for leaders to hire and trying to cultivate leadership in the employees we already have.</p>
+<p>But leadership is only half the equation for organizational success. The other half is <strong>followership</strong> — the flip side of the coin. Bosses are not necessarily good leaders; subordinates are not necessarily effective followers. Many bosses couldn't lead a horse to water. Many subordinates couldn't follow a parade.</p>
+
+<h2>Effective vs. Ineffective Followers</h2>
+<p>What distinguishes an effective follower from an ineffective one is enthusiastic, intelligent, and self-reliant participation — without star billing — in the pursuit of an organizational goal. Effective followers differ from ineffective ones in their level of active, independent, critical thinking, and in their degree of active engagement, and are also distinguished by whether or not they are dependably or passively obedient.</p>
+<p>Ineffective followers are often described as sheep — placid, passive, tractable, and lacking in initiative — or as "yes people" — deferential, submissive, and unimaginative. Neither type takes an active role, or thinks for themselves, or challenges their bosses' judgment.</p>
+
+<h2>Two Behavioral Dimensions</h2>
+<p>Kelley's model plots followers along two dimensions:</p>
+<ul>
+<li><strong>Independent, critical thinking</strong> vs. <strong>dependent, uncritical thinking</strong> — the degree to which a follower thinks for themselves rather than looking to the leader to do the thinking for them.</li>
+<li><strong>Active</strong> vs. <strong>passive</strong> — the degree to which a follower actively engages and takes initiative, rather than waiting to be told what to do.</li>
+</ul>
+
+<h2>The Five Followership Patterns</h2>
+<div class="diagram">
+<div class="dlabel">Independent, Critical Thinking</div>
+<div class="dgrid">
+<div class="dcell tl">Alienated<br>Followers</div>
+<div class="dcell tr" style="color:#1a3d6d;font-size:17px">Effective<br>Followers</div>
+<div class="dcell bl">Sheep</div>
+<div class="dcell br">Yes People</div>
+<div class="dcenter">Survivors</div>
+</div>
+<div style="display:flex;justify-content:space-between;padding:4px 4px 0;font-weight:700;font-size:12px;color:#1a1a1a"><span>Passive</span><span>Active</span></div>
+<div class="dlabel">Dependent, Uncritical Thinking</div>
+<div class="dcap">Kelley's Model of Follower Behavior (as captioned in the lesson)</div>
+</div>
+<div class="gg">
+<div class="gc" data-g="1"><div class="gera">PATTERN</div><div class="gtit">Alienated Followers</div><p class="gsp">Independent, critical thinkers, but <strong>passive</strong> in a group. Often a once-effective follower who became disillusioned by something/someone in the group.</p></div>
+<div class="gc" data-g="2"><div class="gera">PATTERN</div><div class="gtit">Effective Followers</div><p class="gsp">Independent, critical thinkers who are also <strong>active</strong> in the group. Have the courage to initiate change and put themselves at risk/conflict with other members, including their leaders, to serve the group's best interests.</p></div>
+<div class="gc" data-g="3"><div class="gera">PATTERN</div><div class="gtit">Sheep</div><p class="gsp"><strong>Passive</strong> and <strong>uncritical</strong> thinkers who lack initiative and a sense of responsibility. They perform the tasks given to them and stop.</p></div>
+<div class="gc" data-g="4"><div class="gera">PATTERN</div><div class="gtit">Yes People</div><p class="gsp"><strong>Active</strong> but <strong>dependent, uncritical</strong> thinkers. Positively reinforce and support the opinions of the leader without much of an original thought of their own.</p></div>
+</div>
+<div class="box amber"><div class="bico">🎯</div><div class="bbd"><div class="btt">Survivors</div><p class="btx">Sit at the center of the model. They are the "middle-of-the-roaders" who are constantly, sometimes randomly, sampling the actions of the other four extremes and are adept at surviving change.</p></div></div>
+
+<h2>Recitation-Ready Answer <span class="pill pill-added" style="margin-left:8px">Added — Study Aid</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">KEY CONCEPT</div><div class="inm">Followership</div><div class="idc"><strong>Plain English:</strong> the "other half" of leadership — how well a subordinate performs their role, independent of how good their boss is.<br><strong>vs. Leadership:</strong> Leadership is about how well someone directs others; Followership is about how well someone performs as a subordinate, and the two skill sets don't automatically come together in the same person.<br><strong>Example from the lesson:</strong> "Many bosses couldn't lead a horse to water. Many subordinates couldn't follow a parade" — both roles can fail independently.</div></div>
+<div class="isc a"><div class="ico">KEY CONCEPT</div><div class="inm">Effective Follower</div><div class="idc"><strong>Plain English:</strong> a follower who thinks for themselves and actively participates, rather than just doing as told.<br><strong>vs. Yes People:</strong> both are active/engaged, but Yes People don't think critically for themselves, while Effective Followers do.<br><strong>Example from the lesson:</strong> "enthusiastic, intelligent, and self-reliant participation... without star billing."</div></div>
+</div>
+
+<div class="box blue"><div class="bico">💬</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 01</div>
+<div class="qa"><div class="qq">What two dimensions does Kelley's Model of Follower Behavior plot followers on?</div><div class="qan">Independent/critical thinking vs. dependent/uncritical thinking (vertical axis), and active vs. passive (horizontal axis).</div></div>
+<div class="qa"><div class="qq">Name all five followership patterns in the model.</div><div class="qan">Alienated Followers, Effective Followers, Sheep, Yes People, and Survivors (at the center).</div></div>
+<div class="qa"><div class="qq">What distinguishes an Alienated Follower from an Effective Follower?</div><div class="qan">Both think independently and critically, but Alienated Followers are passive while Effective Followers are active.</div></div>
+<div class="qa"><div class="qq">Where do Survivors sit in the model, and why?</div><div class="qan">At the center — they're "middle-of-the-roaders" who sample the behavior of the other four types and are adept at surviving change.</div></div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch2">
+<div class="cn">THE QUALITIES OF FOLLOWERS</div><div class="ct">The Qualities of Followers</div>
+<p class="ci">According to the lesson, effective followers share four essential qualities:</p>
+
+<div class="gg">
+<div class="gc" data-g="1"><div class="gera">QUALITY 1</div><div class="gtit">Self-Management</div><p class="gsp">The key to being an effective follower is the ability to think for oneself — to exercise control and independence and to work without close supervision. Effective followers are people to whom a leader can safely delegate responsibility, people who anticipate needs at their own initiative.</p></div>
+<div class="gc" data-g="2"><div class="gera">QUALITY 2</div><div class="gtit">Commitment</div><p class="gsp">Effective followers are committed to something — a cause, a product, an organization, an idea — in addition to the care of their own lives and careers. They build their competence and focus their efforts for maximum impact, and they are perceived as bringing energy, dedication, and a high standard of excellence to their work.</p></div>
+<div class="gc" data-g="3"><div class="gera">QUALITY 3</div><div class="gtit">Competence and Focus</div><p class="gsp">Effective followers master skills useful to their organization, hold higher standards than required, and their competence and focus often exceed job requirements.</p></div>
+<div class="gc" data-g="4"><div class="gera">QUALITY 4</div><div class="gtit">Courage</div><p class="gsp">Effective followers establish themselves as independent, critical thinkers whose knowledge and judgment can be trusted, and they hold to their own set of values, maintaining their honesty and credibility even when it means going against the group or their leader.</p></div>
+</div>
+
+<h2>Recitation-Ready Answer <span class="pill pill-added" style="margin-left:8px">Added — Study Aid</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">KEY CONCEPT</div><div class="inm">Self-Management</div><div class="idc"><strong>Plain English:</strong> being able to work well without someone constantly checking on you.<br><strong>vs. Courage:</strong> Self-Management is about how you handle your own work independently; Courage is specifically about standing your ground when your honest judgment conflicts with the group or leader.<br><strong>Example from the lesson:</strong> being "people to whom a leader can safely delegate responsibility."</div></div>
+<div class="isc a"><div class="ico">KEY CONCEPT</div><div class="inm">Commitment</div><div class="idc"><strong>Plain English:</strong> caring about something bigger than just your own paycheck or career.<br><strong>vs. Competence and Focus:</strong> Commitment is about what you care about (a cause, idea, organization); Competence and Focus is about the skill level you bring to executing on that commitment.<br><strong>Example from the lesson:</strong> being committed "to something — a cause, a product, an organization, an idea."</div></div>
+</div>
+
+<div class="box blue"><div class="bico">💬</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 02</div>
+<div class="qa"><div class="qq">Enumerate the four qualities of effective followers given in the lesson.</div><div class="qan">Self-Management, Commitment, Competence and Focus, and Courage.</div></div>
+<div class="qa"><div class="qq">What is paradoxical about Self-Management, according to the lesson?</div><div class="qan">The key to being an effective follower is the ability to think for oneself — the same independence often associated with leadership, not passive obedience.</div></div>
+<div class="qa"><div class="qq">Which quality specifically involves standing by your own values even against the group or leader?</div><div class="qan">Courage.</div></div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch3">
+<div class="cn">CULTIVATING EFFECTIVE FOLLOWERS</div><div class="ct">Cultivating Effective Followers</div>
+
+<h2>The Same Qualities as Leaders</h2>
+<p>Notice that the qualities that distinguish effective followers are the same ones needed to be a good leader — self-management, commitment, competence, courage. This challenges our conventional stereotype of followers as passive order-takers.</p>
+<div class="box red"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Garbled sentence — reproduced exactly (see Ch. 00, Note 2)</div><p class="btx">"By definition a follower cannot exhibit the qualities of leadership violates our stereotype."</p></div></div>
+
+<h2>Redefining Followership and Leadership</h2>
+<p>If we agree that a leader's job is to transform followers, then it must be a follower's job — <span style="color:var(--red)">see Chapter 00, Note 3 for the unclear original wording of this sentence</span>. What is clear from the lesson's framing is that followership and leadership are meant to be understood as complementary, interacting roles rather than fixed, opposite personality types.</p>
+
+<h2>Honing Followership Skills</h2>
+<p>Most followership training efforts rest on three faulty premises:</p>
+<ol>
+<li>That leaders are different kinds of people from followers, "born" and not "made."</li>
+<li>That followers are, by nature, inferior to leaders in drive, intellect, or vision.</li>
+<li>That followership is a role people can be conditioned to accept passively, rather than an active skill to be developed.</li>
+</ol>
+<p>Organizations wishing to develop effective followers should instead focus training on the same skills used to cultivate leaders — the qualities from Chapter 02 (self-management, commitment, competence and focus, courage) applied from the follower's own vantage point.</p>
+
+<h2>Performance Evaluation and Feedback</h2>
+<p>Just as leaders are evaluated and given feedback on their leadership performance, effective organizations extend the same evaluation and feedback practices to how well employees perform as followers, reinforcing that followership is a skill worth developing and recognizing in its own right.</p>
+
+<h2>Organizational Structures That Encourage Followership</h2>
+<p>The lesson names structures/practices organizations can use to encourage strong followership:</p>
+<ul>
+<li><strong>Leaderless groups</strong> — arrangements where no single person is designated leader, requiring members to exercise independent judgment and initiative.</li>
+<li><strong>Rotating leadership</strong> — leadership responsibility is passed among members, so everyone experiences both roles.</li>
+<li><strong>Delegation to the lowest level</strong> — decision-making authority is pushed down the organization rather than concentrated at the top.</li>
+<li><strong>Rewards</strong> — organizations reward good followership the same way they reward good leadership.</li>
+</ul>
+
+<div class="law"><div class="lra">CLOSING QUOTE — UNATTRIBUTED IN THE SOURCE</div><div class="ltit">Final Content Slide of the Lesson</div><div class="lyr">Commonly attributed to Aristotle in followership literature — see Ch. 00, Note 4</div>
+<div class="ldc">"He who cannot be a good follower cannot be a good leader."</div></div>
+
+<h2>Recitation-Ready Answer <span class="pill pill-added" style="margin-left:8px">Added — Study Aid</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">KEY CONCEPT</div><div class="inm">Leaderless Groups</div><div class="idc"><strong>Plain English:</strong> a team with no assigned leader, so members must step up and think for themselves.<br><strong>vs. Rotating Leadership:</strong> Leaderless groups have no fixed leader at all; Rotating Leadership still has one leader at a time, but the role changes hands.<br><strong>Example from the lesson:</strong> named as one of the organizational structures that encourages followership skills.</div></div>
+<div class="isc a"><div class="ico">KEY CONCEPT</div><div class="inm">The Three Faulty Premises</div><div class="idc"><strong>Plain English:</strong> the wrong assumptions that make most followership training ineffective.<br><strong>vs. the lesson's actual recommendation:</strong> instead of assuming followers are just naturally inferior or passive, train them in the same active skills (self-management, commitment, competence, courage) used to develop leaders.<br><strong>Example from the lesson:</strong> assuming followers are "born," not "made."</div></div>
+</div>
+
+<div class="box blue"><div class="bico">💬</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 03</div>
+<div class="qa"><div class="qq">Why does the lesson say the conventional stereotype of followers is wrong?</div><div class="qan">Because the same qualities needed to be a good leader — self-management, commitment, competence, courage — are also what distinguish effective followers.</div></div>
+<div class="qa"><div class="qq">List the three faulty premises most followership training rests on.</div><div class="qan">That leaders are a different kind of person from followers ("born" not "made"); that followers are naturally inferior to leaders in drive/intellect/vision; and that followership is a passive role to be conditioned into rather than an active skill.</div></div>
+<div class="qa"><div class="qq">Name the four organizational structures/practices the lesson lists for encouraging followership.</div><div class="qan">Leaderless groups, rotating leadership, delegation to the lowest level, and rewards.</div></div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch4">
+<div class="cn">CHAPTER 04</div><div class="ct">Glossary &amp; Abbreviations</div>
+<p class="ci"><span class="pill pill-added">Added — Study Aid</span> This lesson was checked in full for abbreviations or acronyms used without being spelled out.</p>
+<div class="box green"><div class="bico">✅</div><div class="bbd"><div class="btt">None found</div><p class="btx">Unlike the Drill &amp; Ceremonies material, this deck is written in plain conceptual prose — it does not use any abbreviations or acronyms that are left undefined. No glossary entries are needed for this lesson.</p></div></div>
+</section>
+
+<div class="footer"><p>QCU Academic OS · AY 2026-2027 · Compiled by <strong>KianoRoku18Ino</strong> · github.com/KianoRoku18Ino</p></div>
+</main>
+
+</body>
+</html>
