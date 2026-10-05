@@ -128,6 +128,14 @@
                   "order": 4,
                   "week": 4,
                   "html": "assets/guides/year-1/sem-1/nstp1/week-4.html"
+                },
+                {
+                  "id": "week-5",
+                  "kind": "week",
+                  "label": "Week 5 — IED - Improvised Explosive Device",
+                  "order": 5,
+                  "week": 5,
+                  "html": "assets/guides/year-1/sem-1/nstp1/week-5.html"
                 }
               ]
             },
