@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WS101 — Web Systems and Technologies 1 | Prelim Reviewer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+/* --- CORE PALETTE (shared across every subject — do not change) --- */
+/* --- ACCENT SWAP: add ONE extra variable per subject, matched to the subject's identity ---
+   RIZAL    -> --maroon:#B91C3C   (border tint stays blue, maroon used sparingly for RIZAL-specific tags)
+   HUM2     -> --violet:#8B5CF6  and --bdr becomes rgba(139,92,246,.15)  (violet-tinted borders)
+   SOCSCI3  -> --cyan:#06B6D4    (border tint stays blue)
+   PATHFIT1 -> no new hue; --bdr becomes rgba(16,185,129,.15) (green-tinted borders), --sw:260px (shorter subject name)
+   CC101/CC102/WS101 (technical/core) -> keep default blue border tint, no extra hue needed
+   Default rule: only shift --bdr's tint (and add one named hue var) when the subject's identity calls for it
+   (humanities/ethics -> violet, history/law -> maroon, social science -> cyan, PE/health -> green).
+   Otherwise leave the palette exactly as below. */
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--bgcode:#060D18;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--purple:#8B5CF6;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(59,130,246,.15);--sw:285px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+
+/* Sidebar */
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvs{padding:9px 17px 3px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t3)}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover,.nvi a.act{color:var(--t1);background:rgba(59,130,246,.08);border-left-color:var(--blue)}
+.nvi a.act{color:var(--blue);font-weight:500}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:20px}
+
+/* Main / Hero */
+.main{margin-left:var(--sw)}
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:52px 52px 42px;position:relative;overflow:hidden}
+.hero::before{content:'01001000';position:absolute;top:-10px;right:15px;font-family:'JetBrains Mono',monospace;font-size:115px;font-weight:900;color:rgba(59,130,246,.04);letter-spacing:-5px;user-select:none;line-height:1}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--blue)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:48px;font-weight:700;line-height:1.05;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#3B82F6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:18px;color:var(--t2);margin-bottom:19px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+
+/* Chapter shell */
+.chapter{padding:44px 52px;border-bottom:1px solid var(--bdr);max-width:970px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:19.5px;font-weight:600;margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--blue);border-radius:2px;flex-shrink:0}
+h3{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--blue);margin:22px 0 9px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+
+/* Callout boxes (blue=info/link, amber=caution, green=confirmed/tip, red=warning) */
+.box{border-radius:8px;padding:13px 17px;margin:15px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}.red .btt{color:var(--red)}
+
+/* Tables */
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--blue);font-size:12px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(59,130,246,.04)}
+tbody td{padding:9px 13px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}
+.nt td:not(:first-child){color:var(--amber);font-family:'JetBrains Mono',monospace}
+
+/* Code blocks */
+.codeblock{background:var(--bgcode);border:1px solid var(--bdr);border-radius:8px;margin:15px 0;overflow:hidden}
+.cbhd{display:flex;align-items:center;justify-content:space-between;padding:8px 13px;background:var(--bgr);border-bottom:1px solid var(--bdr)}
+.cbhl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:1px}
+.dots{display:flex;gap:4px}.dot{width:9px;height:9px;border-radius:50%}.dr{background:#EF4444}.dy{background:#F59E0B}.dg{background:#10B981}
+pre{padding:16px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.75;color:#C4D4E8}
+
+/* Numbered steps */
+.steps{margin:15px 0}
+.step{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.snum{background:var(--blue);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace}
+.sc{flex:1}
+.sl{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:2px}
+.sd{color:var(--t2);font-size:13px;line-height:1.7}
+.sd code{font-family:'JetBrains Mono',monospace;background:var(--bgr);padding:1px 5px;border-radius:3px;font-size:11.5px;color:var(--amber)}
+
+/* Timeline */
+.tl{margin:15px 0}
+.tli{display:flex;gap:14px;margin-bottom:18px;position:relative}
+.tli::before{content:'';position:absolute;left:73px;top:30px;width:1px;height:calc(100% + 5px);background:var(--bdr)}
+.tli:last-child::before{display:none}
+.tlyr{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--amber);font-weight:700;min-width:58px;padding-top:12px;text-align:right}
+.tldot{width:9px;height:9px;background:var(--blue);border-radius:50%;border:2px solid var(--bg);flex-shrink:0;margin-top:14px}
+.tlc{background:var(--bgc);border:1px solid var(--bdr);border-radius:8px;padding:11px 15px;flex:1}
+.tlt{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:3px}
+.tld{color:var(--t2);font-size:12.5px;line-height:1.65}
+
+/* 2-up feature grid cards (with faint background watermark letter/number via data-g) */
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.gc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;position:relative;overflow:hidden}
+.gc::before{content:attr(data-g);position:absolute;top:-10px;right:7px;font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:900;color:rgba(59,130,246,.05);line-height:1}
+.gera{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.gtit{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:7px}
+.gsp{font-size:12.5px;color:var(--t2);margin:0;line-height:1.7}
+.gsp strong{color:var(--blue)}
+
+/* 3-up compact profile cards */
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:15px 0}
+.pcrd{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:13px 15px}
+.pnm{font-weight:700;color:var(--t1);font-size:13px;margin-bottom:2px}
+.pdt{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.pttl{font-size:11px;color:var(--blue);font-weight:600;margin-bottom:4px}
+.pdsc{font-size:12px;color:var(--t2);line-height:1.6}
+
+/* Layer/list rows (e.g. OSI model, protocol stacks) */
+.osi{margin:15px 0}
+.osil{display:flex;align-items:center;gap:12px;padding:10px 15px;border:1px solid var(--bdr);margin-bottom:-1px;transition:background .15s}
+.osil:hover{background:rgba(59,130,246,.04)}
+.osil:first-child{border-radius:8px 8px 0 0}
+.osil:last-child{border-radius:0 0 8px 8px}
+.osin{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;min-width:22px;color:var(--amber)}
+.osnm{font-weight:600;color:var(--t1);min-width:115px;font-size:13px}
+.osip{font-size:11px;color:var(--blue);font-family:'JetBrains Mono',monospace;min-width:155px}
+.osid{font-size:12.5px;color:var(--t2);flex:1}
+
+/* 2-up top-accent info cards (.a=amber .g=green .p=purple, default=blue) */
+.isg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.isc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;border-top:3px solid var(--blue)}
+.isc.a{border-top-color:var(--amber)}.isc.g{border-top-color:var(--green)}.isc.p{border-top-color:var(--purple)}
+.ico{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-bottom:3px}
+.inm{font-weight:700;font-size:14px;color:var(--t1);margin-bottom:6px}
+.idc{font-size:12.5px;color:var(--t2);line-height:1.7}
+.ieg{font-size:11.5px;color:var(--green);margin-top:6px}
+
+/* Mistake/pitfall list */
+.mlst{margin:11px 0}
+.mitem{display:flex;gap:11px;padding:10px 0;border-bottom:1px solid var(--bdr);align-items:flex-start}
+.mitem:last-child{border-bottom:none}
+.mnm{font-weight:700;color:var(--red);min-width:110px;font-size:13px}
+.mdc{font-size:13px;color:var(--t2);line-height:1.65}
+
+/* ASCII/file-tree block */
+.tree{font-family:'JetBrains Mono',monospace;font-size:12.5px;background:var(--bgcode);border:1px solid var(--bdr);border-radius:8px;padding:15px 19px;color:var(--t2);line-height:2;margin:12px 0;overflow-x:auto;white-space:pre}
+
+/* Law/citation callout (RA numbers, formal definitions, primary-source quotes) */
+.law{background:var(--bgc);border:1px solid var(--bdr);border-left:4px solid var(--red);border-radius:8px;padding:15px 17px;margin:11px 0}
+.lra{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--red);font-weight:700;margin-bottom:3px}
+.ltit{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:4px}
+.lyr{font-size:11px;color:var(--t3);margin-bottom:7px}
+.ldc{font-size:13px;color:var(--t2);line-height:1.75}
+
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:4px;font-size:13px;line-height:1.75}
+li strong{color:var(--t1)}
+
+.footer{padding:34px 52px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--blue)}
+
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.gg,.pg,.isg{grid-template-columns:1fr}}
+p code,li code,td code,.btx code{font-family:'JetBrains Mono',monospace;background:var(--bgr);padding:1px 5px;border-radius:3px;font-size:11.5px;color:var(--amber)}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+<div class="sbh"><div class="sbb">WS101 · QCU BSIT</div><div class="sbt">Web Systems and Technologies 1</div><div class="sbs">Prelim Reviewer · AY 2026–2027</div></div>
+<ul class="nvl">
+<li class="nvs">Introduction</li>
+<li class="nvi"><a href="#overview"><span class="nn">00</span>Course Overview</a></li>
+<li class="nvs">HTML &amp; CSS (Weeks 2–4)</li>
+<li class="nvi"><a href="#ch1"><span class="nn">01</span>Web Basics &amp; Terminology</a></li>
+<li class="nvi"><a href="#ch2"><span class="nn">02</span>HTML Fundamentals</a></li>
+<li class="nvi"><a href="#ch3"><span class="nn">03</span>Lists, Links, Tables, Frames</a></li>
+<li class="nvi"><a href="#ch4"><span class="nn">04</span>Forms &amp; Input Controls</a></li>
+<li class="nvi"><a href="#ch5"><span class="nn">05</span>Cascading Style Sheets</a></li>
+<li class="nvs">JavaScript (Weeks 5–6)</li>
+<li class="nvi"><a href="#ch6"><span class="nn">06</span>JS: Variables &amp; Data Types</a></li>
+<li class="nvi"><a href="#ch7"><span class="nn">07</span>JS: Strings, Operators, Arrays</a></li>
+<li class="nvi"><a href="#ch8"><span class="nn">08</span>JS: Flowcharts</a></li>
+<li class="nvi"><a href="#ch9"><span class="nn">09</span>JS: Conditionals &amp; Loops</a></li>
+<li class="nvi"><a href="#ch10"><span class="nn">10</span>JS: Functions, RegExp, Events</a></li>
+<li class="nvs">Exam Practice</li>
+<li class="nvi"><a href="#ch11"><span class="nn">11</span>Hands-On: Activity 2 &amp; Lab 3</a></li>
+<li class="nvi"><a href="#ch12"><span class="nn">12</span>Slide Typos &amp; Practice Q&amp;A</a></li>
+</ul></nav>
+
+<main class="main">
+<div class="hero">
+<div class="he">QCU Academic OS · 2026</div>
+<div class="ht">WS101</div>
+<div class="hs">Web Systems and Technologies 1 — Prelim / Long Quiz Reviewer</div>
+<div class="hm">
+<div class="mp">Course: <span>WS101</span></div>
+<div class="mp">Coverage: <span>Weeks 2–6</span></div>
+<div class="mp">Year Level: <span>Year 1 · Sem 1</span></div>
+<div class="mp">Type: <span>Lecture + Lab</span></div>
+</div></div>
+
+<section class="chapter" id="overview">
+<div class="cn">CHAPTER 00</div><div class="ct">Course Overview &amp; Study Priority Map</div>
+<p class="ci">WS101 (Web Systems and Technologies 1) teaches how the web works and the three front-end languages: HTML for structure, CSS for presentation, and JavaScript for behavior. The lectures move from vocabulary, to markup, to styling, to programming logic, and the two activities force you to combine all three.</p>
+<div class="box blue"><div class="bico">🎯</div><div class="bbd"><div class="btt">Scope of this reviewer</div><p class="btx">Covers every lecture deck uploaded for WS101: <strong>Weeks 2–3 (Web Basics + HTML)</strong>, <strong>Week 4 (CSS)</strong>, <strong>Weeks 5–6 (JavaScript)</strong>, plus the hands-on patterns from <strong>Activity 2</strong> and <strong>Lab Activity 3</strong>. The quiz is expected to cover only what was lectured in JavaScript, up to the flowchart slide, so Chapters 06–08 are the core. In the deck, arrays sit just before the flowchart slide and conditionals/loops just after it, so they are included as a safety net and marked accordingly. HTML and CSS chapters are there in case the long quiz reaches back to earlier weeks.</p></div></div>
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">"println" is not JavaScript</div><p class="btx"><code>println</code> belongs to Java (<code>System.out.println()</code>). In JavaScript the output tools are <code>alert()</code>, <code>document.write()</code>, <code>console.log()</code>, and setting <code>.innerHTML</code>. If a question shows println in a JavaScript context, it is a distractor. Chapter 06 now has a full Java-vs-JavaScript anatomy comparison, plus a var/let/const table, if this kind of mix-up is a weak spot.</p></div></div>
+<h2>Exam Priority Map</h2><div class="tw"><table><thead><tr><th>Topic</th><th>Chapter</th><th>Exam Weight</th><th>Difficulty</th></tr></thead><tbody><tr><td>Variables, data types, literals, output</td><td>06</td><td><span class="tag tr2">🔴 High</span></td><td><span class="tag tg">Easy</span></td></tr><tr><td>Strings, expressions/operators, arrays</td><td>07</td><td><span class="tag tr2">🔴 High</span></td><td><span class="tag tg">Easy</span></td></tr><tr><td>Flowcharts (symbols, flow of control)</td><td>08</td><td><span class="tag tr2">🔴 High</span></td><td><span class="tag tg">Easy</span></td></tr><tr><td>Conditionals (if / else if / else) and loops</td><td>09</td><td><span class="tag tr2">🔴 High</span> (hands-on)</td><td><span class="tag ta">Medium</span></td></tr><tr><td>Functions, objects, RegExp, events, popups</td><td>10</td><td><span class="tag ta">🟠 Medium</span></td><td><span class="tag ta">Medium</span></td></tr><tr><td>Hands-on: Activity 2 + Lab 3 code patterns</td><td>11</td><td><span class="tag tr2">🔴 High</span> (code creation)</td><td><span class="tag ta">Medium</span></td></tr><tr><td>Slide typos + quick-fire practice Q&amp;A</td><td>12</td><td><span class="tag tr2">🔴 High</span></td><td><span class="tag tg">Easy</span></td></tr><tr><td>Web terminology, static vs dynamic, design principles</td><td>01</td><td><span class="tag ta">🟠 Medium</span></td><td><span class="tag tg">Easy</span></td></tr><tr><td>HTML basics, formatting, images</td><td>02</td><td><span class="tag ta">🟠 Medium</span></td><td><span class="tag tg">Easy</span></td></tr><tr><td>Lists, links, tables, div/span, frames</td><td>03</td><td><span class="tag ta">🟠 Medium</span></td><td><span class="tag tg">Easy</span></td></tr><tr><td>Forms and input controls</td><td>04</td><td><span class="tag ta">🟠 Medium</span></td><td><span class="tag ta">Medium</span></td></tr><tr><td>CSS: rules, types, properties</td><td>05</td><td><span class="tag ta">🟠 Medium</span></td><td><span class="tag tg">Easy</span></td></tr></tbody></table></div>
+<h2>60-Minute Plan for Tonight</h2><div class="steps"><div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Chapters 06 to 08 (25 min)</div><div class="sd">Read the traces, then close the file and explain each in your own words. Redo the predict-the-output items in Chapter 12.</div></div></div><div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Chapter 09 (15 min)</div><div class="sd">Type the if / else if / else ladder and the three loops from memory. Do not copy-paste; the exam is handwritten or typed cold.</div></div></div><div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Chapter 11 (10 min)</div><div class="sd">Rebuild the odd/even and grade programs without looking. Hands-on questions reuse these patterns.</div></div></div><div class="step"><div class="snum">4</div><div class="sc"><div class="sl">Chapters 01 to 05 (10 min)</div><div class="sd">Skim tables and definitions only. Then finish with the Chapter 12 Q&amp;A table.</div></div></div></div>
+</section>
+
+<section class="chapter" id="ch1">
+<div class="cn">CHAPTER 01</div><div class="ct">Web Basics &amp; Terminology (Weeks 2–3)</div>
+<p class="ci">Vocabulary chapter. Expect identification and multiple-choice items: define a term, name the four steps of a dynamic page, list design principles.</p>
+<h2>Core Terms</h2><div class="tw"><table><thead><tr><th>Term</th><th>Meaning</th><th>Local analogy</th></tr></thead><tbody><tr><td>World Wide Web (WWW)</td><td>The system of interlinked pages and resources accessed over the Internet using protocols such as HTTP. The web is a service that runs on the Internet, not the Internet itself.</td><td>The Internet is the road network; the web is the delivery service using it.</td></tr><tr><td>Web page</td><td>A single document (usually HTML) shown in a browser.</td><td>One page of a menu.</td></tr><tr><td>Website</td><td>A collection of related web pages under one domain.</td><td>The whole menu booklet.</td></tr><tr><td>Web server</td><td>A computer (and software) that stores web pages and answers browser requests.</td><td>The kitchen of a karinderya.</td></tr><tr><td>Web browser</td><td>Software that requests, downloads, and renders pages. Slide examples: Opera, Chrome, Safari, Firefox, Internet Explorer, Edge.</td><td>The customer placing the order.</td></tr></tbody></table></div>
+<h2>Static vs Dynamic Web Pages</h2><div class="gg"><div class="gc" data-g="S"><div class="gera">FIGURE 1</div><div class="gtit">Static Web Page</div><p class="gsp">One round trip. The browser sends an <strong>HTTP request</strong>, the server returns the ready-made <strong>HTTP response</strong>. Same content for everyone until the file is edited.</p></div><div class="gc" data-g="D"><div class="gera">FIGURE 2</div><div class="gtit">Dynamic Web Page</div><p class="gsp">The server runs a program first, so content can vary per request (user, time, database). Four steps, listed below.</p></div></div>
+<div class="steps"><div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Step 1: HTTP request</div><div class="sd">The browser asks the web server for a page.</div></div></div><div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Step 2: Server calls an application program</div><div class="sd">The server invokes a program in response to the request.</div></div></div><div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Step 3: Program executes and produces HTML output</div><div class="sd">The program builds the HTML result.</div></div></div><div class="step"><div class="snum">4</div><div class="sc"><div class="sl">Step 4: HTTP response</div><div class="sd">The server sends the generated HTML back to the browser.</div></div></div></div>
+<h2>What Makes the Web Work?</h2><div class="tw"><table><thead><tr><th>Item</th><th>Definition (per slide)</th></tr></thead><tbody><tr><td>Protocols</td><td>Set of standards used to access resources via the Web (for example HTTP).</td></tr><tr><td>URL (Universal Resource Locator)</td><td>Uniform naming scheme for Internet resources. Note: the standard expansion is "Uniform Resource Locator"; the slide says "Universal". Know both.</td></tr><tr><td>HTML</td><td>Document formatting language used to design most web pages.</td></tr><tr><td>CGI (Common Gateway Interface)</td><td>A standard way for a web server to run external programs and return their output.</td></tr><tr><td>Servlet</td><td>Application run by a server connected to the WWW; a popular avenue for Java development.</td></tr></tbody></table></div>
+<h2>Types of Websites (10)</h2><div class="tw"><table><thead><tr><th>#</th><th>Type</th><th>#</th><th>Type</th></tr></thead><tbody><tr><td>1</td><td>Business Websites</td><td>6</td><td>Online Forums</td></tr><tr><td>2</td><td>Blogs</td><td>7</td><td>Personal Websites</td></tr><tr><td>3</td><td>eCommerce Websites</td><td>8</td><td>Membership Websites</td></tr><tr><td>4</td><td>Portfolios</td><td>9</td><td>Nonprofit Websites</td></tr><tr><td>5</td><td>Event Websites</td><td>10</td><td>Informational Websites</td></tr></tbody></table></div>
+<h2>Principles of Good Website Design (9)</h2><div class="tw"><table><thead><tr><th>Principle</th><th>One-line meaning</th></tr></thead><tbody><tr><td>1. Website purpose</td><td>Know what the site is for and who it serves.</td></tr><tr><td>2. Simplicity</td><td>Avoid clutter; fewer elements, clearer message.</td></tr><tr><td>3. Navigation</td><td>Visitors must find pages easily (menus, links).</td></tr><tr><td>4. F-shaped pattern reading</td><td>Users scan the top bar, then a shorter second bar, then down the left side. Place key content there.</td></tr><tr><td>5. Visual hierarchy</td><td>Size, color, and position show what is most important.</td></tr><tr><td>6. Content</td><td>Useful, well-written, relevant material.</td></tr><tr><td>7. Grid-based layout</td><td>Align elements on a consistent grid.</td></tr><tr><td>8. Load time</td><td>Fast pages; optimize images and files.</td></tr><tr><td>9. Mobile friendly</td><td>Layout adapts to phone screens.</td></tr></tbody></table></div>
+<h2>HTML at a Glance</h2><div class="tl"><div class="tli"><div class="tlyr">1980s</div><div class="tldot"></div><div class="tlc"><div class="tlt">Tim Berners-Lee</div><div class="tld">Created HTML (Hypertext Markup Language), a computer language devised to allow website creation.</div></div></div><div class="tli"><div class="tlyr">Tools</div><div class="tldot"></div><div class="tlc"><div class="tlt">What you need to begin</div><div class="tld">A <strong>folder</strong> (directory), a <strong>browser</strong>, and a <strong>text editor</strong> (Notepad, WordPad, Dreamweaver, and similar).</div></div></div></div>
+<div class="box blue"><div class="bico">🔗</div><div class="bbd"><div class="btt">Forward link</div><p class="btx">WS101 is the prerequisite for <strong>WS102 (Year 1, Sem 2)</strong>, which continues the web track, and for <strong>IPT102 (Year 3, unconfirmed)</strong>.</p></div></div>
+</section>
+
+<section class="chapter" id="ch2">
+<div class="cn">CHAPTER 02</div><div class="ct">HTML Fundamentals (Weeks 2–3)</div>
+<p class="ci">Structure of a page, the basic tags, text formatting, fonts, and images. These are the most testable HTML items because they are short and definable.</p>
+<h2>HTML Elements</h2><p>Format: <code>&lt;tagname&gt;Content goes here...&lt;/tagname&gt;</code>. Three basic parts:</p><div class="tw"><table><thead><tr><th>Part</th><th>Example</th></tr></thead><tbody><tr><td>Opening tag</td><td><code>&lt;p&gt;</code></td></tr><tr><td>Element content</td><td>words / sentences / paragraph</td></tr><tr><td>Closing tag</td><td><code>&lt;/p&gt;</code></td></tr></tbody></table></div>
+<h2>HTML Document Structure</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">html</div></div><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Page Title&lt;/title&gt;   &lt;!-- shows on the browser tab --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;This is a paragraph&lt;/p&gt;  &lt;!-- everything visible goes here --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div>
+<div class="box red"><div class="bico">🚫</div><div class="bbd"><div class="btt">Slide typo to avoid</div><p class="btx">The slide 10 example opens <code>&lt;body&gt;</code> <em>before</em> closing <code>&lt;/head&gt;</code>. Correct order: close head first, then open body.</p></div></div>
+<h2>Basic Tags</h2><div class="tw"><table><thead><tr><th>Purpose</th><th>Tag</th><th>Notes</th></tr></thead><tbody><tr><td>Headings</td><td><code>&lt;h1&gt;&lt;/h1&gt;</code> to <code>&lt;h6&gt;&lt;/h6&gt;</code></td><td>h1 largest, h6 smallest.</td></tr><tr><td>Paragraph</td><td><code>&lt;p&gt;&lt;/p&gt;</code></td><td>Block of text with spacing above and below.</td></tr><tr><td>Line break</td><td><code>&lt;br /&gt;</code></td><td>Empty (void) tag; no closing tag.</td></tr><tr><td>Center content</td><td><code>&lt;center&gt;&lt;/center&gt;</code></td><td>Obsolete in HTML5; use CSS <code>text-align:center</code>.</td></tr><tr><td>Horizontal line</td><td><code>&lt;hr /&gt;</code></td><td>Empty tag.</td></tr><tr><td>Preserve formatting</td><td><code>&lt;pre&gt;&lt;/pre&gt;</code></td><td>Keeps spaces and line breaks exactly as typed.</td></tr></tbody></table></div>
+<h2>Text Formatting</h2><p>Two general ways: <strong>Physical style</strong> (says how text looks) and <strong>Logical style</strong> (says what text means; the browser decides the look).</p><div class="tw"><table><thead><tr><th>Physical style</th><th>Tag</th><th>Output</th></tr></thead><tbody><tr><td>Bold</td><td><code>&lt;B&gt;</code></td><td><strong>Bold</strong></td></tr><tr><td>Italic</td><td><code>&lt;I&gt;</code></td><td><em>Italic</em></td></tr><tr><td>Monospaced typewriter font</td><td><code>&lt;TT&gt;</code></td><td>Monospaced</td></tr><tr><td>Underline</td><td><code>&lt;U&gt;</code></td><td><u>Underlined</u></td></tr><tr><td>Strikethrough</td><td><code>&lt;S&gt;</code></td><td><s>Struck</s></td></tr><tr><td>Bigger than surrounding text</td><td><code>&lt;BIG&gt;</code></td><td>Bigger</td></tr><tr><td>Smaller print</td><td><code>&lt;SMALL&gt;</code></td><td>Smaller</td></tr><tr><td>Subscript</td><td><code>&lt;SUB&gt;</code></td><td>H<sub>2</sub>O</td></tr><tr><td>Superscript</td><td><code>&lt;SUP&gt;</code></td><td>x<sup>2</sup></td></tr></tbody></table></div>
+<div class="tw"><table><thead><tr><th>Logical style</th><th>Tag</th><th>Typical rendering</th></tr></thead><tbody><tr><td>Emphasis</td><td><code>&lt;EM&gt;</code></td><td>Italic</td></tr><tr><td>Strong emphasis</td><td><code>&lt;STRONG&gt;</code></td><td>Bold</td></tr><tr><td>Citation</td><td><code>&lt;CITE&gt;</code></td><td>Italic</td></tr></tbody></table></div>
+<div class="box red"><div class="bico">🚫</div><div class="bbd"><div class="btt">Slide typos to avoid</div><p class="btx">The slide examples write <code>&lt;T&gt;Monospaced Text&lt;/TT&gt;</code> (should be <code>&lt;TT&gt;</code>), and the Logical Style example reuses <code>&lt;B&gt;</code>, <code>&lt;I&gt;</code>, <code>&lt;T&gt;</code> instead of <code>&lt;EM&gt;</code>, <code>&lt;STRONG&gt;</code>, <code>&lt;CITE&gt;</code>. Answer with the correct tags.</p></div></div>
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Exam vs real world</div><p class="btx">In HTML5 the tags <code>&lt;tt&gt;</code>, <code>&lt;big&gt;</code>, <code>&lt;center&gt;</code>, <code>&lt;font&gt;</code>, and frames are obsolete. If the question follows the slides, answer per the slides. In real projects, use CSS.</p></div></div>
+<h2>Font Formatting</h2><div class="tw"><table><thead><tr><th>Attribute</th><th>Purpose</th><th>Example</th></tr></thead><tbody><tr><td>face</td><td>Defines the font to be used</td><td><code>&lt;font face="Monotype Corsiva"&gt;Hi!&lt;/font&gt;</code></td></tr><tr><td>color</td><td>Defines the color</td><td><code>&lt;font color="blue"&gt;Hi!&lt;/font&gt;</code></td></tr><tr><td>size</td><td>Defines the size</td><td><code>&lt;font size="7"&gt;Hi!&lt;/font&gt;</code></td></tr></tbody></table></div>
+<h2>Images</h2><p>Also called pictures, graphics, icons, or clip art. Tag: <code>&lt;img&gt;</code> (empty tag).</p><div class="tw"><table><thead><tr><th>Format</th><th>Stands for</th></tr></thead><tbody><tr><td>JPEG</td><td>Joint Photographic Experts Group</td></tr><tr><td>TIFF</td><td>Tagged Image File Format</td></tr><tr><td>PNG</td><td>Portable Network Graphics</td></tr><tr><td>GIF</td><td>Graphics Interchange Format (slide 16 writes "Graphic")</td></tr><tr><td>BMP</td><td>Bit Mapped (Bitmap)</td></tr></tbody></table></div>
+<div class="tw"><table><thead><tr><th>Image attribute</th><th>Purpose</th></tr></thead><tbody><tr><td>src</td><td>Path/URL of the image file (required)</td></tr><tr><td>alt</td><td>Alternative text if the image fails to load; also read by screen readers</td></tr><tr><td>align</td><td>Alignment relative to surrounding text</td></tr><tr><td>border</td><td>Border thickness</td></tr><tr><td>height / width</td><td>Display size</td></tr><tr><td>hspace / vspace</td><td>Horizontal / vertical white space around the image</td></tr></tbody></table></div>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">html</div></div><pre><code>&lt;img src="logo.png" alt="School logo" width="120" height="120"&gt;</code></pre></div>
+</section>
+
+<section class="chapter" id="ch3">
+<div class="cn">CHAPTER 03</div><div class="ct">Lists, Links, Tables, div/span &amp; Frames (Weeks 2–3)</div>
+<p class="ci">Structural building blocks. Know the tag names, what each is for, and the difference between block and inline containers.</p>
+<h2>Lists</h2><div class="tw"><table><thead><tr><th>Tag</th><th>Description</th></tr></thead><tbody><tr><td><code>&lt;ul&gt;</code></td><td>Unordered list (bullets)</td></tr><tr><td><code>&lt;ol&gt;</code></td><td>Ordered list (numbers)</td></tr><tr><td><code>&lt;li&gt;</code></td><td>List item</td></tr><tr><td><code>&lt;dl&gt;</code></td><td>Description list</td></tr><tr><td><code>&lt;dt&gt;</code></td><td>Term in a description list</td></tr><tr><td><code>&lt;dd&gt;</code></td><td>Describes the term</td></tr></tbody></table></div>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">html</div></div><pre><code>&lt;ul&gt;
+  &lt;li&gt;HTML&lt;/li&gt;
+  &lt;li&gt;CSS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;dl&gt;
+  &lt;dt&gt;HTML&lt;/dt&gt;
+  &lt;dd&gt;Hypertext Markup Language&lt;/dd&gt;
+&lt;/dl&gt;</code></pre></div>
+<h2>Hyperlinks</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">html</div></div><pre><code>&lt;!-- Text link --&gt;
+&lt;a href="document url"&gt;link text&lt;/a&gt;
+
+&lt;!-- Image link --&gt;
+&lt;a href="Document URL"&gt;&lt;img src="image path"&gt;&lt;/a&gt;
+
+&lt;!-- Email link --&gt;
+&lt;a href="mailto:someone@home.net"&gt;E-mail Us&lt;/a&gt;</code></pre></div>
+<h2>Tables</h2><div class="tw"><table><thead><tr><th>Tag</th><th>Purpose</th></tr></thead><tbody><tr><td><code>&lt;table&gt;</code></td><td>Creates the table</td></tr><tr><td><code>&lt;tr&gt;</code></td><td>Table row</td></tr><tr><td><code>&lt;td&gt;</code></td><td>Data cell</td></tr><tr><td><code>&lt;th&gt;</code></td><td>Table heading cell (bold, centered by default)</td></tr><tr><td><code>&lt;caption&gt;</code></td><td>Title/explanation shown at the top of the table</td></tr></tbody></table></div>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">html</div></div><pre><code>&lt;table border="1"&gt;
+  &lt;caption&gt;Common Programming Acronyms&lt;/caption&gt;
+  &lt;tr&gt;&lt;th&gt;Acronym&lt;/th&gt;&lt;th&gt;Meaning&lt;/th&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;HTML&lt;/td&gt;&lt;td&gt;Hypertext Markup Language&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;URL&lt;/td&gt;&lt;td&gt;Uniform Resource Locator&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;</code></pre></div>
+<h2>div and span</h2><div class="isg"><div class="isc "><div class="ico">BLOCK-LEVEL</div><div class="inm">&lt;div&gt;</div><div class="idc">Container that groups elements. Slide names five typical containers: <strong>Header, Left side navigation, Content, Right side navigation, Footer</strong>. Starts on a new line.</div></div><div class="isc a"><div class="ico">INLINE</div><div class="inm">&lt;span&gt;</div><div class="idc">Small inline container for styling part of a line of text. Does not break the line.</div></div></div>
+<div class="tw"><table><thead><tr><th>Attribute</th><th>Meaning (div and span)</th></tr></thead><tbody><tr><td>id</td><td>Unique name for the element</td></tr><tr><td>class</td><td>Class the element belongs to (id and class are used for styling)</td></tr><tr><td>style</td><td>Inline CSS such as background color, font size, border color</td></tr><tr><td>align (div only)</td><td>Deprecated. left, right, center, or justify</td></tr></tbody></table></div>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">html</div></div><pre><code>&lt;div id="menu"&gt;
+  &lt;a href="index.html"&gt;Home&lt;/a&gt; |
+  &lt;a href="about.html"&gt;About Us&lt;/a&gt; |
+  &lt;a href="contact.html"&gt;Contact Us&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;span style="color:#0077b3; font-weight:bold;"&gt;HTML&lt;/span&gt; stands for Hyper Text Markup Language&lt;/p&gt;</code></pre></div>
+<h2>Frames and iFrames</h2><p>Frames divide the browser window into sections; each section loads a separate HTML document. A collection of frames is a <strong>frameset</strong>. Tags: <code>&lt;frameset&gt;</code>, <code>&lt;frame /&gt;</code>, <code>&lt;noframes&gt;</code>.</p><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">html</div></div><pre><code>&lt;html&gt;
+&lt;head&gt;&lt;title&gt;HTML Frames&lt;/title&gt;&lt;/head&gt;
+&lt;frameset rows="10%,80%,10%"&gt;
+  &lt;frame name="top"    src="Aboutus.html" /&gt;
+  &lt;frame name="main"   src="Gallery.html" /&gt;
+  &lt;frame name="bottom" src="ContactUs.html" /&gt;
+&lt;/frameset&gt;
+&lt;/html&gt;</code></pre></div>
+<div class="tw"><table><thead><tr><th>Attribute</th><th>Used on</th><th>Purpose</th></tr></thead><tbody><tr><td>cols</td><td>frameset</td><td>Splits into columns, e.g. cols="10%,80%,10%"</td></tr><tr><td>rows</td><td>frameset</td><td>Splits into rows, e.g. rows="10%,90%"</td></tr><tr><td>border / frameborder / framespacing</td><td>frameset</td><td>Border thickness, border on/off, spacing between frames</td></tr><tr><td>src</td><td>frame</td><td>File loaded into the frame</td></tr><tr><td>name</td><td>frame</td><td>Name of the frame (link targets)</td></tr><tr><td>marginwidth / marginheight</td><td>frame</td><td>Internal margins</td></tr><tr><td>noresize</td><td>frame</td><td>User cannot resize the frame</td></tr></tbody></table></div>
+<div class="box blue"><div class="bico">📌</div><div class="bbd"><div class="btt">iframe</div><p class="btx"><code>&lt;iframe&gt;</code> is <strong>not</strong> tied to <code>&lt;frameset&gt;</code>. It can appear anywhere in a document and defines a rectangular region that displays a separate document, including scrollbars and borders. It shares the attributes src, name, frameborder, marginwidth, marginheight, noresize. (The slide writes <code>&lt;iframeset&gt;</code> by mistake.)</p></div></div>
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Frames are obsolete</div><p class="btx">HTML5 removed <code>&lt;frameset&gt;</code>/<code>&lt;frame&gt;</code>. <code>&lt;iframe&gt;</code> still works and is used for embedded maps and videos.</p></div></div>
+</section>
+
+<section class="chapter" id="ch4">
+<div class="cn">CHAPTER 04</div><div class="ct">Forms &amp; Input Controls (Weeks 2–3)</div>
+<p class="ci">Forms are the bridge to JavaScript: most Lab 3 items read or change form controls.</p>
+<p>HTML forms collect data from the site visitor. Basic form: <code>&lt;form&gt; Form elements here &lt;/form&gt;</code>.</p><div class="tw"><table><thead><tr><th>Form attribute</th><th>Purpose</th><th>Example</th></tr></thead><tbody><tr><td>action</td><td>Where the data is sent</td><td><code>&lt;form action="sample.html"&gt;</code></td></tr><tr><td>method</td><td>How it is sent (Post or Get)</td><td><code>&lt;form action="sample.html" method="Post"&gt;</code></td></tr><tr><td>target</td><td>Where the response opens (e.g. _self)</td><td><code>&lt;form ... target="_self"&gt;</code></td></tr></tbody></table></div>
+<h2>Input Controls</h2><div class="tw"><table><thead><tr><th>Control</th><th>When used</th><th>Tag / type</th></tr></thead><tbody><tr><td>Single-line text</td><td>Items needing one line of input</td><td><code>&lt;input type="text" /&gt;</code></td></tr><tr><td>Password</td><td>Single line that masks characters as typed</td><td><code>&lt;input type="password" /&gt;</code></td></tr><tr><td>Multi-line text</td><td>Details longer than one sentence</td><td><code>&lt;textarea&gt;...&lt;/textarea&gt;</code></td></tr><tr><td>Checkbox</td><td>More than one option may be selected</td><td><code>&lt;input type="checkbox" /&gt;</code></td></tr><tr><td>Radio button</td><td>Only one option out of many</td><td><code>&lt;input type="radio" /&gt;</code></td></tr><tr><td>Select box (drop-down)</td><td>List of options in a drop-down</td><td><code>&lt;select&gt;&lt;option&gt;...&lt;/option&gt;&lt;/select&gt;</code></td></tr><tr><td>Buttons</td><td>Clickable buttons</td><td><code>type="submit | reset | button | image"</code></td></tr></tbody></table></div>
+<div class="tw"><table><thead><tr><th>Text-input attribute</th><th>Purpose</th></tr></thead><tbody><tr><td>type</td><td>Kind of input (text, password, ...)</td></tr><tr><td>name</td><td>Name of the field (identifies the data when submitted)</td></tr><tr><td>value</td><td>Default/initial value</td></tr><tr><td>size</td><td>Visible width in characters</td></tr><tr><td>maxlength</td><td>Maximum characters allowed</td></tr><tr><td>rows / cols (textarea)</td><td>Height in lines / width in characters</td></tr></tbody></table></div>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">html</div></div><pre><code>&lt;form&gt;
+  Enter Username: &lt;input type="text" name="Name" size="20" maxlength="10"&gt;&lt;br&gt;
+  Enter Password: &lt;input type="password" name="password" size="10" maxlength="10"&gt;&lt;br&gt;
+
+  Suggestion Box:&lt;br&gt;
+  &lt;textarea cols="50" rows="3" name="Comment"&gt;&lt;/textarea&gt;&lt;br&gt;
+
+  Fruits you like:&lt;br&gt;
+  &lt;input type="checkbox" name="Apple" checked&gt;Apple&lt;br&gt;
+  &lt;input type="checkbox" name="Orange"&gt;Orange&lt;br&gt;
+
+  Favorite fruit:&lt;br&gt;
+  &lt;input type="radio" name="Fruits"&gt;Apple&lt;br&gt;
+  &lt;input type="radio" name="Fruits"&gt;Orange&lt;br&gt;
+
+  &lt;select name="dropdown"&gt;
+    &lt;option value="Choose Country" selected&gt;Choose Country&lt;/option&gt;
+    &lt;option value="Philippines"&gt;Philippines&lt;/option&gt;
+    &lt;option value="Korea"&gt;Korea&lt;/option&gt;
+  &lt;/select&gt;&lt;br&gt;
+
+  &lt;input type="submit" name="submit" value="Submit"&gt;
+  &lt;input type="reset" name="reset" value="Reset"&gt;
+  &lt;input type="button" name="ok" value="ok"&gt;
+  &lt;input type="image" name="imagebutton" src="sample.jpg"&gt;
+&lt;/form&gt;</code></pre></div>
+<div class="tw"><table><thead><tr><th>Button type</th><th>Behavior</th></tr></thead><tbody><tr><td>submit</td><td>Sends the form data to the action page</td></tr><tr><td>reset</td><td>Clears the form back to its starting values</td></tr><tr><td>button</td><td>Plain clickable button; does nothing until you attach JavaScript (onclick)</td></tr><tr><td>image</td><td>Image that acts as a submit button</td></tr></tbody></table></div>
+<div class="mlst"><div class="mitem"><div class="mnm">Radio names</div><div class="mdc">Radio buttons in one group must share the <strong>same name</strong> or the user can select several. Checkboxes use different names.</div></div><div class="mitem"><div class="mnm">Void input</div><div class="mdc"><code>&lt;input&gt;</code> has no closing tag. The slide writes <code>&lt;input&gt; &lt;/input&gt;</code>, which is wrong.</div></div><div class="mitem"><div class="mnm">Checked / selected</div><div class="mdc"><code>checked</code> pre-ticks a checkbox or radio; <code>selected</code> pre-selects an option.</div></div></div>
+</section>
+
+<section class="chapter" id="ch5">
+<div class="cn">CHAPTER 05</div><div class="ct">Cascading Style Sheets (Week 4)</div>
+<p class="ci">CSS separates presentation from structure. Expect identification of the three types, the parts of a rule, and property/value matching.</p>
+<h2>What is CSS?</h2><p><strong>Cascading Style Sheets.</strong> A simple mechanism for adding style to web documents. It describes how HTML elements are displayed on screen, paper, or other media.</p><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">css</div></div><pre><code>body {
+  font-size: 13px;
+}</code></pre></div>
+<div class="tl"><div class="tli"><div class="tlyr">Oct 10, 1994</div><div class="tldot"></div><div class="tlc"><div class="tlt">Proposed</div><div class="tld">CSS first proposed by <strong>Håkon Wium Lie</strong>.</div></div></div><div class="tli"><div class="tlyr">1996</div><div class="tldot"></div><div class="tlc"><div class="tlt">CSS1</div><div class="tld">First W3C CSS Recommendation released.</div></div></div><div class="tli"><div class="tlyr">CSS1</div><div class="tldot"></div><div class="tlc"><div class="tlt">Co-creator</div><div class="tld"><strong>Bert Bos</strong> became co-author of CSS1 and is regarded as co-creator of CSS.</div></div></div></div>
+<h2>Three Types of CSS</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">html</div></div><pre><code>&lt;!-- 1. Inline CSS: style attribute on one element --&gt;
+&lt;h3 style="color:green; font-style:italic;"&gt;Inline&lt;/h3&gt;
+
+&lt;!-- 2. Internal / Embedded CSS: &lt;style&gt; in the head --&gt;
+&lt;head&gt;
+  &lt;style&gt;
+    h3 { font-family: Arial; font-style: italic; color: green; }
+  &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;!-- 3. External CSS: separate .css file linked in the head --&gt;
+&lt;head&gt;
+  &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;</code></pre></div>
+<div class="box green"><div class="bico">💡</div><div class="bbd"><div class="btt">Which wins?</div><p class="btx">Inline styles override internal and external styles. External CSS is best for consistency across many pages, which is exactly what the "consistency of look and feel" characteristic refers to.</p></div></div>
+<h2>Characteristics and Declarable Attributes</h2><div class="isg"><div class="isc "><div class="ico">CHARACTERISTICS</div><div class="inm">What CSS gives you</div><div class="idc">Higher level of fine-grain control<br>Consistency of look and feel across any number of pages<br>Layout control down to the pixel<br>Control over font rendering<br>Simple effects that do not require programming</div></div><div class="isc g"><div class="ico">DECLARABLE ATTRIBUTES</div><div class="inm">What you can declare</div><div class="idc">Character formatting<br>Paragraph formatting<br>Page elements and positioning<br>Background colors/images<br>Filters and rollovers</div></div></div>
+<h2>CSS Semantics</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">html</div></div><pre><code>&lt;!-- HTML-only: markup carries the styling --&gt;
+&lt;EM&gt;&lt;FONT FACE="Arial" COLOR="green"&gt;&lt;H3&gt;This is a green, italic, Arial H3 header.&lt;/H3&gt;&lt;/FONT&gt;&lt;/EM&gt;
+
+/* CSS selector defined once */
+H3 { font-family: Arial; font-style: italic; color: green }
+
+&lt;!-- Heading with the CSS selector applied --&gt;
+&lt;H3&gt;This is a green, italic, Arial H3 header.&lt;/H3&gt;</code></pre></div>
+<h2>Style Sheet Components</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">css</div></div><pre><code>h3 { font-family: Arial; }
+/*  ^     ^          ^
+    |     |          value
+    |     property
+    selector
+
+   "font-family: Arial;"  = declaration
+   the whole "h3 { ... }" = rule                */</code></pre></div>
+<div class="tw"><table><thead><tr><th>Part</th><th>Meaning</th></tr></thead><tbody><tr><td>Selector</td><td>A string that identifies the elements the rule applies to</td></tr><tr><td>Property</td><td>A simple identifier for an attribute or effect</td></tr><tr><td>Value</td><td>Formed depending on the property/selector</td></tr><tr><td>Declaration</td><td>A property and its value</td></tr><tr><td>Rule</td><td>Selector plus its declarations</td></tr></tbody></table></div>
+<div class="tw"><table><thead><tr><th>Value unit type</th><th>Examples</th></tr></thead><tbody><tr><td>Relative unit</td><td>em, %, rem</td></tr><tr><td>Absolute unit</td><td>px, pt, cm, in</td></tr><tr><td>Color unit</td><td>keyword (green), hex (#0077b3), rgb(0,119,179)</td></tr><tr><td>URL unit</td><td>url(image.png)</td></tr></tbody></table></div>
+<h2>CSS Properties (from the slides)</h2><h3>Text properties</h3><div class="tw"><table><thead><tr><th>Property</th><th>Description</th><th>Values</th></tr></thead><tbody><tr><td>color</td><td>Sets the color of text</td><td>RGB, hex, keyword</td></tr><tr><td>line-height</td><td>Distance between lines</td><td>normal, number, length, %</td></tr><tr><td>letter-spacing</td><td>Space between characters</td><td>normal, length</td></tr><tr><td>text-align</td><td>Aligns text in an element</td><td>left, right, center, justify</td></tr><tr><td>text-decoration</td><td>Adds decoration to text</td><td>none, underline, overline, line-through</td></tr><tr><td>text-indent</td><td>Indents the first line</td><td>length, %</td></tr><tr><td>text-transform</td><td>Controls letter case</td><td>none, capitalize, uppercase, lowercase</td></tr></tbody></table></div>
+<h3>List properties</h3><div class="tw"><table><thead><tr><th>Property</th><th>Description</th><th>Values</th></tr></thead><tbody><tr><td>list-style</td><td>All list properties in one declaration</td><td>list-style-type, -position, -image, inherit</td></tr><tr><td>list-style-image</td><td>Image as the list-item marker</td><td>URL, none, inherit</td></tr><tr><td>list-style-position</td><td>Where to place the marker</td><td>inside, outside, inherit</td></tr><tr><td>list-style-type</td><td>Type of marker</td><td>none, disc, circle, square, decimal, lower-alpha, upper-alpha, lower-roman, upper-roman, and more</td></tr></tbody></table></div>
+<h3>Font properties</h3><div class="tw"><table><thead><tr><th>Property</th><th>Description</th><th>Values</th></tr></thead><tbody><tr><td>font</td><td>All font properties in one declaration</td><td>font-style, font-variant, font-weight, font-size/line-height, font-family, inherit</td></tr><tr><td>font-family</td><td>Font family for text</td><td>family-name, generic-family, inherit</td></tr><tr><td>font-size</td><td>Size of text</td><td>xx-small to xx-large, smaller, larger, length, %</td></tr><tr><td>font-style</td><td>Style of text</td><td>normal, italic, oblique, inherit</td></tr><tr><td>font-variant</td><td>Small-caps or not</td><td>normal, small-caps, inherit</td></tr><tr><td>font-weight</td><td>Weight of a font</td><td>normal, bold, bolder, lighter, 100 to 900</td></tr></tbody></table></div>
+<h3>Border properties</h3><div class="tw"><table><thead><tr><th>Property</th><th>Description</th><th>Values</th></tr></thead><tbody><tr><td>border</td><td>All border properties in one declaration</td><td>border-width, border-style, border-color</td></tr><tr><td>border-top / -right / -bottom / -left</td><td>All properties for that side</td><td>width, style, color for that side</td></tr><tr><td>border-*-color / -style / -width</td><td>Color, style, width of one side</td><td>border-color, border-style, border-width</td></tr><tr><td>border-color</td><td>Color of the four borders</td><td>color name, hex, rgb, transparent, inherit</td></tr><tr><td>border-style</td><td>Style of the four borders</td><td>none, hidden, dotted, dashed, solid, double, groove, ridge, inset, outset</td></tr><tr><td>border-width</td><td>Width of the four borders</td><td>thin, medium, thick, length</td></tr></tbody></table></div>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">css</div></div><pre><code>p {
+  color: #1D4ED8;
+  text-align: center;
+  text-transform: uppercase;
+  font: italic bold 16px Arial;
+  border: 2px solid green;
+}
+ul { list-style-type: square; }</code></pre></div>
+<div class="mlst"><div class="mitem"><div class="mnm">Colon vs equals</div><div class="mdc">CSS uses <code>property: value;</code>, not <code>property = value</code>.</div></div><div class="mitem"><div class="mnm">Missing semicolon</div><div class="mdc">Each declaration ends with ; or the next one breaks.</div></div><div class="mitem"><div class="mnm">Hyphenated names</div><div class="mdc">CSS uses <code>font-size</code>. In JavaScript the same property becomes <code>style.fontSize</code>.</div></div></div>
+<div class="box blue"><div class="bico">🔗</div><div class="bbd"><div class="btt">Forward link</div><p class="btx">Selectors by id and class (<code>#menu</code>, <code>.box</code>) come from the div/span attributes in Chapter 03. JavaScript changes these same properties in Chapter 11 (Lab 3, items 1 and 2).</p></div></div>
+</section>
+
+<section class="chapter" id="ch6">
+<div class="cn">CHAPTER 06</div><div class="ct">JavaScript Foundations: Variables, Data Types &amp; Output (Weeks 5–6)</div>
+<p class="ci">Highest-priority chapter for the quiz. Know what JavaScript is, how to embed it, how variables are named, the five data types, and the two conversion functions.</p>
+<h2>What is JavaScript?</h2><p>A <strong>scripting language</strong> created for web page enhancement and the default scripting language of web browsers. The slide lists what it can offer:</p><div class="isg"><div class="isc "><div class="ico">CAN OFFER</div><div class="inm">Interactive features</div><div class="idc">Scrolling messages<br>Animation and dynamic images<br>Data input forms<br>Pop-up windows<br>Interactive surveys and questionnaires</div></div><div class="isc g"><div class="ico">UNIQUE FEATURES</div><div class="inm">What makes it special</div><div class="idc">Specifically created for web page enhancement<br>Classified as a <em>scripting language</em><br>Script-based output<br>Code visibility (viewable in the browser)<br>Full functionality<br>Simplicity<br>Default scripting for web browsers<br>Cross-platform support</div></div></div>
+<h2>Embedding JavaScript in HTML (4 ways)</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">html</div></div><pre><code>&lt;!-- 1. Inline scripting --&gt;
+&lt;script&gt;
+  // JavaScript code goes here
+&lt;/script&gt;
+
+&lt;!-- 2. External scripting: code lives in a .js file (no &lt;script&gt; tags inside it) --&gt;
+&lt;script src="scriptLocation.js"&gt;&lt;/script&gt;
+
+&lt;!-- 3. Via HTML event handler --&gt;
+&lt;input type="checkbox" name="options" value="giftwrap"
+       onchange="order.options.giftwrap = this.checked;"&gt;
+
+&lt;!-- 4. Via the JavaScript protocol in an HTML element (legacy) --&gt;
+&lt;a href="javascript:new Date().toLocaleTimeString();"&gt;What time is it?&lt;/a&gt;</code></pre></div>
+<h2>Anatomy of a JavaScript Program</h2><div class="box red"><div class="bico">🚫</div><div class="bbd"><div class="btt">JavaScript is not Java</div><p class="btx">JavaScript does <strong>not</strong> need a class, a <code>public</code> modifier, or a <code>main()</code> method. There is no <code>public class Main</code> and no <code>public static void main(String[] args)</code>. A JavaScript program is just a list of statements that runs top to bottom, either inside <code>&lt;script&gt;&lt;/script&gt;</code> tags or in a plain .js file. This mix-up usually happens because CC102 is taught in Java at the same time.</p></div></div>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">java</div></div><pre><code>// Java: needs a class and a main method before anything runs
+public class Main {
+  public static void main(String[] args) {
+    System.out.println("Hello World");
+  }
+}</code></pre></div>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">javascript</div></div><pre><code>// JavaScript: no class, no main() -- statements just run, top to bottom
+alert("Hello World");
+document.write("Hello World");
+console.log("Hello World");</code></pre></div>
+<div class="tw"><table><thead><tr><th>Java</th><th>JavaScript</th><th>Note</th></tr></thead><tbody><tr><td><code>public class Main { ... }</code></td><td>Not needed</td><td>No class wrapper required</td></tr><tr><td><code>public static void main(String[] args)</code></td><td>Not needed</td><td>No entry-point method; code runs in the order it is written</td></tr><tr><td><code>System.out.println()</code></td><td><code>alert()</code> / <code>document.write()</code> / <code>console.log()</code></td><td>Different output tools, and JavaScript has more than one</td></tr><tr><td><code>int x = 5;</code> (typed)</td><td><code>var x = 5;</code> (untyped)</td><td>JavaScript does not declare a data type before the variable name</td></tr><tr><td>Compiled, then run</td><td>Read and run by the browser line by line</td><td>No separate compile step</td></tr></tbody></table></div>
+<h2>Output Methods</h2><div class="tw"><table><thead><tr><th>Method</th><th>What it does</th><th>Watch out</th></tr></thead><tbody><tr><td><code>alert("text")</code></td><td>Pop-up message box</td><td>Blocks the page until OK is clicked.</td></tr><tr><td><code>document.write("text")</code></td><td>Writes into the page while it loads</td><td>Called after the page has loaded, it <strong>erases the whole page</strong>.</td></tr><tr><td><code>console.log("text")</code></td><td>Prints to the browser console (F12)</td><td>Not visible to normal visitors.</td></tr><tr><td><code>element.innerHTML = "text"</code></td><td>Changes the content of one element</td><td>Best for updating results without a reload.</td></tr><tr><td><code>System.out.println()</code></td><td><strong>Java, not JavaScript</strong></td><td>Distractor in mixed questions.</td></tr></tbody></table></div>
+<h2>Variables</h2><p>A variable is a named container for a value. Declared with <code>var</code> in the slides (<code>let</code> and <code>const</code> are the modern forms).</p><h3>Naming conventions (slide 4)</h3><div class="tw"><table><thead><tr><th>Valid</th><th>Invalid</th><th>Why invalid</th></tr></thead><tbody><tr><td><code>idnumber</code></td><td><code>id number</code></td><td>Contains a space</td></tr><tr><td><code>Customer_ID</code></td><td><code>Customer.ID</code></td><td>The dot is not allowed</td></tr><tr><td><code>SY2016</code></td><td><code>2016</code></td><td>Cannot start with a digit</td></tr><tr><td><code>_Continue</code></td><td><code>Continue</code></td><td>Slide treats it as a reserved word (strictly, only lowercase <code>continue</code> is reserved)</td></tr></tbody></table></div>
+<p>Rules: letters, digits, underscore, and $ only; must not start with a digit; no spaces; no reserved words; <strong>case-sensitive</strong> (<code>score</code> and <code>Score</code> are different variables).</p><h3>Types of variables by scope</h3><div class="tw"><table><thead><tr><th>Type</th><th>Where declared</th><th>Where usable</th></tr></thead><tbody><tr><td>Global</td><td>Outside any function</td><td>Anywhere in the script</td></tr><tr><td>Local</td><td>Inside a function</td><td>Only inside that function</td></tr></tbody></table></div>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">javascript</div></div><pre><code>var schoolName = "QCU";        // global
+
+function showLocal() {
+  var secret = 42;             // local: exists only inside showLocal()
+  alert(schoolName + " " + secret);   // works
+}
+showLocal();
+alert(secret);                 // ReferenceError: secret is not defined</code></pre></div>
+<h2>var, let, const</h2><p>All three declare a variable. The WS101 slides only use <code>var</code> (that is what Chapter 06 uses throughout), but the other two are worth knowing since modern JavaScript code and later subjects use them too.</p><div class="tw"><table><thead><tr><th>Keyword</th><th>Scope</th><th>Can redeclare?</th><th>Can reassign?</th><th>When to use</th></tr></thead><tbody><tr><td><code>var</code></td><td>Function-scoped (ignores { } blocks)</td><td>Yes</td><td>Yes</td><td>What the slides use; older style</td></tr><tr><td><code>let</code></td><td>Block-scoped ({ } limits it)</td><td>No, in the same scope</td><td>Yes</td><td>A variable whose value will change</td></tr><tr><td><code>const</code></td><td>Block-scoped</td><td>No</td><td>No, must keep its first value</td><td>A value that never changes</td></tr></tbody></table></div>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">javascript</div></div><pre><code>var a = 1; var a = 2;    // OK -- var allows redeclaring
+let b = 1; let b = 2;    // Error: "b" has already been declared
+const pi = 3.14;
+pi = 3.1;                // Error: assignment to a constant variable
+
+if (true) {
+  var x = "I leak outside the block";
+  let y = "I stay inside the block";
+}
+console.log(x);           // works: "I leak outside the block"
+console.log(y);           // Error: y is not defined</code></pre></div>
+<div class="box blue"><div class="bico">💡</div><div class="bbd"><div class="btt">What to write on the exam</div><p class="btx">Follow the slides: declare with <code>var</code> unless a question specifically asks you to name or compare <code>var</code>, <code>let</code>, and <code>const</code>. Then this table is your answer.</p></div></div>
+<h2>Data Types</h2><div class="tw"><table><thead><tr><th>Slide term</th><th>Meaning</th><th>Example</th></tr></thead><tbody><tr><td>Alphabetical / Strings</td><td>Text in quotes</td><td><code>"Welcome to QCU"</code></td></tr><tr><td>Integer, Floating-point</td><td>Numbers (whole and decimal)</td><td><code>26</code>, <code>3.14</code></td></tr><tr><td>Boolean / Logical</td><td>true or false</td><td><code>true</code></td></tr><tr><td>Null value</td><td>Intentionally empty</td><td><code>null</code></td></tr></tbody></table></div>
+<p><strong>Conversion functions:</strong> <code>parseInt()</code> converts text to a whole number; <code>parseFloat()</code> converts text to a decimal number. Both return <code>NaN</code> (Not a Number) when nothing numeric is found.</p><h2>Literals</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">javascript</div></div><pre><code>var width = 3;            // numeric literal
+var schoolName = "QCU";   // string literal</code></pre></div>
+<h2>Trace: Why Conversion Matters</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">javascript</div></div><pre><code>var a = prompt("First number:");    // user types 10  -&gt; a = "10" (a string!)
+var b = prompt("Second number:");   // user types 5   -&gt; b = "5"
+
+alert(a + b);                       // "105"  (string concatenation)
+alert(parseInt(a) + parseInt(b));   // 15     (numeric addition)</code></pre></div>
+<div class="tw"><table><thead><tr><th>Expression</th><th>Result</th><th>Reason</th></tr></thead><tbody><tr><td><code>"5" + 2</code></td><td><code>"52"</code></td><td>+ with a string concatenates</td></tr><tr><td><code>"5" - 2</code></td><td><code>3</code></td><td>- forces numeric conversion</td></tr><tr><td><code>5 + "2" - 1</code></td><td><code>51</code></td><td>Left to right: 5 + "2" = "52", then "52" - 1 = 51</td></tr><tr><td><code>parseInt("42px")</code></td><td><code>42</code></td><td>Stops reading at the first non-digit</td></tr><tr><td><code>parseFloat("3.14abc")</code></td><td><code>3.14</code></td><td>Same idea for decimals</td></tr><tr><td><code>parseInt("abc")</code></td><td><code>NaN</code></td><td>Nothing numeric to read</td></tr><tr><td><code>typeof "a"</code></td><td><code>"string"</code></td><td><code>typeof</code> reports the data type</td></tr><tr><td><code>typeof null</code></td><td><code>"object"</code></td><td>Famous JavaScript quirk</td></tr></tbody></table></div>
+<div class="box green"><div class="bico">🍱</div><div class="bbd"><div class="btt">Local analogy</div><p class="btx">A variable is a labeled baunan in the ref: the label is the name, the food inside is the value, and you can swap the food later. Global vs local is like a shared barangay hall (everyone can use it) versus a room inside your own house (only you can).</p></div></div>
+<div class="mlst"><div class="mitem"><div class="mnm">Smart quotes</div><div class="mdc">Copying code from slides can bring curly quotes (“ ”). JavaScript needs straight quotes (" "), otherwise you get a SyntaxError.</div></div><div class="mitem"><div class="mnm">Missing var/let</div><div class="mdc">Assigning without declaring creates an accidental global variable.</div></div><div class="mitem"><div class="mnm">Case mistakes</div><div class="mdc"><code>Document.write</code>, <code>Alert</code>, <code>If</code> fail. Correct: <code>document.write</code>, <code>alert</code>, <code>if</code>.</div></div><div class="mitem"><div class="mnm">Text from prompt</div><div class="mdc"><code>prompt()</code> always returns a string. Convert with parseInt/parseFloat before doing math.</div></div></div>
+<div class="box amber"><div class="bico">🧪</div><div class="bbd"><div class="btt">Practice challenge</div><p class="btx">Without running it, what does this display? <code>var x = "10"; var y = 5; alert(x + y); alert(x - y);</code> &nbsp;Answer: 105, then 5.</p></div></div>
+<div class="box blue"><div class="bico">🎬</div><div class="bbd"><div class="btt">Video and forward link</div><p class="btx">Search: <strong>Bro Code JavaScript full course</strong> (variables and data types section) or <strong>freeCodeCamp JavaScript full course</strong>. This chapter connects to <strong>CC102 Fundamentals of Programming (this semester)</strong>, which teaches the same variable and data type ideas in another language, and to <strong>WS102 (Year 1, Sem 2)</strong>.</p></div></div>
+</section>
+
+<section class="chapter" id="ch7">
+<div class="cn">CHAPTER 07</div><div class="ct">Strings, Expressions &amp; Operators, Arrays (Weeks 5–6)</div>
+<p class="ci">Building blocks of every program. Know the syntax, evaluate expressions by hand, and separate properties (no parentheses) from methods (parentheses).</p>
+<h2>Strings</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">javascript</div></div><pre><code>strTest = "Welcome to QCU";                 // string literal
+strTest = new String("Welcome to QCU");     // using the new keyword
+
+// Concatenation with +
+var strTest1 = "Welcome to QCU.";
+var strTest2 = "Enjoy your stay.";
+var strBoth = strTest1 + " " + strTest2;    // "Welcome to QCU. Enjoy your stay."
+alert(strBoth);
+
+strTest += ".";                             // append: same as strTest = strTest + "."
+
+// Length is a PROPERTY (no parentheses)
+document.write(strTest.length);             // 14 for "Welcome to QCU"
+
+// Case conversion is a METHOD (has parentheses)
+document.write(strTest.toLowerCase());      // welcome to qcu
+strTest = strTest.toUpperCase();            // WELCOME TO QCU</code></pre></div>
+<div class="tw"><table><thead><tr><th>Item</th><th>Kind</th><th>Example</th><th>Result</th></tr></thead><tbody><tr><td>length</td><td>Property</td><td><code>"Welcome to QCU".length</code></td><td>14</td></tr><tr><td>toUpperCase()</td><td>Method</td><td><code>"Welcome to QCU".toUpperCase()</code></td><td>WELCOME TO QCU</td></tr><tr><td>toLowerCase()</td><td>Method</td><td><code>"Welcome to QCU".toLowerCase()</code></td><td>welcome to qcu</td></tr></tbody></table></div>
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Reassign the result</div><p class="btx">String methods do not change the original. <code>strTest.toLowerCase();</code> alone does nothing useful; write <code>strTest = strTest.toLowerCase();</code> (slide example 2).</p></div></div>
+<h2>Expressions and Operators</h2><div class="tw"><table><thead><tr><th>Category</th><th>Operators</th><th>Example</th></tr></thead><tbody><tr><td>Arithmetic</td><td>+  -  *  /  %</td><td><code>total = quantity * price;</code></td></tr><tr><td>Assignment</td><td>=  +=  -=  *=  /=</td><td><code>strTest += ".";</code></td></tr><tr><td>Increment / decrement</td><td>++  --</td><td><code>tries++;</code> and <code>total--;</code></td></tr><tr><td>Comparison</td><td>==  ===  !=  !==  &lt;  &gt;  &lt;=  &gt;=</td><td><code>(x == 10)</code>, <code>(y &lt; z)</code></td></tr><tr><td>Logical</td><td>&amp;&amp;  ||  !</td><td><code>(age &gt;= 18 &amp;&amp; age &lt;= 60)</code></td></tr></tbody></table></div>
+<h3>Slide examples, evaluated</h3><div class="tw"><table><thead><tr><th>Statement</th><th>Given</th><th>Result</th></tr></thead><tbody><tr><td><code>message = "This is" + "a test";</code></td><td>-</td><td><code>"This isa test"</code> (no space, watch this trap)</td></tr><tr><td><code>result = 5 + 7;</code></td><td>-</td><td>12</td></tr><tr><td><code>score = score - 1;</code></td><td>score = 10</td><td>9</td></tr><tr><td><code>total = quantity * price;</code></td><td>quantity = 3, price = 20</td><td>60</td></tr><tr><td><code>average = sum / 4;</code></td><td>sum = 10</td><td>2.5</td></tr><tr><td><code>remainder = sum % 4;</code></td><td>sum = 10</td><td>2 (modulus = leftover after division)</td></tr><tr><td><code>tries++;</code></td><td>tries = 0</td><td>1</td></tr><tr><td><code>total--;</code></td><td>total = 5</td><td>4 (slide writes "Total - -", which is incorrect)</td></tr></tbody></table></div>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">javascript</div></div><pre><code>var x = 5;
+console.log(x++);   // prints 5, then x becomes 6   (post-increment)
+console.log(x);     // 6
+console.log(++x);   // x becomes 7 first, then prints 7 (pre-increment)
+console.log(x--);   // prints 7, then x becomes 6
+console.log(x);     // 6</code></pre></div>
+<div class="mlst"><div class="mitem"><div class="mnm">= vs ==</div><div class="mdc"><code>=</code> assigns, <code>==</code> compares. <code>if (x = 10)</code> assigns 10 and is always true.</div></div><div class="mitem"><div class="mnm">== vs ===</div><div class="mdc"><code>5 == "5"</code> is true (converts type); <code>5 === "5"</code> is false (checks type too).</div></div><div class="mitem"><div class="mnm">Modulus sign</div><div class="mdc"><code>-3 % 2</code> is <code>-1</code>, not 1. Test evenness with <code>n % 2 === 0</code>, not <code>n % 2 === 1</code>.</div></div><div class="mitem"><div class="mnm">Float math</div><div class="mdc"><code>0.1 + 0.2</code> gives 0.30000000000000004. Normal in every language using binary floats.</div></div></div>
+<h2>Arrays</h2><p>Special variables that hold <strong>more than one value at a time</strong> and are treated as a single unit. Index numbering starts at <strong>0</strong>.</p><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">javascript</div></div><pre><code>var score = new Array();
+score[0] = 39;
+score[1] = 40;
+score[2] = 100;
+score[3] = 49;
+
+var same = [39, 40, 100, 49];   // shorter literal form
+alert(score[2]);                // 100
+alert(score.length);            // 4</code></pre></div>
+<div class="tw"><table><thead><tr><th>Index</th><th>0</th><th>1</th><th>2</th><th>3</th></tr></thead><tbody><tr><td>Value</td><td>39</td><td>40</td><td>100</td><td>49</td></tr></tbody></table></div>
+<div class="box green"><div class="bico">🗄️</div><div class="bbd"><div class="btt">Local analogy</div><p class="btx">An array is a row of school lockers. One row, many lockers, each with a number, and the first locker is number 0. Asking for score[4] here is opening a locker that does not exist: you get undefined.</p></div></div>
+<div class="box amber"><div class="bico">🧪</div><div class="bbd"><div class="btt">Practice challenge</div><p class="btx">Given <code>var n = ["a","b","c"];</code> what are <code>n[1]</code>, <code>n.length</code>, and <code>n[3]</code>? &nbsp;Answer: "b", 3, undefined.</p></div></div>
+<div class="box blue"><div class="bico">🎬</div><div class="bbd"><div class="btt">Video and forward link</div><p class="btx">Search: <strong>Bro Code JavaScript strings and arrays</strong> or <strong>freeCodeCamp JavaScript arrays</strong>. Arrays and string handling come back in <strong>CC102</strong> and <strong>CC103 Intermediate Programming (Year 1, Sem 2)</strong>.</p></div></div>
+</section>
+
+<section class="chapter" id="ch8">
+<div class="cn">CHAPTER 08</div><div class="ct">Flowcharts &amp; Flow of Control (Weeks 5–6)</div>
+<p class="ci">Reportedly the last JavaScript topic covered in lecture. Know the symbols, read a flowchart, and convert a flowchart to code.</p>
+<p>A flowchart is a diagram of how <strong>flow of control</strong> moves through a program. Draw it first, then translate it to code.</p><h2>Flowchart Symbols</h2><div class="tw"><table><thead><tr><th>Symbol</th><th>Name</th><th>Use</th><th>Example in the slide</th></tr></thead><tbody><tr><td>Oval / rounded</td><td>Terminator</td><td>Start and end</td><td>Leave home, Reach school</td></tr><tr><td>Parallelogram</td><td>Input / Output</td><td>Read or display data</td><td>Check time</td></tr><tr><td>Rectangle</td><td>Process</td><td>An action or calculation</td><td>Take bus, Take subway</td></tr><tr><td>Diamond</td><td>Decision</td><td>Yes/No question, two exits</td><td>Before 7am?</td></tr><tr><td>Arrow</td><td>Flow line</td><td>Direction of control</td><td>Connects every symbol</td></tr></tbody></table></div>
+<h2>Slide Example: Going to School</h2><div class="tree">        ( Leave home )
+              |
+        / Check time /
+              |
+        &lt; Before 7am? &gt;
+       Yes /         \ No
+   [ Take bus ]   [ Take subway ]
+            \         /
+         ( Reach school )</div>
+<div class="box green"><div class="bico">🚌</div><div class="bbd"><div class="btt">Local analogy</div><p class="btx">The slide already uses a commute: if you leave before 7am you take the bus, otherwise the subway. Same idea as choosing between a jeep and the MRT depending on the time. The diamond is the "kung" in "kung before 7am".</p></div></div>
+<h2>Flowchart to Code: Odd or Even</h2><div class="tree">        ( START )
+            |
+     / Input number n /
+            |
+      &lt; n % 2 == 0 ? &gt;
+     Yes /          \ No
+ [ Result = EVEN ]  [ Result = ODD ]
+            \        /
+        / Display result /
+            |
+        ( END )</div>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">javascript</div></div><pre><code>var n = parseInt(prompt("Enter a number:"));   // parallelogram: input
+if (n % 2 === 0) {                             // diamond: decision
+  alert(n + " is EVEN");                       // yes branch
+} else {
+  alert(n + " is ODD");                        // no branch
+}</code></pre></div>
+<h2>The Three Control Structures</h2><div class="tw"><table><thead><tr><th>Structure</th><th>Flowchart shape</th><th>JavaScript</th></tr></thead><tbody><tr><td>Sequence</td><td>Boxes in a straight line</td><td>Statements run top to bottom</td></tr><tr><td>Selection</td><td>Diamond with branches</td><td><code>if / else if / else</code></td></tr><tr><td>Iteration (loop)</td><td>Diamond with an arrow looping back</td><td><code>for / while / do-while</code></td></tr></tbody></table></div>
+<div class="mlst"><div class="mitem"><div class="mnm">Diamond exits</div><div class="mdc">A decision has exactly two labeled exits (Yes/No or True/False).</div></div><div class="mitem"><div class="mnm">Wrong shape</div><div class="mdc">Input/output is a parallelogram, not a rectangle. Rectangles are processes.</div></div><div class="mitem"><div class="mnm">No end</div><div class="mdc">Every flowchart needs a Start and an End terminator.</div></div></div>
+<div class="box amber"><div class="bico">🧪</div><div class="bbd"><div class="btt">Practice challenge</div><p class="btx">Draw a flowchart, then write the code, that reads a score and displays "Passed" when it is at least 64.5, otherwise "Failed". Answer shape: Start, input score, diamond (score >= 64.5?), Yes to Passed, No to Failed, End.</p></div></div>
+<div class="box blue"><div class="bico">🎬</div><div class="bbd"><div class="btt">Video and forward link</div><p class="btx">Search: <strong>freeCodeCamp flowcharts for beginners</strong> or <strong>Bro Code JavaScript if statements</strong>. Flowcharts are used to plan logic in <strong>CC102</strong> and <strong>CC103 (Year 1, Sem 2)</strong>.</p></div></div>
+</section>
+
+<section class="chapter" id="ch9">
+<div class="cn">CHAPTER 09</div><div class="ct">Conditionals &amp; Loops (Weeks 5–6)</div>
+<p class="ci">Selection and iteration. This is where hands-on exam questions come from: grade brackets, odd/even, and repeated output.</p>
+<div class="box amber"><div class="bico">📍</div><div class="bbd"><div class="btt">Deck position</div><p class="btx">Conditional statements and loops appear on slides 10 and 11, right after the flowchart. Activity 2 already requires them, so learn them even if the prof has not lectured on them yet.</p></div></div>
+<h2>Conditional Statements</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">javascript</div></div><pre><code>var x = 10;
+if (x == 10) window.alert("The number is 10!");   // one-line if
+
+// Full ladder
+var score = 85;
+if (score &gt;= 90) {
+  alert("Excellent");
+} else if (score &gt;= 80) {
+  alert("Very Good");
+} else if (score &gt;= 70) {
+  alert("Good");
+} else {
+  alert("Needs improvement");
+}</code></pre></div>
+<div class="tw"><table><thead><tr><th>Part</th><th>Rule</th></tr></thead><tbody><tr><td><code>if</code></td><td>Runs its block when the condition is true</td></tr><tr><td><code>else if</code></td><td>Checked only if every earlier condition was false. Any number allowed.</td></tr><tr><td><code>else</code></td><td>Runs when nothing above matched. No condition. Optional.</td></tr><tr><td>Conditional expression</td><td><code>(x == 10)</code> and <code>(y &lt; z)</code> evaluate to true or false</td></tr></tbody></table></div>
+<h3>Trace: which branch runs?</h3><div class="tw"><table><thead><tr><th>score</th><th>score >= 90</th><th>score >= 80</th><th>score >= 70</th><th>Output</th></tr></thead><tbody><tr><td>95</td><td>true</td><td>skipped</td><td>skipped</td><td>Excellent</td></tr><tr><td>85</td><td>false</td><td>true</td><td>skipped</td><td>Very Good</td></tr><tr><td>72</td><td>false</td><td>false</td><td>true</td><td>Good</td></tr><tr><td>50</td><td>false</td><td>false</td><td>false</td><td>Needs improvement (else)</td></tr></tbody></table></div>
+<div class="box red"><div class="bico">🚫</div><div class="bbd"><div class="btt">Order matters</div><p class="btx">In a ladder, put the strictest condition first. If <code>score &gt;= 70</code> came first, a score of 95 would print "Good" and never reach the others.</p></div></div>
+<h2>Looping Structures</h2><h3>1. for loop</h3><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">javascript</div></div><pre><code>for (i = 0; i &lt; 10; i++) {
+  document.write("this is line " + i + "&lt;br&gt;");
+}
+// i = 0      -&gt; variable with initial value
+// i &lt; 10     -&gt; condition (checked before each pass)
+// i++        -&gt; counter increment/decrement (after each pass)
+// prints "this is line 0" ... "this is line 9"  (10 lines, not 11)</code></pre></div>
+<h3>2. while loop</h3><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">javascript</div></div><pre><code>var values = [3, 4, 5, 6];
+var total = 0, ctr = -1;
+while (total &lt; 10) {
+  ctr++;
+  total += values[ctr];
+}</code></pre></div>
+<div class="tw"><table><thead><tr><th>Pass</th><th>ctr after ctr++</th><th>values[ctr]</th><th>total</th><th>total < 10?</th></tr></thead><tbody><tr><td>start</td><td>-1</td><td>-</td><td>0</td><td>true, enter</td></tr><tr><td>1</td><td>0</td><td>3</td><td>3</td><td>true</td></tr><tr><td>2</td><td>1</td><td>4</td><td>7</td><td>true</td></tr><tr><td>3</td><td>2</td><td>5</td><td>12</td><td>false, stop</td></tr></tbody></table></div>
+<h3>3. do-while loop</h3><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">javascript</div></div><pre><code>var n = -1, total = 0;
+do {
+  n++;
+  total += values[n];
+} while (total &lt; 10);     // condition is checked AFTER the body</code></pre></div>
+<div class="tw"><table><thead><tr><th>Loop</th><th>Checks condition</th><th>Minimum runs</th><th>Use when</th></tr></thead><tbody><tr><td>for</td><td>Before each pass</td><td>0</td><td>You know how many times</td></tr><tr><td>while</td><td>Before each pass</td><td>0</td><td>Repeat until something changes</td></tr><tr><td>do-while</td><td>After each pass</td><td><strong>1</strong></td><td>Body must run at least once</td></tr></tbody></table></div>
+<div class="mlst"><div class="mitem"><div class="mnm">Off-by-one</div><div class="mdc"><code>i &lt; 10</code> runs 10 times (0 to 9). <code>i &lt;= 10</code> runs 11 times.</div></div><div class="mitem"><div class="mnm">Infinite loop</div><div class="mdc">Forgetting <code>ctr++</code> or <code>i++</code> means the condition never becomes false.</div></div><div class="mitem"><div class="mnm">Start value</div><div class="mdc">The slide while loop increments first, so <code>ctr</code> must start at -1 or values[0] is skipped.</div></div><div class="mitem"><div class="mnm">Semicolon after if</div><div class="mdc"><code>if (x &gt; 5);</code> ends the statement; the block below always runs.</div></div><div class="mitem"><div class="mnm">Case</div><div class="mdc"><code>If</code>, <code>For</code>, <code>While</code> with a capital letter are errors. The slide writes <code>If (x == 10)</code>; use lowercase.</div></div></div>
+<div class="box green"><div class="bico">🚦</div><div class="bbd"><div class="btt">Local analogy</div><p class="btx">An else-if ladder is a tricycle fare zone chart: check the first zone, then the next, and stop at the first match. A for loop is "serve 10 customers"; a while loop is "keep serving while the pila is not empty"; a do-while is "serve at least one customer before checking if anyone is waiting".</p></div></div>
+<div class="box amber"><div class="bico">🧪</div><div class="bbd"><div class="btt">Practice challenge</div><p class="btx">What does <code>for (var i = 1; i &lt;= 5; i += 2) document.write(i + " ");</code> print? &nbsp;Answer: 1 3 5.</p></div></div>
+<div class="box blue"><div class="bico">🎬</div><div class="bbd"><div class="btt">Video and forward link</div><p class="btx">Search: <strong>Bro Code JavaScript if statements</strong> and <strong>Bro Code JavaScript loops</strong>, or <strong>freeCodeCamp JavaScript loops</strong>. Conditions and loops are the heart of <strong>CC102</strong> and <strong>CC103 (Year 1, Sem 2)</strong>.</p></div></div>
+</section>
+
+<section class="chapter" id="ch10">
+<div class="cn">CHAPTER 10</div><div class="ct">Functions, Objects, RegExp, Events &amp; Popups (Weeks 5–6)</div>
+<p class="ci">Lower on the taught-so-far list but heavily used in the hands-on tasks. Know function syntax, dot notation for properties and methods, and the common event handlers.</p>
+<h2>Functions</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">javascript</div></div><pre><code>function Greet() {
+  alert("Hello World!");
+}
+Greet();                        // calling the function runs it
+
+function GreetWho(who) {        // "who" is a parameter (function argument)
+  alert("Greetings, " + who);
+}
+GreetWho("Ana");                // "Ana" is the argument -&gt; Greetings, Ana
+
+function add(a, b) {
+  return a + b;                 // return sends a value back
+}
+alert(add(2, 3));               // 5</code></pre></div>
+<div class="box red"><div class="bico">🚫</div><div class="bbd"><div class="btt">Slide typo</div><p class="btx">The slide writes <code>Alert("Greetings, " + who);</code> with a capital A. It must be <code>alert</code>.</p></div></div>
+<h2>Objects</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">javascript</div></div><pre><code>var person = new Object();
+person.firstname = "John";
+person.lastname = "Doe";
+person.age = 26;
+person.eyecolor = "brown";
+
+var x = person.age;             // x holds 26
+
+var txtGreet = "Hello";
+txtGreet.length                 // 5  (property)
+txtGreet.indexOf("l")           // 2  (method)
+txtGreet.replace("H", "J")      // "Jello"
+txtGreet.search("l")            // 2</code></pre></div>
+<div class="tw"><table><thead><tr><th>Term</th><th>Meaning</th></tr></thead><tbody><tr><td>Property</td><td>A value attached to an object (firstname, length)</td></tr><tr><td>Method</td><td>A function attached to an object (indexOf(), replace())</td></tr><tr><td>Built-in object</td><td>Objects JavaScript provides, such as String, Date, RegExp, Array</td></tr></tbody></table></div>
+<h2>Regular Expressions</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">javascript</div></div><pre><code>var regexPatt = new RegExp(pattern, modifiers);
+var regexPatt = /pattern/modifiers;        // shorter form
+
+var patt = /abc/;      // simple pattern: finds "abc" in "Hi, do you know your abc's?"
+var patt = /ab*c/;     // * = zero or more of the previous character (b)
+                       // matches "ac", "abc", "abbbbc"</code></pre></div>
+<div class="tw"><table><thead><tr><th>Modifier</th><th>Meaning</th></tr></thead><tbody><tr><td>i</td><td>Case-insensitive matching</td></tr><tr><td>g</td><td>Global matching (find all matches)</td></tr><tr><td>m</td><td>Multiline matching</td></tr></tbody></table></div>
+<div class="tw"><table><thead><tr><th>Category</th><th>Items</th></tr></thead><tbody><tr><td>String methods for regex</td><td>match, search, replace, split</td></tr><tr><td>RegExp object methods</td><td>exec(), test()</td></tr><tr><td>RegExp object properties</td><td>source, global, ignoreCase, multiline (the slide also lists "final", which is not a real JavaScript property)</td></tr></tbody></table></div>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">javascript</div></div><pre><code>var str = "The rain in SPAIN stays mainly in the plain";
+var res = str.match(/ain/g);       // ["ain", "ain", "ain"]  (rain, mainly, plain)
+var res2 = str.match(/ain/gi);     // 4 matches: SPAIN's "AIN" now counts
+
+var zipcode = new RegExp("\\d{5}", "g");  // find five-digit numbers
+"12345 and 67890 and 123".match(zipcode);  // ["12345", "67890"]</code></pre></div>
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Exam trap</div><p class="btx">Without the <code>i</code> modifier, matching is case-sensitive, so SPAIN is not matched. In a string, the backslash must be doubled ("\\d"), which is what "Note the double \\" on the slide means.</p></div></div>
+<h2>Events and Event Handlers</h2><div class="tw"><table><thead><tr><th>Event type</th><th>Examples</th></tr></thead><tbody><tr><td>Mouse events</td><td>onclick, ondblclick, onmouseover, onmouseout</td></tr><tr><td>Keyboard events</td><td>onkeydown, onkeyup</td></tr><tr><td>Frame/Object events</td><td>onload, onunload</td></tr><tr><td>Form events</td><td>onchange, onfocus, onblur, onsubmit, onreset</td></tr></tbody></table></div>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">html</div></div><pre><code>&lt;BUTTON onclick="document.write(Date())"&gt;Check Time&lt;/BUTTON&gt;
+&lt;!-- Clicking displays the current date and time using the Date() object. --&gt;
+&lt;!-- document.write after load replaces the page; innerHTML is safer. --&gt;</code></pre></div>
+<h2>The INPUT Tag</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">html</div></div><pre><code>&lt;INPUT TYPE="inputType"&gt;</code></pre></div>
+<p>Common type values: <strong>button, checkbox, image, password, radio, reset, submit, text</strong>.</p><h2>Popup Boxes</h2><div class="tw"><table><thead><tr><th>Box</th><th>Code</th><th>Returns</th></tr></thead><tbody><tr><td>Alert (on the slide)</td><td><code>alert("This is an alert box");</code></td><td>Nothing; only an OK button</td></tr><tr><td>Confirm (extra)</td><td><code>confirm("Delete?")</code></td><td>true (OK) or false (Cancel)</td></tr><tr><td>Prompt (extra)</td><td><code>prompt("Name?", "default")</code></td><td>The typed text (a string) or null</td></tr></tbody></table></div>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">javascript</div></div><pre><code>function alert_box() {
+  alert("This is an alert box");
+}
+// alert_box() will display an alert box when called.</code></pre></div>
+<h2>Client-Side JavaScript</h2><div class="isg"><div class="isc "><div class="ico">COMMON COMPONENTS</div><div class="inm">Objects in the browser</div><div class="idc">Window object<br>Location objects<br>Document objects<br>Element objects<br>Event handlers (if any)</div></div><div class="isc g"><div class="ico">COMMON USES</div><div class="inm">In web documents</div><div class="idc">Animations and visual effects<br>Table sorting<br>Hiding and revealing information<br>Custom forms and messages</div></div></div>
+<div class="box blue"><div class="bico">🔗</div><div class="bbd"><div class="btt">Forward link</div><p class="btx">Events plus the Document object are the base of every Lab 3 task (Chapter 11), and of <strong>WS102 (Year 1, Sem 2)</strong>, which builds on WS101.</p></div></div>
+</section>
+
+<section class="chapter" id="ch11">
+<div class="cn">CHAPTER 11</div><div class="ct">Hands-On: Activity 2 &amp; Lab Activity 3 Patterns</div>
+<p class="ci">Likely source of code-creation questions. Every pattern here is short enough to write from memory.</p>
+<div class="box blue"><div class="bico">🧩</div><div class="bbd"><div class="btt">How to use this chapter</div><p class="btx">Every snippet below was executed and checked against sample inputs. Type each one from memory at least once. Where the activity sheet is ambiguous, the assumption is stated so you can defend it.</p></div></div>
+<h2>Activity 2, Item 1a: Sum, Product, Remainder, Quotient of 3 inputs</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">html</div></div><pre><code>&lt;script&gt;
+var n1 = parseFloat(prompt("Enter 1st number:"));
+var n2 = parseFloat(prompt("Enter 2nd number:"));
+var n3 = parseFloat(prompt("Enter 3rd number:"));
+
+document.write("Sum = " + (n1 + n2 + n3) + "&lt;br&gt;");
+document.write("Product = " + (n1 * n2 * n3) + "&lt;br&gt;");
+document.write("Remainder = " + (n1 % n2 % n3) + "&lt;br&gt;");
+document.write("Quotient = " + (n1 / n2 / n3) + "&lt;br&gt;");
+&lt;/script&gt;</code></pre></div>
+<div class="tw"><table><thead><tr><th>Input (10, 3, 2)</th><th>Output</th></tr></thead><tbody><tr><td>Sum</td><td>15</td></tr><tr><td>Product</td><td>60</td></tr><tr><td>Remainder (10 % 3 % 2)</td><td>1</td></tr><tr><td>Quotient (10 / 3 / 2)</td><td>1.6666666666666667</td></tr></tbody></table></div>
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Assumption and trap</div><p class="btx">Remainder and quotient are computed left to right across the three numbers. State this in a comment. The classic trap: <code>"Sum = " + n1 + n2 + n3</code> concatenates text instead of adding; wrap the math in parentheses. Also check that n2 and n3 are not 0.</p></div></div>
+<h2>Activity 2, Item 1b: Odd or Even</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">html</div></div><pre><code>&lt;script&gt;
+var num = parseInt(prompt("Enter a number:"));
+if (isNaN(num)) {
+  alert("Please enter a valid whole number.");
+} else if (num % 2 === 0) {
+  alert(num + " is EVEN");
+} else {
+  alert(num + " is ODD");
+}
+&lt;/script&gt;</code></pre></div>
+<div class="tw"><table><thead><tr><th>Input</th><th>Result</th><th>Note</th></tr></thead><tbody><tr><td>7</td><td>ODD</td><td></td></tr><tr><td>10</td><td>EVEN</td><td></td></tr><tr><td>0</td><td>EVEN</td><td>zero is even</td></tr><tr><td>-3</td><td>ODD</td><td>works because the test is "=== 0", not "=== 1"</td></tr></tbody></table></div>
+<h2>Activity 2, Item 1c: Equivalent Grade</h2><div class="tw"><table><thead><tr><th>Final Percentage Score</th><th>Numerical Grade</th><th>Descriptive Rating</th><th>Remarks</th></tr></thead><tbody><tr><td>96.50 to 100</td><td>1.00</td><td>Excellent</td><td>Passed</td></tr><tr><td>92.50 to 96.49</td><td>1.25</td><td>Very Good</td><td>Passed</td></tr><tr><td>88.50 to 92.49</td><td>1.50</td><td>Very Good</td><td>Passed</td></tr><tr><td>84.50 to 88.49</td><td>1.75</td><td>Good</td><td>Passed</td></tr><tr><td>80.50 to 84.49</td><td>2.00</td><td>Good</td><td>Passed</td></tr><tr><td>76.50 to 80.49</td><td>2.25</td><td>Satisfactory</td><td>Passed</td></tr><tr><td>72.50 to 76.49</td><td>2.50</td><td>Satisfactory</td><td>Passed</td></tr><tr><td>68.50 to 72.49</td><td>2.75</td><td>Fair</td><td>Passed</td></tr><tr><td>64.50 to 68.49</td><td>3.00</td><td>Fair</td><td>Passed</td></tr><tr><td>Below 64.50</td><td>5.00</td><td>Poor</td><td>Failed</td></tr><tr><td>Passing level</td><td>INC</td><td>Incomplete</td><td>Conditional</td></tr></tbody></table></div>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">html</div></div><pre><code>&lt;script&gt;
+function getGrade(score) {
+  if (isNaN(score) || score &lt; 0 || score &gt; 100) {
+    return "Invalid score. Enter 0 to 100.";
+  }
+  var grade, desc, remark;
+  if (score &gt;= 96.5)      { grade = "1.00"; desc = "Excellent";    remark = "Passed"; }
+  else if (score &gt;= 92.5) { grade = "1.25"; desc = "Very Good";    remark = "Passed"; }
+  else if (score &gt;= 88.5) { grade = "1.50"; desc = "Very Good";    remark = "Passed"; }
+  else if (score &gt;= 84.5) { grade = "1.75"; desc = "Good";         remark = "Passed"; }
+  else if (score &gt;= 80.5) { grade = "2.00"; desc = "Good";         remark = "Passed"; }
+  else if (score &gt;= 76.5) { grade = "2.25"; desc = "Satisfactory"; remark = "Passed"; }
+  else if (score &gt;= 72.5) { grade = "2.50"; desc = "Satisfactory"; remark = "Passed"; }
+  else if (score &gt;= 68.5) { grade = "2.75"; desc = "Fair";         remark = "Passed"; }
+  else if (score &gt;= 64.5) { grade = "3.00"; desc = "Fair";         remark = "Passed"; }
+  else                    { grade = "5.00"; desc = "Poor";         remark = "Failed"; }
+  return "Grade: " + grade + " | " + desc + " | " + remark;
+}
+
+var s = parseFloat(prompt("Enter final percentage score:"));
+document.write(getGrade(s));
+&lt;/script&gt;</code></pre></div>
+<div class="tw"><table><thead><tr><th>Score</th><th>Expected</th></tr></thead><tbody><tr><td>100</td><td>1.00 Excellent Passed</td></tr><tr><td>96.49</td><td>1.25 Very Good Passed</td></tr><tr><td>88.49</td><td>1.75 Good Passed</td></tr><tr><td>64.5</td><td>3.00 Fair Passed</td></tr><tr><td>64.49</td><td>5.00 Poor Failed</td></tr><tr><td>101 or text</td><td>Invalid</td></tr></tbody></table></div>
+<div class="box green"><div class="bico">💡</div><div class="bbd"><div class="btt">Why the ladder works</div><p class="btx">Each condition uses <code>&gt;=</code> with the <em>lower boundary</em> of a bracket, checked from highest to lowest. Reaching a branch already means every higher bracket failed, so you never need an upper bound. "INC" (Incomplete) is a teacher-assigned status, not a score range; mention it in a comment or offer a separate INC option.</p></div></div>
+<h2>Activity 2, Item 2: Simple Calculator (HTML + CSS + JavaScript)</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">html</div></div><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;title&gt;Simple Calculator&lt;/title&gt;
+&lt;style&gt;
+  body  { font-family: Arial, sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding-top: 40px; }
+  .card { background: #fff; padding: 24px 28px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.15); width: 320px; }
+  h2    { text-align: center; color: #333; }
+  label { display: block; margin: 12px 0 4px; font-size: 13px; font-weight: bold; }
+  input, select { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+  .btns { text-align: center; margin-top: 16px; }
+  button { background: #4CAF50; color: #fff; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
+  button:hover { background: #43a047; }
+  #result { text-align: center; font-weight: bold; margin-top: 14px; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class="card"&gt;
+  &lt;h2&gt;Simple Calculator&lt;/h2&gt;
+  &lt;label for="num1"&gt;Enter first number:&lt;/label&gt;
+  &lt;input type="number" id="num1"&gt;
+  &lt;label for="num2"&gt;Enter second number:&lt;/label&gt;
+  &lt;input type="number" id="num2"&gt;
+  &lt;label for="op"&gt;Choose an operator:&lt;/label&gt;
+  &lt;select id="op"&gt;
+    &lt;option value="+"&gt;+&lt;/option&gt;
+    &lt;option value="-"&gt;-&lt;/option&gt;
+    &lt;option value="*"&gt;*&lt;/option&gt;
+    &lt;option value="/"&gt;/&lt;/option&gt;
+  &lt;/select&gt;
+  &lt;div class="btns"&gt;
+    &lt;button onclick="calculate()"&gt;Calculate&lt;/button&gt;
+    &lt;button onclick="resetCalc()"&gt;Reset&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div id="result"&gt;Result:&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+function calculate() {
+  var a  = parseFloat(document.getElementById("num1").value);
+  var b  = parseFloat(document.getElementById("num2").value);
+  var op = document.getElementById("op").value;
+  var out = document.getElementById("result");
+
+  if (isNaN(a) || isNaN(b)) { out.innerHTML = "Result: Please enter two valid numbers"; return; }
+
+  var res;
+  if (op === "+")      { res = a + b; }
+  else if (op === "-") { res = a - b; }
+  else if (op === "*") { res = a * b; }
+  else if (op === "/") {
+    if (b === 0) { out.innerHTML = "Result: Cannot divide by zero"; return; }
+    res = a / b;
+  }
+  out.innerHTML = "Result: " + res;
+}
+
+function resetCalc() {
+  document.getElementById("num1").value = "";
+  document.getElementById("num2").value = "";
+  document.getElementById("op").value = "+";
+  document.getElementById("result").innerHTML = "Result:";
+}
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div>
+<div class="tw"><table><thead><tr><th>Grading criterion</th><th>Weight</th><th>What earns it</th></tr></thead><tbody><tr><td>Code Quality</td><td>30%</td><td>Indentation, meaningful names, comments, no repeated code, divide-by-zero and empty-input checks</td></tr><tr><td>Interface Design</td><td>30%</td><td>Matches the sample: centered card, labels, dropdown, green Calculate and Reset buttons, Result line</td></tr><tr><td>Timeliness</td><td>20%</td><td>Submitted before the deadline</td></tr><tr><td>Content</td><td>20%</td><td>All four items present and working</td></tr></tbody></table></div>
+<h2>Lab Activity 3</h2><h3>Items 1 and 2: Change paragraph style on click; background on mouse over</h3><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">html</div></div><pre><code>&lt;p id="bio" style="font-family:Arial; font-size:16px; color:black"
+   onmouseover="this.style.backgroundColor='yellow'"
+   onmouseout="this.style.backgroundColor=''"&gt;
+  Hello! I am a BSIT student who enjoys coding.
+&lt;/p&gt;
+&lt;button onclick="changeStyle()"&gt;Change Style&lt;/button&gt;
+
+&lt;script&gt;
+function changeStyle() {
+  var p = document.getElementById("bio");
+  p.style.fontFamily = "Georgia";     // font
+  p.style.fontSize   = "24px";        // font size
+  p.style.color      = "blue";        // text color
+}
+&lt;/script&gt;</code></pre></div>
+<h3>Item 3a: Uppercase First, Last, Section on change or leave</h3><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">html</div></div><pre><code>First:   &lt;input type="text" id="fname" onchange="showUpper()" onblur="showUpper()"&gt;&lt;br&gt;
+Last:    &lt;input type="text" id="lname" onchange="showUpper()" onblur="showUpper()"&gt;&lt;br&gt;
+Section: &lt;input type="text" id="sec"   onchange="showUpper()" onblur="showUpper()"&gt;&lt;br&gt;
+&lt;p id="out"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function showUpper() {
+  var f = document.getElementById("fname").value;
+  var l = document.getElementById("lname").value;
+  var s = document.getElementById("sec").value;
+  document.getElementById("out").innerHTML =
+      f.toUpperCase() + " " + l.toUpperCase() + " - " + s.toUpperCase();
+}
+&lt;/script&gt;</code></pre></div>
+<div class="box blue"><div class="bico">📌</div><div class="bbd"><div class="btt">onchange vs onblur</div><p class="btx"><code>onchange</code> fires when the value changed and focus leaves. <code>onblur</code> fires whenever focus leaves, even with no change. The item says "change or leave", so use both.</p></div></div>
+<h3>Item 3b: Add rows to a table on button click</h3><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">html</div></div><pre><code>&lt;table id="sampleTable" border="1"&gt;
+  &lt;tr&gt;&lt;td&gt;Row1 cell1&lt;/td&gt;&lt;td&gt;Row1 cell2&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Row2 cell1&lt;/td&gt;&lt;td&gt;Row2 cell2&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;&lt;br&gt;
+&lt;input type="button" onclick="insert_Row()" value="Insert row"&gt;
+
+&lt;script&gt;
+function insert_Row() {
+  var t = document.getElementById("sampleTable");
+  var r = t.insertRow(-1);                 // -1 = add at the end
+  var n = t.rows.length;                   // new row number
+  r.insertCell(0).innerHTML = "Row" + n + " cell1";
+  r.insertCell(1).innerHTML = "Row" + n + " cell2";
+}
+&lt;/script&gt;</code></pre></div>
+<h3>Item 3c: Dropdown of 5 items, remove the selected one</h3><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">html</div></div><pre><code>&lt;select id="fruits"&gt;
+  &lt;option&gt;Apple&lt;/option&gt;&lt;option&gt;Banana&lt;/option&gt;&lt;option&gt;Cherry&lt;/option&gt;
+  &lt;option&gt;Mango&lt;/option&gt;&lt;option&gt;Grapes&lt;/option&gt;
+&lt;/select&gt;
+&lt;button onclick="removeItem()"&gt;Remove selected&lt;/button&gt;
+
+&lt;script&gt;
+function removeItem() {
+  var s = document.getElementById("fruits");
+  if (s.selectedIndex &gt;= 0) {              // -1 means nothing to remove
+    s.remove(s.selectedIndex);
+  }
+}
+&lt;/script&gt;</code></pre></div>
+<h3>Item 3d: Two images that zoom in and out on click</h3><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">html</div></div><pre><code>&lt;img src="image1.jpg" style="width:150px" onclick="zoom(this)"&gt;
+&lt;img src="image2.jpg" style="width:150px" onclick="zoom(this)"&gt;
+
+&lt;script&gt;
+function zoom(img) {
+  img.style.width = (img.style.width === "300px") ? "150px" : "300px";
+}
+&lt;/script&gt;</code></pre></div>
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Image files</div><p class="btx">Put your own image1.jpg and image2.jpg in the same folder as the HTML file, or the browser shows a broken icon. Use <code>this</code> to pass the clicked image so one function serves both.</p></div></div>
+<h3>Item 3e: Random background color on every click</h3><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">html</div></div><pre><code>&lt;button onclick="randomBg()"&gt;Change Background&lt;/button&gt;
+
+&lt;script&gt;
+function randomBg() {
+  var r = Math.floor(Math.random() * 256);
+  var g = Math.floor(Math.random() * 256);
+  var b = Math.floor(Math.random() * 256);
+  document.body.style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
+}
+&lt;/script&gt;</code></pre></div>
+<div class="tw"><table><thead><tr><th>Task</th><th>Key DOM tool</th></tr></thead><tbody><tr><td>Find an element</td><td><code>document.getElementById("id")</code></td></tr><tr><td>Change styling</td><td><code>element.style.property = "value"</code> (camelCase: fontSize, backgroundColor)</td></tr><tr><td>Read an input</td><td><code>element.value</code></td></tr><tr><td>Change displayed text</td><td><code>element.innerHTML</code></td></tr><tr><td>Table rows/cells</td><td><code>table.insertRow(-1)</code>, <code>row.insertCell(0)</code></td></tr><tr><td>Dropdown</td><td><code>select.selectedIndex</code>, <code>select.remove(index)</code></td></tr><tr><td>Random 0 to 255</td><td><code>Math.floor(Math.random() * 256)</code></td></tr></tbody></table></div>
+<div class="mlst"><div class="mitem"><div class="mnm">Script before element</div><div class="mdc">Calling getElementById before the element exists returns null. Put scripts at the end of body, or call them from an event handler.</div></div><div class="mitem"><div class="mnm">style.font-size</div><div class="mdc">Invalid in JavaScript. Use <code>style.fontSize</code>.</div></div><div class="mitem"><div class="mnm">Value is text</div><div class="mdc"><code>input.value</code> is always a string. Use parseFloat/parseInt before math.</div></div><div class="mitem"><div class="mnm">Quotes inside quotes</div><div class="mdc"><code>onmouseover="this.style.backgroundColor='yellow'"</code> needs single quotes inside the double-quoted attribute.</div></div></div>
+</section>
+
+<section class="chapter" id="ch12">
+<div class="cn">CHAPTER 12</div><div class="ct">Slide Typos &amp; Practice Q&amp;A</div>
+<p class="ci">Final pass. Test yourself with the right column covered.</p>
+<h2>Slide Typos: Know the Correct Form</h2><div class="tw"><table><thead><tr><th>Where</th><th>As written on the slide</th><th>Correct form</th></tr></thead><tbody><tr><td>HTML elements example</td><td><code>&lt;body&gt;</code> before <code>&lt;/head&gt;</code></td><td>Close head, then open body</td></tr><tr><td>Text formatting</td><td><code>&lt;T&gt;Monospaced Text&lt;/TT&gt;</code></td><td><code>&lt;TT&gt;Monospaced Text&lt;/TT&gt;</code></td></tr><tr><td>Logical style examples</td><td><code>&lt;B&gt;</code> / <code>&lt;I&gt;</code> / <code>&lt;T&gt;</code></td><td><code>&lt;EM&gt;</code> / <code>&lt;STRONG&gt;</code> / <code>&lt;CITE&gt;</code></td></tr><tr><td>Frames example</td><td><code>&lt;/html</code></td><td><code>&lt;/html&gt;</code></td></tr><tr><td>iframe attributes</td><td><code>&lt;iframeset ...&gt;</code></td><td><code>&lt;iframe ...&gt;</code></td></tr><tr><td>Button controls</td><td><code>&lt;input&gt; &lt;/input&gt;</code></td><td><code>&lt;input ... /&gt;</code> (no closing tag)</td></tr><tr><td>GIF</td><td>Graphic Interchange Format (one slide)</td><td>Graphics Interchange Format</td></tr><tr><td>JS output</td><td><code>Document.write</code></td><td><code>document.write</code></td></tr><tr><td>JS if</td><td><code>If (x == 10)</code></td><td><code>if (x == 10)</code></td></tr><tr><td>JS function</td><td><code>Alert("Greetings, " + who)</code></td><td><code>alert("Greetings, " + who)</code></td></tr><tr><td>JS decrement</td><td><code>Total - -;</code></td><td><code>total--;</code></td></tr><tr><td>JS quotes</td><td>Curly quotes “ ”</td><td>Straight quotes " "</td></tr><tr><td>RegExp properties</td><td>source, global, ignoreCase, multiline, <em>final</em></td><td>"final" is not a real property</td></tr></tbody></table></div>
+<div class="box blue"><div class="bico">💡</div><div class="bbd"><div class="btt">Exam approach</div><p class="btx">If the question asks what the <em>slide</em> says, answer per the slide. If it asks you to write working code, use the correct form. When unsure, the correct form is never marked wrong in a hands-on task.</p></div></div>
+<h2>Quick-Fire Q&amp;A (cover the right column and test yourself)</h2><h3>JavaScript (highest priority)</h3><div class="tw"><table><thead><tr><th>Question</th><th>Answer</th></tr></thead><tbody><tr><td>What kind of language is JavaScript, and what was it created for?</td><td>A scripting language created for web page enhancement; default scripting for browsers</td></tr><tr><td>Which is an invalid variable name: idnumber, Customer_ID, 2016, _Continue?</td><td>2016 (starts with a digit)</td></tr><tr><td>Name the two types of variables by scope.</td><td>Global and local</td></tr><tr><td>Name the five possible variable data types on the slide.</td><td>Alphabetical, integer/floating-point, Boolean/logical, strings, null</td></tr><tr><td>Which functions convert text to numbers?</td><td>parseInt() and parseFloat()</td></tr><tr><td>Which keyword creates an object, as in new String("...")?</td><td>new</td></tr><tr><td>Which operator joins two strings?</td><td>+ (concatenation)</td></tr><tr><td>What does strTest += "." do?</td><td>Appends a period to strTest</td></tr><tr><td>Is length a property or a method?</td><td>Property: strTest.length</td></tr><tr><td>Which methods change case?</td><td>toUpperCase() and toLowerCase()</td></tr><tr><td>What operator gives the remainder?</td><td>% (modulus)</td></tr><tr><td>What does tries++ do?</td><td>Adds 1 to tries</td></tr><tr><td>What is an array?</td><td>A special variable holding more than one value, treated as one unit</td></tr><tr><td>What is the index of the first array element?</td><td>0</td></tr><tr><td>What does a flowchart represent?</td><td>Flow of control in a program</td></tr><tr><td>Which flowchart symbol is a decision?</td><td>Diamond</td></tr><tr><td>Which symbol shows input or output?</td><td>Parallelogram</td></tr><tr><td>Which symbol marks start and end?</td><td>Oval (terminator)</td></tr><tr><td>Which loop runs its body at least once?</td><td>do-while</td></tr><tr><td>Name the three parts inside a for loop header.</td><td>Initial value, condition, increment/decrement</td></tr><tr><td>What are the three regex modifiers?</td><td>Case-insensitive (i), global (g), multiline (m)</td></tr><tr><td>Name the two RegExp object methods.</td><td>exec() and test()</td></tr><tr><td>Name the four string methods used with regex.</td><td>match, search, replace, split</td></tr><tr><td>Name the four common event types.</td><td>Mouse, keyboard, frame/object, form</td></tr><tr><td>How many ways to embed JavaScript in HTML on the slides, and what are they?</td><td>Four: inline script, external script, HTML event handler, JavaScript protocol</td></tr><tr><td>Which pop-up box does the slide demonstrate?</td><td>Alert box</td></tr><tr><td>Which output command belongs to Java, not JavaScript?</td><td>System.out.println()</td></tr></tbody></table></div>
+<h3>HTML and CSS</h3><div class="tw"><table><thead><tr><th>Question</th><th>Answer</th></tr></thead><tbody><tr><td>What does HTML stand for, and who created it?</td><td>Hypertext Markup Language; Tim Berners-Lee (1980s)</td></tr><tr><td>What three things are needed to begin?</td><td>Folder, browser, text editor</td></tr><tr><td>Name the three parts of an HTML element.</td><td>Opening tag, element content, closing tag</td></tr><tr><td>How many steps in a dynamic web page request?</td><td>Four</td></tr><tr><td>Which tag creates an unordered list? An ordered list?</td><td>&lt;ul&gt;; &lt;ol&gt;</td></tr><tr><td>Which tag gives a table its title?</td><td>&lt;caption&gt;</td></tr><tr><td>Which tag defines a table heading cell?</td><td>&lt;th&gt;</td></tr><tr><td>What is a collection of frames called?</td><td>Frameset</td></tr><tr><td>Radio button or checkbox: only one option selectable?</td><td>Radio button</td></tr><tr><td>Which attribute limits characters in a text box?</td><td>maxlength</td></tr><tr><td>What does CSS stand for?</td><td>Cascading Style Sheets</td></tr><tr><td>Who proposed CSS, and when?</td><td>Håkon Wium Lie, October 10, 1994</td></tr><tr><td>What are the three types of CSS?</td><td>Inline, internal/embedded, external</td></tr><tr><td>Name the three parts of a CSS rule.</td><td>Selector, property, value</td></tr><tr><td>Which property sets letter case in CSS?</td><td>text-transform</td></tr></tbody></table></div>
+<h2>Predict the Output</h2><div class="tw"><table><thead><tr><th>Code</th><th>Output</th></tr></thead><tbody><tr><td><code>alert("5" + 2);</code></td><td>52</td></tr><tr><td><code>alert("5" - 2);</code></td><td>3</td></tr><tr><td><code>alert(5 + "2" - 1);</code></td><td>51</td></tr><tr><td><code>var x = 5; alert(x++); alert(x);</code></td><td>5, then 6</td></tr><tr><td><code>alert(10 % 4);</code></td><td>2</td></tr><tr><td><code>alert(7 / 2);</code></td><td>3.5</td></tr><tr><td><code>alert("Welcome to QCU".length);</code></td><td>14</td></tr><tr><td><code>alert(parseInt("42px"));</code></td><td>42</td></tr><tr><td><code>alert(parseInt("abc"));</code></td><td>NaN</td></tr><tr><td><code>alert(5 == "5"); alert(5 === "5");</code></td><td>true, then false</td></tr><tr><td><code>var n = [4,8,12]; alert(n[1] + n.length);</code></td><td>11 (8 + 3)</td></tr><tr><td><code>for (i=0; i&lt;3; i++) document.write(i);</code></td><td>012</td></tr></tbody></table></div>
+<h2>Code-Creation Drills (write these cold)</h2><div class="steps"><div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Odd or even</div><div class="sd">Read a number with prompt, convert, use n % 2 === 0, display with alert. See Chapter 11, item 1b.</div></div></div><div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Grade equivalent</div><div class="sd">else-if ladder from highest to lowest boundary. See Chapter 11, item 1c.</div></div></div><div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Sum, product, remainder, quotient</div><div class="sd">Three parseFloat inputs and four document.write lines with parentheses around the math. See Chapter 11, item 1a.</div></div></div><div class="step"><div class="snum">4</div><div class="sc"><div class="sl">Print 1 to 10</div><div class="sd">for (var i = 1; i <= 10; i++) document.write(i + "&lt;br&gt;");</div></div></div><div class="step"><div class="snum">5</div><div class="sc"><div class="sl">Button that changes text</div><div class="sd">A button with onclick calling a function that sets an element's innerHTML.</div></div></div></div>
+<div class="box green"><div class="bico">🎯</div><div class="bbd"><div class="btt">Next step</div><p class="btx">Want your answers checked? Say "quiz me" and you will get a hidden-answer multiple-choice quiz drawn from these chapters, or paste your own code with "debug this" or "review my code".</p></div></div>
+</section>
+
+<div class="footer"><p>QCU Academic OS · 2026 · Compiled by <strong>KianoRoku18Ino</strong> · github.com/KianoRoku18Ino</p></div>
+</main>
+
+<script>
+(function(){var links=document.querySelectorAll(".nvi a"),secs=document.querySelectorAll("section.chapter");window.addEventListener("scroll",function(){var cur="";secs.forEach(function(s){if(window.scrollY>=s.offsetTop-120){cur=s.id;}});links.forEach(function(a){a.classList.toggle("act",a.getAttribute("href")==="#"+cur);});});})();
+</script>
+</body>
+</html>
