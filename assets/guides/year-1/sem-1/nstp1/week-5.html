@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NSTP 1 — ROTC | Philippine Military History + IED Awareness</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--maroon:#B91C3C;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(59,130,246,.15);--sw:285px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--maroon);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvs{padding:9px 17px 3px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t3)}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover{color:var(--t1);background:rgba(185,28,60,.08);border-left-color:var(--maroon)}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:20px}
+.main{margin-left:var(--sw)}
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:48px 48px 38px;position:relative;overflow:hidden}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--maroon);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--maroon)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:700;line-height:1.15;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#3B82F6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:16.5px;color:var(--t2);margin-bottom:17px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+.chapter{padding:40px 48px;border-bottom:1px solid var(--bdr);max-width:960px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--maroon);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:18.5px;font-weight:600;margin:27px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--maroon);border-radius:2px;flex-shrink:0}
+h3{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;color:var(--blue);margin:19px 0 9px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+.box{border-radius:8px;padding:13px 17px;margin:15px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}.red .btt{color:var(--red)}
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:9px 12px;text-align:left;border-bottom:2px solid var(--maroon);font-size:11.5px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(59,130,246,.04)}
+tbody td{padding:8px 12px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace;white-space:nowrap}
+.tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}
+.steps{margin:15px 0}
+.step{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.snum{background:var(--maroon);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace}
+.sc{flex:1}
+.sl{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:2px}
+.sd{color:var(--t2);font-size:13px;line-height:1.7}
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.gc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:14px 16px;position:relative;overflow:hidden}
+.gc::before{content:attr(data-g);position:absolute;top:-10px;right:7px;font-family:'JetBrains Mono',monospace;font-size:50px;font-weight:900;color:rgba(59,130,246,.06);line-height:1}
+.gera{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.gtit{font-family:'Space Grotesk',sans-serif;font-size:13.5px;font-weight:700;color:var(--t1);margin-bottom:6px}
+.gsp{font-size:12.5px;color:var(--t2);margin:0;line-height:1.65}
+.isg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.isc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:14px 16px;border-top:3px solid var(--maroon)}
+.isc.a{border-top-color:var(--amber)}.isc.g{border-top-color:var(--green)}.isc.b{border-top-color:var(--blue)}
+.ico{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-bottom:3px}
+.inm{font-weight:700;font-size:13.5px;color:var(--t1);margin-bottom:6px}
+.idc{font-size:12.5px;color:var(--t2);line-height:1.7}
+.idc strong{color:var(--t1)}
+.tl{margin:16px 0;position:relative;padding-left:22px;border-left:2px solid var(--bdr)}
+.tli{position:relative;margin-bottom:16px}
+.tli::before{content:'';position:absolute;left:-27px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--maroon)}
+.tly{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--amber);font-weight:700}
+.tlt{font-weight:600;color:var(--t1);font-size:13.5px;margin:2px 0 3px}
+.tld{font-size:13px;color:var(--t2);line-height:1.7}
+.qa{background:var(--bgc);border:1px solid var(--bdr);border-radius:8px;padding:14px 17px;margin:9px 0}
+.qq{font-weight:600;color:var(--t1);font-size:13.5px;margin-bottom:5px}
+.qq::before{content:'Q — ';color:var(--maroon);font-family:'JetBrains Mono',monospace;font-weight:700}
+.qan{color:var(--t2);font-size:13px;line-height:1.7}
+.qan::before{content:'A — ';color:var(--green);font-family:'JetBrains Mono',monospace;font-weight:700}
+.pill{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:.5px;padding:2px 8px;border-radius:10px;text-transform:uppercase;margin-bottom:8px}
+.pill-added{background:rgba(245,158,11,.15);color:var(--amber)}
+.pill-lesson{background:rgba(59,130,246,.15);color:var(--blue)}
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:4px;font-size:13px;line-height:1.75}
+li strong{color:var(--t1)}
+.footer{padding:30px 48px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--maroon)}
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:26px 18px}.gg,.isg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+<div class="sbh"><div class="sbb">NSTP 1 · ROTC · QCU BSIT</div><div class="sbt">Phil. Military History + IED Awareness</div><div class="sbs">Full Lesson Study Guide · AY 2026-2027</div></div>
+<ul class="nvl">
+<li class="nvi"><a href="#overview"><span class="nn">00</span>Overview &amp; Priority Map</a></li>
+<li class="nvs">Part A — Philippine Military History</li>
+<li class="nvi"><a href="#ch1"><span class="nn">01</span>Brief History of the AFP</a></li>
+<li class="nvi"><a href="#ch2"><span class="nn">02</span>Evolution &amp; Role of the ROTC</a></li>
+<li class="nvs">Part B — IED Awareness</li>
+<li class="nvi"><a href="#ch3"><span class="nn">03</span>IED Fundamentals</a></li>
+<li class="nvi"><a href="#ch4"><span class="nn">04</span>Types of IED</a></li>
+<li class="nvi"><a href="#ch5"><span class="nn">05</span>Do's and Don'ts</a></li>
+<li class="nvs">Reference</li>
+<li class="nvi"><a href="#ch6"><span class="nn">06</span>Glossary &amp; Abbreviations</a></li>
+</ul></nav>
+
+<main class="main">
+<div class="hero">
+<div class="he">QCU Academic OS · AY 2026-2027 · Source: HQ NCR Regional Community Defense Group, Army Reserve Command, Fort Andres Bonifacio</div>
+<div class="ht">NSTP 1 — ROTC</div>
+<div class="hs">Philippine Military History, and IED Awareness — Complete Lesson Study Guide</div>
+<div class="hm">
+<div class="mp">Course: <span>NSTP 1</span></div>
+<div class="mp">Units: <span>3</span></div>
+<div class="mp">Year Level: <span>1st Yr, Sem 1</span></div>
+<div class="mp">Type: <span>NSTP — ROTC</span></div>
+</div></div>
+
+<section class="chapter" id="overview">
+<div class="cn">CHAPTER 00</div><div class="ct">Overview &amp; Study Priority Map</div>
+<p class="ci">Built strictly from two uploaded lesson decks: <strong>"Philippine Military History"</strong> (32 slides) and <strong>"Improvised Explosive Device" (IED Awareness)</strong> (43 slides, instructed by Cpl Jhomar O. Abayon). Every definition, list, table, and date in them is captured below in the order the material presents it.</p>
+
+<div class="box amber"><div class="bico">🛡️</div><div class="bbd"><div class="btt">A note on the IED Awareness content</div>
+<p class="btx">This lesson is <strong>recognition and safety-awareness</strong> training — how to identify a suspected device and what to do if you encounter one — not a construction manual. It's reproduced faithfully at the same conceptual level the source gives it (naming component categories and general historical examples, the same way a public EOD-awareness handbook would), with nothing further researched or added beyond that.</p></div></div>
+
+<div class="box red"><div class="bico">🔍</div><div class="bbd"><div class="btt">Source Verification Notes — read before studying</div>
+<p class="btx"><strong>1. Likely name error:</strong> the lesson states <em>"General Jose Prim dethroned Queen Isabela II of Spain in 1868."</em> Independent verification confirms the general who led the 1868 revolution that deposed Isabella II was <strong>Juan Prim</strong>, not "Jose Prim." Presented in Chapter 01 exactly as the lesson names him, flagged here as a likely name error.<br><br>
+<strong>2. Major date error:</strong> the lesson states the Japanese invasion forces <em>"landed in Vigan and Aparri in Luzon on December 10, 1945."</em> Independent verification confirms this landing took place on <strong>December 10, 1941</strong> — the actual start of the Japanese invasion of the Philippines, not 1945 (by which point Japan had already surrendered, ending WWII). This is reproduced exactly as the lesson states it in Chapter 01, but is very likely a typo for "1941."<br><br>
+<strong>3. Unclear/unmatched date:</strong> the lesson states the Philippine Navy <em>"was created 22 June 22, 1898 by the Revolutionary Army"</em> (the source repeats "22" this way in the text itself). The Philippine Navy's founding is most commonly dated to <strong>May 20, 1898</strong> in independent sources, with June 23, 1898 also appearing as the date Aguinaldo's government administratively organized naval affairs under a bureau. "June 22" does not clearly match either commonly-cited date — flagged as unverified rather than corrected.<br><br>
+<strong>4. Likely date error:</strong> the lesson states the Philippine Military Academy was established <em>"on February 7, 1905."</em> Independent verification gives the Philippine Constabulary's founding (PMA's institutional root) as <strong>February 17, 1905</strong> — likely a dropped digit in the lesson.<br><br>
+<strong>5. Imprecise date:</strong> the lesson states <em>"the war broke out between the United States and Spain on April 23, 1898."</em> Independent verification finds no single authoritative source using April 23 specifically — Spain declared war on April 24, 1898; the U.S. Congress declared war on April 25, 1898, made retroactive to April 21, 1898. April 23 falls between these dates without matching any of them — flagged as imprecise rather than corrected.<br><br>
+<strong>6. Likely conflict/era error (IED deck):</strong> the lesson states the Explosively Formed Projectile (EFP) design was <em>"used to great effect during the first Gulf War – Destroyed a US M1 Abrams MBT."</em> Independent verification indicates Iranian-designed EFPs used against U.S. M1 Abrams tanks are a defining and extensively documented feature of the <strong>Iraq War (2003–2011)</strong>, not the First Gulf War (1990–91, Operation Desert Storm) — flagged as a likely conflict mix-up.<br><br>
+<strong>7. Garbled text (IED deck, Instructor Profile slide):</strong> the line <em>"DATE OF InIn Mil Srvc (CSC CL-221 on Jul 16 2009"</em> is not legible as clean text in the source itself — reproduced as-is in Chapter 03's context box, not corrected or guessed at.<br><br>
+<strong>8. Scope of verification:</strong> the Philippine Military History deck contains many additional specific dates (particularly around UP's internal ROTC/DMST organizational history — field artillery units, specific dates of unit activation, etc.) that were not independently re-verified given the volume of the material; verification effort was concentrated on the most prominent, commonly-documented named events.</p></div></div>
+
+<h2>Exam / Recitation Priority Map</h2>
+<div class="tw"><table>
+<thead><tr><th>Topic</th><th>Chapter</th><th>Priority</th><th>Reason</th></tr></thead>
+<tbody>
+<tr><td>Battle of Mactan / Lapu-Lapu as "father of the AFP"</td><td>01</td><td><span class="tag tr2">🔴 High</span></td><td>Iconic, foundational date/figure — classic identification material</td></tr>
+<tr><td>Founding dates of AFP branches (Army, Navy, Constabulary, PMA, National Defense Act, Air Force)</td><td>01</td><td><span class="tag tr2">🔴 High</span></td><td>A clean timeline of named events/dates — but see Verification Notes 3–4 above before treating them as settled</td></tr>
+<tr><td>Katipunan founding, Cry of Pugad Lawin, Tejeros Convention</td><td>01</td><td><span class="tag tr2">🔴 High</span></td><td>Iconic dates central to Philippine Revolution history</td></tr>
+<tr><td>Japanese Occupation dates (Bataan, Corregidor, Leyte landing)</td><td>01</td><td><span class="tag tr2">🔴 High</span></td><td>Iconic WWII dates — but see Verification Note 2 for the one clear error</td></tr>
+<tr><td>International Peacekeeping acronyms (PEFTOK, PHILCAG)</td><td>01</td><td><span class="tag ta">🟡 Medium</span></td><td>Named acronyms are quizzable, but this is a shorter, less-detailed passage</td></tr>
+<tr><td>1912 UP ROTC founding &amp; DMST 1922</td><td>02</td><td><span class="tag tr2">🔴 High</span></td><td>Directly explains when/why ROTC began — the core subject of this lesson's second half</td></tr>
+<tr><td>1762 British Invasion / UST "muy leal" origin story</td><td>02</td><td><span class="tag ta">🟡 Medium</span></td><td>Colorful narrative framing for why ROTC's history is traced this far back; less date-precise than other sections</td></tr>
+<tr><td>Post-WWII ROTC decline, Mark Chua case, present-day advocacy</td><td>02</td><td><span class="tag tb">🔵 Low</span></td><td>Narrative/opinion-driven content, better suited to essay or discussion than identification</td></tr>
+<tr><td>Definition of IED</td><td>03</td><td><span class="tag tr2">🔴 High</span></td><td>Explicit Enabling Learning Objective #1</td></tr>
+<tr><td>The 5 Components of an IED</td><td>03</td><td><span class="tag tr2">🔴 High</span></td><td>Explicit Enabling Learning Objective #2 — a clean, named list</td></tr>
+<tr><td>Types of IED (by initiation method and by specific device)</td><td>04</td><td><span class="tag tr2">🔴 High</span></td><td>Explicit Enabling Learning Objectives #3–4, presented as tables in the source</td></tr>
+<tr><td>Do's and Don'ts of encountering an IED</td><td>05</td><td><span class="tag tr2">🔴 High</span></td><td>Explicit Enabling Learning Objective, and the most safety-critical content in the lesson</td></tr>
+<tr><td>Specific chemical/technical details (explosive sub-types, R-134a decomposition)</td><td>03</td><td><span class="tag tb">🔵 Low</span></td><td>Granular supporting detail, not named in the lesson objectives</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="chapter" id="ch1">
+<div class="cn">PART A · PHILIPPINE MILITARY HISTORY</div><div class="ct">Brief History of the AFP</div>
+
+<div class="tl">
+<div class="tli"><div class="tly">27 Apr 1521</div><div class="tlt">Pre-Spanish Occupation — Battle of Mactan</div><div class="tld">The first recorded organized resistance against a foreign aggressor took place in the Visayas during the Battle of Mactan, when the native chieftain Lapu-Lapu — the acknowledged father of the AFP — fought against the Spaniards led by Magellan in the latter's effort to subdue him. Lapu-Lapu refused to pay homage to the King of Spain. Underestimating the natives' capability, the foreigners lost the battle and Magellan was killed.</div></div>
+<div class="tli"><div class="tly">1570–1571</div><div class="tlt">Spanish Occupation begins</div><div class="tld">Some islands of the archipelago were successfully occupied by the Spaniards. In 1570 they tried to land in Manila; the Muslim leader Rajah Soliman resisted their effort. In 1571, Legaspi conquered Manila and made it the capital of the Philippines. Pockets of rebellion followed, notably Diego Silang's uprising, displaying exemplary military leadership and tactics against the Spaniards. Filipino soldiers were also organized to fight for Spain and support expeditions — Filipino forces reinforced Spanish troops during the Chinese revolt in 1603.</div></div>
+<div class="tli"><div class="tly">1868</div><div class="tlt">Spanish liberalism reaches the Philippines</div><div class="tld">General "Jose Prim" (see Ch. 00 note) dethroned Queen Isabela II of Spain, who had espoused liberal principles of democracy — paving the way for Filipino exposure to foreign culture and the growth of nationalism, further nurtured by propagandists Marcelo H. del Pilar, Graciano Lopez Jaena, and Jose Rizal.</div></div>
+<div class="tli"><div class="tly">7 Jul 1892</div><div class="tlt">Founding of the Katipunan</div><div class="tld">Andres Bonifacio, considered the father of the Philippine Army, founded the more radical group called the "Katipunan."</div></div>
+<div class="tli"><div class="tly">23 Aug 1896</div><div class="tlt">Cry of Pugad Lawin</div><div class="tld">Signaled the start of the Philippine Revolution against Spain, followed by pockets of rebellion inflicting heavy losses on the Spaniards. Two factions emerged within the growing Katipunan: the Magdalo (led by Aguinaldo) and the Magdiwang (led by Bonifacio).</div></div>
+<div class="tli"><div class="tly">22 Mar 1897</div><div class="tlt">Tejeros Convention</div><div class="tld">Called to resolve the Magdalo/Magdiwang conflict. Aguinaldo won the presidency, and the occasion also gave birth to the Philippine Army.</div></div>
+<div class="tli"><div class="tly">23 Apr 1898 <span style="color:var(--red);font-size:11px">(see Ch. 00, Note 5)</span></div><div class="tlt">American Influence begins — war breaks out</div><div class="tld">War broke out between the United States and Spain. The Americans convinced the Filipinos to cooperate against Spain, promising independence; Aguinaldo declared war on Spain.</div></div>
+<div class="tli"><div class="tly">12 Jun 1898</div><div class="tlt">Philippine Independence declared</div><div class="tld">Declared in Kawit, Cavite.</div></div>
+<div class="tli"><div class="tly">22 Jun 1898 <span style="color:var(--red);font-size:11px">(see Ch. 00, Note 3)</span></div><div class="tlt">Philippine Navy created</div><div class="tld">Created by the Revolutionary Army.</div></div>
+<div class="tli"><div class="tly">(undated)</div><div class="tlt">Fall of the Malolos Republic</div><div class="tld">American occupation gained little acceptance among Filipinos due to many restrictions on Filipino forces' access to certain areas; harsh treatment by the Americans ignited conflict, and the Filipinos were defeated, leading to the fall of the Malolos Republic.</div></div>
+<div class="tli"><div class="tly">23 Mar 1901</div><div class="tlt">Capture of General Aguinaldo</div><div class="tld">Captured by the Americans in Palanan, Isabela. With the Treaty of Paris, Spain had ceded the Philippines to the United States, prompting renewed Filipino resistance and significant battles exemplifying Filipino soldiers' fighting spirit and skill.</div></div>
+<div class="tli"><div class="tly">16 Apr 1902</div><div class="tlt">General Malvar lays down arms</div><div class="tld">Ended the organized resistance against the American forces.</div></div>
+<div class="tli"><div class="tly">8 Aug 1901</div><div class="tlt">Philippine Constabulary organized</div><div class="tld">An insular police force organized to hasten the Philippine campaign and establish peace and order.</div></div>
+<div class="tli"><div class="tly">7 Feb 1905 <span style="color:var(--red);font-size:11px">(see Ch. 00, Note 4)</span></div><div class="tlt">Philippine Military Academy established</div></div>
+<div class="tli"><div class="tly">21 Dec 1935</div><div class="tlt">National Defense Act enacted</div><div class="tld">Officially created the Armed Forces of the Philippines.</div></div>
+<div class="tli"><div class="tly">1 Jul 1947</div><div class="tlt">Philippine Air Force established</div></div>
+<div class="tli"><div class="tly">10 Dec 1945 <span style="color:var(--red);font-size:11px">(see Ch. 00, Note 2 — very likely 1941)</span></div><div class="tlt">The Japanese Occupation begins</div><div class="tld">Consequent to Japan's declaration of war with the United States, invading Japanese forces landed in Vigan and Aparri, Luzon. Unable to withstand the very strong adversary, the combined US-Filipino forces withdrew to Bataan to implement War Plan Orange.</div></div>
+<div class="tli"><div class="tly">9 Apr 1942</div><div class="tlt">Fall of Bataan</div></div>
+<div class="tli"><div class="tly">6 May 1942</div><div class="tlt">Fall of Corregidor</div><div class="tld">These events ended organized resistance against the Japanese invasion. The defeat of the Fil-Am forces did not end the armed struggle, however — those who refused to surrender went underground and waged guerilla warfare against the Japanese.</div></div>
+<div class="tli"><div class="tly">20 Oct 1944</div><div class="tlt">Gen. Douglas MacArthur lands in Leyte</div><div class="tld">The guerilla forces' activities were very instrumental in the successful comeback of the liberating US forces.</div></div>
+<div class="tli"><div class="tly">early 1950s–1960s</div><div class="tlt">International Peace Keeping Operations</div><div class="tld">The AFP participated in international peacekeeping efforts as its commitment to the United Nations: the Philippine Expeditionary Forces to Korea (PEFTOK) in the early 1950s, the Philippine Air Force Contingent in Congo, Africa in the early 1960s, and the Philippine Civic Action Group (PHILCAG) in South Vietnam in the 1960s. Philippine contingents were also sent to East Timor, Iraq, and Liberia for UN peacekeeping operations.</div></div>
+</div>
+
+<h2>Recitation-Ready Answer <span class="pill pill-added" style="margin-left:8px">Added — Study Aid</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">KEY FIGURE</div><div class="inm">Lapu-Lapu</div><div class="idc"><strong>Plain English:</strong> the chieftain who defeated Magellan's forces at Mactan, refusing to submit to Spanish authority.<br><strong>vs. Andres Bonifacio:</strong> Lapu-Lapu is called the "father of the AFP" (earliest organized resistance); Bonifacio is called the "father of the Philippine Army" (founder of the Katipunan, which gave rise to the organized revolutionary army).<br><strong>Example from the lesson:</strong> defeating Magellan's Spanish forces on April 27, 1521.</div></div>
+<div class="isc a"><div class="ico">KEY EVENT</div><div class="inm">Tejeros Convention</div><div class="idc"><strong>Plain English:</strong> the meeting that resolved the Magdalo/Magdiwang leadership dispute within the Katipunan.<br><strong>vs. the Cry of Pugad Lawin:</strong> the Cry started the revolution against Spain (Aug 1896); the Tejeros Convention (Mar 1897) resolved internal revolutionary leadership and gave birth to the Philippine Army.<br><strong>Example from the lesson:</strong> Aguinaldo winning the presidency over Bonifacio at this convention.</div></div>
+</div>
+
+<div class="box blue"><div class="bico">💬</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 01</div>
+<div class="qa"><div class="qq">Who is considered the "father of the AFP," and why?</div><div class="qan">Lapu-Lapu — he led the first recorded organized resistance against a foreign aggressor, defeating Magellan's forces at the Battle of Mactan (April 27, 1521).</div></div>
+<div class="qa"><div class="qq">What event on July 7, 1892 is described in the lesson, and who founded it?</div><div class="qan">Andres Bonifacio founded the Katipunan.</div></div>
+<div class="qa"><div class="qq">What ended organized Filipino resistance against the Americans, and when?</div><div class="qan">The capture of General Aguinaldo in Palanan, Isabela (March 23, 1901) and General Malvar's laying down of arms (April 16, 1902).</div></div>
+<div class="qa"><div class="qq">What law officially created the Armed Forces of the Philippines, and when?</div><div class="qan">The National Defense Act, enacted December 21, 1935.</div></div>
+<div class="qa"><div class="qq">Name the three international peacekeeping deployments the lesson lists from the 1950s–60s.</div><div class="qan">PEFTOK (Korea, early 1950s), the Philippine Air Force Contingent in Congo (early 1960s), and PHILCAG (South Vietnam, 1960s).</div></div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch2">
+<div class="cn">PART A · PHILIPPINE MILITARY HISTORY</div><div class="ct">Evolution and Role of the ROTC in the Previous Wars</div>
+<p class="ci">Commonwealth Act Number 1, otherwise known as the National Defense Act, provided the legal basis for the conduct of ROTC instruction — but the lesson traces the need for a citizen reserve force back much further, even into the Spanish colonial period.</p>
+
+<h2>The 1762 British Invasion — ROTC's Earliest Roots</h2>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">The Seven Years' War reaches the Philippines</div><div class="sd">A British flotilla of thirteen ships, headed by Admiral Samuel Cornish and General William Draper, arrived in the colony on September 22, 1762, as a consequence of the Seven Years' War in Europe between France and Great Britain. The Philippines got entangled because the monarchs of Spain and France both belonged to the Bourbon Dynasty.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Student volunteers organized</div><div class="sd">Spanish authorities were ill-prepared. Father Domingo Collantes, OP, Rector and chancellor of the University of Sto. Tomas, organized around 200 students from UST and Colegio de San Juan de Letran who underwent military training at Sto. Tomas Plaza in Intramuros, Manila — assisted by a sergeant in the Royal Spanish Army.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">A mismatched but stubborn defense</div><div class="sd">These students, together with 500 Hispano-Filipino regulars (the King's Regiment) and 80 Filipinos, were sent to counter the 7,000-strong British Regiment. The skirmish lasted five days, with heavy casualties among the defenders.</div></div></div>
+<div class="step"><div class="snum">4</div><div class="sc"><div class="sl">Surrender, then the war ends</div><div class="sd">Governor-Archbishop Rojo surrendered Manila and Cavite to Lieutenant General Dawsonne Drake on October 6, 1762. The Philippines was a British colony until June 1764; with the Treaty of Paris signed on February 10, 1763, the Seven Years' War ended and the British left the archipelago for good.</div></div></div>
+<div class="step"><div class="snum">5</div><div class="sc"><div class="sl">"Muy Leal"</div><div class="sd">The Spanish king recognized the students' courage, granting the title "muy leal" (very loyal) to the young defenders and "regalia" (royal) to their institution. The "muy leal" emblem remains part of the UST ROTC seal to this day.</div></div></div>
+</div>
+
+<h2>The Genuine Beginning of ROTC — 1912 Onward</h2>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">1912 — UP and the Philippine Constabulary</div><div class="sd">Exactly 150 years after 1762, various Philippine colleges/universities began offering military training. Per Brigadier General Jose Syjuco (author of <em>Military Education in the Philippines</em>), most military historians mark 1912 as the beginning of genuine ROTC instruction, when the Philippine Constabulary (PC) started conducting military instruction at the University of the Philippines (UP) on the old Padre Faura campus. UP and Ateneo de Manila also began offering training in 1912, though graduates had no military career path unless they joined the PC or the Philippine Scouts (PS). Governor General Leonard Wood encouraged ROTC unit development similar to those in the US; Captain Silvino Gallardo became UP's first military instructor in the first semester of 1912.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">17 Mar 1922 — Department of Military Science and Tactics (DMST)</div><div class="sd">Formally organized at UP with three objectives: (1) develop patriotic, physically sound, upright and disciplined citizens; (2) create a corps of trained officers for the reserve force; and (3) take the lead in fostering university spirit. On July 3, 1922, formal military instruction began with UP's first ROTC unit; basic infantry course became compulsory and a graduation prerequisite. UP's field artillery unit was organized October 26, 1929 (75mm field guns); a mounted battery unit (2.95-inch guns) followed in 1935.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Expansion &amp; supervision</div><div class="sd">Ateneo de Manila, National University, Liceo de Manila, and San Juan de Letran formed their own ROTC units, independent from one another until 1936, when the Office of the Superintendent (of ROTC units) of the Philippine Army was activated to supervise all ROTC units nationally.</div></div></div>
+</div>
+
+<h2>The Commonwealth Defense Plan</h2>
+<p>Under American tutelage, Commonwealth Act Number 1 provided the legal basis for mandatory citizen military training. The national defense plan, put into motion by General Douglas MacArthur and Manuel Quezon, envisioned a citizen army of two components: (1) a regular force of about 10,000 men (including the PC), and (2) a reserve force to number 400,000 by the end of a ten-year period, built by continuously training 21-year-old able-bodied men for a period of more than five months. Quezon personally selected MacArthur as military adviser (later conferring on him the rank of "Field Marshal," the highest known international military rank) to formulate the Philippine Defense System.</p>
+<div class="box amber"><div class="bico">🗣️</div><div class="bbd"><div class="btt">Quezon's Address, National Assembly, 26 Nov 1935</div><p class="btx">"Self defense is the supreme right of mankind no more sacred to the individual than to the nation, the interests of which are immeasurably of greater significance and extent... In my opinion, the plan reflects the lessons of history, the conclusion of the acknowledge[d] masters of warfare and of statesmanship, and the sentiments and aspirations of the Filipino people. It is founded upon enduring principles that are fundamental to any plan applicable to our needs."</p></div></div>
+<p>UP's ROTC was the first officially recognized, followed by Letran, UST, De La Salle, Adamson, Philippine Normal School, the Philippine School of Arts and Trades, San Beda, and Silliman. By 1937, the government had recognized seventeen ROTC units, mostly infantry; UP additionally had a field artillery unit, and Adamson and the Quisumbing schools had chemical warfare units. UP also trained ROTC instructors and was the source of basic ROTC training policy.</p>
+<p>Under this system, male students took a basic two-year course with weekend training; those wanting a reserve commission could attend two more years of advanced weekend training, making them eligible for a reserve officer commission. Mandatory training wasn't instituted in all colleges, so some students transferred to schools without ROTC to avoid it. President Quezon issued <strong>Executive Order No. 207</strong>, making ROTC compulsory in all colleges/universities with 100 or more students. By 1941, around 33 colleges/universities maintained ROTC units — but all closed during the Japanese incursion.</p>
+
+<h2>ROTC After the War, and Its Modern Challenges</h2>
+<p>UP ROTC graduates continued rendering meritorious service after the war, both addressing domestic insurgency and manning contingency forces sent during the Korean (1950) and Vietnam (1964) wars. Prior to NSTP's implementation, ROTC was a two-year mandatory training for male college students and a graduation requisite. Enrollment declined steadily due to issues including graft and corruption, a lack of competent/dedicated/committed instructors, and higher student-instructor ratios — students increasingly appreciated the program less, shown by high drop-out/deferment rates and many opting for the program's other two components instead, significantly reducing the reserve force pool.</p>
+<p>The program has drawn protests from students, school administrators, and parents who view it as militarization. The strongest clamor for its abolition occurred in <strong>March 2001</strong>, following the death of University of Santo Tomas ROTC Cadet Mark Chua, who was allegedly hazed by senior ROTC cadets after exposing malpractices in the program. As of the lesson's writing, many concerned citizens, school administrators, and legislators are advocating for enhancing the ROTC program by making it compulsory in state colleges and universities — an effort the AFP fully supports, based on a perceived decline in youth appreciation for patriotism and good citizenship.</p>
+
+<h2>Recitation-Ready Answer <span class="pill pill-added" style="margin-left:8px">Added — Study Aid</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">KEY CONCEPT</div><div class="inm">"Muy Leal"</div><div class="idc"><strong>Plain English:</strong> the honorary Spanish title ("very loyal") given to the UST/Letran student-soldiers of 1762 for their bravery against the British.<br><strong>vs. 1912's "genuine" ROTC beginning:</strong> 1762 is the earliest traceable instance of Philippine student military training, but historians mark 1912 (UP, under the Philippine Constabulary) as the start of ROTC instruction proper.<br><strong>Example from the lesson:</strong> the emblem still appears on the UST ROTC seal today.</div></div>
+<div class="isc a"><div class="ico">KEY LAW</div><div class="inm">Executive Order No. 207</div><div class="idc"><strong>Plain English:</strong> Quezon's order making ROTC compulsory for large colleges/universities.<br><strong>vs. Commonwealth Act Number 1 (National Defense Act):</strong> Commonwealth Act No. 1 established the overall legal basis for citizen military training; EO 207 specifically forced ROTC compliance on schools with 100+ students that were resisting it.<br><strong>Example from the lesson:</strong> issued partly in response to schools complaining enrollment had dropped due to ROTC.</div></div>
+</div>
+
+<div class="box blue"><div class="bico">💬</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 02</div>
+<div class="qa"><div class="qq">What event in 1762 does the lesson trace as ROTC's earliest root, and what title did the Spanish king grant the students afterward?</div><div class="qan">The defense of Manila by ~200 UST/Letran students against the British invasion; the king granted them the title "muy leal" (very loyal).</div></div>
+<div class="qa"><div class="qq">What year do most military historians mark as the beginning of genuine ROTC instruction, and where?</div><div class="qan">1912, at the University of the Philippines (Padre Faura campus), under the Philippine Constabulary.</div></div>
+<div class="qa"><div class="qq">What were the DMST's three objectives when organized in 1922?</div><div class="qan">(1) Develop patriotic, physically sound, upright and disciplined citizens; (2) create a corps of trained officers for the reserve force; (3) take the lead in fostering university spirit.</div></div>
+<div class="qa"><div class="qq">What event in March 2001 sparked the strongest clamor for ROTC's abolition?</div><div class="qan">The death of UST ROTC Cadet Mark Chua, allegedly hazed by senior cadets after exposing malpractices in the program.</div></div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch3">
+<div class="cn">PART B · IED AWARENESS</div><div class="ct">IED Fundamentals</div>
+
+<div class="box blue"><div class="bico">📋</div><div class="bbd"><div class="btt">Lesson context <span class="pill pill-lesson" style="margin-left:4px">From the Lesson</span></div>
+<p class="btx"><strong>References:</strong> PAM 3-0602 EOD Handbook; an in-depth IED awareness training deck (SlideShare, C. Fearnley). <strong>Instructor:</strong> Cpl Jhomar O. Abayon (Inf), PA — profile block also lists his educational background (BSIT, UEP 2008; CPA graduate, Dec 18 2009), military schooling, and previous unit assignments; one line in this block ("DATE OF InIn Mil Srvc (CSC CL-221 on Jul 16 2009") is not legible as clean text in the source (see Ch. 00, Note 7). <strong>Format:</strong> a 2-hour session. <strong>Assessment:</strong> written exam, 4 objective-type items (2 multiple choice, 2 multiple response); passing standard is 70% "GO," with a "Needs Practice" rating after two retakes.</p></div></div>
+
+<h2>Lesson Objectives</h2>
+<p><strong>Terminal Learning Objective (TLO):</strong> Classify the different types of typical IED and countermeasures.</p>
+<p><strong>Enabling Learning Objectives (ELO):</strong></p>
+<ol>
+<li>Define Improvised Explosive Device (IED).</li>
+<li>Recognize IED components, complete IED, and indication.</li>
+<li>Determine the typical type of IED.</li>
+<li>Do's and Don'ts.</li>
+</ol>
+
+<h2>Definition</h2>
+<div class="box red"><div class="bico">💣</div><div class="bbd"><div class="btt">Improvised Explosive Device (IED)</div>
+<p class="btx">A device placed or fabricated in an improvised manner, incorporating destructive, lethal, noxious, pyrotechnic, or incendiary chemicals, designed to destroy, incapacitate, harass, or distract. It may incorporate military stores, but is normally fabricated from non-military components.</p></div></div>
+
+<h2>The Five Components of an IED</h2>
+<div class="gg">
+<div class="gc" data-g="1"><div class="gera">COMPONENT 1</div><div class="gtit">The Casing</div><p class="gsp">Virtually anything can be used as a casing. Serves two purposes: (1) concealing the device from detection, and (2) enhancing the explosive power.</p></div>
+<div class="gc" data-g="2"><div class="gera">COMPONENT 2</div><div class="gtit">The Explosive</div><p class="gsp">Comes in two types, high and low explosive, in all shapes/sizes/granularity/color. <strong>Low explosive:</strong> black powder (from shotgun cartridges), potassium perchlorate (from fireworks and match heads). <strong>High explosive:</strong> TNT (harvested from conventional munitions), ammonium nitrate-based (from processed fertiliser), TATP (favoured in Europe; precursors freely available).</p></div>
+<div class="gc" data-g="3"><div class="gera">COMPONENT 3</div><div class="gtit">The Power Source</div><p class="gsp">Required by all IEDs except incendiary devices. Common items include 9V batteries, car batteries, motorcycle batteries, AA batteries — even stored mechanical energy such as a coiled spring.</p></div>
+<div class="gc" data-g="4"><div class="gera">COMPONENT 4</div><div class="gtit">The Detonator / Initiator</div><p class="gsp">A method/component needed to initiate the explosive. <strong>Detonators</strong> can be mechanical or electrical, contain a low explosive, and (per the lesson's UK-specific note) are hard to acquire, making an improvised detonator more likely. <strong>Initiators</strong> are different — used to "initiate" low explosives like black powder, often improvised and easy to make.</p></div>
+<div class="gc" data-g="5"><div class="gera">COMPONENT 5</div><div class="gtit">The Trigger / Firing Switch</div><p class="gsp">Every IED requires some action or input to function: a button, a switch, a timer. The IRA is noted as having often used a mercury tilt switch; mobile phones and UHF/VHF radios are favoured by IS.</p></div>
+</div>
+
+<div class="box amber"><div class="bico">📌</div><div class="bbd"><div class="btt">Additional notes from the lesson</div>
+<p class="btx">Terrorist publications such as <em>Inspire</em> magazine are noted as regularly featuring scientifically-accurate "how-to" guides for manufacturing homemade explosives (this is stated in the lesson as a threat-awareness point, not reproduced here). <strong>IED Enhancements</strong> are additives/damage multipliers added to increase lethality: most commonly fragmentation (ball-bearings, nuts and bolts, steel rebar, bullets), or an accelerant to increase incendiary effect (gasoline, kerosene, pressurized containers such as gas cylinders). The lesson separately notes that Refrigerant 134a, in mixtures with high concentrations of air at elevated pressure/temperature, can be ignited, and that contact with flames or hot surfaces above 250°C (482°F) may cause vapour decomposition releasing toxic gases including hydrogen fluoride and carbonyl halides.</p></div></div>
+
+<h2>Recitation-Ready Answer <span class="pill pill-added" style="margin-left:8px">Added — Study Aid</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">KEY CONCEPT</div><div class="inm">IED</div><div class="idc"><strong>Plain English:</strong> a homemade bomb — assembled from whatever's available, not standard-issue military ordnance.<br><strong>vs. a military munition:</strong> an IED is "normally fabricated from non-military components," even though it may sometimes incorporate military stores.<br><strong>Example from the lesson:</strong> a device designed to "destroy, incapacitate, harass, or distract."</div></div>
+<div class="isc a"><div class="ico">KEY CONCEPT</div><div class="inm">Detonator vs. Initiator</div><div class="idc"><strong>Plain English:</strong> both start an explosion, but they act on different explosive types.<br><strong>Distinguishing them:</strong> Detonators (mechanical or electrical) contain a low explosive; Initiators are used to set off low explosives like black powder and are often improvised.<br><strong>Example from the lesson:</strong> an improvised detonator being "more likely to be seen" where real detonators are hard to acquire.</div></div>
+</div>
+
+<div class="box blue"><div class="bico">💬</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 03</div>
+<div class="qa"><div class="qq">Define IED in the lesson's own terms.</div><div class="qan">A device placed or fabricated in an improvised manner, incorporating destructive, lethal, noxious, pyrotechnic, or incendiary chemicals, designed to destroy, incapacitate, harass, or distract — normally fabricated from non-military components.</div></div>
+<div class="qa"><div class="qq">Name the five components of an IED.</div><div class="qan">Casing, Explosive, Power Source, Detonator/Initiator, and Trigger/Firing Switch.</div></div>
+<div class="qa"><div class="qq">What are the two purposes of the casing?</div><div class="qan">To conceal the device from detection, and to enhance the explosive power.</div></div>
+<div class="qa"><div class="qq">Name one common IED enhancement and what it's meant to do.</div><div class="qan">Fragmentation (e.g., ball-bearings, nuts and bolts) to increase lethality, or an accelerant (e.g., gasoline) to increase incendiary effect.</div></div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch4">
+<div class="cn">PART B · IED AWARENESS</div><div class="ct">Types of IED</div>
+
+<h2>Classification by Group <span class="pill pill-lesson" style="margin-left:8px">From the Lesson (p. 18–19)</span></h2>
+<div class="tw"><table>
+<thead><tr><th>Group</th><th>Types of IED in this Group</th></tr></thead>
+<tbody>
+<tr><td>Victim Operated</td><td>Pressure Plate, Tripwire, Infrared Passive, Infrared Active, Anti-lift, Pressure Switch, Light Sensitive</td></tr>
+<tr><td>Time</td><td>Electronic, Mechanical, Chemical</td></tr>
+<tr><td>Command</td><td>Command Wire, Command Pull, Radio Controlled</td></tr>
+<tr><td>Projected</td><td>Recoilless, Rocket, Improvised Hand Grenade, Mortars</td></tr>
+<tr><td>Suicide</td><td>Vehicle Borne IED, Person Borne IED, Improvised Hand Grenade, Mortars</td></tr>
+</tbody></table></div>
+<div class="box amber"><div class="bico">📌</div><div class="bbd"><div class="btt">As given in the source</div><p class="btx">"Improvised Hand Grenade" and "Mortars" appear listed under <em>both</em> the Projected and Suicide groups in the lesson's own tables — reproduced here exactly as the source lists them, without resolving which single group they "really" belong to.</p></div></div>
+
+<h2>Named Types, Described in Detail</h2>
+<div class="isg">
+<div class="isc"><div class="ico">COMMAND</div><div class="inm">CW or RC</div><div class="idc">The IED receives a "command" that causes it to initiate. Two types: <strong>Command wire (CW)</strong> and <strong>Radio-controlled (RC)</strong> — RC is frequently mobile phones or radios; command wires are less popular, difficult to conceal, and have limited range.</div></div>
+<div class="isc a"><div class="ico">VICTIM-OPERATED</div><div class="inm">VOIED</div><div class="idc">Initiated as a result of some action or motion of the victim: pressure plate, pressure release, motion sensor (PIR), tilt switch.</div></div>
+<div class="isc g"><div class="ico">PERSON-BORNE</div><div class="inm">PBIED</div><div class="idc">Also known as a "suicide vest," worn around the waist/chest. Two types: <strong>Defensive</strong> (anti-capture device; example given: Bataclan theatre) and <strong>Offensive</strong> (inflict mass casualties, contains a fragmentation matrix; example given: Stade de France). IS is noted as utilizing female and child operatives to infiltrate secure locations, and as having experimented with internal PBIEDs.</div></div>
+<div class="isc b"><div class="ico">VEHICLE-BORNE</div><div class="inm">VBIED</div><div class="idc">Huge destructive power — main charges up to 50 tonnes have been seen. Both suicide and non-suicide variants; used for perimeter breach or mass casualties.</div></div>
+</div>
+<div class="box red"><div class="bico">🎯</div><div class="bbd"><div class="btt">EFP: Explosively Formed Projectile</div>
+<p class="btx">Design originated from the Iranians; identifiable by the concave "liner," usually made of copper or steel. The lesson states it was "used to great effect during the first Gulf War," destroying a US M1 Abrams MBT — see Chapter 00, Note 6 regarding the likely conflict/era mix-up in this claim.</p></div></div>
+<div class="box amber"><div class="bico">☣️</div><div class="bbd"><div class="btt">Chemical / Biological IED</div>
+<p class="btx">Chemical and biological weapons add a "fear factor"; IS is noted as having experimented with these for years. The main difficulty is getting the explosive power correct — too low, and the agent won't disperse; too high, and the agent will be vaporized/destroyed.</p></div></div>
+
+<h2>Recitation-Ready Answer <span class="pill pill-added" style="margin-left:8px">Added — Study Aid</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">KEY CONCEPT</div><div class="inm">VBIED vs. PBIED</div><div class="idc"><strong>Plain English:</strong> both can be suicide devices, but VBIED uses a vehicle as the delivery platform (huge charge, breach/mass-casualty use), while PBIED is worn on a person's body (vest-style, smaller charge).<br><strong>Distinguishing them:</strong> VBIED's destructive power comes from its much larger possible charge size (up to 50 tonnes cited); PBIED relies on a fragmentation matrix and proximity to the target.<br><strong>Example from the lesson:</strong> PBIED's Bataclan theatre (defensive/anti-capture) vs. Stade de France (offensive/mass casualty) examples.</div></div>
+<div class="isc a"><div class="ico">KEY CONCEPT</div><div class="inm">EFP (Explosively Formed Projectile)</div><div class="idc"><strong>Plain English:</strong> a shaped device that turns a metal liner into a high-speed slug capable of punching through armor.<br><strong>vs. a standard IED blast:</strong> a regular IED relies on general explosive force; an EFP is specifically engineered (concave copper/steel liner) to penetrate armored vehicles.<br><strong>Example from the lesson:</strong> destroying a US M1 Abrams (see the conflict/era flag in Ch. 00).</div></div>
+</div>
+
+<div class="box blue"><div class="bico">💬</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 04</div>
+<div class="qa"><div class="qq">What are the five groups IEDs are classified into, per the lesson's tables?</div><div class="qan">Victim Operated, Time, Command, Projected, and Suicide.</div></div>
+<div class="qa"><div class="qq">What are the two types of Command-initiated IEDs?</div><div class="qan">Command Wire (CW) and Radio-Controlled (RC).</div></div>
+<div class="qa"><div class="qq">What is a PBIED also known as, and what are its two types?</div><div class="qan">Also known as a "suicide vest"; the two types are Defensive (anti-capture) and Offensive (mass casualties).</div></div>
+<div class="qa"><div class="qq">What identifies an EFP visually, and what materials is its liner usually made of?</div><div class="qan">The concave "liner," usually made of copper or steel.</div></div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch5">
+<div class="cn">PART B · IED AWARENESS</div><div class="ct">Do's and Don'ts of IED</div>
+
+<div class="tw"><table>
+<thead><tr><th>DON'T'S</th><th>DO'S</th></tr></thead>
+<tbody>
+<tr><td>Don't Panic</td><td>Notify proper authorities</td></tr>
+<tr><td>Don't touch the suspected item</td><td>Get all non-essential personnel out</td></tr>
+<tr><td>Don't focus on just that one device — the possibility of a secondary item is possible</td><td>Stay away from the line of sight of the suspected item</td></tr>
+<tr><td></td><td>Seek cover</td></tr>
+</tbody></table></div>
+
+<h2>Recitation-Ready Answer <span class="pill pill-added" style="margin-left:8px">Added — Study Aid</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">KEY CONCEPT</div><div class="inm">"Don't focus on just that one device"</div><div class="idc"><strong>Plain English:</strong> a found IED might not be the only one — there could be a second device planted to target first responders.<br><strong>vs. general safety instinct:</strong> your instinct might be to stay fixated on the one device you can see; the lesson specifically warns against that tunnel vision.<br><strong>Example from the lesson:</strong> "possibility of a secondary item is possible."</div></div>
+</div>
+
+<div class="box blue"><div class="bico">💬</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 05</div>
+<div class="qa"><div class="qq">List all three Don'ts given in the lesson.</div><div class="qan">Don't panic; don't touch the suspected item; don't focus on just that one device (a secondary item is possible).</div></div>
+<div class="qa"><div class="qq">List all four Do's given in the lesson.</div><div class="qan">Notify proper authorities; get all non-essential personnel out; stay away from the line of sight of the suspected item; seek cover.</div></div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch6">
+<div class="cn">CHAPTER 06</div><div class="ct">Glossary &amp; Abbreviations</div>
+<p class="ci"><span class="pill pill-added">Added — Study Aid</span> Abbreviations the material uses without spelling out, across both lessons.</p>
+<div class="tw"><table>
+<thead><tr><th>Abbreviation</th><th>Stands For</th><th>Confidence / Note</th></tr></thead>
+<tbody>
+<tr><td>AFP</td><td>Armed Forces of the Philippines</td><td>Used in the deck's own section heading ("BRIEF HISTORY OF THE AFP") before the full name appears in the body text.</td></tr>
+<tr><td>OP</td><td>Ordo Praedicatorum ("Order of Preachers" — the Dominican religious order)</td><td>Used after Fr. Domingo Collantes's name; never expanded in the source.</td></tr>
+<tr><td>UST</td><td>University of Santo Tomas</td><td>Spelled out in full on some slides, but used as a bare abbreviation without a "(UST)" tag on others (e.g., "the UST ROTC seal").</td></tr>
+<tr><td>MBT</td><td>Main Battle Tank</td><td>Used once ("US M1 Abrams MBT"); not expanded in the source.</td></tr>
+<tr><td>IS</td><td>Islamic State</td><td>Used repeatedly throughout the IED deck; never spelled out in the source.</td></tr>
+<tr><td>IRA</td><td>Irish Republican Army</td><td>Used once ("the IRA often used a mercury tilt switch"); not expanded in the source.</td></tr>
+<tr><td>UHF / VHF</td><td>Ultra High Frequency / Very High Frequency</td><td>Used once ("UHF/VHF radios"); not expanded in the source.</td></tr>
+<tr><td>EOD</td><td>Explosive Ordnance Disposal</td><td>Appears only in the citation "PAM 3-0602 EOD Handbook"; not expanded in the source.</td></tr>
+<tr><td>PIR</td><td>Passive Infrared</td><td>Used once ("motion sensor (PIR)"); not expanded beyond the parenthetical itself.</td></tr>
+<tr><td>TLO / ELO</td><td>Terminal Learning Objective / Enabling Learning Objective</td><td>Standard military-instruction terminology; not expanded in the source.</td></tr>
+</tbody></table></div>
+
+<div class="box amber"><div class="bico">📌</div><div class="bbd"><div class="btt">Instructor Profile abbreviations — not confidently expandable</div>
+<p class="btx">The IED deck's Instructor Profile slide (p. 2) is dense with unit/course abbreviations (e.g., CSC, JWMOC, POTC, IDTTC, EORA, HPA, 81st IB, 7ID, FSRR, SOCOM, NCRRCDG, RESCOM, DMCFI, UCC, ROTCU). A few are reasonably inferable from standard military usage — <strong>PA</strong> likely "Philippine Army," <strong>Inf</strong> likely "Infantry," <strong>IB</strong> likely "Infantry Battalion," <strong>ID</strong> likely "Infantry Division," <strong>BSIT</strong> "Bachelor of Science in Information Technology," <strong>CPA</strong> in context likely refers to a certification/graduation the instructor completed rather than "Certified Public Accountant." The rest are specific unit/course-code designations this guide cannot expand with real confidence from context alone, and — since this slide is instructor biographical information rather than lesson content anyway — they have not been guessed at here.</p></div></div>
+</section>
+
+<div class="footer"><p>QCU Academic OS · AY 2026-2027 · Compiled by <strong>KianoRoku18Ino</strong> · github.com/KianoRoku18Ino</p></div>
+</main>
+
+</body>
+</html>
