@@ -207,6 +207,20 @@
                   "html": "assets/guides/year-1/sem-1/cc101/pirates-of-the-silicon-valley.html"
                 }
               ]
+            },
+            {
+              "id": "y1-s1-ws101",
+              "code": "WS101",
+              "title": "Web Systems and Technologies 1",
+              "items": [
+                {
+                  "id": "midterm-reviewer-html-css-javascript",
+                  "kind": "special",
+                  "label": "Midterm Reviewer HTML,CSS, JAVASCRIPT",
+                  "order": 1000,
+                  "html": "assets/guides/year-1/sem-1/ws101/midterm-reviewer-html-css-javascript.html"
+                }
+              ]
             }
           ]
         },
