@@ -221,6 +221,20 @@
                   "html": "assets/guides/year-1/sem-1/ws101/midterm-reviewer-html-css-javascript.html"
                 }
               ]
+            },
+            {
+              "id": "y1-s1-rizaal",
+              "code": "RIZaAL",
+              "title": "The Life and Works of RIZAL",
+              "items": [
+                {
+                  "id": "midterm-reviewer-and-simple-mockup",
+                  "kind": "special",
+                  "label": "Midterm Reviewer and Simple Mockup",
+                  "order": 1000,
+                  "html": "assets/guides/year-1/sem-1/rizaal/midterm-reviewer-and-simple-mockup.html"
+                }
+              ]
             }
           ]
         },
