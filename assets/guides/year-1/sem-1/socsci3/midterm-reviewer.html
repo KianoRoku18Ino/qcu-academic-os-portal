@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOCSCI3 Midterm Reviewer - The Contemporary World</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* base reset */
+*{margin:0;padding:0;box-sizing:border-box}
+/* color tokens, Academic OS palette */
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--purple:#8B5CF6;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(59,130,246,.15);--sw:290px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+/* left nav sidebar */
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvs{padding:9px 17px 3px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t3)}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover,.nvi a.act{color:var(--t1);background:rgba(59,130,246,.08);border-left-color:var(--blue)}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:24px}
+.main{margin-left:var(--sw)}
+/* hero header */
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:52px 52px 42px;position:relative;overflow:hidden}
+.hero::before{content:'01001000';position:absolute;top:-10px;right:15px;font-family:'JetBrains Mono',monospace;font-size:115px;font-weight:900;color:rgba(59,130,246,.04);letter-spacing:-5px;user-select:none;line-height:1}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--blue)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:38px;font-weight:700;line-height:1.1;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#3B82F6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:16px;color:var(--t2);margin-bottom:19px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+/* content sections */
+.chapter{padding:44px 52px;border-bottom:1px solid var(--bdr);max-width:980px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:25px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:18.5px;font-weight:600;margin:28px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--blue);border-radius:2px;flex-shrink:0}
+h3{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;color:var(--blue);margin:20px 0 8px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+/* callout boxes */
+.box{border-radius:8px;padding:13px 17px;margin:14px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}.red .btt{color:var(--red)}
+.purple{background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2)}.purple .btt{color:var(--purple)}
+/* data tables */
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:12.6px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:9px 12px;text-align:left;border-bottom:2px solid var(--blue);font-size:11.5px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(59,130,246,.04)}
+tbody td{padding:8px 12px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:10.5px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}.tp{background:rgba(139,92,246,.15);color:var(--purple)}
+/* clue callout line, used throughout for scenario clues */
+.clue{background:var(--bgr);border-left:3px solid var(--amber);padding:9px 13px;margin:10px 0;font-size:12.8px;color:var(--t2);border-radius:0 6px 6px 0}
+.clue strong{color:var(--amber)}
+/* two-up comparison grid */
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.gc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:14px 16px;position:relative;overflow:hidden}
+.gc::before{content:attr(data-g);position:absolute;top:-10px;right:7px;font-family:'JetBrains Mono',monospace;font-size:48px;font-weight:900;color:rgba(59,130,246,.05);line-height:1}
+.gera{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--amber);margin-bottom:4px}
+.gtit{font-family:'Space Grotesk',sans-serif;font-size:13.5px;font-weight:700;color:var(--t1);margin-bottom:6px}
+.gsp{font-size:12px;color:var(--t2);margin:0;line-height:1.7}
+.gsp strong{color:var(--blue)}
+/* three-up profile cards */
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:14px 0}
+.pcrd{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:12px 14px}
+.pnm{font-weight:700;color:var(--t1);font-size:12.5px;margin-bottom:2px}
+.pdt{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--amber);margin-bottom:4px}
+.pttl{font-size:10.5px;color:var(--blue);font-weight:600;margin-bottom:4px}
+.pdsc{font-size:11.5px;color:var(--t2);line-height:1.6}
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:4px;font-size:12.8px;line-height:1.75}
+li strong{color:var(--t1)}
+/* numbered step list, used for exam strategy tips */
+.steps{margin:14px 0}
+.step{display:flex;gap:12px;margin-bottom:11px;align-items:flex-start}
+.snum{background:var(--blue);color:#fff;width:23px;height:23px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace}
+.sc{flex:1}
+.sl{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:2px}
+.sd{color:var(--t2);font-size:12.8px;line-height:1.7}
+/* link card pointing to the quiz file */
+.linkcard{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,rgba(59,130,246,.12),rgba(139,92,246,.1));border:1px solid var(--bdr);border-radius:10px;padding:16px 19px;margin:16px 0;text-decoration:none}
+.linkcard .licon{font-size:26px}
+.linkcard .lttl{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--t1);font-size:14.5px}
+.linkcard .lsub{font-size:12.5px;color:var(--t2);margin-top:2px}
+.footer{padding:34px 52px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--blue)}
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.gg,.pg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- left navigation -->
+<nav class="sidebar">
+<div class="sbh"><div class="sbb">SOCSCI3 . QCU BSIT</div><div class="sbt">The Contemporary World</div><div class="sbs">Midterm Reviewer . Scenario-Based</div></div>
+<ul class="nvl">
+<li class="nvs">Start Here</li>
+<li class="nvi"><a href="#how"><span class="nn">00</span>How to Use This Reviewer</a></li>
+<li class="nvs">Modules</li>
+<li class="nvi"><a href="#m1"><span class="nn">01</span>Nation, State & Six Metaphors</a></li>
+<li class="nvi"><a href="#m2"><span class="nn">02</span>Structure, History & 4IR</a></li>
+<li class="nvi"><a href="#m3"><span class="nn">03</span>Facilitators & Theories</a></li>
+<li class="nvi"><a href="#m4"><span class="nn">04</span>Interstate System & Governance</a></li>
+<li class="nvs">Final Pass</li>
+<li class="nvi"><a href="#recall"><span class="nn">05</span>Quick Recall Table</a></li>
+<li class="nvi"><a href="#strategy"><span class="nn">06</span>Exam Strategy Tips</a></li>
+<li class="nvi"><a href="#quizlink"><span class="nn">Q</span>Practice Quiz (Interactive)</a></li>
+</ul></nav>
+
+<main class="main">
+<!-- hero banner -->
+<div class="hero">
+<div class="he">QCU Academic OS . Midterm Reviewer</div>
+<div class="ht">Midterm Exam Reviewer</div>
+<div class="hs">50 items, multiple choice, scenario-based. Organized by concept cluster so you can recognize clues fast.</div>
+<div class="hm">
+<div class="mp">Course: <span>SOCSCI3 - The Contemporary World</span></div>
+<div class="mp">Format: <span>Scenario-Based MCQ</span></div>
+<div class="mp">Coverage: <span>Modules 1-4</span></div>
+</div></div>
+
+<section class="chapter" id="how">
+<div class="cn">START HERE</div><div class="ct">How to Use This Reviewer</div>
+<p class="ci">The exam is scenario-based multiple choice, meaning you will not just be asked "What is sovereignty?" You will be given a short situation and asked to identify the concept, theory, or element being described. This reviewer is organized by concept cluster so you can match the clue words in a scenario to the right answer fast.</p>
+<a class="linkcard" href="socsci3_midterm_quiz.html">
+<div class="licon">🎯</div>
+<div><div class="lttl">Jump to the Interactive Practice Quiz</div><div class="lsub">30 scenario questions with instant feedback and a running score, in the paired quiz file</div></div>
+</a>
+</section>
+
+<section class="chapter" id="m1">
+<div class="cn">MODULE 1</div><div class="ct">Nation, State & the Six Metaphors of Globalization</div>
+
+<h2>Core Distinctions (Always Tested)</h2>
+<div class="tw"><table>
+<thead><tr><th>Concept</th><th>Definition</th><th>Key Clue</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td>State</td><td>Political entity with territory, government, sovereignty</td><td>"defined territory," "sovereignty," "legal existence"</td><td>Russia, Philippines</td></tr>
+<tr><td>Nation</td><td>People bound by common history, culture, emotional/psychological bonds</td><td>"shared identity," "cultural heritage," "no homeland"</td><td>Kurds, Palestinians</td></tr>
+<tr><td>Sovereignty</td><td>Supreme authority to make/enforce laws and collect taxes</td><td>"non-interference," "internal affairs"</td><td>PH making its own laws</td></tr>
+<tr><td>Territory</td><td>Fixed land, water, air space</td><td>"geographical limits," "administrative regions"</td><td>Russia, Canada, China, USA</td></tr>
+<tr><td>Population</td><td>People living in a territory</td><td>"size doesn't matter"</td><td>Vatican, Nauru (tiny); China, India (huge)</td></tr>
+<tr><td>Government</td><td>Institution enforcing rules</td><td>"authoritarian," "single party"</td><td>Singapore</td></tr>
+</tbody></table></div>
+<div class="box red"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Trap</div><p class="btx">A nation does NOT need territory or sovereignty. A state DOES.</p></div></div>
+
+<h2>Montevideo Convention (1933)</h2>
+<p>Signed: <strong>December 26, 1933</strong>. In force: <strong>December 26, 1934</strong>.</p>
+<p>Four essential elements of a state: <strong>1.</strong> Permanent Population <strong>2.</strong> Defined Territory <strong>3.</strong> Government <strong>4.</strong> Capacity to Enter Relations with Other States (Sovereignty).</p>
+<div class="clue"><strong>Scenario clue:</strong> "A group of people in a defined area with their own government and the ability to trade with other countries" is describing a STATE under Montevideo.</div>
+
+<h2>World State Count (Verified)</h2>
+<ul>
+<li>195 states total</li>
+<li>193 UN member states</li>
+<li>2 non-members: Holy See (Vatican) and Palestine</li>
+</ul>
+
+<h2>North-South Divide & East-West Collision</h2>
+<div class="tw"><table>
+<thead><tr><th>Term</th><th>Meaning</th><th>Clue</th></tr></thead>
+<tbody>
+<tr><td>North-South Divide</td><td>North = industrialized/developed; South = developing/Third World</td><td>"advanced economies" vs "developing"</td></tr>
+<tr><td>NIC</td><td>Newly Industrialized Countries: Japan, Taiwan, South Korea, Singapore</td><td>"economic miracle"</td></tr>
+<tr><td>BRICS</td><td>Brazil, Russia, India, China, South Africa</td><td>"emerging market economies"</td></tr>
+<tr><td>East-West Collision</td><td>West = democracy/liberalism; East = autocracy</td><td>"modernization is not westernization"</td></tr>
+</tbody></table></div>
+<div class="clue"><strong>Scenario clue:</strong> "A country in the Southern Hemisphere experiencing rapid economic growth and challenging the status quo" points to BRICS or NIC.</div>
+
+<h2>Definitions of Globalization (Know Who Said What)</h2>
+<div class="tw"><table>
+<thead><tr><th>Scholar</th><th>Definition</th><th>Key Phrase</th></tr></thead>
+<tbody>
+<tr><td>Thomas Friedman</td><td>Interweaving of markets, technology, information, telecom, shrinking the world from medium to small</td><td>"The World is Flat"</td></tr>
+<tr><td>Manfred Steger</td><td>Expansion and intensification of social relations across world time and space</td><td>"multi-dimensional"</td></tr>
+<tr><td>Anthony Giddens</td><td>Intensification of worldwide social relations linking distant localities</td><td>"4 dimensions" (capitalist economy, nation-state, military order, industrial development)</td></tr>
+<tr><td>IMF</td><td>Increasing integration of economies through movement of goods, services, capital</td><td>"cross-border movement"</td></tr>
+</tbody></table></div>
+<div class="clue"><strong>Scenario clue:</strong> "A scholar who defines globalization as the intensification of worldwide social relations linking distant localities" is Anthony Giddens.</div>
+
+<h2>Typologies of Globalization (6 Types)</h2>
+<div class="tw"><table>
+<thead><tr><th>Typology</th><th>Definition</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td>Economic</td><td>Growing interdependence of economies via trade, investment, tech</td><td>Trade agreements</td></tr>
+<tr><td>Political</td><td>Enlargement of global governance systems</td><td>Evolution of the UN</td></tr>
+<tr><td>Cultural</td><td>Dominant culture penetrates local culture, fusion follows</td><td>Global sports, food culture</td></tr>
+<tr><td>Financial</td><td>Interconnection of investment, monetary exchange, equity markets</td><td>1997 Asian Financial Crisis</td></tr>
+<tr><td>Technological</td><td>Innovation and popularization of tech devices/social media</td><td>Facebook, Twitter, Instagram</td></tr>
+<tr><td>Ecological</td><td>Concerted efforts to address global environmental crises</td><td>Paris Climate Agreement, 2015</td></tr>
+</tbody></table></div>
+<div class="clue"><strong>Scenario clue:</strong> "A local stock market collapse causes a global financial meltdown" points to Financial Globalization.</div>
+
+<h2>The Six Metaphors of Globalization <span class="tag tr2">HIGH PRIORITY</span></h2>
+<div class="tw"><table>
+<thead><tr><th>Metaphor</th><th>Definition</th><th>Key Clue</th></tr></thead>
+<tbody>
+<tr><td>Flow</td><td>Lifting barriers, easing rules on commerce, human movement, communication</td><td>"global trade grew," "cheaper communication"</td></tr>
+<tr><td>Friction</td><td>Conflict, disparity, crisis from the open market</td><td>"job losses," "US-China trade war," "1% vs 99%"</td></tr>
+<tr><td>Acceleration</td><td>Exponential growth of tech capacity</td><td>"AI," "global warming," "data security"</td></tr>
+<tr><td>Disruption</td><td>Startup innovations outperform branded products</td><td>"Uber, Netflix, Airbnb"</td></tr>
+<tr><td>Dislocation</td><td>Those who cannot keep pace get displaced</td><td>"automation replaces jobs," "small firms eaten by big business"</td></tr>
+<tr><td>Connectivity</td><td>Infrastructure boosting global competitiveness</td><td>"airports, bridges," "education, internet"</td></tr>
+</tbody></table></div>
+
+<div class="pg">
+<div class="pcrd"><div class="pnm">Flow</div><div class="pdt">ARGUMENTS</div><div class="pdsc">Global trade grew several-fold. Many lifted from poverty (China, India). Regional trade agreements: EU, ASEAN, NAFTA (now USMCA), APEC. Internet democratized communication.</div></div>
+<div class="pcrd"><div class="pnm">Friction</div><div class="pdt">ARGUMENTS</div><div class="pdsc">Job markets weakened in advanced economies. US-China trade war. Al-Qaeda and ISIS exploit the borderless world. 1% vs 99% income gap. Racial slurs in America. Cyberwar as the 5th domain.</div></div>
+<div class="pcrd"><div class="pnm">Acceleration</div><div class="pdt">ARGUMENTS</div><div class="pdsc">AI evolution. New jobs require new skills. Can machines outperform humans? Less petroleum dependence. Data security risk. Global warming needs US-China cooperation.</div></div>
+<div class="pcrd"><div class="pnm">Disruption</div><div class="pdt">EXAMPLES</div><div class="pdsc">Uber, Netflix, Airbnb, driverless cars. China is the biggest disruption: communism paired with market capitalism.</div></div>
+<div class="pcrd"><div class="pnm">Dislocation</div><div class="pdt">ARGUMENTS</div><div class="pdsc">1st-3rd Industrial Revolution jobs replaced by automation. Small firms eaten by big businesses. Local markets hurt by cheap foreign goods.</div></div>
+<div class="pcrd"><div class="pnm">Connectivity</div><div class="pdt">ARGUMENTS</div><div class="pdsc">Singapore Changi Airport, best in the world. China's One Belt, One Road. Best education systems match the most innovative economies.</div></div>
+</div>
+<div class="clue"><strong>Scenario clue:</strong> "A local taxi company loses customers to a ride-hailing app" is Disruption.</div>
+<div class="clue"><strong>Scenario clue:</strong> "Factory workers lose jobs to robots" is Dislocation.</div>
+<div class="clue"><strong>Scenario clue:</strong> "A new airport boosts a country's trade competitiveness" is Connectivity.</div>
+
+<h2>Al Gore's Six Drivers of Global Change</h2>
+<p>From <em>The Future: Six Drivers of Global Change</em>, published January 29, 2013. Gore won the Nobel Peace Prize in 2007.</p>
+<ol>
+<li>Deeply interconnected global economy</li>
+<li>Planet-wide electronic communication</li>
+<li>New balance of political, economic, military power</li>
+<li>Rapid unsustainable growth</li>
+<li>Revolutionary biological/biochemical/genetic/materials science technologies</li>
+<li>Radically new ecological relationship between humans and Earth</li>
+</ol>
+</section>
+
+<section class="chapter" id="m2">
+<div class="cn">MODULE 2</div><div class="ct">Structure of Globalization, Global Economic History & the 4IR</div>
+
+<h2>Six Dimensions of Globalization</h2>
+<div class="tw"><table>
+<thead><tr><th>Dimension</th><th>Covers</th></tr></thead>
+<tbody>
+<tr><td>Economic</td><td>Trade, investment, production, MNCs</td></tr>
+<tr><td>Political</td><td>International organizations, treaties, diplomacy</td></tr>
+<tr><td>Technological</td><td>Internet, telecom, digital platforms, AI</td></tr>
+<tr><td>Cultural</td><td>Music, films, food, fashion, languages</td></tr>
+<tr><td>Social</td><td>Migration, education, tourism, social networks</td></tr>
+<tr><td>Environmental</td><td>Climate change, pollution, biodiversity</td></tr>
+</tbody></table></div>
+
+<h2>8 Major Components of Globalization's Structure</h2>
+<ol>
+<li><strong>Global Markets</strong>, selling internationally, foreign suppliers, global advertising</li>
+<li><strong>International Trade</strong>, countries trade due to different resources, labor, tech, climate</li>
+<li><strong>Global Supply Chains</strong>, Design (US) to Components (SK/Japan/Taiwan/China) to Assembly (China/Vietnam) to Shipping to Marketing to Consumer</li>
+<li><strong>Multinational Corporations (MNCs)</strong>, operate in multiple countries</li>
+<li><strong>Global Financial System</strong>, FDI, banking, stock markets, remittances, forex</li>
+<li><strong>International Institutions</strong>, WTO, IMF, World Bank, UN</li>
+<li><strong>Technology & Communication</strong>, Letters to Telephone to Radio to TV to Internet to Smartphone to AI</li>
+<li><strong>Global Migration</strong>, OFWs; benefits (remittances, skills transfer) vs challenges (family separation, brain drain)</li>
+</ol>
+
+<h2>International Institutions (Know the Difference)</h2>
+<div class="tw"><table>
+<thead><tr><th>Institution</th><th>Established</th><th>Focus</th></tr></thead>
+<tbody>
+<tr><td>WTO</td><td>January 1, 1995 (succeeding GATT)</td><td>Trade rules; covers goods, services (GATS), IP (TRIPS)</td></tr>
+<tr><td>IMF</td><td>December 27, 1945</td><td>International monetary cooperation, financial stability</td></tr>
+<tr><td>World Bank</td><td>December 27, 1945</td><td>Financing and development support</td></tr>
+<tr><td>UN</td><td>October 24, 1945</td><td>Peace, development, human rights</td></tr>
+</tbody></table></div>
+<div class="clue"><strong>Scenario clue:</strong> "A country experiencing balance-of-payments problems seeks financial assistance" points to the IMF.</div>
+<div class="clue"><strong>Scenario clue:</strong> "A developing country needs funding for infrastructure projects" points to the World Bank.</div>
+<div class="clue"><strong>Scenario clue:</strong> "Two countries have a trade dispute over tariffs" points to the WTO.</div>
+
+<h2>History of the Modern Global Economy</h2>
+<div class="tw"><table>
+<thead><tr><th>Stage</th><th>Date</th><th>Event</th></tr></thead>
+<tbody>
+<tr><td>1. Early Global Trade</td><td>Ancient</td><td>Silk Road connects Asia, Middle East, Europe</td></tr>
+<tr><td>2. Age of Exploration</td><td>~15th century</td><td>European maritime exploration, colonialism</td></tr>
+<tr><td>3. First Industrial Revolution</td><td>Late 18th c., Britain</td><td>Steam, mechanization, factories, railways</td></tr>
+<tr><td>4. Second Industrial Revolution</td><td>Late 19th-early 20th c.</td><td>Electricity, telecom, steel, automobiles</td></tr>
+<tr><td>5. World Wars & Great Depression</td><td>Interwar</td><td>Protectionism contracted world trade</td></tr>
+<tr><td>6. Bretton Woods</td><td>July 1-22, 1944</td><td>Created the IMF and World Bank</td></tr>
+<tr><td>7. GATT</td><td>Signed Oct 30, 1947; in force Jan 1, 1948</td><td>23 countries, tariff reductions</td></tr>
+<tr><td>8. Expansion of Trade</td><td>Postwar</td><td>Container shipping (first voyage April 26, 1956)</td></tr>
+<tr><td>9. Third Industrial Revolution</td><td>Mid-20th c.</td><td>Computers, semiconductors, internet</td></tr>
+<tr><td>10. WTO Creation</td><td>Marrakesh Agreement signed April 15, 1994; WTO began Jan 1, 1995</td><td>Expanded to goods, services, IP, dispute settlement</td></tr>
+<tr><td>11. 21st Century</td><td>2000s-present</td><td>Digital, networked, knowledge-based, data-driven</td></tr>
+</tbody></table></div>
+<div class="clue"><strong>Scenario clue:</strong> "In 1944, representatives met in New Hampshire to establish a framework for international economic cooperation" is Bretton Woods.</div>
+<div class="clue"><strong>Scenario clue:</strong> "This agreement governed world trade from 1948 to 1994" is GATT.</div>
+<div class="clue"><strong>Scenario clue:</strong> "This organization began operating on January 1, 1995" is the WTO.</div>
+
+<h2>The Fourth Industrial Revolution (4IR)</h2>
+<p>Definition: integration of digital, physical, and biological technologies.</p>
+<div class="tw"><table>
+<thead><tr><th>Revolution</th><th>Period</th><th>Technology</th><th>Effect</th></tr></thead>
+<tbody>
+<tr><td>1st</td><td>Late 18th-19th c.</td><td>Steam, mechanization</td><td>Factory production</td></tr>
+<tr><td>2nd</td><td>Late 19th-early 20th c.</td><td>Electricity, assembly line</td><td>Mass production</td></tr>
+<tr><td>3rd</td><td>20th c.</td><td>Computers, electronics, internet</td><td>Automation, digitalization</td></tr>
+<tr><td>4th</td><td>21st c.</td><td>AI, robotics, IoT, biotech</td><td>Intelligent, interconnected systems</td></tr>
+</tbody></table></div>
+<h3>7 Major 4IR Technologies</h3>
+<ol>
+<li><strong>Artificial Intelligence (AI)</strong>, ChatGPT, image recognition, predictive analytics</li>
+<li><strong>Internet of Things (IoT)</strong>, smart watches, connected vehicles, industrial sensors</li>
+<li><strong>Robotics & Automation</strong>, industrial, warehouse, surgical, agricultural robots</li>
+<li><strong>Big Data & Analytics</strong>, "customers who buy A also buy B"</li>
+<li><strong>Cloud Computing</strong>, storage, apps, computing power via the internet</li>
+<li><strong>Blockchain</strong>, distributed digital ledger, supply-chain tracking, smart contracts</li>
+<li><strong>Biotechnology</strong>, genetic engineering, genome editing, personalized medicine</li>
+</ol>
+<div class="clue"><strong>Scenario clue:</strong> "A factory machine automatically reports that maintenance is required" is IoT.</div>
+<div class="clue"><strong>Scenario clue:</strong> "A restaurant uses a system to forecast demand and personalize marketing" is AI.</div>
+<div class="clue"><strong>Scenario clue:</strong> "A company uses a distributed ledger to track supply chain transactions" is Blockchain.</div>
+
+<h2>4IR x Globalization</h2>
+<div class="box blue"><div class="bico">➡️</div><div class="bbd"><div class="btt">Chain Reaction</div><p class="btx">Technology, then Faster Communication, then Lower Transaction Costs, then Global Business Networks, then Greater International Economic Integration.</p></div></div>
+<p><strong>How the 4IR changes globalization:</strong> more digital (adds Data, Algorithms, Digital Services, Knowledge); remote work (a Filipino working for a foreign company); global e-commerce (MSMEs reach international customers); smart manufacturing (Sensors to Data to AI to Automated machines to Real-time decisions); changing employment (some jobs automated, new jobs in AI, cybersecurity, data analytics).</p>
+<div class="gg">
+<div class="gc" data-g="+"><div class="gera">BENEFITS</div><div class="gtit">What the 4IR Gets Right</div><p class="gsp">Higher productivity, improved innovation, better decision-making, improved customer experience, greater connectivity, new business opportunities, potential improvement in quality of life.</p></div>
+<div class="gc" data-g="−"><div class="gera">CHALLENGES</div><div class="gtit">Where It Gets Risky</div><p class="gsp">Job displacement, digital divide, cybersecurity, data privacy, ethical problems in AI (bias, discrimination, misinformation), inequality.</p></div>
+</div>
+
+<h2>Globalization 4.0</h2>
+<div class="tw"><table>
+<thead><tr><th>Era</th><th>Defined By</th></tr></thead>
+<tbody>
+<tr><td>Globalization 1.0</td><td>Countries and physical exploration</td></tr>
+<tr><td>Globalization 2.0</td><td>Industrialization and mass production</td></tr>
+<tr><td>Globalization 3.0</td><td>Digitalization and global networks</td></tr>
+<tr><td>Globalization 4.0</td><td>AI, automation, data, biotech, interconnected intelligent systems</td></tr>
+</tbody></table></div>
+
+<h2>Philippine Examples of Globalization & 4IR</h2>
+<div class="tw"><table>
+<thead><tr><th>Example</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td>BPO</td><td>Customer service, accounting, tech support for international clients</td></tr>
+<tr><td>Online Selling</td><td>Local entrepreneur to digital platform to global customers</td></tr>
+<tr><td>Digital Banking</td><td>Transfer money, pay bills, receive payments remotely</td></tr>
+<tr><td>Online Education</td><td>International lectures, courses, digital libraries, AI tools</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="chapter" id="m3">
+<div class="cn">MODULE 3</div><div class="ct">Facilitators & Theories of Globalization</div>
+
+<h2>13 Major Facilitators of Globalization</h2>
+<div class="tw"><table>
+<thead><tr><th>Facilitator</th><th>What It Does</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td>1. Technological Advancement</td><td>Reduces time/cost of cross-border communication</td><td>Filipino working remotely for an Australian company</td></tr>
+<tr><td>2. Internet & Digital Communication</td><td>Information travels instantaneously</td><td>Online lecture, e-commerce</td></tr>
+<tr><td>3. Transportation</td><td>Moves people/products physically</td><td>Container ships, cargo aircraft</td></tr>
+<tr><td>4. International Trade</td><td>Countries exchange goods/services</td><td>PH exports electronics, imports petroleum</td></tr>
+<tr><td>5. Multinational Corporations</td><td>Establish branches, invest abroad</td><td>Toyota, Samsung, McDonald's</td></tr>
+<tr><td>6. International Financial Institutions</td><td>Support economic cooperation</td><td>IMF, World Bank, WTO</td></tr>
+<tr><td>7. Liberalization of Trade & Investment</td><td>Reduces tariffs, restrictions</td><td>Lower machinery tariffs</td></tr>
+<tr><td>8. Global Economic Policies & Trade Agreements</td><td>Governments cooperate</td><td>ASEAN, free trade agreements</td></tr>
+<tr><td>9. Migration & International Labor Mobility</td><td>Workers move for opportunities</td><td>OFWs</td></tr>
+<tr><td>10. Tourism</td><td>Connects people across societies</td><td>Korean tourist in PH</td></tr>
+<tr><td>11. Media & Popular Culture</td><td>Spreads cultural products</td><td>Netflix, K-pop</td></tr>
+<tr><td>12. Education & Knowledge Exchange</td><td>International cooperation</td><td>Student exchange, online education</td></tr>
+<tr><td>13. Social Media</td><td>Ordinary individuals participate in global communication</td><td>Facebook, TikTok</td></tr>
+</tbody></table></div>
+<div class="box green"><div class="bico">🎤</div><div class="bbd"><div class="btt">Fallback Summary: the "5Ts of Globalization"</div><p class="btx">Technology connects people. Trade connects economies. Transportation moves people and products. Transnational corporations connect businesses and markets. Telecommunication moves information across borders.</p></div></div>
+
+<h2>11 Theories of Globalization <span class="tag tr2">HIGH PRIORITY</span></h2>
+<div class="tw"><table>
+<thead><tr><th>Theory</th><th>Central Idea</th><th>Key Focus</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td>Modernization</td><td>Societies develop toward modernity</td><td>Development</td><td>Industrialization, technology</td></tr>
+<tr><td>Dependency</td><td>Poorer countries depend on richer ones</td><td>Inequality</td><td>Raw materials vs manufactured goods</td></tr>
+<tr><td>World-Systems</td><td>Global economy = core, semi-periphery, periphery</td><td>Global structure</td><td>International division of labor</td></tr>
+<tr><td>Globalization</td><td>Local activities connect to global processes</td><td>Interconnectedness</td><td>Filipino seller reaching the global market</td></tr>
+<tr><td>Hyperglobalist</td><td>Borders becoming irrelevant</td><td>Global markets</td><td>Global corporations</td></tr>
+<tr><td>Skeptical</td><td>Globalization exaggerated, states remain powerful</td><td>State power</td><td>Governments still regulate</td></tr>
+<tr><td>Transformationalist</td><td>Globalization transforms, not eliminates, states</td><td>Changing institutions</td><td>Governments adapting</td></tr>
+<tr><td>Cultural Globalization</td><td>Cultures increasingly interact</td><td>Culture</td><td>K-pop, international food</td></tr>
+<tr><td>Homogenization</td><td>Cultures may become more similar</td><td>Cultural similarity</td><td>Global brands</td></tr>
+<tr><td>Glocalization</td><td>Global products adapted locally</td><td>Global-local interaction</td><td>Localized fast-food menus</td></tr>
+<tr><td>Hybridization</td><td>Cultures combine to form new expressions</td><td>Cultural mixing</td><td>Filipino-global music</td></tr>
+</tbody></table></div>
+<p><strong>Key theorists:</strong> Immanuel Wallerstein, World-Systems Theory (Core ↔ Semi-Periphery ↔ Periphery). Manuel Castells, Network Society Theory (digital networks organize society).</p>
+
+<h3>Core vs Periphery (Dependency / World-Systems)</h3>
+<div class="gg">
+<div class="gc" data-g="C"><div class="gera">CORE</div><div class="gtit">Advanced Economies</div><p class="gsp">Advanced industries, strong financial systems, high capital, technological advantages.</p></div>
+<div class="gc" data-g="P"><div class="gera">PERIPHERY</div><div class="gtit">Developing Economies</div><p class="gsp">Raw material exports, low-cost labor, external investment, less economically diverse.</p></div>
+</div>
+<div class="clue"><strong>Scenario clue:</strong> "A developing country exports raw materials at low prices while importing high-value manufactured products" is Dependency Theory.</div>
+<div class="clue"><strong>Scenario clue:</strong> "A country that is industrializing and moving toward core nation status" is Semi-Periphery.</div>
+<div class="clue"><strong>Scenario clue:</strong> "A government adapts its policies to global market pressures but remains sovereign" is Transformationalist.</div>
+
+<h2>Positive & Negative Effects of Globalization</h2>
+<div class="gg">
+<div class="gc" data-g="+"><div class="gera">POSITIVE</div><div class="gtit">The Upside</div><p class="gsp">Increased international trade, foreign investment, employment opportunities, access to global markets, faster communication, technology transfer, international knowledge exchange, cultural awareness.</p></div>
+<div class="gc" data-g="−"><div class="gera">NEGATIVE</div><div class="gtit">The Downside</div><p class="gsp">Economic inequality, cultural erosion, labor exploitation, environmental problems, economic vulnerability.</p></div>
+</div>
+</section>
+
+<section class="chapter" id="m4">
+<div class="cn">MODULE 4</div><div class="ct">Global Interstate System & Global Governance</div>
+
+<h2>Global Interstate System</h2>
+<p>Definition: the system of relationships among independent and sovereign states. Structure: <strong>STATE A ↔ STATE B ↔ STATE C ↔ STATE D.</strong></p>
+<div class="gg">
+<div class="gc" data-g="D"><div class="gera">DOMESTIC</div><div class="gtit">Government to Laws to Citizens</div><p class="gsp">The government has enforcement authority.</p></div>
+<div class="gc" data-g="I"><div class="gera">INTERNATIONAL</div><div class="gtit">No Single World Government</div><p class="gsp">No comprehensive authority above all states.</p></div>
+</div>
+
+<h2>The State as Basic Actor (Same 4 Elements as Module 1)</h2>
+<ol>
+<li><strong>Population</strong>, people permanently living in the territory</li>
+<li><strong>Territory</strong>, defined geographical area</li>
+<li><strong>Government</strong>, political institutions exercising authority</li>
+<li><strong>Sovereignty</strong>, supreme authority within territory plus external relations</li>
+</ol>
+
+<h2>Key Concepts of the Interstate System</h2>
+<div class="tw"><table>
+<thead><tr><th>Concept</th><th>Definition</th><th>Clue</th></tr></thead>
+<tbody>
+<tr><td>Sovereignty</td><td>Authority over internal affairs, legal independence</td><td>"non-interference"</td></tr>
+<tr><td>Anarchy</td><td>NO single supreme world authority (NOT chaos)</td><td>"no world government"</td></tr>
+<tr><td>National Interest</td><td>Security, economic development, territorial integrity</td><td>"states pursue their interests"</td></tr>
+<tr><td>Balance of Power</td><td>Prevent one state from becoming overwhelmingly dominant</td><td>"alliances," "counterbalance"</td></tr>
+<tr><td>Diplomacy</td><td>Negotiation, dialogue, mediation, treaty-making</td><td>"peaceful resolution"</td></tr>
+</tbody></table></div>
+<div class="box red"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Trap</div><p class="btx">"Anarchy" in international relations does NOT mean chaos. It means there is no single supreme world authority above sovereign states.</p></div></div>
+<div class="clue"><strong>Scenario clue:</strong> "Country A is very powerful; Countries B and C form an alliance to counterbalance A" is Balance of Power.</div>
+<div class="clue"><strong>Scenario clue:</strong> "Two countries disagree over fishing rights and hold bilateral meetings instead of using force" is Diplomacy.</div>
+
+<h2>International Organizations</h2>
+<div class="tw"><table>
+<thead><tr><th>Organization</th><th>Role</th></tr></thead>
+<tbody>
+<tr><td>UN</td><td>Forum for peace, security, human rights, development</td></tr>
+<tr><td>WTO</td><td>Trade rules, dispute settlement</td></tr>
+<tr><td>IMF</td><td>Monetary cooperation, financial stability</td></tr>
+<tr><td>World Bank</td><td>Development financing</td></tr>
+<tr><td>WHO</td><td>Global health</td></tr>
+<tr><td>ILO</td><td>Labor standards</td></tr>
+<tr><td>ASEAN</td><td>Regional cooperation in Southeast Asia</td></tr>
+<tr><td>EU</td><td>European regional integration</td></tr>
+</tbody></table></div>
+
+<h2>Global Governance</h2>
+<p>Definition: processes through which different actors cooperate to address problems that transcend national borders. Key point: <strong>Global Governance is NOT World Government.</strong></p>
+<div class="gg">
+<div class="gc" data-g="G"><div class="gera">GLOBAL GOVERNANCE</div><div class="gtit">What It Is</div><p class="gsp">No single global government. Multiple actors. Cooperation and coordination.</p></div>
+<div class="gc" data-g="W"><div class="gera">WORLD GOVERNMENT</div><div class="gtit">What It Is NOT</div><p class="gsp">One centralized world government. One supreme political authority. Centralized rule.</p></div>
+</div>
+<h3>Who Participates</h3>
+<ol>
+<li><strong>States</strong>, remain important, hold sovereignty</li>
+<li><strong>International Organizations</strong>, UN, WHO, IMF, World Bank, WTO</li>
+<li><strong>Regional Organizations</strong>, ASEAN, EU, African Union, OAS</li>
+<li><strong>NGOs</strong>, human rights, environment, poverty, humanitarian aid</li>
+<li><strong>Multinational Corporations</strong>, influence employment, investment, trade</li>
+<li><strong>Civil Society</strong>, advocacy organizations, professional associations</li>
+</ol>
+
+<h2>6 Major Areas of Global Governance</h2>
+<div class="tw"><table>
+<thead><tr><th>Area</th><th>Key Institutions</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td>Global Peace & Security</td><td>UN Security Council</td><td>Peacekeeping, terrorism</td></tr>
+<tr><td>Global Health</td><td>WHO</td><td>COVID-19 pandemic</td></tr>
+<tr><td>Global Economy</td><td>IMF, World Bank, WTO</td><td>Financial stability</td></tr>
+<tr><td>Global Trade</td><td>WTO</td><td>Dispute settlement</td></tr>
+<tr><td>Environmental Governance</td><td>International agreements</td><td>Climate change</td></tr>
+<tr><td>Human Rights</td><td>Global institutions</td><td>Civil, political, women's, children's rights</td></tr>
+</tbody></table></div>
+
+<h2>Why Global Governance Is Not Easy</h2>
+<div class="tw"><table>
+<thead><tr><th>Challenge</th><th>Problem</th></tr></thead>
+<tbody>
+<tr><td>Sovereignty</td><td>States resist rules conflicting with national interests</td></tr>
+<tr><td>Unequal Power</td><td>Not all countries have equal economic/military/political power</td></tr>
+<tr><td>Enforcement</td><td>International institutions have less enforcement power</td></tr>
+<tr><td>Conflicting National Interests</td><td>Countries agree on the problem but disagree on the solution</td></tr>
+</tbody></table></div>
+
+<h2>How the Interstate System & Global Governance Work Together</h2>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">States have different interests</div><div class="sd">This is the Global Interstate System.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">States negotiate</div><div class="sd">This is International Diplomacy.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">They create international agreements</div><div class="sd">This becomes part of Global Governance.</div></div></div>
+<div class="step"><div class="snum">4</div><div class="sc"><div class="sl">International organizations coordinate implementation</div><div class="sd">This strengthens Global Governance.</div></div></div>
+<div class="step"><div class="snum">5</div><div class="sc"><div class="sl">Businesses, NGOs, scientists, communities participate</div><div class="sd">Global Governance becomes broader than state-to-state relations.</div></div></div>
+</div>
+
+<h2>Philippine Examples</h2>
+<div class="gg">
+<div class="gc" data-g="I"><div class="gera">SOVEREIGN-STATE ROLE</div><div class="gtit">Global Interstate System</div><p class="gsp">PH pursues national interests through foreign policy, diplomacy, bilateral agreements.</p></div>
+<div class="gc" data-g="G"><div class="gera">INSTITUTIONAL ROLE</div><div class="gtit">Global Governance</div><p class="gsp">PH participates in the UN, ASEAN, WTO, IMF, World Bank, WHO.</p></div>
+</div>
+</section>
+
+<section class="chapter" id="recall">
+<div class="cn">FINAL PASS</div><div class="ct">Quick Recall Table</div>
+<div class="tw"><table>
+<thead><tr><th>Topic</th><th>Key Facts</th></tr></thead>
+<tbody>
+<tr><td>Montevideo Convention</td><td>1933; 4 elements: population, territory, government, sovereignty</td></tr>
+<tr><td>World states</td><td>195 total; 193 UN members; 2 non-members (Vatican, Palestine)</td></tr>
+<tr><td>Nation vs State</td><td>Nation = cultural; State = political + territory + sovereignty</td></tr>
+<tr><td>Giddens</td><td>4 dimensions of globalization</td></tr>
+<tr><td>Friedman</td><td>"The World is Flat"</td></tr>
+<tr><td>Steger</td><td>Expansion/intensification of social relations</td></tr>
+<tr><td>IMF definition</td><td>Integration of economies through movement of goods, services, capital</td></tr>
+<tr><td>6 Typologies</td><td>Economic, political, cultural, financial, technological, ecological</td></tr>
+<tr><td>6 Metaphors</td><td>Flow, friction, acceleration, disruption, dislocation, connectivity</td></tr>
+<tr><td>Al Gore</td><td>6 drivers; Nobel 2007; book 2013</td></tr>
+<tr><td>Bretton Woods</td><td>July 1-22, 1944; created IMF + World Bank</td></tr>
+<tr><td>GATT</td><td>Signed Oct 30, 1947; in force Jan 1, 1948</td></tr>
+<tr><td>WTO</td><td>Began Jan 1, 1995; Marrakesh Agreement April 15, 1994</td></tr>
+<tr><td>4IR</td><td>AI + Robotics + IoT + Big Data + Biotech + Advanced Computing + Automation</td></tr>
+<tr><td>7 4IR Tech</td><td>AI, IoT, robotics, big data, cloud, blockchain, biotech</td></tr>
+<tr><td>Wallerstein</td><td>World-Systems Theory (core, semi-periphery, periphery)</td></tr>
+<tr><td>Castells</td><td>Network Society Theory</td></tr>
+<tr><td>11 Theories</td><td>Modernization, dependency, world-systems, globalization, hyperglobalist, skeptical, transformationalist, cultural, homogenization, glocalization, hybridization</td></tr>
+<tr><td>Anarchy (IR)</td><td>No single supreme world authority, NOT chaos</td></tr>
+<tr><td>Global Governance</td><td>Multiple actors cooperate on cross-border problems, NOT world government</td></tr>
+<tr><td>6 Areas of Global Governance</td><td>Peace/security, health, economy, trade, environment, human rights</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="chapter" id="strategy">
+<div class="cn">FINAL PASS</div><div class="ct">Exam Strategy Tips</div>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Read the scenario carefully for clue words</div><div class="sd">"Shared culture/history" is Nation. "Defined territory + sovereignty" is State. "Startup beats established brand" is Disruption. "Workers replaced by machines" is Dislocation. "Raw materials vs manufactured goods" is Dependency Theory. "Adapts global product to local taste" is Glocalization. "Cultures combine to form new" is Hybridization. "No single world authority" is Anarchy (IR sense). "Multiple actors cooperate" is Global Governance.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Eliminate obviously wrong answers first</div><div class="sd">Many distractors are pulled from a different module than the question is testing.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Watch for dates</div><div class="sd">GATT (1947/48) vs WTO (1995) is a classic trap.</div></div></div>
+<div class="step"><div class="snum">4</div><div class="sc"><div class="sl">Know the theorists</div><div class="sd">Wallerstein (World-Systems), Castells (Network Society), Giddens (4 dimensions), Friedman (Flat World).</div></div></div>
+<div class="step"><div class="snum">5</div><div class="sc"><div class="sl">Anarchy does not equal chaos</div><div class="sd">In international relations, it just means no single supreme world authority.</div></div></div>
+<div class="step"><div class="snum">6</div><div class="sc"><div class="sl">Global Governance does not equal World Government</div><div class="sd">This is a key distinction the exam likes to test directly.</div></div></div>
+</div>
+</section>
+
+<section class="chapter" id="quizlink">
+<div class="cn">PRACTICE</div><div class="ct">Interactive Practice Quiz</div>
+<p class="ci">All 30 scenario-based questions from the reviewer, in a self-checking format with instant feedback and a running score.</p>
+<a class="linkcard" href="socsci3_midterm_quiz.html">
+<div class="licon">🎯</div>
+<div><div class="lttl">Open the Interactive Quiz</div><div class="lsub">socsci3_midterm_quiz.html, same folder as this guide</div></div>
+</a>
+</section>
+
+<footer class="footer"><p>QCU Academic OS . Midterm Reviewer, Modules 1-4 . Compiled by <strong>KianoRoku18Ino</strong> . github.com/KianoRoku18Ino</p></footer>
+</main>
+
+</body>
+</html>
