@@ -181,6 +181,13 @@
                   "label": "Midterm Reviewer",
                   "order": 1000,
                   "html": "assets/guides/year-1/sem-1/socsci3/midterm-reviewer.html"
+                },
+                {
+                  "id": "midterm-mockup-quiz",
+                  "kind": "special",
+                  "label": "Midterm Mockup Quiz",
+                  "order": 1001,
+                  "html": "assets/guides/year-1/sem-1/socsci3/midterm-mockup-quiz.html"
                 }
               ]
             },
