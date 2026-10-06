@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RIZAL &mdash; Complete Consolidated Reviewer &amp; Quiz Package | Midterm</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--bgcode:#060D18;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--purple:#8B5CF6;--maroon:#B91C3C;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(59,130,246,.15);--sw:285px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvs{padding:9px 17px 3px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t3)}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover,.nvi a.act{color:var(--t1);background:rgba(59,130,246,.08);border-left-color:var(--blue)}
+.nvi a.act{color:var(--blue);font-weight:500}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:20px}
+
+.main{margin-left:var(--sw)}
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:52px 52px 42px;position:relative;overflow:hidden}
+.hero::before{content:'01001000';position:absolute;top:-10px;right:15px;font-family:'JetBrains Mono',monospace;font-size:115px;font-weight:900;color:rgba(59,130,246,.04);letter-spacing:-5px;user-select:none;line-height:1}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--blue)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:48px;font-weight:700;line-height:1.05;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#3B82F6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:18px;color:var(--t2);margin-bottom:19px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+
+.chapter{padding:44px 52px;border-bottom:1px solid var(--bdr);max-width:970px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.cn.mar{color:var(--maroon)}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:19.5px;font-weight:600;margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--blue);border-radius:2px;flex-shrink:0}
+h2.mh::before{background:var(--maroon)}
+h3{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--blue);margin:22px 0 9px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+em.add{color:var(--amber);font-style:normal;font-family:'JetBrains Mono',monospace;font-size:11px}
+
+.box{border-radius:8px;padding:13px 17px;margin:15px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}.red .btt{color:var(--red)}
+.purple{background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2)}.purple .btt{color:var(--purple)}
+.maroonbox{background:rgba(185,28,60,.08);border:1px solid rgba(185,28,60,.2)}.maroonbox .btt{color:var(--maroon)}
+
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--blue);font-size:12px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(59,130,246,.04)}
+tbody td{padding:9px 13px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}.tm{background:rgba(185,28,60,.15);color:var(--maroon)}
+.nt td:not(:first-child){color:var(--amber);font-family:'JetBrains Mono',monospace}
+
+.codeblock{background:var(--bgcode);border:1px solid var(--bdr);border-radius:8px;margin:15px 0;overflow:hidden}
+.cbhd{display:flex;align-items:center;justify-content:space-between;padding:8px 13px;background:var(--bgr);border-bottom:1px solid var(--bdr)}
+.cbhl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:1px}
+.dots{display:flex;gap:4px}.dot{width:9px;height:9px;border-radius:50%}.dr{background:#EF4444}.dy{background:#F59E0B}.dg{background:#10B981}
+pre{padding:16px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.75;color:#C4D4E8}
+
+.steps{margin:15px 0}
+.step{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.snum{background:var(--blue);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace}
+.snum.q{background:var(--maroon)}
+.sc{flex:1}
+.sl{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:2px}
+.sd{color:var(--t2);font-size:13px;line-height:1.7}
+.sd code{font-family:'JetBrains Mono',monospace;background:var(--bgr);padding:1px 5px;border-radius:3px;font-size:11.5px;color:var(--amber)}
+
+.tl{margin:15px 0}
+.tli{display:flex;gap:14px;margin-bottom:18px;position:relative}
+.tli::before{content:'';position:absolute;left:73px;top:30px;width:1px;height:calc(100% + 5px);background:var(--bdr)}
+.tli:last-child::before{display:none}
+.tlyr{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--amber);font-weight:700;min-width:58px;padding-top:12px;text-align:right}
+.tldot{width:9px;height:9px;background:var(--blue);border-radius:50%;border:2px solid var(--bg);flex-shrink:0;margin-top:14px}
+.tlc{background:var(--bgc);border:1px solid var(--bdr);border-radius:8px;padding:11px 15px;flex:1}
+.tlt{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:3px}
+.tld{color:var(--t2);font-size:12.5px;line-height:1.65}
+
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.gc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;position:relative;overflow:hidden}
+.gc::before{content:attr(data-g);position:absolute;top:-10px;right:7px;font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:900;color:rgba(59,130,246,.05);line-height:1}
+.gera{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.gtit{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:7px}
+.gsp{font-size:12.5px;color:var(--t2);margin:0;line-height:1.7}
+.gsp strong{color:var(--blue)}
+
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:15px 0}
+.pcrd{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:13px 15px}
+.pnm{font-weight:700;color:var(--t1);font-size:13px;margin-bottom:2px}
+.pdt{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.pttl{font-size:11px;color:var(--blue);font-weight:600;margin-bottom:4px}
+.pdsc{font-size:12px;color:var(--t2);line-height:1.6}
+.prl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.pdc{font-size:12px;color:var(--t2);line-height:1.65}
+
+.osi{margin:15px 0}
+.osil{display:flex;align-items:center;gap:12px;padding:10px 15px;border:1px solid var(--bdr);margin-bottom:-1px;transition:background .15s}
+.osil:hover{background:rgba(59,130,246,.04)}
+.osil:first-child{border-radius:8px 8px 0 0}
+.osil:last-child{border-radius:0 0 8px 8px}
+.osin{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;min-width:22px;color:var(--amber)}
+.osnm{font-weight:600;color:var(--t1);min-width:115px;font-size:13px}
+.osip{font-size:11px;color:var(--blue);font-family:'JetBrains Mono',monospace;min-width:155px}
+.osid{font-size:12.5px;color:var(--t2);flex:1}
+
+.isg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.isc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;border-top:3px solid var(--blue)}
+.isc.a{border-top-color:var(--amber)}.isc.g{border-top-color:var(--green)}.isc.p{border-top-color:var(--purple)}.isc.m{border-top-color:var(--maroon)}
+.ico{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-bottom:3px}
+.inm{font-weight:700;font-size:14px;color:var(--t1);margin-bottom:6px}
+.idc{font-size:12.5px;color:var(--t2);line-height:1.7}
+.idc.b{font-size:12.5px;color:var(--t2);line-height:1.7}
+.ieg{font-size:11.5px;color:var(--green);margin-top:6px}
+
+.mlst{margin:11px 0}
+.mitem{display:flex;gap:11px;padding:10px 0;border-bottom:1px solid var(--bdr);align-items:flex-start}
+.mitem:last-child{border-bottom:none}
+.mnm{font-weight:700;color:var(--red);min-width:110px;font-size:13px}
+.mdc{font-size:13px;color:var(--t2);line-height:1.65}
+
+.tree{font-family:'JetBrains Mono',monospace;font-size:12.5px;background:var(--bgcode);border:1px solid var(--bdr);border-radius:8px;padding:15px 19px;color:var(--t2);line-height:2;margin:12px 0;overflow-x:auto;white-space:pre}
+
+.law{background:var(--bgc);border:1px solid var(--bdr);border-left:4px solid var(--maroon);border-radius:8px;padding:15px 17px;margin:11px 0}
+.lra{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--red);font-weight:700;margin-bottom:3px}
+.ltit{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:4px}
+.lyr{font-size:11px;color:var(--t3);margin-bottom:7px}
+.ldc{font-size:13px;color:var(--t2);line-height:1.75}
+
+.vitem{display:flex;gap:2px;margin-bottom:14px;align-items:flex-start}
+.vnum{display:inline-flex;align-items:center;justify-content:center;background:var(--blue);color:#fff;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:700;font-family:'JetBrains Mono',monospace;flex-shrink:0;margin-right:8px}
+.vbody{flex:1}
+.vtag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;margin-bottom:5px}
+.vconfirm{background:rgba(16,185,129,.15);color:var(--green)}
+.vcorrect{background:rgba(239,68,68,.15);color:var(--red)}
+.vflag{background:rgba(245,158,11,.15);color:var(--amber)}
+.vclar{background:rgba(59,130,246,.15);color:var(--blue)}
+
+.qa{background:var(--bgc);border:1px solid var(--bdr);border-radius:8px;padding:13px 16px;margin:10px 0}
+.qq{font-weight:600;color:var(--blue);font-size:13px;margin-bottom:5px}
+.qa2{font-size:13px;color:var(--t2);line-height:1.7}
+
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:4px;font-size:13px;line-height:1.75}
+li strong{color:var(--t1)}
+
+.footer{padding:34px 52px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--blue)}
+
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.gg,.pg,.isg{grid-template-columns:1fr}}
+
+
+.chklist{columns:2;column-gap:30px;margin:10px 0}
+.chklist li{break-inside:avoid;list-style:none;padding-left:2px;margin-bottom:7px}
+.chklist li::before{content:'\2610  ';color:var(--blue)}
+.qmc{margin:0 0 16px;padding-bottom:14px;border-bottom:1px solid var(--bdr)}
+.qmc:last-child{border:none;padding-bottom:0}
+.qn{font-weight:600;color:var(--t1);font-size:13.5px;margin-bottom:6px;line-height:1.6}
+.qopts{list-style:none;padding-left:6px;margin:0}
+.qopts li{margin-bottom:2px;font-size:13px;color:var(--t2)}
+.idq{font-size:13px;color:var(--t2);margin-bottom:9px;line-height:1.7}
+.idq b{color:var(--t1);font-family:'JetBrains Mono',monospace;margin-right:6px}
+.mtfq{font-size:13px;color:var(--t2);margin-bottom:9px;line-height:1.7}
+.mtfq b{color:var(--t1);font-family:'JetBrains Mono',monospace;margin-right:6px}
+.scorebox{display:inline-block;width:42px;background:var(--bgcode);border:1px solid var(--bdr);border-radius:4px;color:var(--amber);font-family:'JetBrains Mono',monospace;text-align:center;padding:2px 4px;font-size:12px}
+.cxh{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:var(--t1);margin:24px 0 8px;display:flex;align-items:center;gap:8px}
+.cxh .cxn{background:var(--red);color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-family:'JetBrains Mono',monospace;flex-shrink:0}
+
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+<div class="sbh"><div class="sbb">RIZAL &middot; QCU BSIT</div><div class="sbt">Midterm Reviewer &amp; Quiz Package</div><div class="sbs">AY 2026-2027</div></div>
+<ul class="nvl">
+<li class="nvs">Chapters</li>
+<li class="nvi"><a href="#ch00"><span class="nn">00</span>How to Use This Reviewer</a></li><li class="nvi"><a href="#ch01"><span class="nn">01</span>Source Material Overview</a></li><li class="nvi"><a href="#ch02"><span class="nn">02</span>Topic Coverage Map</a></li><li class="nvi"><a href="#ch03"><span class="nn">03</span>Critical Contradictions &amp; Corrections</a></li><li class="nvi"><a href="#ch04"><span class="nn">04</span>Family, Women, Schools &amp; Works</a></li><li class="nvi"><a href="#ch05"><span class="nn">05</span>Key People, Terms &amp; Dates</a></li><li class="nvi"><a href="#ch06"><span class="nn">06</span>Original Long Quiz (Answered)</a></li><li class="nvi"><a href="#ch07"><span class="nn">07</span>Practice Quiz #2 &mdash; Take It Cold</a></li><li class="nvi"><a href="#ch08"><span class="nn">08</span>Practice Quiz #2 &mdash; Answer Key</a></li><li class="nvi"><a href="#ch09"><span class="nn">09</span>Exam Strategy &amp; Traps</a></li><li class="nvi"><a href="#ch10"><span class="nn">10</span>Checklist &amp; Weak-Area Self-Check</a></li>
+</ul></nav>
+
+<main class="main">
+<div class="hero">
+<div class="he">QCU Academic OS &middot; AY 2026-2027</div>
+<div class="ht">RIZAL</div>
+<div class="hs">Complete Consolidated Reviewer &amp; Quiz Package &mdash; Midterm Examination</div>
+<div class="hm">
+<div class="mp">Course: <span>RIZAL</span></div>
+<div class="mp">Format: <span>MC &middot; Identification &middot; Modified T/F</span></div>
+<div class="mp">Items: <span>60</span></div>
+<div class="mp">Pairs with: <span>Combined Study Guide</span></div>
+</div></div>
+
+<section class="chapter" id="ch00">
+<div class="cn">CHAPTER 00</div><div class="ct">How to Use This Reviewer</div>
+<p class="ci">This is a pure exam-prep companion to your <strong>RIZAL Midterm Combined Study Guide</strong> &mdash; it assumes you've already read the narrative chapters there and switches into drilling mode: contradictions to watch for, dates and people to memorize cold, and two full practice quizzes with answer keys.</p>
+
+<div class="box blue"><div class="bico">&#128161;</div><div class="bbd"><div class="btt">Recommended order</div><div class="btx">
+Read Ch. 01&ndash;02 once to see the full source map, then spend most of your time in <strong>Ch. 03 (Contradictions)</strong> &mdash; these are the single highest-yield items because they're exactly where your professor's slides and the verified record disagree, which is prime territory for a Modified True-or-False item. Drill <strong>Ch. 05</strong> (dates/people/terms) until automatic, then take <strong>Ch. 07</strong> cold before checking <strong>Ch. 08</strong>. Finish with the <strong>Ch. 10</strong> checklist the night before the exam.
+</div></div></div>
+
+<div class="box amber"><div class="bico">&#9888;&#65039;</div><div class="bbd"><div class="btt">Exam format</div><div class="btx">Multiple Choice &middot; Identification &middot; Modified True or False &mdash; 60 items total.</div></div></div>
+
+</section>
+
+<section class="chapter" id="ch01">
+<div class="cn">CHAPTER 01</div><div class="ct">Source Material Overview</div>
+<p class="ci">Six original lecture files, cross-checked against each other and against the Combined Study Guide, feed this reviewer.</p>
+<div class="tw"><table>
+<thead><tr><th>#</th><th>File</th><th>Type</th><th>Content Coverage</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>BATAS_RIZAL.pdf</td><td>Lecture PDF (52 slides)</td><td>RA 1425 full text, legislative history, Church opposition, Komisyong Taft, 5 candidates</td></tr>
+<tr><td>2</td><td>dokumen.tips_rizal-first-trip-abroad.ppt.pdf</td><td>Slide deck (60 pages)</td><td>Rizal's 1882&ndash;1887 first trip abroad, Barcelona/Madrid/Paris/Berlin/Grand Tour</td></tr>
+<tr><td>3</td><td>Lecture19th Century.docx.pdf</td><td>Lecture doc (4 pages)</td><td>19th-century global context, Philippine social structure, Cavite Mutiny, Ilustrados, Propaganda Movement</td></tr>
+<tr><td>4</td><td>Let us talk about bayani.pptx.pdf</td><td>Slide deck (24 pages)</td><td>Etymology of &ldquo;bayani,&rdquo; hero quotes, Hero Yesterday vs Today</td></tr>
+<tr><td>5</td><td>module 1 Rizal law (4).pptx.pdf</td><td>Slide deck (21 pages)</td><td>PRO/ANTI debate, Rizal Bill history, RA 1425 sections, implementation timeline</td></tr>
+<tr><td>6</td><td>RIZALM2 PPT.pptx.pdf</td><td>Slide deck (18 pages)</td><td>Module 2: 19th-century Philippines, 3 revolutions, Suez Canal, de la Torre, GOMBURZA, 11 Evils</td></tr>
+</tbody></table></div>
+<div class="box green"><div class="bico">&#128218;</div><div class="bbd"><div class="btt">Plus the Combined Study Guide</div><div class="btx">All six files above were already organized into your 24-chapter <strong>RIZAL Midterm Combined Study Guide</strong>, which this reviewer treats as the verified baseline for every cross-check in Chapter 03.</div></div></div>
+
+</section>
+
+<section class="chapter" id="ch02">
+<div class="cn">CHAPTER 02</div><div class="ct">Topic Coverage Map</div>
+<p class="ci">Which source(s) each topic came from, and confirmation that it made it into the Combined Study Guide.</p>
+
+<h2>A. The Rizal Law (RA 1425)</h2>
+<div class="tw"><table>
+<thead><tr><th>Topic</th><th>BATAS_RIZAL</th><th>Module 1</th><th>RIZALM2</th><th>Combined Guide</th></tr></thead>
+<tbody>
+<tr><td>Full text Sections 1&ndash;6</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Four &ldquo;Whereas&rdquo; clauses</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Senate Bill 438</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>House Bill 5561/5564</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Recto as author</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Laurel as sponsor</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Church opposition</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>CAM campaign</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Recto's 3-hour speech</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Laurel's compromise</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>May 17, 1956 vote</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>June 12, 1956 signing</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>PMO 247 (1994)</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>CHED MO 6 (1996)</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>PRO/ANTI debate</td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Religious exemption</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+</tbody></table></div>
+
+<h2>B. The 19th Century / Context</h2>
+<div class="tw"><table>
+<thead><tr><th>Topic</th><th>Lecture19th</th><th>RIZALM2</th><th>BATAS_RIZAL</th><th>Combined Guide</th></tr></thead>
+<tbody>
+<tr><td>Industrial Revolution</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>French Revolution</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>American Revolution</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Liberalism/Nationalism</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Spanish Decline</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Social classes</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Economic changes</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Educational changes</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Suez Canal</td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>De la Torre</td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Cavite Mutiny</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>GOMBURZA</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Ilustrados</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Propaganda Movement</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Eleven Evils</td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Friar abuses</td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Racial discrimination</td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Discontent w/ institutions</td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--t3)">&mdash;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+</tbody></table></div>
+
+<h2>C. &ldquo;Bayani&rdquo; / Heroism</h2>
+<div class="tw"><table>
+<thead><tr><th>Topic</th><th>Let Us Talk About Bayani</th><th>Combined Guide</th></tr></thead>
+<tbody>
+<tr><td>Etymology</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Deeper connotations</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Bayanihan link</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Cultural significance</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Three risks without heroes</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Hero quotes (8 figures)</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Hero Yesterday vs Today</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+</tbody></table></div>
+
+<h2>D. First Trip Abroad (1882&ndash;1887)</h2>
+<div class="tw"><table>
+<thead><tr><th>Topic</th><th>First Trip Abroad</th><th>Combined Guide</th></tr></thead>
+<tbody>
+<tr><td>Secret mission</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>May 3, 1882 departure</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Voyage stops</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Barcelona arrival</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>&ldquo;Amor Patrio&rdquo;</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Madrid enrollment</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Licentiate degrees</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Masonic Lodge Acacia</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Lodge Solidaridad</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Paris ophthalmology</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Heidelberg/Becker</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Berlin/Jagor/Virchow</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Reasons for staying in Berlin</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>German women letter</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Noli writing/printing</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Maximo Viola</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Grand Tour with Viola</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Blumentritt meeting</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Vienna/Danube</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Geneva/26th birthday</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Rome/Vatican</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+</tbody></table></div>
+
+<h2>E. National Hero Selection</h2>
+<div class="tw"><table>
+<thead><tr><th>Topic</th><th>BATAS_RIZAL</th><th>Combined Guide</th></tr></thead>
+<tbody>
+<tr><td>Komisyong Taft</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>4 criteria</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>9 members</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>5 candidates</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+<tr><td>Why Rizal chosen</td><td><span style="color:var(--green)">&#10003;</span></td><td><span style="color:var(--green)">&#10003;</span></td></tr>
+</tbody></table></div>
+
+</section>
+
+<section class="chapter" id="ch03">
+<div class="cn">CHAPTER 03</div><div class="ct">Critical Contradictions &amp; Corrections</div>\n<p class="ci">These ten are the single highest-yield items in this whole reviewer — each is a point where your professor&rsquo;s slides and the independently verified record disagree, which is exactly where a Modified True-or-False item tends to come from.</p><div class="cxh"><span class="cxn">1</span>Senate Bill Number</div>
+<div class="tw"><table><thead><tr><th>Source</th><th>Says</th></tr></thead><tbody>
+<tr><td>BATAS_RIZAL.pdf (p.13)</td><td>Senate Bill 438</td></tr><tr><td>Module 1 (p.9, p.14)</td><td>Senate Bill 448 <span class="tag tr2">&#10060;</span></td></tr><tr><td>Combined Guide</td><td>Senate Bill 438 <span class="tag tg">&#9989;</span></td></tr>
+</tbody></table></div>
+<div class="box green"><div class="bico">&#9999;&#65039;</div><div class="bbd"><div class="btt">What to write on the exam</div><div class="btx"><b>Senate Bill 438.</b></div></div></div><div class="cxh"><span class="cxn">2</span>House Bill Number</div>
+<div class="tw"><table><thead><tr><th>Source</th><th>Says</th></tr></thead><tbody>
+<tr><td>BATAS_RIZAL.pdf (p.33)</td><td>Panukalang Batas bilang 5564 <span class="tag tr2">&#10060;</span></td></tr><tr><td>Combined Guide</td><td>House Bill 5561 <span class="tag tg">&#9989;</span></td></tr>
+</tbody></table></div>
+<div class="box green"><div class="bico">&#9999;&#65039;</div><div class="bbd"><div class="btt">What to write on the exam</div><div class="btx"><b>House Bill 5561</b> (filed by Rep. Jacobo Z. Gonzales, April 19, 1956).</div></div></div><div class="cxh"><span class="cxn">3</span>House Vote Count</div>
+<div class="tw"><table><thead><tr><th>Source</th><th>Says</th></tr></thead><tbody>
+<tr><td>BATAS_RIZAL.pdf (p.33)</td><td>71 pabor, 9 hindi pabor, 2 abstain</td></tr><tr><td>Verified sources</td><td>71 pabor, 6 hindi pabor, 2 abstain, 17 absent</td></tr>
+</tbody></table></div>
+<div class="box green"><div class="bico">&#9999;&#65039;</div><div class="bbd"><div class="btt">What to write on the exam</div><div class="btx"><b>71 in favor, 6 against, 2 abstained</b> (per outside verification) &mdash; but note your professor&rsquo;s slide says 9 against.</div></div></div><div class="cxh"><span class="cxn">4</span>&ldquo;Batas Pambansa&rdquo; vs &ldquo;Republic Act&rdquo;</div>
+<div class="tw"><table><thead><tr><th>Source</th><th>Says</th></tr></thead><tbody>
+<tr><td>BATAS_RIZAL.pdf (p.33)</td><td>Batas Pambansa bilang 1425 <span class="tag tr2">&#10060;</span></td></tr><tr><td>Module 1</td><td>Republic Act 1425 <span class="tag tg">&#9989;</span></td></tr>
+</tbody></table></div>
+<div class="box green"><div class="bico">&#9999;&#65039;</div><div class="bbd"><div class="btt">What to write on the exam</div><div class="btx"><b>Republic Act No. 1425</b> &mdash; &ldquo;Batas Pambansa&rdquo; refers to laws passed by the Batasang Pambansa (1978&ndash;1986), which didn&rsquo;t exist in 1956.</div></div></div><div class="cxh"><span class="cxn">5</span>GOMBURZA Dedication</div>
+<div class="tw"><table><thead><tr><th>Source</th><th>Says</th></tr></thead><tbody>
+<tr><td>Lecture19th Century (p.3)</td><td>Rizal dedicated Noli Me Tangere to GOMBURZA <span class="tag tr2">&#10060;</span></td></tr><tr><td>RIZALM2 (p.11)</td><td>Rizal devoted his novel Noli Me Tangere to GOMBURZA <span class="tag tr2">&#10060;</span></td></tr><tr><td>Verified fact</td><td>Rizal dedicated El Filibusterismo (1891) to GOMBURZA <span class="tag tg">&#9989;</span></td></tr>
+</tbody></table></div>
+<div class="box green"><div class="bico">&#9999;&#65039;</div><div class="bbd"><div class="btt">What to write on the exam</div><div class="btx"><b>El Filibusterismo</b> &mdash; the Noli has no such dedication.</div></div></div><div class="cxh"><span class="cxn">6</span>Masonic Lodge Transfer Date</div>
+<div class="tw"><table><thead><tr><th>Source</th><th>Says</th></tr></thead><tbody>
+<tr><td>First Trip Abroad (p.21)</td><td>Transferred to Lodge Solidaridad in November 1883 <span class="tag tr2">&#10060;</span></td></tr><tr><td>Verified Masonic records</td><td>Transferred November 15, 1890 <span class="tag tg">&#9989;</span></td></tr>
+</tbody></table></div>
+<div class="box green"><div class="bico">&#9999;&#65039;</div><div class="bbd"><div class="btt">What to write on the exam</div><div class="btx">If asked &ldquo;when did Rizal join Lodge Solidaridad?&rdquo; &mdash; the slide says 1883, but the correct date is <b>November 15, 1890</b>.</div></div></div><div class="cxh"><span class="cxn">7</span>Noli Printing Copies</div>
+<div class="tw"><table><thead><tr><th>Source</th><th>Says</th></tr></thead><tbody>
+<tr><td>First Trip Abroad (p.39)</td><td>300 pesos for 2,00 copies <span class="tag tr2">&#10060;</span></td></tr><tr><td>Verified</td><td>300 pesos for 2,000 copies <span class="tag tg">&#9989;</span></td></tr>
+</tbody></table></div>
+<div class="box green"><div class="bico">&#9999;&#65039;</div><div class="bbd"><div class="btt">What to write on the exam</div><div class="btx"><b>2,000 copies.</b></div></div></div><div class="cxh"><span class="cxn">8</span>Dr. Wecker Spelling</div>
+<div class="tw"><table><thead><tr><th>Source</th><th>Says</th></tr></thead><tbody>
+<tr><td>First Trip Abroad (p.25)</td><td>DR. LOIUS DE WECKERT <span class="tag tr2">&#10060;</span></td></tr><tr><td>Verified</td><td>Dr. Louis de Wecker <span class="tag tg">&#9989;</span></td></tr>
+</tbody></table></div>
+<div class="box green"><div class="bico">&#9999;&#65039;</div><div class="bbd"><div class="btt">What to write on the exam</div><div class="btx"><b>Louis de Wecker</b> (no final &ldquo;t&rdquo;).</div></div></div><div class="cxh"><span class="cxn">9</span>French Revolution Motto</div>
+<div class="tw"><table><thead><tr><th>Source</th><th>Says</th></tr></thead><tbody>
+<tr><td>RIZALM2 (p.5)</td><td>Freedom, Fairness and Fraternity <span class="tag tr2">&#10060;</span></td></tr><tr><td>Verified</td><td>Liberty, Equality, Fraternity <span class="tag tg">&#9989;</span></td></tr>
+</tbody></table></div>
+<div class="box green"><div class="bico">&#9999;&#65039;</div><div class="bbd"><div class="btt">What to write on the exam</div><div class="btx"><b>Liberty, Equality, Fraternity.</b></div></div></div><div class="cxh"><span class="cxn">10</span>Montaigne as Enlightenment Philosopher</div>
+<div class="tw"><table><thead><tr><th>Source</th><th>Says</th></tr></thead><tbody>
+<tr><td>RIZALM2 (p.7)</td><td>Michel de Montaigne = Enlightenment philosopher <span class="tag tr2">&#10060;</span></td></tr><tr><td>Verified</td><td>Montaigne (1533&ndash;1592) was a Renaissance essayist &mdash; predates the Enlightenment by ~100 years</td></tr>
+</tbody></table></div>
+<div class="box green"><div class="bico">&#9999;&#65039;</div><div class="bbd"><div class="btt">What to write on the exam</div><div class="btx">If asked &ldquo;who was Michel de Montaigne?&rdquo; &mdash; a <b>Renaissance essayist</b>, not an Enlightenment figure.</div></div></div>
+</section>
+
+<section class="chapter" id="ch04">
+<div class="cn">CHAPTER 04</div><div class="ct">Family, Women, Schools, Professions &amp; Works Timeline</div>
+<p class="ci">Rizal was born on <strong>June 19, 1861</strong>, in Calamba, Laguna, to a prosperous family.</p>
+
+<h2>A. Family &amp; Key People</h2>
+<p><strong>Parents:</strong></p>
+<ul>
+<li><strong>Francisco Mercado Rizal</strong> &mdash; his father, a well-to-do sugar planter and landowner.</li>
+<li><strong>Teodora Alonso Realonda</strong> &mdash; his mother, one of the best-educated women of her time and Rizal&rsquo;s first teacher.</li>
+</ul>
+<p><strong>Siblings:</strong> he was the seventh of 11 children &mdash; Saturnina, Paciano (his only brother and closest confidant), Narcisa, Olympia, Lucia, Maria, Concepcion, Josefa, Trinidad, and Soledad.</p>
+<p><strong>Key people:</strong></p>
+<ul>
+<li><strong>Paciano Rizal</strong> &mdash; his older brother, who acted as his guardian and supported his studies abroad. Paciano was deeply influenced by the GOMBURZA and passed on his nationalist sentiments to Jos&eacute;.</li>
+<li><strong>Ferdinand Blumentritt</strong> &mdash; an Austrian professor and Rizal&rsquo;s close friend and pen pal. They corresponded for years before finally meeting in person.</li>
+</ul>
+
+<h2>B. The Women in Rizal&rsquo;s Life</h2>
+<div class="pg">
+<div class="pcrd"><div class="pnm">Segunda Katigbak</div><div class="pdsc">His first love, a young woman from Lipa, Batangas.</div></div>
+<div class="pcrd"><div class="pnm">Leonor Valenzuela</div><div class="pdsc">A neighbor in Manila, known for their &ldquo;invisible&rdquo; love letters written in invisible ink.</div></div>
+<div class="pcrd"><div class="pnm">Leonor Rivera</div><div class="pdsc">Often considered his true love and the inspiration for Maria Clara in Noli Me Tangere. Engaged for many years, until her mother intercepted Rizal&rsquo;s letters and encouraged her to marry another man.</div></div>
+<div class="pcrd"><div class="pnm">Consuelo Ortiga y Rey</div><div class="pdsc">Courted while in Madrid, but he backed off out of respect for his friend Eduardo de Lete, who was also in love with her.</div></div>
+<div class="pcrd"><div class="pnm">Seiko Usui (O-Sei-San)</div><div class="pdsc">A Japanese woman he fell in love with during his stay in Japan &mdash; a brief but intense romance.</div></div>
+<div class="pcrd"><div class="pnm">Gertrude Beckett</div><div class="pdsc">A young woman in London, affectionately called &ldquo;Getty,&rdquo; one of his admirers.</div></div>
+<div class="pcrd"><div class="pnm">Suzanne Jacoby</div><div class="pdsc">A Belgian woman he had a relationship with while staying in Brussels.</div></div>
+<div class="pcrd"><div class="pnm">Nellie Boustead</div><div class="pdsc">A rich and beautiful woman from Biarritz. Close to marriage, but it fell through over religious differences and her mother&rsquo;s disapproval.</div></div>
+<div class="pcrd"><div class="pnm">Josephine Bracken</div><div class="pdsc">An Irish woman who became his common-law wife, brought to him in Dapitan for her stepfather&rsquo;s eye treatment. Stayed with him until his execution; they married just hours before it.</div></div>
+</div>
+
+<h2>C. Schools Attended</h2>
+<ul>
+<li><strong>Early education (Bi&ntilde;an, Laguna):</strong> studied under Justiniano Aquino Cruz.</li>
+<li><strong>Ateneo Municipal de Manila:</strong> earned a degree as a land surveyor and assessor.</li>
+<li><strong>University of Santo Tomas (UST):</strong> initially studied Philosophy and Letters, then Medicine.</li>
+<li><strong>Universidad Central de Madrid:</strong> obtained his Licentiate in Medicine in 1884, then studied Ophthalmology in Paris (under Dr. Louis de Wecker) and Heidelberg (under Dr. Otto Becker).</li>
+</ul>
+
+<h2>D. Professions</h2>
+<p>Rizal was a polymath whose expertise spanned many fields. He was an:</p>
+<ul>
+<li><strong>Ophthalmologist (eye specialist)</strong> &mdash; specialized in ophthalmology to cure his mother&rsquo;s eye ailment.</li>
+<li><strong>Writer/novelist</strong> &mdash; author of Noli Me Tangere and El Filibusterismo.</li>
+<li><strong>Poet</strong> &mdash; wrote numerous poems, including his farewell masterpiece, Mi &Uacute;ltimo Adi&oacute;s.</li>
+<li><strong>Sculptor &amp; painter</strong> &mdash; a talented artist who studied sculpture and painting.</li>
+<li><strong>Other fields:</strong> architect, educator, economist, ethnologist, farmer, historian, inventor, journalist, linguist (knew 22 languages), musician, mythologist, naturalist, sociologist, and more.</li>
+</ul>
+
+<h2>E. Major Works &amp; Timelines</h2>
+<div class="tw"><table>
+<thead><tr><th>Work</th><th>Type</th><th>Timeline &amp; Details</th></tr></thead>
+<tbody>
+<tr><td>Noli Me Tangere</td><td>Novel</td><td>Published in Berlin, Germany, 1887 &mdash; a passionate exposure of the injustices of Spanish rule and the abuses of the friars.</td></tr>
+<tr><td>El Filibusterismo</td><td>Novel</td><td>Published in Ghent, Belgium, 1891 &mdash; sequel to the Noli, exploring themes of revenge and revolution. Dedicated to GOMBURZA.</td></tr>
+<tr><td>Mi &Uacute;ltimo Adi&oacute;s</td><td>Poem</td><td>Written on the eve of his execution, December 29, 1896, in his Fort Santiago cell. Title translates to &ldquo;My Last Farewell.&rdquo;</td></tr>
+</tbody></table></div>
+
+<h2>F. Key Events: Before &amp; After Dapitan</h2>
+<p><strong>Before Dapitan (1887&ndash;1892)</strong></p>
+<ul>
+<li><strong>1887:</strong> Rizal returned to the Philippines after his first trip abroad but was forced to leave again due to opposition from the Spanish authorities regarding Noli Me Tangere.</li>
+<li><strong>1888&ndash;1892:</strong> lived in Hong Kong and Macau practicing medicine, then traveled to Japan, the United States, and Europe. Continued writing and founded La Liga Filipina upon his return to Manila in July 1892.</li>
+</ul>
+<p><strong>Dapitan exile (1892&ndash;1896)</strong></p>
+<ul>
+<li><strong>July 6, 1892:</strong> arrested shortly after founding La Liga Filipina and deported to Dapitan, Mindanao, for four years.</li>
+<li><strong>Life in Dapitan:</strong> practiced ophthalmology, taught locals, improved agriculture, engaged in scientific work, and met and fell in love with Josephine Bracken.</li>
+</ul>
+<p><strong>After Dapitan &amp; execution (1896)</strong></p>
+<ul>
+<li><strong>July 31, 1896:</strong> left Dapitan for Manila, hoping to travel to Cuba as a volunteer doctor &mdash; but the revolution had already begun.</li>
+<li><strong>October 6, 1896:</strong> arrested and imprisoned in Fort Santiago, Manila.</li>
+<li><strong>December 30, 1896:</strong> executed by firing squad at Bagumbayan (now Luneta). He married Josephine Bracken in his cell just before his execution.</li>
+</ul>
+
+</section>
+
+<section class="chapter" id="ch05">
+<div class="cn">CHAPTER 05</div><div class="ct">Key People, Terms &amp; Dates</div>
+
+<h2>Must-Know Dates</h2>
+<div class="tl"><div class="tli"><div class="tlyr">1861<br>June 19</div><div class="tldot"></div><div class="tlc"><div class="tld">Rizal born in Calamba, Laguna</div></div></div><div class="tli"><div class="tlyr">1869<br>Nov 17</div><div class="tldot"></div><div class="tlc"><div class="tld">Suez Canal inaugurated</div></div></div><div class="tli"><div class="tlyr">1872<br>Jan 20</div><div class="tldot"></div><div class="tlc"><div class="tld">Cavite Mutiny</div></div></div><div class="tli"><div class="tlyr">1872<br>Feb 17</div><div class="tldot"></div><div class="tlc"><div class="tld">Execution of GOMBURZA</div></div></div><div class="tli"><div class="tlyr">1882<br>May 3</div><div class="tldot"></div><div class="tlc"><div class="tld">Rizal departs Manila (SS Salvadora, alias &ldquo;Jose Mercado&rdquo;)</div></div></div><div class="tli"><div class="tlyr">1882<br>May 9</div><div class="tldot"></div><div class="tlc"><div class="tld">Singapore; transfers to Djemnah</div></div></div><div class="tli"><div class="tlyr">1882<br>May 17</div><div class="tldot"></div><div class="tlc"><div class="tld">Point Galle (Ceylon)</div></div></div><div class="tli"><div class="tlyr">1882<br>May 18</div><div class="tldot"></div><div class="tlc"><div class="tld">Colombo</div></div></div><div class="tli"><div class="tlyr">1882<br>May 27</div><div class="tldot"></div><div class="tlc"><div class="tld">Aden</div></div></div><div class="tli"><div class="tlyr">1882<br>Jun 2</div><div class="tldot"></div><div class="tlc"><div class="tld">Suez Canal</div></div></div><div class="tli"><div class="tlyr">1882<br>Jun 11</div><div class="tldot"></div><div class="tlc"><div class="tld">Naples (first European ground)</div></div></div><div class="tli"><div class="tlyr">1882<br>Jun 12</div><div class="tldot"></div><div class="tlc"><div class="tld">Marseilles</div></div></div><div class="tli"><div class="tlyr">1882<br>Jun 15</div><div class="tldot"></div><div class="tlc"><div class="tld">Crosses Pyrenees; Port Bou</div></div></div><div class="tli"><div class="tlyr">1882<br>Jun 16</div><div class="tldot"></div><div class="tlc"><div class="tld">Arrives Barcelona</div></div></div><div class="tli"><div class="tlyr">1882<br>Aug 20</div><div class="tldot"></div><div class="tlc"><div class="tld">&ldquo;Amor Patrio&rdquo; published in Diariong Tagalog</div></div></div><div class="tli"><div class="tlyr">1882<br>Nov 3</div><div class="tldot"></div><div class="tlc"><div class="tld">Enrolls at Universidad Central de Madrid</div></div></div><div class="tli"><div class="tlyr">1882<br>Dec 31</div><div class="tldot"></div><div class="tlc"><div class="tld">New Year&rsquo;s Eve reception; declaims &ldquo;Me Piden Versos&rdquo;</div></div></div><div class="tli"><div class="tlyr">1883<br>Mar</div><div class="tldot"></div><div class="tlc"><div class="tld">Joins Lodge Acacia (Masonic name: Dimasalang)</div></div></div><div class="tli"><div class="tlyr">1884<br>Jun</div><div class="tldot"></div><div class="tlc"><div class="tld">Licentiate in Medicine</div></div></div><div class="tli"><div class="tlyr">1885<br>Jun</div><div class="tldot"></div><div class="tlc"><div class="tld">Licentiate in Philosophy and Letters (Sobresaliente)</div></div></div><div class="tli"><div class="tlyr">1886<br>Feb 1</div><div class="tldot"></div><div class="tlc"><div class="tld">Leaves Paris</div></div></div><div class="tli"><div class="tlyr">1886<br>Feb 3</div><div class="tldot"></div><div class="tlc"><div class="tld">Arrives Heidelberg (under Dr. Otto Becker)</div></div></div><div class="tli"><div class="tlyr">1886<br>Mar 11</div><div class="tldot"></div><div class="tlc"><div class="tld">Letter to Trinidad about German women</div></div></div><div class="tli"><div class="tlyr">1886<br>Nov</div><div class="tldot"></div><div class="tlc"><div class="tld">Arrives Berlin</div></div></div><div class="tli"><div class="tlyr">1887<br>Feb 21</div><div class="tldot"></div><div class="tlc"><div class="tld">Noli Me Tangere finished</div></div></div><div class="tli"><div class="tlyr">1887<br>Mar 21</div><div class="tldot"></div><div class="tlc"><div class="tld">Noli Me Tangere comes off the press</div></div></div><div class="tli"><div class="tlyr">1887<br>May 11</div><div class="tldot"></div><div class="tlc"><div class="tld">Leaves Berlin (Grand Tour begins)</div></div></div><div class="tli"><div class="tlyr">1887<br>May 13&ndash;16</div><div class="tldot"></div><div class="tlc"><div class="tld">Leitmeritz; first meeting with Blumentritt</div></div></div><div class="tli"><div class="tlyr">1887<br>May 20&ndash;24</div><div class="tldot"></div><div class="tlc"><div class="tld">Vienna</div></div></div><div class="tli"><div class="tlyr">1887<br>May 24</div><div class="tldot"></div><div class="tlc"><div class="tld">Danube voyage to Linz</div></div></div><div class="tli"><div class="tlyr">1887<br>Jun 2&ndash;3</div><div class="tldot"></div><div class="tlc"><div class="tld">Schaffhausen, Switzerland</div></div></div><div class="tli"><div class="tlyr">1887<br>Jun 4&ndash;23</div><div class="tldot"></div><div class="tlc"><div class="tld">Geneva</div></div></div><div class="tli"><div class="tlyr">1887<br>Jun 19</div><div class="tldot"></div><div class="tlc"><div class="tld">Rizal&rsquo;s 26th birthday in Geneva</div></div></div><div class="tli"><div class="tlyr">1887<br>Jun 23</div><div class="tldot"></div><div class="tlc"><div class="tld">Parts with Viola</div></div></div><div class="tli"><div class="tlyr">1887<br>Jun 27</div><div class="tldot"></div><div class="tlc"><div class="tld">Rome</div></div></div><div class="tli"><div class="tlyr">1887<br>Jun 29</div><div class="tldot"></div><div class="tlc"><div class="tld">Vatican (Feast of St. Peter and St. Paul)</div></div></div><div class="tli"><div class="tlyr">1892<br>Jul</div><div class="tldot"></div><div class="tlc"><div class="tld">Founds La Liga Filipina</div></div></div><div class="tli"><div class="tlyr">1892<br>Jul 6</div><div class="tldot"></div><div class="tlc"><div class="tld">Arrested; deported to Dapitan</div></div></div><div class="tli"><div class="tlyr">1896<br>Jul 31</div><div class="tldot"></div><div class="tlc"><div class="tld">Leaves Dapitan for Manila</div></div></div><div class="tli"><div class="tlyr">1896<br>Oct 6</div><div class="tldot"></div><div class="tlc"><div class="tld">Arrested; imprisoned in Fort Santiago</div></div></div><div class="tli"><div class="tlyr">1896<br>Dec 29</div><div class="tldot"></div><div class="tlc"><div class="tld">Writes Mi &Uacute;ltimo Adi&oacute;s</div></div></div><div class="tli"><div class="tlyr">1896<br>Dec 30</div><div class="tldot"></div><div class="tlc"><div class="tld">Executed at Bagumbayan</div></div></div><div class="tli"><div class="tlyr">1956<br>Jun 12</div><div class="tldot"></div><div class="tlc"><div class="tld">RA 1425 signed by Pres. Ramon Magsaysay</div></div></div><div class="tli"><div class="tlyr">1994<br>Dec 26</div><div class="tldot"></div><div class="tlc"><div class="tld">PMO 247 signed by Pres. Fidel V. Ramos</div></div></div><div class="tli"><div class="tlyr">1996<br>Feb 15</div><div class="tldot"></div><div class="tlc"><div class="tld">CHED Memorandum Order No. 6</div></div></div></div>
+
+<h2>Must-Know People</h2>
+<div class="tw"><table>
+<thead><tr><th>Person</th><th>Role</th></tr></thead>
+<tbody>
+<tr><td>Claro M. Recto</td><td>Original author of Senate Bill 438</td></tr>
+<tr><td>Jose P. Laurel</td><td>&ldquo;Father of the Rizal Law&rdquo;; sponsored the bill; authored the compromise substitute</td></tr>
+<tr><td>Ramon Magsaysay</td><td>Signed RA 1425 into law (June 12, 1956)</td></tr>
+<tr><td>Maximo Viola</td><td>&ldquo;Savior of the Noli&rdquo;; funded printing; Grand Tour companion</td></tr>
+<tr><td>Ferdinand Blumentritt</td><td>Austrian professor; Rizal&rsquo;s pen pal</td></tr>
+<tr><td>Louis de Wecker</td><td>French ophthalmologist (Paris)</td></tr>
+<tr><td>Otto Becker</td><td>German ophthalmologist (Heidelberg)</td></tr>
+<tr><td>Feodor Jagor</td><td>Author, &ldquo;Travels in the Philippines&rdquo;</td></tr>
+<tr><td>Rudolf Virchow</td><td>German anthropologist</td></tr>
+<tr><td>Teodora Alonso</td><td>Rizal&rsquo;s mother</td></tr>
+<tr><td>Francisco Mercado</td><td>Rizal&rsquo;s father</td></tr>
+<tr><td>Paciano Rizal</td><td>Witnessed the GOMBURZA execution</td></tr>
+<tr><td>Saturnina Rizal</td><td>Gave the pawned diamond ring</td></tr>
+<tr><td>Trinidad Rizal</td><td>Recipient of the &ldquo;German women&rdquo; letter</td></tr>
+<tr><td>Juan Luna</td><td>Painter; Rizal posed in his canvases</td></tr>
+<tr><td>Carlos Mar&iacute;a de la Torre</td><td>First liberal Governor-General (1869&ndash;1871)</td></tr>
+<tr><td>Fr. Jose Burgos</td><td>Of GOMBURZA; advocated secularization</td></tr>
+<tr><td>Josephine Bracken</td><td>Rizal&rsquo;s common-law wife</td></tr>
+<tr><td>Leonor Rivera</td><td>Rizal&rsquo;s &ldquo;true love&rdquo;; inspiration for Maria Clara</td></tr>
+</tbody></table></div>
+
+<h2>Must-Know Terms</h2>
+<div class="tw"><table>
+<thead><tr><th>Term</th><th>Definition</th></tr></thead>
+<tbody>
+<tr><td>Bayani</td><td>Hero</td></tr>
+<tr><td>Bayanihan</td><td>Communal unity and cooperation</td></tr>
+<tr><td>RA 1425</td><td>Rizal Law</td></tr>
+<tr><td>Unexpurgated</td><td>Complete, uncensored text</td></tr>
+<tr><td>Principalia</td><td>Local elite class (Rizal&rsquo;s class)</td></tr>
+<tr><td>Ilustrado</td><td>Educated, Europe-schooled elite</td></tr>
+<tr><td>Peninsulares</td><td>Spaniards born in Spain</td></tr>
+<tr><td>Insulares</td><td>Spaniards born in the Philippines</td></tr>
+<tr><td>Indios</td><td>Native Filipinos</td></tr>
+<tr><td>Guardia Civil</td><td>Spanish colonial police</td></tr>
+<tr><td>Frailocracy</td><td>Friar power</td></tr>
+<tr><td>Encomienda</td><td>Tribute grant</td></tr>
+<tr><td>Polo</td><td>Forced labor</td></tr>
+<tr><td>Tributo</td><td>Tax tribute</td></tr>
+<tr><td>Bandala</td><td>Forced sale of produce</td></tr>
+<tr><td>Rentas estancadas</td><td>Government monopolies</td></tr>
+<tr><td>GOMBURZA</td><td>Gomez, Burgos, Zamora</td></tr>
+<tr><td>La Solidaridad</td><td>Reformist newspaper</td></tr>
+<tr><td>Laong Laan</td><td>Rizal&rsquo;s pen name</td></tr>
+<tr><td>Dimasalang</td><td>Rizal&rsquo;s Masonic name</td></tr>
+<tr><td>Sobresaliente</td><td>&ldquo;Excellent&rdquo; rating</td></tr>
+<tr><td>Noli Me Tangere</td><td>&ldquo;Touch Me Not&rdquo;</td></tr>
+<tr><td>El Filibusterismo</td><td>&ldquo;The Subversive&rdquo; / &ldquo;Reign of Greed&rdquo;</td></tr>
+</tbody></table></div>
+
+</section>
+
+<section class="chapter" id="ch06">
+<div class="cn">CHAPTER 06</div><div class="ct">Original Long Quiz (with Answers)</div>
+<p class="ci">A reference-style quiz &mdash; answers given inline for quick review, not a blind test. (For a blind test, go to Chapter 07.)</p>
+
+<h2>I. True or False</h2>
+<ol><li><span class="tag tg">TRUE</span> &mdash; Republic Act No. 1425 is commonly known as the Rizal Law.</li><li><span class="tag tg">TRUE</span> &mdash; It requires the inclusion of courses on his life, works, and writings in all schools, colleges, and universities.</li><li><span class="tag tr2">FALSE</span> &mdash; It was enacted to promote nationalism and patriotism, not to make him a religious leader.</li><li><span class="tag tg">TRUE</span> &mdash; The law emphasizes developing nationalism and patriotism.</li><li><span class="tag tg">TRUE</span> &mdash; The law specifically requires the original or unexpurgated editions of his novels in collegiate courses.</li><li><span class="tag tr2">FALSE</span> &mdash; The law applies to the curricula of all public and private schools, colleges, and universities, not just history programs.</li><li><span class="tag tg">TRUE</span> &mdash; The law recognizes his works as inspiring sources of patriotism and historical insight.</li><li><span class="tag tg">TRUE</span> &mdash; It was approved on June 12, 1956.</li><li><span class="tag tg">TRUE</span> &mdash; Senator Claro M. Recto was the original author and main proponent of Senate Bill 438.</li><li><span class="tag tg">TRUE</span> &mdash; The law aims to develop moral character, personal discipline, and civic conscience.</li></ol>
+
+<h2>II. Criteria in the Selection of National Heroes (Jumbled Letters)</h2>
+<div class="tw"><table><thead><tr><th>#</th><th>Jumbled</th><th>Answer</th></tr></thead><tbody>
+<tr><td>1</td><td>MOTSIPATIR</td><td>PATRIOTISM</td></tr><tr><td>2</td><td>LISACFREI</td><td>SACRIFICE</td></tr><tr><td>3</td><td>NOLAITANLIMS</td><td>NATIONALISM</td></tr><tr><td>4</td><td>OERHIC LORE</td><td>HEROIC LORE</td></tr><tr><td>5</td><td>ALMOR GYITRNETI</td><td>MORAL INTEGRITY</td></tr><tr><td>6</td><td>SINGFICANAT TINUBORTICON</td><td>SIGNIFICANT CONTRIBUTION</td></tr><tr><td>7</td><td>LANATINO SVEICER</td><td>NATIONAL SERVICE</td></tr><tr><td>8</td><td>SENSSLESFES</td><td>SELFLESSNESS</td></tr><tr><td>9</td><td>VLOE FO YTRCOUN</td><td>LOVE OF COUNTRY</td></tr><tr><td>10</td><td>ORHISTICAL GICANIFINSECA</td><td>HISTORICAL SIGNIFICANCE</td></tr><tr><td>11</td><td>HICMAEL SEROTR ATONBIA</td><td>MICHAEL TORRES ABONITA</td></tr>
+</tbody></table></div>
+
+<h2>III. Enumeration</h2>
+<ol>
+<li><b>Names of Rizal&rsquo;s parents:</b><br>a. Francisco Mercado &nbsp;&nbsp; b. Teodora Alonso</li>
+<li><b>Three major works of Jos&eacute; Rizal:</b><br>a. Noli Me Tangere &nbsp;&nbsp; b. El Filibusterismo &nbsp;&nbsp; c. &ldquo;Amor Patrio&rdquo; / &ldquo;Mi &Uacute;ltimo Adi&oacute;s&rdquo; / &ldquo;Makamisa&rdquo;</li>
+<li><b>Places where Rizal pursued his higher education:</b><br>a. Ateneo Municipal de Manila &nbsp;&nbsp; b. University of Santo Tomas &nbsp;&nbsp; c. Universidad Central de Madrid</li>
+<li><b>Women associated with Jos&eacute; Rizal:</b><br>a. Josephine Bracken &nbsp;&nbsp; b. Leonor Rivera &nbsp;&nbsp; c. Segunda Katigbak</li>
+<li><b>Four professions or fields in which Rizal had expertise:</b><br>a. Ophthalmologist &nbsp;&nbsp; b. Writer/Novelist &nbsp;&nbsp; c. Painter &nbsp;&nbsp; d. Sculptor</li>
+<li><b>Three countries in Europe visited by Rizal during his travels:</b><br>a. Spain &nbsp;&nbsp; b. Germany &nbsp;&nbsp; c. France &nbsp;<span style="color:var(--t3)">(others include Austria, Switzerland, Italy)</span></li>
+<li><b>Three important places associated with the life of Rizal:</b><br>a. Calamba, Laguna (birthplace) &nbsp;&nbsp; b. Dapitan (exile) &nbsp;&nbsp; c. Bagumbayan/Luneta (execution site)</li>
+</ol>
+
+</section>
+
+<section class="chapter" id="ch07">
+<div class="cn">CHAPTER 07</div><div class="ct">Practice Quiz #2 &mdash; Take It Cold</div>
+<p class="ci">20 Multiple Choice &middot; 20 Identification &middot; 20 Modified True-or-False. No answers on this page &mdash; check yourself against Chapter 08 only after you&rsquo;re done. For Modified True-or-False: if FALSE, write the word(s) that make it false <em>and</em> supply the correct answer.</p>
+
+<h2>Part I &middot; Multiple Choice (20 items)</h2>
+<div class="qmc"><div class="qn">1. Who filed the original Senate Bill 438 on April 3, 1956?</div><ul class="qopts"><li>a) Jose P. Laurel</li><li>b) Claro M. Recto</li><li>c) Ramon Magsaysay</li><li>d) Decoroso Rosales</li></ul></div><div class="qmc"><div class="qn">2. Which body was tasked by RA 1425 with translating Rizal&rsquo;s novels into English, Tagalog, and other dialects?</div><ul class="qopts"><li>a) CHED</li><li>b) DECS</li><li>c) Board of National Education</li><li>d) National Historical Commission</li></ul></div><div class="qmc"><div class="qn">3. In what year did Rizal transfer to Lodge Solidaridad and become a Master Mason?</div><ul class="qopts"><li>a) 1883</li><li>b) 1886</li><li>c) 1890</li><li>d) 1892</li></ul></div><div class="qmc"><div class="qn">4. Which novel inspired Rizal to write Noli Me Tangere?</div><ul class="qopts"><li>a) Les Mis&eacute;rables</li><li>b) Uncle Tom&rsquo;s Cabin</li><li>c) The Count of Monte Cristo</li><li>d) Don Quixote</li></ul></div><div class="qmc"><div class="qn">5. How much did it cost to print Noli Me Tangere, and how many copies were produced?</div><ul class="qopts"><li>a) 300 pesos for 2,000 copies</li><li>b) 500 pesos for 1,000 copies</li><li>c) 200 pesos for 3,000 copies</li><li>d) 300 pesos for 200 copies</li></ul></div><div class="qmc"><div class="qn">6. On what exact date did Rizal arrive in Barcelona?</div><ul class="qopts"><li>a) May 3, 1882</li><li>b) June 12, 1882</li><li>c) June 16, 1882</li><li>d) June 23, 1882</li></ul></div><div class="qmc"><div class="qn">7. Where did Rizal first meet Ferdinand Blumentritt in person?</div><ul class="qopts"><li>a) Vienna</li><li>b) Berlin</li><li>c) Leitmeritz, Bohemia</li><li>d) Prague</li></ul></div><div class="qmc"><div class="qn">8. What is the meaning of the Latin phrase Noli Me Tangere?</div><ul class="qopts"><li>a) Touch Me Not</li><li>b) Do Not Cry</li><li>c) Reign of Greed</li><li>d) The Subversive</li></ul></div><div class="qmc"><div class="qn">9. Which of the following was NOT one of the &ldquo;Eleven Evils&rdquo; of Rizal&rsquo;s time?</div><ul class="qopts"><li>a) Frailocracy</li><li>b) Forced Labor</li><li>c) Freedom of the Press</li><li>d) Racial Discrimination</li></ul></div><div class="qmc"><div class="qn">10. Who was the Governor-General who chaired the Komisyong Taft?</div><ul class="qopts"><li>a) Carlos Mar&iacute;a de la Torre</li><li>b) William Howard Taft</li><li>c) Ramon Magsaysay</li><li>d) Elpidio Quirino</li></ul></div><div class="qmc"><div class="qn">11. Which of Rizal&rsquo;s works is dedicated to GOMBURZA?</div><ul class="qopts"><li>a) Noli Me Tangere</li><li>b) El Filibusterismo</li><li>c) Mi &Uacute;ltimo Adi&oacute;s</li><li>d) Amor Patrio</li></ul></div><div class="qmc"><div class="qn">12. What was Rizal&rsquo;s Masonic name?</div><ul class="qopts"><li>a) Laong Laan</li><li>b) Dimasalang</li><li>c) Dimasilaw</li><li>d) Sobresaliente</li></ul></div><div class="qmc"><div class="qn">13. Which woman is considered Rizal&rsquo;s &ldquo;true love&rdquo; and the inspiration for Maria Clara?</div><ul class="qopts"><li>a) Josephine Bracken</li><li>b) Leonor Rivera</li><li>c) Segunda Katigbak</li><li>d) Nellie Boustead</li></ul></div><div class="qmc"><div class="qn">14. What degree did Rizal earn from the Universidad Central de Madrid in June 1885, with a rating of &ldquo;Excellent&rdquo;?</div><ul class="qopts"><li>a) Licentiate in Medicine</li><li>b) Doctor of Medicine</li><li>c) Licentiate in Philosophy and Letters</li><li>d) Bachelor of Arts</li></ul></div><div class="qmc"><div class="qn">15. Who was Rizal&rsquo;s defense counsel at his 1896 trial?</div><ul class="qopts"><li>a) Luis Taviel de Andrade</li><li>b) Ferdinand Blumentritt</li><li>c) Paciano Rizal</li><li>d) Maximo Viola</li></ul></div><div class="qmc"><div class="qn">16. On what date was Noli Me Tangere finished and ready for printing?</div><ul class="qopts"><li>a) March 21, 1887</li><li>b) February 21, 1887</li><li>c) June 19, 1887</li><li>d) December 30, 1886</li></ul></div><div class="qmc"><div class="qn">17. Which ship did Rizal board from Manila to Singapore?</div><ul class="qopts"><li>a) Djemnah</li><li>b) Salvadora</li><li>c) Victoria</li><li>d) Trinidad</li></ul></div><div class="qmc"><div class="qn">18. Under what passport name did Rizal travel when he left the Philippines in 1882?</div><ul class="qopts"><li>a) Jose Rizal</li><li>b) Jose Mercado</li><li>c) Jose Protacio</li><li>d) Jose Alonso</li></ul></div><div class="qmc"><div class="qn">19. What was Rizal&rsquo;s unfinished third novel?</div><ul class="qopts"><li>a) Makamisa</li><li>b) Mi &Uacute;ltimo Adi&oacute;s</li><li>c) Amor Patrio</li><li>d) Los Viajes</li></ul></div><div class="qmc"><div class="qn">20. What is the title of Rizal&rsquo;s farewell poem, written on the eve of his execution?</div><ul class="qopts"><li>a) Amor Patrio</li><li>b) Mi &Uacute;ltimo Adi&oacute;s</li><li>c) Me Piden Versos</li><li>d) Noli Me Tangere</li></ul></div>
+
+<h2>Part II &middot; Identification (20 items)</h2>
+<div class="idq"><b>21.</b>The law requiring courses on Rizal&rsquo;s life, works, and writings in all Philippine schools &mdash; signed June 12, 1956.</div><div class="idq"><b>22.</b>The President who signed RA 1425 into law.</div><div class="idq"><b>23.</b>Rizal&rsquo;s older brother who witnessed the GOMBURZA execution and encouraged him to take up their cause.</div><div class="idq"><b>24.</b>The Austrian professor who was Rizal&rsquo;s close friend and pen pal.</div><div class="idq"><b>25.</b>The French ophthalmologist Rizal worked under in Paris.</div><div class="idq"><b>26.</b>The German ophthalmologist Rizal worked under in Heidelberg.</div><div class="idq"><b>27.</b>The author of &ldquo;Travels in the Philippines&rdquo; whom Rizal met in Berlin.</div><div class="idq"><b>28.</b>The Filipino term for the local elite class of educated, landowning families &mdash; Rizal&rsquo;s own class.</div><div class="idq"><b>29.</b>The Spanish colonial police force, widely feared for abuses of power.</div><div class="idq"><b>30.</b>The combined name of the three priests executed on February 17, 1872.</div><div class="idq"><b>31.</b>The canal that shortened the Barcelona&ndash;Manila voyage from over 3 months to 32 days.</div><div class="idq"><b>32.</b>The first liberal Spanish Governor-General (1869&ndash;1871).</div><div class="idq"><b>33.</b>The Spanish parliament where the Philippines had no representation.</div><div class="idq"><b>34.</b>The Filipino reformist newspaper founded and edited by Graciano Lopez-Jaena.</div><div class="idq"><b>35.</b>Rizal&rsquo;s pen name used for &ldquo;Amor Patrio.&rdquo;</div><div class="idq"><b>36.</b>The Spanish academic rating meaning &ldquo;Excellent.&rdquo;</div><div class="idq"><b>37.</b>The place where Rizal was exiled for four years (1892&ndash;1896).</div><div class="idq"><b>38.</b>The place where Rizal was executed on December 30, 1896.</div><div class="idq"><b>39.</b>The Rizal novel published in Ghent, Belgium, in 1891.</div><div class="idq"><b>40.</b>The woman who became Rizal&rsquo;s common-law wife and married him hours before his execution.</div>
+
+<h2>Part III &middot; Modified True or False (20 items)</h2>
+<div class="mtfq"><b>41.</b>RA 1425 is also known as Batas Pambansa 1425.</div><div class="mtfq"><b>42.</b>Rizal dedicated Noli Me Tangere to GOMBURZA.</div><div class="mtfq"><b>43.</b>The original Rizal Bill was Senate Bill 448.</div><div class="mtfq"><b>44.</b>Rizal joined Lodge Acacia in March 1883.</div><div class="mtfq"><b>45.</b>Rizal transferred to Lodge Solidaridad in November 1883.</div><div class="mtfq"><b>46.</b>Noli Me Tangere was printed at 300 pesos for 2,000 copies.</div><div class="mtfq"><b>47.</b>The French Revolution motto was &ldquo;Freedom, Fairness, Fraternity.&rdquo;</div><div class="mtfq"><b>48.</b>Rizal&rsquo;s first article abroad was &ldquo;Amor Patrio.&rdquo;</div><div class="mtfq"><b>49.</b>Rizal wrote &ldquo;Amor Patrio&rdquo; under the pen name Dimasalang.</div><div class="mtfq"><b>50.</b>The Suez Canal was built by Ferdinand de Lesseps.</div><div class="mtfq"><b>51.</b>Rizal arrived in Barcelona on June 16, 1882.</div><div class="mtfq"><b>52.</b>Rizal earned his Licentiate in Medicine in June 1885.</div><div class="mtfq"><b>53.</b>Rizal celebrated his 26th birthday in Geneva.</div><div class="mtfq"><b>54.</b>Rizal visited the Vatican on June 29, 1887.</div><div class="mtfq"><b>55.</b>Rizal&rsquo;s passport name was &ldquo;Jose Rizal.&rdquo;</div><div class="mtfq"><b>56.</b>The ship from Manila to Singapore was the Djemnah.</div><div class="mtfq"><b>57.</b>Rizal first met Blumentritt in Vienna.</div><div class="mtfq"><b>58.</b>El Filibusterismo was published in 1887.</div><div class="mtfq"><b>59.</b>Josephine Bracken was Rizal&rsquo;s common-law wife.</div><div class="mtfq"><b>60.</b>Rizal&rsquo;s mother was Teodora Alonso.</div>
+
+</section>
+
+<section class="chapter" id="ch08">
+<div class="cn">CHAPTER 08</div><div class="ct">Practice Quiz #2 &mdash; Answer Key</div>
+<p class="ci">Check your Chapter 07 answers here &mdash; don&rsquo;t peek until you&rsquo;ve finished all 60 items.</p>
+
+<h2>Part I &middot; Multiple Choice</h2>
+<div class="tw"><table><thead><tr><th>#</th><th>Answer</th><th>Explanation</th></tr></thead><tbody>
+<tr><td>1</td><td>b) Claro M. Recto</td><td>Recto filed SB 438 on April 3, 1956; Laurel sponsored it on the floor.</td></tr><tr><td>2</td><td>c) Board of National Education</td><td>RA 1425 Sec. 3 tasked the Board with translation and free distribution.</td></tr><tr><td>3</td><td>c) 1890</td><td>Slide says 1883, but Lodge Solidaridad wasn&rsquo;t founded until 1886. Verified date: November 15, 1890.</td></tr><tr><td>4</td><td>b) Uncle Tom&rsquo;s Cabin</td><td>Harriet Beecher Stowe&rsquo;s novel inspired Rizal to depict his people&rsquo;s suffering.</td></tr><tr><td>5</td><td>a) 300 pesos for 2,000 copies</td><td>Printed by Berliner Buchdruckerei-Actiengesellschaft; funded by Maximo Viola.</td></tr><tr><td>6</td><td>c) June 16, 1882</td><td>Arrived at noon, boarded at Fonda de Espa&ntilde;a. First impression was unfavorable.</td></tr><tr><td>7</td><td>c) Leitmeritz, Bohemia</td><td>May 13, 1887 &mdash; after years of correspondence.</td></tr><tr><td>8</td><td>a) Touch Me Not</td><td>Latin phrase; Rizal took it from the Bible (actually John 20:17, though he said Luke).</td></tr><tr><td>9</td><td>c) Freedom of the Press</td><td>The Eleven Evils included frailocracy, forced labor, racial discrimination &mdash; but NOT freedom of the press (that was a liberal idea they lacked).</td></tr><tr><td>10</td><td>b) William Howard Taft</td><td>He believed the Philippines needed a national hero.</td></tr><tr><td>11</td><td>b) El Filibusterismo</td><td>The second novel (1891) carries the GOMBURZA dedication &mdash; NOT the Noli.</td></tr><tr><td>12</td><td>b) Dimasalang</td><td>Rizal&rsquo;s Masonic name at Lodge Acacia, March 1883.</td></tr><tr><td>13</td><td>b) Leonor Rivera</td><td>Their long engagement ended when her mother intercepted letters. She inspired Maria Clara.</td></tr><tr><td>14</td><td>c) Licentiate in Philosophy and Letters</td><td>June 1885, rated &ldquo;Excellent&rdquo; (Sobresaliente).</td></tr><tr><td>15</td><td>a) Luis Taviel de Andrade</td><td>Spanish military officer assigned as his counsel.</td></tr><tr><td>16</td><td>b) February 21, 1887</td><td>Finished; printed March 21, 1887.</td></tr><tr><td>17</td><td>b) Salvadora</td><td>Spanish steamer, Manila &rarr; Singapore. Then transferred to Djemnah.</td></tr><tr><td>18</td><td>b) Jose Mercado</td><td>Original family surname; used to avoid detection.</td></tr><tr><td>19</td><td>a) Makamisa</td><td>Rizal&rsquo;s unfinished third novel.</td></tr><tr><td>20</td><td>b) Mi &Uacute;ltimo Adi&oacute;s</td><td>Written December 29, 1896, night before execution.</td></tr>
+</tbody></table></div>
+
+<h2>Part II &middot; Identification</h2>
+<div class="tw"><table><thead><tr><th>#</th><th>Answer</th></tr></thead><tbody>
+<tr><td>21</td><td>Republic Act No. 1425 (Rizal Law)</td></tr><tr><td>22</td><td>Ramon Magsaysay</td></tr><tr><td>23</td><td>Paciano Rizal</td></tr><tr><td>24</td><td>Ferdinand Blumentritt</td></tr><tr><td>25</td><td>Louis de Wecker</td></tr><tr><td>26</td><td>Otto Becker</td></tr><tr><td>27</td><td>Feodor Jagor</td></tr><tr><td>28</td><td>Principalia</td></tr><tr><td>29</td><td>Guardia Civil</td></tr><tr><td>30</td><td>GOMBURZA (Gomez, Burgos, Zamora)</td></tr><tr><td>31</td><td>Suez Canal</td></tr><tr><td>32</td><td>Carlos Mar&iacute;a de la Torre</td></tr><tr><td>33</td><td>Cortes</td></tr><tr><td>34</td><td>La Solidaridad</td></tr><tr><td>35</td><td>Laong Laan</td></tr><tr><td>36</td><td>Sobresaliente</td></tr><tr><td>37</td><td>Dapitan</td></tr><tr><td>38</td><td>Bagumbayan (Luneta)</td></tr><tr><td>39</td><td>El Filibusterismo</td></tr><tr><td>40</td><td>Josephine Bracken</td></tr>
+</tbody></table></div>
+
+<h2>Part III &middot; Modified True or False</h2>
+<div class="tw"><table><thead><tr><th>#</th><th>Answer</th><th>Correction</th></tr></thead><tbody>
+<tr><td>41</td><td><span class="tag tr2">FALSE</span></td><td>Batas Pambansa &rarr; Republic Act</td></tr><tr><td>42</td><td><span class="tag tr2">FALSE</span></td><td>Noli Me Tangere &rarr; El Filibusterismo</td></tr><tr><td>43</td><td><span class="tag tr2">FALSE</span></td><td>448 &rarr; 438</td></tr><tr><td>44</td><td><span class="tag tg">TRUE</span></td><td>&mdash;</td></tr><tr><td>45</td><td><span class="tag tr2">FALSE</span></td><td>November 1883 &rarr; November 15, 1890</td></tr><tr><td>46</td><td><span class="tag tg">TRUE</span></td><td>&mdash;</td></tr><tr><td>47</td><td><span class="tag tr2">FALSE</span></td><td>Freedom, Fairness &rarr; Liberty, Equality</td></tr><tr><td>48</td><td><span class="tag tg">TRUE</span></td><td>&mdash;</td></tr><tr><td>49</td><td><span class="tag tr2">FALSE</span></td><td>Dimasalang &rarr; Laong Laan</td></tr><tr><td>50</td><td><span class="tag tg">TRUE</span></td><td>&mdash;</td></tr><tr><td>51</td><td><span class="tag tg">TRUE</span></td><td>&mdash;</td></tr><tr><td>52</td><td><span class="tag tr2">FALSE</span></td><td>June 1885 &rarr; June 1884</td></tr><tr><td>53</td><td><span class="tag tg">TRUE</span></td><td>&mdash;</td></tr><tr><td>54</td><td><span class="tag tg">TRUE</span></td><td>&mdash;</td></tr><tr><td>55</td><td><span class="tag tr2">FALSE</span></td><td>Jose Rizal &rarr; Jose Mercado</td></tr><tr><td>56</td><td><span class="tag tr2">FALSE</span></td><td>Djemnah &rarr; SS Salvadora</td></tr><tr><td>57</td><td><span class="tag tr2">FALSE</span></td><td>Vienna &rarr; Leitmeritz, Bohemia</td></tr><tr><td>58</td><td><span class="tag tr2">FALSE</span></td><td>1887 &rarr; 1891 (Ghent, Belgium)</td></tr><tr><td>59</td><td><span class="tag tg">TRUE</span></td><td>&mdash;</td></tr><tr><td>60</td><td><span class="tag tg">TRUE</span></td><td>&mdash;</td></tr>
+</tbody></table></div>
+
+</section>
+
+<section class="chapter" id="ch09">
+<div class="cn">CHAPTER 09</div><div class="ct">Exam Strategy &amp; Traps</div>
+
+<div class="gg">
+<div class="gc" data-g="MC"><div class="gera">FOR MULTIPLE CHOICE</div><div class="gtit">Work the options</div>
+<p class="gsp">1. Read all options before answering<br>2. Watch for &ldquo;NOT&rdquo; and &ldquo;EXCEPT&rdquo;<br>3. Dates are frequently tested &mdash; memorize the key ones<br>4. Names are frequently tested &mdash; know who did what<br>5. Eliminate obviously wrong answers first</p></div>
+<div class="gc" data-g="ID"><div class="gera">FOR IDENTIFICATION</div><div class="gtit">Spelling counts</div>
+<p class="gsp">1. Practice writing names correctly<br>2. If you don&rsquo;t know the exact answer, write what you know<br>3. Common answers: Rizal Law, Recto, Laurel, Magsaysay, Viola, Blumentritt</p></div>
+</div>
+
+<h2>For Modified True or False</h2>
+<p>If FALSE, you must <strong>both</strong> identify the wrong word <strong>and</strong> supply the correction. Common traps: wrong dates, wrong names, wrong titles.</p>
+<div class="box red"><div class="bico">&#9888;&#65039;</div><div class="bbd"><div class="btt">Watch for these exact swaps</div><div class="btx">
+&ldquo;Batas Pambansa&rdquo; (wrong) vs. &ldquo;Republic Act&rdquo; (correct)<br>
+&ldquo;Noli&rdquo; (wrong) vs. &ldquo;El Filibusterismo&rdquo; (correct) for the GOMBURZA dedication<br>
+&ldquo;448&rdquo; (wrong) vs. &ldquo;438&rdquo; (correct) for the Senate Bill<br>
+&ldquo;5564&rdquo; (wrong) vs. &ldquo;5561&rdquo; (correct) for the House Bill<br>
+&ldquo;1883&rdquo; (wrong) vs. &ldquo;1890&rdquo; (correct) for Lodge Solidaridad<br>
+&ldquo;2,00&rdquo; (wrong) vs. &ldquo;2,000&rdquo; (correct) for Noli copies
+</div></div></div>
+
+<h2>Scoring Guide (for Practice Quiz #2)</h2>
+<div class="tw"><table><thead><tr><th>Score</th><th>Rating</th></tr></thead><tbody>
+<tr><td>55&ndash;60</td><td>&#127942; Excellent &mdash; you&rsquo;re ready for the midterm</td></tr>
+<tr><td>48&ndash;54</td><td>&#9989; Very Good &mdash; review the ones you missed</td></tr>
+<tr><td>40&ndash;47</td><td>&#9888;&#65039; Needs Review &mdash; focus on weak areas</td></tr>
+<tr><td>Below 40</td><td>&#128308; Study More &mdash; re-read the lectures and combined guide</td></tr>
+</tbody></table></div>
+
+</section>
+
+<section class="chapter" id="ch10">
+<div class="cn">CHAPTER 10</div><div class="ct">High-Yield Study Checklist &amp; Weak-Area Self-Check</div>
+<p class="ci">Tick these off as they become automatic. After scoring Practice Quiz #2 (Ch. 07&ndash;08), tally your misses per topic below to see exactly where to spend your remaining study time.</p>
+
+<h2>Must-Know Dates</h2>
+<ul class="chklist"><li>June 19, 1861 &mdash; Rizal born</li><li>November 17, 1869 &mdash; Suez Canal opened</li><li>January 20, 1872 &mdash; Cavite Mutiny</li><li>February 17, 1872 &mdash; GOMBURZA executed</li><li>May 3, 1882 &mdash; Rizal leaves Manila</li><li>June 16, 1882 &mdash; Arrives Barcelona</li><li>November 3, 1882 &mdash; Enrolls at Universidad Central</li><li>August 20, 1882 &mdash; &ldquo;Amor Patrio&rdquo; published</li><li>March 1883 &mdash; Joins Lodge Acacia</li><li>June 1884 &mdash; Licentiate in Medicine</li><li>June 1885 &mdash; Licentiate in Philosophy and Letters</li><li>February 3, 1886 &mdash; Arrives Heidelberg</li><li>February 21, 1887 &mdash; Noli finished</li><li>March 21, 1887 &mdash; Noli printed</li><li>May 13, 1887 &mdash; Meets Blumentritt</li><li>June 19, 1887 &mdash; 26th birthday in Geneva</li><li>June 29, 1887 &mdash; Visits Vatican</li><li>December 30, 1896 &mdash; Rizal executed</li><li>June 12, 1956 &mdash; RA 1425 signed</li><li>December 26, 1994 &mdash; PMO 247</li><li>February 15, 1996 &mdash; CHED MO 6</li></ul>
+
+<h2>Must-Know People</h2>
+<ul class="chklist"><li>Claro M. Recto &mdash; Original author SB 438</li><li>Jose P. Laurel &mdash; Father of Rizal Law</li><li>Ramon Magsaysay &mdash; Signed RA 1425</li><li>Maximo Viola &mdash; Savior of the Noli</li><li>Ferdinand Blumentritt &mdash; Austrian pen pal</li><li>Louis de Wecker &mdash; French ophthalmologist</li><li>Otto Becker &mdash; German ophthalmologist</li><li>Feodor Jagor &mdash; Author, &ldquo;Travels in the Philippines&rdquo;</li><li>Teodora Alonso &mdash; Rizal&rsquo;s mother</li><li>Francisco Mercado &mdash; Rizal&rsquo;s father</li><li>Paciano Rizal &mdash; Witnessed GOMBURZA execution</li><li>Carlos Mar&iacute;a de la Torre &mdash; First liberal Governor-General</li></ul>
+
+<h2>Must-Know Terms</h2>
+<ul class="chklist"><li>Bayani &mdash; Hero</li><li>Bayanihan &mdash; Communal unity</li><li>RA 1425 &mdash; Rizal Law</li><li>Unexpurgated &mdash; Complete, uncensored</li><li>Principalia &mdash; Local elite</li><li>Ilustrado &mdash; Educated elite</li><li>Peninsulares &mdash; Spaniards born in Spain</li><li>Insulares &mdash; Spaniards born in Philippines</li><li>Indios &mdash; Native Filipinos</li><li>Guardia Civil &mdash; Colonial police</li><li>Frailocracy &mdash; Friar power</li><li>Encomienda &mdash; Tribute grant</li><li>Polo &mdash; Forced labor</li><li>Tributo &mdash; Tax tribute</li><li>Bandala &mdash; Forced sale</li><li>Rentas estancadas &mdash; Monopolies</li><li>GOMBURZA &mdash; Executed priests</li><li>La Solidaridad &mdash; Reformist newspaper</li><li>Laong Laan &mdash; Rizal&rsquo;s pen name</li><li>Dimasalang &mdash; Rizal&rsquo;s Masonic name</li><li>Sobresaliente &mdash; &ldquo;Excellent&rdquo; rating</li></ul>
+
+<h2>Topic-by-Topic Weak Area Self-Check</h2>
+<div class="tw"><table><thead><tr><th>Topic</th><th>Items</th><th>Your Score</th></tr></thead><tbody>
+<tr><td>RA 1425 / Legislative History</td><td>1, 2, 21, 22, 41, 42, 43</td><td><input class="scorebox" type="text" placeholder="  /7"></td></tr><tr><td>First Trip Abroad / Voyage</td><td>6, 7, 17, 18, 51, 56, 57</td><td><input class="scorebox" type="text" placeholder="  /7"></td></tr><tr><td>Noli / El Fili / Works</td><td>4, 5, 8, 11, 16, 19, 20, 39, 48, 58</td><td><input class="scorebox" type="text" placeholder="  /10"></td></tr><tr><td>People (Recto, Laurel, Viola, etc.)</td><td>1, 10, 12, 13, 15, 23, 24, 25, 26, 27, 32, 40, 60</td><td><input class="scorebox" type="text" placeholder="  /13"></td></tr><tr><td>19th Century / Context</td><td>9, 28, 29, 30, 31, 33, 34</td><td><input class="scorebox" type="text" placeholder="  /7"></td></tr><tr><td>Dates / Timelines</td><td>3, 14, 44, 45, 52, 53, 54</td><td><input class="scorebox" type="text" placeholder="  /7"></td></tr><tr><td>Terms / Definitions</td><td>28, 29, 33, 35, 36</td><td><input class="scorebox" type="text" placeholder="  /5"></td></tr><tr><td>Corrections (Traps)</td><td>41, 42, 43, 45, 47, 49, 52, 55, 56, 57, 58</td><td><input class="scorebox" type="text" placeholder="  /11"></td></tr>
+</tbody></table></div>
+
+</section>
+
+
+<div class="footer"><p>QCU Academic OS &middot; AY 2026-2027 &middot; Compiled by <strong>KianoRoku18Ino</strong> &middot; github.com/KianoRoku18Ino</p></div>
+</main>
+
+</body>
+</html>
