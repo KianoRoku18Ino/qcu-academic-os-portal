@@ -20,6 +20,13 @@
                   "label": "Midterm Lecture",
                   "order": 1000,
                   "html": "assets/guides/year-1/sem-1/rizal/midterm-lecture.html"
+                },
+                {
+                  "id": "midterm-reviewer-and-simple-mockup",
+                  "kind": "special",
+                  "label": "Midterm Reviewer and Simple Mockup",
+                  "order": 1001,
+                  "html": "assets/guides/year-1/sem-1/rizal/midterm-reviewer-and-simple-mockup.html"
                 }
               ]
             },
