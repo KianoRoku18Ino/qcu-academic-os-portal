@@ -233,6 +233,13 @@
                   "label": "Pirates of the Silicon Valley",
                   "order": 1000,
                   "html": "assets/guides/year-1/sem-1/cc101/pirates-of-the-silicon-valley.html"
+                },
+                {
+                  "id": "midterm-reviewer",
+                  "kind": "special",
+                  "label": "Midterm Reviewer",
+                  "order": 1001,
+                  "html": "assets/guides/year-1/sem-1/cc101/midterm-reviewer.html"
                 }
               ]
             },
