@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CC102 — Weeks 2-4 | Logic Formulation &amp; Intro to Java | Lesson Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--bgcode:#060D18;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--purple:#8B5CF6;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(59,130,246,.15);--sw:285px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvs{padding:9px 17px 3px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t3)}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover,.nvi a.act{color:var(--t1);background:rgba(59,130,246,.08);border-left-color:var(--blue)}
+.nvi a.act{color:var(--blue);font-weight:500}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:20px}
+.main{margin-left:var(--sw)}
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:52px 52px 42px;position:relative;overflow:hidden}
+.hero::before{content:'01001000';position:absolute;top:-10px;right:15px;font-family:'JetBrains Mono',monospace;font-size:115px;font-weight:900;color:rgba(59,130,246,.04);letter-spacing:-5px;user-select:none;line-height:1}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--blue)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:44px;font-weight:700;line-height:1.08;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#3B82F6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:17px;color:var(--t2);margin-bottom:19px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+.chapter{padding:44px 52px;border-bottom:1px solid var(--bdr);max-width:970px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:27px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:600;margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--blue);border-radius:2px;flex-shrink:0}
+h3{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--blue);margin:22px 0 9px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+.box{border-radius:8px;padding:13px 17px;margin:15px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}.red .btt{color:var(--red)}
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--blue);font-size:12px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(59,130,246,.04)}
+tbody td{padding:9px 13px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}
+.codeblock{background:var(--bgcode);border:1px solid var(--bdr);border-radius:8px;margin:15px 0;overflow:hidden}
+.cbhd{display:flex;align-items:center;justify-content:space-between;padding:8px 13px;background:var(--bgr);border-bottom:1px solid var(--bdr)}
+.cbhl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:1px}
+.dots{display:flex;gap:4px}.dot{width:9px;height:9px;border-radius:50%}.dr{background:#EF4444}.dy{background:#F59E0B}.dg{background:#10B981}
+pre{padding:16px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.75;color:#C4D4E8}
+.steps{margin:15px 0}
+.step{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.snum{background:var(--blue);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace}
+.sc{flex:1}
+.sl{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:2px}
+.sd{color:var(--t2);font-size:13px;line-height:1.7}
+.sd code{font-family:'JetBrains Mono',monospace;background:var(--bgr);padding:1px 5px;border-radius:3px;font-size:11.5px;color:var(--amber)}
+.tl{margin:15px 0}
+.tli{display:flex;gap:14px;margin-bottom:18px;position:relative}
+.tli::before{content:'';position:absolute;left:73px;top:30px;width:1px;height:calc(100% + 5px);background:var(--bdr)}
+.tli:last-child::before{display:none}
+.tlyr{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--amber);font-weight:700;min-width:58px;padding-top:12px;text-align:right}
+.tldot{width:9px;height:9px;background:var(--blue);border-radius:50%;border:2px solid var(--bg);flex-shrink:0;margin-top:14px}
+.tlc{background:var(--bgc);border:1px solid var(--bdr);border-radius:8px;padding:11px 15px;flex:1}
+.tlt{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:3px}
+.tld{color:var(--t2);font-size:12.5px;line-height:1.65}
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.gc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;position:relative;overflow:hidden}
+.gc::before{content:attr(data-g);position:absolute;top:-10px;right:7px;font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:900;color:rgba(59,130,246,.05);line-height:1}
+.gera{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.gtit{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:7px}
+.gsp{font-size:12.5px;color:var(--t2);margin:0;line-height:1.7}
+.gsp strong{color:var(--blue)}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:15px 0}
+.pcrd{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:13px 15px}
+.pnm{font-weight:700;color:var(--t1);font-size:13px;margin-bottom:2px}
+.pdt{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.pttl{font-size:11px;color:var(--blue);font-weight:600;margin-bottom:4px}
+.pdsc{font-size:12px;color:var(--t2);line-height:1.6}
+.isg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.isc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;border-top:3px solid var(--blue)}
+.isc.a{border-top-color:var(--amber)}.isc.g{border-top-color:var(--green)}.isc.p{border-top-color:var(--purple)}
+.ico{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-bottom:3px}
+.inm{font-weight:700;font-size:14px;color:var(--t1);margin-bottom:6px}
+.idc{font-size:12.5px;color:var(--t2);line-height:1.7}
+.ieg{font-size:11.5px;color:var(--green);margin-top:6px}
+.mlst{margin:11px 0}
+.mitem{display:flex;gap:11px;padding:10px 0;border-bottom:1px solid var(--bdr);align-items:flex-start}
+.mitem:last-child{border-bottom:none}
+.mnm{font-weight:700;color:var(--red);min-width:110px;font-size:13px}
+.mdc{font-size:13px;color:var(--t2);line-height:1.65}
+.tree{font-family:'JetBrains Mono',monospace;font-size:12.5px;background:var(--bgcode);border:1px solid var(--bdr);border-radius:8px;padding:15px 19px;color:var(--t2);line-height:2;margin:12px 0;overflow-x:auto;white-space:pre}
+.law{background:var(--bgc);border:1px solid var(--bdr);border-left:4px solid var(--red);border-radius:8px;padding:15px 17px;margin:11px 0}
+.lra{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--red);font-weight:700;margin-bottom:3px}
+.ltit{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:4px}
+.lyr{font-size:11px;color:var(--t3);margin-bottom:7px}
+.ldc{font-size:13px;color:var(--t2);line-height:1.75}
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:4px;font-size:13px;line-height:1.75}
+li strong{color:var(--t1)}
+.vn{counter-reset:vnum}
+.vitem{counter-increment:vnum;position:relative;padding:13px 17px 13px 46px;margin-bottom:10px;background:var(--bgc);border:1px solid var(--bdr);border-radius:8px}
+.vitem::before{content:counter(vnum);position:absolute;left:14px;top:13px;width:22px;height:22px;border-radius:50%;background:var(--bluedim);color:#fff;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.vitem .vlabel{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--amber);margin-bottom:4px}
+.vitem p{margin-bottom:0}
+.resbox{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:16px 0}
+.rescard{background:var(--bgc);border:1px solid var(--bdr);border-radius:8px;padding:12px 14px}
+.reslbl{font-family:'JetBrains Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:1px;color:var(--t3);margin-bottom:5px}
+.reslink{font-size:12.5px;color:var(--blue);font-weight:600;text-decoration:none;word-break:break-word}
+.reslink:hover{text-decoration:underline}
+.footer{padding:34px 52px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--blue)}
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.gg,.pg,.isg,.resbox{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+<div class="sbh"><div class="sbb">CC102 · QCU BSIT</div><div class="sbt">Fundamentals of Programming</div><div class="sbs">Weeks 2–4 Lesson Guide · AY 2026–2027</div></div>
+<ul class="nvl">
+<li class="nvs">Introduction</li>
+<li class="nvi"><a href="#overview"><span class="nn">00</span>Verification &amp; Priority Map</a></li>
+<li class="nvs">Chapters</li>
+<li class="nvi"><a href="#ch1"><span class="nn">01</span>Week 2 — Logic Formulation</a></li>
+<li class="nvi"><a href="#ch2"><span class="nn">02</span>Week 3 — Flowcharts &amp; Decisions</a></li>
+<li class="nvi"><a href="#ch3"><span class="nn">03</span>Week 4 — Intro to Java</a></li>
+<li class="nvi"><a href="#ch4"><span class="nn">04</span>Glossary</a></li>
+</ul></nav>
+
+<main class="main">
+<div class="hero">
+<div class="he">QCU Academic OS · AY 2026–2027</div>
+<div class="ht">CC102</div>
+<div class="hs">Weeks 2–4 — Logic Formulation, Flowcharts &amp; Intro to Java — Lesson-Faithful Guide</div>
+<div class="hm">
+<div class="mp">Course: <span>CC102 — Fundamentals of Programming</span></div>
+<div class="mp">Source: <span>Prof.'s slides, Weeks 2–4</span></div>
+<div class="mp">Scope: <span>Lesson-only + flagged additions</span></div>
+</div></div>
+
+<section class="chapter" id="overview">
+<div class="cn">CHAPTER 00</div><div class="ct">Verification Notes — Read This First</div>
+<p class="ci">Every claim below was checked against the professor's own slides first, then against outside sources. Nothing here changes what's testable — it only tells you where the slides are exactly right, where a date is contested even among reputable sources, and where an item on the slides doesn't get elaborated later. Content pulled in from outside the slides (glossary terms, code translations, extra context) is marked <span class="tag tb">ADDED</span> everywhere it appears in the chapters below, so you never mistake it for something the professor said.</p>
+
+<div class="vn">
+<div class="vitem"><div class="vlabel">Duplication in the source · Week 4</div><p>The "Java Features" numbered list (Week 4 slide 11) lists 15 items, but items 13–15 ("High-performance," "Multi-threaded," "Distributed") are verbatim repeats of items 10–12. The feature wheel graphic on the previous slide shows exactly <strong>12</strong> distinct features. This guide lists the 12 unique features once — the repeat looks like a copy-paste slip when the slide deck was assembled, not a second, different set of features you need to memorize.</p></div>
+
+<div class="vitem"><div class="vlabel">Named but not explained · Week 3</div><p>Slide 4 ("Flowchart Symbols") names nine symbols, including <strong>Off-Page Connector</strong> and <strong>Documents</strong>. Every other symbol on that slide gets its own follow-up slide with a full explanation — these two don't. It's likely they were meant to be covered in a later week (they're standard flowcharting symbols), not that they're something you're missing from Week 3 itself. This guide notes both in the symbol legend but does not invent an explanation for them.</p></div>
+
+<div class="vitem"><div class="vlabel">Extraction artifact, not a content gap · Week 4</div><p>Slide 10 ("Java Features") splits the word "hardware-based" across the page footer during text extraction ("hardware-bas... ed."). Viewing the slide directly confirms the word is intact and complete on the slide — this is a PDF-layout quirk, not a truncated point.</p></div>
+
+<div class="vitem"><div class="vlabel">Verified correct · Week 4</div><p><strong>JDK 1.0's release date (January 23, 1996)</strong> is exactly right — confirmed against Oracle's own Java Tutorials and multiple independent Java-history sources. Same for J2SE 1.3 (May 8, 2000), J2SE 5.0 (September 30, 2004), Java SE 6 (December 11, 2006), Java SE 7 (July 28, 2011), Java SE 8 (March 18, 2014), Java SE 9 (September 21, 2017), and Java SE 10 (March 20, 2018).</p></div>
+
+<div class="vitem"><div class="vlabel">Discrepancy — date · Week 4</div><p>The slide lists <strong>J2SE 1.4 as released "6th Feb 2002."</strong> Oracle's own version history and independent sources (Wikipedia, CodeJava) put the actual release at <strong>February 13, 2002</strong>. This looks like a genuine date slip in the slide — go with February 13 if a precise date is asked.</p></div>
+
+<div class="vitem"><div class="vlabel">Minor date variance across sources · Week 4</div><p>Two other dates on the slide have small (1–4 day) disagreements across otherwise-reliable sources: <strong>JDK 1.1</strong> is dated Feb 19, 1997 on the slide and on most tutorial sites, but Feb 18, 1997 on Wikipedia's infobox. <strong>J2SE 1.2</strong> is dated Dec 8, 1998 on the slide and on several tutorial sites, but Dec 4, 1998 on Wikipedia. Both are close enough that either is defensible on a quiz, but if your professor's slide is the graded authority, go with what's printed there (Feb 19 / Dec 8).</p></div>
+
+<div class="vitem"><div class="vlabel">Confirmed, with a small nuance · Week 4</div><p>"Time magazine called Java one of the Ten Best Products of 1995" checks out — this is a real, widely-documented claim, not internet trivia gone wrong. The "Java vs. Silk" naming story is also basically right, though the more precise history (from a 1996 JavaWorld interview reprinted by InfoWorld) credits product manager <strong>Kim Polese</strong> with proposing both names and making the final call, with Gosling favoring Java over Silk — the slide's framing ("According to James Gosling...") isn't wrong, just slightly simplified.</p></div>
+
+<div class="vitem"><div class="vlabel">Factual correction — worth knowing, not just trivia · Week 4</div><p>The slide states <strong>"Java is an island of Indonesia where first coffee was produced."</strong> This part is inaccurate: coffee did not originate in Java — it originated in Ethiopia and was first cultivated commercially in Yemen. Java became one of the world's largest coffee <em>exporters</em> only after Dutch colonists smuggled coffee plants there in 1696, which is why "java" became a nickname for coffee in general. The slide's wording is a very commonly copy-pasted line across student tutorials (it appears near-verbatim on several other sites), so this isn't a one-off error — but it is worth quietly correcting in your own notes.</p></div>
+
+<div class="vitem"><div class="vlabel">Now outdated in the real world (not wrong when written) · Week 4</div><p>The slide presents <strong>Applet</strong> and <strong>Application</strong> as the two program types Java "can be used to create," with no caveat. Applets are now dead technology: Oracle deprecated the Applet API in JDK 9 (2017), deprecated it for removal in JDK 17 (2021), and fully <strong>removed the entire <code>java.applet</code> package in JDK 26</strong> (March 2026). No current browser has run Java applets since the mid-2010s. The slide isn't factually wrong for the JDK version it was written against — but if this comes up in a lab or exam today, know that "Application" is effectively the only one of the two you'll ever actually run. See the deprecation callout in Chapter 03.</p></div>
+
+<div class="vitem"><div class="vlabel">Added context, not a correction · Week 2</div><p>The slide's 4-step Programming Cycle (Problem definition → Problem analysis → Algorithm development → Coding and debugging) is a standard, accepted simplification. Some textbooks split it into 5–6 steps by separating "testing" and "documentation" out from "coding and debugging." Both versions are taught; the slide's 4-step version is what's testable for this course.</p></div>
+
+<div class="vitem"><div class="vlabel">Summary</div><p>Outside of the J2SE 1.4 date and the coffee-origin claim, nothing else in the Week 2–4 material required a correction. Everything else checked out against outside sources or is a matter of standard simplification.</p></div>
+</div>
+
+<h2>Exam Priority Map</h2>
+<div class="tw"><table>
+<thead><tr><th>Topic</th><th>Chapter</th><th>Exam Weight</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td>Algorithm characteristics &amp; Pseudocode</td><td>01</td><td><span class="tag tr2">🔴 High</span></td><td>Definitional — commonly asked as identification/enumeration items</td></tr>
+<tr><td>Programming Cycle (4 steps)</td><td>01</td><td><span class="tag ta">🟡 Medium</span></td><td>Sequencing/ordering questions are common</td></tr>
+<tr><td>Flowchart symbols &amp; meaning</td><td>02</td><td><span class="tag tr2">🔴 High</span></td><td>Matching-type items are a Week 3 staple</td></tr>
+<tr><td>Logical/Relational operators + truth tables</td><td>02</td><td><span class="tag tr2">🔴 High</span></td><td>Feeds directly into Java <code>if</code> conditions in Week 4+</td></tr>
+<tr><td>Decision structures (single/dual/multiple)</td><td>02</td><td><span class="tag tr2">🔴 High</span></td><td>Core forward-link to Java selection statements</td></tr>
+<tr><td>Looping constructs &amp; infinite-loop pitfall</td><td>02</td><td><span class="tag tr2">🔴 High</span></td><td>Directly tested via trace/debug-the-flowchart items</td></tr>
+<tr><td>Java history/naming trivia</td><td>03</td><td><span class="tag ta">🟡 Medium</span></td><td>Frequently asked as enumeration/identification, low reasoning difficulty</td></tr>
+<tr><td>Java Features (12)</td><td>03</td><td><span class="tag ta">🟡 Medium</span></td><td>Enumeration-style, low difficulty once memorized</td></tr>
+<tr><td>Program structure / main() rules</td><td>03</td><td><span class="tag tr2">🔴 High</span></td><td>Directly testable via "spot the error" code items</td></tr>
+<tr><td>Applet vs. Application</td><td>03</td><td><span class="tag tb">🔵 Lower</span></td><td>Definitional only; Applet is legacy/removed technology today</td></tr>
+</tbody></table></div>
+</section>
+
+<!-- CHAPTER 01 — WEEK 2 -->
+<section class="chapter" id="ch1">
+<div class="cn">CHAPTER 01 · WEEK 2</div><div class="ct">Program Logic Formulation</div>
+<p class="ci">This week establishes the vocabulary you'll use for the rest of the course: what a program actually is, the four-stage cycle every program goes through before it runs, and the two tools (algorithms and pseudocode) used to plan a program's logic before writing a single line of Java.</p>
+
+<h2>What Is a Computer Program?</h2>
+<p>A computer program (also called a software program, or just a program) is a sequence of instructions written to perform a specified task for a computer. The slide illustrates this with familiar software: Java, Microsoft Windows, C++, Microsoft Visual Basic, and Microsoft Access.</p>
+
+<h2>The Programming Cycle</h2>
+<p>Before code gets written, a program passes through four stages:</p>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Problem Definition</div><div class="sd">Nailing down exactly what the program needs to accomplish — what inputs it receives and what output it must produce.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Problem Analysis</div><div class="sd">Breaking the problem down into its component parts and identifying what data and operations are actually needed.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Algorithm Development</div><div class="sd">Designing the step-by-step logic that solves the problem — typically expressed as pseudocode or a flowchart.</div></div></div>
+<div class="step"><div class="snum">4</div><div class="sc"><div class="sl">Coding and Debugging</div><div class="sd">Translating the algorithm into an actual programming language (Java, in this course), then finding and fixing errors.</div></div></div>
+</div>
+<div class="box blue"><div class="bico">🔗</div><div class="bbd"><div class="btt">Forward Link</div><p class="btx">Stage 3 (Algorithm Development) is exactly what the rest of this chapter and all of Week 3 build toward — every flowchart and pseudocode example you learn is a way of doing this stage well before you ever touch Java syntax.</p></div></div>
+
+<h2>Algorithm</h2>
+<p>An algorithm is a step-by-step problem-solving procedure, especially an established, recursive computational procedure for solving a problem in a finite number of steps.</p>
+<h3>Characteristics of a Valid Algorithm</h3>
+<ul>
+<li><strong>Specify each step or instruction exactly</strong> — no ambiguity about what to do next.</li>
+<li><strong>There must be a finite number of steps</strong> — it has to actually end.</li>
+<li><strong>There must be an output</strong> — it has to produce a result.</li>
+</ul>
+
+<h2>Pseudocode</h2>
+<p>Pseudocode is a generic way of describing an algorithm without using any specific programming language's syntax. It cannot be executed on a real computer, but it models and resembles real programming code and is written at roughly the same level of detail. Pseudocode is an artificial, informal language that helps programmers develop algorithms — it reads very similarly to everyday English.</p>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">Pseudocode</div></div>
+<pre><code>If student's grade is greater than or equal to 60
+    Print "passed"
+else
+    Print "failed"</code></pre></div>
+
+<h3>Steps in Problem Solving</h3>
+<ul>
+<li>First produce a general algorithm (pseudocode works well for this).</li>
+<li>Refine the algorithm successively to get a step-by-step detailed algorithm that is very close to a computer language.</li>
+</ul>
+
+<div class="isg">
+<div class="isc a"><div class="ico">Tag: ADDED</div><div class="inm">Glossary Word Check</div><div class="idc">"Recursive" in the algorithm definition doesn't mean the same thing as a recursive <em>function</em> you'll meet later — here it just means the procedure follows a fixed, repeatable set of rules, the general dictionary sense of the word.</div></div>
+<div class="isc g"><div class="ico">Tag: ADDED</div><div class="inm">Recitation-Ready Line</div><div class="idc">If asked "what's the difference between an algorithm and pseudocode?" — an algorithm is the <em>logic</em>; pseudocode is one common <em>way of writing that logic down</em> in a language-neutral, English-like form.</div></div>
+</div>
+
+<h2>Scenario-Based Problems</h2>
+<div class="mlst">
+<div class="mitem"><div class="mnm">Problem 1</div><div class="mdc"><strong>Q:</strong> You're handed a one-paragraph description of what a payroll program needs to do, and you write down exactly what inputs it takes (hours worked, rate) and what output it must produce (gross pay). Which stage of the Programming Cycle is this?<br><strong>Solution:</strong> This is <strong>Problem Definition</strong> — you're establishing scope (inputs/outputs), not yet breaking the problem into parts (Analysis) or designing the logic (Algorithm Development).</div></div>
+<div class="mitem"><div class="mnm">Problem 2</div><div class="mdc"><strong>Q:</strong> Write pseudocode for a program that asks the user for a number and prints "Even" or "Odd."<br><strong>Solution, step by step:</strong>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">Pseudocode</div></div>
+<pre><code>Get num
+If num MOD 2 is equal to 0
+    Print "Even"
+else
+    Print "Odd"</code></pre></div>
+The remainder (MOD) of an even number divided by 2 is always 0, so that's the condition to test.</div></div>
+<div class="mitem"><div class="mnm">Problem 3</div><div class="mdc"><strong>Q:</strong> A classmate submits this as an "algorithm": <em>"Keep guessing numbers until you win the lottery."</em> Which characteristic of a valid algorithm does this violate?<br><strong>Solution:</strong> It violates <strong>"there must be a finite number of steps."</strong> There's no guarantee the process ever ends — it could run forever without ever producing a result, which also means it fails the "must produce an output" test in practice.</div></div>
+</div>
+
+<h2>Resources</h2>
+<div class="resbox">
+<div class="rescard"><div class="reslbl">Reference</div><a class="reslink" href="https://www.geeksforgeeks.org/competitive-programming/an-introduction-to-flowcharts/" target="_blank">GeeksforGeeks — Introduction to Flowcharts</a></div>
+<div class="rescard"><div class="reslbl">Tutorial</div><a class="reslink" href="https://www.codecademy.com/article/pseudocode-and-flowchart-complete-beginners-guide" target="_blank">Codecademy — Pseudocode &amp; Flowchart Guide</a></div>
+<div class="rescard"><div class="reslbl">Video</div><a class="reslink" href="https://www.youtube.com/watch?v=lhELGQAV4gg" target="_blank">Kunal Kushwaha — Flow of Program</a></div>
+</div>
+</section>
+
+<!-- CHAPTER 02 — WEEK 3 -->
+<section class="chapter" id="ch2">
+<div class="cn">CHAPTER 02 · WEEK 3</div><div class="ct">Logic Formulation Cont. — Flowcharts, Decisions &amp; Loops</div>
+<p class="ci">This is the densest week in the set: flowchart symbols, the two families of boolean operators, and the three building blocks (selection, repetition, and their combinations) that every program's control flow is made of. Everything here maps directly onto Java's <code>if</code>/<code>else</code> and loop statements in Chapter 03 and beyond.</p>
+
+<h2>What Is a Flowchart?</h2>
+<p>A flowchart is a chart that contains symbols referring to computer operations, describing how the program performs. Symbols such as squares, diamonds, and ovals represent various operations; these symbols are connected by lines and arrows to indicate the flow of data or control from one point to another.</p>
+
+<h3>Flowchart Symbol Legend</h3>
+<div class="tw"><table>
+<thead><tr><th>Symbol</th><th>Name</th><th>Entrances / Exits</th><th>Represents</th></tr></thead>
+<tbody>
+<tr><td>Rounded rectangle / Oval</td><td>Terminal Block</td><td>Start: 0 in, 1 out · End: 1 in, 0 out</td><td>Marks the start or end of a module/program. Labeled with the module name at start; "End"/"Stop" at the end.</td></tr>
+<tr><td>Hexagon</td><td>Initialization</td><td>1 in, 1 out</td><td>Declaring/initializing the variables needed for the process (e.g. <code>X = 10, Y = 25</code>).</td></tr>
+<tr><td>Rectangle</td><td>Process</td><td>1 in, 1 out</td><td>Calculations, opening/closing files, and other processing steps.</td></tr>
+<tr><td>Parallelogram</td><td>Input/Output</td><td>1 in, 1 out</td><td>Input and output operations (e.g. <code>Get X</code>, <code>Display X</code>).</td></tr>
+<tr><td>Diamond</td><td>Decision</td><td>1 in, exactly 2 out</td><td>A condition evaluated as TRUE or FALSE, with one exit path per outcome.</td></tr>
+<tr><td>Circle</td><td>Connector (On-Page)</td><td>varies</td><td>Links two non-adjacent sections of the same flowchart. Use sparingly — overuse hurts readability.</td></tr>
+<tr class="nt"><td>Pentagon</td><td>Off-Page Connector</td><td>—</td><td><span class="tag ta">Named on slide 4, not individually explained in this week's material</span></td></tr>
+<tr class="nt"><td>Wavy-bottom rectangle</td><td>Documents</td><td>—</td><td><span class="tag ta">Named on slide 4, not individually explained in this week's material</span></td></tr>
+<tr><td>Arrow</td><td>Flow Line</td><td>—</td><td>Shows the direction of data/control flow; the arrowhead is sometimes omitted when direction is already clear. Never cross flow lines.</td></tr>
+</tbody></table></div>
+
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">A Decision Box Only Holds Testable Conditions</div><p class="btx">Whatever goes inside a diamond has to evaluate to TRUE or FALSE in a mathematical form — e.g. <code>X &lt; 20?</code> — never an essay-style question like "Is variable X less than 20?"</p></div></div>
+
+<h2>Decision Structures: Logical &amp; Relational Operators</h2>
+<p>Conditions are statements that evaluate to a Boolean value (TRUE/FALSE, or 1/0). They fall into two categories: logical operators and relational operators.</p>
+
+<h3>Logical Operators — Truth Tables</h3>
+<div class="tw"><table>
+<thead><tr><th>Condition A</th><th>!A (NOT)</th></tr></thead>
+<tbody>
+<tr><td>F</td><td>T</td></tr>
+<tr><td>T</td><td>F</td></tr>
+</tbody></table></div>
+<div class="tw"><table>
+<thead><tr><th>Condition a</th><th>Condition b</th><th>a AND b</th><th>a OR b</th></tr></thead>
+<tbody>
+<tr><td>F</td><td>F</td><td>F</td><td>F</td></tr>
+<tr><td>F</td><td>T</td><td>F</td><td>T</td></tr>
+<tr><td>T</td><td>F</td><td>F</td><td>T</td></tr>
+<tr><td>T</td><td>T</td><td>T</td><td>T</td></tr>
+</tbody></table></div>
+<p><strong>NOT</strong> reverses the logic of a single condition. <strong>AND</strong> is TRUE only when both sides are TRUE. <strong>OR</strong> is TRUE when at least one side is TRUE.</p>
+
+<h3>Exercise 1 — Worked Solution (self-checked twice)</h3>
+<p class="ci">The slide leaves this table blank as an in-class exercise. Here's the fully worked answer for review — try covering the right two columns and filling them in yourself first.</p>
+<div class="tw"><table>
+<thead><tr><th>a</th><th>b</th><th>c</th><th>a AND b AND c</th><th>a OR b OR c</th></tr></thead>
+<tbody>
+<tr><td>F</td><td>F</td><td>F</td><td>F</td><td>F</td></tr>
+<tr><td>F</td><td>F</td><td>T</td><td>F</td><td>T</td></tr>
+<tr><td>F</td><td>T</td><td>F</td><td>F</td><td>T</td></tr>
+<tr><td>F</td><td>T</td><td>T</td><td>F</td><td>T</td></tr>
+<tr><td>T</td><td>F</td><td>F</td><td>F</td><td>T</td></tr>
+<tr><td>T</td><td>F</td><td>T</td><td>F</td><td>T</td></tr>
+<tr><td>T</td><td>T</td><td>F</td><td>F</td><td>T</td></tr>
+<tr><td>T</td><td>T</td><td>T</td><td>T</td><td>T</td></tr>
+</tbody></table></div>
+<div class="box green"><div class="bico">✅</div><div class="bbd"><div class="btt">Pattern to remember</div><p class="btx">A 3-way AND is TRUE only on the single row where all three are TRUE. A 3-way OR is FALSE only on the single row where all three are FALSE. This scales to any number of conditions.</p></div></div>
+
+<h3>Relational Operators</h3>
+<div class="tw"><table>
+<thead><tr><th>Symbol</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>&lt;</code></td><td>Less than</td></tr>
+<tr><td><code>&gt;</code></td><td>Greater than</td></tr>
+<tr><td><code>&lt;=</code></td><td>Less than or equal to</td></tr>
+<tr><td><code>&gt;=</code></td><td>Greater than or equal to</td></tr>
+<tr><td><code>==</code></td><td>Is equal to</td></tr>
+<tr><td><code>!=</code> / <code>&lt;&gt;</code></td><td>Not equal to (both symbols shown mean the same thing on the slide)</td></tr>
+</tbody></table></div>
+
+<h3>Exercise 2 — Worked Solution (self-checked twice)</h3>
+<div class="tw"><table>
+<thead><tr><th>X</th><th>Y</th><th>X&lt;Y</th><th>X&gt;Y</th><th>X&lt;=Y</th><th>X&gt;=Y</th><th>X==Y</th><th>X!=Y</th></tr></thead>
+<tbody>
+<tr><td>5</td><td>17</td><td>T</td><td>F</td><td>T</td><td>F</td><td>F</td><td>T</td></tr>
+<tr><td>18</td><td>4</td><td>F</td><td>T</td><td>F</td><td>T</td><td>F</td><td>T</td></tr>
+<tr><td>12</td><td>12</td><td>F</td><td>F</td><td>T</td><td>T</td><td>T</td><td>F</td></tr>
+<tr><td>30</td><td>31</td><td>T</td><td>F</td><td>T</td><td>F</td><td>F</td><td>T</td></tr>
+</tbody></table></div>
+
+<h2>Selection Structures — Scenario → Flowchart → Code</h2>
+
+<h3>Single Alternative Selection</h3>
+<p><strong>Scenario:</strong> A decision box may not need to do something for both the TRUE and FALSE path — only the TRUE path leads somewhere.</p>
+<div class="tree">Start
+  │
+  ▼
+ ◇ x &lt; y? ─No──┐
+  │Yes          │
+  ▼             │
+[print x]        │
+  │             │
+  ▼◄────────────┘
+ End</div>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">Java</div></div>
+<pre><code>if (x &lt; y) {
+    System.out.println(x);
+}</code></pre></div>
+
+<h3>Dual Alternative Selection</h3>
+<p><strong>Scenario:</strong> Performs two different things depending on whether the condition is TRUE or FALSE.</p>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">Java</div></div>
+<pre><code>if (x &lt; y) {
+    System.out.println(x);
+} else {
+    System.out.println(y);
+}</code></pre></div>
+
+<h3>Multiple Decision Boxes</h3>
+<p><strong>Scenario:</strong> Ask the user for a number 1–3. If 1, print "Hello"; if 2, print "Hi"; if 3, print "Bye"; otherwise print "Invalid."</p>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">Java</div></div>
+<pre><code>// x has already been read from the user
+if (x == 1) {
+    System.out.println("Hello");
+} else if (x == 2) {
+    System.out.println("Hi");
+} else if (x == 3) {
+    System.out.println("Bye");
+} else {
+    System.out.println("Invalid");
+}</code></pre></div>
+
+<h3>Decision Boxes with Ranges</h3>
+<p><strong>Scenario:</strong> Print the supervisor's name for a given department number — 1–3 → Mr. X, 4–7 → Mr. Y, 8–9 → Mr. Z. The slide's flowchart tests the <em>lowest</em> boundary of each range first.</p>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">Java</div></div>
+<pre><code>// dept has already been read from the user
+if (dept &lt;= 3) {
+    System.out.println("Mr. X");
+} else if (dept &lt;= 7) {
+    System.out.println("Mr. Y");
+} else {
+    System.out.println("Mr. Z");
+}</code></pre></div>
+<div class="box blue"><div class="bico">🔎</div><div class="bbd"><div class="btt">Trace it: dept = 5</div><p class="btx"><code>dept &lt;= 3</code> → 5 &lt;= 3 is FALSE → check next → <code>dept &lt;= 7</code> → 5 &lt;= 7 is TRUE → prints <strong>"Mr. Y"</strong>.</p></div></div>
+
+<h2>Looping Constructs</h2>
+<p>A repetition structure (loop/iteration) repeats one or more instructions until a certain condition is met. The action performed inside the loop must eventually cause it to terminate — otherwise it becomes an <strong>infinite loop</strong>.</p>
+<div class="box red"><div class="bico">🛑</div><div class="bbd"><div class="btt">The Infinite Loop Trap</div><p class="btx">The slide's example tests <code>X &lt; Y?</code> and displays X — but never changes X. Since X never changes, the condition never becomes FALSE, and the loop runs forever. <strong>The fix:</strong> add an action inside the loop that changes X, e.g. <code>X = X + 1</code>. This is called a <strong>pre-test repetition structure</strong> — the condition is tested <em>before</em> any action runs, so if the condition is false to begin with, the loop body never executes at all.</p></div></div>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">Java — corrected loop</div></div>
+<pre><code>int x = 0, y = 10;
+while (x &lt; y) {
+    System.out.println(x);
+    x = x + 1;   // without this line, the loop never ends
+}</code></pre></div>
+
+<h3>Worked Example: Gender Validation, Repeated 5 Times</h3>
+<p><strong>Scenario:</strong> Ask the user for a gender. If 'M', display "MALE"; if 'F', display "FEMALE"; otherwise display "Invalid Gender" and let the user re-enter. Repeat the whole process 5 times.</p>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">Java</div></div>
+<pre><code>String gen = "";
+int ctr = 1;
+while (ctr &lt;= 5) {
+    // gen has been read from the user here
+    if (!gen.equals("M") &amp;&amp; !gen.equals("F")) {
+        System.out.println("Invalid");
+    } else if (gen.equals("M")) {
+        System.out.println("Male");
+    } else {
+        System.out.println("Female");
+    }
+    ctr = ctr + 1;
+}</code></pre></div>
+<p class="ci"><span class="tag tb">ADDED</span> Note how the flowchart's <code>Gen != 'M' AND Gen != 'F'</code> decision box becomes <code>!gen.equals("M") &amp;&amp; !gen.equals("F")</code> in Java — the AND from the truth table above is written <code>&amp;&amp;</code>, and string comparison uses <code>.equals()</code> rather than <code>==</code> (a rule you'll meet formally once Java strings are covered in more depth).</p>
+
+<h2>Multiple Loops</h2>
+<p>It's possible to have a loop within a loop. When loops are nested, it's critical to determine exactly what condition will terminate the whole flowchart — not just the inner loop.</p>
+
+<h2>Scenario-Based Problems</h2>
+<div class="mlst">
+<div class="mitem"><div class="mnm">Problem 1</div><div class="mdc"><strong>Q:</strong> Using the department/supervisor decision structure above, what prints for <code>dept = 9</code>?<br><strong>Solution:</strong> <code>9 &lt;= 3</code> → FALSE. <code>9 &lt;= 7</code> → FALSE. Falls to <code>else</code> → prints <strong>"Mr. Z."</strong></div></div>
+<div class="mitem"><div class="mnm">Problem 2</div><div class="mdc"><strong>Q:</strong> This loop never stops. Find and fix the bug: <code>int x = 0; while (x &lt; 10) { System.out.println(x); }</code><br><strong>Solution:</strong> The condition <code>x &lt; 10</code> is tested every pass, but nothing inside the loop changes <code>x</code> — it stays 0 forever, so the condition is always TRUE. Fix: add <code>x = x + 1;</code> as the last line inside the loop body.</div></div>
+<div class="mitem"><div class="mnm">Problem 3</div><div class="mdc"><strong>Q:</strong> Design the logic (flowchart description + pseudocode) for: ask for a score, print "Pass" if 75 or above, otherwise "Fail," repeated 3 times.<br><strong>Solution:</strong> Flowchart: Start → Ctr=1 → loop while Ctr&lt;=3 → Get Score → Decision Score&gt;=75? → Yes: Print "Pass" / No: Print "Fail" → Ctr=Ctr+1 → back to loop test → Stop.
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">Pseudocode</div></div>
+<pre><code>Ctr = 1
+while Ctr &lt;= 3
+    Get Score
+    if Score &gt;= 75
+        Print "Pass"
+    else
+        Print "Fail"
+    Ctr = Ctr + 1</code></pre></div></div></div>
+</div>
+
+<h2>Resources</h2>
+<div class="resbox">
+<div class="rescard"><div class="reslbl">Reference</div><a class="reslink" href="https://www.geeksforgeeks.org/competitive-programming/an-introduction-to-flowcharts/" target="_blank">GeeksforGeeks — Introduction to Flowcharts</a></div>
+<div class="rescard"><div class="reslbl">Tutorial</div><a class="reslink" href="https://www.lucidchart.com/pages/what-is-a-flowchart-tutorial" target="_blank">Lucidchart — What Is a Flowchart?</a></div>
+<div class="rescard"><div class="reslbl">Video</div><a class="reslink" href="https://www.youtube.com/watch?v=lhELGQAV4gg" target="_blank">Kunal Kushwaha — Flow of Program</a></div>
+</div>
+</section>
+
+<!-- CHAPTER 03 — WEEK 4 -->
+<section class="chapter" id="ch3">
+<div class="cn">CHAPTER 03 · WEEK 4</div><div class="ct">Introduction to Java Programming</div>
+<p class="ci">This week shifts from language-agnostic logic to Java specifically: where the language came from, what makes it distinct, how a Java program is structured, and the compile-then-interpret cycle that turns your source code into something that actually runs.</p>
+
+<h2>What Is Java?</h2>
+<p>Java was created in 1991 by James Gosling, Mike Sheridan, and Patrick Naughton of Sun Microsystems. It was first called <strong>"Greentalk"</strong> (file extension <code>.gt</code>), then renamed <strong>Oak</strong> as part of the Green Project, then finally renamed <strong>Java</strong> because "Oak" was already trademarked by another company (Oak Technology).</p>
+<div class="tl">
+<div class="tli"><div class="tlyr">1991</div><div class="tldot"></div><div class="tlc"><div class="tlt">Green Project begins</div><div class="tld">Gosling, Sheridan, and Naughton start work at Sun Microsystems; the language is first called Greentalk, then Oak.</div></div></div>
+<div class="tli"><div class="tlyr">1995</div><div class="tldot"></div><div class="tlc"><div class="tlt">Renamed Java, publicly announced</div><div class="tld">Oak is renamed Java (a trademark conflict with Oak Technology forced the change); Time magazine names it one of the Ten Best Products of 1995.</div></div></div>
+<div class="tli"><div class="tlyr">1996</div><div class="tldot"></div><div class="tlc"><div class="tlt">JDK 1.0 released</div><div class="tld">January 23, 1996 — Java's first public developer kit.</div></div></div>
+</div>
+<h3>Why "Java"?</h3>
+<ul>
+<li>According to the naming story, "Java" and "Silk" were the top two choices under consideration.</li>
+<li>Java was so unique that most of the team preferred it over the alternatives.</li>
+<li>"Java" is named for the Indonesian island long associated with coffee — the developers were known coffee drinkers, which is also why the Java logo is a coffee cup. <span class="tag ta">See Verification Notes: coffee did not originate in Java, but Java became a major coffee-exporting region</span>.</li>
+</ul>
+
+<h2>Java Version History</h2>
+<div class="tw"><table>
+<thead><tr><th>Version</th><th>Release Date</th></tr></thead>
+<tbody>
+<tr><td>JDK Alpha and Beta</td><td>1995</td></tr>
+<tr><td>JDK 1.0</td><td>23 Jan 1996</td></tr>
+<tr><td>JDK 1.1</td><td>19 Feb 1997</td></tr>
+<tr><td>J2SE 1.2</td><td>8 Dec 1998</td></tr>
+<tr><td>J2SE 1.3</td><td>8 May 2000</td></tr>
+<tr><td>J2SE 1.4</td><td>6 Feb 2002 <span class="tag ta">slide date — verified date is 13 Feb 2002</span></td></tr>
+<tr><td>J2SE 5.0</td><td>30 Sep 2004</td></tr>
+<tr><td>Java SE 6</td><td>11 Dec 2006</td></tr>
+<tr><td>Java SE 7</td><td>28 Jul 2011</td></tr>
+<tr><td>Java SE 8</td><td>18 Mar 2014</td></tr>
+<tr><td>Java SE 9</td><td>21 Sep 2017</td></tr>
+<tr><td>Java SE 10</td><td>20 Mar 2018</td></tr>
+</tbody></table></div>
+
+<h2>The First Projects Built Using Java</h2>
+<p>A personal hand-held remote control named <strong>Star 7</strong> was part of the Green Project — first demonstrated in 1992, using a graphical, "home"-metaphor interface.</p>
+
+<h2>What Is Java Technology?</h2>
+<p>Java technology is four things at once:</p>
+<div class="gg">
+<div class="gc" data-g="01"><div class="gera">Language</div><div class="gtit">A Programming Language</div><p class="gsp">The syntax and rules you write code in.</p></div>
+<div class="gc" data-g="02"><div class="gera">Build</div><div class="gtit">A Development Environment</div><p class="gsp">The JDK — tools to write, compile, and package Java code.</p></div>
+<div class="gc" data-g="03"><div class="gera">Run</div><div class="gtit">An Application Environment</div><p class="gsp">The JRE/JVM that actually executes compiled Java programs.</p></div>
+<div class="gc" data-g="04"><div class="gera">Ship</div><div class="gtit">A Deployment Environment</div><p class="gsp">The mechanisms for distributing and running Java programs on end-user machines.</p></div>
+</div>
+
+<h2>Java Features (12)</h2>
+<p class="ci"><span class="tag ta">See Verification Notes</span> — the slide's numbered list duplicates three items; this table lists each of the 12 features on the feature-wheel graphic exactly once.</p>
+<div class="tw"><table>
+<thead><tr><th>#</th><th>Feature</th><th>What it means</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Object-Oriented</td><td>Built around objects and classes — see OOP concepts below.</td></tr>
+<tr><td>2</td><td>Simple</td><td>Designed to be easy to write, compile, debug, and learn.</td></tr>
+<tr><td>3</td><td>Secured</td><td>No explicit pointers; runs inside a sandboxed virtual machine.</td></tr>
+<tr><td>4</td><td>Platform Independent</td><td>"Write once, run anywhere" — compiled bytecode runs on any device with a JVM.</td></tr>
+<tr><td>5</td><td>Robust</td><td>Strong memory management and exception handling reduce crashes.</td></tr>
+<tr><td>6</td><td>Portable</td><td>The same bytecode behaves identically across platforms.</td></tr>
+<tr><td>7</td><td>Architecture-Neutral</td><td>Not tied to any specific processor architecture.</td></tr>
+<tr><td>8</td><td>Dynamic</td><td>Adapts to an evolving environment; loads classes as needed at runtime.</td></tr>
+<tr><td>9</td><td>Interpreted</td><td>Bytecode is executed by the JVM's interpreter (and JIT compiler).</td></tr>
+<tr><td>10</td><td>High Performance</td><td>Just-In-Time compilation narrows the gap with fully compiled languages.</td></tr>
+<tr><td>11</td><td>Multithreaded</td><td>Can run multiple threads of execution concurrently.</td></tr>
+<tr><td>12</td><td>Distributed</td><td>Built-in networking libraries support distributed computing.</td></tr>
+</tbody></table></div>
+
+<h3>Java Features — OOP Basics</h3>
+<p>Feature #1 (Object-Oriented) rests on six basic concepts: Object, Class, Inheritance, Polymorphism, Abstraction, and Encapsulation.</p>
+<h3>Platform Independence — Two Kinds of Platforms</h3>
+<p>The slide distinguishes two types of platforms Java must be independent of: <strong>software-based</strong> and <strong>hardware-based</strong> platforms.</p>
+
+<h2>Java Development Environment</h2>
+<p>Installing the JDK produces several folders, each holding files needed to build your program. For instance, the <code>bin</code> folder contains the executables used to compile your program (<code>javac.exe</code>).</p>
+<div class="tree">j2sdk1.4.0/
+├── bin       (compiler &amp; tool executables, e.g. javac.exe)
+├── demo      (sample programs)
+├── docs      (documentation)
+├── include   (native-code headers)
+├── jre       (bundled runtime environment)
+└── lib       (supporting libraries)</div>
+
+<h2>Java Program Cycle</h2>
+<p>Use any text editor to create your source code (a <code>.java</code> file). The source code is compiled according to the JVM to produce byte code (a <code>.class</code> file). The byte code is then executed using an interpreter.</p>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Source Code</div><div class="sd">Write <code>HelloQCU.java</code> in any text editor.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Compiler</div><div class="sd">Turns the source into byte code — <code>HelloQCU.class</code>.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">JVM / Interpreter</div><div class="sd">Reads the byte code and executes it, producing the program's output.</div></div></div>
+</div>
+
+<h2>Applet vs. Application</h2>
+<div class="isg">
+<div class="isc"><div class="ico">Type 1</div><div class="inm">Applet</div><div class="idc">A special application designed to run inside the context of a web browser.</div></div>
+<div class="isc g"><div class="ico">Type 2</div><div class="inm">Application</div><div class="idc">A stand-alone program that does <em>not</em> need a browser to run — this is what nearly all Java code you write in this course will be.</div></div>
+</div>
+<div class="law"><div class="lra">DEPRECATED / AVOID</div><div class="ltit">The Applet API Is Gone as of JDK 26</div><div class="lyr">Deprecated JDK 9 (2017) → deprecated-for-removal JDK 17 (2021) → fully removed JDK 26 (March 2026)</div><div class="ldc">No modern web browser has supported Java applets since roughly the mid-2010s, and the <code>java.applet</code> package no longer exists in current JDK releases at all. Treat "Applet" in this lesson as historical context for understanding <em>why</em> Java was originally designed the way it was — not as something you'll ever compile and run. Every program you write for this course is an <strong>Application</strong>.</div></div>
+
+<h2>Java Program Structure</h2>
+<ul>
+<li>A program is made up of one or more <strong>classes</strong>.</li>
+<li>A class contains one or more <strong>methods</strong>.</li>
+<li>A method contains program <strong>statements</strong>.</li>
+<li>A Java application always contains a method called <code>main</code>.</li>
+</ul>
+
+<h3>Anatomy of a Java Program</h3>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">HelloQCU.java</div></div>
+<pre><code>class HelloQCU {
+    public static void main(String[] args) {
+        System.out.println("Hello QCU!");
+    }
+}</code></pre></div>
+<div class="tw"><table>
+<thead><tr><th>Part</th><th>Called</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td><code>class</code></td><td>Keyword</td><td>Begins a class declaration.</td></tr>
+<tr><td><code>HelloQCU</code></td><td>Identifier / class name</td><td>Names the class — must match the filename (<code>HelloQCU.java</code>) if the class is <code>public</code>.</td></tr>
+<tr><td><code>public static void main(String[] args)</code></td><td>Method signature (the <code>main</code> method)</td><td>The entry point the JVM looks for and invokes first when the program runs.</td></tr>
+<tr><td><code>{ }</code></td><td>Block delimiters</td><td>Mark the beginning and end of the class body / method body.</td></tr>
+<tr><td><code>System.out.println("Hello QCU!");</code></td><td>Statement (method call)</td><td>Calls the <code>println</code> method on the standard output stream to print text, then moves to a new line.</td></tr>
+<tr><td><code>"Hello QCU!"</code></td><td>String literal</td><td>The fixed text value being printed.</td></tr>
+<tr><td><code>;</code></td><td>Statement terminator</td><td>Ends every statement in Java — a very common source of "spot the error" quiz items.</td></tr>
+</tbody></table></div>
+<p class="ci"><strong>Bonus terms an oral defense might ask next:</strong> "method" vs. "function" (Java calls them methods because they belong to a class), "argument" vs. "parameter" (<code>args</code> is the parameter; whatever you actually pass in when running the program is the argument), and "block" vs. "body" (the block is the <code>{ }</code> pair; the body is what's inside it).</p>
+
+<h3>The main() Method — Rules</h3>
+<ul>
+<li>When executing a Java application, the JVM loads the class and invokes the <code>main()</code> method of that class.</li>
+<li><code>main()</code> must be declared <strong>public</strong>, <strong>static</strong>, and <strong>void</strong>.</li>
+<li>A source file may have one or more classes.</li>
+<li>Only one class — the one matching the file name — may be declared <code>public</code>.</li>
+</ul>
+
+<h3>Organizing a Java Application</h3>
+<ul>
+<li><strong>Source code:</strong> <code>filename.java</code></li>
+<li><strong>Class file:</strong> <code>classname.class</code> (matches the class name, produced by the compiler)</li>
+<li>The compiler searches for a class file when it encounters a reference to a class in a <code>.java</code> file; the interpreter searches for <code>.class</code> files at runtime — both search the directories listed in the <code>classpath</code> variable.</li>
+</ul>
+
+<h3>Package Naming Tips</h3>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">Java</div></div>
+<pre><code>package course;
+public class Student {
+    // code goes here
+}</code></pre></div>
+<p>The qualified name for this class is <code>course.Student</code>, stored at the path <code>course/Student.java</code>. To use it elsewhere: <code>import course.Student;</code> (a single class) or <code>import course.*;</code> (every class in the package). Packages make classes easier to find, avoid naming conflicts between identically-named classes in different packages, and provide access control.</p>
+
+<h3>First Java Program</h3>
+<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">Simple.java</div></div>
+<pre><code>class Simple {
+    public static void main(String args[]) {
+        System.out.println("Hello Java");
+    }
+}</code></pre></div>
+<div class="box blue"><div class="bico">🔁</div><div class="bbd"><div class="btt">Compilation Flow</div><p class="btx"><code>Simple.java</code> (your source) → <strong>Compiler</strong> (<code>javac</code>) → <code>Simple.class</code> (byte code) → run by the JVM.</p></div></div>
+
+<h2>Scenario-Based Problems</h2>
+<div class="mlst">
+<div class="mitem"><div class="mnm">Problem 1</div><div class="mdc"><strong>Q:</strong> Find the error: <code>class HelloQCU { public static void main(String[] args) { System.out.println("Hi") } }</code><br><strong>Solution:</strong> Missing semicolon after <code>System.out.println("Hi")</code> — every statement in Java must end in <code>;</code>. Corrected: <code>System.out.println("Hi");</code></div></div>
+<div class="mitem"><div class="mnm">Problem 2</div><div class="mdc"><strong>Q:</strong> You need a program that only ever runs on the student's own laptop, with no browser involved. Applet or Application — and why?<br><strong>Solution:</strong> <strong>Application</strong> — an Applet is specifically designed to run inside a browser, and (per the deprecation callout above) the Applet API no longer exists in current Java releases at all, so it isn't a real option today either way.</div></div>
+<div class="mitem"><div class="mnm">Problem 3</div><div class="mdc"><strong>Q:</strong> Your file is named <code>Main.java</code>, but the public class inside it is declared <code>public class HelloWorld { ... }</code>. Will this compile? Why or why not?<br><strong>Solution:</strong> No — Java requires that <em>only one class, matching the file name, may be declared public</em>. Since the file is <code>Main.java</code>, the public class inside it must be named <code>Main</code>, not <code>HelloWorld</code>.</div></div>
+</div>
+
+<h2>Resources</h2>
+<div class="resbox">
+<div class="rescard"><div class="reslbl">Official Docs</div><a class="reslink" href="https://docs.oracle.com/javase/tutorial/java/index.html" target="_blank">Oracle — Learning the Java Language</a></div>
+<div class="rescard"><div class="reslbl">Tutorial</div><a class="reslink" href="https://www.tutorialspoint.com/java/index.htm" target="_blank">TutorialsPoint — Java Tutorial</a></div>
+<div class="rescard"><div class="reslbl">Video</div><a class="reslink" href="https://www.youtube.com/playlist?list=PLZPZq0r_RZOOj_NOZYq_R2PECIMglLemc" target="_blank">Bro Code — Java for Beginners</a></div>
+</div>
+</section>
+
+<!-- CHAPTER 04 — GLOSSARY -->
+<section class="chapter" id="ch4">
+<div class="cn">CHAPTER 04</div><div class="ct">Glossary</div>
+<p class="ci">Every abbreviation and acronym used across Weeks 2–4 that the slides don't spell out.</p>
+<div class="tw"><table>
+<thead><tr><th>Term</th><th>Stands For</th></tr></thead>
+<tbody>
+<tr><td>CC102</td><td>Computer Course 102 (course code used on the slides; QCU's internal designation)</td></tr>
+<tr><td>JDK</td><td>Java Development Kit</td></tr>
+<tr><td>JRE</td><td>Java Runtime Environment</td></tr>
+<tr><td>JVM</td><td>Java Virtual Machine</td></tr>
+<tr><td>OOP</td><td>Object-Oriented Programming</td></tr>
+<tr><td>I/O</td><td>Input/Output</td></tr>
+<tr><td>MOD</td><td>Modulo (remainder-of-division) operation, used in pseudocode</td></tr>
+<tr><td>JIT</td><td>Just-In-Time (compilation)</td></tr>
+<tr><td>J2SE</td><td>Java 2 Platform, Standard Edition</td></tr>
+<tr><td>QCU</td><td>Quezon City University</td></tr>
+<tr><td>.gt</td><td>File extension used during Java's earliest "Greentalk" naming phase</td></tr>
+</tbody></table></div>
+</section>
+
+<div class="footer"><p>QCU Academic OS · AY 2026–2027 · Compiled by <strong>KianoRoku18Ino</strong> · github.com/KianoRoku18Ino</p></div>
+</main>
+
+</body>
+</html>
