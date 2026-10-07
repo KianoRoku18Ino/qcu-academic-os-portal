@@ -264,6 +264,20 @@
                   "html": "assets/guides/year-1/sem-1/ws101/midterm-reviewer-html-css-javascript.html"
                 }
               ]
+            },
+            {
+              "id": "y1-s1-cc102",
+              "code": "CC102",
+              "title": "Fundamentals of Programming",
+              "items": [
+                {
+                  "id": "2-4",
+                  "kind": "special",
+                  "label": "2-4",
+                  "order": 1000,
+                  "html": "assets/guides/year-1/sem-1/cc102/2-4.html"
+                }
+              ]
             }
           ]
         },
