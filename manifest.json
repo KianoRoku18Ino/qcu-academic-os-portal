@@ -188,6 +188,13 @@
                   "label": "Midterm Mockup Quiz",
                   "order": 1001,
                   "html": "assets/guides/year-1/sem-1/socsci3/midterm-mockup-quiz.html"
+                },
+                {
+                  "id": "midterm-quiz-mockup",
+                  "kind": "special",
+                  "label": "Midterm Quiz Mockup",
+                  "order": 1002,
+                  "html": "assets/guides/year-1/sem-1/socsci3/midterm-quiz-mockup.html"
                 }
               ]
             },
