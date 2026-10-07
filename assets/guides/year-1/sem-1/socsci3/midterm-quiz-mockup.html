@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOCSCI3 Midterm Practice Quiz - The Contemporary World</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* base reset */
+*{margin:0;padding:0;box-sizing:border-box}
+/* color tokens, same palette as the reviewer guide */
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--purple:#8B5CF6;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(59,130,246,.15)}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px;padding-bottom:60px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+/* sticky score bar pinned to the top */
+.scorebar{position:sticky;top:0;z-index:50;background:var(--bgd);border-bottom:1px solid var(--bdr);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.sb-left{display:flex;align-items:center;gap:10px}
+.sb-ttl{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px}
+.sb-progress{width:140px;height:6px;background:var(--bgr);border-radius:3px;overflow:hidden}
+.sb-progress-fill{height:100%;background:var(--blue);width:0%;transition:width .3s}
+.sb-score{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--amber)}
+.sb-reset{background:var(--bgr);border:1px solid var(--bdr);color:var(--t2);font-size:12px;padding:6px 12px;border-radius:6px;cursor:pointer;font-family:'Inter',sans-serif}
+.sb-reset:hover{color:var(--t1);border-color:var(--blue)}
+/* page header */
+.hero{max-width:760px;margin:0 auto;padding:36px 20px 10px}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:10px}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;margin-bottom:8px}
+.hs{font-size:14px;color:var(--t2)}
+/* module section dividers */
+.modhead{max-width:760px;margin:30px auto 14px;padding:0 20px}
+.modhead .mn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px}
+.modhead .mt{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:700;margin-top:4px;padding-bottom:8px;border-bottom:1px solid var(--bdr)}
+/* question card */
+.qwrap{max-width:760px;margin:0 auto;padding:0 20px}
+.qcard{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:18px 20px;margin-bottom:14px}
+.qnum{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--amber);margin-bottom:6px}
+.qtext{font-size:14px;color:var(--t1);margin-bottom:14px;line-height:1.7}
+/* answer option buttons */
+.opt{display:block;width:100%;text-align:left;background:var(--bgr);border:1px solid var(--bdr);color:var(--t2);padding:10px 14px;border-radius:7px;margin-bottom:8px;font-size:13px;cursor:pointer;transition:all .15s;font-family:'Inter',sans-serif}
+.opt:hover:not(:disabled){border-color:var(--blue);color:var(--t1)}
+.opt:disabled{cursor:default}
+.opt.correct{background:rgba(16,185,129,.15);border-color:var(--green);color:var(--green)}
+.opt.wrong{background:rgba(239,68,68,.15);border-color:var(--red);color:var(--red)}
+.opt.faded{opacity:.5}
+/* explanation box, hidden until answered */
+.expl{display:none;background:var(--bgr);border-left:3px solid var(--blue);padding:10px 13px;margin-top:10px;font-size:12.8px;color:var(--t2);border-radius:0 6px 6px 0}
+.expl.show{display:block}
+.expl strong{color:var(--blue)}
+/* final results panel */
+.results{max-width:760px;margin:30px auto;padding:22px 24px;background:linear-gradient(135deg,rgba(59,130,246,.12),rgba(139,92,246,.1));border:1px solid var(--bdr);border-radius:12px;text-align:center;display:none}
+.results.show{display:block}
+.results .rbig{font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:700;color:var(--t1)}
+.results .rsub{font-size:13px;color:var(--t2);margin-top:6px}
+.backlink{display:block;max-width:760px;margin:0 auto 20px;padding:0 20px;text-align:center}
+.backlink a{color:var(--blue);font-size:13px;text-decoration:none}
+.backlink a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+
+<!-- sticky score tracker, updates live as questions are answered -->
+<div class="scorebar">
+<div class="sb-left">
+<span class="sb-ttl">SOCSCI3 Practice Quiz</span>
+<div class="sb-progress"><div class="sb-progress-fill" id="progFill"></div></div>
+</div>
+<div style="display:flex;align-items:center;gap:12px">
+<span class="sb-score" id="scoreText">0 / 30 answered . 0 correct</span>
+<button class="sb-reset" id="resetBtn">Reset Quiz</button>
+</div>
+</div>
+
+<div class="hero">
+<div class="he">QCU Academic OS . Self-Checking Practice</div>
+<div class="ht">Midterm Practice Quiz</div>
+<div class="hs">30 scenario-based questions across Modules 1 to 4. Click an option to check your answer, each question reveals its explanation immediately after you answer.</div>
+</div>
+
+<div id="quizRoot"></div>
+
+<div class="results" id="resultsPanel">
+<div class="rbig" id="resultBig">0 / 30</div>
+<div class="rsub">Finish all 30 questions to see your final score here.</div>
+</div>
+
+<div class="backlink"><a href="socsci3_midterm_reviewer.html">Back to the Reviewer Guide</a></div>
+
+<script>
+/* ---------------------------------------------------------
+   quiz data: 30 questions grouped by module
+   each item: question text, 4 options, index of correct option, explanation
+--------------------------------------------------------- */
+const quizData = [
+{
+  module: "MODULE 1: Nation, State & Six Metaphors",
+  questions: [
+    { q: "A group of people sharing a common history, language, and cultural traditions live across several countries in the Middle East but do not have their own independent government or recognized borders. This group is best described as a:",
+      opts: ["State", "Nation", "Government", "Sovereignty"], correct: 1,
+      expl: "A nation is bound by common history and culture, not necessarily territory or sovereignty. This describes the Kurds." },
+    { q: "A small island country in the Pacific has a population of only about 10,000 people, but it has its own government, defined territory, and conducts foreign relations with other countries. Which element of statehood does its small population NOT disqualify it from?",
+      opts: ["Territory", "Sovereignty", "Population", "Government"], correct: 2,
+      expl: "The Montevideo Convention does not require a minimum population size. Vatican and Nauru are examples." },
+    { q: "A local taxi company loses significant market share after a ride-hailing app enters the country. This situation best illustrates which metaphor of globalization?",
+      opts: ["Flow", "Friction", "Disruption", "Dislocation"], correct: 2,
+      expl: "Disruption describes startup innovations outperforming branded products in markets they once dominated, like the Uber example." },
+    { q: "Factory workers in a developing country lose their jobs because their company automates production with robots. This situation best illustrates which metaphor of globalization?",
+      opts: ["Acceleration", "Dislocation", "Connectivity", "Flow"], correct: 1,
+      expl: "Dislocation covers individuals who cannot keep pace with global changes due to technological factors and get displaced." },
+    { q: "A country builds a world-class airport and improves its internet infrastructure, attracting more international businesses. This best illustrates which metaphor of globalization?",
+      opts: ["Flow", "Friction", "Connectivity", "Disruption"], correct: 2,
+      expl: "Connectivity covers both hard infrastructure (airports, bridges) and soft infrastructure (education, internet) that boost global competitiveness." },
+    { q: "A scholar defines globalization as \u201Cthe intensification of worldwide social relations linking distant localities in such a way that local happenings are shaped by events occurring many thousands of miles away.\u201D Who is this scholar?",
+      opts: ["Thomas Friedman", "Manfred Steger", "Anthony Giddens", "Immanuel Wallerstein"], correct: 2,
+      expl: "This is Anthony Giddens's definition, one of his four named dimensions of globalization." },
+    { q: "A financial crisis in one Asian country rapidly spreads to other economies, causing stock markets worldwide to plummet. This best illustrates which typology of globalization?",
+      opts: ["Economic Globalization", "Financial Globalization", "Political Globalization", "Technological Globalization"], correct: 1,
+      expl: "Financial Globalization describes the interconnection of global financial systems, as with the 1997 Asian Financial Crisis." },
+    { q: "A country in Southeast Asia has experienced rapid economic growth and is now considered on par with industrialized nations. It is best classified as a:",
+      opts: ["BRICS country", "Newly Industrialized Country (NIC)", "Third World country", "Periphery country"], correct: 1,
+      expl: "NIC status applies to Japan, Taiwan, South Korea, and Singapore, countries that achieved an economic miracle." }
+  ]
+},
+{
+  module: "MODULE 2: Structure, History & 4IR",
+  questions: [
+    { q: "In 1944, representatives from 44 countries met in New Hampshire to establish a framework for international economic cooperation. This meeting resulted in the creation of:",
+      opts: ["WTO and GATT", "IMF and World Bank", "UN and ASEAN", "NATO and EU"], correct: 1,
+      expl: "This is the Bretton Woods Conference, held July 1 to 22, 1944." },
+    { q: "A trade agreement signed on October 30, 1947, by 23 countries governed most of world trade from 1948 to 1994. This agreement was:",
+      opts: ["WTO", "GATT", "NAFTA", "ASEAN"], correct: 1,
+      expl: "The General Agreement on Tariffs and Trade (GATT) governed world trade until the WTO replaced it in 1995." },
+    { q: "A factory machine automatically detects that its temperature is increasing and sends a maintenance alert before it breaks down. This is an example of:",
+      opts: ["Artificial Intelligence", "Internet of Things (IoT)", "Blockchain", "Cloud Computing"], correct: 1,
+      expl: "IoT refers to physical objects connected to the internet that can collect and exchange data." },
+    { q: "A restaurant uses a computer system to forecast demand, analyze customer preferences, and personalize marketing. This is an example of:",
+      opts: ["Big Data", "Artificial Intelligence", "Blockchain", "Robotics"], correct: 1,
+      expl: "AI refers to computer systems performing tasks associated with human intelligence, including forecasting and personalization." },
+    { q: "A company uses a distributed digital ledger to track transactions in a way that provides transparency and resistance to unauthorized alteration. This technology is:",
+      opts: ["Cloud Computing", "Blockchain", "IoT", "AI"], correct: 1,
+      expl: "Blockchain is a distributed digital ledger designed for transparency and resistance to tampering." },
+    { q: "The era defined by AI, automation, data, biotechnology, and interconnected intelligent systems is called:",
+      opts: ["Globalization 1.0", "Globalization 2.0", "Globalization 3.0", "Globalization 4.0"], correct: 3,
+      expl: "Globalization 4.0 builds on 1.0 (exploration), 2.0 (industrialization), and 3.0 (digitalization)." },
+    { q: "A Filipino professional works from Quezon City for an American company, communicating through Zoom and Microsoft Teams. This demonstrates which aspect of the 4IR?",
+      opts: ["Smart manufacturing", "Remote work", "Global e-commerce", "Digital banking"], correct: 1,
+      expl: "This is remote work, one of the five ways the 4IR changes globalization." }
+  ]
+},
+{
+  module: "MODULE 3: Facilitators & Theories",
+  questions: [
+    { q: "A developing country exports raw materials at low prices while importing high-value manufactured products from developed countries. This situation is best explained by:",
+      opts: ["Modernization Theory", "Dependency Theory", "Hyperglobalist Perspective", "Glocalization Theory"], correct: 1,
+      expl: "Dependency Theory explains how core countries may exploit periphery countries through unequal economic relationships." },
+    { q: "A sociologist argues that the global economy consists of core, semi-periphery, and periphery countries, and that countries can change their position over time. Who is this theorist?",
+      opts: ["Manuel Castells", "Immanuel Wallerstein", "Thomas Friedman", "Anthony Giddens"], correct: 1,
+      expl: "This is Immanuel Wallerstein's World-Systems Theory." },
+    { q: "A government adapts its policies to global market pressures but remains sovereign and continues to regulate its economy. This perspective is best described as:",
+      opts: ["Hyperglobalist", "Skeptical", "Transformationalist", "Homogenization"], correct: 2,
+      expl: "Transformationalist perspective holds that globalization transforms rather than eliminates the state." },
+    { q: "An international fast-food chain introduces rice meals and local flavors to its menu in the Philippines. This is an example of:",
+      opts: ["Homogenization", "Glocalization", "Hybridization", "Cultural Erosion"], correct: 1,
+      expl: "Glocalization describes global products adapted to local cultures, summed up as \u201Cthink globally, act locally.\u201D" },
+    { q: "A Filipino teenager consumes American films, Korean dramas, Japanese anime, and Filipino music simultaneously, creating new forms of expression. This is best described as:",
+      opts: ["Homogenization", "Glocalization", "Hybridization", "Cultural Imperialism"], correct: 2,
+      expl: "Hybridization describes different cultural elements combining to create something new." },
+    { q: "A scholar argues that globalization is fundamentally transforming the world, national borders are becoming less important, and multinational corporations have significant influence. This perspective is:",
+      opts: ["Skeptical", "Hyperglobalist", "Transformationalist", "Dependency"], correct: 1,
+      expl: "This is the Hyperglobalist perspective." },
+    { q: "A scholar argues that states remain powerful, regional economies remain important, and globalization may be exaggerated. This perspective is:",
+      opts: ["Hyperglobalist", "Skeptical", "Transformationalist", "Modernization"], correct: 1,
+      expl: "This is the Skeptical perspective." }
+  ]
+},
+{
+  module: "MODULE 4: Interstate System & Governance",
+  questions: [
+    { q: "In international relations, \u201Canarchy\u201D means:",
+      opts: ["Complete chaos and disorder", "The absence of a single supreme world authority", "The collapse of government", "A state of war"], correct: 1,
+      expl: "Anarchy in IR terms is not chaos, it just means there is no single supreme world authority above sovereign states." },
+    { q: "Country A is very powerful. Countries B and C form an alliance to counterbalance A's influence. This is an example of:",
+      opts: ["Diplomacy", "Balance of Power", "Sovereignty", "National Interest"], correct: 1,
+      expl: "This is Balance of Power, states using alliances to prevent one state from becoming dominant." },
+    { q: "Two countries disagree over fishing rights. Instead of using force, they exchange diplomatic notes, hold bilateral meetings, and negotiate an agreement. This is an example of:",
+      opts: ["Balance of Power", "Diplomacy", "Anarchy", "Sovereignty"], correct: 1,
+      expl: "This is Diplomacy, negotiation and dialogue instead of force." },
+    { q: "A global health emergency spreads from one country to others through international travel, requiring cooperation among WHO, governments, and researchers. This is an example of:",
+      opts: ["Global Interstate System", "Global Governance", "Balance of Power", "National Interest"], correct: 1,
+      expl: "This is Global Governance, a cooperative response to a cross-border problem." },
+    { q: "The Philippines participates in the UN, ASEAN, WTO, IMF, World Bank, and WHO. This demonstrates:",
+      opts: ["The Philippines has surrendered its sovereignty", "The Philippines operates as both a sovereign state and a participant in global governance", "The Philippines is no longer an independent state", "The Philippines has joined a world government"], correct: 1,
+      expl: "The Philippines keeps its sovereignty while also being an active participant in global governance." },
+    { q: "A country resists international rules on climate change because it believes those rules conflict with its economic interests. This illustrates which challenge of global governance?",
+      opts: ["Unequal Power", "Sovereignty", "Enforcement", "Conflicting National Interests"], correct: 1,
+      expl: "This is the Sovereignty challenge, states may resist international rules that conflict with national interests." },
+    { q: "The UN Security Council is the principal institution involved in:",
+      opts: ["Global Health", "Global Peace and Security", "Global Trade", "Environmental Governance"], correct: 1,
+      expl: "The UN Security Council is the principal institution for global peace and security." },
+    { q: "A country's greenhouse gas emissions contribute to climate change affecting other countries. This demonstrates why:",
+      opts: ["National action alone is sufficient", "Global governance is necessary", "Sovereignty is absolute", "Balance of power is irrelevant"], correct: 1,
+      expl: "Environmental consequences do not stop at national borders, which is why global governance is necessary." }
+  ]
+}
+];
+
+/* ---------------------------------------------------------
+   state: track how many answered and how many correct
+--------------------------------------------------------- */
+let answeredCount = 0;
+let correctCount = 0;
+const totalQuestions = quizData.reduce((sum, mod) => sum + mod.questions.length, 0);
+
+/* build the quiz DOM from quizData on page load */
+function buildQuiz() {
+  const root = document.getElementById("quizRoot");
+  let qIndex = 0;
+  quizData.forEach(mod => {
+    const modHead = document.createElement("div");
+    modHead.className = "modhead";
+    modHead.innerHTML = `<div class="mn">MODULE</div><div class="mt">${mod.module}</div>`;
+    root.appendChild(modHead);
+
+    const qwrap = document.createElement("div");
+    qwrap.className = "qwrap";
+
+    mod.questions.forEach(item => {
+      qIndex++;
+      const card = document.createElement("div");
+      card.className = "qcard";
+      card.id = "q" + qIndex;
+
+      const numDiv = document.createElement("div");
+      numDiv.className = "qnum";
+      numDiv.textContent = "QUESTION " + qIndex + " OF " + totalQuestions;
+      card.appendChild(numDiv);
+
+      const textDiv = document.createElement("div");
+      textDiv.className = "qtext";
+      textDiv.textContent = item.q;
+      card.appendChild(textDiv);
+
+      /* build the 4 option buttons */
+      item.opts.forEach((optText, optIdx) => {
+        const btn = document.createElement("button");
+        btn.className = "opt";
+        btn.textContent = String.fromCharCode(65 + optIdx) + ". " + optText;
+        btn.addEventListener("click", () => handleAnswer(card, item, optIdx, btn));
+        card.appendChild(btn);
+      });
+
+      /* explanation box, revealed after answering */
+      const expl = document.createElement("div");
+      expl.className = "expl";
+      expl.innerHTML = "<strong>Explanation:</strong> " + item.expl;
+      card.appendChild(expl);
+
+      qwrap.appendChild(card);
+    });
+
+    root.appendChild(qwrap);
+  });
+}
+
+/* handle a click on an answer option */
+function handleAnswer(card, item, chosenIdx, chosenBtn) {
+  const buttons = card.querySelectorAll(".opt");
+  /* lock all options for this question once one is chosen */
+  buttons.forEach((b, i) => {
+    b.disabled = true;
+    if (i === item.correct) b.classList.add("correct");
+    else if (i === chosenIdx) b.classList.add("wrong");
+    else b.classList.add("faded");
+  });
+  card.querySelector(".expl").classList.add("show");
+
+  answeredCount++;
+  if (chosenIdx === item.correct) correctCount++;
+  updateScoreBar();
+}
+
+/* refresh the sticky score bar and final results panel */
+function updateScoreBar() {
+  const pct = Math.round((answeredCount / totalQuestions) * 100);
+  document.getElementById("progFill").style.width = pct + "%";
+  document.getElementById("scoreText").textContent =
+    answeredCount + " / " + totalQuestions + " answered . " + correctCount + " correct";
+
+  if (answeredCount === totalQuestions) {
+    const panel = document.getElementById("resultsPanel");
+    panel.classList.add("show");
+    document.getElementById("resultBig").textContent = correctCount + " / " + totalQuestions;
+    document.querySelector(".results .rsub").textContent =
+      "That is " + Math.round((correctCount / totalQuestions) * 100) + "% correct. Reset the quiz to try again.";
+  }
+}
+
+/* reset button: reload the page to clear all quiz state */
+document.getElementById("resetBtn").addEventListener("click", () => location.reload());
+
+buildQuiz();
+</script>
+</body>
+</html>
