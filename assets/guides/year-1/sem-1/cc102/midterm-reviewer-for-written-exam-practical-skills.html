@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CC102 — Fundamentals of Programming | Midterm Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+/* --- CORE PALETTE (shared across every subject — do not change) --- */
+/* --- ACCENT SWAP: add ONE extra variable per subject, matched to the subject's identity ---
+   RIZAL    -> --maroon:#B91C3C   (border tint stays blue, maroon used sparingly for RIZAL-specific tags)
+   HUM2     -> --violet:#8B5CF6  and --bdr becomes rgba(139,92,246,.15)  (violet-tinted borders)
+   SOCSCI3  -> --cyan:#06B6D4    (border tint stays blue)
+   PATHFIT1 -> no new hue; --bdr becomes rgba(16,185,129,.15) (green-tinted borders), --sw:260px (shorter subject name)
+   CC101/CC102/WS101 (technical/core) -> keep default blue border tint, no extra hue needed
+   Default rule: only shift --bdr's tint (and add one named hue var) when the subject's identity calls for it
+   (humanities/ethics -> violet, history/law -> maroon, social science -> cyan, PE/health -> green).
+   Otherwise leave the palette exactly as below. */
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--bgcode:#060D18;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--purple:#8B5CF6;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(59,130,246,.15);--sw:285px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+
+/* Sidebar */
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvs{padding:9px 17px 3px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t3)}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover,.nvi a.act{color:var(--t1);background:rgba(59,130,246,.08);border-left-color:var(--blue)}
+.nvi a.act{color:var(--blue);font-weight:500}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:20px}
+
+/* Main / Hero */
+.main{margin-left:var(--sw)}
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:52px 52px 42px;position:relative;overflow:hidden}
+.hero::before{content:'01001000';position:absolute;top:-10px;right:15px;font-family:'JetBrains Mono',monospace;font-size:115px;font-weight:900;color:rgba(59,130,246,.04);letter-spacing:-5px;user-select:none;line-height:1}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--blue)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:48px;font-weight:700;line-height:1.05;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#3B82F6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:18px;color:var(--t2);margin-bottom:19px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+
+/* Chapter shell */
+.chapter{padding:44px 52px;border-bottom:1px solid var(--bdr);max-width:970px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:19.5px;font-weight:600;margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--blue);border-radius:2px;flex-shrink:0}
+h3{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--blue);margin:22px 0 9px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+
+/* Callout boxes (blue=info/link, amber=caution, green=confirmed/tip, red=warning) */
+.box{border-radius:8px;padding:13px 17px;margin:15px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}.red .btt{color:var(--red)}
+
+/* Tables */
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--blue);font-size:12px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(59,130,246,.04)}
+tbody td{padding:9px 13px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}
+.nt td:not(:first-child){color:var(--amber);font-family:'JetBrains Mono',monospace}
+
+/* Code blocks */
+.codeblock{background:var(--bgcode);border:1px solid var(--bdr);border-radius:8px;margin:15px 0;overflow:hidden}
+.cbhd{display:flex;align-items:center;justify-content:space-between;padding:8px 13px;background:var(--bgr);border-bottom:1px solid var(--bdr)}
+.cbhl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:1px}
+.dots{display:flex;gap:4px}.dot{width:9px;height:9px;border-radius:50%}.dr{background:#EF4444}.dy{background:#F59E0B}.dg{background:#10B981}
+pre{padding:16px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.75;color:#C4D4E8}
+
+/* Numbered steps */
+.steps{margin:15px 0}
+.step{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.snum{background:var(--blue);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace}
+.sc{flex:1}
+.sl{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:2px}
+.sd{color:var(--t2);font-size:13px;line-height:1.7}
+.sd code{font-family:'JetBrains Mono',monospace;background:var(--bgr);padding:1px 5px;border-radius:3px;font-size:11.5px;color:var(--amber)}
+
+/* Timeline */
+.tl{margin:15px 0}
+.tli{display:flex;gap:14px;margin-bottom:18px;position:relative}
+.tli::before{content:'';position:absolute;left:73px;top:30px;width:1px;height:calc(100% + 5px);background:var(--bdr)}
+.tli:last-child::before{display:none}
+.tlyr{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--amber);font-weight:700;min-width:58px;padding-top:12px;text-align:right}
+.tldot{width:9px;height:9px;background:var(--blue);border-radius:50%;border:2px solid var(--bg);flex-shrink:0;margin-top:14px}
+.tlc{background:var(--bgc);border:1px solid var(--bdr);border-radius:8px;padding:11px 15px;flex:1}
+.tlt{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:3px}
+.tld{color:var(--t2);font-size:12.5px;line-height:1.65}
+
+/* 2-up feature grid cards (with faint background watermark letter/number via data-g) */
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.gc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;position:relative;overflow:hidden}
+.gc::before{content:attr(data-g);position:absolute;top:-10px;right:7px;font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:900;color:rgba(59,130,246,.05);line-height:1}
+.gera{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.gtit{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:7px}
+.gsp{font-size:12.5px;color:var(--t2);margin:0;line-height:1.7}
+.gsp strong{color:var(--blue)}
+
+/* 3-up compact profile cards */
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:15px 0}
+.pcrd{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:13px 15px}
+.pnm{font-weight:700;color:var(--t1);font-size:13px;margin-bottom:2px}
+.pdt{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.pttl{font-size:11px;color:var(--blue);font-weight:600;margin-bottom:4px}
+.pdsc{font-size:12px;color:var(--t2);line-height:1.6}
+
+/* Layer/list rows (e.g. OSI model, protocol stacks) */
+.osi{margin:15px 0}
+.osil{display:flex;align-items:center;gap:12px;padding:10px 15px;border:1px solid var(--bdr);margin-bottom:-1px;transition:background .15s}
+.osil:hover{background:rgba(59,130,246,.04)}
+.osil:first-child{border-radius:8px 8px 0 0}
+.osil:last-child{border-radius:0 0 8px 8px}
+.osin{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;min-width:22px;color:var(--amber)}
+.osnm{font-weight:600;color:var(--t1);min-width:115px;font-size:13px}
+.osip{font-size:11px;color:var(--blue);font-family:'JetBrains Mono',monospace;min-width:155px}
+.osid{font-size:12.5px;color:var(--t2);flex:1}
+
+/* 2-up top-accent info cards (.a=amber .g=green .p=purple, default=blue) */
+.isg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.isc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;border-top:3px solid var(--blue)}
+.isc.a{border-top-color:var(--amber)}.isc.g{border-top-color:var(--green)}.isc.p{border-top-color:var(--purple)}
+.ico{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-bottom:3px}
+.inm{font-weight:700;font-size:14px;color:var(--t1);margin-bottom:6px}
+.idc{font-size:12.5px;color:var(--t2);line-height:1.7}
+.ieg{font-size:11.5px;color:var(--green);margin-top:6px}
+
+/* Mistake/pitfall list */
+.mlst{margin:11px 0}
+.mitem{display:flex;gap:11px;padding:10px 0;border-bottom:1px solid var(--bdr);align-items:flex-start}
+.mitem:last-child{border-bottom:none}
+.mnm{font-weight:700;color:var(--red);min-width:110px;font-size:13px}
+.mdc{font-size:13px;color:var(--t2);line-height:1.65}
+
+/* ASCII/file-tree block */
+.tree{font-family:'JetBrains Mono',monospace;font-size:12.5px;background:var(--bgcode);border:1px solid var(--bdr);border-radius:8px;padding:15px 19px;color:var(--t2);line-height:2;margin:12px 0;overflow-x:auto;white-space:pre}
+
+/* Law/citation callout (RA numbers, formal definitions, primary-source quotes) */
+.law{background:var(--bgc);border:1px solid var(--bdr);border-left:4px solid var(--red);border-radius:8px;padding:15px 17px;margin:11px 0}
+.lra{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--red);font-weight:700;margin-bottom:3px}
+.ltit{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:4px}
+.lyr{font-size:11px;color:var(--t3);margin-bottom:7px}
+.ldc{font-size:13px;color:var(--t2);line-height:1.75}
+
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:4px;font-size:13px;line-height:1.75}
+li strong{color:var(--t1)}
+
+.footer{padding:34px 52px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--blue)}
+
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.gg,.pg,.isg{grid-template-columns:1fr}}
+
+code{font-family:'JetBrains Mono',monospace;background:var(--bgr);padding:1px 5px;border-radius:3px;font-size:12px;color:var(--amber)}
+pre code{background:none;padding:0;color:inherit;font-size:inherit}
+.mnav{display:none}
+details{background:var(--bgc);border:1px solid var(--bdr);border-radius:8px;margin:10px 0}
+summary{cursor:pointer;padding:10px 14px;font-weight:600;font-size:13px;color:var(--t1);font-family:'Space Grotesk',sans-serif;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:'+ ';color:var(--blue);font-family:'JetBrains Mono',monospace}
+details[open] summary::before{content:'- '}
+.dpad{padding:2px 14px 12px}
+.dpad .codeblock{margin:8px 0}
+.btn{background:var(--blue);color:#fff;border:none;padding:8px 15px;border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:12px;cursor:pointer}
+.btn.alt{background:var(--bgr);border:1px solid var(--bdr);color:var(--t2)}
+.btn:hover{filter:brightness(1.15)}
+.sbar{position:sticky;top:0;z-index:50;background:var(--bgd);border:1px solid var(--bdr);border-radius:8px;padding:9px 14px;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--t2);margin:14px 0}
+.sbar b{color:var(--amber)}
+.qsec{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--amber);text-transform:uppercase;letter-spacing:2px;margin:28px 0 8px}
+.qc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:14px 16px;margin:10px 0}
+.qn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);margin-bottom:4px}
+.qt{color:var(--t1);font-size:14px;line-height:1.7;margin-bottom:9px}
+.qpre{background:var(--bgcode);border:1px solid var(--bdr);border-radius:6px;padding:10px 12px;margin-bottom:10px;font-size:12px;line-height:1.6;overflow-x:auto;font-family:'JetBrains Mono',monospace;color:#C4D4E8;white-space:pre}
+.qo{display:flex;gap:10px;width:100%;text-align:left;background:var(--bgr);border:1px solid var(--bdr);color:var(--t2);padding:8px 11px;border-radius:6px;margin-bottom:6px;font-family:'Inter',system-ui,sans-serif;font-size:13px;line-height:1.55;cursor:pointer}
+.qo:hover{border-color:var(--blue)}
+.qo b{font-family:'JetBrains Mono',monospace;color:var(--t3);min-width:14px}
+.qc.done .qo{cursor:default}
+.qc.done .qo:hover{border-color:var(--bdr)}
+.qo.ok,.qc.done .qo.ok:hover{border-color:var(--green);background:rgba(16,185,129,.12);color:var(--t1)}
+.qo.no,.qc.done .qo.no:hover{border-color:var(--red);background:rgba(239,68,68,.12);color:var(--t1)}
+.qx{display:none;font-size:12.5px;color:var(--t2);margin-top:8px;padding-top:8px;border-top:1px dashed var(--bdr);line-height:1.7}
+.qc.done .qx{display:block}
+.draw{background:var(--bgc);border:1px solid var(--bdr);border-radius:12px;padding:18px 20px;margin:15px 0}
+.tm{font-family:'JetBrains Mono',monospace;font-size:46px;font-weight:700;color:var(--t1);letter-spacing:2px;line-height:1.1}
+.tm.warn{color:var(--amber)}.tm.end{color:var(--red)}
+.drow{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.dtt{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:700;color:var(--t1);margin:6px 0 2px}
+.dwk{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);letter-spacing:1px;text-transform:uppercase}
+.dpr{color:var(--t2);font-size:13.5px;line-height:1.75;margin:6px 0}
+.dout{background:var(--bgcode);border:1px solid var(--bdr);border-radius:6px;padding:9px 12px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--green);white-space:pre-wrap;margin:8px 0}
+.dtip{font-size:12.5px;color:var(--t2);margin:6px 0}
+.dtip b{color:var(--amber)}
+.bar{height:6px;background:var(--bgr);border-radius:3px;overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;width:100%;background:var(--blue);transition:width 1s linear}
+@media(max-width:768px){
+.mnav{display:flex;overflow-x:auto;gap:6px;position:sticky;top:0;z-index:90;background:var(--bgd);padding:8px 10px;border-bottom:1px solid var(--bdr)}
+.mnav a{white-space:nowrap;font-size:11.5px;color:var(--t2);padding:5px 10px;border:1px solid var(--bdr);border-radius:14px;text-decoration:none;font-family:'JetBrains Mono',monospace}
+.mnav a.act{color:var(--blue);border-color:var(--blue)}
+.sbar{top:46px}
+.ht{font-size:38px}.hs{font-size:15px}.tm{font-size:36px}
+}
+</style>
+</head>
+<body>
+<nav class="sidebar"><div class="sbh"><div class="sbb">CC102 · QCU BSIT</div><div class="sbt">Fundamentals of Programming</div><div class="sbs">Midterm Study Guide · 2026</div></div><ul class="nvl"><li class="nvs">Introduction</li><li class="nvi"><a href="#overview"><span class="nn">00</span>Course Overview</a></li><li class="nvs">Chapters</li><li class="nvi"><a href="#ch1"><span class="nn">01</span>Logic &amp; Flowcharts</a></li><li class="nvi"><a href="#ch2"><span class="nn">02</span>Intro to Java</a></li><li class="nvi"><a href="#ch3"><span class="nn">03</span>Programming Basics</a></li><li class="nvi"><a href="#ch4"><span class="nn">04</span>Java Operators</a></li><li class="nvi"><a href="#ch5"><span class="nn">05</span>Conditional Statements</a></li><li class="nvi"><a href="#ch6"><span class="nn">06</span>Iteration Statements</a></li><li class="nvi"><a href="#ch7"><span class="nn">07</span>Scanner Toolkit</a></li><li class="nvi"><a href="#ch8"><span class="nn">08</span>Traps &amp; Cheat Sheet</a></li><li class="nvs">Exam Practice</li><li class="nvi"><a href="#ch9"><span class="nn">09</span>10-Minute Draw</a></li><li class="nvi"><a href="#ch10"><span class="nn">10</span>50-Item Mock Exam</a></li></ul></nav>
+<main class="main">
+<div class="mnav"><a href="#overview">00 Course Overview</a><a href="#ch1">01 Logic &amp; Flowcharts</a><a href="#ch2">02 Intro to Java</a><a href="#ch3">03 Programming Basics</a><a href="#ch4">04 Java Operators</a><a href="#ch5">05 Conditional Statements</a><a href="#ch6">06 Iteration Statements</a><a href="#ch7">07 Scanner Toolkit</a><a href="#ch8">08 Traps &amp; Cheat Sheet</a><a href="#ch9">09 10-Minute Draw</a><a href="#ch10">10 50-Item Mock Exam</a></div><div class="hero"><div class="he">QCU Academic OS · 2026</div><div class="ht">CC102</div><div class="hs">Fundamentals of Programming — Midterm Reviewer</div><div class="hm"><div class="mp">Course: <span>CC102</span></div><div class="mp">Coverage: <span>Weeks 2-8</span></div><div class="mp">Written: <span>50 MCQ</span></div><div class="mp">Practical: <span>10-min Draw</span></div><div class="mp">Type: <span>Technical / Core</span></div></div></div><section class="chapter" id="overview"><div class="cn">CHAPTER 00</div><div class="ct">Course Overview &amp; Study Priority Map</div><p class="ci">CC102 Fundamentals of Programming moves from thinking in steps (algorithms and flowcharts) to writing them in Java: variables and data types, operators, decisions, and loops. This guide rebuilds your midterm reviewer into a study path with traces, pitfalls, a timed practical drill and a 50-item mock exam.</p><div class="tw"><table><thead><tr><th>Part</th><th>Format</th><th>Coverage</th><th>What it really tests</th></tr></thead><tbody><tr><td>Written</td><td>50 multiple-choice items</td><td>Weeks 2-8</td><td>Definitions, output prediction, operator precedence, loop and conditional tracing, spotting errors</td></tr><tr><td>Practical</td><td>10-minute Draw Activity</td><td>Weeks 4-8 programs</td><td>You draw one Java task and must write, run and test it from memory in 10 minutes</td></tr></tbody></table></div><div class="box blue"><div class="bico">i</div><div class="bbd"><div class="btt">Critical Path Context</div><p class="btx">CC102 is a prerequisite (together with CC101) of CC103 Intermediate Programming and PT101 in Year 1 Semester 2. Everything in this midterm - variables, operators, decisions and loops - is the vocabulary those courses assume you already own. The Year 1 Semester 2 listing was confirmed from a classmate's COR; later semesters are still projected.</p></div></div><h2>Exam Priority Map</h2><div class="tw"><table><thead><tr><th>Topic</th><th>Chapter</th><th>Exam Weight</th><th>Difficulty</th></tr></thead><tbody><tr><td>Logic, algorithms, flowchart symbols, truth tables</td><td>01</td><td><span class="tag tb">Medium</span></td><td><span class="tag tg">Easy</span></td></tr><tr><td>Java history, features, program cycle, HelloJava anatomy</td><td>02</td><td><span class="tag tb">Medium</span></td><td><span class="tag tg">Easy</span></td></tr><tr><td>Identifiers, variables, data types, int division</td><td>03</td><td><span class="tag ta">High</span></td><td><span class="tag ta">Medium</span></td></tr><tr><td>Operators, ++/--, string concatenation, precedence</td><td>04</td><td><span class="tag tr2">Very High</span></td><td><span class="tag tr2">Hard</span></td></tr><tr><td>if, if-else, nested if, if-else-if, switch</td><td>05</td><td><span class="tag tr2">Very High</span></td><td><span class="tag ta">Medium</span></td></tr><tr><td>while, do-while, for, break, continue, return</td><td>06</td><td><span class="tag tr2">Very High</span></td><td><span class="tag ta">Medium</span></td></tr><tr><td>Scanner methods and the nextInt/nextLine trap</td><td>07</td><td><span class="tag ta">High</span></td><td><span class="tag ta">Medium</span></td></tr><tr><td>Output prediction traps and debugging</td><td>08</td><td><span class="tag tr2">Very High</span></td><td><span class="tag tr2">Hard</span></td></tr><tr><td>10-Minute Draw (practical)</td><td>09</td><td><span class="tag tr2">Very High</span></td><td><span class="tag ta">Medium</span></td></tr><tr><td>50-item mock exam</td><td>10</td><td><span class="tag ta">High</span></td><td><span class="tag ta">Medium</span></td></tr></tbody></table></div><h2>How to Use This Guide</h2><div class="steps"><div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Read chapters 01-06 once</div><div class="sd">Do not memorize yet. Read the analogy, then the code, then the trace. Each chapter ends with a forward-link and a practice challenge.</div></div></div><div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Type the code yourself</div><div class="sd">Reading Java is not the same as writing it. The practical exam rewards muscle memory: class, main, Scanner, structure.</div></div></div><div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Run the Draw drill every day</div><div class="sd">Chapter 09 draws a random task and starts a 10-minute clock. Do at least two draws per study session.</div></div></div><div class="step"><div class="snum">4</div><div class="sc"><div class="sl">Finish with the mock exam</div><div class="sd">Chapter 10 reveals each answer only after you choose. Retake it after 24 hours and compare scores.</div></div></div></div><div class="box amber"><div class="bico">!</div><div class="bbd"><div class="btt">Where this guide clarifies the pasted notes</div><p class="btx">Four spots in the original reviewer were tightened so you do not lose points: (1) in Java, <em>postfix</em> ++/-- binds tighter than <em>prefix</em> ++/-- (Chapter 04); (2) <code>"Equal = " + (a = b)</code> actually compiles and prints 3 - the real compile errors in that lab are the missing closing parentheses (Chapter 04); (3) switch accepts more than int and char, but your lessons use those two (Chapter 05); (4) averaging three <em>int</em> grades with <code>/ 3</code> drops the decimals (Chapter 03).</p></div></div></section><section class="chapter" id="ch1"><div class="cn">CHAPTER 01</div><div class="ct">Logic Formulation &amp; Flowcharts (Weeks 2-3)</div><p class="ci">Before writing code you must be able to describe the solution as clear, finite steps. Flowcharts and pseudocode are the two tools the exam checks.</p><div class="box blue"><div class="bico">i</div><div class="bbd"><div class="btt">Local analogy</div><p class="btx">An <strong>algorithm</strong> is like a recipe for adobo: exact steps, a finite number of them, and a dish at the end (the output). A <strong>flowchart</strong> is the jeepney route map of that recipe. The oval is the terminal (start or end of the route). The <strong>diamond</strong> is the LRT turnstile: tap your card - valid? Yes, the gate opens; No, it stays shut. One way in, two ways out.</p></div></div><h2>Key Terms</h2><div class="tw"><table><thead><tr><th>Term</th><th>Definition</th></tr></thead><tbody><tr><td>Computer program</td><td>A sequence of instructions written to perform a specified task</td></tr><tr><td>Programming cycle</td><td>1. Problem definition, 2. Problem analysis, 3. Algorithm development, 4. Coding and debugging</td></tr><tr><td>Algorithm</td><td>A step-by-step problem-solving procedure with finite steps and an output</td></tr><tr><td>Pseudocode</td><td>A generic way of describing an algorithm without specific programming language syntax</td></tr></tbody></table></div><h2>Flowchart Symbols</h2><div class="tw"><table><thead><tr><th>Shape</th><th>Name</th><th>Function</th><th>In / Out</th></tr></thead><tbody><tr><td>Oval</td><td>Terminal</td><td>Start / End</td><td>Start: 0 in, 1 out. End: 1 in, 0 out</td></tr><tr><td>Rectangle</td><td>Process</td><td>Calculation, assignment, opening/closing files</td><td>1 in, 1 out</td></tr><tr><td>Parallelogram</td><td>Input/Output</td><td>Get input / display output</td><td>1 in, 1 out</td></tr><tr><td>Diamond</td><td>Decision</td><td>Tests a condition (TRUE / FALSE)</td><td>1 in, 2 out</td></tr><tr><td>Hexagon</td><td>Initialization</td><td>Declare / initialize variables</td><td>1 in, 1 out</td></tr><tr><td>Circle</td><td>On-page connector</td><td>Join points on the same page</td><td>-</td></tr><tr><td>Pentagon</td><td>Off-page connector</td><td>Join to another page</td><td>-</td></tr><tr><td>Arrow</td><td>Flow line</td><td>Direction of data / control</td><td>-</td></tr><tr><td>Wavy-bottom rectangle</td><td>Document</td><td>Document output</td><td>-</td></tr></tbody></table></div><h2>Worked Flowcharts</h2><h3>A. Display your age five years from now</h3><div class="tree">START -&gt; [age = 19] -&gt; [futureAge = age + 5] -&gt; /Display futureAge/ -&gt; END
+          hexagon          rectangle              parallelogram</div><h3>B. Passed or Failed (grade &gt;= 60)</h3><div class="tree">START -&gt; [grade = 0] -&gt; /Get grade/ -&gt; &lt;grade &gt;= 60?&gt; --T--&gt; /"passed"/ -&gt; END
+                                              |
+                                              F --&gt; /"failed"/ -&gt; END</div><h3>C. Department supervisor (1-3 Mr. X, 4-7 Mr. Y, 8-9 Mr. Z)</h3><div class="tree">START -&gt; [dept = 0] -&gt; /Get dept/ -&gt; &lt;dept &lt;= 3?&gt; --Yes--&gt; /"Mr. X"/ -&gt; END
+                                          | No
+                                     &lt;dept &lt;= 7?&gt; --Yes--&gt; /"Mr. Y"/ -&gt; END
+                                          | No
+                                     /"Mr. Z"/ -&gt; END</div><h3>D. Menu 1-3 (1 Hello, 2 Hi, 3 Bye, otherwise Invalid)</h3><div class="tree">START -&gt; [x = 0] -&gt; /Get x/ -&gt; &lt;x == 1?&gt; --Yes--&gt; /"Hello"/ -&gt; END
+                                  | No
+                              &lt;x == 2?&gt; --Yes--&gt; /"Hi"/ -&gt; END
+                                  | No
+                              &lt;x == 3?&gt; --Yes--&gt; /"Bye"/ -&gt; END
+                                  | No
+                              /"Invalid"/ -&gt; END</div><h3>E. Fixing an infinite loop</h3><div class="tree">BROKEN: START -&gt; [x=0] -&gt; &lt;x&lt;10?&gt; --Yes--&gt; /Display x/ --(back to decision)
+FIXED : START -&gt; [x=0] -&gt; &lt;x&lt;10?&gt; --Yes--&gt; /Display x/ -&gt; [x = x + 1] --(back to decision)
+        &lt;x&lt;10?&gt; --No--&gt; END</div><div class="box red"><div class="bico">×</div><div class="bbd"><div class="btt">Why E loops forever</div><p class="btx">x never changes, so <code>x &lt; 10</code> is always true. Every loop needs an update step that moves the variable toward making the condition false.</p></div></div><h2>Truth Tables</h2><div class="tw"><table class="nt"><thead><tr><th>A</th><th>B</th><th>A &amp;&amp; B</th><th>A || B</th><th>A ^ B</th><th>!A</th></tr></thead><tbody><tr><td>F</td><td>F</td><td>F</td><td>F</td><td>F</td><td>T</td></tr><tr><td>F</td><td>T</td><td>F</td><td>T</td><td>T</td><td>T</td></tr><tr><td>T</td><td>F</td><td>F</td><td>T</td><td>T</td><td>F</td></tr><tr><td>T</td><td>T</td><td>T</td><td>T</td><td>F</td><td>F</td></tr></tbody></table></div><p><strong>Memory hook:</strong> AND needs both true. OR needs at least one true. XOR is true only when the two inputs <em>differ</em>. NOT flips.</p><h2>Relational Operators and Lecture Exercise 2</h2><div class="tw"><table><thead><tr><th>Operator</th><th>&lt;</th><th>&gt;</th><th>&lt;=</th><th>&gt;=</th><th>==</th><th>!=</th><th>&lt;&gt;</th></tr></thead><tbody><tr><td>Meaning</td><td>less than</td><td>greater than</td><td>less or equal</td><td>greater or equal</td><td>equal to</td><td>not equal</td><td>not equal (alt.)</td></tr></tbody></table></div><div class="tw"><table class="nt"><thead><tr><th>X</th><th>Y</th><th>X&lt;Y</th><th>X&gt;Y</th><th>X&lt;=Y</th><th>X&gt;=Y</th></tr></thead><tbody><tr><td>5</td><td>17</td><td>T</td><td>F</td><td>T</td><td>F</td></tr><tr><td>18</td><td>4</td><td>F</td><td>T</td><td>F</td><td>T</td></tr><tr><td>12</td><td>12</td><td>F</td><td>F</td><td>T</td><td>T</td></tr><tr><td>30</td><td>31</td><td>T</td><td>F</td><td>T</td><td>F</td></tr></tbody></table></div><h2>Common Mistakes</h2><div class="mlst"><div class="mitem"><div class="mnm">Decision with one exit</div><div class="mdc">A diamond always has two labeled exits (TRUE/FALSE or Yes/No). Unlabeled exits lose points.</div></div><div class="mitem"><div class="mnm">Start/End arrows</div><div class="mdc">Start has no entrance; End has no exit. Do not draw an arrow into START.</div></div><div class="mitem"><div class="mnm">Hexagon vs rectangle</div><div class="mdc">Hexagon = declare/initialize (age = 19). Rectangle = compute or assign (futureAge = age + 5).</div></div><div class="mitem"><div class="mnm">Forgetting the loop update</div><div class="mdc">A loop arrow that returns to the decision without changing the variable is an infinite loop.</div></div></div><div class="box green"><div class="bico">✓</div><div class="bbd"><div class="btt">Practice challenge</div><p class="btx">Draw a flowchart that asks for an age and prints "Senior" when the age is 60 or above, otherwise "Not senior". Name every symbol you use.</p></div></div><div class="box blue"><div class="bico">i</div><div class="bbd"><div class="btt">Watch and forward-link</div><p class="btx">Watch: search "flowchart basics" on freeCodeCamp, or the Java beginner playlists on Bro Code and Extern Code. Forward-link: flowchart decisions become the if / else-if chains in Chapter 05, and loop arrows become the while / for loops in Chapter 06. In CC103 you will use the same habit to plan larger programs before coding.</p></div></div></section><section class="chapter" id="ch2"><div class="cn">CHAPTER 02</div><div class="ct">Introduction to Java (Week 4)</div><p class="ci">Memorization chapter: who made Java, its features, how source code becomes output, and what every word of a first program means.</p><div class="box blue"><div class="bico">i</div><div class="bbd"><div class="btt">Local analogy</div><p class="btx">Send a PDF to a group chat and every phone can open it as long as it has a PDF reader. Your compiled <code>.class</code> file (bytecode) is the PDF; the <strong>JVM</strong> is the PDF reader installed on each device. That is what "write once, run anywhere" means.</p></div></div><h2>The Java Story</h2><div class="tl"><div class="tli"><div class="tlyr">1991</div><div class="tldot"></div><div class="tlc"><div class="tlt">Green Project begins</div><div class="tld">Created by James Gosling, Mike Sheridan and Patrick Naughton at Sun Microsystems.</div></div></div><div class="tli"><div class="tlyr">Name 1</div><div class="tldot"></div><div class="tlc"><div class="tlt">Greentalk</div><div class="tld">First name of the language; file extension .gt.</div></div></div><div class="tli"><div class="tlyr">Name 2</div><div class="tldot"></div><div class="tlc"><div class="tlt">Oak</div><div class="tld">Second name, before it became Java.</div></div></div><div class="tli"><div class="tlyr">Name 3</div><div class="tldot"></div><div class="tlc"><div class="tlt">Java</div><div class="tld">Final name - the island in Indonesia, and coffee. First project: Star 7, a hand-held personal remote control.</div></div></div><div class="tli"><div class="tlyr">Jan 1996</div><div class="tldot"></div><div class="tlc"><div class="tlt">JDK 1.0</div><div class="tld">Released January 23, 1996.</div></div></div></div><h2>The 12 Java Features</h2><div class="tw"><table><thead><tr><th>#</th><th>Feature</th><th>Plain-English meaning</th></tr></thead><tbody><tr><td>1</td><td>Object-Oriented</td><td>Programs are built from classes and objects</td></tr><tr><td>2</td><td>Simple</td><td>Clean syntax, no pointers to manage</td></tr><tr><td>3</td><td>Secured</td><td>Runs inside the JVM with security checks</td></tr><tr><td>4</td><td>Platform Independent</td><td>Same bytecode runs on any OS that has a JVM</td></tr><tr><td>5</td><td>Robust</td><td>Strong memory handling and exception handling</td></tr><tr><td>6</td><td>Portable</td><td>Move the compiled program between machines unchanged</td></tr><tr><td>7</td><td>Architecture-Neutral</td><td>No hardware-dependent behavior (an int is always 32-bit)</td></tr><tr><td>8</td><td>Dynamic</td><td>Classes can be loaded while the program runs</td></tr><tr><td>9</td><td>Interpreted</td><td>The JVM executes bytecode</td></tr><tr><td>10</td><td>High-Performance</td><td>Bytecode is optimized at run time</td></tr><tr><td>11</td><td>Multithreaded</td><td>Can run several tasks at once</td></tr><tr><td>12</td><td>Distributed</td><td>Built for network programming</td></tr></tbody></table></div><h2>The Java Program Cycle</h2><div class="tree">HelloQcu.java --[javac compiler]--&gt; HelloQcu.class --[JVM]--&gt; Output
+ source code                          bytecode              runs here</div><h2>HelloQcu Anatomy</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">java</div></div><pre><code>public class HelloQcu {                          // class declaration
+    public static void main(String[] args) {     // entry point
+        System.out.println("Hello QCU!");        // statement
+    }
+}</code></pre></div><div class="tw"><table><thead><tr><th>Part</th><th>Meaning</th></tr></thead><tbody><tr><td><code>public</code></td><td>Access modifier - visible to all</td></tr><tr><td><code>class</code></td><td>Declares a class; every Java program needs at least one</td></tr><tr><td><code>HelloQcu</code></td><td>Class name - must match the file name (HelloQcu.java)</td></tr><tr><td><code>static</code></td><td>Belongs to the class, so the JVM can call it without creating an object</td></tr><tr><td><code>void</code></td><td>Return type: returns nothing</td></tr><tr><td><code>main</code></td><td>Where the program starts running</td></tr><tr><td><code>String[] args</code></td><td>Command-line arguments</td></tr><tr><td><code>System.out.println()</code></td><td>Prints text and moves to a new line</td></tr></tbody></table></div><h2>Applet vs Application</h2><div class="tw"><table><thead><tr><th>Feature</th><th>Applet</th><th>Application</th></tr></thead><tbody><tr><td>Runs in</td><td>A web browser</td><td>Stand-alone</td></tr><tr><td>Needs a browser?</td><td>Yes</td><td>No</td></tr><tr><td>Example</td><td>Web-based game</td><td>HelloQcu.java</td></tr></tbody></table></div><h2>Lab: HelloJava - Questions and Answers</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">HelloJava.java</div></div><pre><code>public class HelloJava {
+    public static void main(String[] args) {
+        System.out.println("Hello, Java!");
+        System.out.println("Welcome to CC102 Fundamentals of Programming.");
+    }
+}</code></pre></div><div class="tw"><table><thead><tr><th>Question</th><th>Answer</th></tr></thead><tbody><tr><td>Purpose of the class keyword?</td><td>Groups code together; every Java program needs at least one class.</td></tr><tr><td>Purpose of main()?</td><td>It is where the program starts running.</td></tr><tr><td>What does System.out.println() do?</td><td>Prints text to the screen and moves to the next line.</td></tr><tr><td>Why must the file name match the class name?</td><td>Java must find the public class by its file; a mismatch is a compile error.</td></tr></tbody></table></div><h2>Common Mistakes</h2><div class="mlst"><div class="mitem"><div class="mnm">File/class mismatch</div><div class="mdc">Public class HelloJava inside hello.java gives: class HelloJava is public, should be declared in a file named HelloJava.java.</div></div><div class="mitem"><div class="mnm">Wrong casing</div><div class="mdc"><code>system.out.println</code> (lowercase s) fails. Java is case-sensitive: System, String, Scanner start with capitals.</div></div><div class="mitem"><div class="mnm">Mangled main</div><div class="mdc">Missing static, wrong return type, or <code>String args</code> without brackets will not run as the entry point.</div></div><div class="mitem"><div class="mnm">Missing semicolon</div><div class="mdc">Every statement ends with ; - the compiler error is "';' expected".</div></div></div><div class="box green"><div class="bico">✓</div><div class="bbd"><div class="btt">Practice challenge</div><p class="btx">Create <code>AboutMe.java</code> that prints three lines: your course, your school, and one language you want to learn. Compile, run, then break it on purpose by renaming the class and read the error.</p></div></div><div class="box blue"><div class="bico">i</div><div class="bbd"><div class="btt">Watch and forward-link</div><p class="btx">Watch: Bro Code or Extern Code "Java for beginners" (first lessons on JDK, class and main). Forward-link: the class-and-object idea behind <code>public class</code> returns in CC103 Intermediate Programming, where you design your own classes; static versus instance appears again in Chapter 03.</p></div></div></section><section class="chapter" id="ch3"><div class="cn">CHAPTER 03</div><div class="ct">Programming Basics (Week 5)</div><p class="ci">Naming rules, the three kinds of variables, the eight primitive types, and the small programs that make them stick.</p><div class="box blue"><div class="bico">i</div><div class="bbd"><div class="btt">Local analogy</div><p class="btx">A variable is a labeled container, like a lunch box with your name on it: the label is the identifier, the box shape is the data type (a tumbler cannot hold rice), and the food inside is the value. A <strong>local</strong> variable is a baon you eat inside one class period; an <strong>instance</strong> variable is each student's own locker; a <strong>static</strong> variable is the single bulletin board everyone shares.</p></div></div><h2>Syntax Rules</h2><div class="tw"><table><thead><tr><th>Rule</th><th>Example</th></tr></thead><tbody><tr><td>Case-sensitive</td><td>Hello is not hello</td></tr><tr><td>Class names: UpperCamelCase</td><td>MyFirstJavaClass</td></tr><tr><td>Method names: lowerCamelCase</td><td>myMethodName()</td></tr><tr><td>File name matches the public class</td><td>HelloJava.java contains public class HelloJava</td></tr></tbody></table></div><h2>Keywords (cannot be identifiers)</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">reserved words</div></div><pre><code>abstract assert boolean break byte case catch char class const continue
+default do double else enum extends final finally float for goto if
+implements import instanceof int interface long native new package private
+protected public return short static strictfp super switch synchronized
+this throw throws transient try void volatile while</code></pre></div><h2>Identifiers - Valid or Invalid?</h2><div class="tw"><table><thead><tr><th>Identifier</th><th>Result</th><th>Reason</th></tr></thead><tbody><tr><td>studentName</td><td><span class="tag tg">VALID</span></td><td>Starts with a letter</td></tr><tr><td>age</td><td><span class="tag tg">VALID</span></td><td>Simple word</td></tr><tr><td>123student</td><td><span class="tag tr2">INVALID</span></td><td>Cannot start with a digit</td></tr><tr><td>_student</td><td><span class="tag tg">VALID</span></td><td>Underscore allowed at the start</td></tr><tr><td>$salary</td><td><span class="tag tg">VALID</span></td><td>Dollar sign allowed at the start</td></tr><tr><td>student_01</td><td><span class="tag tg">VALID</span></td><td>Letters, digits and underscore after the first character</td></tr><tr><td>class</td><td><span class="tag tr2">INVALID</span></td><td>Reserved keyword</td></tr><tr><td>myName</td><td><span class="tag tg">VALID</span></td><td>Starts with a letter</td></tr><tr><td>-score</td><td><span class="tag tr2">INVALID</span></td><td>Hyphen is not allowed</td></tr><tr><td>StudentName</td><td><span class="tag tg">VALID</span></td><td>Valid; different from studentName (case-sensitive)</td></tr></tbody></table></div><h2>Local, Instance and Static Variables</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">VariableTypes.java</div></div><pre><code>public class VariableTypes {
+    int instanceNumber = 50;          // INSTANCE: inside class, outside any method
+    static int staticNumber = 100;    // STATIC: shared by every object
+
+    public void displayVariables() {
+        int localNumber = 90;         // LOCAL: inside a method body
+        System.out.println("Instance Variable: " + instanceNumber);
+        System.out.println("Static Variable: " + staticNumber);
+        System.out.println("Local Variable: " + localNumber);
+    }
+
+    public static void main(String[] args) {
+        VariableTypes obj = new VariableTypes();   // creates one object
+        obj.displayVariables();
+    }
+}</code></pre></div><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">output</div></div><pre><code>Instance Variable: 50
+Static Variable: 100
+Local Variable: 90</code></pre></div><div class="tw"><table><thead><tr><th>Type</th><th>Declared</th><th>Who can use it</th><th>Lifetime</th></tr></thead><tbody><tr><td>Local</td><td>Inside a method or constructor</td><td>Only that method</td><td>Until the method ends</td></tr><tr><td>Instance</td><td>Inside the class, outside methods</td><td>Each object has its own copy</td><td>As long as the object exists</td></tr><tr><td>Static</td><td>Inside the class with the static keyword</td><td>Shared by all objects</td><td>Whole program run</td></tr></tbody></table></div><h3>Line-by-line trace</h3><div class="steps"><div class="step"><div class="snum">1</div><div class="sc"><div class="sl">JVM calls main</div><div class="sd">main is static, so it runs without any object. staticNumber already exists (100).</div></div></div><div class="step"><div class="snum">2</div><div class="sc"><div class="sl">new VariableTypes()</div><div class="sd">An object is created and gets its own instanceNumber = 50.</div></div></div><div class="step"><div class="snum">3</div><div class="sc"><div class="sl">obj.displayVariables()</div><div class="sd">The method starts; localNumber = 90 is created now.</div></div></div><div class="step"><div class="snum">4</div><div class="sc"><div class="sl">Three println calls</div><div class="sd">Each variable is read and concatenated into the text, producing the three lines above.</div></div></div><div class="step"><div class="snum">5</div><div class="sc"><div class="sl">Method ends</div><div class="sd">localNumber disappears. The object and static variable remain.</div></div></div></div><h2>Data Types</h2><div class="tw"><table><thead><tr><th>Type</th><th>Size</th><th>Range / meaning</th><th>Default (fields)</th><th>Example</th></tr></thead><tbody><tr><td>boolean</td><td>1 bit</td><td>true / false</td><td>false</td><td>boolean isStudent = true;</td></tr><tr><td>byte</td><td>8-bit</td><td>-128 to 127</td><td>0</td><td>byte a = 100;</td></tr><tr><td>short</td><td>16-bit</td><td>-32,768 to 32,767</td><td>0</td><td>short s = 10000;</td></tr><tr><td>int</td><td>32-bit</td><td>-2^31 to 2^31-1 (most common)</td><td>0</td><td>int n = 50000;</td></tr><tr><td>long</td><td>64-bit</td><td>-2^63 to 2^63-1</td><td>0L</td><td>long l = 100000L;</td></tr><tr><td>float</td><td>32-bit</td><td>~7 decimal digits - needs f suffix</td><td>0.0f</td><td>float f = 99.50f;</td></tr><tr><td>double</td><td>64-bit</td><td>~15 decimal digits - default decimal</td><td>0.0d</td><td>double d = 25000.75;</td></tr><tr><td>char</td><td>16-bit</td><td>One Unicode character, single quotes</td><td>\u0000</td><td>char g = 'A';</td></tr></tbody></table></div><p><strong>Non-primitive:</strong> classes (String, Scanner), interfaces, arrays. <code>String</code> is not primitive.</p><h2>Lab Programs</h2><h3>DataTypeDemo - one variable per primitive</h3><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">DataTypeDemo.java</div></div><pre><code>public class DataTypeDemo {
+    public static void main(String[] args) {
+        boolean isStudent = true;
+        byte smallNumber = 100;
+        short shortNumber = 10000;
+        int number = 50000;
+        long largeNumber = 100000L;
+        float price = 99.50f;
+        double salary = 25000.75;
+        char grade = 'A';
+
+        System.out.println("BOOLEAN: " + isStudent);
+        System.out.println("BYTE: " + smallNumber);
+        System.out.println("SHORT: " + shortNumber);
+        System.out.println("INT: " + number);
+        System.out.println("LONG: " + largeNumber);
+        System.out.println("FLOAT: " + price);
+        System.out.println("DOUBLE: " + salary);
+        System.out.println("CHAR: " + grade);
+    }
+}</code></pre></div><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">output</div></div><pre><code>BOOLEAN: true
+BYTE: 100
+SHORT: 10000
+INT: 50000
+LONG: 100000
+FLOAT: 99.5
+DOUBLE: 25000.75
+CHAR: A</code></pre></div><p>Note that <code>99.50f</code> prints as <code>99.5</code> - Java drops the trailing zero, and the L and f suffixes never print.</p><h3>StudentInformation</h3><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">StudentInformation.java</div></div><pre><code>public class StudentInformation {
+    public static void main(String[] args) {
+        String studentName = "Juan Dela Cruz";
+        String studentID = "2026-001";
+        int age = 20;
+        String course = "BSIS";
+        int yearLevel = 2;
+        char section = 'A';
+        double gpa = 1.75;
+
+        System.out.println("STUDENT INFORMATION");
+        System.out.println("-------------------");
+        System.out.println("Name: " + studentName);
+        System.out.println("Student ID: " + studentID);
+        System.out.println("Age: " + age);
+        System.out.println("Course: " + course);
+        System.out.println("Year Level: " + yearLevel);
+        System.out.println("Section: " + section);
+        System.out.println("GPA: " + gpa);
+    }
+}</code></pre></div><h3>SimpleCalculator - integer division</h3><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">SimpleCalculator.java</div></div><pre><code>public class SimpleCalculator {
+    public static void main(String[] args) {
+        int num1 = 25;
+        int num2 = 10;
+
+        System.out.println("SIMPLE CALCULATOR");
+        System.out.println("First Number: " + num1);
+        System.out.println("Second Number: " + num2);
+        System.out.println("Addition: " + (num1 + num2));        // 35
+        System.out.println("Subtraction: " + (num1 - num2));     // 15
+        System.out.println("Multiplication: " + (num1 * num2));  // 250
+        System.out.println("Division: " + (num1 / num2));        // 2  (int / int drops the decimal)
+        System.out.println("Modulo: " + (num1 % num2));          // 5
+    }
+}</code></pre></div><h3>StudentGradeSystem (Mini Project)</h3><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">StudentGradeSystem.java</div></div><pre><code>public class StudentGradeSystem {
+    public static void main(String[] args) {
+        String studentName = "Juan Dela Cruz";
+        String studentID = "2026-001";
+        String course = "BSIS";
+
+        int prelim = 85;
+        int midterm = 88;
+        int finalGrade = 90;
+
+        double average = (prelim + midterm + finalGrade) / 3.0;   // 3.0 keeps the decimals
+        boolean passed = average &gt;= 75;
+
+        System.out.println("================================");
+        System.out.println("      STUDENT GRADE SYSTEM");
+        System.out.println("================================");
+        System.out.println("Student Name : " + studentName);
+        System.out.println("Student ID   : " + studentID);
+        System.out.println("Course       : " + course);
+        System.out.println();
+        System.out.println("Prelim Grade : " + prelim);
+        System.out.println("Midterm Grade: " + midterm);
+        System.out.println("Final Grade  : " + finalGrade);
+        System.out.println();
+        System.out.printf("Average Grade: %.2f%n", average);
+        System.out.println("Status: " + (passed ? "PASSED" : "FAILED"));
+    }
+}</code></pre></div><div class="box amber"><div class="bico">!</div><div class="bbd"><div class="btt">Two traps hiding in this lab</div><p class="btx">If prelim, midterm and final are <code>double</code>, the lines print <code>85.0</code>, not <code>85</code> as in the sample output - use <code>int</code> for the grades. If you write <code>(prelim + midterm + finalGrade) / 3</code> with ints, you get 87, not 87.67. Divide by <code>3.0</code> or store the sum in a double.</p></div></div><h3>Debugging Challenge: StudentInfo</h3><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">broken</div></div><pre><code>int age = 20                               // ERROR 1: missing semicolon
+char section = "A";                        // ERROR 2: double quotes make a String
+System.out.println("Name: " + studentname);// ERROR 3: variable is studentName</code></pre></div><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">fixed</div></div><pre><code>int age = 20;
+char section = 'A';
+System.out.println("Name: " + studentName);</code></pre></div><h2>Common Mistakes</h2><div class="mlst"><div class="mitem"><div class="mnm">float without f</div><div class="mdc"><code>float price = 99.50;</code> fails: possible lossy conversion from double to float. Write 99.50f.</div></div><div class="mitem"><div class="mnm">long literal</div><div class="mdc">Use the L suffix for values beyond the int range; the lab writes 100000L by convention.</div></div><div class="mitem"><div class="mnm">Instance from static</div><div class="mdc">Using instanceNumber directly inside main fails: non-static variable cannot be referenced from a static context. Create an object first.</div></div><div class="mitem"><div class="mnm">Uninitialized local</div><div class="mdc">Fields get defaults (0, false), but a local variable must be assigned before use or you get "might not have been initialized".</div></div><div class="mitem"><div class="mnm">Char vs String</div><div class="mdc">'A' is a char; "A" is a String. They are not interchangeable.</div></div></div><div class="box green"><div class="bico">✓</div><div class="bbd"><div class="btt">Practice challenge</div><p class="btx">Declare your own five valid identifiers of five different types (String, int, double, char, boolean) and print them one per line. Then add one deliberately invalid identifier and read the compiler message.</p></div></div><div class="box blue"><div class="bico">i</div><div class="bbd"><div class="btt">Watch and forward-link</div><p class="btx">Watch: Bro Code "Java variables and data types" or freeCodeCamp's Java course (variables chapter). Forward-link: types, defaults and scope come back in CC103 when you design classes with fields and methods, and in Data Structures where choosing the right type affects memory and speed.</p></div></div></section><section class="chapter" id="ch4"><div class="cn">CHAPTER 04</div><div class="ct">Java Operators (Week 6)</div><p class="ci">The highest-yield exam chapter: tracing expressions exactly as Java evaluates them.</p><div class="box blue"><div class="bico">i</div><div class="bbd"><div class="btt">Local analogy</div><p class="btx">Think of a sari-sari store counter. <strong>Arithmetic</strong> is computing the total of the items. <strong>Relational</strong> operators compare (is this brand cheaper than that one?). <strong>Logical</strong> operators combine requirements, like a scholarship that needs "GWA of 1.75 or better <em>AND</em> no failing grade". For ++: <code>++x</code> is topping up your GCash and <em>then</em> checking the balance; <code>x++</code> is checking the balance first and the top-up lands afterwards.</p></div></div><p><strong>Expression</strong> = variables + literals + operators that produce a result. It is used to compute values, assign values, and control program flow. An <strong>operator</strong> is the symbol; an <strong>operand</strong> is the value it works on (in <code>a + b</code>, + is the operator, a and b are operands).</p><h2>Operator Families</h2><div class="tw"><table><thead><tr><th>Family</th><th>Operators</th><th>Example</th><th>Result</th></tr></thead><tbody><tr><td>Arithmetic</td><td>+ - * / %</td><td>10 / 5 &nbsp;|&nbsp; 10 % 3</td><td>2 &nbsp;|&nbsp; 1</td></tr><tr><td>Increment / decrement</td><td>++x  x++  --x  x--</td><td>x = 10; ++x</td><td>11 (x is 11)</td></tr><tr><td>Assignment</td><td>= += -= *= /= %=</td><td>x = 5; x += 3</td><td>x is 8</td></tr><tr><td>Relational</td><td>== != &gt; &lt; &gt;= &lt;=</td><td>a = 7, b = 11: a &lt; b</td><td>true</td></tr><tr><td>Logical</td><td>&amp;&amp; || ^ !</td><td>(5 &gt; 3) &amp;&amp; (8 &gt; 5)</td><td>true</td></tr></tbody></table></div><h2>Pre vs Post Increment - Trace It</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">IncrementDemo.java</div></div><pre><code>public class IncrementDemo {
+    public static void main(String[] args) {
+        int x = 10;
+        System.out.println("Original x: " + x);
+        System.out.println("Pre-increment: " + (++x));
+        System.out.println("Current x: " + x);
+        System.out.println("Post-increment: " + (x++));
+        System.out.println("Current x: " + x);
+        System.out.println("Pre-decrement: " + (--x));
+        System.out.println("Current x: " + x);
+        System.out.println("Post-decrement: " + (x--));
+        System.out.println("Current x: " + x);
+    }
+}</code></pre></div><div class="tw"><table class="nt"><thead><tr><th>Statement</th><th>Prints</th><th>x afterwards</th></tr></thead><tbody><tr><td>Original x</td><td>10</td><td>10</td></tr><tr><td>(++x)</td><td>11</td><td>11</td></tr><tr><td>Current x</td><td>11</td><td>11</td></tr><tr><td>(x++)</td><td>11 (old value)</td><td>12</td></tr><tr><td>Current x</td><td>12</td><td>12</td></tr><tr><td>(--x)</td><td>11</td><td>11</td></tr><tr><td>Current x</td><td>11</td><td>11</td></tr><tr><td>(x--)</td><td>11 (old value)</td><td>10</td></tr><tr><td>Current x</td><td>10</td><td>10</td></tr></tbody></table></div><p><strong>Rule:</strong> prefix changes first, then uses the value. Postfix uses the value first, then changes. After either one, the variable is changed for the <em>next</em> use.</p><h2>Integer Division and Assignment Chains</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">ArithmeticDemo + AssignmentDemo (key lines)</div></div><pre><code>int a = 12, b = 5;
+System.out.println(a / b);   // 2   (both int: decimal part discarded)
+System.out.println(a % b);   // 2   (remainder)
+
+int score = 50;
+score += 10;   // 60
+score -= 5;    // 55
+score *= 2;    // 110
+score /= 5;    // 22  (110 / 5)
+
+int points = 100;              // challenge
+points += 25;  // 125
+points -= 15;  // 110
+points *= 2;   // 220
+points /= 5;   // 44</code></pre></div><h2>Relational and Logical Demos</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">ComparisonDemo + LogicalDemo (key lines)</div></div><pre><code>int a = 7, b = 11;
+a == b   // false      a != b   // true
+a &gt;  b   // false      a &lt;  b   // true
+a &gt;= b   // false      a &lt;= b   // true
+
+(5 &gt; 3) &amp;&amp; (8 &gt; 5)   // true
+(5 &gt; 3) &amp;&amp; (8 &lt; 5)   // false
+(5 &lt; 3) || (8 &gt; 5)   // true
+(5 &lt; 3) || (8 &lt; 5)   // false
+(5 &gt; 3) ^  (8 &lt; 5)   // true  (inputs differ)
+!(5 == 3)            // true
+
+int age = 20; boolean hasID = true;
+boolean isAdult    = age &gt;= 18;               // true
+boolean adultWithID = isAdult &amp;&amp; hasID;       // true
+boolean minorOrNoID = (age &lt; 18) || (!hasID); // false</code></pre></div><div class="box red"><div class="bico">×</div><div class="bbd"><div class="btt">= versus ==</div><p class="btx"><code>=</code> assigns, <code>==</code> compares. Writing <code>a = b</code> where you meant <code>a == b</code> silently overwrites a - see the OperatorDebug lab below.</p></div></div><h2>Operator Precedence (high to low)</h2><div class="tw"><table><thead><tr><th>Level</th><th>Operators</th><th>Associativity</th></tr></thead><tbody><tr><td>1</td><td>( )  [ ]  .</td><td>Left to right</td></tr><tr><td>2</td><td>postfix  x++  x--</td><td>Left to right</td></tr><tr><td>3</td><td>prefix  ++x  --x  unary +  -  and  !</td><td>Right to left</td></tr><tr><td>4</td><td>*  /  %</td><td>Left to right</td></tr><tr><td>5</td><td>+  -</td><td>Left to right</td></tr><tr><td>6</td><td>&lt;  &gt;  &lt;=  &gt;=</td><td>Left to right</td></tr><tr><td>7</td><td>==  !=</td><td>Left to right</td></tr><tr><td>8</td><td>^  (between == and &amp;&amp;)</td><td>Left to right</td></tr><tr><td>9</td><td>&amp;&amp;</td><td>Left to right</td></tr><tr><td>10</td><td>||</td><td>Left to right</td></tr><tr><td>11</td><td>?:</td><td>Right to left</td></tr><tr><td>12</td><td>=  +=  -=  *=  /=  %=</td><td>Right to left</td></tr></tbody></table></div><div class="box amber"><div class="bico">!</div><div class="bbd"><div class="btt">Clarification</div><p class="btx">The pasted reviewer listed prefix ++/-- above postfix. In Java, postfix binds tighter. It rarely changes an exam answer, but if a question asks which is higher, answer postfix. If your instructor's slide says otherwise, follow the slide for that item.</p></div></div><p>Memory order for the exam: <strong>( ) then * / % then + - then relational then == != then &amp;&amp; then || then assignment.</strong></p><h3>PrecedenceDemo - manual calculation</h3><div class="tw"><table class="nt"><thead><tr><th>Expression</th><th>Step by step</th><th>Answer</th></tr></thead><tbody><tr><td>7 - 24 / 8 * 4 + 6</td><td>24/8 = 3; 3*4 = 12; 7-12+6</td><td>1</td></tr><tr><td>(17 - 6 / 2) + 4 * 3</td><td>6/2 = 3; 17-3 = 14; 4*3 = 12; 14+12</td><td>26</td></tr><tr><td>10 + 5 * 2</td><td>5*2 = 10; 10+10</td><td>20</td></tr><tr><td>(10 + 5) * 2</td><td>15 * 2</td><td>30</td></tr><tr><td>100 / 10 + 5</td><td>100/10 = 10; 10+5</td><td>15</td></tr><tr><td>100 / (10 + 5)</td><td>10+5 = 15; 100/15 (int division)</td><td>6</td></tr></tbody></table></div><h2>String Concatenation Is Left to Right</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">trace</div></div><pre><code>int a = 10, b = 3;
+System.out.println("Sum = " + a + b);        // Sum = 103   ("Sum = 10" then + 3 as text)
+System.out.println("Sum = " + (a + b));      // Sum = 13    (parentheses add first)
+System.out.println("Result = " + a + b * 2); // Result = 106 (b*2 = 6 first, then text joins)
+System.out.println("Result = " + (a + b * 2)); // Result = 16</code></pre></div><h2>Lab: OperatorDebug</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">original (as given)</div></div><pre><code>int a = 10;
+int b = 3;
+System.out.println("Sum = " + a + b);          // wrong result: Sum = 103
+System.out.println("Product = " + (a * b));    // OK  -&gt; 30
+System.out.println("Equal = " + (a = b));      // compiles! assigns a = 3, prints Equal = 3
+System.out.println("Greater = " + (a &gt; b);     // compile error: missing )
+System.out.println("Result = " + a + b * 2;    // compile error: missing )</code></pre></div><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">corrected</div></div><pre><code>System.out.println("Sum = " + (a + b));        // 13
+System.out.println("Product = " + (a * b));    // 30
+System.out.println("Equal = " + (a == b));     // false
+System.out.println("Greater = " + (a &gt; b));    // true
+System.out.println("Result = " + (a + b * 2)); // 16</code></pre></div><div class="box amber"><div class="bico">!</div><div class="bbd"><div class="btt">Why <code>(a = b)</code> is the sneaky one</div><p class="btx">It is valid Java: an assignment produces the assigned value (3) and, worse, changes a to 3, so every later line uses the wrong a. The compiler only complains about the two missing parentheses. Explain all three problems when asked "why was the code incorrect".</p></div></div><h2>Mini Projects</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">StudentGradingSystem.java</div></div><pre><code>public class StudentGradingSystem {
+    public static void main(String[] args) {
+        int prelim = 85, midterm = 88, finalExam = 92;
+        int attendance = 90, projects = 85;
+
+        int total = prelim + midterm + finalExam;      // 265
+        double average = total / 3.0;                  // 88.33...
+        boolean passed = average &gt;= 75;                // true
+        boolean eligible = (average &gt;= 75) &amp;&amp; (finalExam &gt;= 75)
+                        &amp;&amp; (attendance &gt;= 80) &amp;&amp; (projects &gt;= 75);   // true
+
+        System.out.println("===== STUDENT GRADING SYSTEM =====");
+        System.out.println("Prelim Score: " + prelim);
+        System.out.println("Midterm Score: " + midterm);
+        System.out.println("Final Exam Score: " + finalExam);
+        System.out.println("Total Score: " + total);
+        System.out.printf("Average: %.2f%n", average);
+        System.out.println("Passed: " + passed);
+        System.out.println("Attendance: " + attendance);
+        System.out.println("Projects: " + projects);
+        System.out.println("Eligible: " + eligible);
+    }
+}</code></pre></div><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">StudentInformationSystem.java</div></div><pre><code>public class StudentInformationSystem {
+    public static void main(String[] args) {
+        String studentName = "Juan";
+        int age = 20;
+        int prelim = 80, midterm = 85, finalExam = 90, attendance = 85;
+
+        int totalScore = prelim + midterm + finalExam;           // 255
+        double average = totalScore / 3.0;                        // 85.00
+        boolean passing = average &gt;= 75;                          // true
+        boolean attendanceOK = attendance &gt;= 80;                  // true
+        boolean eligible = (average &gt;= 75) &amp;&amp; (attendance &gt;= 80); // true
+
+        System.out.println("====================================");
+        System.out.println("        STUDENT INFORMATION");
+        System.out.println("====================================");
+        System.out.println("Student Name : " + studentName);
+        System.out.println("Age          : " + age);
+        System.out.println("Prelim       : " + prelim);
+        System.out.println("Midterm      : " + midterm);
+        System.out.println("Final Exam   : " + finalExam);
+        System.out.println("Total Score  : " + totalScore);
+        System.out.printf("Average      : %.2f%n", average);
+        System.out.println("Passing      : " + passing);
+        System.out.println("Attendance OK: " + attendanceOK);
+        System.out.println("Eligible     : " + eligible);
+        age++;
+        System.out.println("Next Year Age: " + age);   // 21
+    }
+}</code></pre></div><h2>Common Mistakes</h2><div class="mlst"><div class="mitem"><div class="mnm">int / int</div><div class="mdc"><code>12 / 5</code> is 2. Make one side a double (<code>12 / 5.0</code>) to get 2.4.</div></div><div class="mitem"><div class="mnm">Missing parentheses</div><div class="mdc">Text + number + number concatenates. Wrap the math: <code>"Sum = " + (a + b)</code>.</div></div><div class="mitem"><div class="mnm">Pre/post confusion</div><div class="mdc">Trace with a table: print value, then new x. Never "feel" the answer.</div></div><div class="mitem"><div class="mnm">&amp;&amp; vs ||</div><div class="mdc">AND needs every part true; OR needs one. Eligibility rules with "and" use &amp;&amp;.</div></div><div class="mitem"><div class="mnm">Assigning in a test</div><div class="mdc"><code>(a = b)</code> is not a comparison. Use <code>==</code>.</div></div></div><div class="box green"><div class="bico">✓</div><div class="bbd"><div class="btt">Practice challenge</div><p class="btx">Without running it, predict the output of <code>int x = 5; System.out.println(x++ + ++x);</code> Then run it and explain the result step by step (hint: x++ gives 5 and x becomes 6; ++x makes it 7).</p></div></div><div class="box blue"><div class="bico">i</div><div class="bbd"><div class="btt">Watch and forward-link</div><p class="btx">Watch: Bro Code "Java operators" and freeCodeCamp's Java course (operators and expressions). Forward-link: relational and logical operators are the conditions in Chapter 05 and Chapter 06. In CC103 you will combine them with methods and objects, and precedence mistakes become hard-to-find logic bugs in larger programs.</p></div></div></section><section class="chapter" id="ch5"><div class="cn">CHAPTER 05</div><div class="ct">Conditional Statements (Week 7)</div><p class="ci">Choosing which block of code runs: if, if-else, nested if, if-else-if and switch, plus the = versus == error the lesson highlights.</p><div class="box blue"><div class="bico">i</div><div class="bbd"><div class="btt">Local analogy</div><p class="btx">A decision statement is the guard at a school gate. <strong>if</strong>: "Wearing ID? Enter." <strong>if-else</strong>: either the gate opens or the visitor log opens - exactly one. <strong>nested if</strong>: first the guard checks your age, then the ID. <strong>if-else-if</strong> is the jeepney fare window: Senior? Student? Regular? The first match wins and the rest are ignored. <strong>switch</strong> is the elevator panel: press 3 and it goes to floor 3.</p></div></div><div class="tw"><table><thead><tr><th>Control structure</th><th>Purpose</th><th>Statements</th></tr></thead><tbody><tr><td>Decision</td><td>Select code to run</td><td>if, if-else, if-else-if, switch</td></tr><tr><td>Repetition</td><td>Run code many times</td><td>while, do-while, for (Chapter 06)</td></tr></tbody></table></div><h2>if</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">IfDemo.java</div></div><pre><code>public class IfDemo {
+    public static void main(String[] args) {
+        int age = 20;
+        if (age &gt;= 18) {                       // condition must be boolean
+            System.out.println("You are an adult.");
+        }
+        int attendance = 85;                   // challenge
+        if (attendance &gt;= 80) {
+            System.out.println("You are qualified to take the examination.");
+        }
+    }
+}</code></pre></div><div class="tw"><table><thead><tr><th>Age</th><th>Output</th></tr></thead><tbody><tr><td>15</td><td>No output</td></tr><tr><td>17</td><td>No output</td></tr><tr><td>18</td><td>You are an adult.</td></tr><tr><td>21</td><td>You are an adult.</td></tr></tbody></table></div><h2>if-else</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">IfElseDemo.java</div></div><pre><code>public class IfElseDemo {
+    public static void main(String[] args) {
+        int score = 70;
+        if (score &gt;= 75) {
+            System.out.println("Passed");
+        } else {
+            System.out.println("Failed");
+        }
+        int number = 7;                        // challenge: even or odd
+        if (number % 2 == 0) {
+            System.out.println("Even");
+        } else {
+            System.out.println("Odd");
+        }
+    }
+}</code></pre></div><div class="tw"><table><thead><tr><th>Score</th><th>Output</th></tr></thead><tbody><tr><td>60</td><td>Failed</td></tr><tr><td>74</td><td>Failed</td></tr><tr><td>75</td><td>Passed (boundary: &gt;= includes 75)</td></tr><tr><td>80</td><td>Passed</td></tr><tr><td>100</td><td>Passed</td></tr></tbody></table></div><h2>Nested if</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">NestedIfDemo.java</div></div><pre><code>public class NestedIfDemo {
+    public static void main(String[] args) {
+        int age = 20;
+        boolean hasID = true;
+        if (age &gt;= 18) {                       // outer
+            if (hasID) {                       // inner
+                System.out.println("Laboratory entry allowed.");
+            }
+        } else {                               // challenge: pairs with the OUTER if
+            System.out.println("You are not allowed to enter.");
+        }
+    }
+}</code></pre></div><div class="tw"><table><thead><tr><th>Age</th><th>Has ID</th><th>Output</th></tr></thead><tbody><tr><td>16</td><td>true</td><td>You are not allowed to enter.</td></tr><tr><td>20</td><td>false</td><td>No output (inner if has no else)</td></tr><tr><td>20</td><td>true</td><td>Laboratory entry allowed.</td></tr><tr><td>25</td><td>true</td><td>Laboratory entry allowed.</td></tr></tbody></table></div><h2>if-else-if (order matters)</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">GradeDemo.java / StudentGradingSystem.java</div></div><pre><code>public class GradeDemo {
+    public static void main(String[] args) {
+        int grade = 88;
+        if (grade &lt; 0 || grade &gt; 100) {        // invalid check FIRST
+            System.out.println("Invalid Grade");
+        } else if (grade &gt;= 90) {
+            System.out.println("Excellent");
+        } else if (grade &gt;= 80) {
+            System.out.println("Very Good");
+        } else if (grade &gt;= 75) {
+            System.out.println("Passed");
+        } else {
+            System.out.println("Failed");
+        }
+    }
+}</code></pre></div><div class="tw"><table><thead><tr><th>Grade</th><th>Output</th><th>Grade</th><th>Output</th></tr></thead><tbody><tr><td>95</td><td>Excellent</td><td>0</td><td>Failed</td></tr><tr><td>88</td><td>Very Good</td><td>100</td><td>Excellent</td></tr><tr><td>76</td><td>Passed</td><td>-5</td><td>Invalid Grade</td></tr><tr><td>74</td><td>Failed</td><td>101</td><td>Invalid Grade</td></tr></tbody></table></div><h3>Trace: grade = 78</h3><div class="steps"><div class="step"><div class="snum">1</div><div class="sc"><div class="sl">grade &lt; 0 || grade &gt; 100</div><div class="sd">false || false = false. Skip.</div></div></div><div class="step"><div class="snum">2</div><div class="sc"><div class="sl">grade &gt;= 90</div><div class="sd">78 &gt;= 90 is false. Skip.</div></div></div><div class="step"><div class="snum">3</div><div class="sc"><div class="sl">grade &gt;= 80</div><div class="sd">78 &gt;= 80 is false. Skip.</div></div></div><div class="step"><div class="snum">4</div><div class="sc"><div class="sl">grade &gt;= 75</div><div class="sd">true. Print "Passed". The remaining branches are never tested.</div></div></div></div><div class="box red"><div class="bico">×</div><div class="bbd"><div class="btt">Why the invalid check goes first</div><p class="btx">If <code>grade &gt;= 90</code> were first, a grade of 101 would print "Excellent" because 101 &gt;= 90 is true. The first true condition wins, so the most specific or most restrictive test comes first.</p></div></div><h2>switch</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">SwitchDemo.java</div></div><pre><code>public class SwitchDemo {
+    public static void main(String[] args) {
+        int choice = 2;
+        switch (choice) {
+            case 1: System.out.println("Add Student");    break;
+            case 2: System.out.println("View Student");   break;
+            case 3: System.out.println("Update Student"); break;
+            case 4: System.out.println("Delete Student"); break;
+            case 5: System.out.println("Exit");           break;
+            default: System.out.println("Invalid choice");
+        }
+    }
+}</code></pre></div><div class="box amber"><div class="bico">!</div><div class="bbd"><div class="btt">Break investigation</div><p class="btx">Remove <code>break;</code> from case 2 and the program prints "View Student" <em>and</em> "Update Student". Without break, execution falls through into the next case until it meets a break or the closing brace. Your lessons use int and char as switch expressions; modern Java also accepts String and enum.</p></div></div><h2>Flowchart to Code</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">Department supervisor</div></div><pre><code>if (dept &lt;= 3) {
+    System.out.println("Mr. X");
+} else if (dept &lt;= 7) {
+    System.out.println("Mr. Y");
+} else {
+    System.out.println("Mr. Z");
+}</code></pre></div><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">Menu 1-3</div></div><pre><code>if (x == 1)      { System.out.println("Hello"); }
+else if (x == 2) { System.out.println("Hi"); }
+else if (x == 3) { System.out.println("Bye"); }
+else             { System.out.println("Invalid"); }</code></pre></div><h2>AgeCategory (programming challenge)</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">AgeCategory.java</div></div><pre><code>public class AgeCategory {
+    public static void main(String[] args) {
+        int age = 25;
+        if (age &lt; 13) {
+            System.out.println("Child");
+        } else if (age &lt;= 19) {
+            System.out.println("Teenager");
+        } else if (age &lt;= 59) {
+            System.out.println("Adult");
+        } else {
+            System.out.println("Senior Citizen");
+        }
+    }
+}</code></pre></div><h2>Common Mistakes</h2><div class="mlst"><div class="mitem"><div class="mnm">= in a condition</div><div class="mdc"><code>if (number = 10)</code> fails: incompatible types: int cannot be converted to boolean. Use <code>==</code>.</div></div><div class="mitem"><div class="mnm">Semicolon after if</div><div class="mdc"><code>if (x &gt; 5);</code> ends the if immediately; the next block always runs.</div></div><div class="mitem"><div class="mnm">Missing break</div><div class="mdc">Fall-through prints extra lines. Add break; at the end of every case that should stop.</div></div><div class="mitem"><div class="mnm">Wrong test order</div><div class="mdc">In if-else-if the first true test wins. Put invalid and most restrictive checks first.</div></div><div class="mitem"><div class="mnm">elseif</div><div class="mdc">Java needs two words: <code>else if</code>.</div></div><div class="mitem"><div class="mnm">Dangling else</div><div class="mdc">An else belongs to the nearest unmatched if. Use braces everywhere - your lab rules require {} anyway.</div></div></div><div class="box green"><div class="bico">✓</div><div class="bbd"><div class="btt">Practice challenge</div><p class="btx">Write <code>FareDiscount.java</code>: read a passenger type number (1 = Senior, 2 = Student, 3 = Regular) and print the discount using a switch, then rewrite the same logic as if-else-if. Which one is easier to read?</p></div></div><div class="box blue"><div class="bico">i</div><div class="bbd"><div class="btt">Watch and forward-link</div><p class="btx">Watch: Bro Code "Java if statements" and "Java switch"; Extern Code for fundamentals. Forward-link: decision logic is the heart of every method you will write in CC103 Intermediate Programming, and the same branching reappears when you validate forms in your web courses.</p></div></div></section><section class="chapter" id="ch6"><div class="cn">CHAPTER 06</div><div class="ct">Iteration Statements (Week 8)</div><p class="ci">Repeating work safely: three loop types and the three statements that change their flow.</p><div class="box blue"><div class="bico">i</div><div class="bbd"><div class="btt">Local analogy</div><p class="btx"><strong>while</strong> is the guard who checks your ID <em>before</em> every entry (pre-test: it may never let you in). <strong>do-while</strong> is the jeepney that makes the first trip and then asks "may sasakay pa ba?" (post-test: runs at least once). <strong>for</strong> is counting laps on the oval: start at lap 1, stop after lap 10, add one each time. <strong>break</strong> is pulling the emergency brake; <strong>continue</strong> is skipping one stop but keeping the route.</p></div></div><div class="tw"><table><thead><tr><th>Loop</th><th>Check happens</th><th>Runs at least once?</th><th>Use when</th></tr></thead><tbody><tr><td>while</td><td>Before the body (pre-test)</td><td>No</td><td>Unknown number of repeats, condition-driven</td></tr><tr><td>do-while</td><td>After the body (post-test)</td><td>Yes</td><td>Input validation, menus</td></tr><tr><td>for</td><td>Before the body</td><td>Depends</td><td>Known number of iterations</td></tr></tbody></table></div><h2>while</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">WhileDemo.java</div></div><pre><code>public class WhileDemo {
+    public static void main(String[] args) {
+        int x = 1;
+        while (x &lt;= 10) {          // task: 1 to 10
+            System.out.println(x);
+            x++;                   // the update - never forget it
+        }
+        int y = 2;
+        while (y &lt;= 20) {          // challenge: even numbers 2 to 20
+            System.out.println(y);
+            y += 2;
+        }
+    }
+}</code></pre></div><h3>Trace: y loop</h3><div class="tw"><table class="nt"><thead><tr><th>Check y &lt;= 20</th><th>Prints</th><th>y after update</th></tr></thead><tbody><tr><td>2 &lt;= 20 true</td><td>2</td><td>4</td></tr><tr><td>4 &lt;= 20 true</td><td>4</td><td>6</td></tr><tr><td>...</td><td>...</td><td>...</td></tr><tr><td>20 &lt;= 20 true</td><td>20</td><td>22</td></tr><tr><td>22 &lt;= 20 false</td><td>stop</td><td>-</td></tr></tbody></table></div><h2>do-while</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">DoWhileDemo.java</div></div><pre><code>import java.util.Scanner;
+
+public class DoWhileDemo {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int number;
+        do {
+            System.out.print("Enter a number from 1 to 10: ");
+            number = input.nextInt();
+        } while (number &lt; 1 || number &gt; 10);   // semicolon is REQUIRED here
+        System.out.println("Valid number: " + number);
+
+        String password;                         // challenge
+        do {
+            System.out.print("Enter password: ");
+            password = input.next();
+            if (!password.equals("java123")) {
+                System.out.println("Incorrect password.");
+            }
+        } while (!password.equals("java123"));
+        System.out.println("Access Granted!");
+    }
+}</code></pre></div><div class="tw"><table><thead><tr><th>Student question</th><th>Answer</th></tr></thead><tbody><tr><td>Why is the input statement executed at least once?</td><td>do-while runs the body first, then checks the condition.</td></tr><tr><td>What happens when the user enters 15?</td><td>Outside 1-10, the condition is true, so the loop asks again.</td></tr><tr><td>What happens when the user enters 5?</td><td>Inside the range, the condition is false, so the loop ends.</td></tr><tr><td>Purpose of the condition?</td><td>It decides whether the loop repeats.</td></tr></tbody></table></div><div class="box amber"><div class="bico">!</div><div class="bbd"><div class="btt">Strings are compared with equals</div><p class="btx">Use <code>password.equals("java123")</code>, not <code>==</code>. For String content, <code>==</code> compares object references and can give the wrong answer.</p></div></div><h2>for</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">ForDemo.java</div></div><pre><code>public class ForDemo {
+    public static void main(String[] args) {
+        for (int i = 0; i &lt; 10; i++) { System.out.println(i); }    // 0..9
+        for (int i = 1; i &lt;= 5; i++)   { System.out.println(i); }   // A: 1 2 3 4 5
+        for (int i = 5; i &gt;= 1; i--)   { System.out.println(i); }   // B: 5 4 3 2 1
+        for (int i = 2; i &lt;= 10; i += 2) { System.out.println(i); } // C: 2 4 6 8 10
+        for (int i = 10; i &lt;= 50; i += 10) { System.out.println(i); } // D: 10 20 30 40 50
+    }
+}</code></pre></div><div class="steps"><div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Initialization</div><div class="sd"><code>int i = 1</code> runs once, before the first check.</div></div></div><div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Condition</div><div class="sd"><code>i &lt;= 5</code> is tested before every pass; false ends the loop.</div></div></div><div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Body</div><div class="sd">The statements inside { } run when the condition was true.</div></div></div><div class="step"><div class="snum">4</div><div class="sc"><div class="sl">Update</div><div class="sd"><code>i++</code> runs after the body, then control returns to the condition.</div></div></div></div><h2>break, continue, return</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">BreakDemo.java</div></div><pre><code>public class BreakDemo {
+    public static void main(String[] args) {
+        for (int i = 1; i &lt;= 10; i++) {
+            if (i == 6) {
+                break;                      // leaves the loop immediately
+            }
+            System.out.println(i);          // prints 1 2 3 4 5
+        }
+        System.out.println("Loop terminated.");
+
+        int target = 42;                    // challenge: search 1-100
+        for (int i = 1; i &lt;= 100; i++) {
+            if (i == target) {
+                System.out.println("Found " + target + "!");
+                break;
+            }
+        }
+    }
+}</code></pre></div><div class="tw"><table><thead><tr><th>Question</th><th>Answer</th></tr></thead><tbody><tr><td>Why was 6 not printed?</td><td>break runs when i == 6, before println.</td></tr><tr><td>What does break do?</td><td>Stops the loop immediately and continues after it.</td></tr><tr><td>What if the test is i == 8?</td><td>Prints 1 to 7, then "Loop terminated."</td></tr></tbody></table></div><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">ContinueDemo.java</div></div><pre><code>public class ContinueDemo {
+    public static void main(String[] args) {
+        for (int i = 1; i &lt;= 10; i++) {
+            if (i == 5) { continue; }          // 1 2 3 4 6 7 8 9 10
+            System.out.println(i);
+        }
+        for (int i = 1; i &lt;= 10; i++) {
+            if (i % 2 == 0) { continue; }      // skip evens: 1 3 5 7 9
+            System.out.println(i);
+        }
+        for (int i = 1; i &lt;= 10; i++) {
+            if (i % 3 == 0) { continue; }      // skip multiples of 3: 1 2 4 5 7 8 10
+            System.out.println(i);
+        }
+    }
+}</code></pre></div><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">ReturnDemo.java</div></div><pre><code>public class ReturnDemo {
+    static int calculateSum(int a, int b) {
+        int sum = a + b;
+        return sum;                         // sends the value back to the caller
+    }
+    static int square(int number) {
+        return number * number;
+    }
+    public static void main(String[] args) {
+        int result = calculateSum(10, 20);
+        System.out.println("Sum: " + result);        // 30
+        System.out.println("Square: " + square(5));  // 25
+    }
+}</code></pre></div><div class="tw"><table><thead><tr><th>Statement</th><th>Effect</th><th>Scope</th></tr></thead><tbody><tr><td>break</td><td>Terminates the loop (or switch) and transfers control outside it</td><td>Loop / switch</td></tr><tr><td>continue</td><td>Skips the rest of the current iteration; the loop keeps going</td><td>Loop only</td></tr><tr><td>return</td><td>Exits the method; <code>return value;</code> also hands a value back</td><td>Method</td></tr></tbody></table></div><h2>Integrated Labs</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">StudentGradeSystem.java (loops)</div></div><pre><code>import java.util.Scanner;
+
+public class StudentGradeSystem {
+    static String getStatus(double grade) {
+        if (grade &gt;= 75) {
+            return "PASSED";
+        } else {
+            return "FAILED";
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        double total = 0;
+        int passed = 0, failed = 0;
+
+        for (int i = 1; i &lt;= 5; i++) {
+            System.out.print("Enter grade for Student " + i + ": ");
+            double grade = input.nextDouble();
+            if (grade &lt; 0 || grade &gt; 100) {
+                System.out.println("Invalid grade.");
+                continue;                         // skip this student
+            }
+            total += grade;
+            System.out.println("Status: " + getStatus(grade));
+            if (grade &gt;= 75) { passed++; } else { failed++; }
+            System.out.println();
+        }
+
+        double average = total / 5;
+        System.out.println("========== SUMMARY ==========");
+        System.out.println("Average Grade: " + average);
+        System.out.println("Passed: " + passed);
+        System.out.println("Failed: " + failed);
+    }
+}</code></pre></div><div class="box amber"><div class="bico">!</div><div class="bbd"><div class="btt">Known quirk</div><p class="btx">If a grade is invalid, <code>continue</code> skips it but the average still divides by 5, so it comes out too low. A stricter version divides by <code>passed + failed</code>. Mention this if the instructor asks you to improve the program.</p></div></div><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">CalculatorLoop.java (do-while + switch + break + methods + return)</div></div><pre><code>import java.util.Scanner;
+
+public class CalculatorLoop {
+    static double add(double a, double b)      { return a + b; }
+    static double subtract(double a, double b) { return a - b; }
+    static double multiply(double a, double b) { return a * b; }
+    static double divide(double a, double b)   { return a / b; }
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int choice;
+        do {
+            System.out.println("===== CALCULATOR =====");
+            System.out.println("1. Addition");
+            System.out.println("2. Subtraction");
+            System.out.println("3. Multiplication");
+            System.out.println("4. Division");
+            System.out.println("5. Exit");
+            System.out.print("Enter choice: ");
+            choice = input.nextInt();
+
+            if (choice &gt;= 1 &amp;&amp; choice &lt;= 4) {
+                System.out.print("Enter first number: ");
+                double n1 = input.nextDouble();
+                System.out.print("Enter second number: ");
+                double n2 = input.nextDouble();
+                switch (choice) {
+                    case 1: System.out.println("Result: " + add(n1, n2));      break;
+                    case 2: System.out.println("Result: " + subtract(n1, n2)); break;
+                    case 3: System.out.println("Result: " + multiply(n1, n2)); break;
+                    case 4: System.out.println("Result: " + divide(n1, n2));   break;
+                }
+            } else if (choice == 5) {
+                System.out.println("Thank you for using the calculator!");
+            } else {
+                System.out.println("Invalid choice.");
+            }
+            System.out.println();
+        } while (choice != 5);
+    }
+}</code></pre></div><div class="box amber"><div class="bico">!</div><div class="bbd"><div class="btt">Output format</div><p class="btx">With double values, 10 + 20 prints <code>Result: 30.0</code>, while the lab sample shows <code>30</code>. It is normally accepted; if exact format matters, print with <code>System.out.printf("Result: %.2f%n", value)</code>.</p></div></div><p>The NumberAnalyzer lab (10 numbers, positive / negative / zero and even / odd counts) is reproduced as Task 8 in Chapter 09.</p><h2>DebugLoop</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">broken -> fixed</div></div><pre><code>int x = 0;
+while (x &lt; 10) {
+    System.out.println(x);
+    x++;            // missing in the broken version: x stays 0, prints 0 forever
+}</code></pre></div><h2>Reflection Answers</h2><div class="tw"><table><thead><tr><th>Question</th><th>Short answer</th></tr></thead><tbody><tr><td>while vs do-while?</td><td>while tests first and may not run; do-while runs once, then tests.</td></tr><tr><td>Three components of a for loop?</td><td>Initialization, condition, update (step expression).</td></tr><tr><td>break vs continue?</td><td>break ends the loop; continue skips only the current iteration.</td></tr><tr><td>Why is an infinite loop a problem?</td><td>The program never finishes, freezes the console, and wastes CPU and memory.</td></tr></tbody></table></div><h2>Common Mistakes</h2><div class="mlst"><div class="mitem"><div class="mnm">No update</div><div class="mdc">Forgetting x++ (or i++) creates an infinite loop.</div></div><div class="mitem"><div class="mnm">Off by one</div><div class="mdc"><code>i &lt; 10</code> stops at 9; <code>i &lt;= 10</code> stops at 10. Read the target range carefully.</div></div><div class="mitem"><div class="mnm">do-while semicolon</div><div class="mdc"><code>} while (cond);</code> needs the semicolon; while and for do not.</div></div><div class="mitem"><div class="mnm">Semicolon after for/while</div><div class="mdc"><code>for (...);</code> makes an empty loop; the braces run once afterwards.</div></div><div class="mitem"><div class="mnm">continue before update</div><div class="mdc">In a while loop, put the update before continue, or continue can skip it and loop forever.</div></div></div><div class="box green"><div class="bico">✓</div><div class="bbd"><div class="btt">Practice challenge</div><p class="btx">Write <code>MultiplicationTable.java</code> that prints the 1-to-10 table of a number the user enters, using a for loop. Then make it stop with break if the user enters 0.</p></div></div><div class="box blue"><div class="bico">i</div><div class="bbd"><div class="btt">Watch and forward-link</div><p class="btx">Watch: Bro Code "Java while loops / for loops" and freeCodeCamp's Java course. For extra practice, try easy tasks on Codewars. Forward-link: loops are the engine of arrays and collections in CC103, and of searching and sorting in Data Structures and Algorithms later on.</p></div></div></section><section class="chapter" id="ch7"><div class="cn">CHAPTER 07</div><div class="ct">Scanner Toolkit</div><p class="ci">The practical exam is console-based, so almost every task starts with reading input correctly.</p><div class="box blue"><div class="bico">i</div><div class="bbd"><div class="btt">Local analogy</div><p class="btx">A Scanner is the cashier reading what you hand over. <code>nextInt()</code> takes exactly one number token. <code>nextLine()</code> takes everything up to the Enter key. When you hand over a number and press Enter, the cashier takes the number but leaves the Enter key (the newline) on the counter - the next <code>nextLine()</code> grabs that leftover and returns an empty line.</p></div></div><h2>Setup</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">skeleton - memorize this</div></div><pre><code>import java.util.Scanner;                      // 1. import
+
+public class Task {                            // 2. class name = file name
+    public static void main(String[] args) {   // 3. entry point
+        Scanner sc = new Scanner(System.in);   // 4. create the scanner
+        // read and process here
+        sc.close();                            // 5. optional but tidy
+    }
+}</code></pre></div><h2>Which Method for Which Job</h2><div class="tw"><table><thead><tr><th>Task</th><th>Method</th><th>Returns</th></tr></thead><tbody><tr><td>Read a whole number</td><td><code>sc.nextInt()</code></td><td>int</td></tr><tr><td>Read a decimal</td><td><code>sc.nextDouble()</code></td><td>double</td></tr><tr><td>Read a float / long / boolean</td><td><code>nextFloat()</code> <code>nextLong()</code> <code>nextBoolean()</code></td><td>float / long / boolean</td></tr><tr><td>Read one word (stops at space)</td><td><code>sc.next()</code></td><td>String</td></tr><tr><td>Read a full line with spaces</td><td><code>sc.nextLine()</code></td><td>String</td></tr><tr><td>Read one character</td><td><code>sc.next().charAt(0)</code></td><td>char</td></tr><tr><td>Check before reading</td><td><code>hasNextInt()</code> <code>hasNextDouble()</code></td><td>boolean</td></tr></tbody></table></div><h2>The nextInt + nextLine Trap</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">broken</div></div><pre><code>int age = sc.nextInt();          // reads 25, leaves the Enter key behind
+String name = sc.nextLine();     // reads the leftover Enter -&gt; empty string!</code></pre></div><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">fixed</div></div><pre><code>int age = sc.nextInt();
+sc.nextLine();                   // consume the leftover newline
+String name = sc.nextLine();</code></pre></div><h2>Validation Loop</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">reject non-numbers and out-of-range values</div></div><pre><code>int number;
+do {
+    System.out.print("Enter number 1-10: ");
+    while (!sc.hasNextInt()) {          // not a number?
+        System.out.println("Invalid!");
+        sc.next();                       // throw the bad token away
+    }
+    number = sc.nextInt();
+} while (number &lt; 1 || number &gt; 10);</code></pre></div><h2>Common Mistakes</h2><div class="mlst"><div class="mitem"><div class="mnm">No import</div><div class="mdc">cannot find symbol: class Scanner. Add <code>import java.util.Scanner;</code> above the class.</div></div><div class="mitem"><div class="mnm">Wrong type read</div><div class="mdc"><code>nextInt()</code> on text like "abc" throws InputMismatchException. Use hasNextInt() when input may be bad.</div></div><div class="mitem"><div class="mnm">Prompt without print</div><div class="mdc">Use print (no newline) for prompts so the user types on the same line.</div></div><div class="mitem"><div class="mnm">Divide by zero</div><div class="mdc">int / 0 throws ArithmeticException; double / 0.0 gives Infinity. Check the divisor if the task says so.</div></div></div><div class="box green"><div class="bico">✓</div><div class="bbd"><div class="btt">Practice challenge</div><p class="btx">Write a program that reads an int age, then a full-line name, and prints "Name is age years old". Make it work without the empty-name bug.</p></div></div><div class="box blue"><div class="bico">i</div><div class="bbd"><div class="btt">Forward-link</div><p class="btx">Input handling is used in every console project in CC103 and in later file and database work. Learning the newline trap now saves hours of confusing bugs later.</p></div></div></section><section class="chapter" id="ch8"><div class="cn">CHAPTER 08</div><div class="ct">Output Traps, Debugging &amp; Cheat Sheet</div><p class="ci">The fastest points on the written exam come from recognizing the standard traps and compiler messages.</p><h2>Output Prediction Traps</h2><div class="tw"><table><thead><tr><th>Code</th><th>Output</th><th>Why</th></tr></thead><tbody><tr><td><code>print("Hello"); print("World");</code></td><td>HelloWorld</td><td>print does not add a newline</td></tr><tr><td><code>println("Hello"); println("World");</code></td><td>Hello / World on two lines</td><td>println moves to the next line</td></tr><tr><td><code>"Sum = " + 10 + 3</code></td><td>Sum = 103</td><td>Text + number joins as text, left to right</td></tr><tr><td><code>"Sum = " + (10 + 3)</code></td><td>Sum = 13</td><td>Parentheses add first</td></tr><tr><td><code>"Result = " + 10 + 3 * 2</code></td><td>Result = 106</td><td>3*2 first, then text joins 10 and 6</td></tr><tr><td><code>12 / 5   and   12 % 5</code></td><td>2 and 2</td><td>Integer division and remainder</td></tr><tr><td><code>int x=10; ++x; x++; x</code></td><td>12</td><td>Both statements add 1</td></tr><tr><td><code>x=10: println(x++) then println(x)</code></td><td>10 then 11</td><td>Post-increment uses the old value</td></tr><tr><td><code>(5 &gt; 3) &amp;amp;&amp;amp; (8 &amp;lt; 5)</code></td><td>false</td><td>AND needs both true</td></tr><tr><td><code>!(5 &gt; 3)</code></td><td>false</td><td>NOT flips true</td></tr><tr><td><code>switch(2) with no break in cases 1-3 and default</code></td><td>Two / Three / Default</td><td>Fall-through continues until a break</td></tr><tr><td><code>99.50f printed</code></td><td>99.5</td><td>Trailing zero is dropped; the f never prints</td></tr></tbody></table></div><h2>Compiler Error Decoder</h2><div class="tw"><table><thead><tr><th>Message (javac)</th><th>Usual cause</th><th>Fix</th></tr></thead><tbody><tr><td><code>';' expected</code></td><td>Missing semicolon on the previous line</td><td>Add ;</td></tr><tr><td><code>')' expected</code> (or <code>')' or ',' expected</code>)</td><td>Unclosed parenthesis in println</td><td>Add the closing )</td></tr><tr><td><code>cannot find symbol</code></td><td>Typo or wrong capitalization (studentname), or missing import/declaration</td><td>Match the declared name exactly</td></tr><tr><td><code>incompatible types: String cannot be converted to char</code></td><td>char x = "A";</td><td>Use single quotes: 'A'</td></tr><tr><td><code>incompatible types: possible lossy conversion from double to float</code></td><td>float f = 99.50;</td><td>Write 99.50f</td></tr><tr><td><code>incompatible types: int cannot be converted to boolean</code></td><td>if (number = 10)</td><td>Use ==</td></tr><tr><td><code>class X is public, should be declared in a file named X.java</code></td><td>File name differs from public class name</td><td>Rename file or class to match</td></tr><tr><td><code>non-static variable ... cannot be referenced from a static context</code></td><td>Instance variable used in static main</td><td>Create an object or make it static</td></tr><tr><td><code>variable x might not have been initialized</code></td><td>Local variable used before assignment</td><td>Give it a value first</td></tr><tr><td><code>missing return statement</code></td><td>A non-void method has a path with no return</td><td>Return on every path</td></tr></tbody></table></div><h2>Debugging Checklist</h2><div class="mlst"><div class="mitem"><div class="mnm">Missing ;</div><div class="mdc">Add the semicolon. Look at the line above the reported line.</div></div><div class="mitem"><div class="mnm">= instead of ==</div><div class="mdc">Use == to compare.</div></div><div class="mitem"><div class="mnm">Wrong quotes</div><div class="mdc">char uses 'A'; String uses "A".</div></div><div class="mitem"><div class="mnm">Name mismatch</div><div class="mdc">Variable names are case-sensitive; match the declaration.</div></div><div class="mitem"><div class="mnm">Missing )</div><div class="mdc">Count opening and closing parentheses on the println line.</div></div><div class="mitem"><div class="mnm">Concat without ()</div><div class="mdc">Wrap math inside text output: <code>"x" + (a + b)</code>.</div></div><div class="mitem"><div class="mnm">Infinite loop</div><div class="mdc">Add the missing increment or decrement.</div></div><div class="mitem"><div class="mnm">elseif</div><div class="mdc">Write else if (two words).</div></div><div class="mitem"><div class="mnm">Missing break</div><div class="mdc">Add break; in switch cases that should stop.</div></div><div class="mitem"><div class="mnm">Non-boolean condition</div><div class="mdc">Use a comparison operator inside if / while.</div></div><div class="mitem"><div class="mnm">nextInt then nextLine</div><div class="mdc">Add an extra sc.nextLine() to eat the leftover newline.</div></div><div class="mitem"><div class="mnm">do-while semicolon</div><div class="mdc">End with <code>} while (cond);</code>.</div></div></div><h2>25 Rapid-Fire Facts</h2><ol><li>Program cycle: problem definition, problem analysis, algorithm development, coding and debugging.</li><li>An algorithm needs exact steps, a finite number of steps, and an output.</li><li>Decision = diamond; I/O = parallelogram; process = rectangle; terminal = oval; initialization = hexagon.</li><li>Java: created 1991 by James Gosling and team at Sun Microsystems; names Greentalk, Oak, then Java.</li><li>Java is platform independent because bytecode runs on the JVM.</li><li>Entry point: public static void main(String[] args).</li><li>byte range is -128 to 127; short is 16-bit; int is 32-bit; long is 64-bit.</li><li>double is the default type for decimal literals; float needs f; long needs L for large literals.</li><li>char uses single quotes; String is non-primitive and uses double quotes.</li><li>= assigns; == compares.</li><li>&amp;&amp; needs both true; || needs at least one true; ^ is true when inputs differ; ! reverses.</li><li>++x changes first then uses; x++ uses first then changes.</li><li>Precedence: ( ) then * / % then + - then relational then == != then &amp;&amp; then ||.</li><li>int / int drops the decimal; % gives the remainder.</li><li>The condition of if or while must be boolean.</li><li>In your lessons switch uses int or char; each case ends with break; default is the fallback.</li><li>break leaves a loop or switch; continue skips the current iteration; return leaves a method.</li><li>while is pre-test; do-while is post-test and runs at least once.</li><li>An infinite loop usually means a missing update statement.</li><li>Scanner methods: nextInt(), nextDouble(), next(), nextLine().</li><li>print has no newline; println adds one; printf formats.</li><li>10 + 5 * 2 = 20 and (10 + 5) * 2 = 30.</li><li>7 - 24 / 8 * 4 + 6 = 1.</li><li>File name must match the public class name.</li><li>Local variables live in a method; instance variables belong to each object; static variables are shared.</li></ol><div class="box blue"><div class="bico">i</div><div class="bbd"><div class="btt">Forward-link</div><p class="btx">Reading code and predicting its output is the core debugging skill for every later programming course; the habit of tracing with a small table carries straight into CC103.</p></div></div></section><section class="chapter" id="ch9"><div class="cn">CHAPTER 09</div><div class="ct">10-Minute Practical Draw</div><p class="ci">Draw a task, set a 10-minute clock, and build it from memory.</p><div class="box blue"><div class="bico">i</div><div class="bbd"><div class="btt">How the practical works</div><p class="btx">You draw one Java task and must write it, run it and show the output within <strong>10 minutes</strong>. The pool below contains 17 tasks taken from your Week 5-8 labs and reviewer templates, so whatever you draw is something you have already seen. The skill being tested is speed with the skeleton, not creativity.</p></div></div><h2>The 10-Minute Game Plan</h2><div class="tw"><table><thead><tr><th>Clock</th><th>Do this</th></tr></thead><tbody><tr><td>0:00 - 0:45</td><td>Read the task twice. Circle the inputs, the outputs, and the structure word (if, switch, for, while, do-while).</td></tr><tr><td>0:45 - 2:00</td><td>Type the skeleton: import Scanner, class, main, Scanner object. Match the class name to the file name.</td></tr><tr><td>2:00 - 6:30</td><td>Write the logic. Print messages exactly as the task words them.</td></tr><tr><td>6:30 - 8:30</td><td>Run it. Test two inputs: one normal, one boundary (for example 75 or 18 or 0).</td></tr><tr><td>8:30 - 9:30</td><td>Fix errors, indent, add a comment or two.</td></tr><tr><td>9:30 - 10:00</td><td>Save the .java file. Screenshot the code and the output together.</td></tr></tbody></table></div><h2>Skeleton to Type Blind</h2><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">type this without looking</div></div><pre><code>import java.util.Scanner;
+
+public class Task {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+    }
+}</code></pre></div><h2>Draw Simulator</h2><div class="draw"><div class="dwk">Draw simulator</div><div class="tm" id="tm">10:00</div><div class="bar"><i id="tbar"></i></div><div class="drow"><button class="btn" id="tdraw">Draw a task</button><button class="btn" id="tgo">Start 10:00</button><button class="btn alt" id="trst">Reset</button></div><div class="dtip" id="tstate">Press "Draw a task", read it, then press Start. Open NetBeans (or an online compiler) and type from memory.</div><div id="dcard" style="display:none"><div class="dwk" id="dwk"></div><div class="dtt" id="dtt"></div><p class="dpr" id="dpr"></p><div class="dout" id="dout"></div><div class="dtip" id="dtip"></div><details id="dsol"><summary>Reveal sample solution (after your clock ends)</summary><div class="dpad"><div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">java</div></div><pre><code id="dcode"></code></pre></div></div></details></div></div><div class="box amber"><div class="bico">!</div><div class="bbd"><div class="btt">Practical rules from your labs</div><p class="btx">Create your own program; use proper naming and indentation; test with different values; the screenshot must show both the source code and the output; be ready to explain every line. If your instructor names the class differently, use that name - the file name must match it.</p></div></div><h2>All 17 Tasks with Solutions</h2><p>Open a task only after you have attempted it from memory.</p><div id="tlist"></div><h2>Last 60 Seconds Checklist</h2><div class="mlst"><div class="mitem"><div class="mnm">Import</div><div class="mdc">Is java.util.Scanner imported if you used Scanner?</div></div><div class="mitem"><div class="mnm">Class name</div><div class="mdc">Does it match the file name?</div></div><div class="mitem"><div class="mnm">Braces</div><div class="mdc">Does every { have a matching }?</div></div><div class="mitem"><div class="mnm">Semicolons</div><div class="mdc">Does every statement end with ; (and do-while end with ); )?</div></div><div class="mitem"><div class="mnm">Compare</div><div class="mdc">Did you use == (and equals for Strings) in conditions?</div></div><div class="mitem"><div class="mnm">Loop update</div><div class="mdc">Does every while/do-while change its variable?</div></div><div class="mitem"><div class="mnm">Output text</div><div class="mdc">Does your wording match the task exactly?</div></div><div class="mitem"><div class="mnm">Screenshot</div><div class="mdc">Is the code and the output both visible?</div></div></div><div class="box blue"><div class="bico">i</div><div class="bbd"><div class="btt">Forward-link</div><p class="btx">Writing small complete programs under time pressure is the same skill CC103 labs and later coding exams measure. Practice extra on Codewars (syntax-level tasks) to stay fast.</p></div></div></section><section class="chapter" id="ch10"><div class="cn">CHAPTER 10</div><div class="ct">50-Item Mock Exam</div><p class="ci">Practice in the same style as the written midterm: definitions, tracing and error spotting.</p><div class="box blue"><div class="bico">i</div><div class="bbd"><div class="btt">How this works</div><p class="btx">50 multiple-choice items covering Weeks 2-8. Choose an option and the correct answer plus an explanation appears immediately. Aim for 90% or above; for anything you miss, re-read the matching chapter.</p></div></div><div class="sbar"><span id="qscore"></span><span><button class="btn alt" id="qreset">Reset quiz</button></span></div><div id="quiz"></div><div class="box blue" id="qfinal" style="display:none"></div></section><div class="footer"><p>QCU Academic OS · 2026 · Compiled by <strong>KianoRoku18Ino</strong> · github.com/KianoRoku18Ino</p></div>
+</main>
+<script>window.QUIZ=[{"s": "Weeks 2-3 - Logic and Flowcharts", "q": "What is the correct order of the programming cycle?", "o": ["Algorithm development, problem definition, problem analysis, coding and debugging", "Problem definition, problem analysis, algorithm development, coding and debugging", "Problem analysis, problem definition, coding and debugging, algorithm development", "Coding and debugging, algorithm development, problem analysis, problem definition"], "a": 1, "e": "Define the problem, analyze it, design the algorithm, then code and debug."}, {"s": "Weeks 2-3 - Logic and Flowcharts", "q": "Which of the following is NOT a requirement of an algorithm?", "o": ["Exact steps", "A finite number of steps", "An output", "A specific programming language syntax"], "a": 3, "e": "An algorithm is language-independent. Pseudocode and flowcharts describe it without Java syntax."}, {"s": "Weeks 2-3 - Logic and Flowcharts", "q": "Pseudocode is best described as:", "o": ["A debugging tool in NetBeans", "A compiled .class file", "A generic way of describing an algorithm without specific programming language syntax", "A flowchart symbol"], "a": 2, "e": "Pseudocode is plain-language, language-neutral steps."}, {"s": "Weeks 2-3 - Logic and Flowcharts", "q": "Which flowchart symbol has one entrance and two exits (TRUE and FALSE)?", "o": ["Oval", "Rectangle", "Parallelogram", "Diamond"], "a": 3, "e": "The diamond is the decision symbol: 1 in, 2 out."}, {"s": "Weeks 2-3 - Logic and Flowcharts", "q": "Which symbol is used to declare or initialize a variable such as age = 19?", "o": ["Hexagon", "Parallelogram", "Diamond", "Document"], "a": 0, "e": "Hexagon = initialization. Rectangle = process/calculation. Parallelogram = input/output."}, {"s": "Weeks 2-3 - Logic and Flowcharts", "q": "Given A = true and B = true, which expression evaluates to false?", "o": ["A && B", "A || B", "A ^ B", "!(!A)"], "a": 2, "e": "XOR is true only when the inputs differ; both are true, so A ^ B is false. !(!A) is A, which is true."}, {"s": "Weeks 2-3 - Logic and Flowcharts", "q": "X = 12 and Y = 12. Which pair of conditions are BOTH true?", "o": ["X < Y and X > Y", "X <= Y and X >= Y", "X < Y and X >= Y", "X > Y and X <= Y"], "a": 1, "e": "Equal values satisfy <= and >= but neither < nor >."}, {"s": "Weeks 2-3 - Logic and Flowcharts", "q": "A flowchart sets x = 0, loops while x < 10 and displays x each time, but never changes x. How is the infinite loop fixed?", "o": ["Add x = x + 1 inside the loop", "Change x < 10 to x > 10", "Remove the Start terminal", "Change the parallelogram to a rectangle"], "a": 0, "e": "The loop needs an update step so the condition can eventually become false."}, {"s": "Week 4 - Introduction to Java", "q": "Who led the creation of Java, and at which company?", "o": ["Dennis Ritchie at Bell Labs", "Bjarne Stroustrup at AT&T", "Guido van Rossum at CWI", "James Gosling at Sun Microsystems"], "a": 3, "e": "James Gosling, Mike Sheridan and Patrick Naughton started the Green Project at Sun Microsystems in 1991."}, {"s": "Week 4 - Introduction to Java", "q": "Right before it was named Java, the language was called:", "o": ["Greentalk", "Star7", "Oak", "Coffee"], "a": 2, "e": "Greentalk (.gt) was first, Oak second, then Java. Star7 was the first project/device."}, {"s": "Week 4 - Introduction to Java", "q": "What does the Java compiler produce from a .java source file?", "o": ["Machine code that runs only on Windows", "Bytecode in a .class file", "An HTML page", "Another .java file"], "a": 1, "e": ".java -> compiler -> .class (bytecode) -> JVM -> output."}, {"s": "Week 4 - Introduction to Java", "q": "Which Java feature lets the same bytecode run on any operating system that has a JVM?", "o": ["Platform independent", "Multithreaded", "Distributed", "Dynamic"], "a": 0, "e": "The JVM hides the operating system differences."}, {"s": "Week 4 - Introduction to Java", "q": "Which is the correct signature of the Java main method?", "o": ["public void main(String[] args)", "public static int main(String args)", "public static void main(String[] args)", "static public main(String[] args)"], "a": 2, "e": "It must be public, static, void, named main, and take a String array."}, {"s": "Week 4 - Introduction to Java", "q": "Which statement about a Java application is TRUE?", "o": ["It must run inside a web browser", "It is stand-alone and does not need a browser", "It cannot contain a main method", "It is the same thing as an applet"], "a": 1, "e": "Applets need a browser; applications are stand-alone."}, {"s": "Week 5 - Programming Basics", "q": "A public class named HelloJava must be saved as:", "o": ["hellojava.java", "HelloJava.txt", "Hello.java", "HelloJava.java"], "a": 3, "e": "File name and public class name must match exactly, including capitalization."}, {"s": "Week 5 - Programming Basics", "q": "Which is a VALID Java identifier?", "o": ["123student", "-score", "$salary", "class"], "a": 2, "e": "Identifiers may start with a letter, $ or _. They cannot start with a digit, contain a hyphen, or be a keyword."}, {"s": "Week 5 - Programming Basics", "q": "Java is case-sensitive. Therefore studentName and StudentName are:", "o": ["The same variable", "Two different identifiers", "A compile error when both appear in a file", "Different only inside the IDE"], "a": 1, "e": "Different capitalization means different identifiers."}, {"s": "Week 5 - Programming Basics", "q": "A variable declared inside a method body is called a(n):", "o": ["Local variable", "Instance variable", "Static variable", "Global variable"], "a": 0, "e": "Local = inside a method. Instance = inside a class, outside methods. Static = shared, declared with static."}, {"s": "Week 5 - Programming Basics", "q": "Which kind of variable is shared by ALL objects of a class?", "o": ["Local", "Instance", "Parameter", "Static"], "a": 3, "e": "There is a single copy of a static variable for the whole class."}, {"s": "Week 5 - Programming Basics", "q": "Which declaration is correct?", "o": ["char section = \"A\";", "char section = 'A';", "char section = AB;", "char section = 'AB';"], "a": 1, "e": "char takes exactly one character in single quotes. Double quotes make a String."}, {"s": "Week 5 - Programming Basics", "q": "Which statement causes a compile-time error?", "o": ["float price = 99.50f;", "double salary = 25000.75;", "float price = 99.50;", "long big = 100000L;"], "a": 2, "e": "99.50 is a double literal; assigning it to a float is a lossy conversion. Use 99.50f."}, {"s": "Week 5 - Programming Basics", "q": "What is the value of 25 / 10 when both operands are int?", "o": ["2", "2.5", "3", "2.0"], "a": 0, "e": "Integer division discards the decimal part. 25 % 10 would be 5."}, {"s": "Week 5 - Programming Basics", "q": "Which of the following is a NON-primitive data type?", "o": ["boolean", "String", "double", "char"], "a": 1, "e": "String is a class. The eight primitives are boolean, byte, short, int, long, float, double and char."}, {"s": "Week 5 - Programming Basics", "q": "What is the range of the byte data type?", "o": ["0 to 255", "-32,768 to 32,767", "-2,147,483,648 to 2,147,483,647", "-128 to 127"], "a": 3, "e": "byte is 8-bit signed: -128 to 127."}, {"s": "Week 6 - Operators", "q": "What is the value of 10 % 3?", "o": ["3", "0", "1", "3.33"], "a": 2, "e": "10 divided by 3 is 3 remainder 1; % returns the remainder."}, {"s": "Week 6 - Operators", "q": "What is displayed when this code runs?", "o": ["11 then 11", "10 then 11", "10 then 10", "11 then 10"], "a": 1, "e": "x++ prints the old value (10) and then increases x to 11.", "code": "int x = 10;\nSystem.out.println(x++);\nSystem.out.println(x);"}, {"s": "Week 6 - Operators", "q": "After these statements, what is x?", "o": ["9", "11", "12", "10"], "a": 3, "e": "10 -> ++x = 11 -> x++ = 12 -> --x = 11 -> x-- = 10.", "code": "int x = 10;\n++x;\nx++;\n--x;\nx--;"}, {"s": "Week 6 - Operators", "q": "What is the final value of score?", "o": ["22", "21", "27", "110"], "a": 0, "e": "50 + 10 = 60; 60 - 5 = 55; 55 * 2 = 110; 110 / 5 = 22.", "code": "int score = 50;\nscore += 10;\nscore -= 5;\nscore *= 2;\nscore /= 5;"}, {"s": "Week 6 - Operators", "q": "With int a = 7 and int b = 11, which expression is true?", "o": ["a == b", "a > b", "a <= b", "a >= b"], "a": 2, "e": "7 is less than 11, so a <= b is true; the other three are false."}, {"s": "Week 6 - Operators", "q": "What is the result of (5 > 3) ^ (8 < 5)?", "o": ["false", "0", "compile error", "true"], "a": 3, "e": "true ^ false = true. XOR is true when the inputs differ."}, {"s": "Week 6 - Operators", "q": "What is the value of 7 - 24 / 8 * 4 + 6?", "o": ["-2", "1", "13", "4"], "a": 1, "e": "24 / 8 = 3; 3 * 4 = 12; 7 - 12 + 6 = 1. Division and multiplication go left to right before + and -."}, {"s": "Week 6 - Operators", "q": "What is the value of (17 - 6 / 2) + 4 * 3?", "o": ["26", "14", "27", "32"], "a": 0, "e": "6 / 2 = 3; 17 - 3 = 14; 4 * 3 = 12; 14 + 12 = 26."}, {"s": "Week 6 - Operators", "q": "With int a = 10 and int b = 3, what does this print?", "o": ["Sum = 13", "Sum = 30", "Sum = 103", "Compile error"], "a": 2, "e": "Concatenation goes left to right: \"Sum = \" + 10 becomes text, then 3 is appended. Parentheses would give 13.", "code": "System.out.println(\"Sum = \" + a + b);"}, {"s": "Week 6 - Operators", "q": "With int a = 10 and int b = 3, what does this print?", "o": ["Equal = false", "Equal = 3", "Equal = 10", "Compile error"], "a": 1, "e": "(a = b) is an assignment: it stores 3 in a and evaluates to 3. It compiles; it is just not a comparison.", "code": "System.out.println(\"Equal = \" + (a = b));"}, {"s": "Week 7 - Conditional Statements", "q": "The condition inside an if statement must evaluate to which type?", "o": ["boolean", "int", "String", "char"], "a": 0, "e": "if (and while) require a boolean expression."}, {"s": "Week 7 - Conditional Statements", "q": "What happens with this code?", "o": ["It prints Number is 10", "It prints nothing", "A runtime exception occurs", "Compile error: int cannot be converted to boolean"], "a": 3, "e": "= assigns and produces an int. The if needs a boolean, so use ==.", "code": "int number = 10;\nif (number = 10) {\n    System.out.println(\"Number is 10\");\n}"}, {"s": "Week 7 - Conditional Statements", "q": "With score = 75, the code prints Passed when score >= 75 and Failed otherwise. What is the output?", "o": ["Failed", "No output", "Passed", "Compile error"], "a": 2, "e": "The boundary value 75 satisfies >= 75."}, {"s": "Week 7 - Conditional Statements", "q": "Which expression correctly tests whether number is even?", "o": ["number / 2 == 0", "number % 2 == 0", "number % 2 = 0", "number * 2 == 0"], "a": 1, "e": "An even number has remainder 0 when divided by 2. Use == (comparison), not =."}, {"s": "Week 7 - Conditional Statements", "q": "With age = 20 and hasID = false, what is printed?", "o": ["Laboratory entry allowed.", "You are not allowed to enter.", "Both messages", "Nothing is printed"], "a": 3, "e": "age >= 18 is true so the else is skipped; the inner if (hasID) is false and has no else, so nothing prints.", "code": "if (age >= 18) {\n    if (hasID) {\n        System.out.println(\"Laboratory entry allowed.\");\n    }\n} else {\n    System.out.println(\"You are not allowed to enter.\");\n}"}, {"s": "Week 7 - Conditional Statements", "q": "What does this code print?", "o": ["Passed", "Very Good", "Excellent", "Failed"], "a": 0, "e": "78 fails >= 90 and >= 80, then passes >= 75, so it prints Passed.", "code": "int grade = 78;\nif (grade >= 90) System.out.println(\"Excellent\");\nelse if (grade >= 80) System.out.println(\"Very Good\");\nelse if (grade >= 75) System.out.println(\"Passed\");\nelse System.out.println(\"Failed\");"}, {"s": "Week 7 - Conditional Statements", "q": "What does this code print? (The invalid check was placed second.)", "o": ["Invalid Grade", "Other", "Excellent", "Compile error"], "a": 2, "e": "101 >= 90 is true, so the first branch runs. In if-else-if the first true condition wins, so check invalid values first.", "code": "int grade = 101;\nif (grade >= 90) {\n    System.out.println(\"Excellent\");\n} else if (grade < 0 || grade > 100) {\n    System.out.println(\"Invalid Grade\");\n} else {\n    System.out.println(\"Other\");\n}"}, {"s": "Week 7 - Conditional Statements", "q": "In SwitchDemo with choice = 2, the break is removed from case 2. What prints?", "o": ["View Student only", "View Student, then Update Student", "Update Student only", "Invalid choice"], "a": 1, "e": "Without break the switch falls through into case 3, which prints Update Student and then breaks."}, {"s": "Week 8 - Iteration Statements", "q": "Which loop always executes its body at least once?", "o": ["while", "for", "if", "do-while"], "a": 3, "e": "do-while tests its condition after the body."}, {"s": "Week 8 - Iteration Statements", "q": "What happens when this code runs?", "o": ["Prints 0 forever (infinite loop)", "Prints 0 to 9", "Prints 0 to 10", "Prints nothing"], "a": 0, "e": "x is never updated, so x < 10 stays true.", "code": "int x = 0;\nwhile (x < 10) {\n    System.out.println(x);\n}"}, {"s": "Week 8 - Iteration Statements", "q": "What are the three parts of a for loop header?", "o": ["Declaration, return, break", "Condition, body, return", "Initialization, condition, update", "Start, stop, step"], "a": 2, "e": "for (initialization; condition; update)."}, {"s": "Week 8 - Iteration Statements", "q": "What is the LAST number printed by this code?", "o": ["6", "5", "10", "4"], "a": 1, "e": "When i reaches 6, break ends the loop before the println. The last printed value is 5.", "code": "for (int i = 1; i <= 10; i++) {\n    if (i == 6) {\n        break;\n    }\n    System.out.println(i);\n}"}, {"s": "Week 8 - Iteration Statements", "q": "How many numbers does this code print?", "o": ["9", "10", "5", "4"], "a": 0, "e": "continue skips only 5; the loop still prints the other nine numbers.", "code": "for (int i = 1; i <= 10; i++) {\n    if (i == 5) {\n        continue;\n    }\n    System.out.println(i);\n}"}, {"s": "Week 8 - Iteration Statements", "q": "How many numbers does this code print?", "o": ["3", "6", "10", "7"], "a": 3, "e": "3, 6 and 9 are skipped, leaving 1 2 4 5 7 8 10, which is seven numbers.", "code": "for (int i = 1; i <= 10; i++) {\n    if (i % 3 == 0) {\n        continue;\n    }\n    System.out.println(i);\n}"}, {"s": "Week 8 - Iteration Statements", "q": "What does the return statement do in a method?", "o": ["Ends the whole program", "Skips the current loop iteration", "Exits the method and sends a value back to the caller", "Repeats the method"], "a": 2, "e": "return leaves the method; return value; also hands the value back."}, {"s": "Week 8 - Iteration Statements", "q": "Which is the correct way to end a do-while loop?", "o": ["} while (x < 10)", "} while (x < 10);", "} while x < 10;", "} while {x < 10};"], "a": 1, "e": "A do-while requires the condition in parentheses followed by a semicolon."}];window.TASKS=[{"w": "Weeks 5-6 - Variables and operators", "t": "Two-Number Calculator", "p": "Ask the user for two integers. Display the sum, difference, product, quotient and modulo.", "out": "Enter first number: 25\nEnter second number: 10\nSum: 35\nDifference: 15\nProduct: 250\nQuotient: 2\nModulo: 5", "tip": "import Scanner, create sc, two nextInt() calls, wrap every calculation in parentheses.", "code": "import java.util.Scanner;\n\npublic class Task {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        System.out.print(\"Enter first number: \");\n        int a = sc.nextInt();\n        System.out.print(\"Enter second number: \");\n        int b = sc.nextInt();\n        System.out.println(\"Sum: \" + (a + b));\n        System.out.println(\"Difference: \" + (a - b));\n        System.out.println(\"Product: \" + (a * b));\n        System.out.println(\"Quotient: \" + (a / b));\n        System.out.println(\"Modulo: \" + (a % b));\n    }\n}"}, {"w": "Week 7 - if-else-if", "t": "Grade Classifier", "p": "Read a grade. 90-100 Excellent, 80-89 Very Good, 75-79 Passed, below 75 Failed, and anything below 0 or above 100 is Invalid Grade.", "out": "Enter grade: 88\nVery Good", "tip": "Test the invalid range first with ||, then >= 90, >= 80, >= 75, else.", "code": "import java.util.Scanner;\n\npublic class Task {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        System.out.print(\"Enter grade: \");\n        int grade = sc.nextInt();\n\n        if (grade < 0 || grade > 100) {\n            System.out.println(\"Invalid Grade\");\n        } else if (grade >= 90) {\n            System.out.println(\"Excellent\");\n        } else if (grade >= 80) {\n            System.out.println(\"Very Good\");\n        } else if (grade >= 75) {\n            System.out.println(\"Passed\");\n        } else {\n            System.out.println(\"Failed\");\n        }\n    }\n}"}, {"w": "Week 7 - if-else", "t": "Even or Odd", "p": "Read an integer and display Even or Odd using the modulus operator.", "out": "Enter number: 7\nOdd", "tip": "number % 2 == 0 means even. Two equals signs.", "code": "import java.util.Scanner;\n\npublic class Task {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        System.out.print(\"Enter number: \");\n        int n = sc.nextInt();\n\n        if (n % 2 == 0) {\n            System.out.println(\"Even\");\n        } else {\n            System.out.println(\"Odd\");\n        }\n    }\n}"}, {"w": "Week 7 - switch", "t": "Switch Menu 1-3", "p": "Read a number from 1 to 3. Print Hello for 1, Hi for 2, Bye for 3, otherwise Invalid.", "out": "Enter 1-3: 2\nHi", "tip": "switch (choice) { case 1: ... break; ... default: ... } - a break at the end of every case.", "code": "import java.util.Scanner;\n\npublic class Task {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        System.out.print(\"Enter 1-3: \");\n        int choice = sc.nextInt();\n\n        switch (choice) {\n            case 1: System.out.println(\"Hello\"); break;\n            case 2: System.out.println(\"Hi\");    break;\n            case 3: System.out.println(\"Bye\");   break;\n            default: System.out.println(\"Invalid\");\n        }\n    }\n}"}, {"w": "Week 8 - for loop", "t": "Loop Sum and Average", "p": "Ask how many numbers the user will enter, read that many numbers, and display the average with two decimals.", "out": "How many numbers? 3\nEnter number 1: 80\nEnter number 2: 90\nEnter number 3: 100\nAverage: 90.00", "tip": "double total = 0; for (int i = 1; i <= n; i++) { total += sc.nextDouble(); } then total / n and printf(\"%.2f%n\").", "code": "import java.util.Scanner;\n\npublic class Task {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        System.out.print(\"How many numbers? \");\n        int n = sc.nextInt();\n        double total = 0;\n\n        for (int i = 1; i <= n; i++) {\n            System.out.print(\"Enter number \" + i + \": \");\n            total += sc.nextDouble();\n        }\n\n        double average = total / n;\n        System.out.printf(\"Average: %.2f%n\", average);\n    }\n}"}, {"w": "Week 8 - do-while", "t": "Password Check", "p": "Keep asking for a password until the user enters java123. Show \"Incorrect password.\" for each wrong try, then \"Access Granted!\".", "out": "Enter password: abc\nIncorrect password.\nEnter password: java123\nAccess Granted!", "tip": "do { ... password = sc.next(); ... } while (!password.equals(\"java123\")); - use equals, not ==, and do not forget the semicolon.", "code": "import java.util.Scanner;\n\npublic class Task {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String password;\n\n        do {\n            System.out.print(\"Enter password: \");\n            password = sc.next();\n            if (!password.equals(\"java123\")) {\n                System.out.println(\"Incorrect password.\");\n            }\n        } while (!password.equals(\"java123\"));\n\n        System.out.println(\"Access Granted!\");\n    }\n}"}, {"w": "Week 8 - do-while + switch", "t": "Menu Calculator", "p": "Repeatedly show a menu: 1 Add, 2 Subtract, 3 Exit. For 1 or 2 read two numbers and show the result. Stop on 3 and print Thank you!", "out": "1. Add  2. Subtract  3. Exit\nEnter choice: 1\nEnter two numbers: 10 20\nResult: 30.0\n...\nThank you!", "tip": "int choice; do { menu; choice = sc.nextInt(); switch ... } while (choice != 3);", "code": "import java.util.Scanner;\n\npublic class Task {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int choice;\n\n        do {\n            System.out.println(\"1. Add  2. Subtract  3. Exit\");\n            System.out.print(\"Enter choice: \");\n            choice = sc.nextInt();\n\n            switch (choice) {\n                case 1: {\n                    System.out.print(\"Enter two numbers: \");\n                    double a = sc.nextDouble(), b = sc.nextDouble();\n                    System.out.println(\"Result: \" + (a + b));\n                    break;\n                }\n                case 2: {\n                    System.out.print(\"Enter two numbers: \");\n                    double a = sc.nextDouble(), b = sc.nextDouble();\n                    System.out.println(\"Result: \" + (a - b));\n                    break;\n                }\n                case 3:\n                    break;\n                default:\n                    System.out.println(\"Invalid choice.\");\n            }\n        } while (choice != 3);\n\n        System.out.println(\"Thank you!\");\n    }\n}"}, {"w": "Week 8 - NumberAnalyzer", "t": "Number Analyzer (10 numbers)", "p": "Read 10 numbers. For each, print Positive/Negative/Zero and Even/Odd. At the end show the five totals.", "out": "Enter number 1: 10\nPositive\nEven\n...\n========== SUMMARY ==========\nPositive Numbers: 6\nNegative Numbers: 3\nZero: 1\nEven Numbers: 5\nOdd Numbers: 5", "tip": "Five counters at the top, one for loop to 10, one if-else-if for sign, one if-else for parity.", "code": "import java.util.Scanner;\n\npublic class Task {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int pos = 0, neg = 0, zero = 0, even = 0, odd = 0;\n\n        for (int i = 1; i <= 10; i++) {\n            System.out.print(\"Enter number \" + i + \": \");\n            int number = sc.nextInt();\n\n            if (number > 0) {\n                System.out.println(\"Positive\");\n                pos++;\n            } else if (number < 0) {\n                System.out.println(\"Negative\");\n                neg++;\n            } else {\n                System.out.println(\"Zero\");\n                zero++;\n            }\n\n            if (number % 2 == 0) {\n                System.out.println(\"Even\");\n                even++;\n            } else {\n                System.out.println(\"Odd\");\n                odd++;\n            }\n        }\n\n        System.out.println(\"========== SUMMARY ==========\");\n        System.out.println(\"Positive Numbers: \" + pos);\n        System.out.println(\"Negative Numbers: \" + neg);\n        System.out.println(\"Zero: \" + zero);\n        System.out.println(\"Even Numbers: \" + even);\n        System.out.println(\"Odd Numbers: \" + odd);\n    }\n}"}, {"w": "Week 5 - Variables and printf", "t": "Simple Grading (3 grades)", "p": "Read prelim, midterm and final grades. Display the average (two decimals) and PASSED if it is 75 or above, otherwise FAILED.", "out": "Enter prelim: 85\nEnter midterm: 88\nEnter final: 90\nAverage: 87.67\nStatus: PASSED", "tip": "Read as double. average = (p + m + f) / 3. Status uses the ternary ? : or an if-else.", "code": "import java.util.Scanner;\n\npublic class Task {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        System.out.print(\"Enter prelim: \");\n        double prelim = sc.nextDouble();\n        System.out.print(\"Enter midterm: \");\n        double midterm = sc.nextDouble();\n        System.out.print(\"Enter final: \");\n        double finalExam = sc.nextDouble();\n\n        double average = (prelim + midterm + finalExam) / 3;\n        boolean passed = average >= 75;\n\n        System.out.printf(\"Average: %.2f%n\", average);\n        System.out.println(\"Status: \" + (passed ? \"PASSED\" : \"FAILED\"));\n    }\n}"}, {"w": "Week 8 - break", "t": "Search and Break", "p": "Loop from 1 to 100 and stop as soon as you reach the target number 42, printing \"Found 42!\".", "out": "Found 42!", "tip": "for (int i = 1; i <= 100; i++) { if (i == target) { print; break; } }", "code": "public class Task {\n    public static void main(String[] args) {\n        int target = 42;\n\n        for (int i = 1; i <= 100; i++) {\n            if (i == target) {\n                System.out.println(\"Found \" + target + \"!\");\n                break;\n            }\n        }\n    }\n}"}, {"w": "Week 8 - while loop", "t": "While Counting", "p": "Using while loops, print the numbers 1 to 10, then a blank line, then the even numbers from 2 to 20.", "out": "1\n2\n...\n10\n\n2\n4\n...\n20", "tip": "int x = 1; while (x <= 10) { print; x++; } then int y = 2; while (y <= 20) { print; y += 2; }", "code": "public class Task {\n    public static void main(String[] args) {\n        int x = 1;\n        while (x <= 10) {\n            System.out.println(x);\n            x++;\n        }\n\n        System.out.println();\n\n        int y = 2;\n        while (y <= 20) {\n            System.out.println(y);\n            y += 2;\n        }\n    }\n}"}, {"w": "Week 8 - for patterns", "t": "For-Loop Patterns A to D", "p": "With for loops print: A) 1 to 5, B) 5 down to 1, C) 2 4 6 8 10, D) 10 20 30 40 50. Label each pattern.", "out": "A:\n1\n2\n3\n4\n5\nB:\n5\n4\n3\n2\n1\nC: ...\nD: ...", "tip": "Change only the three header parts: start; condition; update (i++, i--, i += 2, i += 10).", "code": "public class Task {\n    public static void main(String[] args) {\n        System.out.println(\"A:\");\n        for (int i = 1; i <= 5; i++) { System.out.println(i); }\n\n        System.out.println(\"B:\");\n        for (int i = 5; i >= 1; i--) { System.out.println(i); }\n\n        System.out.println(\"C:\");\n        for (int i = 2; i <= 10; i += 2) { System.out.println(i); }\n\n        System.out.println(\"D:\");\n        for (int i = 10; i <= 50; i += 10) { System.out.println(i); }\n    }\n}"}, {"w": "Week 7 - if-else-if", "t": "Age Category", "p": "Read an age. Below 13 Child, 13-19 Teenager, 20-59 Adult, 60 and above Senior Citizen. Use if, else if and else only.", "out": "Enter age: 25\nAdult", "tip": "Chain from the lowest range up: < 13, <= 19, <= 59, else. No switch allowed.", "code": "import java.util.Scanner;\n\npublic class Task {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        System.out.print(\"Enter age: \");\n        int age = sc.nextInt();\n\n        if (age < 13) {\n            System.out.println(\"Child\");\n        } else if (age <= 19) {\n            System.out.println(\"Teenager\");\n        } else if (age <= 59) {\n            System.out.println(\"Adult\");\n        } else {\n            System.out.println(\"Senior Citizen\");\n        }\n    }\n}"}, {"w": "Week 7 - nested if", "t": "Laboratory Entry", "p": "Read an age and whether the student has a valid ID (true/false). Allow entry only if age is 18 or above AND the ID is valid. Under 18 prints \"You are not allowed to enter.\"", "out": "Enter age: 20\nHas ID (true/false): true\nLaboratory entry allowed.", "tip": "Outer if checks age; inner if checks hasID; the else belongs to the outer if. nextBoolean() reads the ID flag.", "code": "import java.util.Scanner;\n\npublic class Task {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        System.out.print(\"Enter age: \");\n        int age = sc.nextInt();\n        System.out.print(\"Has ID (true/false): \");\n        boolean hasID = sc.nextBoolean();\n\n        if (age >= 18) {\n            if (hasID) {\n                System.out.println(\"Laboratory entry allowed.\");\n            }\n        } else {\n            System.out.println(\"You are not allowed to enter.\");\n        }\n    }\n}"}, {"w": "Week 8 - return", "t": "Return Methods", "p": "Create two static methods: calculateSum(int a, int b) returning the sum and square(int number) returning its square. Call both from main and print the results.", "out": "Sum: 30\nSquare: 25", "tip": "static int name(int x) { ...; return value; } sits inside the class but outside main.", "code": "public class Task {\n    static int calculateSum(int a, int b) {\n        int sum = a + b;\n        return sum;\n    }\n\n    static int square(int number) {\n        return number * number;\n    }\n\n    public static void main(String[] args) {\n        int result = calculateSum(10, 20);\n        System.out.println(\"Sum: \" + result);\n        System.out.println(\"Square: \" + square(5));\n    }\n}"}, {"w": "Week 8 - continue", "t": "Continue Patterns", "p": "Using for loops from 1 to 10 and continue: print all numbers except 5, then only odd numbers, then all numbers except multiples of 3.", "out": "1 2 3 4 6 7 8 9 10\n1 3 5 7 9\n1 2 4 5 7 8 10", "tip": "if (condition) { continue; } goes before the println inside each loop.", "code": "public class Task {\n    public static void main(String[] args) {\n        for (int i = 1; i <= 10; i++) {\n            if (i == 5) { continue; }\n            System.out.println(i);\n        }\n        System.out.println();\n        for (int i = 1; i <= 10; i++) {\n            if (i % 2 == 0) { continue; }\n            System.out.println(i);\n        }\n        System.out.println();\n        for (int i = 1; i <= 10; i++) {\n            if (i % 3 == 0) { continue; }\n            System.out.println(i);\n        }\n    }\n}"}, {"w": "Week 6 - Operators project", "t": "Student Information System", "p": "With name Juan, age 20, prelim 80, midterm 85, final 90, attendance 85: compute total, average, passing, attendance OK, eligible (average >= 75 AND attendance >= 80), then increase age with age++ and print Next Year Age.", "out": "Total Score  : 255\nAverage      : 85.00\nPassing      : true\nAttendance OK: true\nEligible     : true\nNext Year Age: 21", "tip": "Average = total / 3.0 (not / 3). Eligible uses &&. Finish with age++ then print age.", "code": "public class Task {\n    public static void main(String[] args) {\n        String studentName = \"Juan\";\n        int age = 20;\n        int prelim = 80, midterm = 85, finalExam = 90, attendance = 85;\n\n        int totalScore = prelim + midterm + finalExam;\n        double average = totalScore / 3.0;\n        boolean passing = average >= 75;\n        boolean attendanceOK = attendance >= 80;\n        boolean eligible = (average >= 75) && (attendance >= 80);\n\n        System.out.println(\"Student Name : \" + studentName);\n        System.out.println(\"Age          : \" + age);\n        System.out.println(\"Total Score  : \" + totalScore);\n        System.out.printf(\"Average      : %.2f%n\", average);\n        System.out.println(\"Passing      : \" + passing);\n        System.out.println(\"Attendance OK: \" + attendanceOK);\n        System.out.println(\"Eligible     : \" + eligible);\n\n        age++;\n        System.out.println(\"Next Year Age: \" + age);\n    }\n}"}];
+function fmt(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/`([^`]+)`/g,'<code>$1</code>');}
+/* scrollspy */
+(function(){
+ if(!('IntersectionObserver' in window))return;
+ var links=document.querySelectorAll('.nvi a, .mnav a');
+ var secs=document.querySelectorAll('.chapter');
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){
+  links.forEach(function(a){a.classList.toggle('act',a.getAttribute('href')==='#'+e.target.id);});
+ }});},{rootMargin:'-20% 0px -70% 0px'});
+ secs.forEach(function(s){io.observe(s);});
+})();
+/* quiz */
+(function(){
+ var root=document.getElementById('quiz'); if(!root||!window.QUIZ) return;
+ var L=['A','B','C','D'], answered=0, correct=0, total=QUIZ.length;
+ var sb=document.getElementById('qscore');
+ function upd(){sb.innerHTML='Answered <b>'+answered+'</b>/'+total+' &nbsp;|&nbsp; Correct <b>'+correct+'</b> &nbsp;|&nbsp; Score <b>'+(answered?Math.round(correct/answered*100):0)+'%</b>';}
+ function build(){
+  root.innerHTML=''; answered=0; correct=0; var last='';
+  QUIZ.forEach(function(q,i){
+   if(q.s!==last){var h=document.createElement('div');h.className='qsec';h.textContent=q.s;root.appendChild(h);last=q.s;}
+   var d=document.createElement('div');d.className='qc';
+   var html='<div class="qn">Q'+(i+1)+'</div><div class="qt">'+fmt(q.q)+'</div>';
+   if(q.code){html+='<div class="qpre">'+q.code.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</div>';}
+   d.innerHTML=html;
+   q.o.forEach(function(o,j){
+    var b=document.createElement('button');b.className='qo';b.innerHTML='<b>'+L[j]+'</b><span>'+fmt(o)+'</span>';
+    b.onclick=function(){
+     if(d.classList.contains('done'))return;
+     d.classList.add('done');answered++;
+     var bs=d.querySelectorAll('.qo');
+     bs[q.a].classList.add('ok');
+     if(j===q.a){correct++;}else{b.classList.add('no');}
+     upd();
+     if(answered===total){fin();}
+    };
+    d.appendChild(b);
+   });
+   var x=document.createElement('div');x.className='qx';x.innerHTML='<b style="color:var(--green)">Answer: '+L[q.a]+'.</b> '+fmt(q.e);d.appendChild(x);
+   root.appendChild(d);
+  });
+  document.getElementById('qfinal').style.display='none';
+  upd();
+ }
+ function fin(){
+  var p=Math.round(correct/total*100), r=p>=90?'Excellent':p>=80?'Very Good':p>=75?'Satisfactory':p>=70?'Needs Improvement':'Requires Remediation';
+  var f=document.getElementById('qfinal');f.style.display='block';
+  f.innerHTML='<div class="btt" style="color:var(--blue)">Final result: '+correct+' / '+total+' ('+p+'%) - '+r+'</div><p class="btx">Review every question you missed, then re-read the matching chapter. Retake after 24 hours.</p>';
+  f.scrollIntoView({behavior:'smooth',block:'center'});
+ }
+ document.getElementById('qreset').onclick=function(){build();window.scrollTo({top:document.getElementById('ch10').offsetTop,behavior:'smooth'});};
+ build();
+})();
+/* draw simulator */
+(function(){
+ var T=window.TASKS; if(!T) return;
+ var el=function(i){return document.getElementById(i);};
+ var deck=[],cur=null,left=600,iv=null,running=false;
+ function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+ function show(){var m=Math.floor(left/60),s=left%60;var t=el('tm');t.textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+  t.className='tm'+(left===0?' end':left<=120?' warn':'');el('tbar').style.width=(left/600*100)+'%';}
+ function stop(){clearInterval(iv);iv=null;running=false;el('tgo').textContent=left===600?'Start 10:00':'Resume';}
+ function tick(){if(left>0){left--;show();}if(left===0){stop();el('tgo').textContent='Time is up';el('tstate').textContent='Time. Stop typing, save, and take your screenshot.';}}
+ el('tgo').onclick=function(){if(!cur){el('tstate').textContent='Draw a task first.';return;}
+  if(left===0)return;
+  if(running){stop();el('tstate').textContent='Paused.';}
+  else{running=true;el('tgo').textContent='Pause';el('tstate').textContent='Clock running. Type from memory - no notes.';iv=setInterval(tick,1000);}};
+ el('trst').onclick=function(){stop();left=600;show();el('tgo').textContent='Start 10:00';el('tstate').textContent='Timer reset.';};
+ el('tdraw').onclick=function(){
+  if(!deck.length)deck=shuffle(T.map(function(_,i){return i;}));
+  cur=T[deck.pop()];
+  stop();left=600;show();el('tgo').textContent='Start 10:00';
+  el('tstate').textContent='Task drawn. Read it fully, then press Start.';
+  el('dwk').textContent=cur.w;el('dtt').textContent=cur.t;
+  el('dpr').innerHTML=fmt(cur.p);
+  el('dout').textContent=cur.out;el('dout').style.display=cur.out?'block':'none';
+  el('dtip').innerHTML='<b>Skeleton hint:</b> '+fmt(cur.tip);
+  el('dcode').textContent=cur.code;
+  el('dsol').open=false;el('dsol').style.display='block';el('dcard').style.display='block';
+ };
+ /* full list */
+ var list=el('tlist');
+ T.forEach(function(t,i){
+  var d=document.createElement('details');
+  var s=document.createElement('summary');s.textContent=(i+1)+'. '+t.t+'  ['+t.w+']';d.appendChild(s);
+  var p=document.createElement('div');p.className='dpad';
+  p.innerHTML='<p class="dpr">'+fmt(t.p)+'</p>'+(t.out?'<div class="dout"></div>':'')+'<div class="codeblock"><div class="cbhd"><div class="dots"><span class="dot dr"></span><span class="dot dy"></span><span class="dot dg"></span></div><div class="cbhl">java</div></div><pre><code></code></pre></div><p class="dtip"><b>Skeleton hint:</b> '+fmt(t.tip)+'</p>';
+  if(t.out)p.querySelector('.dout').textContent=t.out;
+  p.querySelector('code').textContent=t.code;
+  d.appendChild(p);list.appendChild(d);
+ });
+ show();
+})();
+</script>
+</body>
+</html>
