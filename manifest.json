@@ -276,6 +276,13 @@
                   "label": "2-4",
                   "order": 1000,
                   "html": "assets/guides/year-1/sem-1/cc102/2-4.html"
+                },
+                {
+                  "id": "midterm-reviewer-for-written-exam-practical-skills",
+                  "kind": "special",
+                  "label": "Midterm Reviewer for Written Exam & Practical Skills",
+                  "order": 1001,
+                  "html": "assets/guides/year-1/sem-1/cc102/midterm-reviewer-for-written-exam-practical-skills.html"
                 }
               ]
             }
