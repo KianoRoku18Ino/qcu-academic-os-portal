@@ -33,7 +33,7 @@
             {
               "id": "y1-s1-hum2",
               "code": "HUM2",
-              "title": "ETHICS",
+              "title": "Ethics",
               "items": [
                 {
                   "id": "week-1",
@@ -81,6 +81,13 @@
                   "label": "1-4 Module Reviewer",
                   "order": 1000,
                   "html": "assets/guides/year-1/sem-1/hum2/1-4-module-reviewer.html"
+                },
+                {
+                  "id": "midterm-reviewer",
+                  "kind": "special",
+                  "label": "Midterm Reviewer",
+                  "order": 1001,
+                  "html": "assets/guides/year-1/sem-1/hum2/midterm-reviewer.html"
                 }
               ]
             },
