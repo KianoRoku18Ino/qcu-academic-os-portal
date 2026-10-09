@@ -88,6 +88,13 @@
                   "label": "Midterm Reviewer",
                   "order": 1001,
                   "html": "assets/guides/year-1/sem-1/hum2/midterm-reviewer.html"
+                },
+                {
+                  "id": "midterm-mockup-exam",
+                  "kind": "special",
+                  "label": "Midterm Mockup Exam",
+                  "order": 1002,
+                  "html": "assets/guides/year-1/sem-1/hum2/midterm-mockup-exam.html"
                 }
               ]
             },
