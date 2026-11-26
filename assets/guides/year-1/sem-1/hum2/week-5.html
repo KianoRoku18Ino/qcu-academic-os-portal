@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HUM 2 — Ethics | Module 5: Utilitarianism Part I</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--violet:#8B5CF6;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(139,92,246,.15);--sw:285px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover{color:var(--t1);background:rgba(139,92,246,.08);border-left-color:var(--violet)}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:20px}
+.main{margin-left:var(--sw)}
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:52px 52px 42px;position:relative;overflow:hidden}
+.hero::before{content:'01001000';position:absolute;top:-10px;right:15px;font-family:'JetBrains Mono',monospace;font-size:115px;font-weight:900;color:rgba(139,92,246,.05);letter-spacing:-5px;user-select:none;line-height:1}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--violet);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--violet)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:700;line-height:1.1;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#8B5CF6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:17px;color:var(--t2);margin-bottom:19px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+.chapter{padding:44px 52px;border-bottom:1px solid var(--bdr);max-width:970px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--violet);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:19.5px;font-weight:600;margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--violet);border-radius:2px;flex-shrink:0}
+h3{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--violet);margin:22px 0 9px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+.box{border-radius:8px;padding:13px 17px;margin:15px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)}.red .btt{color:var(--red)}
+.violet{background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2)}.violet .btt{color:var(--violet)}
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:10px 13px;text-align:left;border-bottom:2px solid var(--violet);font-size:12px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(139,92,246,.04)}
+tbody td{padding:9px 13px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace;white-space:nowrap}
+.tb{background:rgba(59,130,246,.15);color:var(--blue)}.ta{background:rgba(245,158,11,.15);color:var(--amber)}.tg{background:rgba(16,185,129,.15);color:var(--green)}.tr2{background:rgba(239,68,68,.15);color:var(--red)}
+.steps{margin:15px 0}
+.step{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.snum{background:var(--violet);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace}
+.sc{flex:1}
+.sl{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:2px}
+.sd{color:var(--t2);font-size:13px;line-height:1.7}
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.gc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;position:relative;overflow:hidden}
+.gc::before{content:attr(data-g);position:absolute;top:-10px;right:7px;font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:900;color:rgba(139,92,246,.06);line-height:1}
+.gera{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);margin-bottom:4px}
+.gtit{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:7px}
+.gsp{font-size:12.5px;color:var(--t2);margin:0;line-height:1.7}
+.gsp strong{color:var(--violet)}
+.isg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.isc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;border-top:3px solid var(--violet)}
+.isc.a{border-top-color:var(--amber)}.isc.g{border-top-color:var(--green)}
+.ico{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-bottom:3px}
+.inm{font-weight:700;font-size:14px;color:var(--t1);margin-bottom:6px}
+.idc{font-size:12.5px;color:var(--t2);line-height:1.7}
+.idc strong{color:var(--t1)}
+.law{background:var(--bgc);border:1px solid var(--bdr);border-left:4px solid var(--violet);border-radius:8px;padding:15px 17px;margin:11px 0}
+.lra{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--violet);font-weight:700;margin-bottom:3px}
+.ltit{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:4px}
+.lyr{font-size:11px;color:var(--t3);margin-bottom:7px}
+.ldc{font-size:13.5px;color:var(--t2);line-height:1.8;font-style:italic}
+.qa{background:var(--bgc);border:1px solid var(--bdr);border-radius:8px;padding:14px 17px;margin:9px 0}
+.qq{font-weight:600;color:var(--t1);font-size:13.5px;margin-bottom:5px}
+.qq::before{content:'Q — ';color:var(--violet);font-family:'JetBrains Mono',monospace;font-weight:700}
+.qan{color:var(--t2);font-size:13px;line-height:1.7}
+.qan::before{content:'A — ';color:var(--green);font-family:'JetBrains Mono',monospace;font-weight:700}
+.pill{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:.5px;padding:2px 8px;border-radius:10px;text-transform:uppercase;margin-bottom:8px}
+.pill-added{background:rgba(245,158,11,.15);color:var(--amber)}
+.pill-lesson{background:rgba(139,92,246,.15);color:var(--violet)}
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:4px;font-size:13px;line-height:1.75}
+li strong{color:var(--t1)}
+.footer{padding:34px 52px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--violet)}
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.gg,.isg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+<div class="sbh"><div class="sbb">HUM 2 · QCU BSIT</div><div class="sbt">Ethics</div><div class="sbs">Module 5 Study Guide · AY 2026-2027</div></div>
+<ul class="nvl">
+<li class="nvi"><a href="#overview"><span class="nn">00</span>Course Overview</a></li>
+<li class="nvi"><a href="#ch1"><span class="nn">01</span>Bentham: Life &amp; Context</a></li>
+<li class="nvi"><a href="#ch2"><span class="nn">02</span>Defining Utilitarianism</a></li>
+<li class="nvi"><a href="#ch3"><span class="nn">03</span>The Hedonistic Calculus</a></li>
+<li class="nvi"><a href="#ch4"><span class="nn">04</span>Limits &amp; Criticisms</a></li>
+<li class="nvi"><a href="#ch5"><span class="nn">05</span>Class Application</a></li>
+<li class="nvi"><a href="#ch6"><span class="nn">06</span>Glossary &amp; Abbreviations</a></li>
+</ul></nav>
+
+<main class="main">
+<div class="hero">
+<div class="he">QCU Academic OS · AY 2026-2027</div>
+<div class="ht">HUM 2 — Ethics</div>
+<div class="hs">Module 5: Utilitarianism, Part I — Complete Study Reference</div>
+<div class="hm">
+<div class="mp">Course: <span>HUM 2</span></div>
+<div class="mp">Units: <span>3</span></div>
+<div class="mp">Year Level: <span>1st Year, Sem 1</span></div>
+<div class="mp">Type: <span>GE — Humanities/Ethics</span></div>
+</div></div>
+
+<section class="chapter" id="overview">
+<div class="cn">CHAPTER 00</div><div class="ct">Course Overview &amp; Study Priority Map</div>
+<p class="ci">This module introduces <strong>Utilitarianism</strong> through its founder, Jeremy Bentham: what the theory says, why Bentham built it the way he did, the tool he designed for applying it (the Hedonistic Calculus), and the classic objections raised against it.</p>
+
+<div class="box violet"><div class="bico">🧭</div><div class="bbd"><div class="btt">Recurring Framework — The Principle of Utility + the Hedonistic Calculus (7 Criteria)</div>
+<p class="btx">Two ideas anchor this entire module, and the lesson keeps coming back to both by name: (1) <strong>the Principle of Utility</strong> — an action's rightness is judged by whether it produces the greatest happiness for the greatest number; and (2) <strong>the Hedonistic (Felicific) Calculus</strong> — Bentham's proposed method for actually measuring that happiness, using seven criteria (Intensity, Duration, Certainty, Propinquity, Fecundity, Purity, Extent) to add up "hedons" and subtract "dolors." Chapters 02 through 05 all build directly on these two ideas — the Stakeholders example, the school-lunch example, the Group Activity, and the Rubric all explicitly apply the same 7-criteria calculus. Keep it in mind chapter to chapter rather than treating each one as a fresh start.</p></div></div>
+
+<div class="box red"><div class="bico">🔍</div><div class="bbd"><div class="btt">Source Verification Notes — read before studying</div>
+<p class="btx"><strong>1. Bentham's dates — confirmed and made precise.</strong> The lesson gives only "1748 – 1832." Independently verified: born <strong>February 15, 1748</strong>, died <strong>June 6, 1832</strong>, both in London. No conflict with the lesson.<br><br>
+<strong>2. Minor discrepancy on a childhood detail:</strong> the lesson states Bentham "studied Latin at age three." The most commonly cited biographical detail (Encyclopaedia Britannica) instead says he began reading eagerly and started Latin <strong>at age four</strong>. Anecdotes about child-prodigy ages do vary across sources, so this isn't necessarily a clear error — but it doesn't match the most standard reference on his life either.<br><br>
+<strong>3. Epicurus's dates — confirmed, no change needed.</strong> "341–270 BCE" as given in the lesson matches the standard scholarly dating exactly. A specific day/month for either his birth or death is not reliably established in the historical record, so no further precision could be responsibly added here.<br><br>
+<strong>4. The Bentham quote's source — dated, since the lesson doesn't.</strong> The lesson cites "Jeremy Bentham, <em>Principles of Morals and Legislation</em>" with no date. The full title is <em>An Introduction to the Principles of Morals and Legislation</em>; it was privately printed in 1780 and formally published in <strong>1789</strong>. A specific month/day for either printing isn't part of the standard bibliographic record, so year-level precision is what's verifiable here.<br><br>
+<strong>5. Book citation, dated for reference:</strong> the "Big Man in the Cave" slide displays the cover of David Edmonds's <em>Would You Kill the Fat Man?</em> — independently verified as published <strong>October 23, 2013</strong> (Princeton University Press).<br><br>
+<strong>6. A completeness gap in the lesson's own sequencing:</strong> the slide introducing the Hedonistic Calculus says it uses <strong>"7 different criteria,"</strong> but the very next slide only defines <strong>six</strong> (Intensity, Duration, Certainty, Propinquity, Fecundity, Purity). The seventh, <strong>Extent</strong>, first appears as a bare, undefined row label in the Rural-vs-Urban-Life table several slides later, and isn't actually given its own definition ("How many people will be affected?") until the Group Activity instructions near the end of the deck. This guide reproduces that sequencing faithfully in Chapter 03 rather than moving Extent's definition earlier to "fix" it.<br><br>
+<strong>7. A mislabeled slide heading:</strong> the slide following the "Debating the school lunch program" benefits list is also headed "Benefits," but its actual content ("Cost to each taxpayer," "contrast with other programs...") is about costs, not benefits. Reproduced under its actual (mismatched) heading in Chapter 03, flagged here.<br><br>
+<strong>8. Minor typos in the source, reproduced as-is:</strong> the Group Activity slide is headed "GROIP ACTIVITY" (missing the U); True/False item 9 reads "n utilitarianism..." (missing the "I" in "In").<br><br>
+<strong>9. Possible truncation:</strong> two slides (the Batman/Joker "Utilitarianism" example, and the Fiery Cushman story) end abruptly at the bottom of the slide in the source file provided — respectively on the word "kill." and "Why or [cut off]." This guide presents exactly what's visible; nothing has been guessed at to complete either ending.</p></div></div>
+
+<h2>Exam / Recitation Priority Map</h2>
+<div class="tw"><table>
+<thead><tr><th>Topic</th><th>Chapter</th><th>Priority</th><th>Reason</th></tr></thead>
+<tbody>
+<tr><td>The Principle of Utility</td><td>02</td><td><span class="tag tr2">🔴 High</span></td><td>Core definition; directly tested (Essay Q1, True/False Q3)</td></tr>
+<tr><td>The Hedonistic Calculus &amp; its 7 criteria</td><td>03</td><td><span class="tag tr2">🔴 High</span></td><td>The module's central named framework; directly tested (Essay Q2, True/False Q5, the Rubric, the Group Activity)</td></tr>
+<tr><td>Hedons / Dolors and the "greatest happiness" calculation</td><td>03</td><td><span class="tag tr2">🔴 High</span></td><td>Directly tested (True/False Q7)</td></tr>
+<tr><td>Bentham's biography &amp; historical background</td><td>01</td><td><span class="tag ta">🟡 Medium</span></td><td>Some specific facts are tested (True/False Q1, Q8), but it's context rather than the module's core concept</td></tr>
+<tr><td>Why Bentham wanted to quantify ethics (Newton comparison)</td><td>01</td><td><span class="tag tr2">🔴 High</span></td><td>Directly tested (Essay Q3)</td></tr>
+<tr><td>Criticisms of Utilitarianism (quantification limits, Cushman story, Big Man in Cave, Organ Harvest, Human Rights)</td><td>04</td><td><span class="tag tr2">🔴 High</span></td><td>Directly tested (Essay Q4, Q5, True/False Q10)</td></tr>
+<tr><td>Group Activity moral-dilemma scenarios</td><td>05</td><td><span class="tag ta">🟡 Medium</span></td><td>Useful worked-example material, but graded as a spoken presentation, not a written test item</td></tr>
+<tr><td>Interactive Activity Rubric</td><td>05</td><td><span class="tag tb">🔵 Low</span></td><td>Assessment logistics — tells you how you'll be graded, not exam content itself</td></tr>
+</tbody></table></div>
+
+<div class="box blue"><div class="bico">📎</div><div class="bbd"><div class="btt">Companion File</div>
+<p class="btx">A separate, standalone practice file — <strong>HUM2-Module5-Utilitarianism-PartI-Quiz-Practice.html</strong> — reproduces the professor's actual Essay Questions and True/False items in full, plus an added answer key, worked examples built from the Group Activity's own dilemma scenarios, and extra practice items. It is not embedded here.</p></div></div>
+</section>
+
+<section class="chapter" id="ch1">
+<div class="cn">CHAPTER 01</div><div class="ct">Jeremy Bentham — Life and Historical Context</div>
+
+<h2>Brief Biography <span class="pill pill-lesson" style="margin-left:8px">From the Lesson</span></h2>
+<ul>
+<li>Born in London, England — <strong>February 15, 1748</strong> <span style="color:var(--amber);font-size:11px">(precise date verified — see Ch. 00, Note 1)</span>; died <strong>June 6, 1832</strong>.</li>
+<li>A child prodigy: read as a young toddler and studied Latin at age three <span style="color:var(--red);font-size:11px">(see Ch. 00, Note 2)</span>.</li>
+<li>Studied law at Queen's College, Oxford, England.</li>
+<li>Instead of practicing law, he spent his life looking for and writing about ways in which existing laws could be improved.</li>
+</ul>
+
+<h2>Historical Background</h2>
+<p>The lesson frames Bentham's era as shaped by three overlapping forces:</p>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Economic, Political, and Ideological change</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">The Industrial Revolution in England</div><div class="sd">In the second half of the 18th to the 19th century.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">A Revolution in Ethics</div></div></div>
+</div>
+<p>The lesson further situates this period through a broader list of concurrent developments: scientific advancement; revolutions (the American and French); exploration and colonization; social and religious reform; industrialization; and new modes of transportation.</p>
+
+<h2>Impacts to Bentham</h2>
+<ul>
+<li>Reason and science were used to explain human behavior.</li>
+<li>His ethical system was an attempt to <strong>quantify happiness and the good</strong> so they would meet the conditions of the scientific method.</li>
+</ul>
+
+<h2>How Did the Theory Come About?</h2>
+<ul>
+<li>Utilitarianism has its origins in the hedonism of the ancient Cyrenaics (4th century BCE), and the Epicureans — <strong>Epicurus (341–270 BCE)</strong> <span style="color:var(--green);font-size:11px">(verified — see Ch. 00, Note 3)</span>.</li>
+<li>Bentham lived in a time where many people lived in squalid conditions as a result of moving from the self-sufficient country into the new industrial towns, looking for a better life.</li>
+</ul>
+
+<h2>Bentham's Contention and Goal</h2>
+<ul>
+<li>He believed that it was wrong for the masses to live in unhappiness while the minority were well off.</li>
+<li>He also wanted to make ethics quantitative, as Sir Isaac Newton had made science.</li>
+</ul>
+
+<h2>Recitation-Ready Answer <span class="pill pill-added" style="margin-left:8px">Added — Study Aid</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">KEY FIGURE</div><div class="inm">Jeremy Bentham</div><div class="idc"><strong>Plain English:</strong> the English philosopher who founded Utilitarianism, trying to turn ethics into something as measurable as physics.<br><strong>vs. Epicurus:</strong> Epicurus is an ancient source of the pleasure/pain-focused idea (hedonism) Bentham draws on; Bentham is the one who turned it into a formal ethical system with a "calculus."<br><strong>Example from the lesson:</strong> trained in law at Oxford, but spent his life writing about how existing laws could be improved instead of practicing law.</div></div>
+<div class="isc a"><div class="ico">KEY MOTIVATION</div><div class="inm">Quantifying Ethics "Like Newton Made Science"</div><div class="idc"><strong>Plain English:</strong> Bentham wanted a math-like method for measuring right and wrong, the same way Newton gave physics precise, measurable laws.<br><strong>vs. the Hedonistic Calculus (Ch. 03):</strong> this goal is Bentham's motivation; the Hedonistic Calculus is the actual tool he built to try to achieve it.<br><strong>Example from the lesson:</strong> his ethical system was "an attempt to quantify happiness and the good."</div></div>
+</div>
+
+<div class="box amber"><div class="bico">💬</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 01</div>
+<div class="qa"><div class="qq">Where and when was Jeremy Bentham born and where/when did he die?</div><div class="qan">Born in London, England (Feb 15, 1748 per verified sources; the lesson gives 1748); died 1832 (June 6, per verified sources).</div></div>
+<div class="qa"><div class="qq">What did Bentham do instead of practicing law?</div><div class="qan">He spent his life looking for and writing about ways in which existing laws could be improved.</div></div>
+<div class="qa"><div class="qq">Name the two ancient schools of thought the lesson traces Utilitarianism's hedonism back to.</div><div class="qan">The Cyrenaics (4th century BCE) and the Epicureans (Epicurus, 341–270 BCE).</div></div>
+<div class="qa"><div class="qq">Why did Bentham want to make ethics quantitative?</div><div class="qan">Because he wanted ethics to meet the conditions of the scientific method, the way Sir Isaac Newton had made science quantitative.</div></div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch2">
+<div class="cn">CHAPTER 02</div><div class="ct">Defining Utilitarianism</div>
+
+<div class="law"><div class="lra">JEREMY BENTHAM · AN INTRODUCTION TO THE PRINCIPLES OF MORALS AND LEGISLATION (1789)</div><div class="ltit">"Nature has placed mankind under the governance of two sovereign masters..."</div><div class="lyr">Cited in the lesson as "Principles of Morals and Legislation" — full title and 1789 publication date verified, see Ch. 00, Note 4</div>
+<div class="ldc">"Nature has placed mankind under the governance of two sovereign masters, pain and pleasure. It is for them alone to point out what we ought to do, as well as to determine what we shall do. On the one hand, the standard of right and wrong, on the other, the chain of causes and effects, are fastened to their throne. They govern us in all we do, in all we say, in all we think: Every effort we can make to throw off our subjection, will serve but to demonstrate and confirm it. In words a man may pretend to abjure their empire: But, in reality, he will remain subject to it all the while."</div></div>
+
+<h2>Defining Utilitarianism</h2>
+<div class="box violet"><div class="bico">⚖️</div><div class="bbd"><div class="btt">Definition (as given in the lesson)</div>
+<p class="btx">An ethical theory that argues for the goodness of pleasure and the determination of right behavior based on the <strong>usefulness</strong> of the action's <strong>consequences</strong>.</p></div></div>
+<p>One's actions and behavior are good in as much as they are directed toward the experience of the greatest number of people.</p>
+
+<h2>The Fundamentals of Utilitarianism</h2>
+<p>All humans by nature seek to attain <strong>pleasure</strong> and avoid <strong>pain</strong>.</p>
+
+<h2>The Principle of Utility</h2>
+<ul>
+<li>The rightness or wrongness of an action is judged by its <strong>utility</strong> or usefulness to produce pleasure.</li>
+<li>Because pleasure produces a feeling of happiness, it is used interchangeably.</li>
+<li>The action that produces the most happiness is the most moral.</li>
+</ul>
+<div class="box amber"><div class="bico">🦇</div><div class="bbd"><div class="btt">Illustration given in the lesson — "The best action is the one that leads to the greatest amount of happiness for the greatest number of people."</div>
+<p class="btx">Batman must choose: <strong>Save the Woman?</strong> — "She's a good person, has 4 kids, neighbors love her, and she helps lots of people." Or <strong>Kill the Joker?</strong> — "Saving the woman makes sense. Shouldn't Batman kill the Joker? He doesn't kill. He's killed many people and will kill many more. He has no friends. He's hated." <span style="color:var(--red)">(This slide's content appears cut off in the source at "kill." — see Ch. 00, Note 9.)</span></p></div></div>
+
+<h2>Recitation-Ready Answer <span class="pill pill-added" style="margin-left:8px">Added — Study Aid</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">KEY TERM</div><div class="inm">Utilitarianism</div><div class="idc"><strong>Plain English:</strong> judge an action by its outcome — the more it increases overall happiness, the more moral it is.<br><strong>vs. the Principle of Utility:</strong> "Utilitarianism" is the name of the whole ethical theory; the "Principle of Utility" is its specific decision rule (judge actions by their usefulness in producing pleasure).<br><strong>Example from the lesson:</strong> the Deontology-vs-Utilitarianism image contrasts a "bad action, good result" case — utilitarianism cares about the result.</div></div>
+<div class="isc a"><div class="ico">KEY TERM</div><div class="inm">The Principle of Utility</div><div class="idc"><strong>Plain English:</strong> the specific rule "the action that produces the most happiness is the most moral."<br><strong>vs. the Hedonistic Calculus (Ch. 03):</strong> the Principle of Utility says WHAT to aim for (greatest happiness); the Hedonistic Calculus is HOW you're supposed to measure it.<br><strong>Example from the lesson:</strong> "One's actions and behavior are good in as much as they are directed toward the experience of the greatest number of people."</div></div>
+</div>
+
+<div class="box amber"><div class="bico">💬</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 02</div>
+<div class="qa"><div class="qq">Give the lesson's definition of Utilitarianism.</div><div class="qan">An ethical theory that argues for the goodness of pleasure and the determination of right behavior based on the usefulness of the action's consequences.</div></div>
+<div class="qa"><div class="qq">According to the Principle of Utility, what makes an action "the most moral"?</div><div class="qan">The action that produces the most happiness is the most moral.</div></div>
+<div class="qa"><div class="qq">What are the two "sovereign masters" Bentham says govern mankind?</div><div class="qan">Pain and pleasure.</div></div>
+<div class="qa"><div class="qq">Why are "pleasure" and "happiness" used interchangeably in this lesson?</div><div class="qan">Because pleasure produces a feeling of happiness.</div></div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch3">
+<div class="cn">CHAPTER 03 · Applying the Recurring Framework</div><div class="ct">The Hedonistic Calculus</div>
+<p class="ci">This is the idea of how to calculate happiness by adding up the happiness and subtracting the pain. This is done by using <strong>7 different criteria</strong> <span style="color:var(--red);font-size:11px">(see Ch. 00, Note 6 — only 6 are defined on the very next slide; the 7th, Extent, isn't defined until the Group Activity later in this chapter)</span>.</p>
+
+<h2>The 7 Criteria <span class="pill pill-lesson" style="margin-left:8px">From the Lesson</span></h2>
+<div class="gg">
+<div class="gc" data-g="1"><div class="gera">CRITERION 1</div><div class="gtit">Intensity</div><p class="gsp">How strong is the pleasure/pain? How deep or superficial is it?</p></div>
+<div class="gc" data-g="2"><div class="gera">CRITERION 2</div><div class="gtit">Duration</div><p class="gsp">How long will it last? Is it temporary or permanent?</p></div>
+<div class="gc" data-g="3"><div class="gera">CRITERION 3</div><div class="gtit">Certainty</div><p class="gsp">How likely is it to occur?</p></div>
+<div class="gc" data-g="4"><div class="gera">CRITERION 4</div><div class="gtit">Propinquity</div><p class="gsp">How soon will it occur?</p></div>
+<div class="gc" data-g="5"><div class="gera">CRITERION 5</div><div class="gtit">Fecundity</div><p class="gsp">How likely is the action to produce more pleasure?</p></div>
+<div class="gc" data-g="6"><div class="gera">CRITERION 6</div><div class="gtit">Purity</div><p class="gsp">Will the pleasure be mixed with pain?</p></div>
+</div>
+<div class="box red"><div class="bico">7️⃣</div><div class="bbd"><div class="btt">Extent — the 7th criterion (not defined until the Group Activity, Ch. 05)</div>
+<p class="btx">"Extent" appears as a bare row label in the Stakeholders table below with no definition attached, and is only spelled out later, in the Group Activity instructions: <strong>"Extent – How many people will be affected?"</strong> Included here for completeness since it belongs conceptually with the other six.</p></div></div>
+
+<h2>What Do We Calculate?</h2>
+<p>Hedons (positive) / dolors (negative) may be defined in terms of:</p>
+<ul><li>Pleasure</li><li>Happiness</li><li>Ideals</li><li>Preferences</li></ul>
+
+<h2>How Do We Calculate?</h2>
+<ul>
+<li>How many people will be affected, negatively (<strong>dolors</strong> — a standard unit of pain) as well as positively (<strong>hedons</strong> — a standard unit of pleasure).</li>
+<li>How intensely they will be affected.</li>
+<li>Similar calculations for all available alternatives.</li>
+<li>Choose the action that produces the greatest overall amount of utility (<strong>hedons minus dolors</strong>).</li>
+</ul>
+
+<h2>Worked Example — Stakeholders: General Public <span class="pill pill-lesson" style="margin-left:8px">From the Lesson</span></h2>
+<div class="tw"><table>
+<thead><tr><th>Criterion</th><th>Rural Life</th><th>Urban Life</th></tr></thead>
+<tbody>
+<tr><td>Intensity</td><td>2</td><td>4</td></tr>
+<tr><td>Duration</td><td>2</td><td>4</td></tr>
+<tr><td>Certainty</td><td>2</td><td>4</td></tr>
+<tr><td>Propinquity</td><td>5</td><td>2</td></tr>
+<tr><td>Fecundity</td><td>5</td><td>2</td></tr>
+<tr><td>Purity</td><td>5</td><td>2</td></tr>
+<tr><td>Extent</td><td>1</td><td>1</td></tr>
+<tr><td><strong>TOTAL</strong></td><td><strong>22</strong></td><td><strong>19</strong></td></tr>
+</tbody></table></div>
+
+<h2>Worked Example — Debating the School Lunch Program</h2>
+<h3>Benefits <span class="pill pill-lesson" style="margin-left:8px">From the Lesson</span></h3>
+<ul>
+<li>Increased nutrition for <em>x</em> number of children.</li>
+<li>Increased performance, greater long-range chances of success.</li>
+<li>Incidental benefits to contractors, etc.</li>
+</ul>
+<h3>"Benefits" (as headed in the source — actually about costs; see Ch. 00, Note 7)</h3>
+<ul>
+<li>Cost to each taxpayer.</li>
+<li>Contrast with other programs that could have been funded, and with lower taxes (no program).</li>
+</ul>
+<p><strong>Multiply each factor by:</strong> the number of individuals affected, and the intensity of effects.</p>
+
+<h2>Recitation-Ready Answer <span class="pill pill-added" style="margin-left:8px">Added — Study Aid</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">KEY TERM</div><div class="inm">Hedonistic Calculus</div><div class="idc"><strong>Plain English:</strong> Bentham's proposed method for scoring how much pleasure vs. pain an action produces, using 7 measurable criteria.<br><strong>vs. Principle of Utility:</strong> the Calculus is the practical "how to calculate" tool for applying the Principle of Utility's general rule.<br><strong>Example from the lesson:</strong> the Rural Life vs. Urban Life table — Rural scores 22, Urban scores 19, so Rural Life comes out as the "more moral" choice under this calculation.</div></div>
+<div class="isc a"><div class="ico">KEY TERM</div><div class="inm">Hedons vs. Dolors</div><div class="idc"><strong>Plain English:</strong> hedons are your "points" for pleasure; dolors are your "points" for pain.<br><strong>vs. each other:</strong> you add hedons and subtract dolors to get the net utility of an action.<br><strong>Example from the lesson:</strong> "choose the action that produces the greatest overall amount of utility (hedons minus dolors)."</div></div>
+</div>
+
+<div class="box amber"><div class="bico">💬</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 03</div>
+<div class="qa"><div class="qq">Name all 7 criteria of the Hedonistic Calculus, in order.</div><div class="qan">Intensity, Duration, Certainty, Propinquity, Fecundity, Purity, and Extent.</div></div>
+<div class="qa"><div class="qq">What do "hedons" and "dolors" stand for?</div><div class="qan">Hedons are a standard unit of pleasure; dolors are a standard unit of pain.</div></div>
+<div class="qa"><div class="qq">In the Rural vs. Urban Life example, which scored higher overall, and by how much?</div><div class="qan">Rural Life scored 22 versus Urban Life's 19 — a difference of 3.</div></div>
+<div class="qa"><div class="qq">Besides the 7 criteria themselves, what two things do you multiply each factor by in the school lunch example?</div><div class="qan">The number of individuals affected, and the intensity of effects.</div></div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch4">
+<div class="cn">CHAPTER 04 · Testing the Recurring Framework</div><div class="ct">Limits and Criticisms of Utilitarianism</div>
+
+<h2>How Much Can We Quantify?</h2>
+<p>Pleasure and preference satisfaction are easier to quantify than <strong>happiness</strong> or <strong>ideals</strong>.</p>
+
+<h2>Can Everything Be Quantified?</h2>
+<ul>
+<li>Some would maintain that some of the most important things in life (<strong>love, family,</strong> etc.) cannot easily be quantified.</li>
+<li>Other things (<strong>productivity, material goods</strong>) may get emphasized precisely because they are quantifiable.</li>
+</ul>
+<div class="box red"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Danger</div><p class="btx">"If it can't be counted, it doesn't count."</p></div></div>
+
+<h2>Measuring Happiness</h2>
+<p>Most people think that earning lots of money will make them happy, so the best utilitarian choice is to ensure that everyone has a good job and prosperity. However, scientific studies show that money only brings happiness in the short term, and that it works better for some people than others. As human beings, then, we actually don't know how to make ourselves happy? So how can we trust ourselves to make moral decisions on this basis?</p>
+
+<h2>Objection 1 — The Cushman Case</h2>
+<div class="box violet"><div class="bico">🧠</div><div class="bbd"><div class="btt">Hypothetical story told by Harvard psychologist Fiery Cushman</div>
+<p class="btx">When a man offends two volatile brothers with an insult, <strong>Jon</strong> wants to kill him; he shoots but misses. <strong>Matt</strong>, who intends only to scare the man but kills him by accident, will suffer a more severe penalty than his brother in most countries. Are you satisfied with this assessment of responsibility? Why or <span style="color:var(--red)">[cut off in the source — see Ch. 00, Note 9]</span>?</p></div></div>
+
+<h2>Objection 2 — The Big Man in the Cave</h2>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sd">If utilitarianism is true, the people in the cave should use the dynamite to blow the Big Man out of the cave opening.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sd">The people in the cave should not use the dynamite to blow the Big Man out of the cave.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sd"><strong>Therefore, utilitarianism is not true.</strong></div></div></div>
+</div>
+<p style="font-size:12px;color:var(--t3)">Illustrated in the lesson with the cover of David Edmonds's <em>Would You Kill the Fat Man?</em> (Princeton University Press, verified publication date October 23, 2013) — see Ch. 00, Note 5.</p>
+
+<h2>Objection 3 — The Organ Harvest</h2>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sd">If utilitarianism is true, then the doctor's act of killing the janitor for his organs was morally right.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sd">The doctor's act of killing the janitor for his organs was not morally right.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sd"><strong>Therefore, utilitarianism is not true.</strong></div></div></div>
+</div>
+
+<h2>Objection 4 — Human Rights</h2>
+<p>With the consequences being the emphasis of utilitarianism, the problem that arises is the disregard for human rights, contending that the results are far greater than the life sacrificed. There is no moral justification for the killing of someone other than self defense.</p>
+
+<h2>Recitation-Ready Answer <span class="pill pill-added" style="margin-left:8px">Added — Study Aid</span></h2>
+<div class="isg">
+<div class="isc"><div class="ico">KEY ARGUMENT FORM</div><div class="inm">The Big Man in the Cave / The Organ Harvest</div><div class="idc"><strong>Plain English:</strong> both arguments follow the same pattern — show that utilitarianism implies something clearly wrong, then conclude utilitarianism must be false.<br><strong>vs. each other:</strong> the Cave case targets sacrificing one person to save a group; the Organ Harvest case targets killing one person to save several others via transplants — different scenarios, identical argument structure.<br><strong>Example from the lesson:</strong> "If utilitarianism is true, then the doctor's act... was morally right. [It wasn't.] Therefore, utilitarianism is not true."</div></div>
+<div class="isc a"><div class="ico">KEY OBJECTION</div><div class="inm">The Human Rights Objection</div><div class="idc"><strong>Plain English:</strong> utilitarianism can justify sacrificing one innocent person's rights if it produces enough total happiness — critics say that's exactly the problem.<br><strong>vs. the Organ Harvest objection:</strong> Organ Harvest is a specific illustrative case; the Human Rights objection is the general principle behind why cases like it feel wrong.<br><strong>Example from the lesson:</strong> "There is no moral justification for the killing of someone other than self defense."</div></div>
+</div>
+
+<div class="box amber"><div class="bico">💬</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 04</div>
+<div class="qa"><div class="qq">According to the lesson, what's easier to quantify — pleasure/preference or happiness/ideals?</div><div class="qan">Pleasure and preference satisfaction are easier to quantify than happiness or ideals.</div></div>
+<div class="qa"><div class="qq">What "danger" does the lesson warn about regarding quantification?</div><div class="qan">"If it can't be counted, it doesn't count" — important unquantifiable things (love, family) may get neglected while quantifiable things (productivity, material goods) get overemphasized.</div></div>
+<div class="qa"><div class="qq">Summarize the Organ Harvest argument against utilitarianism.</div><div class="qan">If utilitarianism is true, the doctor killing the janitor for his organs (to save others) would be morally right; but that act was not morally right; therefore utilitarianism is not true.</div></div>
+<div class="qa"><div class="qq">What is the lesson's core objection about human rights?</div><div class="qan">Utilitarianism's focus on consequences can disregard human rights, treating the results as outweighing a sacrificed life — but there is no moral justification for killing someone other than in self-defense.</div></div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch5">
+<div class="cn">CHAPTER 05 · Applying the Recurring Framework</div><div class="ct">Class Application — Group Activity &amp; Rubric</div>
+
+<div class="box violet"><div class="bico">👥</div><div class="bbd"><div class="btt">Group Activity — spoken/performance task, not a written exam item</div>
+<p class="btx">The lesson's own instructions describe a 2–3 minute group presentation ("skit, role-play, or panel discussion" optional) — this is graded live, not on paper, so per your instructions it's presented here for reference rather than turned into an invented written practice question. The Rubric that follows it, however, <em>is</em> a written scoring instrument and is reproduced in full.</p></div></div>
+
+<h2>Group Activity Instructions <span class="pill pill-lesson" style="margin-left:8px">From the Lesson (headed "GROIP ACTIVITY" in the source)</span></h2>
+<p>Each group will act as a moral decision-making council.</p>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Read the Scenario</div><div class="sd">Your group will receive or choose one moral dilemma related to utilitarian decision-making. Examples given: (a) a doctor can save five patients by using the organs of one healthy person; (b) a government considers cutting a forest to provide jobs for many families; (c) a student cheats on an exam but argues that no one gets hurt.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Analyze the Situation</div><div class="sd">Discuss the possible actions and their consequences. Apply Bentham's Hedonistic Calculus using all seven criteria (this is the slide where <strong>Extent</strong> — "how many people will be affected?" — is finally defined in the source; see Ch. 03 / Ch. 00 Note 6).</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Decision-Making</div><div class="sd">Compute or qualitatively assess the hedons (pleasures) and dolors (pains). Choose the action that produces the greatest happiness for the greatest number. Justify your decision using utilitarian reasoning.</div></div></div>
+<div class="step"><div class="snum">4</div><div class="sc"><div class="sl">Prepare a Short Presentation</div><div class="sd">Present your moral dilemma, decision, and justification in 2–3 minutes. Each member must contribute to the explanation. Use creative formats (e.g., skit, role-play, or panel discussion) if desired.</div></div></div>
+</div>
+
+<h2>Rubric for Interactive Activity <span class="pill pill-lesson" style="margin-left:8px">From the Lesson</span></h2>
+<p><strong>Title:</strong> "Weighing Pleasure and Pain: The Utilitarian Dilemma." <strong>Objective:</strong> to assess students' understanding of Bentham's Utilitarianism by applying the Principle of Utility and Hedonistic Calculus in moral decision-making scenarios.</p>
+<div class="tw"><table>
+<thead><tr><th>Criteria</th><th>Excellent (5 pts)</th><th>Very Good (4 pts)</th><th>Satisfactory (3 pts)</th><th>Needs Improvement (2–1 pts)</th></tr></thead>
+<tbody>
+<tr><td>Understanding of Concept</td><td>Demonstrates a deep and accurate understanding of utilitarianism and Bentham's principles; clearly explains the principle of utility and hedonistic calculus.</td><td>Shows good understanding with minor misconceptions.</td><td>Shows partial understanding; explanation lacks clarity or detail.</td><td>Shows little understanding; confused or incorrect use of concepts.</td></tr>
+<tr><td>Application of the Hedonistic Calculus</td><td>Applies all 7 criteria correctly and meaningfully to evaluate the moral dilemma; reasoning is logical and well-supported.</td><td>Applies most criteria accurately with minor gaps in explanation.</td><td>Applies some criteria but lacks depth or connection to the dilemma.</td><td>Misapplies or ignores the hedonistic calculus; analysis is unclear or incomplete.</td></tr>
+<tr><td>Critical Thinking and Justification</td><td>Provides strong, well-reasoned arguments for their chosen action; clearly justifies decision using utilitarian principles.</td><td>Provides a reasonable justification with minor weaknesses.</td><td>Justification is brief or lacks logical support.</td><td>No clear justification or reasoning provided.</td></tr>
+<tr><td>Creativity and Presentation</td><td>Presentation is engaging, organized, and creative (e.g., role play, panel, or visual aids); all members participate effectively.</td><td>Presentation is organized and clear; most members participate.</td><td>Presentation is understandable but lacks organization or creativity.</td><td>Presentation is unclear, unorganized, or dominated by few members.</td></tr>
+<tr><td>Teamwork and Participation</td><td>Group shows excellent collaboration, respect, and equal participation.</td><td>Good teamwork; most members actively participate.</td><td>Uneven participation; some members contribute less.</td><td>Minimal teamwork; group shows poor coordination.</td></tr>
+</tbody></table></div>
+
+<div class="box amber"><div class="bico">💬</div><div class="bbd"><div class="btt">Recitation Drill — Chapter 05</div>
+<div class="qa"><div class="qq">Name the three example moral dilemmas the Group Activity instructions give.</div><div class="qan">(a) A doctor saving five patients using one healthy person's organs; (b) a government cutting a forest to provide jobs; (c) a student cheating on an exam while arguing no one gets hurt.</div></div>
+<div class="qa"><div class="qq">Name the five criteria on the Rubric.</div><div class="qan">Understanding of Concept, Application of the Hedonistic Calculus, Critical Thinking and Justification, Creativity and Presentation, and Teamwork and Participation.</div></div>
+</div></div>
+</section>
+
+<section class="chapter" id="ch6">
+<div class="cn">CHAPTER 06</div><div class="ct">Glossary &amp; Abbreviations</div>
+<p class="ci"><span class="pill pill-added">Added — Study Aid</span> The lesson uses few undefined abbreviations. They're spelled out here for completeness.</p>
+<div class="tw"><table>
+<thead><tr><th>Abbreviation</th><th>Stands For</th><th>Where It Appears</th></tr></thead>
+<tbody>
+<tr><td>BCE</td><td>Before Common Era</td><td>Dating the Cyrenaics ("4th century BCE") and Epicurus ("341–270 BCE")</td></tr>
+<tr><td>pts</td><td>Points</td><td>The Rubric's scoring scale ("Excellent (5 pts)," etc.)</td></tr>
+</tbody></table></div>
+</section>
+
+<div class="footer"><p>QCU Academic OS · AY 2026-2027 · Compiled by <strong>KianoRoku18Ino</strong> · github.com/KianoRoku18Ino</p></div>
+</main>
+
+</body>
+</html>
