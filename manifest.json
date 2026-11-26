@@ -84,6 +84,14 @@
                   "html": "assets/guides/year-1/sem-1/hum2/week-7.html"
                 },
                 {
+                  "id": "week-8",
+                  "kind": "week",
+                  "label": "Week 8 — VirtueEthics",
+                  "order": 8,
+                  "week": 8,
+                  "html": "assets/guides/year-1/sem-1/hum2/week-8.html"
+                },
+                {
                   "id": "1-4-module-reviewer",
                   "kind": "special",
                   "label": "1-4 Module Reviewer",
