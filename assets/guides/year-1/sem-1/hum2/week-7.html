@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HUM 2 — Ethics | Lesson 7: Deontology</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--violet:#8B5CF6;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(139,92,246,.15);--sw:275px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover{color:var(--t1);background:rgba(139,92,246,.08);border-left-color:var(--violet)}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:20px}
+.main{margin-left:var(--sw)}
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:52px 52px 42px;position:relative;overflow:hidden}
+.hero::before{content:'01001000';position:absolute;top:-10px;right:15px;font-family:'JetBrains Mono',monospace;font-size:115px;font-weight:900;color:rgba(139,92,246,.05);letter-spacing:-5px;user-select:none;line-height:1}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--violet);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--violet)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:700;line-height:1.1;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#8B5CF6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:17px;color:var(--t2);margin-bottom:19px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+.chapter{padding:44px 52px;border-bottom:1px solid var(--bdr);max-width:970px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--violet);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:19.5px;font-weight:600;margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--violet);border-radius:2px;flex-shrink:0}
+h3{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--violet);margin:22px 0 9px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+.box{border-radius:8px;padding:13px 17px;margin:15px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.violet{background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2)}.violet .btt{color:var(--violet)}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:9px 12px;text-align:left;border-bottom:2px solid var(--violet);font-size:11.5px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(139,92,246,.04)}
+tbody td{padding:9px 12px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.steps{margin:15px 0}
+.step{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.snum{background:var(--violet);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace}
+.sc{flex:1}
+.sl{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:2px}
+.sd{color:var(--t2);font-size:13px;line-height:1.7}
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.gc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;position:relative;overflow:hidden}
+.gc::before{content:attr(data-g);position:absolute;top:-10px;right:7px;font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:900;color:rgba(139,92,246,.06);line-height:1}
+.gtit{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:7px}
+.gsp{font-size:12.5px;color:var(--t2);margin:0;line-height:1.7}
+.law{background:var(--bgc);border:1px solid var(--bdr);border-left:4px solid var(--violet);border-radius:8px;padding:15px 17px;margin:11px 0}
+.lra{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--violet);font-weight:700;margin-bottom:3px}
+.lyr{font-size:11px;color:var(--t3);margin-bottom:7px}
+.ldc{font-size:13.5px;color:var(--t2);line-height:1.8;font-style:italic}
+.tagw{display:inline-block;background:var(--bgc);border:1px solid var(--bdr);border-radius:20px;padding:5px 13px;margin:3px 4px 3px 0;font-size:12.5px;color:var(--t2)}
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:5px;font-size:13.5px;line-height:1.78}
+li strong{color:var(--t1)}
+.qitem{background:var(--bgc);border:1px solid var(--bdr);border-radius:8px;padding:13px 17px;margin:9px 0}
+.qnum{font-family:'JetBrains Mono',monospace;color:var(--violet);font-weight:700;font-size:12px;margin-bottom:5px}
+.qtext{font-weight:600;color:var(--t1);font-size:13.5px;margin-bottom:6px}
+.qopt{color:var(--t2);font-size:13px;margin-bottom:2px}
+.qans{background:var(--bgr);border-left:3px solid var(--green);padding:9px 12px;margin-top:8px;border-radius:0 6px 6px 0;font-size:13px;color:var(--t2)}
+.qans strong{color:var(--green)}
+.footer{padding:34px 52px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--violet)}
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.gg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+<div class="sbh"><div class="sbb">HUM 2 · QCU BSIT</div><div class="sbt">Ethics</div><div class="sbs">Lesson 7 Study Guide · AY 2026-2027</div></div>
+<ul class="nvl">
+<li class="nvi"><a href="#ch1"><span class="nn">01</span>Motivation Activity</a></li>
+<li class="nvi"><a href="#ch2"><span class="nn">02</span>What Is Deontology</a></li>
+<li class="nvi"><a href="#ch3"><span class="nn">03</span>Basic Principles</a></li>
+<li class="nvi"><a href="#ch4"><span class="nn">04</span>Kant, Main Tenets &amp; the Good Will</a></li>
+<li class="nvi"><a href="#ch5"><span class="nn">05</span>Duty</a></li>
+<li class="nvi"><a href="#ch6"><span class="nn">06</span>The Categorical Imperative</a></li>
+<li class="nvi"><a href="#ch7"><span class="nn">07</span>Three Formulas of the Categorical Imperative</a></li>
+<li class="nvi"><a href="#ch8"><span class="nn">08</span>Testing a Maxim's Universality</a></li>
+<li class="nvi"><a href="#ch9"><span class="nn">09</span>Advantages</a></li>
+<li class="nvi"><a href="#ch10"><span class="nn">10</span>Disadvantages</a></li>
+<li class="nvi"><a href="#ch11"><span class="nn">11</span>Concluding Remarks</a></li>
+<li class="nvi"><a href="#ch12"><span class="nn">12</span>Group Activities</a></li>
+<li class="nvi"><a href="#ch13"><span class="nn">13</span>Rubrics</a></li>
+<li class="nvi"><a href="#ch14"><span class="nn">14</span>Quiz</a></li>
+</ul></nav>
+
+<main class="main">
+<div class="hero">
+<div class="he">QCU Academic OS · AY 2026-2027</div>
+<div class="ht">HUM 2 — Ethics</div>
+<div class="hs">Lesson 7: Deontology — Study Guide</div>
+<div class="hm">
+<div class="mp">Course: <span>HUM 2</span></div>
+<div class="mp">Units: <span>3</span></div>
+<div class="mp">Year Level: <span>1st Year, Sem 1</span></div>
+<div class="mp">Type: <span>GE — Humanities/Ethics</span></div>
+</div></div>
+
+<section class="chapter" id="ch1">
+<div class="cn">LESSON 7</div><div class="ct">Motivation Activity — "My Duty Statement" Pledge</div>
+<p><strong>Objective:</strong> Motivate students to apply deontological values personally.</p>
+<p><strong>Instructions:</strong> Each student writes a short pledge beginning with "I will act according to duty by…" and reads it aloud in class.</p>
+<div class="box violet"><div class="bico">✍️</div><div class="bbd"><div class="btt">Example</div>
+<p class="btx">"I will act according to duty by respecting the rules and laws that promote justice and order in my community."</p></div></div>
+</section>
+
+<section class="chapter" id="ch2">
+<div class="cn">CHAPTER 02</div><div class="ct">What Is Deontology</div>
+<div class="box violet"><div class="bico">⚖️</div><div class="bbd"><div class="btt">Definition</div>
+<p class="btx">Deontology is an ethical theory that focuses on duty, rules, and moral obligations rather than consequences. It is often associated with Immanuel Kant, who emphasized that moral actions must be guided by universal principles.</p></div></div>
+<p>Deontological ethics defines the moral rightness or wrongness of an act in terms of the intrinsic value of the act. According to this theory, the duty to perform an action (or refrain from doing it) is based on the nature of the act itself and not on its consequences.</p>
+
+<h2>The Term "Deontology"</h2>
+<p>From the Greek word <em>deon</em>, meaning "duty" or "obligation."</p>
+
+<div class="box blue"><div class="bico">✅</div><div class="bbd"><div class="btt">Act vs. Consequence</div>
+<p class="btx">act (good in itself) → consequence — the act itself is what carries moral approval; the consequence that follows is a separate matter.</p></div></div>
+</section>
+
+<section class="chapter" id="ch3">
+<div class="cn">CHAPTER 03</div><div class="ct">Basic Principles of Deontology</div>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Duty-Based Ethics</div><div class="sd">Actions are morally required, permitted, or forbidden based on a set of rules or duties, regardless of the consequences.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Categorical Imperative</div><div class="sd">Kant's famous principle states that we should act only according to maxims that could be universal laws (i.e., rules that everyone could follow without contradiction).</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Intrinsic Moral Value</div><div class="sd">People and actions have intrinsic worth; individuals should always be treated as ends in themselves, not merely as means to an end.</div></div></div>
+<div class="step"><div class="snum">4</div><div class="sc"><div class="sl">Moral Absolutism</div><div class="sd">Certain actions (like lying or killing) are inherently right or wrong, no matter the situation or outcomes.</div></div></div>
+<div class="step"><div class="snum">5</div><div class="sc"><div class="sl">Intentions Over Consequences</div><div class="sd">The morality of an action is determined by the intention behind it, rather than its outcomes.</div></div></div>
+<div class="step"><div class="snum">6</div><div class="sc"><div class="sl">Universalizability</div><div class="sd">If an action cannot be consistently applied to everyone, it is not morally acceptable.</div></div></div>
+<div class="step"><div class="snum">7</div><div class="sc"><div class="sl">Respect for Autonomy</div><div class="sd">Each individual has the right to make rational moral choices, and others should respect their autonomy.</div></div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch4">
+<div class="cn">CHAPTER 04</div><div class="ct">Immanuel Kant, Main Tenets &amp; the Good Will</div>
+<p style="text-align:center;font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:var(--t1)">Immanuel Kant <span style="color:var(--violet);font-size:16px;font-weight:400">(1724 – 1804)</span></p>
+
+<h2>Main Tenets</h2>
+<ul>
+<li>The morality of an act is focused on the act itself regardless of the consequences.</li>
+<li>There are actions which are good in themselves no matter what may follow.</li>
+<li>Actions that by nature are good are to be the object of one's duty.</li>
+</ul>
+
+<h2>The Good Will</h2>
+<div class="law"><div class="lra">KANT, IMMANUEL</div><div class="lyr"><em>Groundwork of the Metaphysics of Morals</em>, trans. Mary Gregor, 1997. Cambridge, U.K.: Cambridge University Press, 3.</div>
+<div class="ldc">"A good will is not good because of what it effects or accomplishes, because of its fitness to attain some proposed end, but only because of its volition, that is, it is good in itself and, regarded for itself, is to be valued incomparably higher than all that could merely be brought about by it in favor of some inclination and indeed, if you will, of the sum of all inclinations."</div></div>
+</section>
+
+<section class="chapter" id="ch5">
+<div class="cn">CHAPTER 05</div><div class="ct">Duty</div>
+
+<h2>Duty — in Itself, Apart from Inclinations</h2>
+<p>Duty, in itself, stands apart from: preferences, emotions, likes, dislikes, bias/prejudice, and inclinations.</p>
+
+<h2>What Does Kant Mean?</h2>
+<ul>
+<li>Kant uses the term 'will' to refer to intention or motive.</li>
+<li>For Kant, the only thing that is good in itself is what he calls a good will.</li>
+<li>A person has a good will if he/she does something right or good in itself.</li>
+</ul>
+
+<h2>Duty — Related Terms</h2>
+<p>
+<span class="tagw">commitment</span><span class="tagw">faithfulness</span><span class="tagw">dedication</span><span class="tagw">fidelity</span><span class="tagw">devotion</span><span class="tagw">self-giving</span><span class="tagw">allegiance</span><span class="tagw">determination</span><span class="tagw">loyalty</span><span class="tagw">consistency</span><span class="tagw">unconditionality</span>
+</p>
+
+<h2>Pure Sense of Duty</h2>
+<ul>
+<li>One must perform a moral duty for its own sake.</li>
+<li>Doing good should be constant. We can constantly do something if it is done under a pure sense of duty.</li>
+</ul>
+
+<h2>When Is an Act Morally Worthy?</h2>
+<div class="box green"><div class="bico">✅</div><div class="bbd"><div class="btt">Answer</div>
+<p class="btx">An action gains moral worth when it is done under a pure sense of duty.</p></div></div>
+</section>
+
+<section class="chapter" id="ch6">
+<div class="cn">CHAPTER 06</div><div class="ct">The Categorical Imperative</div>
+
+<h2>The Command to Do One's Duty</h2>
+<ul>
+<li>The command to do one's duty is otherwise known as the "categorical imperative."</li>
+<li>It is categorical because it doesn't admit the conditions or qualifications.</li>
+</ul>
+
+<h2>Autonomy and Heteronomy</h2>
+<div class="gg">
+<div class="gc" data-g="A"><div class="gtit">Autonomy</div><p class="gsp"><em>autos</em> (self) and <em>nomos</em> (law) = self-law or self-legislating.</p></div>
+<div class="gc" data-g="H"><div class="gtit">Heteronomy</div><p class="gsp"><em>heteros</em> (other) and <em>nomos</em> (law) = other law.</p></div>
+</div>
+
+<h2>Maxims</h2>
+<p>A maxim is the rule or principle on which one acts. For example, one might make it one's maxim to give at least as much to charity each year as one spends on eating out, or one might make it one's maxim only to do what will benefit some member of one's family.</p>
+<p style="font-size:12px;color:var(--t3)">Source cited in the lesson: https://www.csus.edu/indiv/g/gaskilld/ethics/kantian%20ethics.htm</p>
+
+<h2>Where Does the Command Come From?</h2>
+<p>It comes from oneself. As an attribute of our rational nature, there are things in life that we have to do and not do out of our own initiative under the light of our own reason. We do not depend on others' commands anymore, unlike during the times when we were still young. This is what Kant calls autonomy of the will.</p>
+
+<div class="law"><div class="lra">KANT, IMMANUEL</div><div class="lyr">What is autonomy of the will? — <em>Groundwork of the Metaphysics of Morals</em>, trans. Mary Gregor, 1997. Cambridge, U.K.: Cambridge University Press, 47.</div>
+<div class="ldc">"Autonomy of the will is the property of the will by which it is a law to itself (independently of any property of the objects of volition)."</div></div>
+
+<h2>How Do We Evaluate Our Motivations for Action?</h2>
+<p>How do we know that what we are doing is in the right way? Given our weaknesses and limitations, is there a way to create a law that can be morally justified? Here, Kant offers his formula or moral criterion known as the categorical imperative.</p>
+
+<h2>What Is an Imperative?</h2>
+<p>An imperative is a command. So, "Pay your taxes!" is an imperative, as are "Stop kicking me!" and "Don't kill animals!"</p>
+
+<h2>Hypothetical Imperatives</h2>
+<p>These imperatives command conditionally on having a relevant desire. E.g., "If you want to go to medical school, study biology in college." If you don't want to go to medical school, this command doesn't apply to you. Another example: a father says, "If you are hungry, then go eat something!" — if you aren't hungry, then you are free to ignore the command.</p>
+
+<h2>Categorical Imperatives</h2>
+<p>These command unconditionally. E.g., "Don't cheat on your taxes." Even if you want to cheat and doing so would serve your interests, you may not cheat.</p>
+
+<h2>Morality and the Categorical Imperative</h2>
+<div class="box amber"><div class="bico">🔗</div><div class="bbd"><div class="btt">What is the connection between morality and categorical imperatives?</div>
+<p class="btx">Morality must be based on the categorical imperative because morality is such that one is commanded by it, and is such that one cannot opt out of it or claim that it does not apply to oneself.</p></div></div>
+</section>
+
+<section class="chapter" id="ch7">
+<div class="cn">CHAPTER 07</div><div class="ct">Three Formulas of the Categorical Imperative</div>
+<div class="gg">
+<div class="gc" data-g="1"><div class="gtit">The Formula of Universal Law</div><p class="gsp">Conformity to a universal law.</p></div>
+<div class="gc" data-g="2"><div class="gtit">The Humanity Formula</div><p class="gsp">Persons as ends in themselves.</p></div>
+<div class="gc" data-g="3"><div class="gtit">The Autonomy Formula</div><p class="gsp">Persons as moral legislators.</p></div>
+</div>
+<div class="law"><div class="lra">IMMANUEL KANT · THE AUTONOMY FORMULA</div>
+<div class="ldc">"Act always on the maxim of such a will in us as can at the same time look upon itself as making universal law."</div></div>
+</section>
+
+<section class="chapter" id="ch8">
+<div class="cn">CHAPTER 08</div><div class="ct">Testing a Maxim's Universality</div>
+<p>Two ways when a maxim won't be able to pass the universality qualification:</p>
+
+<h2>1. Contradiction in Conception Test</h2>
+<p><strong>Maxim:</strong> Whenever anyone is in need, they will make a false promise in order to get some cash.</p>
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Problem</div>
+<p class="btx">It is impossible to imagine circumstances in which this is a universal law. If the false promises maxim were accepted by everyone, the whole practice of making promises would collapse.</p></div></div>
+
+<h2>2. Contradiction in Will Test</h2>
+<p><strong>Maxim:</strong> Whenever anyone sees another person in urgent need of help, they will not help the needy in order to avoid sacrificing their own happiness.</p>
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">Problem</div>
+<p class="btx">In the world in which no one helps others, one would still have some goals. Because one wants things that will require other people's help to secure, one can't consistently will the selfish maxim to be a universal law.</p></div></div>
+</section>
+
+<section class="chapter" id="ch9">
+<div class="cn">CHAPTER 09</div><div class="ct">Advantages</div>
+<ul>
+<li>Kant's morality is very straightforward and based on reason, making it accessible to everyone.</li>
+<li>Duty is part of human experience.</li>
+<li>Morality doesn't depend on motives, consequences, or religious laws.</li>
+<li>Categorical imperative gives rules that apply to everyone and command respect for human life.</li>
+<li>It makes clear that morality is doing one's duty and not just following feelings. One cannot assume what is good for oneself is good for everyone else — Kant's equivalent of the Golden Rule. <span style="color:var(--t3);font-size:11.5px">(the source slide also includes the single word "karma" alongside this point)</span></li>
+<li>It aims to treat everyone fairly and justly, so it corrects the utilitarian idea that some can suffer as long as others are happy.</li>
+<li>Kant sees humans as being of intrinsic worth as they are the rational high point of creation. This means they cannot be enslaved or exploited (basis of the Declaration of Human Rights).</li>
+<li>Equal treatment of individuals gets rid of bias which sometimes influences decision-making.</li>
+<li>Categorical imperative tells us exactly what is right and wrong, giving a clear sense of moral guidelines.</li>
+<li>Kant draws a clear distinction between duty and preference. Moral value of an action comes from its intrinsic rightness, so issues of teleological ethics are avoided.</li>
+<li>People generally do have the same ideas about morality.</li>
+<li>Ethical practice should be based on reason, not subjective emotion.</li>
+<li>Most people recognize the idea of duty — it is part of what it means to be human.</li>
+<li>There is a difference between duty and inclination.</li>
+</ul>
+</section>
+
+<section class="chapter" id="ch10">
+<div class="cn">CHAPTER 10</div><div class="ct">Disadvantages</div>
+<ul>
+<li>Kant's theory is abstract and not always easily applicable — it tells what type of actions are good but not the right thing to do in particular situations.</li>
+<li>People rarely act purely out of duty, as they always have some expectation of what they'll get in return.</li>
+<li>Some philosophers think putting duty above feeling is cold and inhuman — there is no place for love and personal relations in Kant's theory.</li>
+<li>Kant tells us in general terms to respect others and not treat them as a means to an end, but doesn't tell us what to do in individual cases.</li>
+<li>Philippa Foot, among others, has criticized that Kant's theory doesn't help with the situation of the double effect.</li>
+<li>There are no exceptions in using people as means to ends, which severely restricts behavior.</li>
+<li>People are different and don't necessarily have the same sense of 'good will.'</li>
+<li>Not everyone is capable of making rational moral decisions.</li>
+<li>Every action taken involves love and compassion, because human beings are involved.</li>
+<li>It is human nature to consider the consequences.</li>
+</ul>
+<p style="font-size:12px;color:var(--t3)">Source cited in the lesson: Created by Stevie117 on 16-11-15 18:31. Retrieved December 21, 2020 from https://getrevising.co.uk/grids/kantian-ethics</p>
+</section>
+
+<section class="chapter" id="ch11">
+<div class="cn">CHAPTER 11</div><div class="ct">Concluding Remarks</div>
+<p>Deontology or Kantian ethics is based on the view that human beings are rational. It is this rationality that enables a person to independently create a moral law for oneself, going beyond the grips of emotions and desires, which establishes one's autonomy and freedom.</p>
+</section>
+
+<section class="chapter" id="ch12">
+<div class="cn">CHAPTER 12</div><div class="ct">Group Activities</div>
+
+<h2>1. Case Study Analysis (Moral Dilemmas)</h2>
+<p><strong>Objective:</strong> Apply deontological principles to real-world ethical dilemmas.</p>
+<ul>
+<li>Present scenarios such as lying to save a life, stealing to feed a starving person, or breaking a promise for a greater good.</li>
+<li>Analyze whether the action is morally acceptable according to deontology (duty-based ethics).</li>
+<li>Discuss the Categorical Imperative and whether the action could be universalized.</li>
+</ul>
+
+<h2>2. Role-Playing: Autonomy vs. Heteronomy</h2>
+<p><strong>Objective:</strong> Understand the difference between autonomy (self-governance) and heteronomy (external control) in moral decision-making.</p>
+<ul>
+<li>Assign roles (e.g., a person deciding whether to follow a strict rule or obey an authority figure).</li>
+<li>One student makes a decision autonomously (based on moral reasoning).</li>
+<li>Another follows heteronomy (obeys authority or external rules without question).</li>
+<li>Discuss the impact of autonomy and heteronomy on moral responsibility.</li>
+</ul>
+
+<h2>3. "Moral Laws" Debate</h2>
+<p><strong>Objective:</strong> Explore moral absolutism in deontology.</p>
+<ul>
+<li>Divide the class into two teams. One supports absolute moral rules (e.g., lying is always wrong), while the other argues for exceptions based on consequences.</li>
+<li>Use examples like lying to protect someone from harm.</li>
+<li>Debate whether certain moral rules should be followed in every situation or if exceptions should be allowed.</li>
+</ul>
+
+<h2>4. Universalization Test (Kant's Categorical Imperative)</h2>
+<p><strong>Objective:</strong> Evaluate ethical principles using Kant's test.</p>
+<ul>
+<li>Give different ethical statements (e.g., "It is okay to steal if you are poor.").</li>
+<li>Apply the universalization test: "What if everyone did this?"</li>
+<li>Discuss whether the rule can be logically applied to everyone without contradiction.</li>
+</ul>
+
+<h2>5. Deontology in Everyday Life — Reflection Journal</h2>
+<p><strong>Objective:</strong> Encourage reflection on moral decision-making.</p>
+<ul>
+<li>Keep a journal for a week, recording situations involving moral choices.</li>
+<li>Analyze those decisions using deontological principles (e.g., duty, universal laws, intentions).</li>
+<li>Reflect on whether the choice was made out of autonomy or heteronomy.</li>
+</ul>
+</section>
+
+<section class="chapter" id="ch13">
+<div class="cn">CHAPTER 13</div><div class="ct">Rubrics</div>
+<div class="tw"><table>
+<thead><tr><th>Criteria</th><th>Excellent (4 pts)</th><th>Good (3 pts)</th><th>Satisfactory (2 pts)</th><th>Needs Improvement (1 pt)</th></tr></thead>
+<tbody>
+<tr><td>Understanding of Deontology</td><td>Clearly demonstrates deep understanding of deontology, including key principles like duty, categorical imperative, and moral intent.</td><td>Shows a good grasp of deontology but lacks depth in some areas.</td><td>Basic understanding is shown, but explanations lack clarity or depth.</td><td>Limited or incorrect understanding of deontology.</td></tr>
+<tr><td>Application of Autonomy &amp; Heteronomy</td><td>Clearly differentiates between autonomy and heteronomy, providing well-reasoned examples.</td><td>Shows good understanding but lacks strong examples.</td><td>Somewhat understands autonomy vs. heteronomy but is unclear in explanation.</td><td>Struggles to differentiate or explain the concepts.</td></tr>
+<tr><td>Critical Thinking &amp; Ethical Analysis</td><td>Thoughtful, well-structured analysis using logical reasoning and ethical frameworks.</td><td>Shows good reasoning but lacks depth or complexity.</td><td>Attempts ethical analysis but is somewhat unclear or inconsistent.</td><td>Weak or missing ethical analysis, lacks critical thinking.</td></tr>
+<tr><td>Engagement &amp; Participation</td><td>Actively participates, contributes insightful points, and engages with peers.</td><td>Participates actively but may lack deeper engagement.</td><td>Participates but minimally contributes to discussion.</td><td>Rarely participates or engages in the activity.</td></tr>
+<tr><td>Clarity &amp; Communication</td><td>Clearly expresses ideas with strong arguments and examples.</td><td>Communicates ideas well but with minor lapses in clarity.</td><td>Somewhat clear but lacks strong structure or depth.</td><td>Struggles to communicate ideas effectively.</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="chapter" id="ch14">
+<div class="cn">CHAPTER 14</div><div class="ct">Quiz</div>
+
+<h2>II. Choose the Correct Answer</h2>
+<div class="qitem"><div class="qnum">1.</div><div class="qtext">Deontology focuses on the __________ of an action rather than its consequences.</div>
+<div class="qopt">A. Results &nbsp;&nbsp; B. Feelings &nbsp;&nbsp; C. Nature &nbsp;&nbsp; D. Outcomes</div></div>
+<div class="qitem"><div class="qnum">2.</div><div class="qtext">Who is the main philosopher associated with Deontological Ethics?</div>
+<div class="qopt">A. John Stuart Mill &nbsp;&nbsp; B. Immanuel Kant &nbsp;&nbsp; C. Aristotle &nbsp;&nbsp; D. Jeremy Bentham</div></div>
+<div class="qitem"><div class="qnum">3.</div><div class="qtext">According to Kant, the only thing that is "good in itself" is __________.</div>
+<div class="qopt">A. Happiness &nbsp;&nbsp; B. Good will &nbsp;&nbsp; C. Justice &nbsp;&nbsp; D. Consequence</div></div>
+<div class="qitem"><div class="qnum">4.</div><div class="qtext">The principle that actions should be universalizable is known as the __________.</div>
+<div class="qopt">A. Moral Law &nbsp;&nbsp; B. Golden Rule &nbsp;&nbsp; C. Categorical Imperative &nbsp;&nbsp; D. Universal Duty</div></div>
+<div class="qitem"><div class="qnum">5.</div><div class="qtext">Acting morally means doing one's duty out of __________.</div>
+<div class="qopt">A. Habit &nbsp;&nbsp; B. Reward &nbsp;&nbsp; C. Pure intention &nbsp;&nbsp; D. Pressure</div></div>
+<div class="qitem"><div class="qnum">6.</div><div class="qtext">Autonomy means __________.</div>
+<div class="qopt">A. Obeying external rules &nbsp;&nbsp; B. Acting according to one's own moral law &nbsp;&nbsp; C. Following authority &nbsp;&nbsp; D. Ignoring reason</div></div>
+<div class="qitem"><div class="qnum">7.</div><div class="qtext">A person acts heteronomously when they __________.</div>
+<div class="qopt">A. Think rationally &nbsp;&nbsp; B. Follow rules without moral reasoning &nbsp;&nbsp; C. Create personal moral laws &nbsp;&nbsp; D. Act for duty's sake</div></div>
+<div class="qitem"><div class="qnum">8.</div><div class="qtext">Kant's ethics is based on __________.</div>
+<div class="qopt">A. Duty and moral law &nbsp;&nbsp; B. Emotions and desires &nbsp;&nbsp; C. Situational outcomes &nbsp;&nbsp; D. Rewards and punishments</div></div>
+<div class="qitem"><div class="qnum">9.</div><div class="qtext">Treating people as ends and never as means emphasizes __________.</div>
+<div class="qopt">A. Moral Absolutism &nbsp;&nbsp; B. Humanity Principle &nbsp;&nbsp; C. Consequentialism &nbsp;&nbsp; D. Moral Relativism</div></div>
+<div class="qitem"><div class="qnum">10.</div><div class="qtext">Which ethical theory contrasts with Deontology by focusing on outcomes?</div>
+<div class="qopt">A. Virtue Ethics &nbsp;&nbsp; B. Utilitarianism &nbsp;&nbsp; C. Egoism &nbsp;&nbsp; D. Relativism</div></div>
+
+<h2>III. Essay</h2>
+<div class="qitem"><div class="qnum">1.</div><div class="qtext">Explain the difference between Deontology and Utilitarianism.</div>
+<div class="qans"><strong>Suggested Answer:</strong> Deontology judges morality based on duty and intention, while Utilitarianism judges based on the consequences or outcomes of actions.</div></div>
+<div class="qitem"><div class="qnum">2.</div><div class="qtext">What is the significance of the Categorical Imperative in moral decision-making?</div>
+<div class="qans"><strong>Suggested Answer:</strong> It serves as a universal moral law requiring that actions be applicable to everyone without contradiction, guiding individuals to act out of moral duty.</div></div>
+<div class="qitem"><div class="qnum">3.</div><div class="qtext">Why does Kant believe that 'Good Will' is the only thing good in itself?</div>
+<div class="qans"><strong>Suggested Answer:</strong> Because it represents the pure intention to do what is morally right, regardless of the outcome or reward.</div></div>
+<div class="qitem"><div class="qnum">4.</div><div class="qtext">Differentiate between Autonomy and Heteronomy.</div>
+<div class="qans"><strong>Suggested Answer:</strong> Autonomy means acting according to one's own rational moral law, while heteronomy means acting under external influence or authority.</div></div>
+<div class="qitem"><div class="qnum">5.</div><div class="qtext">How can Deontological ethics be applied in real-life situations?</div>
+<div class="qans"><strong>Suggested Answer:</strong> By making decisions based on duty and principles rather than personal gain, such as telling the truth even when lying might be more convenient.</div></div>
+</section>
+
+<div class="footer"><p>QCU Academic OS · AY 2026-2027 · Compiled by <strong>KianoRoku18Ino</strong> · github.com/KianoRoku18Ino</p></div>
+</main>
+</body>
+</html>
