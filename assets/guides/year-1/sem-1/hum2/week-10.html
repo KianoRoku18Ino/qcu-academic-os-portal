@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HUM 2 — Ethics | Module 10: Moral Deliberation</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--violet:#8B5CF6;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(139,92,246,.15);--sw:275px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover{color:var(--t1);background:rgba(139,92,246,.08);border-left-color:var(--violet)}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:20px}
+.main{margin-left:var(--sw)}
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:52px 52px 42px;position:relative;overflow:hidden}
+.hero::before{content:'01001000';position:absolute;top:-10px;right:15px;font-family:'JetBrains Mono',monospace;font-size:115px;font-weight:900;color:rgba(139,92,246,.05);letter-spacing:-5px;user-select:none;line-height:1}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--violet);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--violet)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:700;line-height:1.1;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#8B5CF6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:17px;color:var(--t2);margin-bottom:19px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+.chapter{padding:44px 52px;border-bottom:1px solid var(--bdr);max-width:970px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--violet);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:19.5px;font-weight:600;margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--violet);border-radius:2px;flex-shrink:0}
+h3{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--violet);margin:22px 0 9px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+.box{border-radius:8px;padding:13px 17px;margin:15px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.violet{background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2)}.violet .btt{color:var(--violet)}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:9px 12px;text-align:left;border-bottom:2px solid var(--violet);font-size:11.5px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(139,92,246,.04)}
+tbody td{padding:9px 12px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.steps{margin:15px 0}
+.step{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.snum{background:var(--violet);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace}
+.sc{flex:1}
+.sl{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:2px}
+.sd{color:var(--t2);font-size:13px;line-height:1.7}
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.gc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;position:relative;overflow:hidden}
+.gc::before{content:attr(data-g);position:absolute;top:-10px;right:7px;font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:900;color:rgba(139,92,246,.06);line-height:1}
+.gtit{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:7px}
+.gsp{font-size:12.5px;color:var(--t2);margin:0;line-height:1.7}
+.law{background:var(--bgc);border:1px solid var(--bdr);border-left:4px solid var(--violet);border-radius:8px;padding:15px 17px;margin:11px 0}
+.lra{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--violet);font-weight:700;margin-bottom:3px}
+.lyr{font-size:11px;color:var(--t3);margin-bottom:7px}
+.ldc{font-size:13.5px;color:var(--t2);line-height:1.8;font-style:italic}
+.tagw{display:inline-block;background:var(--bgc);border:1px solid var(--bdr);border-radius:20px;padding:5px 13px;margin:3px 4px 3px 0;font-size:12.5px;color:var(--t2)}
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:5px;font-size:13.5px;line-height:1.78}
+li strong{color:var(--t1)}
+.qitem{background:var(--bgc);border:1px solid var(--bdr);border-radius:8px;padding:13px 17px;margin:9px 0}
+.qnum{font-family:'JetBrains Mono',monospace;color:var(--violet);font-weight:700;font-size:12px;margin-bottom:5px}
+.qtext{font-weight:600;color:var(--t1);font-size:13.5px;margin-bottom:6px}
+.qopt{color:var(--t2);font-size:13px;margin-bottom:2px}
+.qans{background:var(--bgr);border-left:3px solid var(--green);padding:9px 12px;margin-top:8px;border-radius:0 6px 6px 0;font-size:13px;color:var(--t2)}
+.qans strong{color:var(--green)}
+.footer{padding:34px 52px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--violet)}
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.gg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+<div class="sbh"><div class="sbb">HUM 2 · QCU BSIT</div><div class="sbt">Ethics</div><div class="sbs">Module 10 Study Guide · AY 2026-2027</div></div>
+<ul class="nvl">
+<li class="nvi"><a href="#ch1"><span class="nn">01</span>Ethical Deliberation</a></li>
+<li class="nvi"><a href="#ch2"><span class="nn">02</span>The Ethical Issue</a></li>
+<li class="nvi"><a href="#ch3"><span class="nn">03</span>Step 1: The Facts</a></li>
+<li class="nvi"><a href="#ch4"><span class="nn">04</span>Step 2: The Ethical Issues</a></li>
+<li class="nvi"><a href="#ch5"><span class="nn">05</span>Step 3: The Alternatives</a></li>
+<li class="nvi"><a href="#ch6"><span class="nn">06</span>Step 4: The Stakeholders</a></li>
+<li class="nvi"><a href="#ch7"><span class="nn">07</span>Step 5: Ethics of the Alternatives</a></li>
+<li class="nvi"><a href="#ch8"><span class="nn">08</span>Step 6: Practical Constraints</a></li>
+<li class="nvi"><a href="#ch9"><span class="nn">09</span>Step 7: Actions to Take</a></li>
+<li class="nvi"><a href="#ch10"><span class="nn">10</span>Summary</a></li>
+<li class="nvi"><a href="#ch11"><span class="nn">11</span>Individual Activity</a></li>
+</ul></nav>
+
+<main class="main">
+<div class="hero">
+<div class="he">QCU Academic OS · AY 2026-2027</div>
+<div class="ht">HUM 2 — Ethics</div>
+<div class="hs">Module 10: Moral Deliberation — Study Guide</div>
+<div class="hm">
+<div class="mp">Course: <span>HUM 2</span></div>
+<div class="mp">Units: <span>3</span></div>
+<div class="mp">Year Level: <span>1st Year, Sem 1</span></div>
+<div class="mp">Type: <span>GE — Humanities/Ethics</span></div>
+</div></div>
+
+<section class="chapter" id="ch1">
+<div class="cn">MODULE 10</div><div class="ct">What Is Ethical Deliberation?</div>
+<div class="box violet"><div class="bico">⚖️</div><div class="bbd"><div class="btt">Definition</div>
+<p class="btx">Ethical deliberation pertains to the different considerations in light of the five ethical theories in the application of the <strong>Seven-Step Method</strong> that involves answering seven "what" questions for the purpose of having an ethical decision.</p></div></div>
+<p style="font-size:12.5px;color:var(--t3)">Thesaurus.plus — opposite of deliberation: carelessness, imprudence, praise, disregard, ignorance, negligence, heedlessness, inattention, thoughtlessness.</p>
+
+<h2>The Seven Steps in an Informed Ethical Decision Making</h2>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">What are the Facts?</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">What are the Ethical Issues in the given situation?</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">What are the Alternatives?</div></div></div>
+<div class="step"><div class="snum">4</div><div class="sc"><div class="sl">Who are the Stakeholders?</div></div></div>
+<div class="step"><div class="snum">5</div><div class="sc"><div class="sl">The Ethics of the Alternatives?</div></div></div>
+<div class="step"><div class="snum">6</div><div class="sc"><div class="sl">What are the Practical Constraints?</div></div></div>
+<div class="step"><div class="snum">7</div><div class="sc"><div class="sl">What are the Actions to Take?</div></div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch2">
+<div class="cn">CHAPTER 02</div><div class="ct">The Ethical Issue</div>
+<p>Crime is present in various forms in the Philippines, and remains a serious issue throughout the country. Illegal drug trade, human trafficking, murder, corruption and domestic violence remain significant concerns. The Philippines has a high rate of murder cases, which is the highest in Southeast Asia as of 2014. Most major cities are plagued with high prevalence of crimes.</p>
+<p style="font-size:12px;color:var(--t3)">Crime in the Philippines. (29 August 2020). In <em>Wikipedia</em>. Retrieved September 14, 2020, from https://en.wikipedia.org/wiki/Crime_in_the_Philippines</p>
+</section>
+
+<section class="chapter" id="ch3">
+<div class="cn">STEP 1</div><div class="ct">What Are the Facts?</div>
+<ul>
+<li>immediate and long term prospects of Philippine society</li>
+<li>the demography of the law offenders such as age, sex or gender, economic standing, educational background, etc.</li>
+<li>the terrified citizens, businesses shortening their store hours, losses in government funds, citizens losing their trust to the government, recreational sites, and facilities getting empty of customers, etc.</li>
+</ul>
+</section>
+
+<section class="chapter" id="ch4">
+<div class="cn">STEP 2</div><div class="ct">What Are the Ethical Issues in the Given Situation?</div>
+<ol type="a">
+<li>What type of solution is most appropriate in solving crimes?</li>
+<li>What approach (use of force, diplomacy, dialogue) will facilitate the acceptance and cooperation of the citizens?</li>
+<li>Should the government involve the advice and support of either China or USA?</li>
+</ol>
+</section>
+
+<section class="chapter" id="ch5">
+<div class="cn">STEP 3</div><div class="ct">What Are the Alternatives?</div>
+<ul>
+<li>education</li>
+<li>justice system reform</li>
+<li>economic reform</li>
+<li>social justice</li>
+<li>social ID system</li>
+<li>community watch</li>
+<li>capital punishment</li>
+<li>martial law, etc.</li>
+<li>spiritual renewal</li>
+</ul>
+</section>
+
+<section class="chapter" id="ch6">
+<div class="cn">STEP 4</div><div class="ct">Who Are the Stakeholders?</div>
+<ol type="a">
+<li>First is to determine the persons who will be affected by the chosen alternative or decision.</li>
+<li>Second is how to rank stakeholder claims?</li>
+<li><em>The Filipino families' claim so as to preserve their integrity is to be given the greatest weight, since when they collapse, the whole society will likewise follow.</em></li>
+</ol>
+<div class="tw"><table>
+<thead><tr><th>Internal Stakeholders</th><th>External Stakeholders</th></tr></thead>
+<tbody>
+<tr><td>Employees, Manager, Owners</td><td>Suppliers, Society, Government, Creditors, Shareholders, Customers</td></tr>
+</tbody></table></div>
+<p style="font-size:12px;color:var(--t3)">Stakeholder diagram shown in the lesson with "Company" at the center.</p>
+</section>
+
+<section class="chapter" id="ch7">
+<div class="cn">STEP 5</div><div class="ct">The Ethics of the Alternatives</div>
+
+<h2>a. Apply the Most Reasonable Ethical Principles in Deciding on the Best Alternative</h2>
+<div class="gg">
+<div class="gc" data-g="U"><div class="gtit">Utilitarian Principle</div><p class="gsp">Given the foundational importance of the family, and the larger social institutions, which alternative would provide the greatest benefit to the greatest number? How are we going to measure costs and benefits in this case?</p></div>
+<div class="gc" data-g="D"><div class="gtit">Deontology Principle</div><p class="gsp">What alternatives would gain universal acceptance and practice?</p></div>
+<div class="gc" data-g="J"><div class="gtit">Justice Principle</div><p class="gsp">Would the chosen alternatives treat people equally or proportionately?</p></div>
+<div class="gc" data-g="V"><div class="gtit">Virtue Principle</div><p class="gsp">Would the determination of the mean between extremes be verified in the chosen alternatives? Would it provide an environment for us to flourish, maintain our well-being and happiness?</p></div>
+<div class="gc" data-g="N"><div class="gtit">Natural Law Principle</div><p class="gsp">We have our natural inclination to existence or life, to seek for truth or knowledge, an inclination to social and political life. If any of these is reflected by the chosen alternatives, then it gives value to natural law.</p></div>
+</div>
+
+<h2>b. Choosing the Best Alternative</h2>
+<p>Many possible alternatives are fitting to the solution of criminality. In this case, the best one has to be chosen with the responsibility to justify that choice as best as we can.</p>
+<p>Justification can be provided by showing why the theory(ies) indicates that alternative as the best and how this <strong>fits better into our conception of what the good life is</strong> than the alternatives suggested by the other theories.</p>
+<div class="law"><div class="lra">ON JUSTIFICATION</div>
+<div class="ldc">I may not be able to say why I prefer that alternative except in terms of the way I choose to live my life and what my experience has shown me. Does the fact that I do not have another definite standard to appeal to, if two ethical theories should disagree mean that my decision is irrational or unjustified? The decision is rational in that I have made it on the basis of the careful consideration required by the seven step method and it is justified by showing why it is the best alternative according to at least one ethical theory. To say that I am willing to live by the decision is the only remaining justification.</div></div>
+</section>
+
+<section class="chapter" id="ch8">
+<div class="cn">STEP 6</div><div class="ct">What Are the Practical Constraints?</div>
+<ol type="a">
+<li>Can the best alternative be effectively put into actual practice?</li>
+<li>Distinguish ethical from practical constraints.</li>
+</ol>
+<p style="font-size:12px;color:var(--t3)">Slide source: "Ethical constraints," Toby Walsh, 4C, Cork, Ireland — 4c.ucc.ie/~tw/ethics/</p>
+</section>
+
+<section class="chapter" id="ch9">
+<div class="cn">STEP 7</div><div class="ct">What Are the Actions to Take?</div>
+<p>The chosen alternative that is not ruled out by both ethical and practical constraints must now be enacted. It may involve the necessary steps for it to be effectively carried out.</p>
+</section>
+
+<section class="chapter" id="ch10">
+<div class="cn">CHAPTER 10</div><div class="ct">Summary</div>
+<p>Ethical decision making has been described as a process. Socrates, the Father of Ethics, advised that we need the guidance of experts in our ethical decisions. The different ethical theories that we have studied serve as our guides. What is left in us is to make the right understanding and judgment as to what is the most appropriate ethical theory in our situation.</p>
+<div class="law"><div class="lra">IMMANUEL KANT</div>
+<div class="ldc">"In law a man is guilty when he violates the rights of others. In ethics he is guilty if he only thinks of doing so."</div></div>
+</section>
+
+<section class="chapter" id="ch11">
+<div class="cn">CHAPTER 11</div><div class="ct">Individual Activity</div>
+<p><strong>Instructions:</strong> Read and analyze each question carefully. Answer each question in 5–7 sentences. Explain ideas clearly, provide relevant examples, and support answers with ethical reasoning.</p>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sl">Making Difficult Decisions</div><div class="sd">Imagine that a close friend is discovered to have cheated during an important examination, and the friend asks that it be kept a secret. How would ethical deliberation be used to decide whether to report the incident or protect the friend? Explain the possible consequences of the decision.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sl">Balancing Personal Interest and Moral Responsibility</div><div class="sd">Suppose a student leader discovers that the organization is using its funds for personal purposes instead of student activities. What factors should be considered before making a decision? How can the final decision be ensured to be fair, responsible, and morally right?</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sl">Ethical Decision-Making in Society</div><div class="sd">Imagine witnessing a government employee accepting money in exchange for special treatment. If reporting the incident could put personal safety or job at risk, would it still be reported? Explain how ethical deliberation can help weigh personal safety against the responsibility to promote honesty and justice.</div></div></div>
+</div>
+</section>
+
+<div class="footer"><p>QCU Academic OS · AY 2026-2027 · Compiled by <strong>KianoRoku18Ino</strong> · github.com/KianoRoku18Ino</p></div>
+</main>
+</body>
+</html>
