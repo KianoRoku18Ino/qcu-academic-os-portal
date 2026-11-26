@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HUM 2 — Ethics | Module 8: Virtue Ethics</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--violet:#8B5CF6;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(139,92,246,.15);--sw:275px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover{color:var(--t1);background:rgba(139,92,246,.08);border-left-color:var(--violet)}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:20px}
+.main{margin-left:var(--sw)}
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:52px 52px 42px;position:relative;overflow:hidden}
+.hero::before{content:'01001000';position:absolute;top:-10px;right:15px;font-family:'JetBrains Mono',monospace;font-size:115px;font-weight:900;color:rgba(139,92,246,.05);letter-spacing:-5px;user-select:none;line-height:1}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--violet);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--violet)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:700;line-height:1.1;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#8B5CF6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:17px;color:var(--t2);margin-bottom:19px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+.chapter{padding:44px 52px;border-bottom:1px solid var(--bdr);max-width:970px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--violet);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:19.5px;font-weight:600;margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--violet);border-radius:2px;flex-shrink:0}
+h3{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--violet);margin:22px 0 9px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+.box{border-radius:8px;padding:13px 17px;margin:15px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.violet{background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2)}.violet .btt{color:var(--violet)}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:9px 12px;text-align:left;border-bottom:2px solid var(--violet);font-size:11.5px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(139,92,246,.04)}
+tbody td{padding:9px 12px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.steps{margin:15px 0}
+.step{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.snum{background:var(--violet);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace}
+.sc{flex:1}
+.sl{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:2px}
+.sd{color:var(--t2);font-size:13px;line-height:1.7}
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.gc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;position:relative;overflow:hidden}
+.gc::before{content:attr(data-g);position:absolute;top:-10px;right:7px;font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:900;color:rgba(139,92,246,.06);line-height:1}
+.gtit{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:7px}
+.gsp{font-size:12.5px;color:var(--t2);margin:0;line-height:1.7}
+.law{background:var(--bgc);border:1px solid var(--bdr);border-left:4px solid var(--violet);border-radius:8px;padding:15px 17px;margin:11px 0}
+.lra{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--violet);font-weight:700;margin-bottom:3px}
+.lyr{font-size:11px;color:var(--t3);margin-bottom:7px}
+.ldc{font-size:13.5px;color:var(--t2);line-height:1.8;font-style:italic}
+.tagw{display:inline-block;background:var(--bgc);border:1px solid var(--bdr);border-radius:20px;padding:5px 13px;margin:3px 4px 3px 0;font-size:12.5px;color:var(--t2)}
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:5px;font-size:13.5px;line-height:1.78}
+li strong{color:var(--t1)}
+.qitem{background:var(--bgc);border:1px solid var(--bdr);border-radius:8px;padding:13px 17px;margin:9px 0}
+.qnum{font-family:'JetBrains Mono',monospace;color:var(--violet);font-weight:700;font-size:12px;margin-bottom:5px}
+.qtext{font-weight:600;color:var(--t1);font-size:13.5px;margin-bottom:6px}
+.qopt{color:var(--t2);font-size:13px;margin-bottom:2px}
+.qans{background:var(--bgr);border-left:3px solid var(--green);padding:9px 12px;margin-top:8px;border-radius:0 6px 6px 0;font-size:13px;color:var(--t2)}
+.qans strong{color:var(--green)}
+.footer{padding:34px 52px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--violet)}
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.gg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+<div class="sbh"><div class="sbb">HUM 2 · QCU BSIT</div><div class="sbt">Ethics</div><div class="sbs">Module 8 Study Guide · AY 2026-2027</div></div>
+<ul class="nvl">
+<li class="nvi"><a href="#ch1"><span class="nn">01</span>Objectives</a></li>
+<li class="nvi"><a href="#ch2"><span class="nn">02</span>Plato and Aristotle</a></li>
+<li class="nvi"><a href="#ch3"><span class="nn">03</span>Flourishing</a></li>
+<li class="nvi"><a href="#ch4"><span class="nn">04</span>Eudaimonia</a></li>
+<li class="nvi"><a href="#ch5"><span class="nn">05</span>Well-Being &amp; Happiness</a></li>
+<li class="nvi"><a href="#ch6"><span class="nn">06</span>Virtue</a></li>
+<li class="nvi"><a href="#ch7"><span class="nn">07</span>Cardinal Virtues</a></li>
+<li class="nvi"><a href="#ch8"><span class="nn">08</span>Virtue Acquisition</a></li>
+<li class="nvi"><a href="#ch9"><span class="nn">09</span>Criticisms of Virtue Ethics</a></li>
+<li class="nvi"><a href="#ch10"><span class="nn">10</span>Conclusion</a></li>
+</ul></nav>
+
+<main class="main">
+<div class="hero">
+<div class="he">QCU Academic OS · AY 2026-2027</div>
+<div class="ht">HUM 2 — Ethics</div>
+<div class="hs">Module 8: Virtue Ethics — Study Guide</div>
+<div class="hm">
+<div class="mp">Course: <span>HUM 2</span></div>
+<div class="mp">Units: <span>3</span></div>
+<div class="mp">Year Level: <span>1st Year, Sem 1</span></div>
+<div class="mp">Type: <span>GE — Humanities/Ethics</span></div>
+</div></div>
+
+<section class="chapter" id="ch1">
+<div class="cn">MODULE 8</div><div class="ct">Objectives</div>
+<p>At the end of this module, the student should be able to:</p>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sd">Defend virtuous life as a way to happiness.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sd">Summarize how virtue is acquired.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sd">Explain how to act virtuously.</div></div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch2">
+<div class="cn">CHAPTER 02</div><div class="ct">Plato and Aristotle</div>
+<div class="box violet"><div class="bico">🖼️</div><div class="bbd"><div class="btt">The School of Athens</div>
+<p class="btx">The School of Athens (Italian: Scuola di Atene) is a fresco by the Italian Renaissance artist <strong>Raphael</strong> (1483–1520, aged 37). It was painted between 1509 and 1511 as a part of Raphael's commission to decorate the rooms now known as the Stanze di Raffaello, in the Apostolic Palace in the Vatican.</p></div></div>
+<div class="gg">
+<div class="gc" data-g="P"><div class="gtit">Plato</div><p class="gsp">(428/427 BCE – 348/347)</p></div>
+<div class="gc" data-g="A"><div class="gtit">Aristotle</div><p class="gsp">384 BC – 322 BC</p></div>
+</div>
+<p style="font-size:12.5px;color:var(--t3)">Video referenced in the slides: Crash Course Philosophy #38 — "Aristotle and Virtue Theory."</p>
+</section>
+
+<section class="chapter" id="ch3">
+<div class="cn">CHAPTER 03</div><div class="ct">Flourishing</div>
+<ul>
+<li>positive emotions</li>
+<li>positive psychological functioning</li>
+<li>positive social functioning</li>
+<li>living "within an optimal range of human functioning."</li>
+<li>positive mental health and overall life well-being</li>
+<li>components and concepts, such as cultivating strengths, subjective well-being, "goodness, generativity, growth, and resilience"</li>
+<li>Flourishing is the opposite of both pathology and languishing.</li>
+</ul>
+<p style="font-size:12px;color:var(--t3)">From Wikipedia, the free encyclopedia, last edited on 25 August 2020, at 14:18 (UTC).</p>
+</section>
+
+<section class="chapter" id="ch4">
+<div class="cn">CHAPTER 04</div><div class="ct">Eudaimonia</div>
+<div class="gg">
+<div class="gc" data-g="eu"><div class="gtit">eu</div><p class="gsp">'good, well'</p></div>
+<div class="gc" data-g="dm"><div class="gtit">daimōn</div><p class="gsp">'spirit'</p></div>
+</div>
+<p style="font-size:12px;color:var(--t3)">Wikipedia, 21 September 2020, at 16:05 (UTC).</p>
+<div class="law"><div class="lra">GERARD J. HUGHES</div><div class="lyr"><em>The Routledge Guidebook to Aristotle's Nicomachean Ethics</em>, 2013, p. 20</div>
+<div class="ldc">"Eudaimonia is almost always translated as 'happiness', but this translation can easily give a misleading impression. 'Happiness' in English suggests a feeling of one kind or another, perhaps a feeling of contentment, or delight, or pleasure. Aristotle makes it quite clear that he does not have any such feeling in mind at all. He says that eudaimonia is achieving one's full potential; and that surely is not simply a matter of feeling, even if to do so would be very satisfying. It is much more closely connected with what one has made of oneself and one's life."</div></div>
+</section>
+
+<section class="chapter" id="ch5">
+<div class="cn">CHAPTER 05</div><div class="ct">Well-Being and Happiness</div>
+
+<h2>Well-Being</h2>
+<p>Well-being is most commonly used in philosophy to describe what is non-instrumentally or ultimately good for a person.</p>
+<p style="font-size:12px;color:var(--t3)">https://plato.stanford.edu/entries/well-being/</p>
+
+<h2>Flourishing</h2>
+<p>According to Aristotle, there is an end of all of the actions that are performed which is desired for itself. This is what is known as eudaimonia, flourishing, or happiness, which is desired for its own sake with all other things being desired on its account.</p>
+
+<h2>Happiness</h2>
+<ul>
+<li>the highest goal that a person can pursue</li>
+<li>employs one's rationality that sets us apart from the ordinary creatures</li>
+<li>Happiness is its own reward.</li>
+</ul>
+<div class="law"><div class="lra">ARISTOTLE</div><div class="lyr">Aristotle. 1999. <em>Nicomachean Ethics</em>. Translated by W. D. Ross. Kitchener: Batoche Books, 10.</div>
+<div class="ldc">"Happiness, on the other hand, no one choses for the sake of these, nor, in general, for anything other than itself."</div></div>
+
+<h2>What Is the Path to Happiness?</h2>
+<div class="box green"><div class="bico">🛤️</div><div class="bbd"><div class="btt">Answer</div>
+<p class="btx">The way to happiness is the practice of <strong>VIRTUE</strong>.</p></div></div>
+</section>
+
+<section class="chapter" id="ch6">
+<div class="cn">CHAPTER 06</div><div class="ct">Virtue</div>
+
+<h2>What Is Virtue?</h2>
+<div class="box violet"><div class="bico">⚖️</div><div class="bbd"><div class="btt">Definition</div>
+<p class="btx">Virtue is a "mean" between two extremes.</p></div></div>
+<div class="law"><div class="lra">ARISTOTLE</div>
+<div class="ldc">"Every virtue is a mean between two extremes, each of which is a vice."</div></div>
+
+<div class="tw"><table>
+<thead><tr><th></th><th>Position</th></tr></thead>
+<tbody>
+<tr><td>Excess</td><td>vice</td></tr>
+<tr><td>MEAN</td><td>virtue</td></tr>
+<tr><td>Deficiency</td><td>vice</td></tr>
+</tbody></table></div>
+
+<h2>Examples of Virtue as a Mean</h2>
+<div class="tw"><table>
+<thead><tr><th>Activity</th><th>Vice (Excess)</th><th>Virtue (Mean)</th><th>Vice (Deficit)</th></tr></thead>
+<tbody>
+<tr><td>Confidence in Facing Danger</td><td>Rashness</td><td>Courage</td><td>Cowardice</td></tr>
+<tr><td>Enjoying Pleasure</td><td>Self-indulgence</td><td>Temperance</td><td>Being puritanical</td></tr>
+<tr><td>Giving of Money</td><td>Vulgarity</td><td>Generosity</td><td>Stinginess</td></tr>
+<tr><td>Truth Telling About Oneself</td><td>Boastfulness</td><td>Self-honesty</td><td>Self-depreciation</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="chapter" id="ch7">
+<div class="cn">CHAPTER 07</div><div class="ct">Cardinal Virtues</div>
+<p>Hughes explains that the word 'cardinal' from the Latin word for a hinge, since it was thought that all the other virtues hinged upon, or were dependent upon these four.</p>
+<p style="font-size:12px;color:var(--t3)">See Hughes, Gerard J. 2013. <em>The Routledge Guidebook to Aristotle's Nicomachean Ethics</em>. Abingdon, Oxon: Routledge, 56.</p>
+<div class="gg">
+<div class="gc" data-g="1"><div class="gtit">COURAGE</div></div>
+<div class="gc" data-g="2"><div class="gtit">JUSTICE</div></div>
+<div class="gc" data-g="3"><div class="gtit">TEMPERANCE</div></div>
+<div class="gc" data-g="4"><div class="gtit">PIETY</div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch8">
+<div class="cn">CHAPTER 08</div><div class="ct">Virtue Acquisition</div>
+<ul>
+<li>Through practice; a social process.</li>
+<li>Imitating those who are successful in our society.</li>
+</ul>
+</section>
+
+<section class="chapter" id="ch9">
+<div class="cn">CHAPTER 09</div><div class="ct">Criticisms of Virtue Ethics</div>
+
+<h2>Self-Centeredness</h2>
+<p>Virtue ethics, according to this objection, is self-centered because its primary concern is with the agent's own character. Virtue ethics seems to be essentially interested in the acquisition of the virtues as part of the agent's own well-being and flourishing.</p>
+<div class="box green"><div class="bico">↩️</div><div class="bbd"><div class="btt">Reply</div>
+<p class="btx">Being just or honest to oneself also involves justice and honesty to others.</p></div></div>
+
+<h2>Action-Guiding</h2>
+<p>Virtue ethics, it is objected, with its emphasis on the imprecise nature of ethics, fails to give any help with the practicalities of how one should behave.</p>
+<div class="box green"><div class="bico">↩️</div><div class="bbd"><div class="btt">Reply</div>
+<p class="btx">If virtue consists of the right reason and the right desire, virtue ethics will be action-guiding when the right reason can be perceived and desires have been successfully habituated to affirm its commands.</p></div></div>
+
+<h2>Moral Luck</h2>
+<p>Some people will be lucky and receive the help and encouragement they need to attain moral maturity, but others will not.</p>
+<div class="box green"><div class="bico">↩️</div><div class="bbd"><div class="btt">Reply</div>
+<p class="btx">There is no control over the availability of the right friends. How can the virtuous be praised and the vicious blamed if their development and respective virtue and vice were not under their control?</p></div></div>
+</section>
+
+<section class="chapter" id="ch10">
+<div class="cn">CHAPTER 10</div><div class="ct">Conclusion</div>
+<ul>
+<li>Virtue Ethics is a universalist theory.</li>
+<li>Virtue is a good thing for anyone to pursue or imbibe.</li>
+<li>Happiness does not signify a momentary disposition.</li>
+<li>Happiness is an enduring sense of well being.</li>
+<li>The virtuous person knows how to conduct himself/herself in any given situation.</li>
+<li>Virtue Ethics is self empowering.</li>
+<li>In virtue ethics, it is not a question of what is the right thing to do in a given situation. Instead, it is a question of what I must do as a human person.</li>
+<li>It is not the emotions or what happens to us that determine our well-being but rather our judgment that we make about it. It is our response to emotion whether we stagnate or flourish.</li>
+</ul>
+<p style="font-size:12px;color:var(--t3)">Brezinsky, Michael B. 2014. Virtue Ethics Part I and II at https://www.youtube.com/watch?v=fnLM5XsCClk and https://www.youtube.com/watch?v=Vg-a61rKhLM</p>
+<div class="law"><div class="lra">ARISTOTLE</div>
+<div class="ldc">"Happiness does not consist in pastimes and amusements but in virtuous activities."</div></div>
+</section>
+
+<div class="footer"><p>QCU Academic OS · AY 2026-2027 · Compiled by <strong>KianoRoku18Ino</strong> · github.com/KianoRoku18Ino</p></div>
+</main>
+</body>
+</html>
