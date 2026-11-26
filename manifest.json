@@ -76,6 +76,14 @@
                   "html": "assets/guides/year-1/sem-1/hum2/week-5.html"
                 },
                 {
+                  "id": "week-7",
+                  "kind": "week",
+                  "label": "Week 7 — Deontology",
+                  "order": 7,
+                  "week": 7,
+                  "html": "assets/guides/year-1/sem-1/hum2/week-7.html"
+                },
+                {
                   "id": "1-4-module-reviewer",
                   "kind": "special",
                   "label": "1-4 Module Reviewer",
