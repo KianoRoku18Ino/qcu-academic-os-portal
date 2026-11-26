@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HUM 2 — Ethics | Module 9: Justice as Fairness</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B1426;--bgd:#080E1A;--bgc:#111D33;--bgr:#162038;--blue:#3B82F6;--bluedim:#1D4ED8;--amber:#F59E0B;--green:#10B981;--red:#EF4444;--violet:#8B5CF6;--t1:#E2E8F0;--t2:#94A3B8;--t3:#64748B;--bdr:rgba(139,92,246,.15);--sw:275px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;font-size:15px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bgd)}::-webkit-scrollbar-thumb{background:var(--bluedim);border-radius:3px}
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--bgc);border-right:1px solid var(--bdr);overflow-y:auto;z-index:100}
+.sbh{padding:20px 17px 13px;border-bottom:1px solid var(--bdr);background:var(--bgd)}
+.sbb{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:700;line-height:1.3}
+.sbs{font-size:11px;color:var(--t3);margin-top:3px}
+ul.nvl{padding:9px 0;list-style:none}
+.nvi a{display:flex;align-items:center;gap:8px;padding:7px 17px;text-decoration:none;color:var(--t2);font-size:13px;transition:all .2s;border-left:3px solid transparent}
+.nvi a:hover{color:var(--t1);background:rgba(139,92,246,.08);border-left-color:var(--violet)}
+.nn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);min-width:20px}
+.main{margin-left:var(--sw)}
+.hero{background:linear-gradient(135deg,var(--bgd),var(--bg),var(--bgc));border-bottom:1px solid var(--bdr);padding:52px 52px 42px;position:relative;overflow:hidden}
+.hero::before{content:'01001000';position:absolute;top:-10px;right:15px;font-family:'JetBrains Mono',monospace;font-size:115px;font-weight:900;color:rgba(139,92,246,.05);letter-spacing:-5px;user-select:none;line-height:1}
+.he{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--violet);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.he::before{content:'';width:24px;height:1px;background:var(--violet)}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:700;line-height:1.1;margin-bottom:5px;background:linear-gradient(90deg,#E2E8F0,#8B5CF6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs{font-size:17px;color:var(--t2);margin-bottom:19px;font-weight:400}
+.hm{display:flex;gap:10px;flex-wrap:wrap}
+.mp{background:var(--bgr);border:1px solid var(--bdr);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.mp span{color:var(--amber)}
+.chapter{padding:44px 52px;border-bottom:1px solid var(--bdr);max-width:970px}
+.cn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--violet);text-transform:uppercase;letter-spacing:3px;margin-bottom:6px}
+.ct{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;margin-bottom:10px;padding-bottom:13px;border-bottom:1px solid var(--bdr)}
+.ci{font-size:15px;color:var(--t2);line-height:1.85}
+h2{font-family:'Space Grotesk',sans-serif;font-size:19.5px;font-weight:600;margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+h2::before{content:'';width:4px;height:19px;background:var(--violet);border-radius:2px;flex-shrink:0}
+h3{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--violet);margin:22px 0 9px}
+p{color:var(--t2);margin-bottom:11px;line-height:1.82}
+p strong{color:var(--t1);font-weight:600}
+.box{border-radius:8px;padding:13px 17px;margin:15px 0;display:flex;gap:11px;align-items:flex-start}
+.bico{font-size:17px;flex-shrink:0;margin-top:1px}
+.bbd{flex:1}
+.btt{font-weight:600;font-size:13px;margin-bottom:3px}
+.btx{font-size:13px;line-height:1.7;color:var(--t2);margin:0}
+.violet{background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2)}.violet .btt{color:var(--violet)}
+.blue{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2)}.blue .btt{color:var(--blue)}
+.amber{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}.amber .btt{color:var(--amber)}
+.green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}.green .btt{color:var(--green)}
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+thead th{background:var(--bgr);color:var(--t1);font-weight:600;padding:9px 12px;text-align:left;border-bottom:2px solid var(--violet);font-size:11.5px}
+tbody tr{border-bottom:1px solid var(--bdr)}
+tbody tr:hover{background:rgba(139,92,246,.04)}
+tbody td{padding:9px 12px;color:var(--t2);vertical-align:top}
+tbody td:first-child{color:var(--t1);font-weight:500}
+.steps{margin:15px 0}
+.step{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.snum{background:var(--violet);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace}
+.sc{flex:1}
+.sl{font-weight:600;color:var(--t1);font-size:13px;margin-bottom:2px}
+.sd{color:var(--t2);font-size:13px;line-height:1.7}
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0}
+.gc{background:var(--bgc);border:1px solid var(--bdr);border-radius:10px;padding:15px 17px;position:relative;overflow:hidden}
+.gc::before{content:attr(data-g);position:absolute;top:-10px;right:7px;font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:900;color:rgba(139,92,246,.06);line-height:1}
+.gtit{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--t1);margin-bottom:7px}
+.gsp{font-size:12.5px;color:var(--t2);margin:0;line-height:1.7}
+.law{background:var(--bgc);border:1px solid var(--bdr);border-left:4px solid var(--violet);border-radius:8px;padding:15px 17px;margin:11px 0}
+.lra{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--violet);font-weight:700;margin-bottom:3px}
+.lyr{font-size:11px;color:var(--t3);margin-bottom:7px}
+.ldc{font-size:13.5px;color:var(--t2);line-height:1.8;font-style:italic}
+.tagw{display:inline-block;background:var(--bgc);border:1px solid var(--bdr);border-radius:20px;padding:5px 13px;margin:3px 4px 3px 0;font-size:12.5px;color:var(--t2)}
+ul,ol{padding-left:17px;margin:8px 0}
+li{color:var(--t2);margin-bottom:5px;font-size:13.5px;line-height:1.78}
+li strong{color:var(--t1)}
+.qitem{background:var(--bgc);border:1px solid var(--bdr);border-radius:8px;padding:13px 17px;margin:9px 0}
+.qnum{font-family:'JetBrains Mono',monospace;color:var(--violet);font-weight:700;font-size:12px;margin-bottom:5px}
+.qtext{font-weight:600;color:var(--t1);font-size:13.5px;margin-bottom:6px}
+.qopt{color:var(--t2);font-size:13px;margin-bottom:2px}
+.qans{background:var(--bgr);border-left:3px solid var(--green);padding:9px 12px;margin-top:8px;border-radius:0 6px 6px 0;font-size:13px;color:var(--t2)}
+.qans strong{color:var(--green)}
+.footer{padding:34px 52px;background:var(--bgd);border-top:1px solid var(--bdr);text-align:center}
+.footer p{color:var(--t3);font-size:12px;margin:0;line-height:1.8}
+.footer strong{color:var(--violet)}
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,.chapter{padding:28px 18px}.gg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+<div class="sbh"><div class="sbb">HUM 2 · QCU BSIT</div><div class="sbt">Ethics</div><div class="sbs">Module 9 Study Guide · AY 2026-2027</div></div>
+<ul class="nvl">
+<li class="nvi"><a href="#ch1"><span class="nn">01</span>Objectives</a></li>
+<li class="nvi"><a href="#ch2"><span class="nn">02</span>John Rawls</a></li>
+<li class="nvi"><a href="#ch3"><span class="nn">03</span>Sense of Justice &amp; Injustice</a></li>
+<li class="nvi"><a href="#ch4"><span class="nn">04</span>Main Tenets</a></li>
+<li class="nvi"><a href="#ch5"><span class="nn">05</span>Unjust Laws &amp; Structures</a></li>
+<li class="nvi"><a href="#ch6"><span class="nn">06</span>The Veil of Ignorance</a></li>
+<li class="nvi"><a href="#ch7"><span class="nn">07</span>The Original Position</a></li>
+<li class="nvi"><a href="#ch8"><span class="nn">08</span>The Principles of Justice</a></li>
+<li class="nvi"><a href="#ch9"><span class="nn">09</span>When Injustice Arises</a></li>
+<li class="nvi"><a href="#ch10"><span class="nn">10</span>Advantages</a></li>
+<li class="nvi"><a href="#ch11"><span class="nn">11</span>Criticisms</a></li>
+<li class="nvi"><a href="#ch12"><span class="nn">12</span>Activities</a></li>
+<li class="nvi"><a href="#ch13"><span class="nn">13</span>Rubric</a></li>
+<li class="nvi"><a href="#ch14"><span class="nn">14</span>Conclusion</a></li>
+</ul></nav>
+
+<main class="main">
+<div class="hero">
+<div class="he">QCU Academic OS · AY 2026-2027</div>
+<div class="ht">HUM 2 — Ethics</div>
+<div class="hs">Module 9: Justice as Fairness — Study Guide</div>
+<div class="hm">
+<div class="mp">Course: <span>HUM 2</span></div>
+<div class="mp">Units: <span>3</span></div>
+<div class="mp">Year Level: <span>1st Year, Sem 1</span></div>
+<div class="mp">Type: <span>GE — Humanities/Ethics</span></div>
+</div></div>
+
+<section class="chapter" id="ch1">
+<div class="cn">MODULE 9</div><div class="ct">Objectives</div>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sd">Explain how justice as fairness is possible.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sd">Identify the different causes why justice does not prevail in our society.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sd">Formulate reasons why a certain act is unjust in a given case or situation.</div></div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch2">
+<div class="cn">CHAPTER 02</div><div class="ct">John Rawls <span style="color:var(--violet);font-size:18px;font-weight:400">(1921 – 2002)</span></div>
+<div class="law"><div class="lra">JOHN RAWLS</div>
+<div class="ldc">"Many of our most serious conflicts are conflicts within ourselves. Those who suppose their judgements are always consistent are unreflective or dogmatic."</div></div>
+</section>
+
+<section class="chapter" id="ch3">
+<div class="cn">CHAPTER 03</div><div class="ct">Sense of Justice &amp; Injustice</div>
+
+<h2>Sense of Justice</h2>
+<div class="law"><div class="lra">JOHN RAWLS</div><div class="lyr"><em>A Theory of Justice</em>, 43</div>
+<div class="ldc">"From the standpoint of moral theory, the best account of a person's sense of justice is not the one which fits his judgments prior to his examining any conception of justice, but rather the one which matches his judgments in reflective equilibrium."</div></div>
+
+<h2>Injustice</h2>
+<div class="box amber"><div class="bico">⚠️</div><div class="bbd"><div class="btt">When injustice arises</div>
+<p class="btx">Injustice arises when others are favored at the expense of others.</p></div></div>
+<div class="box violet"><div class="bico">❓</div><div class="bbd"><div class="btt">Where does injustice begin?</div>
+<p class="btx">Injustice begins from the <strong>basic structure</strong>.</p></div></div>
+</section>
+
+<section class="chapter" id="ch4">
+<div class="cn">CHAPTER 04</div><div class="ct">Main Tenets</div>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sd">Justice has to begin with the basic structure of society, that is the constitution or the laws that govern a modern social order.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sd">Justice conceived from the point of view of the citizens themselves, with an explicit appeal to their innate sense of justice and their conception of what is good for themselves and their society.</div></div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch5">
+<div class="cn">CHAPTER 05</div><div class="ct">Unjust Laws, Structures, Institutions and Policies</div>
+<p>Unjust laws, structures, institutions and policies exist only for the advantage (point of view) of the few. Examples:</p>
+<ol>
+<li>Planting of sugarcane during Spanish times</li>
+<li>Planting of cotton during Japanese times</li>
+<li>Synthetic medicine versus herbal medicine</li>
+<li>Racial/gender discrimination</li>
+<li>Euthanasia vs allowing someone to die</li>
+<li>War</li>
+<li>Ministry of Truth (USA) — <em>Whose truth?</em></li>
+</ol>
+</section>
+
+<section class="chapter" id="ch6">
+<div class="cn">CHAPTER 06</div><div class="ct">The Veil of Ignorance</div>
+
+<h2>How Is It Possible to Create Laws That Are Fair?</h2>
+<ul>
+<li>Most lawmakers are influenced by their own interests.</li>
+<li>To prevent this, the veil of ignorance is to be applied.</li>
+</ul>
+
+<h2>What the Parties Do Not Know</h2>
+<p>The parties do not know certain kinds of particular facts:</p>
+<ul>
+<li>his/her place in society</li>
+<li>his/her class position or social status</li>
+<li>his/her fortune in the distribution of natural assets and abilities</li>
+<li>her/his intelligence and strength, and the like</li>
+</ul>
+<p>Also unknown:</p>
+<ul>
+<li><strong>Conception of the good</strong></li>
+<li>the particulars of his rational plan of life</li>
+<li>special features of his psychology such as his aversion to risk or liability to optimism or pessimism</li>
+<li>particular circumstances of their own society</li>
+<li>economic or political situation</li>
+<li>level of civilization and culture it has been able to achieve</li>
+</ul>
+<p style="font-size:12px;color:var(--t3)">Rawls, <em>A Theory of Justice</em>, 118.</p>
+
+<h2>What Do They Know Only?</h2>
+<ul>
+<li>They know that society is subject to the circumstances of justice and whatever this implies.</li>
+<li>They know the general facts about human society.</li>
+<li>They understand political affairs and the principles of economic theory.</li>
+<li>They know the basis of social organization the laws of human psychology.</li>
+<li>They know now whatever general facts affect the choice of the principles of justice.</li>
+</ul>
+
+<h2>Function of the Veil of Ignorance</h2>
+<p>In a just society, rational individuals under a veil of ignorance should endorse a theory that:</p>
+<ul>
+<li>Gives everyone as much liberty as possible.</li>
+<li>Allows for the unequal distribution of wealth only when the existence of such inequalities benefits everyone and is accessible to everyone.</li>
+</ul>
+</section>
+
+<section class="chapter" id="ch7">
+<div class="cn">CHAPTER 07</div><div class="ct">The Original Position</div>
+<ul>
+<li>A purely hypothetical, theoretical position that helps us articulate principles of justice.</li>
+<li>Inside it, we are under the veil of ignorance.</li>
+<li>It helps us understand that we are all rational, free, and equal moral beings, each having similar interests, needs and capacities.</li>
+</ul>
+
+<h2>Guide Questions to Address the Problem of Social Injustice</h2>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sd">How is redistribution possible when everything is already owned?</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sd">Without the use of force, what system or approach is acceptable to all? (The rich and the poor.)</div></div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch8">
+<div class="cn">CHAPTER 08</div><div class="ct">The Principles of Justice</div>
+
+<h2>Principle of Greatest Equal Liberty</h2>
+<div class="box violet"><div class="bico">⚖️</div><div class="bbd"><div class="btt">Statement</div>
+<p class="btx">Each person is to have an equal right to the most extensive total system of equal basic liberties compatible with a similar system of liberty for all.</p></div></div>
+
+<h3>Basic Liberties</h3>
+<ul>
+<li>Freedom to participate in the political process (the right to vote, the right to run for office, etc.)</li>
+<li>Freedom of speech (including freedom of the press)</li>
+<li>Freedom of conscience (including religious freedom)</li>
+<li>Freedom of the person (as defined by the concept of the rule of law)</li>
+<li>Freedom from arbitrary arrest and seizure, and the right to hold personal property</li>
+</ul>
+
+<h3>Why Is Liberty Acceptable to All?</h3>
+<p>It serves as a starting point in the quest for the higher values in life. It is an advantage for everyone's good. It secures self-respect. A social union of social unions. Free and equal citizens to interdependence towards the pursuit of a good life.</p>
+<p style="font-size:12px;color:var(--t3)">John Rawls, <em>Political Liberalism</em>, 316-320.</p>
+
+<h2>Second Principle</h2>
+<p>Social and economic inequalities are to be arranged so that they are both:</p>
+<div class="gg">
+<div class="gc" data-g="a"><div class="gtit">(a) The Difference Principle</div><p class="gsp">To the greatest benefit of the least advantaged, consistent with the just savings principle, and</p></div>
+<div class="gc" data-g="b"><div class="gtit">(b) Fair Equality of Opportunity</div><p class="gsp">Attached to offices and positions open to all under conditions of fair equality of opportunity.</p></div>
+</div>
+
+<h3>Fair Equality of Opportunity</h3>
+<p>Social and economic inequalities are to be attached to offices and positions that are open to all under conditions of fair equality of opportunity. Equality of opportunity is achieved when there are no legalized norms and standards which impose restrictions.</p>
+
+<h3>Why Is the Second Principle Acceptable to All (Rich and Poor)?</h3>
+<div class="law"><div class="lra">JOHN RAWLS</div><div class="lyr"><em>A Theory of Justice</em>, 131</div>
+<div class="ldc">"The basic structure should allow these inequalities so long as these improve everyone's situation, including that of the least advantaged."</div></div>
+</section>
+
+<section class="chapter" id="ch9">
+<div class="cn">CHAPTER 09</div><div class="ct">When Does Injustice Arise?</div>
+<div class="steps">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="sd">Social and economic inequalities that are not for the benefit of all.</div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="sd">When one is treated based from a standard that cannot be accepted by all the members of society given their rational conception of justice.</div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="sd">When one is treated for the advantage or interests of others.</div></div></div>
+</div>
+</section>
+
+<section class="chapter" id="ch10">
+<div class="cn">CHAPTER 10</div><div class="ct">Advantages</div>
+<p>From the <em>Republic</em>, written by the ancient Greek philosopher <strong>Plato</strong>, to <em>A Theory of Justice</em>, written by the late Harvard philosopher <strong>John Rawls</strong>, every major work on ethics has held that <strong>justice</strong> is part of the <strong>central core</strong> of morality.</p>
+<p style="font-size:12px;color:var(--t3)">Manuel Velasquez, Claire Andre, Thomas Shanks, S.J., and Michael J. Meyer — https://www.scu.edu/ethics/ethics-resources/ethical-decision-making/justice-and-fairness/</p>
+
+<div class="gg">
+<div class="gc" data-g="1999"><div class="gtit">Redistributive Justice</div><p class="gsp">An attempt to answer the question of how redistribution could be carried out in a <strong>legitimate</strong> or <strong>just process</strong>. <span style="color:var(--t3)">(<em>A Theory of Justice</em>, Revised Edition, labeled 1999 on the slide)</span></p></div>
+<div class="gc" data-g="1985"><div class="gtit">Congruence</div><p class="gsp">Congruence of justice with our deeper understanding of ourselves and our aspirations, and our realization that, given our history and the traditions embedded in our public life, it is the most reasonable doctrine for us. <span style="color:var(--t3)">(<em>Justice as Fairness: A Restatement</em>, labeled 1985 on the slide)</span></p></div>
+</div>
+
+<div class="law"><div class="lra">JOHN RAWLS</div><div class="ldc">"The sense of justice is continuous with the love of mankind."</div></div>
+<div class="law"><div class="lra">JOHN RAWLS</div><div class="ldc">"Justice is the first virtue of social institutions."</div></div>
+<div class="law"><div class="lra">JOHN RAWLS</div><div class="ldc">"A society regulated by a public sense of justice is inherently stable."</div></div>
+<div class="law"><div class="lra">JOHN RAWLS</div><div class="ldc">"The fairest rules are those to which everyone would agree if they did not know how much power they would have."</div></div>
+
+<div class="law"><div class="lra">VELASQUEZ, ANDRE, SHANKS, S.J., AND MEYER</div><div class="lyr">https://www.scu.edu/ethics/ethics-resources/ethical-decision-making/justice-and-fairness/</div>
+<div class="ldc">"Most ethicists today hold the view that there would be no point of talking about justice or fairness if it were not for the conflicts of interest that are created when goods and services are scarce and people differ over who should get what. When such conflicts arise in our society, we need principles of justice that we can all accept as reasonable and fair standards for determining what people deserve."</div></div>
+</section>
+
+<section class="chapter" id="ch11">
+<div class="cn">CHAPTER 11</div><div class="ct">Criticisms</div>
+<ul>
+<li>A basic assumption of Rawls' theory of justice is that government has the right to reallocate wealth, income, resources and opportunities.</li>
+<li>It means that some government bureaucrats has the power to take away the income, wealth and resources of citizens and then redistribute them to other members of society.</li>
+</ul>
+</section>
+
+<section class="chapter" id="ch12">
+<div class="cn">CHAPTER 12</div><div class="ct">Activities</div>
+
+<h2>Individual Activity: "If I Were to Create a Just Society"</h2>
+<p><strong>Direction:</strong> Answer the following questions in own words. Give clear explanations and examples. Write the answers on one to two pages of yellow pad paper.</p>
+<ol>
+<li>In one's own understanding, what does Justice as Fairness mean?</li>
+<li>If the rules of society were being created without knowing whether one would be rich or poor, what three rules would be established? Explain the choices using the Veil of Ignorance.</li>
+<li>Give one example of an unfair situation in school or society. Explain why it is unjust.</li>
+<li>How can the Difference Principle help improve the lives of disadvantaged members of society?</li>
+<li>Why is Fair Equality of Opportunity important in education and employment?</li>
+<li>If someone were witnessed being discriminated against, what could be done to promote justice and fairness?</li>
+</ol>
+<p><strong>Final Reflection:</strong> Complete the statement: "I can promote justice and fairness in my community by _______________________ because __________________________."</p>
+
+<h2>Group Activity: Justice as Fairness</h2>
+
+<h3>Groups 1 &amp; 2 — The Fair Society Challenge</h3>
+<p><strong>Focus:</strong> Veil of Ignorance and Original Position</p>
+<p><strong>Direction:</strong> Imagine that the group will create the rules for a new society. However, it is not known whether the members will be rich or poor, powerful or powerless, highly educated or less educated. Create five rules believed to make the society fair for everyone.</p>
+<p><strong>Guide Questions:</strong></p>
+<ul><li>Why were these rules chosen?</li><li>How did the Veil of Ignorance influence the decisions?</li><li>How will the rules protect disadvantaged people?</li></ul>
+<p><strong>Output:</strong> A poster entitled "Our Ideal Fair Society."</p>
+
+<h3>Groups 3 &amp; 4 — Justice Court: Fair or Unfair?</h3>
+<p><strong>Focus:</strong> Identifying injustice</p>
+<p><strong>Direction:</strong> Analyze the following situations. Decide whether each situation is fair or unfair. Explain the judgment using the ideas of John Rawls.</p>
+<p><strong>Situations:</strong></p>
+<ul>
+<li>A qualified student is not accepted into a scholarship program because another applicant is related to the school administrator.</li>
+<li>A company provides training opportunities only to employees who have personal connections with the manager.</li>
+<li>A school provides additional learning assistance to students who are struggling academically.</li>
+<li>A government office provides services only to wealthy citizens.</li>
+<li>A job vacancy is announced publicly, and all qualified applicants are allowed to apply.</li>
+</ul>
+<p><strong>Output:</strong> A short courtroom-style presentation. Assign a judge, lawyers, and witnesses to explain the group's decisions.</p>
+
+<h3>Groups 5 &amp; 6 — Divide It Fairly!</h3>
+<p><strong>Focus:</strong> Difference Principle</p>
+<p><strong>Direction:</strong> The group is assigned a budget of ₱100,000 for a community project. The budget must be distributed among these needs:</p>
+<ul><li>Educational assistance</li><li>Health services</li><li>Livelihood programs</li><li>Community facilities</li><li>Assistance for disadvantaged families</li></ul>
+<p>Decide how much money each program should receive. Explain how the distribution will benefit the least advantaged members of the community.</p>
+<p><strong>Guide Questions:</strong></p>
+<ul><li>Which group needs the most assistance?</li><li>Why was the budget distributed that way?</li><li>How does the decision demonstrate the Difference Principle?</li></ul>
+<p><strong>Output:</strong> Budget allocation chart with a short explanation.</p>
+
+<h3>Groups 7 &amp; 8 — Equal Rights, Equal Liberty</h3>
+<p><strong>Focus:</strong> Principle of Greatest Equal Liberty</p>
+<p><strong>Direction:</strong> Create a short role-play showing a situation where someone's basic rights or freedom are being violated. Choose one situation:</p>
+<ul>
+<li>A student is prevented from expressing a respectful opinion.</li>
+<li>A person is discriminated against because of religion.</li>
+<li>A citizen is denied the opportunity to participate in an election.</li>
+<li>A person is unfairly arrested without proper legal basis.</li>
+</ul>
+<p>Show how the situation can be resolved by respecting everyone's basic liberties.</p>
+<p><strong>Output:</strong> A 3–5-minute role-play.</p>
+
+<h3>Groups 9 &amp; 10 — Opportunity for Everyone</h3>
+<p><strong>Focus:</strong> Fair Equality of Opportunity</p>
+<p><strong>Direction:</strong> Analyze this situation: Two students apply for a scholarship. Student A comes from a wealthy family and has personal connections with school officials. Student B comes from a low-income family but has excellent academic performance. The scholarship is awarded to Student A because of personal connections.</p>
+<p>Discuss whether the decision is fair. Propose a fair selection process that gives every qualified applicant an equal opportunity.</p>
+<p><strong>Guide Questions:</strong></p>
+<ul><li>What makes the situation unfair?</li><li>Why should personal connections not determine the result?</li><li>How can the school ensure fair equality of opportunity?</li></ul>
+<p><strong>Output:</strong> A proposed scholarship policy with a short group presentation.</p>
+</section>
+
+<section class="chapter" id="ch13">
+<div class="cn">CHAPTER 13</div><div class="ct">Rubric</div>
+<div class="tw"><table>
+<thead><tr><th>Criteria</th><th>Description</th><th>Points</th></tr></thead>
+<tbody>
+<tr><td>Understanding of the topic</td><td>Shows correct understanding of Rawls' concepts</td><td>10</td></tr>
+<tr><td>Critical thinking</td><td>Gives logical explanations and solutions</td><td>5</td></tr>
+<tr><td>Application</td><td>Connects the lesson to realistic situations</td><td>5</td></tr>
+<tr><td>Teamwork</td><td>All members participate and cooperate</td><td>5</td></tr>
+<tr><td>Presentation</td><td>Clear, organized, and creative delivery</td><td>5</td></tr>
+<tr><td><strong>TOTAL</strong></td><td></td><td><strong>30</strong></td></tr>
+</tbody></table></div>
+</section>
+
+<section class="chapter" id="ch14">
+<div class="cn">CHAPTER 14</div><div class="ct">Conclusion</div>
+<p>The long debate on whose point of view will be taken into consideration when there are conflicting views about a certain ethical or political issue has resulted to a lot of antagonisms and frustrations. Under Rawls' theory of justice, this is addressed by means of the principles conceived and accepted by all the members of society given their reasonable conceptions of justice.</p>
+</section>
+
+<div class="footer"><p>QCU Academic OS · AY 2026-2027 · Compiled by <strong>KianoRoku18Ino</strong> · github.com/KianoRoku18Ino</p></div>
+</main>
+</body>
+</html>
