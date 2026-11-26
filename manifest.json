@@ -100,6 +100,14 @@
                   "html": "assets/guides/year-1/sem-1/hum2/week-9.html"
                 },
                 {
+                  "id": "week-10",
+                  "kind": "week",
+                  "label": "Week 10 — MoralDeliberation",
+                  "order": 10,
+                  "week": 10,
+                  "html": "assets/guides/year-1/sem-1/hum2/week-10.html"
+                },
+                {
                   "id": "1-4-module-reviewer",
                   "kind": "special",
                   "label": "1-4 Module Reviewer",
