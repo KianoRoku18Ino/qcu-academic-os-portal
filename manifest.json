@@ -68,14 +68,6 @@
                   "html": "assets/guides/year-1/sem-1/hum2/week-4.html"
                 },
                 {
-                  "id": "week-5",
-                  "kind": "week",
-                  "label": "Week 5 — Utilitarianism",
-                  "order": 5,
-                  "week": 5,
-                  "html": "assets/guides/year-1/sem-1/hum2/week-5.html"
-                },
-                {
                   "id": "1-4-module-reviewer",
                   "kind": "special",
                   "label": "1-4 Module Reviewer",
