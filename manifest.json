@@ -92,6 +92,14 @@
                   "html": "assets/guides/year-1/sem-1/hum2/week-8.html"
                 },
                 {
+                  "id": "week-9",
+                  "kind": "week",
+                  "label": "Week 9 — JusticeAsFairness",
+                  "order": 9,
+                  "week": 9,
+                  "html": "assets/guides/year-1/sem-1/hum2/week-9.html"
+                },
+                {
                   "id": "1-4-module-reviewer",
                   "kind": "special",
                   "label": "1-4 Module Reviewer",
